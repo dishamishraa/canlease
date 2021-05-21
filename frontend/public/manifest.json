@@ -1,0 +1,24 @@
+{
+  "name":"Varicent Academy LMS",
+  "short_name":"Varicent Academy",
+  "icons":[
+      {
+         "src": "logo.png",
+         "type": "image/png",
+         "sizes": "100x100"
+      },
+      {
+         "src":"logo192.png",
+         "sizes":"192x192",
+         "type":"image/png"
+      },
+      {
+         "src":"logo512.png",
+         "sizes":"512x512",
+         "type":"image/png"
+      }
+  ],
+  "theme_color":"#ffffff",
+  "background_color":"#ffffff",
+  "display":"standalone"
+}

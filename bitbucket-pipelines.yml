@@ -1,0 +1,87 @@
+image: node:14
+
+definitions: 
+  services:
+    docker:
+      memory: 3072
+  steps:
+    - step: &BFF-Test
+        name: BFF Tests
+        script:
+          - printenv
+          - cd bff
+          - npm install
+          - npm test -- --ci
+    
+    - step: &Frontend-Test
+        name: Frontend Test
+        script:
+          - cd frontend
+          - npm install
+          - CI=true npm test
+    
+    
+pipelines:
+  branches:
+    develop:
+      - parallel:
+        - step: *BFF-Test
+        - step: *Frontend-Test
+      - step:
+          name: Deploy BFF
+          deployment: bff-develop
+          services:
+            - docker
+          script:
+            - sh ci/build_deploy_bff.sh
+
+      - step:
+          size: 2x
+          name: Deploy Frontend
+          deployment: frontend-develop
+          services:
+            - docker
+          script:
+            - sh ci/build_deploy_frontend.sh
+
+    release/*:
+      - parallel:
+        - step: *BFF-Test
+        - step: *Frontend-Test
+      - step:
+          name: Deploy BFF
+          deployment: bff-staging
+          services:
+            - docker
+          script:
+            - sh ci/build_deploy_bff.sh
+
+      - step:
+          size: 2x
+          name: Deploy Frontend
+          deployment: frontend-staging
+          services:
+            - docker
+          script:
+            - sh ci/build_deploy_frontend.sh
+
+    master:
+      - parallel:
+        - step: *BFF-Test
+        - step: *Frontend-Test
+      - step:
+          name: Deploy BFF
+          deployment: bff-production
+          services:
+            - docker
+          script:
+            - sh ci/build_deploy_bff.sh
+
+      - step:
+          size: 2x
+          name: Deploy Frontend
+          deployment: frontend-production
+          services:
+            - docker
+          script:
+            - sh ci/build_deploy_frontend.sh

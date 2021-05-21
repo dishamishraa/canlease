@@ -1,0 +1,11 @@
+# Ignore built files
+build/*
+
+# Ignore doc server file
+serve-docs.js
+
+# Ignore jest config
+jest.config.js
+
+# Ignore coverage files
+coverage/*

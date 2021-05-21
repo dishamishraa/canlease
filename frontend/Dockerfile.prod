@@ -1,0 +1,27 @@
+FROM node:14-alpine as builder
+
+WORKDIR /app
+COPY package.json ./
+COPY package-lock.json ./
+
+RUN npm install
+RUN npm rebuild node-sass
+
+COPY . .
+
+RUN npm run build
+
+FROM node:14-alpine
+
+RUN npm install -g serve
+
+WORKDIR /usr/src/app
+RUN npm install netlify-cli
+
+# node docker images provide a user named `node` (1000)
+# USER node
+
+COPY --from=builder /app/cmd/ /usr/src/app
+COPY --from=builder --chown=node /app/build /usr/src/app/build
+
+CMD ["sh", "launcher.sh"]

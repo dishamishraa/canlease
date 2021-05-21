@@ -1,0 +1,27 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "eslint-plugin-tsdoc"
+  ],
+  "extends": [
+    "airbnb-typescript/base",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/fixtures/*", "**/*.test.ts"]}],
+    "no-await-in-loop": "off",
+    "class-methods-use-this": "off",
+    "@typescript-eslint/no-misused-promises": ["error", {
+      "checksVoidReturn": false
+    }]
+  }
+}
