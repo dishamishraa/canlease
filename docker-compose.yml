@@ -9,11 +9,11 @@ services:
       - POSTGRES_PASSWORD
       - POSTGRES_USER
       - POSTGRES_DB
+      - POSTGRES_PORT
       - DB_IDENTITY_ENABLED
       - DB_IDENTITY_NAME
       - DB_IDENTITY_USER
       - DB_IDENTITY_PASSWORD
-      - POSTGRES_PORT
       - DB_RECONNECT_TRIES
       - DB_RECONNECT_INTERVAL
     volumes:
@@ -23,7 +23,7 @@ services:
 
   backend:
     build: ./bff
-    image: ${appName}-bff:latest
+    image: canlease-bff:latest
     volumes:
       - ./bff:/usr/src/app
     command: npm run start:dev
@@ -42,7 +42,7 @@ services:
 
   frontend:
     build: ./frontend
-    image: ${appName}-fe:latest
+    image: canlease-fe:latest
     volumes:
       - ./frontend/src:/usr/src/app/src
     command: npm run start
@@ -83,7 +83,7 @@ services:
       - POSTGRES_PORT=${DB_PORT}
       - POSTGRES_DB=${DB_IDENTITY_NAME}
       - POSTGRES_USER=${DB_IDENTITY_USER}
-      - POSTGRES_PASSWORD=${DB_IDENTITY_PASSWORD}
+      - POSTGRES_PASSWORD
 
       - IDENTITY_SESSION_COOKIE_NAME=${IDENTITY_SESSION_COOKIE_NAME}
       - TOKEN_ISSUER=${IDENTITY_URL}
