@@ -13,11 +13,9 @@ services:
       - DB_IDENTITY_ENABLED
       - DB_IDENTITY_NAME
       - DB_IDENTITY_USER
-      - DB_IDENTITY_PASSWORD
+      - DB_IDENTITY_PASSWORD=password
       - DB_RECONNECT_TRIES
       - DB_RECONNECT_INTERVAL
-    volumes:
-      - ./.docker/postgresql-data:/var/lib/postgresql/data
     ports:
       - "${POSTGRES_PORT}:${POSTGRES_PORT}"
 
@@ -83,7 +81,7 @@ services:
       - POSTGRES_PORT=${DB_PORT}
       - POSTGRES_DB=${DB_IDENTITY_NAME}
       - POSTGRES_USER=${DB_IDENTITY_USER}
-      - POSTGRES_PASSWORD
+      - POSTGRES_PASSWORD=password
 
       - IDENTITY_SESSION_COOKIE_NAME=${IDENTITY_SESSION_COOKIE_NAME}
       - TOKEN_ISSUER=${IDENTITY_URL}
