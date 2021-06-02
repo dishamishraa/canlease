@@ -12,15 +12,15 @@ export const InitialsDefault: React.VFC<{}> = () => (
     style='Default'
     />
 );
-export const InitialsPink: React.VFC<{}> = () => (
+export const InitialsGreen: React.VFC<{}> = () => (
   <UserIcon
     type='Initials'
-    style='Pink'
+    style='Green'
     />
 );
-export const InitialsPurple: React.VFC<{}> = () => (
+export const InitialsOrange: React.VFC<{}> = () => (
   <UserIcon
     type='Initials'
-    style='Purple'
+    style='Orange'
     />
 );

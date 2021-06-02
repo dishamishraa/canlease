@@ -2,7 +2,6 @@ export type User = {
   id: number;
   uuid: string;
   accountId: number;
-  signUpComplete: boolean;
 };
 
 export type Account = {

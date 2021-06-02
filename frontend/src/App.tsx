@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import styles from './App.module.scss';
 import { IS_DEV } from './lib/config';
 import { AuthContext, useServiceStatus } from './modules/auth';
 import { redirectToLogin } from './modules/auth/api';
@@ -10,6 +11,7 @@ import {
   Route,
 } from 'react-router-dom';
 import ErrorHandler from './modules/error/ErrorHandler';
+import InstantQuoteLayout from './components/layout/InstantQuoteLayout';
 
 const routes = {
   home: '/',
@@ -52,11 +54,15 @@ const ProtectedRoute: React.FC<RouteProps> = (props) => {
 };
 
 const App: React.FC<{}> = () => {
+  const props: any = {
+    className: styles.layout,
+  };
+
   return (
     <Router>
       <Switch>
         <ProtectedRoute exact path={routes.home}>
-          <div>Hello World!</div>
+          <InstantQuoteLayout {...props} />
         </ProtectedRoute>
         <InvalidRoute path={routes.invalid} />
       </Switch>
