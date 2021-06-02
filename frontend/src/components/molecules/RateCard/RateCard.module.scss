@@ -1,0 +1,92 @@
+.rateCard {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  > * {
+    margin-top: 0.25rem;
+  }
+  background-color: rgb(240, 241, 247);
+  border: 1px solid rgb(210, 211, 223);
+  border-radius: 4px;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .text {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: center;
+    flex: 1 1 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  }
+
+}
+
+@media (min-width: 768px) {
+  .rateCard {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+    > * {
+      margin-top: 0.25rem;
+    }
+    background-color: rgb(240, 241, 247);
+    border: 1px solid rgb(210, 211, 223);
+    border-radius: 4px;
+  
+    .row {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .text {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: center;
+      flex: 1 1 auto;
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  
+  }
+}

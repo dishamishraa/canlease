@@ -1,0 +1,502 @@
+.iconPlusBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(13%) sepia(22%) saturate(1229%) hue-rotate(197deg) brightness(97%) contrast(86%);
+  }
+
+}
+.iconPlusBrand500 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(15%) sepia(42%) saturate(3072%) hue-rotate(220deg) brightness(103%) contrast(108%);
+  }
+
+}
+.iconPlusBasic100 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(99%) sepia(100%) saturate(0%) hue-rotate(331deg) brightness(104%) contrast(101%);
+  }
+
+}
+.iconSettingsBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(15%) sepia(21%) saturate(1068%) hue-rotate(196deg) brightness(90%) contrast(89%);
+  }
+
+}
+.iconCloseBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(15%) sepia(58%) saturate(378%) hue-rotate(195deg) brightness(91%) contrast(91%);
+  }
+
+}
+.iconMoreHorizontalBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(12%) sepia(11%) saturate(2900%) hue-rotate(197deg) brightness(89%) contrast(82%);
+  }
+
+}
+.iconMoreVerticalBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(13%) sepia(9%) saturate(2757%) hue-rotate(197deg) brightness(99%) contrast(87%);
+  }
+
+}
+.iconArrowLeftBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(17%) sepia(30%) saturate(539%) hue-rotate(195deg) brightness(97%) contrast(98%);
+  }
+
+}
+.iconArrowRightBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(15%) sepia(19%) saturate(1224%) hue-rotate(196deg) brightness(92%) contrast(88%);
+  }
+
+}
+.iconArrowUpBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(19%) sepia(41%) saturate(384%) hue-rotate(195deg) brightness(91%) contrast(100%);
+  }
+
+}
+.iconArrowDownBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(15%) sepia(31%) saturate(683%) hue-rotate(195deg) brightness(94%) contrast(91%);
+  }
+
+}
+.iconChevronUpBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(16%) sepia(49%) saturate(425%) hue-rotate(195deg) brightness(91%) contrast(92%);
+  }
+
+}
+.iconChevronDownBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(15%) sepia(17%) saturate(1170%) hue-rotate(196deg) brightness(101%) contrast(93%);
+  }
+
+}
+.iconChevronDownBasic400 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(93%) sepia(8%) saturate(239%) hue-rotate(196deg) brightness(89%) contrast(98%);
+  }
+
+}
+.iconChevronLeftBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(13%) sepia(28%) saturate(844%) hue-rotate(196deg) brightness(101%) contrast(89%);
+  }
+
+}
+.iconChevronRightBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(15%) sepia(42%) saturate(519%) hue-rotate(197deg) brightness(94%) contrast(93%);
+  }
+
+}
+.iconAlertCircleBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(11%) sepia(5%) saturate(6259%) hue-rotate(198deg) brightness(97%) contrast(81%);
+  }
+
+}
+.iconAlertTriangleBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(19%) sepia(7%) saturate(2434%) hue-rotate(197deg) brightness(95%) contrast(99%);
+  }
+
+}
+.iconQuestionMarkCircleBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(12%) sepia(7%) saturate(4718%) hue-rotate(197deg) brightness(89%) contrast(82%);
+  }
+
+}
+.iconTrashBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(16%) sepia(9%) saturate(2413%) hue-rotate(197deg) brightness(94%) contrast(91%);
+  }
+
+}
+.iconPictureBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(15%) sepia(9%) saturate(2763%) hue-rotate(197deg) brightness(88%) contrast(87%);
+  }
+
+}
+.iconFilmBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(13%) sepia(7%) saturate(3849%) hue-rotate(197deg) brightness(93%) contrast(85%);
+  }
+
+}
+.iconRadioButtonOnBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(15%) sepia(50%) saturate(486%) hue-rotate(197deg) brightness(91%) contrast(90%);
+  }
+
+}
+.iconRadioButtonOffBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(17%) sepia(8%) saturate(2676%) hue-rotate(197deg) brightness(92%) contrast(93%);
+  }
+
+}
+.iconCheckboxUncheckedBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(16%) sepia(20%) saturate(971%) hue-rotate(197deg) brightness(97%) contrast(94%);
+  }
+
+}
+.iconCheckboxCheckedBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(15%) sepia(17%) saturate(1428%) hue-rotate(196deg) brightness(90%) contrast(87%);
+  }
+
+}
+.iconHeartBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(14%) sepia(21%) saturate(1246%) hue-rotate(196deg) brightness(91%) contrast(86%);
+  }
+
+}
+.iconHeartFilledBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(11%) sepia(42%) saturate(688%) hue-rotate(197deg) brightness(103%) contrast(85%);
+  }
+
+}
+.iconOptionsBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(17%) sepia(45%) saturate(380%) hue-rotate(195deg) brightness(93%) contrast(98%);
+  }
+
+}
+.iconCloseCircleFilledBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(14%) sepia(36%) saturate(735%) hue-rotate(197deg) brightness(89%) contrast(87%);
+  }
+
+}
+.iconCheckmarkCircleFilledBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(15%) sepia(18%) saturate(1251%) hue-rotate(196deg) brightness(94%) contrast(89%);
+  }
+
+}
+.iconCheckmarkCircleBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(13%) sepia(9%) saturate(3045%) hue-rotate(197deg) brightness(97%) contrast(86%);
+  }
+
+}
+.iconMenuBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(16%) sepia(21%) saturate(1002%) hue-rotate(196deg) brightness(93%) contrast(91%);
+  }
+
+}
+.iconExternalLinkBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    filter: brightness(0) saturate(100%) invert(17%) sepia(12%) saturate(1491%) hue-rotate(197deg) brightness(95%) contrast(96%);
+  }
+
+}
+.iconShareBasic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(15%) sepia(9%) saturate(2472%) hue-rotate(197deg) brightness(91%) contrast(89%);
+  }
+
+}
+.iconShare2Basic800 {
+  align-self: center;
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(14%) sepia(32%) saturate(786%) hue-rotate(197deg) brightness(95%) contrast(88%);
+  }
+
+}

@@ -1,0 +1,75 @@
+.userIconInitialsDefault {
+
+  .background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #484F98;
+  }
+
+  .value {
+    font-family: 'Inter', 'sans-serif';
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    text-align: center;
+    color: rgb(255, 255, 255);
+  }
+
+}
+.userIconImageDefault {
+
+  .userIcon {
+    width: 100%;
+    height: 100%;
+  }
+
+}
+
+.userIconInitialsOrange {
+
+  .background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #FFAA00;
+  }
+
+  .value {
+    font-family: 'Inter', 'sans-serif';
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    text-align: center;
+    color: rgb(255, 255, 255);
+  }
+
+}
+.userIconInitialsGreen {
+
+  .background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #00D68F;
+  }
+
+  .value {
+    font-family: 'Inter', 'sans-serif';
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    text-align: center;
+    color: rgb(255, 255, 255);
+  }
+
+}

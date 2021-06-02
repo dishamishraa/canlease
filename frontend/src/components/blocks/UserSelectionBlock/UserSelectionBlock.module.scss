@@ -1,0 +1,250 @@
+.userSelectionBlock {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1.5rem 0rem 1.5rem 0rem;
+  > * {
+    margin-top: 1.5rem;
+  }
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+
+  .blockHeading {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .cardList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1rem;
+    }
+    align-self: flex-start;
+    width: 19rem;
+    flex: 0 0 45rem;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+}
+
+@media (min-width: 576px) {
+  .userSelectionBlock {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1.5rem 0rem 1.5rem 0rem;
+    > * {
+      margin-top: 2rem;
+    }
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+  
+    .blockHeading {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .cardList {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1rem;
+        margin-left: 1rem;
+      }
+      align-self: flex-start;
+      width: 33rem;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .userSelectionBlock {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1.5rem 0rem 1.5rem 0rem;
+    > * {
+      margin-top: 2rem;
+    }
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+  
+    .blockHeading {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .cardList {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1rem;
+        margin-left: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .userSelectionBlock {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1.5rem 0rem 1.5rem 0rem;
+    > * {
+      margin-top: 2.5rem;
+    }
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+  
+    .blockHeading {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 1439px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .cardList {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1rem;
+        margin-left: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 1439px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 1440px) {
+  .userSelectionBlock {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1.5rem 0rem 1.5rem 0rem;
+    > * {
+      margin-top: 2.5rem;
+    }
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+  
+    .blockHeading {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .cardList {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1rem;
+        margin-left: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+  }
+}

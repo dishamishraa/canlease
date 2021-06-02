@@ -1,0 +1,279 @@
+.simplePage {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 2rem 0.5rem 2rem 0.5rem;
+  > * {
+    margin-top: 1rem;
+  }
+
+  .getQuoteBlock {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1.5rem 1rem 1.5rem 1rem;
+    > * {
+      margin-top: 1rem;
+    }
+    align-self: flex-start;
+    width: 17rem;
+    flex: 0 0 23rem;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .actionBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1.5rem 1rem 1rem 1rem;
+    > * {
+      margin-top: 1rem;
+    }
+    align-self: flex-start;
+    width: 17rem;
+    flex: 0 0 7rem;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .actionSection {
+    display: none;
+  }
+
+}
+
+@media (min-width: 576px) {
+  .simplePage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2rem 0rem 2rem 0rem;
+    > * {
+      margin-top: 1.5rem;
+    }
+  
+    .getQuoteBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2.5rem 2rem 2.5rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: center;
+      width: 29rem;
+      flex: 0 0 25rem;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .actionBlock {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1.5rem 1rem 1rem 1rem;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: center;
+      width: 31rem;
+      flex: 0 0 5.5rem;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .simplePage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4rem 0rem 4rem 0rem;
+    > * {
+      margin-top: 1.5rem;
+    }
+  
+    .getQuoteBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2.5rem 2.5rem 3rem 2.5rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: center;
+      width: 32.5rem;
+      flex: 0 0 25rem;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .actionSection {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: center;
+      width: 33.5rem;
+      flex: 0 0 6rem;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .actionBlock {
+      display: none;
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .simplePage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4rem 0rem 4rem 0rem;
+    > * {
+      margin-top: 1.5rem;
+    }
+  
+    .getQuoteBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2.5rem 2.5rem 3rem 2.5rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: center;
+      width: 32.5rem;
+      flex: 0 0 25rem;
+      @media (max-width: 1439px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .actionSection {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: center;
+      width: 33.5rem;
+      flex: 0 0 6rem;
+      @media (max-width: 1439px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .actionBlock {
+      display: none;
+    }
+  
+  }
+}
+
+@media (min-width: 1440px) {
+  .simplePage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4rem 0rem 4rem 0rem;
+    > * {
+      margin-top: 1.5rem;
+    }
+  
+    .getQuoteBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2.5rem 2.5rem 3rem 2.5rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: center;
+      width: 32.5rem;
+      flex: 0 0 25rem;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .actionSection {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: center;
+      width: 33.5rem;
+      flex: 0 0 6rem;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .actionBlock {
+      display: none;
+    }
+  
+  }
+}
