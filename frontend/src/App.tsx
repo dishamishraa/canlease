@@ -61,9 +61,9 @@ const App: React.FC<{}> = () => {
   return (
     <Router>
       <Switch>
-        <ProtectedRoute exact path={routes.home}>
+        <Route exact path={routes.home}>
           <InstantQuoteLayout {...props} />
-        </ProtectedRoute>
+        </Route>
         <InvalidRoute path={routes.invalid} />
       </Switch>
     </Router>    

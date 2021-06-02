@@ -9,7 +9,7 @@
     margin-top: 1rem;
   }
 
-  .getQuoteBlock {
+  .block {
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -21,7 +21,7 @@
     }
     align-self: flex-start;
     width: 17rem;
-    flex: 0 0 23rem;
+    flex: 0 0 auto;
     @media (max-width: 575px) {
       &:nth-child(1) {
         margin-top: 0;
@@ -66,7 +66,7 @@
       margin-top: 1.5rem;
     }
   
-    .getQuoteBlock {
+    .block {
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -78,7 +78,7 @@
       }
       align-self: center;
       width: 29rem;
-      flex: 0 0 25rem;
+      flex: 0 0 auto;
       @media (max-width: 767px) {
         &:nth-child(1) {
           margin-top: 0;
@@ -120,7 +120,7 @@
       margin-top: 1.5rem;
     }
   
-    .getQuoteBlock {
+    .block {
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -132,7 +132,7 @@
       }
       align-self: center;
       width: 32.5rem;
-      flex: 0 0 25rem;
+      flex: 0 0 auto;
       @media (max-width: 1023px) {
         &:nth-child(1) {
           margin-top: 0;
@@ -178,7 +178,7 @@
       margin-top: 1.5rem;
     }
   
-    .getQuoteBlock {
+    .block {
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -190,7 +190,7 @@
       }
       align-self: center;
       width: 32.5rem;
-      flex: 0 0 25rem;
+      flex: 0 0 auto;
       @media (max-width: 1439px) {
         &:nth-child(1) {
           margin-top: 0;
@@ -236,7 +236,7 @@
       margin-top: 1.5rem;
     }
   
-    .getQuoteBlock {
+    .block {
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -248,7 +248,7 @@
       }
       align-self: center;
       width: 32.5rem;
-      flex: 0 0 25rem;
+      flex: 0 0 auto;
       &:nth-child(1) {
         margin-top: 0;
       }
