@@ -1,8 +1,5 @@
 import React, { useContext } from 'react';
 import styles from './App.module.scss';
-import { IS_DEV } from './lib/config';
-import { AuthContext, useServiceStatus } from './modules/auth';
-import { redirectToLogin } from './modules/auth/api';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,12 +7,15 @@ import {
   RouteProps,
   Route,
 } from 'react-router-dom';
+import { IS_DEV } from './lib/config';
+import { AuthContext, useServiceStatus } from './modules/auth';
+import { redirectToLogin } from './modules/auth/api';
 import ErrorHandler from './modules/error/ErrorHandler';
 import InstantQuoteLayout from './components/layout/InstantQuoteLayout';
 
 const routes = {
   home: '/',
-  invalid: '/'
+  invalid: '/',
 };
 
 const InvalidRoute: React.FC<RouteProps> = () => <Redirect to={routes.home} />;
@@ -66,7 +66,7 @@ const App: React.FC<{}> = () => {
         </ProtectedRoute>
         <InvalidRoute path={routes.invalid} />
       </Switch>
-    </Router>
+    </Router>    
   );
 };
 

@@ -19,7 +19,7 @@ const updateData = async <TData, TPayload>(
     const data = await update(payload);
     dispatch({ type: 'FETCH_SUCCESS', payload: data });
   } catch (error) {
-    dispatch({ type: 'FETCH_FAILURE', error: error });
+    dispatch({ type: 'FETCH_FAILURE', error });
   }
 };
 

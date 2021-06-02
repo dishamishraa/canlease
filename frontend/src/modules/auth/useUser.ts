@@ -13,6 +13,6 @@ export type UseUserResult = {
 const useUser = (): UseUserResult => {
   const get = useCallback((): Promise<User> => getUser(), []);
   return useGet(get);
-}
+};
 
 export default useUser;

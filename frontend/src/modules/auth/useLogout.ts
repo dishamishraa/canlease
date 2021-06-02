@@ -11,12 +11,12 @@ const useLogout = (): UseLogoutResult => {
   const handleLogout = useCallback(
     () => {
       removeCookie(SESSION_COOKIE_NAME, { path: '/', domain: DOMAIN });
-      logout()
+      logout();
     },
-    [logout],
-  )
+    [removeCookie],
+  );
 
   return handleLogout;
-}
+};
 
 export default useLogout;

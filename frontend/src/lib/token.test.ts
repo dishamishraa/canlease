@@ -5,13 +5,12 @@ describe('token', () => {
   describe('extractJwtPayload', () => {
     it('should extract the payload', () => {
       expect(extractJwtPayload(mockToken)).toMatchObject({
-        user: mockUser
+        user: mockUser,
       });
     });
   });
 
   describe('getUserInitials', () => {
-
     it('should get user initials', () => {
       expect(getUserInitials(mockAccount)).toBe('NK');
     });
@@ -20,7 +19,7 @@ describe('token', () => {
       expect(getUserInitials({
         ...mockAccount,
         firstName: 'lowerFirstName',
-        lastName: 'lowerLastName'
+        lastName: 'lowerLastName',
       })).toBe('LL');
     });
 
@@ -28,7 +27,7 @@ describe('token', () => {
       expect(getUserInitials({
         ...mockAccount,
         firstName: '   FirstName   ',
-        lastName: '   LastName   '
+        lastName: '   LastName   ',
       })).toBe('FL');
     });
 
@@ -36,13 +35,12 @@ describe('token', () => {
       expect(getUserInitials({
         ...mockAccount,
         firstName: '',
-        lastName: undefined as any
+        lastName: undefined as any,
       })).toBe('');
     });
   });
 
   describe('getUserFullName', () => {
-
     it('should get user full name', () => {
       expect(getUserFullName(mockAccount)).toBe('Nik k');
     });
@@ -51,7 +49,7 @@ describe('token', () => {
       expect(getUserFullName({
         ...mockAccount,
         firstName: '   FirstName   ',
-        lastName: '   LastName   '
+        lastName: '   LastName   ',
       })).toBe('FirstName LastName');
     });
 
@@ -59,7 +57,7 @@ describe('token', () => {
       expect(getUserFullName({
         ...mockAccount,
         firstName: '',
-        lastName: undefined as any
+        lastName: undefined as any,
       })).toBe('');
     });
   });

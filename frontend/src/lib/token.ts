@@ -1,18 +1,4 @@
-export type User = {
-  id: number;
-  uuid: string;
-  accountId: number;
-};
-
-export type Account = {
-  id: number;
-  uuid: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  enabled: boolean;
-};
-
+import { Account } from './types';
 /**
  * Extracts payload from a jwt
  */
