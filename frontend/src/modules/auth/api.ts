@@ -15,19 +15,18 @@ export const getUser = async (): Promise<User> => {
     );
     return data as User;
   } catch (error) {
-    if(axios.isAxiosError(error) && error.response) {
+    if (axios.isAxiosError(error) && error.response) {
       throw new ApiError({
         code: error.response.status,
         type: error.response.statusText,
         message: error.message || GET_USER_ERROR_MESSAGE,
       });
-    } 
+    }
     throw error;
   }
 };
 
 export const redirectToLogin = (options?: { readonly returnUrl: string }): void => {
-
   let returnUrl: string = options?.returnUrl ?? window.location.href;
 
   // Check if URL is relative
@@ -46,13 +45,13 @@ export const logout = async (): Promise<void> => {
     const logoutUrl = `${getServerUrl()}/auth/logout?target_uri=${loginUrl}`;
     window.location.assign(logoutUrl);
   } catch (error) {
-    if(axios.isAxiosError(error) && error.response) {
+    if (axios.isAxiosError(error) && error.response) {
       throw new ApiError({
         code: error.response.status,
         type: error.response.statusText,
         message: error.message || LOGOUT_ERROR,
       });
-    } 
+    }
     throw error;
   }
-}
+};

@@ -36,7 +36,7 @@ describe('useGet', () => {
 
     await waitForNextUpdate();
 
-    expect(result.current).toMatchObject({ error: { message: "error" } });
+    expect(result.current).toMatchObject({ error: { message: 'error' } });
   });
 
   it('should return data when successfully fetched', async () => {

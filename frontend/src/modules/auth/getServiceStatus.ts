@@ -25,7 +25,7 @@ const dispatchError = (
   error: Error,
 ): void => dispatch({
   loading: false,
-  error: error,
+  error,
 });
 
 const dispatchResults = (
