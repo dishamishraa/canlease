@@ -4,6 +4,8 @@ $headings-margin-bottom: 0;
 $paragraph-margin-bottom: 0;
 $line-height-base: 1;
 
+@import '~bootstrap/scss/bootstrap';
+
 // Import reset.css to override some of the bootstrap global settings
 @import './reset.css';
 

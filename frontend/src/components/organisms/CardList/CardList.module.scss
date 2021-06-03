@@ -1,0 +1,167 @@
+.cardList {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  > * {
+    margin-top: 1rem;
+  }
+
+  .userSelectionCard {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+}
+
+@media (min-width: 576px) {
+  .cardList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1rem;
+      margin-left: 1rem;
+    }
+  
+    .userSelectionCard {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      max-width: calc(50% - 0.5rem);
+      @media (max-width: 767px) {
+        &:nth-child(-n+2) {
+          margin-top: 0;
+        }
+        &:nth-child(2n+1) {
+          margin-left: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .cardList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1rem;
+      margin-left: 1rem;
+    }
+  
+    .userSelectionCard {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+      max-width: calc(50% - 0.5rem);
+      @media (max-width: 1023px) {
+        &:nth-child(-n+2) {
+          margin-top: 0;
+        }
+        &:nth-child(2n+1) {
+          margin-left: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .cardList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1rem;
+      margin-left: 1rem;
+    }
+  
+    .userSelectionCard {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+      max-width: calc(50% - 0.5rem);
+      @media (max-width: 1439px) {
+        &:nth-child(-n+2) {
+          margin-top: 0;
+        }
+        &:nth-child(2n+1) {
+          margin-left: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 1440px) {
+  .cardList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1rem;
+      margin-left: 1rem;
+    }
+  
+    .userSelectionCard {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+      max-width: calc(50% - 0.5rem);
+      &:nth-child(-n+2) {
+        margin-top: 0;
+      }
+      &:nth-child(2n+1) {
+        margin-left: 0;
+      }
+    }
+  
+  }
+}

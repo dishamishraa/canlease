@@ -6,6 +6,7 @@ export type ServiceErrorResponse = {
 
 export class ApiError extends Error {
   code: number;
+
   type: string;
 
   constructor(response: ServiceErrorResponse) {
@@ -16,7 +17,7 @@ export class ApiError extends Error {
 
   static isApiError(error: unknown): error is ApiError {
     const maybeApiError = error as (Partial<ApiError> | undefined);
-    return !!maybeApiError?.code && !!maybeApiError?.type && maybeApiError instanceof Error; 
+    return !!maybeApiError?.code && !!maybeApiError?.type && maybeApiError instanceof Error;
   }
 }
 

@@ -3,22 +3,22 @@ import { ApiError } from '../../lib/api/types';
 import { redirectToLogin } from '../auth/api';
 
 export type ErrorHandlerProps = {
-    error: Error;
-}
+  error: Error;
+};
 
 const ErrorHandler: React.FC<ErrorHandlerProps> = ({
-    error,
+  error,
 }) => {
-    if(error instanceof ApiError) {
-        if(error.code === 401) {
-            redirectToLogin();
-            return <div>Loading...</div>;
-        } 
+  if (error instanceof ApiError) {
+    if (error.code === 401) {
+      redirectToLogin();
+      return <div>Loading...</div>;
     }
+  }
 
-    return (
+  return (
         <div>{error.message}</div>
-    );
+  );
 };
 
 export default ErrorHandler;

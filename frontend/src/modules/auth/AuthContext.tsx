@@ -3,7 +3,8 @@
 import React, { createContext } from 'react';
 import Cookie from 'js-cookie';
 import { DOMAIN, SESSION_COOKIE_NAME } from '../../lib/config';
-import { User, Account, extractJwtPayload } from '../../lib/token';
+import { User, Account } from '../../lib/types';
+import { extractJwtPayload } from '../../lib/token';
 import useUser from './useUser';
 
 export type AuthContextValue = {
@@ -32,7 +33,7 @@ const initialAuthContext: AuthContextValue = {
   account: null,
   loading: false,
   error: undefined,
-  refetchUser: null
+  refetchUser: null,
 };
 
 export const AuthContext = createContext<AuthContextValue>(initialAuthContext);
@@ -42,14 +43,16 @@ export const AuthProvider: React.FC<{}> = ({ children }) => {
     data: user,
     loading,
     error,
-    refetch: refetchUser
+    refetch: refetchUser,
   } = useUser();
 
   const cookie = Cookie.get(SESSION_COOKIE_NAME);
   const account = cookie ? extractJwtPayload(cookie) : null;
 
   return (
-    <AuthContext.Provider value={{ user, account, loading, error, refetchUser }}>
+    <AuthContext.Provider value={{
+      user, account, loading, error, refetchUser,
+    }}>
       {children}
     </AuthContext.Provider>
   );

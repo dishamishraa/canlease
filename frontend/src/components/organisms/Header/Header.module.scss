@@ -1,0 +1,115 @@
+.header {
+  z-index: 3;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  > * {
+    margin-top: 0.75rem;
+  }
+  background-color: rgb(255, 255, 255);
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0.75rem 0rem 0.75rem;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .logo {
+    overflow: hidden;
+    align-self: center;
+    height: 0.875rem;
+    flex: 0 0 6.4375rem;
+  }
+
+  .userProfile {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: center;
+    flex: 0 0 auto;
+  }
+
+  .divider {
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+}
+
+@media (min-width: 768px) {
+  .header {
+    z-index: 3;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1.25rem;
+    }
+    background-color: rgb(255, 255, 255);
+  
+    .content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.25rem 0rem 1.25rem;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .logo {
+      overflow: hidden;
+      align-self: center;
+      height: 1.25rem;
+      flex: 0 0 9.625rem;
+    }
+  
+    .userProfile {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      flex: 0 0 auto;
+    }
+  
+    .divider {
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+  }
+}

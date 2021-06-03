@@ -1,0 +1,768 @@
+.userSelectionCard {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  > * {
+    margin-top: 1rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 575px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(210, 211, 223);
+  border-radius: 4px;
+
+  .image {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem 1rem 1.5rem 1rem;
+    > * {
+      margin-top: 1rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .text {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: center;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+}
+.userSelectionCard:hover {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  > * {
+    margin-top: 1rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 575px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(72, 79, 152);
+  border-radius: 4px;
+
+  .image {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem 1rem 1.5rem 1rem;
+    > * {
+      margin-top: 1rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .text {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: center;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+}
+
+@media (min-width: 576px) {
+  .userSelectionCard {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(210, 211, 223);
+    border-radius: 4px;
+  
+    .image {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1rem 1rem 1.5rem 1rem;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .text {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 575px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      flex: 0 0 auto;
+      @media (max-width: 575px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 576px) {
+  .userSelectionCard:hover {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(72, 79, 152);
+    border-radius: 4px;
+  
+    .image {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1rem 1rem 1.5rem 1rem;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .text {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .userSelectionCard {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(210, 211, 223);
+    border-radius: 4px;
+  
+    .image {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1rem 1rem 1.5rem 1rem;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .text {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .userSelectionCard:hover {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 1023px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(72, 79, 152);
+    border-radius: 4px;
+  
+    .image {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1rem 1rem 1.5rem 1rem;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .text {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      flex: 0 0 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .userSelectionCard {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 1023px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(210, 211, 223);
+    border-radius: 4px;
+  
+    .image {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1rem 1rem 1.5rem 1rem;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .text {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      flex: 0 0 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .userSelectionCard:hover {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 1439px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(72, 79, 152);
+    border-radius: 4px;
+  
+    .image {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1rem 1rem 1.5rem 1rem;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .text {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 1439px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      flex: 0 0 auto;
+      @media (max-width: 1439px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 1440px) {
+  .userSelectionCard {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 1439px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(210, 211, 223);
+    border-radius: 4px;
+  
+    .image {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1rem 1rem 1.5rem 1rem;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .text {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 1439px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      flex: 0 0 auto;
+      @media (max-width: 1439px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 1440px) {
+  .userSelectionCard:hover {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(72, 79, 152);
+    border-radius: 4px;
+  
+    .image {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1rem 1rem 1.5rem 1rem;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .text {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+  }
+}

@@ -54,7 +54,7 @@ describe('useUpdate', () => {
       await update({});
     });
 
-    expect(result.current[0].error).toStrictEqual({ message: "error" });
+    expect(result.current[0].error).toStrictEqual({ message: 'error' });
   });
 
   it('should return data when successfully updated', async () => {

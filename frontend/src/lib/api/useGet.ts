@@ -16,7 +16,7 @@ const fetchData = async <TData>(
     const data = await get();
     dispatch({ type: 'FETCH_SUCCESS', payload: data });
   } catch (error) {
-    dispatch({ type: 'FETCH_FAILURE', error: error });
+    dispatch({ type: 'FETCH_FAILURE', error });
   }
 };
 

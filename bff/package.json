@@ -1,5 +1,5 @@
 {
-  "name": "${appName}-server",
+  "name": "canlease-server",
   "version": "0.0.0",
   "private": true,
   "scripts": {
