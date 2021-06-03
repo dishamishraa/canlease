@@ -1,1 +1,21 @@
-{}
+{
+    "get_quote_block": {
+        "header": "Get a quote",
+        "name": {
+            "label": "Equipment Name",
+            "placeholder": "e.g. Macbook Pro 13 inch"
+        },
+        "cost": {
+            "label": "Equipment Cost (before tax)",
+            "placeholder": "CAD"
+        },
+        "type": {
+            "label": "Please select",
+            "options": {
+                "stretch": "Stretch",
+                "ten": "$10 end"
+            }
+        },
+        "submit": "Next"
+    }
+}

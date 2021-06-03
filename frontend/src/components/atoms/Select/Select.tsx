@@ -21,6 +21,11 @@ export const defaultProps = {
   } as IconProps,
 };
 
+export type SelectItem = {
+  label: string;
+  value: string;
+};
+
 export type SelectProps = {
   selectType?: SelectSelectTypeType;
   onSelectClicked?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
