@@ -60,6 +60,36 @@
     }
   }
 
+  .conditionsText {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .validText {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
   .viewQuoteButton {
     display: flex;
     flex-direction: row;
@@ -76,6 +106,10 @@
         margin-top: 0;
       }
     }
+  }
+
+  .learnMoreText {
+    display: none;
   }
 
 }
@@ -143,6 +177,36 @@
       }
     }
   
+    .conditionsText {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .validText {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
     .viewQuoteButton {
       display: flex;
       flex-direction: row;
@@ -152,6 +216,21 @@
       > * {
         margin-left: 0.5rem;
       }
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .learnMoreText {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
       align-self: stretch;
       flex: 0 0 auto;
       @media (max-width: 767px) {
@@ -219,6 +298,30 @@
       }
     }
   
+    .conditionsText {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .validText {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
     .viewQuoteButton {
       display: flex;
       flex-direction: row;
@@ -228,6 +331,18 @@
       > * {
         margin-left: 0.5rem;
       }
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .learnMoreText {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
       align-self: stretch;
       flex: 0 0 auto;
       &:nth-child(1) {

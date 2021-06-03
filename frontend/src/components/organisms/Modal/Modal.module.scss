@@ -57,7 +57,7 @@
     padding: 0.625rem 0.625rem 0.625rem 0.625rem;
     align-self: center;
     width: 11.25rem;
-    flex: 0 0 11.25rem;
+    flex: 0 0 auto;
     @media (max-width: 575px) {
       &:nth-child(1) {
         margin-top: 0;
@@ -194,7 +194,7 @@
       padding: 0.625rem 0.625rem 0.625rem 0.625rem;
       align-self: center;
       width: 11.25rem;
-      flex: 0 0 11.25rem;
+      flex: 0 0 auto;
       @media (max-width: 767px) {
         &:nth-child(1) {
           margin-top: 0;
@@ -328,7 +328,7 @@
       padding: 0.625rem 0.625rem 0.625rem 0.625rem;
       align-self: center;
       width: 11.25rem;
-      flex: 0 0 11.25rem;
+      flex: 0 0 auto;
       &:nth-child(1) {
         margin-top: 0;
       }

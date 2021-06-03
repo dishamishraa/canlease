@@ -35,9 +35,8 @@
     > * {
       margin-top: 1rem;
     }
-    align-self: flex-start;
-    width: 19rem;
-    flex: 0 0 45rem;
+    align-self: stretch;
+    flex: 0 0 auto;
     @media (max-width: 575px) {
       &:nth-child(1) {
         margin-top: 0;
@@ -87,8 +86,7 @@
         margin-top: 1rem;
         margin-left: 1rem;
       }
-      align-self: flex-start;
-      width: 33rem;
+      align-self: stretch;
       flex: 0 0 auto;
       @media (max-width: 767px) {
         &:nth-child(1) {

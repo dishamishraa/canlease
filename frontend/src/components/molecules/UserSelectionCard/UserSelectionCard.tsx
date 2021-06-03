@@ -46,7 +46,7 @@ const UserSelectionCard: React.FC<UserSelectionCardProps> = ({
       <Image
         className={styles.image}
         {...image} />
-      <div className={styles.contect}>
+      <div className={styles.content}>
         <Text
           className={styles.text}
           {...text} />

@@ -38,7 +38,19 @@ export const defaultProps = {
     style: 'Basic800',
     align: 'Left',
     size: 'Medium',
+    type: 'Paragraph3',
+  } as TextProps,
+  conditionsText: {
+    style: 'Basic800',
+    align: 'Left',
+    size: 'Medium',
     type: 'Paragraph2',
+  } as TextProps,
+  validText: {
+    style: 'Basic800',
+    align: 'Left',
+    size: 'Medium',
+    type: 'Paragraph3',
   } as TextProps,
   viewQuoteButton: {
     type: 'Button',
@@ -52,22 +64,34 @@ export const defaultProps = {
       type: 'ButtonGiant',
     },
   } as ButtonProps,
+  learnMoreText: {
+    style: 'Basic800',
+    align: 'Left',
+    size: 'Medium',
+    type: 'Paragraph2',
+  } as TextProps,
 };
 
 export type QuoteBlockProps = {
   blockHeading?: TextProps;
   quoteRateSection?: QuoteRateSectionProps;
   disclaimerText?: TextProps;
+  conditionsText?: TextProps;
+  validText?: TextProps;
   viewQuoteButton?: ButtonProps;
   className?: string;
+  learnMoreText?: TextProps;
 };
 
 const QuoteBlock: React.FC<QuoteBlockProps> = ({
   blockHeading,
   quoteRateSection,
   disclaimerText,
+  conditionsText,
+  validText,
   viewQuoteButton,
   className,
+  learnMoreText,
 }) => {
   return (
     <div className={cx(styles.quoteBlock, className)}>
@@ -80,6 +104,15 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
       <Text
         className={styles.disclaimerText}
         {...disclaimerText} />
+      <Text
+        className={styles.conditionsText}
+        {...conditionsText} />
+      <Text
+        className={styles.validText}
+        {...validText} />
+      <Text
+        className={styles.learnMoreText}
+        {...learnMoreText} />
       <Button
         className={styles.viewQuoteButton}
         {...viewQuoteButton} />
