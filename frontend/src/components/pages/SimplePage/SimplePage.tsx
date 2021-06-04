@@ -4,8 +4,7 @@ import cx from 'classnames';
 import styles from './SimplePage.module.scss';
 
 import UserSelectionBlock, { UserSelectionBlockProps } from '../../blocks/UserSelectionBlock';
-import GetQuoteBlock from '../../blocks/GetQuoteBlock';
-import { GetQuoteBlockProps } from '../../blocks/GetQuoteBlock/GetQuoteBlock';
+import GetQuoteBlock, { GetQuoteBlockProps } from '../../blocks/GetQuoteBlock';
 import ContactInfoCustomerBlock, { ContactInfoCustomerBlockProps } from '../../blocks/ContactInfoCustomerBlock';
 import ContactInfoVendorBlock, { ContactInfoVendorBlockProps } from '../../blocks/ContactInfoVendorBlock';
 import QuoteBlock, { QuoteBlockProps } from '../../blocks/QuoteBlock';
