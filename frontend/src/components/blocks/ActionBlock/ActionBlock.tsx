@@ -68,12 +68,6 @@ const ActionBlock: React.FC<ActionBlockProps> = ({
       <Button
         className={styles.button}
         {...button} />
-      <Text
-        className={styles.promptText}
-        {...promptText} />
-      <Button
-        className={styles.actionButton}
-        {...actionButton} />
     </div>
   );
 };
