@@ -102,6 +102,7 @@ export const defaultProps = {
         align: 'Center',
         size: 'Large',
         type: 'Paragraph1',
+        value: 'Need help creating a quote? We are happy to assist.'
       },
       button: {
         type: 'Button',
@@ -113,7 +114,11 @@ export const defaultProps = {
           align: 'Center',
           size: 'Small',
           type: 'ButtonGiant',
+          value: 'Contacu Us'
         },
+        onButtonClicked: (e) =>{
+          window.open('https://canlease.net/contact/', "_blanck")
+        }
       },
     },
   } as SimplePageProps,

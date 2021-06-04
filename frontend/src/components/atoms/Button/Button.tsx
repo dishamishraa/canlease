@@ -60,11 +60,6 @@ const Button: React.FC<ButtonProps> = ({
   
   switch (type) {
     case 'Button':
-      textView = (
-        <Text
-          className={styles.text}
-          {...text} />
-      );
       contentView = (
         <div className={styles.content}>
           <Text
@@ -102,7 +97,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       type={buttonType}
-      onClick={onButtonClicked}
+      onClick={(onButtonClicked)}
       className={cx(currentStyle, className)}>
       {textView}
       {contentView}
