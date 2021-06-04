@@ -9,8 +9,8 @@
             "label": "Equipment Cost (before tax)",
             "placeholder": "CAD"
         },
-        "type": {
-            "label": "Please select",
+        "lease_type": {
+            "label": "Lease type",
             "options": {
                 "stretch": "Stretch",
                 "ten": "$10 end"

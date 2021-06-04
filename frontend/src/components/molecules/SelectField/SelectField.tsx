@@ -6,6 +6,9 @@ import styles from './SelectField.module.scss';
 import Text, { TextProps } from '../../atoms/Text';
 import Select, { SelectProps } from '../../atoms/Select';
 
+import { Dropdown } from 'react-bootstrap';
+import ContextualMenu, { ContextualMenuProps } from '../ContextualMenu';
+
 export const defaultProps = {
   label: {
     style: 'Basic800',
@@ -31,22 +34,26 @@ export type SelectFieldProps = {
   label?: TextProps;
   select?: SelectProps;
   className?: string;
+  contextualMenu?: ContextualMenuProps;
 };
 
 const SelectField: React.FC<SelectFieldProps> = ({
   label,
   select,
   className,
+  contextualMenu,
 }) => {
   return (
-    <div className={cx(styles.selectField, className)}>
-      <Text
-        className={styles.label}
-        {...label} />
-      <Select
-        className={styles.select}
-        {...select} />
-    </div>
+  <Dropdown className={cx(styles.selectField, className)}>
+    <Text
+      className={styles.label}
+      {...label} />
+    <Select
+      className={styles.select} />
+    <Dropdown.Menu align='right' className={cx(styles.selectField, className)}>
+      <ContextualMenu {...contextualMenu} />
+    </Dropdown.Menu>
+  </Dropdown>
   );
 };
 
