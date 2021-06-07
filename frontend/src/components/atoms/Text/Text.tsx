@@ -3,7 +3,7 @@ import cx from 'classnames';
 
 import styles from './Text.module.scss';
 
-export type TextStyleType = 'Basic800' | 'Basic400' | 'Basic500' | 'Red200' | 'Basic600' | 'Brand500' | 'Basic100';
+export type TextStyleType = 'Basic800' | 'Basic100' | 'Basic400' | 'Basic500' | 'Red200' | 'Basic600' | 'Brand500';
 export type TextAlignType = 'Left' | 'Center';
 export type TextSizeType = 'Large' | 'Medium' | 'Small';
 export type TextTypeType = 'Heading1' | 'Heading2' | 'Heading3' | 'Heading4' | 'Subtitle1' | 'Subtitle2' | 'Paragraph1' | 'Paragraph2' | 'Paragraph3' | 'ButtonGiant';

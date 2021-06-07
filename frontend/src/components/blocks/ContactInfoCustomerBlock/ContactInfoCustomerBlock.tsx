@@ -16,6 +16,7 @@ export const defaultProps = {
   } as TextProps,
   nameTextField: {
     state: 'Default',
+    type: 'Text',
     label: {
       style: 'Basic800',
       align: 'Left',
@@ -23,10 +24,12 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
+      type: 'Text',
     },
   } as TextFieldProps,
   businessEmailTextField: {
     state: 'Default',
+    type: 'Text',
     label: {
       style: 'Basic800',
       align: 'Left',
@@ -34,10 +37,12 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
+      type: 'Text',
     },
   } as TextFieldProps,
   companyNameField: {
     state: 'Default',
+    type: 'Text',
     label: {
       style: 'Basic800',
       align: 'Left',
@@ -45,6 +50,7 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
+      type: 'Text',
     },
   } as TextFieldProps,
   disclaimerText: {

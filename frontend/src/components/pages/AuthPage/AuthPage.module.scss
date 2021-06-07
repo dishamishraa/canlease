@@ -1,0 +1,192 @@
+.authPage {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+
+  .backBar {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1rem 0rem 1rem 0rem;
+    align-self: flex-start;
+    width: 19rem;
+    flex: 0 0 auto;
+  }
+
+  .block {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1.5rem 1rem 1.5rem 1rem;
+    > * {
+      margin-top: 2.5rem;
+    }
+    align-self: flex-start;
+    width: 19rem;
+    flex: 0 0 auto;
+  }
+
+}
+
+@media (min-width: 576px) {
+  .authPage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2rem 0rem 2rem 0rem;
+  
+    .backBar {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 1rem 0rem;
+      align-self: center;
+      width: 31.25rem;
+      flex: 0 0 auto;
+    }
+  
+    .block {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2.5rem 2.5rem 3rem 2.5rem;
+      > * {
+        margin-top: 2.5rem;
+      }
+      align-self: center;
+      width: 31.25rem;
+      flex: 0 0 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .authPage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2.5rem 0rem 2.5rem 0rem;
+  
+    .backBar {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 1rem 0rem;
+      align-self: center;
+      width: 31.25rem;
+      flex: 0 0 auto;
+    }
+  
+    .block {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2.5rem 2.5rem 3rem 2.5rem;
+      > * {
+        margin-top: 2.5rem;
+      }
+      align-self: center;
+      width: 31.25rem;
+      flex: 0 0 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .authPage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 3rem 0rem 3rem 0rem;
+  
+    .backBar {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 1rem 0rem;
+      align-self: center;
+      width: 31.25rem;
+      flex: 0 0 auto;
+    }
+  
+    .block {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2.5rem 2.5rem 3rem 2.5rem;
+      > * {
+        margin-top: 2.5rem;
+      }
+      align-self: center;
+      width: 31.25rem;
+      flex: 0 0 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 1440px) {
+  .authPage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 3rem 0rem 3rem 0rem;
+  
+    .backBar {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 1rem 0rem;
+      align-self: center;
+      width: 31.25rem;
+      flex: 0 0 auto;
+    }
+  
+    .block {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2.5rem 2.5rem 3rem 2.5rem;
+      > * {
+        margin-top: 2.5rem;
+      }
+      align-self: center;
+      width: 31.25rem;
+      flex: 0 0 auto;
+    }
+  
+  }
+}

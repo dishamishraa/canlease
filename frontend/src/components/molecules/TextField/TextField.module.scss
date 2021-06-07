@@ -1,4 +1,4 @@
-.textFieldDefault {
+.textFieldDefaultText {
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -28,13 +28,71 @@
 
   .textInput {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
     padding: 0.75rem 0.75rem 0.75rem 0.75rem;
     > * {
-      margin-top: 0.25rem;
+      margin-left: 0.5rem;
     }
+    align-self: stretch;
+    flex: 0 0 1.5rem;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+}
+.textFieldErrorText {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  > * {
+    margin-top: 0.25rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .label {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .textInput {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .errorMessage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
     align-self: stretch;
     flex: 0 0 auto;
     &:nth-child(1) {
@@ -43,7 +101,7 @@
   }
 
 }
-.textFieldError {
+.textFieldDefaultPassword {
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -73,12 +131,57 @@
 
   .textInput {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
     padding: 0.75rem 0.75rem 0.75rem 0.75rem;
     > * {
-      margin-top: 0.25rem;
+      margin-left: 0.5rem;
+    }
+    align-self: stretch;
+    flex: 0 0 1.5rem;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+}
+.textFieldErrorPassword {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  > * {
+    margin-top: 0.25rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .label {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .textInput {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+    > * {
+      margin-left: 0.5rem;
     }
     align-self: stretch;
     flex: 0 0 auto;

@@ -9,7 +9,7 @@ import Button, { ButtonProps } from '../../atoms/Button';
 import Text, { TextProps } from '../../atoms/Text';
 
 export type UserProfileStyleType = 'Light';
-export type UserProfileStateType = 'SignedIn' | 'SignedOut';
+export type UserProfileStateType = 'SignedIn' | 'None' | 'SignedOut';
 
 export const defaultProps = {
   style: 'Light' as UserProfileStyleType,
@@ -95,6 +95,8 @@ const UserProfile: React.FC<UserProfileProps> = ({
           className={styles.icon}
           {...icon} />
       );
+      break;
+    case 'None':
       break;
     case 'SignedOut':
       primaryView = (

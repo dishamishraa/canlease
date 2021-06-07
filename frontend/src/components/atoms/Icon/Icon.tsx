@@ -36,13 +36,19 @@ import MenuAsset from '../../../resources/icons/Menu.svg';
 import ExternalLinkAsset from '../../../resources/icons/ExternalLink.svg';
 import ShareAsset from '../../../resources/icons/Share.svg';
 import Share2Asset from '../../../resources/icons/Share2.svg';
+import ShowAsset from '../../../resources/icons/Show.svg';
+import HideAsset from '../../../resources/icons/Hide.svg';
+import DashboardAsset from '../../../resources/icons/Dashboard.svg';
+import QuotesAsset from '../../../resources/icons/Quotes.svg';
+import ApplicationsAsset from '../../../resources/icons/Applications.svg';
+import RateCardsAsset from '../../../resources/icons/RateCards.svg';
 
-export type IconAssetType = 'Plus' | 'Settings' | 'Close' | 'MoreHorizontal' | 'MoreVertical' | 'ArrowLeft' | 'ArrowRight' | 'ArrowUp' | 'ArrowDown' | 'ChevronUp' | 'ChevronDown' | 'ChevronLeft' | 'ChevronRight' | 'AlertCircle' | 'AlertTriangle' | 'QuestionMarkCircle' | 'Trash' | 'Picture' | 'Film' | 'RadioButtonOn' | 'RadioButtonOff' | 'CheckboxUnchecked' | 'CheckboxChecked' | 'Heart' | 'HeartFilled' | 'Options' | 'CloseCircleFilled' | 'CheckmarkCircleFilled' | 'CheckmarkCircle' | 'Menu' | 'ExternalLink' | 'Share' | 'Share2';
-export type IconStyleType = 'Basic800' | 'Brand500' | 'Basic100' | 'Basic400';
+export type IconAssetType = 'Plus' | 'Settings' | 'Close' | 'MoreHorizontal' | 'MoreVertical' | 'ArrowLeft' | 'ArrowRight' | 'ArrowUp' | 'ArrowDown' | 'ChevronUp' | 'ChevronDown' | 'ChevronLeft' | 'ChevronRight' | 'AlertCircle' | 'AlertTriangle' | 'QuestionMarkCircle' | 'Trash' | 'Picture' | 'Film' | 'RadioButtonOn' | 'RadioButtonOff' | 'CheckboxUnchecked' | 'CheckboxChecked' | 'Heart' | 'HeartFilled' | 'Options' | 'CloseCircleFilled' | 'CheckmarkCircleFilled' | 'CheckmarkCircle' | 'Menu' | 'ExternalLink' | 'Share' | 'Share2' | 'Show' | 'Hide' | 'Dashboard' | 'Quotes' | 'Applications' | 'RateCards';
+export type IconStyleType = 'Basic800' | 'Brand500' | 'Basic100' | 'Basic400' | 'Red200';
 
 export const defaultProps = {
-  asset: 'Share2' as IconAssetType,
-  style: 'Basic800' as IconStyleType,
+  asset: 'RateCards' as IconAssetType,
+  style: 'Brand500' as IconStyleType,
 };
 
 export type IconProps = {
@@ -161,6 +167,24 @@ const Icon: React.FC<IconProps> = ({
       break;
     case 'Share2':
       content = Share2Asset;
+      break;
+    case 'Show':
+      content = ShowAsset;
+      break;
+    case 'Hide':
+      content = HideAsset;
+      break;
+    case 'Dashboard':
+      content = DashboardAsset;
+      break;
+    case 'Quotes':
+      content = QuotesAsset;
+      break;
+    case 'Applications':
+      content = ApplicationsAsset;
+      break;
+    case 'RateCards':
+      content = RateCardsAsset;
       break;
     default:
       break;

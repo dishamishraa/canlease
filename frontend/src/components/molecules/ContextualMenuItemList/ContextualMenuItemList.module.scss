@@ -1,0 +1,19 @@
+.contextualMenuItemList {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  .contextualMenuItem {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+    align-self: stretch;
+    flex: 0 0 auto;
+  }
+
+}

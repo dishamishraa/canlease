@@ -16,6 +16,7 @@ export const defaultProps = {
   } as TextProps,
   vendorNameTextField: {
     state: 'Default',
+    type: 'Text',
     label: {
       style: 'Basic800',
       align: 'Left',
@@ -23,10 +24,12 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
+      type: 'Text',
     },
   } as TextFieldProps,
   vendorBusinessEmailTextField: {
     state: 'Default',
+    type: 'Text',
     label: {
       style: 'Basic800',
       align: 'Left',
@@ -34,10 +37,12 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
+      type: 'Text',
     },
   } as TextFieldProps,
   vendorCompanyNameField: {
     state: 'Default',
+    type: 'Text',
     label: {
       style: 'Basic800',
       align: 'Left',
@@ -45,10 +50,12 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
+      type: 'Text',
     },
   } as TextFieldProps,
   customerNameTextField: {
     state: 'Default',
+    type: 'Text',
     label: {
       style: 'Basic800',
       align: 'Left',
@@ -56,10 +63,12 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
+      type: 'Text',
     },
   } as TextFieldProps,
   customerEmailTextField: {
     state: 'Default',
+    type: 'Text',
     label: {
       style: 'Basic800',
       align: 'Left',
@@ -67,10 +76,12 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
+      type: 'Text',
     },
   } as TextFieldProps,
   customerCompanyNameTextField: {
     state: 'Default',
+    type: 'Text',
     label: {
       style: 'Basic800',
       align: 'Left',
@@ -78,6 +89,7 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
+      type: 'Text',
     },
   } as TextFieldProps,
   disclaimerText: {

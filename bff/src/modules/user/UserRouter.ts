@@ -32,7 +32,7 @@ export function createUserRouter(): Router {
     if (!identityTokenPayload) {
       throw UnauthorizedError();
     }
-
+    // TODO update implementation to pull user profile from salesforce
     res.redirect(`${IDENTITY_URL}/users/${identityTokenPayload.id}`, 301);
   }));
 

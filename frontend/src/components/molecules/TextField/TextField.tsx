@@ -7,9 +7,11 @@ import Text, { TextProps } from '../../atoms/Text';
 import TextInput, { TextInputProps } from '../../atoms/TextInput';
 
 export type TextFieldStateType = 'Default' | 'Error';
+export type TextFieldTypeType = 'Text' | 'Password';
 
 export const defaultProps = {
   state: 'Error' as TextFieldStateType,
+  type: 'Password' as TextFieldTypeType,
   label: {
     style: 'Basic800',
     align: 'Left',
@@ -17,6 +19,11 @@ export const defaultProps = {
     type: 'Paragraph2',
   } as TextProps,
   textInput: {
+    type: 'Password',
+    icon: {
+      asset: 'Show',
+      style: 'Brand500',
+    },
   } as TextInputProps,
   errorMessage: {
     style: 'Red200',
@@ -28,6 +35,7 @@ export const defaultProps = {
 
 export type TextFieldProps = {
   state?: TextFieldStateType;
+  type?: TextFieldTypeType;
   label?: TextProps;
   textInput?: TextInputProps;
   className?: string;
@@ -36,13 +44,14 @@ export type TextFieldProps = {
 
 const TextField: React.FC<TextFieldProps> = ({
   state,
+  type,
   label,
   textInput,
   className,
   errorMessage,
 }) => {
 
-  const currentStyle = styles[`textField${state}`];
+  const currentStyle = styles[`textField${state}${type}`];
 
   const labelView = (
     <Text
@@ -57,10 +66,19 @@ const TextField: React.FC<TextFieldProps> = ({
   
   let errorMessageView;
   
-  switch (state) {
-    case 'Default':
+  switch (`${state}${type}`) {
+    case 'DefaultText':
       break;
-    case 'Error':
+    case 'ErrorText':
+      errorMessageView = (
+        <Text
+          className={styles.errorMessage}
+          {...errorMessage} />
+      );
+      break;
+    case 'DefaultPassword':
+      break;
+    case 'ErrorPassword':
       errorMessageView = (
         <Text
           className={styles.errorMessage}

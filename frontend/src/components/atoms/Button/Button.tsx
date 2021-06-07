@@ -5,6 +5,7 @@ import styles from './Button.module.scss';
 
 import Text, { TextProps } from '../Text';
 import Icon, { IconProps } from '../Icon';
+import { Link } from 'react-router-dom';
 
 export type ButtonTypeType = 'Button' | 'TextIconButton' | 'IconTextButton';
 export type ButtonSizeType = 'Large' | 'Medium' | 'Small';
@@ -36,6 +37,7 @@ export type ButtonProps = {
   colour?: ButtonColourType;
   buttonType?: ButtonButtonTypeType;
   onButtonClicked?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
+  linkPath?: string; // use for general navigation between pages
   text?: TextProps;
   className?: string;
   icon?: IconProps;
@@ -48,6 +50,7 @@ const Button: React.FC<ButtonProps> = ({
   colour,
   buttonType,
   onButtonClicked,
+  linkPath,
   text,
   className,
   icon,
@@ -99,6 +102,16 @@ const Button: React.FC<ButtonProps> = ({
       break;
   }
 
+  if(linkPath) {
+    return (
+      <Link
+        to={linkPath}
+        className={cx(currentStyle, className)}>
+        {textView}
+        {contentView}
+      </Link>
+    )
+  }
   return (
     <button
       type={buttonType}

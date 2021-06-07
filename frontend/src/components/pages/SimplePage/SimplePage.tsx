@@ -9,7 +9,7 @@ import ContactInfoCustomerBlock, { ContactInfoCustomerBlockProps } from '../../b
 import ContactInfoVendorBlock, { ContactInfoVendorBlockProps } from '../../blocks/ContactInfoVendorBlock';
 import QuoteBlock, { QuoteBlockProps } from '../../blocks/QuoteBlock';
 import ActionBlock, { ActionBlockProps } from '../../blocks/ActionBlock';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 export const defaultProps = {
   getQuoteBlock: {
@@ -21,6 +21,7 @@ export const defaultProps = {
     },
     nameTextField: {
       state: 'Default',
+      type: 'Text',
       label: {
         style: 'Basic800',
         align: 'Left',
@@ -28,10 +29,12 @@ export const defaultProps = {
         type: 'Paragraph2',
       },
       textInput: {
+        type: 'Text',
       },
     },
     costTextField: {
       state: 'Default',
+      type: 'Text',
       label: {
         style: 'Basic800',
         align: 'Left',
@@ -39,6 +42,7 @@ export const defaultProps = {
         type: 'Paragraph2',
       },
       textInput: {
+        type: 'Text',
       },
     },
     leaseTypeSelectField: {
@@ -106,6 +110,14 @@ export type SimplePageProps = {
   className?: string;
 };
 
+const routes = {
+  userSelection: '/',
+  getQuote: '/getQuote',
+  contactInformation: '/contactInformation',
+  instaQuote: '/instaQuote',
+  invalid: '/',
+}
+
 const SimplePage: React.FC<SimplePageProps> = ({
   userSelectionBlock,
   getQuoteBlock,
@@ -117,25 +129,28 @@ const SimplePage: React.FC<SimplePageProps> = ({
   return (
     <div className={cx(styles.simplePage, className)}>
       <Switch>
-        <Route exact path='/'>
+        <Route exact path={routes.userSelection}>
           <UserSelectionBlock
             className={styles.block} 
             {...userSelectionBlock} />
         </Route>
-        <Route exact path='/getQuote'>
+        <Route exact path={routes.getQuote}>
           <GetQuoteBlock
             className={styles.block}
             {...getQuoteBlock} />
         </Route>
-        <Route exact path='/contactInformation'>
+        <Route exact path={routes.contactInformation}>
           <ContactInfoCustomerBlock
             className={styles.block}
             {...contactInfoCustomerBlock} />
         </Route>
-        <Route exact path='/instaQuote'>
+        <Route exact path={routes.instaQuote}>
           <QuoteBlock
             className={styles.block}
             {...quoteBlock} />
+        </Route>
+        <Route path={routes.invalid}>
+          <Redirect to={routes.userSelection}/>
         </Route>
       </Switch>
       

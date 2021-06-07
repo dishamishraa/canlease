@@ -17,6 +17,7 @@ export const defaultProps = {
   } as TextProps,
   nameTextField: {
     state: 'Default',
+    type: 'Text',
     label: {
       style: 'Basic800',
       align: 'Left',
@@ -24,10 +25,12 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
+      type: 'Text',
     },
   } as TextFieldProps,
   costTextField: {
     state: 'Default',
+    type: 'Text',
     label: {
       style: 'Basic800',
       align: 'Left',
@@ -35,6 +38,7 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
+      type: 'Text',
     },
   } as TextFieldProps,
   leaseTypeSelectField: {

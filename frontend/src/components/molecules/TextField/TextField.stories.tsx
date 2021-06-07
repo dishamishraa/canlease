@@ -6,13 +6,27 @@ export default {
   component: TextField,
 };
 
-export const Default: React.VFC<{}> = () => (
+export const DefaultText: React.VFC<{}> = () => (
   <TextField
     state='Default'
+    type='Text'
     />
 );
-export const Error: React.VFC<{}> = () => (
+export const ErrorText: React.VFC<{}> = () => (
   <TextField
     state='Error'
+    type='Text'
+    />
+);
+export const DefaultPassword: React.VFC<{}> = () => (
+  <TextField
+    state='Default'
+    type='Password'
+    />
+);
+export const ErrorPassword: React.VFC<{}> = () => (
+  <TextField
+    state='Error'
+    type='Password'
     />
 );

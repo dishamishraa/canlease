@@ -43,6 +43,25 @@
   }
 
 }
+.userProfileLightNone {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  > * {
+    margin-left: 0.5rem;
+  }
+  align-self: flex-start;
+  width: 4rem;
+  flex: 0 0 2rem;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+}
 .userProfileLightSignedOut {
   overflow: hidden;
   display: flex;
@@ -151,6 +170,36 @@
           margin-left: 0;
         }
       }
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .userProfileLightNone {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: flex-start;
+    width: 9.9375rem;
+    flex: 0 0 2rem;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .userIcon {
+      display: none;
+    }
+  
+    .icon {
+      display: none;
     }
   
   }

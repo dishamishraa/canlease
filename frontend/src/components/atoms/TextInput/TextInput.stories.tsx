@@ -6,7 +6,13 @@ export default {
   component: TextInput,
 };
 
-export const Default: React.VFC<{}> = () => (
+export const Text: React.VFC<{}> = () => (
   <TextInput
+    type='Text'
+    />
+);
+export const Password: React.VFC<{}> = () => (
+  <TextInput
+    type='Password'
     />
 );

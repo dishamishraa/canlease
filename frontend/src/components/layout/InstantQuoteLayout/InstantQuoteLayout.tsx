@@ -8,25 +8,36 @@ import SimplePage, { SimplePageProps } from '../../pages/SimplePage';
 
 export const defaultProps = {
   header: {
+    type: 'Default',
     logo: {
       size: 'Large',
     },
     userProfile: {
       style: 'Light',
-      state: 'SignedIn',
-      userIcon: {
-        type: 'Initials',
-        style: 'Default',
+      state: 'SignedOut',
+      primary: {
+        type: 'Button',
+        size: 'Medium',
+        fill: 'Basic',
+        colour: 'Basic',
+        text: {
+          style: 'Brand500',
+          align: 'Center',
+          size: 'Small',
+          type: 'ButtonGiant',
+        },
       },
-      text: {
-        style: 'Basic800',
-        align: 'Left',
-        size: 'Large',
-        type: 'Paragraph1',
-      },
-      icon: {
-        asset: 'ChevronDown',
-        style: 'Basic800',
+      secondary: {
+        type: 'Button',
+        size: 'Medium',
+        fill: 'Colour',
+        colour: 'Brand',
+        text: {
+          style: 'Basic100',
+          align: 'Center',
+          size: 'Small',
+          type: 'ButtonGiant',
+        },
       },
     },
     divider: {
@@ -43,6 +54,7 @@ export const defaultProps = {
       },
       nameTextField: {
         state: 'Default',
+        type: 'Text',
         label: {
           style: 'Basic800',
           align: 'Left',
@@ -50,10 +62,12 @@ export const defaultProps = {
           type: 'Paragraph2',
         },
         textInput: {
+          type: 'Text',
         },
       },
       costTextField: {
         state: 'Default',
+        type: 'Text',
         label: {
           style: 'Basic800',
           align: 'Left',
@@ -61,6 +75,7 @@ export const defaultProps = {
           type: 'Paragraph2',
         },
         textInput: {
+          type: 'Text',
         },
       },
       leaseTypeSelectField: {
