@@ -114,7 +114,7 @@ export const defaultProps = {
           align: 'Center',
           size: 'Small',
           type: 'ButtonGiant',
-          value: 'Contacu Us'
+          value: 'Contact Us'
         },
         onButtonClicked: (e) =>{
           window.open('https://canlease.net/contact/', "_blanck")
