@@ -126,13 +126,15 @@ const SimplePage: React.FC<SimplePageProps> = ({
   actionBlock,
   className,
 }) => {
+
   return (
     <div className={cx(styles.simplePage, className)}>
       <Switch>
         <Route exact path={routes.userSelection}>
           <UserSelectionBlock
             className={styles.block} 
-            {...userSelectionBlock} />
+            {...userSelectionBlock} 
+            />
         </Route>
         <Route exact path={routes.getQuote}>
           <GetQuoteBlock

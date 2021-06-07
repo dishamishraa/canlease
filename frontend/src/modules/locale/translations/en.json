@@ -1,6 +1,13 @@
 {
+    "user_type_selection": {
+        "header": "Who are you creating this quote for?",
+        "end_user": "I am creating this quote for myself",
+        "vendor": "I am creating this quote for my customer",
+        "button": "Select"
+    },
     "contact_us":{
         "description": "Need help creating a quote? We are happy to assist.",
         "button_text": "Contact Us"
     }
 }
+    

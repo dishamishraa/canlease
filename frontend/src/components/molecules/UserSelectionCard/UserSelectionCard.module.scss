@@ -5,7 +5,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   > * {
-    margin-top: 1rem;
+    margin-top: 0rem;
   }
   align-self: stretch;
   flex: 0 0 auto;
@@ -19,6 +19,8 @@
   border-radius: 4px;
 
   .image {
+    height: 200px;
+    width: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -59,11 +61,6 @@
     align-items: flex-start;
     align-self: stretch;
     flex: 0 0 auto;
-    @media (max-width: 575px) {
-      &:nth-child(1) {
-        margin-top: 0;
-      }
-    }
   }
 
   .button {
@@ -91,10 +88,10 @@
   justify-content: flex-start;
   align-items: flex-start;
   > * {
-    margin-top: 1rem;
+    margin-top: 0rem;
   }
   align-self: stretch;
-  flex: 0 0 auto;
+  // flex: 0 0 auto;
   @media (max-width: 575px) {
     &:nth-child(1) {
       margin-top: 0;
@@ -105,6 +102,8 @@
   border-radius: 4px;
 
   .image {
+    height: 200px;
+    width: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -145,11 +144,6 @@
     align-items: flex-start;
     align-self: stretch;
     flex: 0 0 auto;
-    @media (max-width: 575px) {
-      &:nth-child(1) {
-        margin-top: 0;
-      }
-    }
   }
 
   .button {
@@ -190,6 +184,8 @@
     border-radius: 4px;
   
     .image {
+      height: 200px;
+      width: auto;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -220,11 +216,7 @@
       align-items: flex-start;
       align-self: stretch;
       flex: 0 0 auto;
-      @media (max-width: 575px) {
-        &:nth-child(1) {
-          margin-top: 0;
-        }
-      }
+
     }
   
     .button {
@@ -255,7 +247,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     align-self: stretch;
-    flex: 0 0 auto;
+    // flex: 0 0 auto;
     @media (max-width: 767px) {
       &:nth-child(1) {
         margin-top: 0;
@@ -266,6 +258,8 @@
     border-radius: 4px;
   
     .image {
+      height: 200px;
+      width: auto;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -296,11 +290,6 @@
       align-items: flex-start;
       align-self: stretch;
       flex: 0 0 auto;
-      @media (max-width: 767px) {
-        &:nth-child(1) {
-          margin-top: 0;
-        }
-      }
     }
   
     .button {
@@ -342,6 +331,8 @@
     border-radius: 4px;
   
     .image {
+      height: 200px;
+      width: auto;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -371,11 +362,6 @@
       align-items: flex-start;
       align-self: stretch;
       flex: 0 0 auto;
-      @media (max-width: 767px) {
-        &:nth-child(1) {
-          margin-top: 0;
-        }
-      }
     }
   
     .button {
@@ -406,7 +392,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     align-self: stretch;
-    flex: 0 0 auto;
+    // flex: 0 0 auto;
     @media (max-width: 1023px) {
       &:nth-child(1) {
         margin-top: 0;
@@ -417,6 +403,8 @@
     border-radius: 4px;
   
     .image {
+      height: 200px;
+      width: auto;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -446,11 +434,6 @@
       align-items: flex-start;
       align-self: stretch;
       flex: 0 0 auto;
-      @media (max-width: 1023px) {
-        &:nth-child(1) {
-          margin-top: 0;
-        }
-      }
     }
   
     .button {
@@ -492,6 +475,8 @@
     border-radius: 4px;
   
     .image {
+      height: 200px;
+      width: auto;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -521,11 +506,6 @@
       align-items: flex-start;
       align-self: stretch;
       flex: 0 0 auto;
-      @media (max-width: 1023px) {
-        &:nth-child(1) {
-          margin-top: 0;
-        }
-      }
     }
   
     .button {
@@ -556,7 +536,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     align-self: stretch;
-    flex: 0 0 auto;
+    // flex: 0 0 auto;
     @media (max-width: 1439px) {
       &:nth-child(1) {
         margin-top: 0;
@@ -567,6 +547,8 @@
     border-radius: 4px;
   
     .image {
+      height: 200px;
+      width: auto;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -596,11 +578,6 @@
       align-items: flex-start;
       align-self: stretch;
       flex: 0 0 auto;
-      @media (max-width: 1439px) {
-        &:nth-child(1) {
-          margin-top: 0;
-        }
-      }
     }
   
     .button {
@@ -642,6 +619,8 @@
     border-radius: 4px;
   
     .image {
+      height: 200px;
+      width: auto;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -671,11 +650,6 @@
       align-items: flex-start;
       align-self: stretch;
       flex: 0 0 auto;
-      @media (max-width: 1439px) {
-        &:nth-child(1) {
-          margin-top: 0;
-        }
-      }
     }
   
     .button {
@@ -706,7 +680,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     align-self: stretch;
-    flex: 0 0 auto;
+    // flex: 0 0 auto;
     &:nth-child(1) {
       margin-top: 0;
     }
@@ -715,6 +689,8 @@
     border-radius: 4px;
   
     .image {
+      height: 200px;
+      width: auto;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -744,9 +720,6 @@
       align-items: flex-start;
       align-self: stretch;
       flex: 0 0 auto;
-      &:nth-child(1) {
-        margin-top: 0;
-      }
     }
   
     .button {

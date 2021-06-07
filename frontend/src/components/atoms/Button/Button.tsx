@@ -7,6 +7,7 @@ import Text, { TextProps } from '../Text';
 import Icon, { IconProps } from '../Icon';
 import { Link } from 'react-router-dom';
 
+
 export type ButtonTypeType = 'Button' | 'TextIconButton' | 'IconTextButton';
 export type ButtonSizeType = 'Large' | 'Medium' | 'Small';
 export type ButtonFillType = 'Colour' | 'Basic' | 'None';
@@ -58,9 +59,9 @@ const Button: React.FC<ButtonProps> = ({
 
   const currentStyle = styles[`button${type}${size}${fill}${colour}`];
 
-  let textView;
+
   let contentView;
-  
+ 
   switch (type) {
     case 'Button':
       contentView = (
@@ -102,7 +103,6 @@ const Button: React.FC<ButtonProps> = ({
       <Link
         to={linkPath}
         className={cx(currentStyle, className)}>
-        {textView}
         {contentView}
       </Link>
     )
@@ -112,7 +112,6 @@ const Button: React.FC<ButtonProps> = ({
       type={buttonType}
       onClick={onButtonClicked}
       className={cx(currentStyle, className)}>
-      {textView}
       {contentView}
     </button>
   );
