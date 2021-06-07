@@ -97,7 +97,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       type={buttonType}
-      onClick={(onButtonClicked)}
+      onClick={onButtonClicked}
       className={cx(currentStyle, className)}>
       {textView}
       {contentView}

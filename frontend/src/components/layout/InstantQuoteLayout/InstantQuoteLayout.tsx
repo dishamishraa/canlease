@@ -5,6 +5,7 @@ import styles from './InstantQuoteLayout.module.scss';
 
 import Header, { HeaderProps } from '../../organisms/Header';
 import SimplePage, { SimplePageProps } from '../../pages/SimplePage';
+import { useTranslation } from 'react-i18next';
 
 export const defaultProps = {
   header: {
@@ -102,7 +103,6 @@ export const defaultProps = {
         align: 'Center',
         size: 'Large',
         type: 'Paragraph1',
-        value: 'Need help creating a quote? We are happy to assist.'
       },
       button: {
         type: 'Button',
@@ -114,11 +114,7 @@ export const defaultProps = {
           align: 'Center',
           size: 'Small',
           type: 'ButtonGiant',
-          value: 'Contact Us'
         },
-        onButtonClicked: (e) =>{
-          window.open('https://canlease.net/contact/', "_blanck")
-        }
       },
     },
   } as SimplePageProps,
@@ -135,6 +131,26 @@ const InstantQuoteLayout: React.FC<InstantQuoteLayoutProps> = ({
   simplePage,
   className,
 }) => {
+  const { t } = useTranslation();
+  const descriptionText = t('contact_us.description');
+  const buttonText = t('contact_us.button_text');
+
+  simplePage = {
+    actionBlock:{
+      text:{
+        ...defaultProps.simplePage.actionBlock?.text,
+        value: descriptionText
+      },
+      button:{
+        ...defaultProps.simplePage.actionBlock?.button,
+        text:{
+          ...defaultProps.simplePage.actionBlock?.button?.text,
+          value: buttonText
+        }
+      }
+    }
+  }
+
   return (
     <div className={cx(styles.instantQuoteLayout, className)}>
       <Header
