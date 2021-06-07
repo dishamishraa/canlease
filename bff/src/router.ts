@@ -3,11 +3,11 @@ import {
 } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
-import { UserRouter } from './modules/user';
 import { createProxyMiddleware } from 'http-proxy-middleware';
+import { ClientRequest } from 'http';
+import { UserRouter } from './modules/user';
 import { InternalServerError, NotFoundError } from './lib/errors';
 import { IDENTITY_URL, PROXY_TIMEOUT } from './lib/config';
-import { ClientRequest } from 'http';
 
 const swaggerSpecConfig = {
   swaggerDefinition: {
