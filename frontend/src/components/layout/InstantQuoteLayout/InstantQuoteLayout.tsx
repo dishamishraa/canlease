@@ -5,7 +5,6 @@ import styles from './InstantQuoteLayout.module.scss';
 
 import Header, { HeaderProps } from '../../organisms/Header';
 import SimplePage, { SimplePageProps } from '../../pages/SimplePage';
-import { useTranslation } from 'react-i18next';
 
 export const defaultProps = {
   header: {
@@ -131,25 +130,6 @@ const InstantQuoteLayout: React.FC<InstantQuoteLayoutProps> = ({
   simplePage,
   className,
 }) => {
-  const { t } = useTranslation();
-  const descriptionText = t('contact_us.description');
-  const buttonText = t('contact_us.button_text');
-
-  simplePage = {
-    actionBlock:{
-      text:{
-        ...defaultProps.simplePage.actionBlock?.text,
-        value: descriptionText
-      },
-      button:{
-        ...defaultProps.simplePage.actionBlock?.button,
-        text:{
-          ...defaultProps.simplePage.actionBlock?.button?.text,
-          value: buttonText
-        }
-      }
-    }
-  }
 
   return (
     <div className={cx(styles.instantQuoteLayout, className)}>
