@@ -1,1 +1,6 @@
-{}
+{
+    "contact_us":{
+        "description": "Need help creating a quote? We are happy to assist.",
+        "button_text": "Contact Us"
+    }
+}

@@ -5,26 +5,9 @@ import styles from './ActionBlock.module.scss';
 
 import Text, { TextProps } from '../../atoms/Text';
 import Button, { ButtonProps } from '../../atoms/Button';
+import { useTranslation } from 'react-i18next';
 
 export const defaultProps = {
-  promptText: {
-    style: 'Basic800',
-    align: 'Center',
-    size: 'Large',
-    type: 'Paragraph1',
-  } as TextProps,
-  actionButton: {
-    type: 'Button',
-    size: 'Large',
-    fill: 'Basic',
-    colour: 'Basic',
-    text: {
-      style: 'Brand500',
-      align: 'Center',
-      size: 'Small',
-      type: 'ButtonGiant',
-    },
-  } as ButtonProps,
   text: {
     style: 'Basic800',
     align: 'Center',
@@ -53,13 +36,32 @@ export type ActionBlockProps = {
   button?: ButtonProps;
 };
 
+const onButtonClicked = () => {
+  window.open('https://canlease.net/contact/', "_blank")
+}
+
 const ActionBlock: React.FC<ActionBlockProps> = ({
-  promptText,
-  actionButton,
   className,
   text,
   button,
 }) => {
+  const { t } = useTranslation();
+  const descriptionText = t('contact_us.description');
+  const buttonText = t('contact_us.button_text');
+
+  text = {
+    ...defaultProps.text,
+    value: descriptionText
+  }
+
+  button = {
+    ...defaultProps.button,
+    text:{
+      ...defaultProps.button.text,
+      value: buttonText
+    }
+  }
+
   return (
     <div className={cx(styles.actionBlock, className)}>
       <Text
@@ -67,13 +69,8 @@ const ActionBlock: React.FC<ActionBlockProps> = ({
         {...text} />
       <Button
         className={styles.button}
-        {...button} />
-      <Text
-        className={styles.promptText}
-        {...promptText} />
-      <Button
-        className={styles.actionButton}
-        {...actionButton} />
+        {...button}
+        onButtonClicked={onButtonClicked}/>
     </div>
   );
 };

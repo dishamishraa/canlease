@@ -145,6 +145,7 @@ const InstantQuoteLayout: React.FC<InstantQuoteLayoutProps> = ({
   simplePage,
   className,
 }) => {
+
   return (
     <div className={cx(styles.instantQuoteLayout, className)}>
       <Header
