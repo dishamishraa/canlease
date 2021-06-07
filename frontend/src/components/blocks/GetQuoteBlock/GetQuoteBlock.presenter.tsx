@@ -5,8 +5,11 @@ import { APIResponse } from '../../../lib/api/types';
 import { User } from '../../../modules/types';
 import { TextInputProps } from '../../atoms/TextInput';
 import { SimplePageProps } from '../../pages/SimplePage';
-import { GetQuoteBlockProps, defaultProps } from './GetQuoteBlock';
+import { GetQuoteBlockProps, defaultProps as defaultGetQuoteBlockProps  } from './GetQuoteBlock';
 import { ContextualMenuProps } from '../../molecules/ContextualMenu';
+import ContextualMenuItem, { ContextualMenuItemProps } from '../../atoms/ContextualMenuItem';
+import { defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
+
 
 export type GetQuoteBlockPropsPresenterProps = {
 //   error?: Error;
@@ -51,29 +54,42 @@ const withPresenter = (
 
     const handleChangeEquipmentName: TextInputProps['onTextChanged'] = ({ target: { value } }) => setEquipmentName(value);
     const handleChangeEquipmentCost: TextInputProps['onTextChanged'] = ({ target: { value } }) => setEquipmentCost(value);
-    
-    const handleStretchClick: TextInputProps['onTextChanged'] = () => setEquipmentLeaseType("10");
+    const handleStretchClick: ContextualMenuItemProps['onContextualMenuItemClicked'] = () => setEquipmentLeaseType(('get_quote_block.lease_type.options.stretch'));
+    const handleTenClick: ContextualMenuItemProps['onContextualMenuItemClicked'] = () => setEquipmentLeaseType(('get_quote_block.lease_type.options.ten'));
+
 
 
     const contextualMenu: ContextualMenuProps = {
       contextualMenuItemList: {
         contextualMenuItems: [
         {
+          onContextualMenuItemClicked: handleStretchClick,
+          text: {
+            ...defaultMenuItemProps.text,
+            value: t('get_quote_block.lease_type.options.stretch')
+          }
+        },
+        {
+          onContextualMenuItemClicked: handleTenClick,
+          text: {
+            ...defaultMenuItemProps.text,
+            value: t('get_quote_block.lease_type.options.ten')
+          },
         },
       ]}
     };
 
     const blockProps: GetQuoteBlockProps = {
-      ...defaultProps,
+      ...defaultGetQuoteBlockProps,
       ...props,
       blockHeading: {
-        ...defaultProps.blockHeading,
+        ...defaultGetQuoteBlockProps.blockHeading,
         value: t('get_quote_block.header'),
       },
       nameTextField:{
-        ...defaultProps.nameTextField,
+        ...defaultGetQuoteBlockProps.nameTextField,
         label: {
-          ...defaultProps.nameTextField?.label,
+          ...defaultGetQuoteBlockProps.nameTextField?.label,
           value: t('get_quote_block.name.label'),
         },
         textInput: {
@@ -82,9 +98,9 @@ const withPresenter = (
         },
       },
       costTextField: {
-        ...defaultProps.costTextField,
+        ...defaultGetQuoteBlockProps.costTextField,
         label: {
-          ...defaultProps.costTextField?.label,
+          ...defaultGetQuoteBlockProps.costTextField?.label,
           value: t('get_quote_block.cost.label'),
         },
         textInput: {
@@ -93,18 +109,24 @@ const withPresenter = (
         },
       },
       leaseTypeSelectField: {
-        ...defaultProps.leaseTypeSelectField,
+        ...defaultGetQuoteBlockProps.leaseTypeSelectField,
         label: {
-          ...defaultProps.leaseTypeSelectField.label,
+          ...defaultGetQuoteBlockProps.leaseTypeSelectField.label,
           value: t('get_quote_block.lease_type.label')
         },
         select: {
-          ...defaultProps.leaseTypeSelectField.select,
+          ...defaultGetQuoteBlockProps.leaseTypeSelectField.select,
+          text: {
+            value: equipmentLeaseType
+          }
         },
         contextualMenu: contextualMenu,
       },
       nextButton:{
-        ...defaultProps.nextButton,
+        ...defaultGetQuoteBlockProps.nextButton,
+        text: {
+          value: t('get_quote_block.submit')
+        }
       }
     };
 
@@ -112,7 +134,7 @@ const withPresenter = (
       <View
         // loading={loading}
         // error={error}
-        // header={defaultProps.header} 
+        // header={defaultGetQuoteBlockProps.header} 
         {...blockProps}
       />
     );

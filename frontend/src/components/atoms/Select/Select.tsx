@@ -6,8 +6,6 @@ import styles from './Select.module.scss';
 import Text, { TextProps } from '../Text';
 import Icon, { IconProps } from '../Icon';
 
-import { Dropdown } from 'react-bootstrap';
-
 export type SelectSelectTypeType = 'button' | 'submit' | 'reset';
 
 export const defaultProps = {
@@ -21,11 +19,6 @@ export const defaultProps = {
     asset: 'ChevronDown',
     style: 'Basic400',
   } as IconProps,
-};
-
-export type SelectItem = {
-  label: string;
-  value: string;
 };
 
 export type SelectProps = {
@@ -44,9 +37,9 @@ const Select: React.FC<SelectProps> = ({
   className,
 }) => {
   return (
-    <Dropdown.Toggle
+    <button
       type={selectType}
-      // onClick={onSelectClicked}
+      onClick={onSelectClicked}
       className={cx(styles.select, className)}>
       <Text
         className={styles.text}
@@ -54,18 +47,10 @@ const Select: React.FC<SelectProps> = ({
       <Icon
         className={styles.icon}
         {...icon} />
-    </Dropdown.Toggle>
+    </button>
   );
 };
 
 Select.defaultProps = defaultProps;
 
 export default Select;
-
-
-{/* <Dropdown.Toggle as='div'>
-<div className={cx(currentStyle, className)}>
-  {userIconView}
-  {userNameView}
-  {chevronDownIconView}
-</div> */}

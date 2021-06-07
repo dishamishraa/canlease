@@ -71,6 +71,12 @@
     > * {
       margin-top: 0.25rem;
     }
+    button {
+      width: 100%;
+    }
+    .test > * {
+      width: 520px !important;
+    }
     align-self: stretch;
     flex: 0 0 auto;
     @media (max-width: 575px) {

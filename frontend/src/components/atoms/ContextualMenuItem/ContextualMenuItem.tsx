@@ -9,7 +9,7 @@ export type ContextualMenuItemContextualMenuItemTypeType = 'button' | 'submit' |
 
 export const defaultProps = {
   text: {
-    style: 'Basic400',
+    style: 'Basic100',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph2',

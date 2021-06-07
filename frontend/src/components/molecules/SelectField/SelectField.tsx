@@ -46,11 +46,13 @@ const SelectField: React.FC<SelectFieldProps> = ({
   return (
   <Dropdown className={cx(styles.selectField, className)}>
     <Text
-      className={styles.label}
-      {...label} />
-    <Select
-      className={styles.select} />
-    <Dropdown.Menu align='right' className={cx(styles.selectField, className)}>
+        className={styles.label}
+        {...label} />
+    <Dropdown.Toggle>
+      <Select
+        className={cx(styles.select, className)} />
+    </Dropdown.Toggle>
+    <Dropdown.Menu align='right' className="test">
       <ContextualMenu {...contextualMenu} />
     </Dropdown.Menu>
   </Dropdown>
