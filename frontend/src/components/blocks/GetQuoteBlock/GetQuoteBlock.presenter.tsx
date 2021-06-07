@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router-dom';
 import { APIResponse } from '../../../lib/api/types';
 import { User } from '../../../modules/types';
-import { SelectItem } from '../../atoms/Select/Select';
 import { TextInputProps } from '../../atoms/TextInput';
 import { SimplePageProps } from '../../pages/SimplePage';
 import { GetQuoteBlockProps, defaultProps } from './GetQuoteBlock';
@@ -60,24 +59,6 @@ const withPresenter = (
       contextualMenuItemList: {
         contextualMenuItems: [
         {
-          optionValue: {
-            style: 'Basic100',
-            align: 'Left',
-            size: 'Medium',
-            type: 'Paragraph2',
-            value: t('get_quote_block.lease_type.options.stretch'),
-          },
-          // onContextualMenuItemClicked: handleStretchClick,
-        },
-        {
-          optionValue: {
-            style: 'Basic100',
-            align: 'Left',
-            size: 'Medium',
-            type: 'Paragraph2',
-            value: t('get_quote_block.lease_type.options.ten'),
-          },
-          // onContextualMenuItemClicked: handleStretchClick,
         },
       ]}
     };
