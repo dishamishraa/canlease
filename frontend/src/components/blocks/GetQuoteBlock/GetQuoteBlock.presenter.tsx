@@ -35,7 +35,7 @@ const withPresenter = (
   // }
   ) => {
     const { t } = useTranslation();
-    // const history = useHistory();
+    const history = useHistory();
 
     const { search } = useLocation();
     const queryParams = new URLSearchParams(search);
@@ -43,21 +43,23 @@ const withPresenter = (
 
     const [equipmentName, setEquipmentName] = useState<string>('');
     const [equipmentCost, setEquipmentCost] = useState<string>('');
-    const [equipmentLeaseType, setEquipmentLeaseType] = useState<string>('');
+    const [equipmentLeaseType, setEquipmentLeaseType] = useState<string>(t('get_quote_block.lease_type.options.stretch'));
 
-
-    const handleClickNextStep = () => {
+    const isFormValid = Boolean(equipmentName && equipmentCost);
+    const handleClickNext = () => {
+      if(isFormValid){
+        history.push({pathname: '/contactInformation'})
+      }
     };
 
     const handleSubmit = async () => { 
     };
 
+
     const handleChangeEquipmentName: TextInputProps['onTextChanged'] = ({ target: { value } }) => setEquipmentName(value);
     const handleChangeEquipmentCost: TextInputProps['onTextChanged'] = ({ target: { value } }) => setEquipmentCost(value);
-    const handleStretchClick: ContextualMenuItemProps['onContextualMenuItemClicked'] = () => setEquipmentLeaseType(('get_quote_block.lease_type.options.stretch'));
-    const handleTenClick: ContextualMenuItemProps['onContextualMenuItemClicked'] = () => setEquipmentLeaseType(('get_quote_block.lease_type.options.ten'));
-
-
+    const handleStretchClick: ContextualMenuItemProps['onContextualMenuItemClicked'] = () => setEquipmentLeaseType(t('get_quote_block.lease_type.options.stretch'));
+    const handleTenClick: ContextualMenuItemProps['onContextualMenuItemClicked'] = () => setEquipmentLeaseType(t('get_quote_block.lease_type.options.ten'));
 
     const contextualMenu: ContextualMenuProps = {
       contextualMenuItemList: {
@@ -117,16 +119,20 @@ const withPresenter = (
         select: {
           ...defaultGetQuoteBlockProps.leaseTypeSelectField.select,
           text: {
+            ...defaultGetQuoteBlockProps.leaseTypeSelectField.select?.text,
             value: equipmentLeaseType
           }
         },
         contextualMenu: contextualMenu,
+        selectId: t('get_quote_block.lease_type.label'),
       },
       nextButton:{
         ...defaultGetQuoteBlockProps.nextButton,
         text: {
           value: t('get_quote_block.submit')
-        }
+        },
+        onButtonClicked: handleClickNext,
+        disabled: !isFormValid,
       }
     };
 

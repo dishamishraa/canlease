@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties, useState } from 'react';
 import cx from 'classnames';
 
 import styles from './SelectField.module.scss';
@@ -35,6 +35,7 @@ export type SelectFieldProps = {
   select?: SelectProps;
   className?: string;
   contextualMenu?: ContextualMenuProps;
+  selectId?: string;
 };
 
 const SelectField: React.FC<SelectFieldProps> = ({
@@ -42,18 +43,22 @@ const SelectField: React.FC<SelectFieldProps> = ({
   select,
   className,
   contextualMenu,
+  selectId,
 }) => {
+  const ref = React.useRef<HTMLDivElement>(null);
   return (
-  <Dropdown className={cx(styles.selectField, className)}>
+  <Dropdown className={cx(styles.selectField, className)} ref={ref} id={selectId}>
     <Text
         className={styles.label}
         {...label} />
     <Dropdown.Toggle>
       <Select
-        className={cx(styles.select, className)} />
+        className={cx(styles.select, className)} {...select}/>
     </Dropdown.Toggle>
-    <Dropdown.Menu align='right' className="test">
-      <ContextualMenu {...contextualMenu} />
+    <Dropdown.Menu align='right' style={{width:ref.current?.clientWidth}}>
+      <ContextualMenu 
+        className={cx(styles.dropdownMenu, className)} 
+        {...contextualMenu} />
     </Dropdown.Menu>
   </Dropdown>
   );
