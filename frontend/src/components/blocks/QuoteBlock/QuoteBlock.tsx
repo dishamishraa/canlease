@@ -65,6 +65,27 @@ export const defaultProps = {
       type: 'ButtonGiant',
     },
   } as ButtonProps,
+<<<<<<< HEAD
+=======
+  saveQuoteButton: {
+    type: 'Button',
+    size: 'Large',
+    fill: 'Basic',
+    colour: 'Basic',
+    text: {
+      style: 'Brand500',
+      align: 'Center',
+      size: 'Small',
+      type: 'ButtonGiant',
+    },
+  } as ButtonProps,
+  learnMoreText: {
+    style: 'Basic800',
+    align: 'Left',
+    size: 'Medium',
+    type: 'Paragraph2',
+  } as TextProps,
+>>>>>>> b3b16f6... commit before rebasing
 };
 
 export type QuoteBlockProps = {
@@ -75,6 +96,7 @@ export type QuoteBlockProps = {
   detailItemList?: DetailItemListProps;
   learnMoreText?: TextProps;
   viewQuoteButton?: ButtonProps;
+  saveQuoteButton?: ButtonProps;
   className?: string;
 };
 
@@ -86,6 +108,7 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
   detailItemList,
   learnMoreText,
   viewQuoteButton,
+  saveQuoteButton,
   className,
 }) => {
   return (
@@ -108,9 +131,15 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
       <Text
         className={styles.learnMoreText}
         {...learnMoreText} />
-      <Button
-        className={styles.viewQuoteButton}
-        {...viewQuoteButton} />
+      <div className={styles.buttonContainer}>
+        <Button
+          className={styles.viewQuoteButton}
+          {...viewQuoteButton} />
+        <Button
+          className={styles.saveQuoteButton}
+          {...saveQuoteButton} />
+      </div>
+      
     </div>
   );
 };
