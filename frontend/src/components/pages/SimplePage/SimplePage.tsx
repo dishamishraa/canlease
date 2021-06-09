@@ -131,7 +131,7 @@ const SimplePage: React.FC<SimplePageProps> = ({
   userType,
 }) => {
   
-  const infoBlock = "vendor" === "vendor" ? 
+  const infoBlock = userType === "vendor" ? 
     (<ContactInfoVendorBlock className={styles.block}
       {...contactInfoCustomerBlock} />):
     (<ContactInfoCustomerBlock

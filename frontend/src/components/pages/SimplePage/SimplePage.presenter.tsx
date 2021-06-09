@@ -15,6 +15,7 @@ const withPresenter = (
         const [userType, setUserType] = useState('');
        
         return <View
+            {...props}
             setUserType={setUserType}
             userType={userType}/>;
   };

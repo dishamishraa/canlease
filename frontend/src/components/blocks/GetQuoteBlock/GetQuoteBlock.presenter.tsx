@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { TextInputProps } from '../../atoms/TextInput';
 import { GetQuoteBlockProps, defaultProps as defaultGetQuoteBlockProps  } from './GetQuoteBlock';
 import { ContextualMenuProps } from '../../molecules/ContextualMenu';
@@ -17,12 +17,6 @@ const withPresenter = (
     const { t } = useTranslation();
     const history = useHistory();
     
-
-    const location = useLocation();
-    const { search } = location;
-    const queryParams = new URLSearchParams(search);
-    const target = queryParams.get('target') || '/';
-
     const [equipmentName, setEquipmentName] = useState<string>('');
     const [equipmentCost, setEquipmentCost] = useState<string>('');
     const [equipmentLeaseType, setEquipmentLeaseType] = useState<string>(t('get_quote_block.lease_type.options.stretch'));
@@ -38,7 +32,6 @@ const withPresenter = (
     const handleStretchClick: ContextualMenuItemProps['onContextualMenuItemClicked'] = () => setEquipmentLeaseType(t('get_quote_block.lease_type.options.stretch'));
     const handleTenClick: ContextualMenuItemProps['onContextualMenuItemClicked'] = () => setEquipmentLeaseType(t('get_quote_block.lease_type.options.ten'));
 
-    console.log({history, location});
     const contextualMenu: ContextualMenuProps = {
       contextualMenuItemList: {
         contextualMenuItems: [

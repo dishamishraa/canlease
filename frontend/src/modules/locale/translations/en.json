@@ -18,9 +18,9 @@
         },
         "submit": "Next"
     },
-    "contact_info_vendor": {
-        "header_your": "Your information",
-        "header_customer": "Customer information",
+    "contact_info": {
+        "header_your": "Your Information",
+        "header_customer": "Customer Information",
         "name": "Name",
         "business_email": "Business email",
         "company_name": "Company name",

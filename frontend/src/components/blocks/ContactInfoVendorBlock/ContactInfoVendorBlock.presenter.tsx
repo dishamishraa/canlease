@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useLocation } from 'react-router-dom';
 import { TextInputProps } from '../../atoms/TextInput';
 import { ContactInfoVendorBlockProps, defaultProps } from './ContactInfoVendorBlock';
-import { ContextualMenuProps } from '../../molecules/ContextualMenu';
-import { ContextualMenuItemProps } from '../../atoms/ContextualMenuItem';
-import { defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
-
 
 export type ContactInfoVendorBlockPresenterProps = {};
 
@@ -15,12 +10,6 @@ const withPresenter = (
 ): React.FC<ContactInfoVendorBlockPresenterProps> => {
   const Presenter: React.FC<ContactInfoVendorBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
-    const history = useHistory();
-
-    const { search } = useLocation();
-    const queryParams = new URLSearchParams(search);
-    const target = queryParams.get('target') || '/';
-
     const [vendorName, setVendorName] = useState<string>('');
     const [businessEmail, setBusinessEmail] = useState<string>('');
     const [companyName, setCompanyName] = useState<string>('');
@@ -48,17 +37,17 @@ const withPresenter = (
       ...props,
       blockHeading: {
         ...defaultProps.blockHeading,
-        value: t('contact_info_vendor.header_your')
+        value: t('contact_info.header_your')
       },
       blockVendorHeading: {
         ...defaultProps.blockHeading,
-        value: t('contact_info_vendor.header_customer')
+        value: t('contact_info.header_customer')
       },
       vendorNameTextField:{
         ...defaultProps.vendorNameTextField,
         label: {
           ...defaultProps.vendorNameTextField?.label,
-          value: t('contact_info_vendor.name'),
+          value: t('contact_info.name'),
         },
         textInput: {
           onTextChanged: handleChangeVendorName,
@@ -69,7 +58,7 @@ const withPresenter = (
         ...defaultProps.vendorBusinessEmailTextField,
         label: {
           ...defaultProps.vendorBusinessEmailTextField?.label,
-          value: t('contact_info_vendor.business_email'),
+          value: t('contact_info.business_email'),
         },
         textInput: {
           onTextChanged: handleChangeBusinessEmail,
@@ -80,7 +69,7 @@ const withPresenter = (
         ...defaultProps.vendorCompanyNameField,
         label: {
           ...defaultProps.vendorCompanyNameField?.label,
-          value: t('contact_info_vendor.company_name'),
+          value: t('contact_info.company_name'),
         },
         textInput: {
           onTextChanged: handleChangeCompanyName,
@@ -91,7 +80,7 @@ const withPresenter = (
         ...defaultProps.customerNameTextField,
         label: {
           ...defaultProps.customerNameTextField?.label,
-          value: t('contact_info_vendor.customer_name'),
+          value: t('contact_info.customer_name'),
         },
         textInput: {
           onTextChanged: handleChangeCustomerName,
@@ -102,7 +91,7 @@ const withPresenter = (
         ...defaultProps.customerEmailTextField,
         label: {
           ...defaultProps.customerEmailTextField?.label,
-          value: t('contact_info_vendor.customer_email'),
+          value: t('contact_info.customer_email'),
         },
         textInput: {
           onTextChanged: handleChangeCustomerEmail,
@@ -113,7 +102,7 @@ const withPresenter = (
         ...defaultProps.customerCompanyNameTextField,
         label: {
           ...defaultProps.customerCompanyNameTextField?.label,
-          value: t('contact_info_vendor.customer_company_name'),
+          value: t('contact_info.customer_company_name'),
         },
         textInput: {
           onTextChanged: handleChangeCustomerCompanyName,
@@ -122,12 +111,12 @@ const withPresenter = (
       },
       disclaimerText: {
         ...defaultProps.disclaimerText,
-        value: t('contact_info_vendor.disclaimer')
+        value: t('contact_info.disclaimer')
       },
       viewQuoteButton:{
         ...defaultProps.viewQuoteButton,
         text: {
-          value: t('contact_info_vendor.submit')
+          value: t('contact_info.submit')
         },
         onButtonClicked: handleClickViewQuote,
         disabled: !isFormValid,

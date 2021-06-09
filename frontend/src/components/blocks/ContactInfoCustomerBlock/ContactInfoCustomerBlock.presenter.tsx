@@ -26,16 +26,16 @@ const withPresenter = (
       ...props,
       blockHeading: {
         ...defaultProps.blockHeading,
-        value: 'Title'
+        value: t('contact_info.header_your')
       },
       nameTextField:{
         ...defaultProps.nameTextField,
         label: {
           ...defaultProps.nameTextField?.label,
-          value: t('contact_info_vendor.name.label'),
+          value: t('contact_info.name'),
         },
         textInput: {
-          textPlaceholder: t('contact_info_vendor.name.placeholder'),
+          // textPlaceholder: t('contact_info.name.placeholder'),
           // onTextChanged: handleChangeEquipmentName,
         },
       },
@@ -43,10 +43,10 @@ const withPresenter = (
         ...defaultProps.businessEmailTextField,
         label: {
           ...defaultProps.businessEmailTextField?.label,
-          value: t('contact_info_vendor.cost.label'),
+          value: t('contact_info.business_email'),
         },
         textInput: {
-          textPlaceholder: t('contact_info_vendor.cost.placeholder'),
+          // textPlaceholder: t('contact_info.cost.placeholder'),
           // onTextChanged: handleChangeEquipmentCost,
         },
       },
@@ -54,17 +54,17 @@ const withPresenter = (
         ...defaultProps.companyNameField,
         label: {
           ...defaultProps.companyNameField?.label,
-          value: t('contact_info_vendor.cost.label'),
+          value: t('contact_info.company_name'),
         },
         textInput: {
-          textPlaceholder: t('contact_info_vendor.cost.placeholder'),
+          // textPlaceholder: t('contact_info.cost.placeholder'),
           // onTextChanged: handleChangeEquipmentCost,
         },
       },
       viewQuoteButton:{
         ...defaultProps.viewQuoteButton,
         text: {
-          value: t('contact_info_vendor.submit')
+          value: t('contact_info.submit')
         },
       }
     };
