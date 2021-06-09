@@ -24,6 +24,7 @@ export type UserSelectionBlockProps = {
   blockHeading?: TextProps;
   className?: string;
   cardList?: CardListProps;
+  handleUserTypeChange?: (string) => void;
 };
 
 const UserSelectionBlock: React.FC<UserSelectionBlockProps> = ({
