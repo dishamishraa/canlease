@@ -13,13 +13,9 @@ const withPresenter = (
         } = props;
         
         const [userType, setUserType] = useState('');
-
-        const handleUserTypeChange = (type) => {
-            setUserType(type);
-        }
        
         return <View
-            handleUserTypeChange={handleUserTypeChange}
+            setUserType={setUserType}
             userType={userType}/>;
   };
   return Presenter;

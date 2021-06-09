@@ -21,7 +21,7 @@ const withPresenter = (
     const location = useLocation();
     const {
       className,
-      handleUserTypeChange,
+      setUserType,
     } = props;
 
     const blockHeading: TextProps = {
@@ -43,8 +43,8 @@ const withPresenter = (
                   ...userSelectionCardDefaultProps.button,
                   type: 'TextIconButton',
                   onButtonClicked: () => {
-                    if (handleUserTypeChange) {
-                      handleUserTypeChange("customer");
+                    if (setUserType) {
+                      setUserType("customer");
                       history.push('/getQuote');
                     }
                   },
@@ -66,8 +66,8 @@ const withPresenter = (
                   ...userSelectionCardDefaultProps.button,
                   type: 'TextIconButton',
                   onButtonClicked: () => {
-                    if (handleUserTypeChange) {
-                      handleUserTypeChange("vendor");
+                    if (setUserType) {
+                      setUserType("vendor");
                       history.push('/getQuote');
                     }
                   },

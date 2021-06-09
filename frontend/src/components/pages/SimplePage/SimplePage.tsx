@@ -108,7 +108,7 @@ export type SimplePageProps = {
   quoteBlock?: QuoteBlockProps;
   actionBlock?: ActionBlockProps;
   className?: string;
-  handleUserTypeChange?: (string) => void;
+  setUserType?: React.Dispatch<React.SetStateAction<string>>;
   userType?: string;
 };
 
@@ -127,7 +127,7 @@ const SimplePage: React.FC<SimplePageProps> = ({
   quoteBlock,
   actionBlock,
   className,
-  handleUserTypeChange,
+  setUserType,
   userType,
 }) => {
 
@@ -138,7 +138,7 @@ const SimplePage: React.FC<SimplePageProps> = ({
           <UserSelectionBlock
             className={styles.block} 
             {...userSelectionBlock} 
-            handleUserTypeChange={handleUserTypeChange}
+            setUserType={setUserType}
             />
         </Route>
         <Route exact path={routes.getQuote}>
