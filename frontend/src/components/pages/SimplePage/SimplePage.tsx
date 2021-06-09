@@ -140,7 +140,8 @@ const SimplePage: React.FC<SimplePageProps> = ({
         <Route exact path={routes.userSelection}>
           <UserSelectionBlock
             className={styles.block} 
-            {...userSelectionBlock} />
+            {...userSelectionBlock} 
+            />
         </Route>
         <Route exact path={routes.getQuote}>
           <GetQuoteBlock

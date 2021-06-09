@@ -10,8 +10,7 @@
   background-color: rgb(240, 241, 247);
   border-radius: 8px;
 
-  .promptText {
-    overflow: hidden;
+  .text{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -25,7 +24,7 @@
     }
   }
 
-  .actionButton {
+  .button{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -42,15 +41,6 @@
       }
     }
   }
-
-  .text {
-    display: none;
-  }
-
-  .button {
-    display: none;
-  }
-
 }
 
 @media (min-width: 576px) {
@@ -65,9 +55,8 @@
     }
     background-color: rgb(240, 241, 247);
     border-radius: 8px;
-  
-    .promptText {
-      overflow: hidden;
+
+    .text{
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
@@ -80,8 +69,8 @@
         }
       }
     }
-  
-    .actionButton {
+
+    .button{
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -98,7 +87,8 @@
         }
       }
     }
-  
+
+
   }
 }
 
@@ -145,14 +135,6 @@
           margin-top: 0;
         }
       }
-    }
-  
-    .promptText {
-      display: none;
-    }
-  
-    .actionButton {
-      display: none;
     }
   
   }
@@ -202,15 +184,6 @@
         }
       }
     }
-  
-    .promptText {
-      display: none;
-    }
-  
-    .actionButton {
-      display: none;
-    }
-  
   }
 }
 
@@ -254,14 +227,5 @@
         margin-top: 0;
       }
     }
-  
-    .promptText {
-      display: none;
-    }
-  
-    .actionButton {
-      display: none;
-    }
-  
   }
 }
