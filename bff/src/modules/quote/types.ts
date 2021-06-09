@@ -25,3 +25,11 @@ export type CreateQuote = {
     }
   ];
 };
+
+export interface CreateQuoteControllerContract {
+  createQuote(payload: CreateQuote): Promise<void>;
+}
+
+export interface CreateQuoteServiceContract {
+  createQuote(payload: CreateQuote): Promise<void>;
+}

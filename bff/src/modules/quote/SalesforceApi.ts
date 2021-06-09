@@ -1,7 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import {
-  SALESFORCE_API_URL,
-} from '../../lib/config';
+import { SALESFORCE_API_URL } from '../../lib/config';
 
 import { CreateQuote } from './types';
 
@@ -27,15 +25,10 @@ export default class SalesforceApi {
         },
       );
     } catch (error) {
-      let { message } = error;
-      if (error.response) {
-        const { response } = error;
-        message = response?.data?.message || '';
-        if (response?.status === 409) {
-          return;
-        }
-      }
-      throw new Error(`Failed to create hubspot contact: ${message}`);
+      const message = axios.isAxiosError(error)
+        ? error.response?.data?.errorMessage
+        : error.message;
+      throw new Error(message);
     }
   }
 }
