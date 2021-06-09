@@ -1,1 +1,5 @@
-export * from './mockSalesforceContractPayload';
+import mockSalesforceContractPayload from './mockSalesforceContractPayload';
+
+export {
+  mockSalesforceContractPayload,
+};
