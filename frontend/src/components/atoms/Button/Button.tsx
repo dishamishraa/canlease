@@ -109,7 +109,6 @@ const Button: React.FC<ButtonProps> = ({
       </Link>
     )
   }
-  console.log(disabled);
   return (
     <button
       type={buttonType}

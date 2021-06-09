@@ -17,5 +17,16 @@
             }
         },
         "submit": "Next"
+    },
+    "contact_info_vendor": {
+        "header_your": "Your information",
+        "header_customer": "Customer information",
+        "name": "Name",
+        "business_email": "Business email",
+        "company_name": "Company name",
+        "customer_name": "Customer name",
+        "customer_email": "Customer email",
+        "customer_company_name": "Customer company name",
+        "submit": "View quote"
     }
 }

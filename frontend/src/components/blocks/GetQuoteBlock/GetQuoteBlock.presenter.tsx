@@ -1,39 +1,19 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router-dom';
-import { APIResponse } from '../../../lib/api/types';
-import { User } from '../../../modules/types';
 import { TextInputProps } from '../../atoms/TextInput';
-import { SimplePageProps } from '../../pages/SimplePage';
 import { GetQuoteBlockProps, defaultProps as defaultGetQuoteBlockProps  } from './GetQuoteBlock';
 import { ContextualMenuProps } from '../../molecules/ContextualMenu';
-import ContextualMenuItem, { ContextualMenuItemProps } from '../../atoms/ContextualMenuItem';
+import { ContextualMenuItemProps } from '../../atoms/ContextualMenuItem';
 import { defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 
 
-export type GetQuoteBlockPropsPresenterProps = {
-//   error?: Error;
-//   loading: boolean;
-//   user: User | null;
-//   refetchUser: (() => void) | null;
-//   submitSignUpSurvey: (payload: SignUpSurveyPayload) => Promise<APIResponse<boolean>>;
-//   recordRegistrationEvent: () => void;
-};
+export type GetQuoteBlockPresenterProps = {};
 
 const withPresenter = (
   View: React.FC<GetQuoteBlockProps>,
-): React.FC<GetQuoteBlockPropsPresenterProps> => {
-  const Presenter: React.FC<GetQuoteBlockPropsPresenterProps> = (
-    props
-    // {
-    // loading,
-    // error,
-    // user,
-    // refetchUser,
-    // submitSignUpSurvey,
-    // recordRegistrationEvent
-  // }
-  ) => {
+): React.FC<GetQuoteBlockPresenterProps> => {
+  const Presenter: React.FC<GetQuoteBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
     const history = useHistory();
 
@@ -51,10 +31,6 @@ const withPresenter = (
         history.push({pathname: '/contactInformation'})
       }
     };
-
-    const handleSubmit = async () => { 
-    };
-
 
     const handleChangeEquipmentName: TextInputProps['onTextChanged'] = ({ target: { value } }) => setEquipmentName(value);
     const handleChangeEquipmentCost: TextInputProps['onTextChanged'] = ({ target: { value } }) => setEquipmentCost(value);
@@ -138,9 +114,6 @@ const withPresenter = (
 
     return (
       <View
-        // loading={loading}
-        // error={error}
-        // header={defaultGetQuoteBlockProps.header} 
         {...blockProps}
       />
     );
