@@ -1,0 +1,32 @@
+definitions:
+  CreateQuote:
+    type: "object"
+    properties:
+      userType:
+        type: "string"
+        enum:
+        - "customer"
+        - "vendor"
+        - "rep"
+      asset:
+        type: "string"
+      applicationAmount:
+        type: "number"
+      leaseType:
+        type: "string"
+      contactName:
+        type: "string"
+      contactEmail:
+        type: "string"
+      contactBusinessName:
+        type: "string"
+      vendorName:
+        type: "string"
+      vendorEmail:
+        type: "string"
+      vendorBusinessName:
+        type: "string"
+      quoteOptions:
+        type: "array"
+        items:
+          $ref: "#/definitions/QuoteOption"
