@@ -17,7 +17,8 @@ const withPresenter = (
     const { t } = useTranslation();
     const history = useHistory();
 
-    const { search } = useLocation();
+    const location = useLocation();
+    const { search } = location;
     const queryParams = new URLSearchParams(search);
     const target = queryParams.get('target') || '/';
 
@@ -37,6 +38,7 @@ const withPresenter = (
     const handleStretchClick: ContextualMenuItemProps['onContextualMenuItemClicked'] = () => setEquipmentLeaseType(t('get_quote_block.lease_type.options.stretch'));
     const handleTenClick: ContextualMenuItemProps['onContextualMenuItemClicked'] = () => setEquipmentLeaseType(t('get_quote_block.lease_type.options.ten'));
 
+    console.log({history, location});
     const contextualMenu: ContextualMenuProps = {
       contextualMenuItemList: {
         contextualMenuItems: [
@@ -72,6 +74,7 @@ const withPresenter = (
         },
         textInput: {
           textPlaceholder: t('get_quote_block.name.placeholder'),
+          textValue: equipmentName,
           onTextChanged: handleChangeEquipmentName,
         },
       },
@@ -83,6 +86,7 @@ const withPresenter = (
         },
         textInput: {
           textPlaceholder: t('get_quote_block.cost.placeholder'),
+          textValue: equipmentCost,
           onTextChanged: handleChangeEquipmentCost,
         },
       },

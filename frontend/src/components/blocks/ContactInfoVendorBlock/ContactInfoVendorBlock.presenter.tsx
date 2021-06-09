@@ -26,7 +26,16 @@ const withPresenter = (
     const [companyName, setCompanyName] = useState<string>('');
     const [customerName, setCustomerName] = useState<string>('');
     const [customerEmail, setCustomerEmail] = useState<string>('');
-    const [customerCompanyName, setCustomerC] = useState<string>('');
+    const [customerCompanyName, setCustomerCompanyName] = useState<string>('');
+
+    const handleChangeVendorName: TextInputProps['onTextChanged'] = ({ target: { value } }) => setVendorName(value);
+    const handleChangeBusinessEmail: TextInputProps['onTextChanged'] = ({ target: { value } }) => setBusinessEmail(value);
+    const handleChangeCompanyName: TextInputProps['onTextChanged'] = ({ target: { value } }) => setCompanyName(value);
+    const handleChangeCustomerName: TextInputProps['onTextChanged'] = ({ target: { value } }) => setCustomerName(value);
+    const handleChangeCustomerEmail: TextInputProps['onTextChanged'] = ({ target: { value } }) => setCustomerEmail(value);
+    const handleChangeCustomerCompanyName: TextInputProps['onTextChanged'] = ({ target: { value } }) => setCustomerCompanyName(value);
+
+
 
     const blockProps: ContactInfoVendorBlockProps = {
       ...defaultProps,
@@ -46,7 +55,8 @@ const withPresenter = (
           value: t('contact_info_vendor.name'),
         },
         textInput: {
-          // onTextChanged: handleChangeEquipmentName,
+          onTextChanged: handleChangeVendorName,
+          textValue: vendorName,
         },
       },
       vendorBusinessEmailTextField: {
@@ -56,7 +66,8 @@ const withPresenter = (
           value: t('contact_info_vendor.business_email'),
         },
         textInput: {
-          // onTextChanged: handleChangeEquipmentCost,
+          onTextChanged: handleChangeBusinessEmail,
+          textValue: businessEmail
         },
       },
       vendorCompanyNameField: {
@@ -66,7 +77,8 @@ const withPresenter = (
           value: t('contact_info_vendor.company_name'),
         },
         textInput: {
-          // onTextChanged: handleChangeEquipmentCost,
+          onTextChanged: handleChangeCompanyName,
+          textValue: companyName
         },
       },
       customerNameTextField: {
@@ -76,7 +88,8 @@ const withPresenter = (
           value: t('contact_info_vendor.customer_name'),
         },
         textInput: {
-          // onTextChanged: handleChangeEquipmentCost,
+          onTextChanged: handleChangeCustomerName,
+          textValue: customerName
         },
       },
       customerEmailTextField: {
@@ -86,7 +99,8 @@ const withPresenter = (
           value: t('contact_info_vendor.customer_email'),
         },
         textInput: {
-          // onTextChanged: handleChangeEquipmentCost,
+          onTextChanged: handleChangeCustomerEmail,
+          textValue: customerEmail
         },
       },
       customerCompanyNameTextField: {
@@ -96,7 +110,8 @@ const withPresenter = (
           value: t('contact_info_vendor.customer_company_name'),
         },
         textInput: {
-          // onTextChanged: handleChangeEquipmentCost,
+          onTextChanged: handleChangeCustomerCompanyName,
+          textValue: customerCompanyName
         },
       },
       viewQuoteButton:{

@@ -21,6 +21,7 @@ export type ContextualMenuItemProps = {
   onContextualMenuItemClicked?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
   text?: TextProps;
   className?: string;
+  key?: string;
 };
 
 const ContextualMenuItem: React.FC<ContextualMenuItemProps> = ({
@@ -33,7 +34,8 @@ const ContextualMenuItem: React.FC<ContextualMenuItemProps> = ({
     <button
       type={contextualMenuItemType}
       onClick={onContextualMenuItemClicked}
-      className={cx(styles.contextualMenuItem, className)}>
+      className={cx(styles.contextualMenuItem, className)}
+      key={text?.value}>
       <Text
         className={styles.text}
         {...text} />
