@@ -24,6 +24,7 @@ export type UserSelectionBlockProps = {
   blockHeading?: TextProps;
   className?: string;
   cardList?: CardListProps;
+  setUserType?: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const UserSelectionBlock: React.FC<UserSelectionBlockProps> = ({
