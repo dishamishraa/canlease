@@ -16,6 +16,7 @@ const withPresenter = (
   const Presenter: React.FC<GetQuoteBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
     const history = useHistory();
+    
 
     const location = useLocation();
     const { search } = location;
@@ -32,7 +33,6 @@ const withPresenter = (
         history.push({pathname: '/contactInformation'})
       }
     };
-
     const handleChangeEquipmentName: TextInputProps['onTextChanged'] = ({ target: { value } }) => setEquipmentName(value);
     const handleChangeEquipmentCost: TextInputProps['onTextChanged'] = ({ target: { value } }) => setEquipmentCost(value);
     const handleStretchClick: ContextualMenuItemProps['onContextualMenuItemClicked'] = () => setEquipmentLeaseType(t('get_quote_block.lease_type.options.stretch'));

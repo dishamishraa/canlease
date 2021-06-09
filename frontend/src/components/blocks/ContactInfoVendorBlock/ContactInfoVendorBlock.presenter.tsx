@@ -35,7 +35,13 @@ const withPresenter = (
     const handleChangeCustomerEmail: TextInputProps['onTextChanged'] = ({ target: { value } }) => setCustomerEmail(value);
     const handleChangeCustomerCompanyName: TextInputProps['onTextChanged'] = ({ target: { value } }) => setCustomerCompanyName(value);
 
-
+    const isFormValid = Boolean(vendorName && businessEmail && companyName
+      && customerName && customerEmail && customerCompanyName );
+    const handleClickViewQuote = () => {
+      if(isFormValid){
+        //callback function here
+      }
+    };
 
     const blockProps: ContactInfoVendorBlockProps = {
       ...defaultProps,
@@ -114,11 +120,17 @@ const withPresenter = (
           textValue: customerCompanyName
         },
       },
+      disclaimerText: {
+        ...defaultProps.disclaimerText,
+        value: t('contact_info_vendor.disclaimer')
+      },
       viewQuoteButton:{
         ...defaultProps.viewQuoteButton,
         text: {
           value: t('contact_info_vendor.submit')
         },
+        onButtonClicked: handleClickViewQuote,
+        disabled: !isFormValid,
       }
     };
 
