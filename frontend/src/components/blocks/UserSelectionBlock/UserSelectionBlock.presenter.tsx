@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { UserSelectionBlockProps, defaultProps as UserSelectionBlockDefaultProps } from './UserSelectionBlock';
@@ -21,9 +21,8 @@ const withPresenter = (
     const location = useLocation();
     const {
       className,
+      setUserType,
     } = props;
-
-    const [userType, setUserType] = useState('');
 
     const blockHeading: TextProps = {
       ...UserSelectionBlockDefaultProps.blockHeading,
@@ -44,11 +43,10 @@ const withPresenter = (
                   ...userSelectionCardDefaultProps.button,
                   type: 'TextIconButton',
                   onButtonClicked: () => {
-                    setUserType('end-user');
-                    history.push({
-                      pathname: '/getQuote',
-                      state: { userType },
-                    });
+                    if (setUserType) {
+                      setUserType("customer");
+                      history.push('/getQuote');
+                    }
                   },
                   text: {
                     ...userSelectionCardDefaultProps.button.text,
@@ -68,11 +66,10 @@ const withPresenter = (
                   ...userSelectionCardDefaultProps.button,
                   type: 'TextIconButton',
                   onButtonClicked: () => {
-                    setUserType('vendor');
-                    history.push({
-                      pathname: '/getQuote',
-                      state: { userType },
-                    });
+                    if (setUserType) {
+                      setUserType("vendor");
+                      history.push('/getQuote');
+                    }
                   },
                   text: {
                     ...userSelectionCardDefaultProps.button.text,
