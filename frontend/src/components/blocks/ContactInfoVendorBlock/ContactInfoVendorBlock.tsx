@@ -120,10 +120,10 @@ export const defaultProps = {
 
 export type ContactInfoVendorBlockProps = {
   blockHeading?: TextProps;
+  blockVendorHeading?: TextProps;
   vendorNameTextField?: TextFieldProps;
   vendorBusinessEmailTextField?: TextFieldProps;
   vendorCompanyNameField?: TextFieldProps;
-  blockVendorHeading?: TextProps;
   customerNameTextField?: TextFieldProps;
   customerEmailTextField?: TextFieldProps;
   customerCompanyNameTextField?: TextFieldProps;

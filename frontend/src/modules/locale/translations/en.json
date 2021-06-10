@@ -1,4 +1,35 @@
 {
+    "get_quote_block": {
+        "header": "Get a quote",
+        "name": {
+            "label": "Equipment Name",
+            "placeholder": "e.g. Macbook Pro 13 inch"
+        },
+        "cost": {
+            "label": "Equipment Cost (before tax)",
+            "placeholder": "CAD"
+        },
+        "lease_type": {
+            "label": "Lease type",
+            "options": {
+                "stretch": "Stretch",
+                "ten": "$10 end"
+            }
+        },
+        "submit": "Next"
+    },
+    "contact_info": {
+        "header_your": "Your Information",
+        "header_customer": "Customer Information",
+        "name": "Name",
+        "business_email": "Business email",
+        "company_name": "Company name",
+        "customer_name": "Customer name",
+        "customer_email": "Customer email",
+        "customer_company_name": "Customer company name",
+        "submit": "View quote",
+        "disclaimer": "Canlease is committed to protecting and respecting your privacy, and we'll only use your personal information to provide the services you requested from us. By creating this quote, you agree to be contacted by one of our representatives at a later time."
+    },
     "user_type_selection": {
         "header": "Who are you creating this quote for?",
         "end_user": "I am creating this quote for myself",
@@ -10,4 +41,4 @@
         "button_text": "Contact Us"
     }
 }
-    
+  

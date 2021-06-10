@@ -153,6 +153,13 @@ const SimplePage: React.FC<SimplePageProps> = ({
   setUserType,
   userType,
 }) => {
+  
+  const infoBlock = userType === "vendor" ? 
+    (<ContactInfoVendorBlock className={styles.block}
+      {...contactInfoCustomerBlock} />):
+    (<ContactInfoCustomerBlock
+      className={styles.block}
+      {...contactInfoCustomerBlock} />);
 
   return (
     <div className={cx(styles.simplePage, className)}>
@@ -174,9 +181,7 @@ const SimplePage: React.FC<SimplePageProps> = ({
               {...getQuoteBlock} />
           </Route>
           <Route exact path={routes.contactInformation}>
-            <ContactInfoCustomerBlock
-              className={styles.block}
-              {...contactInfoCustomerBlock} />
+            {infoBlock}
           </Route>
           <Route exact path={routes.instaQuote}>
             <QuoteBlock
