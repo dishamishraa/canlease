@@ -1,6 +1,6 @@
-import { validateCreateQuote } from './utils';
+import { validateCreateQuote, validateSendQuote } from './utils';
 
-describe('createQuote utils', () => {
+describe('quote utils', () => {
   describe('validateCreateQuote', () => {
     it('should return true if valid payload', () => {
       const valid = validateCreateQuote({
@@ -27,6 +27,34 @@ describe('createQuote utils', () => {
     });
     it('should return false for invalid payload', () => {
       const valid = validateCreateQuote({});
+
+      expect(valid).toBe(false);
+    });
+  });
+
+  describe('validateSendQuote', () => {
+    it('should return true if valid payload', () => {
+      const valid = validateSendQuote({
+        vendorBusinessName: 'vendorBusinessName',
+        from: {
+            email: "orders@example.com",
+            name: "Example Order Confirmation"
+        },
+        template_id: "[template_id]",
+        personalizations: [{
+            to: [
+            {
+                email: "john_doe@example.com",
+                name: "John Doe"
+            },
+            ],
+            subject: "Your Example Order Confirmation",
+        }],
+      });
+      expect(valid).toBe(true);
+    });
+    it('should return false for invalid payload', () => {
+      const valid = validateSendQuote({});
 
       expect(valid).toBe(false);
     });

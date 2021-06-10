@@ -26,10 +26,29 @@ export type CreateQuote = {
   ];
 };
 
-export interface CreateQuoteControllerContract {
+export type SendQuote = {
+  from: {
+    email: string;
+    name: string;
+  },
+  template_id: string,
+  personalizations: [{
+    to: [
+        {
+        email: string;
+        name: string;
+        },
+    ],
+    subject: string;
+  }],
+};
+
+export interface QuoteControllerContract {
   createQuote(payload: CreateQuote): Promise<void>;
+  sendQuote(payload: SendQuote): Promise<void>;
 }
 
-export interface CreateQuoteServiceContract {
+export interface QuoteServiceContract {
   createQuote(payload: CreateQuote): Promise<void>;
+  sendQuote(payload: SendQuote): Promise<void>;
 }

@@ -1,13 +1,17 @@
-import { CreateQuote, CreateQuoteControllerContract, CreateQuoteServiceContract } from './types';
+import { CreateQuote, SendQuote, QuoteControllerContract, QuoteServiceContract } from './types';
 
-export default class QuoteController implements CreateQuoteControllerContract {
-  private createQuoteService: CreateQuoteServiceContract;
+export default class QuoteController implements QuoteControllerContract {
+  private createQuoteService: QuoteServiceContract;
 
-  constructor(createQuoteService: CreateQuoteServiceContract) {
+  constructor(createQuoteService: QuoteServiceContract) {
     this.createQuoteService = createQuoteService;
   }
 
   async createQuote(payload: CreateQuote): Promise<void> {
     return this.createQuoteService.createQuote(payload);
+  }
+
+  async sendQuote(payload: SendQuote): Promise<void> {
+    return this.createQuoteService.sendQuote(payload);
   }
 }

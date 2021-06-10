@@ -1,21 +1,30 @@
 import { Router, Request, Response } from 'express';
-import { CreateQuoteControllerContract } from './types';
+import { QuoteControllerContract } from './types';
 import { BadRequestError } from '../../lib/errors';
 import { errorWrapper } from '../../lib/utils';
-import { validateCreateQuote } from './utils';
+import { validateCreateQuote, validateSendQuote } from './utils';
 
 export function createQuoteRouter(controllers: {
-  createQuoteController: CreateQuoteControllerContract;
+  quoteController: QuoteControllerContract;
 }): Router {
   const router = Router();
-  const { createQuoteController } = controllers;
+  const { quoteController } = controllers;
 
-  router.post('/', errorWrapper(async (req: Request, res: Response) => {
+  router.post('/create', errorWrapper(async (req: Request, res: Response) => {
     if (!validateCreateQuote(req.body)) {
       throw BadRequestError();
     }
 
-    await createQuoteController.createQuote(req.body);
+    await quoteController.createQuote(req.body);
+    res.sendStatus(200);
+  }));
+
+  router.post('/send', errorWrapper(async (req: Request, res: Response) => {
+    if (!validateSendQuote(req.body)) {
+      throw BadRequestError();
+    }
+
+    await quoteController.sendQuote(req.body);
     res.sendStatus(200);
   }));
 
