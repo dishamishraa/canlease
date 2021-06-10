@@ -1,0 +1,161 @@
+.rateDetailItemPerMonth {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  > * {
+    margin-left: 0.5rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .numberText {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-end;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .suffixText {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-end;
+    flex: 1 1 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  }
+
+}
+.rateDetailItemText {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  > * {
+    margin-left: 0.5rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .suffixText {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-end;
+    flex: 1 1 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  }
+
+}
+
+@media (min-width: 768px) {
+  .rateDetailItemPerMonth {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .numberText {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: flex-end;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-left: 0;
+        }
+      }
+    }
+  
+    .suffixText {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: flex-end;
+      flex: 1 1 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-left: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .rateDetailItemText {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  
+    .suffixText {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: flex-end;
+      flex: 1 1 auto;
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  
+    .numberText {
+      display: none;
+    }
+  
+  }
+}

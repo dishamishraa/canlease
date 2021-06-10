@@ -5,6 +5,7 @@ import styles from './QuoteBlock.module.scss';
 
 import Text, { TextProps } from '../../atoms/Text';
 import QuoteRateSection, { QuoteRateSectionProps } from '../../organisms/QuoteRateSection';
+import DetailItemList, { DetailItemListProps } from '../../organisms/DetailItemList';
 import Button, { ButtonProps } from '../../atoms/Button';
 
 export const defaultProps = {
@@ -21,13 +22,9 @@ export const defaultProps = {
       size: 'Large',
       type: 'Heading2',
     },
-    quoteDetails: {
-      text: {
-        style: 'Basic800',
-        align: 'Left',
-        size: 'Medium',
-        type: 'Paragraph3',
-      },
+    detailItemList: {
+      quoteDetailItems: [
+      ],
     },
     rateCardList: {
       rateCards: [
@@ -40,17 +37,21 @@ export const defaultProps = {
     size: 'Medium',
     type: 'Paragraph3',
   } as TextProps,
-  conditionsText: {
-    style: 'Basic800',
-    align: 'Left',
-    size: 'Medium',
-    type: 'Paragraph2',
-  } as TextProps,
   validText: {
     style: 'Basic800',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph3',
+  } as TextProps,
+  detailItemList: {
+    quoteDetailItems: [
+    ],
+  } as DetailItemListProps,
+  learnMoreText: {
+    style: 'Basic800',
+    align: 'Left',
+    size: 'Medium',
+    type: 'Paragraph2',
   } as TextProps,
   viewQuoteButton: {
     type: 'Button',
@@ -64,34 +65,28 @@ export const defaultProps = {
       type: 'ButtonGiant',
     },
   } as ButtonProps,
-  learnMoreText: {
-    style: 'Basic800',
-    align: 'Left',
-    size: 'Medium',
-    type: 'Paragraph2',
-  } as TextProps,
 };
 
 export type QuoteBlockProps = {
   blockHeading?: TextProps;
   quoteRateSection?: QuoteRateSectionProps;
   disclaimerText?: TextProps;
-  conditionsText?: TextProps;
   validText?: TextProps;
+  detailItemList?: DetailItemListProps;
+  learnMoreText?: TextProps;
   viewQuoteButton?: ButtonProps;
   className?: string;
-  learnMoreText?: TextProps;
 };
 
 const QuoteBlock: React.FC<QuoteBlockProps> = ({
   blockHeading,
   quoteRateSection,
   disclaimerText,
-  conditionsText,
   validText,
+  detailItemList,
+  learnMoreText,
   viewQuoteButton,
   className,
-  learnMoreText,
 }) => {
   return (
     <div className={cx(styles.quoteBlock, className)}>
@@ -104,9 +99,9 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
       <Text
         className={styles.disclaimerText}
         {...disclaimerText} />
-      <Text
-        className={styles.conditionsText}
-        {...conditionsText} />
+      <DetailItemList
+        className={styles.detailItemList}
+        {...detailItemList} />
       <Text
         className={styles.validText}
         {...validText} />

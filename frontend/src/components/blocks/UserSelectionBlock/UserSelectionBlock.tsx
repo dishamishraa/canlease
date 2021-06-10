@@ -4,9 +4,7 @@ import cx from 'classnames';
 import styles from './UserSelectionBlock.module.scss';
 
 import Text, { TextProps } from '../../atoms/Text';
-import Button, { ButtonProps } from '../../atoms/Button';
 import CardList, { CardListProps } from '../../organisms/CardList';
-import { UserSelectionCardProps } from '../../molecules/UserSelectionCard';
 
 export const defaultProps = {
   blockHeading: {
@@ -16,23 +14,23 @@ export const defaultProps = {
     type: 'Heading1',
   } as TextProps,
   cardList: {
-    userSelectionCards: [],  
+    userSelectionCards: [
+    ],
   } as CardListProps,
 };
 
 export type UserSelectionBlockProps = {
   blockHeading?: TextProps;
-  className?: string;
   cardList?: CardListProps;
   setUserType?: React.Dispatch<React.SetStateAction<string>>;
+  className?: string;
 };
 
 const UserSelectionBlock: React.FC<UserSelectionBlockProps> = ({
   blockHeading,
-  className,
   cardList,
+  className,
 }) => {
-
   return (
     <div className={cx(styles.userSelectionBlock, className)}>
       <Text
@@ -40,9 +38,7 @@ const UserSelectionBlock: React.FC<UserSelectionBlockProps> = ({
         {...blockHeading} />
       <CardList
         className={styles.cardList}
-        {...cardList} 
-        />
-      
+        {...cardList} />
     </div>
   );
 };

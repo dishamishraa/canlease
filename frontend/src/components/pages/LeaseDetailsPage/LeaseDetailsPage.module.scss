@@ -1,0 +1,192 @@
+.leaseDetailsPage {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 2rem 0.5rem 2rem 0.5rem;
+
+  .topBar {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1rem 0rem 1rem 0rem;
+    align-self: flex-start;
+    width: 19rem;
+    flex: 0 0 auto;
+  }
+
+  .block {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1.5rem 1rem 1.5rem 1rem;
+    > * {
+      margin-top: 1rem;
+    }
+    align-self: flex-start;
+    width: 19rem;
+    flex: 0 0 31.75rem;
+  }
+
+}
+
+@media (min-width: 576px) {
+  .leaseDetailsPage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2rem 0rem 2rem 0rem;
+  
+    .topBar {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 1rem 0rem;
+      align-self: center;
+      width: 33rem;
+      flex: 0 0 auto;
+    }
+  
+    .block {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 2.5rem 2rem 2.5rem;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: center;
+      width: 28rem;
+      flex: 0 0 33.25rem;
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .leaseDetailsPage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4rem 0rem 4rem 0rem;
+  
+    .topBar {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 1rem 0rem;
+      align-self: center;
+      width: 37.5rem;
+      flex: 0 0 auto;
+    }
+  
+    .block {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2.5rem 2.5rem 3rem 2.5rem;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: center;
+      width: 32.5rem;
+      flex: 0 0 33.25rem;
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .leaseDetailsPage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4rem 0rem 4rem 0rem;
+  
+    .topBar {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 1rem 0rem;
+      align-self: center;
+      width: 37.5rem;
+      flex: 0 0 auto;
+    }
+  
+    .block {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2.5rem 2.5rem 3rem 2.5rem;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: center;
+      width: 32.5rem;
+      flex: 0 0 33.25rem;
+    }
+  
+  }
+}
+
+@media (min-width: 1440px) {
+  .leaseDetailsPage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4rem 0rem 4rem 0rem;
+  
+    .topBar {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 1rem 0rem;
+      align-self: center;
+      width: 37.5rem;
+      flex: 0 0 auto;
+    }
+  
+    .block {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2.5rem 2.5rem 3rem 2.5rem;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: center;
+      width: 32.5rem;
+      flex: 0 0 33.25rem;
+    }
+  
+  }
+}

@@ -7,7 +7,7 @@ import Text, { TextProps } from '../../atoms/Text';
 import TextInput, { TextInputProps } from '../../atoms/TextInput';
 
 export type TextFieldStateType = 'Default' | 'Error';
-export type TextFieldTypeType = 'Text' | 'Password';
+export type TextFieldTypeType = 'Text' | 'Password' | 'TextArea';
 
 export const defaultProps = {
   state: 'Error' as TextFieldStateType,
@@ -79,6 +79,15 @@ const TextField: React.FC<TextFieldProps> = ({
     case 'DefaultPassword':
       break;
     case 'ErrorPassword':
+      errorMessageView = (
+        <Text
+          className={styles.errorMessage}
+          {...errorMessage} />
+      );
+      break;
+    case 'DefaultTextArea':
+      break;
+    case 'ErrorTextArea':
       errorMessageView = (
         <Text
           className={styles.errorMessage}

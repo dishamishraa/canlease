@@ -1,0 +1,246 @@
+.topActionBlock {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  > * {
+    margin-top: 1.5rem;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1.5rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .textInput {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: stretch;
+    flex: 0 0 1.5rem;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .select {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+}
+
+@media (min-width: 576px) {
+  .topActionBlock {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1.5rem;
+    }
+  
+    .content {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-left: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .textInput {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: flex-start;
+      height: 1.5rem;
+      flex: 1 1 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-left: 0;
+        }
+      }
+    }
+  
+    .select {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: flex-start;
+      flex: 1 1 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-left: 0;
+        }
+      }
+    }
+  
+    .button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem 1.5rem 1rem 1.5rem;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: flex-start;
+      flex: 0 0 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .topActionBlock {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-left: 1.5rem;
+    }
+  
+    .content {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-left: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  
+    .textInput {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: flex-start;
+      height: 1.5rem;
+      flex: 1 1 auto;
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  
+    .select {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: flex-start;
+      flex: 0 0 9.375rem;
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  
+    .button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem 1.5rem 1rem 1.5rem;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  
+  }
+}

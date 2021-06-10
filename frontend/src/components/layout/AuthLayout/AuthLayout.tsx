@@ -21,7 +21,7 @@ export const defaultProps = {
     },
   } as HeaderProps,
   authPage: {
-    backBar: {
+    topBar: {
       backButton: {
         type: 'IconTextButton',
         size: 'Small',
@@ -39,7 +39,7 @@ export const defaultProps = {
         },
       },
     },
-    signInBlock: {
+    block: {
       blockHeading: {
         style: 'Basic800',
         align: 'Center',

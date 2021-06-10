@@ -3,7 +3,6 @@ import cx from 'classnames';
 
 import styles from './AuthPage.module.scss';
 
-import BackBar, { BackBarProps } from '../../organisms/BackBar';
 import SignInBlock, { SignInBlockProps } from '../../blocks/SignInBlock';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import SignUpBlock from '../../blocks/SignUpBlock';
@@ -14,9 +13,10 @@ import { ProtectedRoute } from '../../../modules/auth';
 import PersonalInformationBlock from '../../blocks/PersonalInformationBlock';
 import ContactInformationBlock from '../../blocks/ContactInformationBlock';
 import BusinessInformationBlock from '../../blocks/BusinessInformationBlock';
+import TopBar, { TopBarProps } from '../../organisms/TopBar';
 
 export const defaultProps = {
-  backBar: {
+  topBar: {
     backButton: {
       type: 'IconTextButton',
       size: 'Small',
@@ -33,8 +33,8 @@ export const defaultProps = {
         type: 'ButtonGiant',
       },
     },
-  } as BackBarProps,
-  signInBlock: {
+  } as TopBarProps,
+  block: {
     blockHeading: {
       style: 'Basic800',
       align: 'Center',
@@ -105,8 +105,8 @@ export const defaultProps = {
 };
 
 export type AuthPageProps = {
-  backBar?: BackBarProps;
-  signInBlock?: SignInBlockProps;
+  topBar?: TopBarProps;
+  block?: SignInBlockProps;
   className?: string;
 };
 
@@ -124,20 +124,20 @@ const routes = {
 }
 
 const AuthPage: React.FC<AuthPageProps> = ({
-  backBar,
-  signInBlock,
+  topBar,
+  block,
   className,
 }) => {
   return (
     <div className={cx(styles.authPage, className)}>
-      <BackBar
-        className={styles.backBar}
-        {...backBar} />
+      <TopBar
+        className={styles.topBar}
+        {...topBar} />
       <Switch>
         <Route exact path={routes.signIn}>
           <SignInBlock
             className={styles.block}
-            {...signInBlock} />
+            {...block} />
         </Route>
         
         {/* Forgot password routes */}

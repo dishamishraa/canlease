@@ -1,0 +1,2224 @@
+.portalLayout {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: rgb(255, 255, 255);
+
+  .header {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 0.75rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+  }
+
+  .body {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 1 1 auto;
+  }
+
+  .content {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 1 1 auto;
+  }
+
+  .vendorDashboardPage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+    > * {
+      margin-top: 2rem;
+    }
+    align-self: stretch;
+    flex: 1 1 auto;
+  }
+
+  .menuBlock {
+    display: none;
+  }
+
+  .menuBlock {
+    display: none;
+  }
+
+}
+
+@media (min-width: 320px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 0.75rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+      > * {
+        margin-top: 2rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 320px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 0.75rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+      > * {
+        margin-top: 2rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 320px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 0.75rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+      > * {
+        margin-top: 2rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 320px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 0.75rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+      > * {
+        margin-top: 2rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 320px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 0.75rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+      > * {
+        margin-top: 2rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 320px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 0.75rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+      > * {
+        margin-top: 2rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 576px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 0.75rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 576px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 0.75rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 576px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 0.75rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 576px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 0.75rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 576px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 0.75rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 576px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 0.75rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 576px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 0.75rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 3rem 2rem 3rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 0 0 47.5rem;
+    }
+  
+    .menuBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0rem 0rem 0rem;
+      align-self: stretch;
+      flex: 0 0 12.5rem;
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 3rem 2rem 3rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 0 0 47.5rem;
+    }
+  
+    .menuBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0rem 0rem 0rem;
+      align-self: stretch;
+      flex: 0 0 12.5rem;
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 3rem 2rem 3rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 0 0 47.5rem;
+    }
+  
+    .menuBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0rem 0rem 0rem;
+      align-self: stretch;
+      flex: 0 0 12.5rem;
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 3rem 2rem 3rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 0 0 47.5rem;
+    }
+  
+    .menuBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0rem 0rem 0rem;
+      align-self: stretch;
+      flex: 0 0 12.5rem;
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 3rem 2rem 3rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 0 0 47.5rem;
+    }
+  
+    .menuBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0rem 0rem 0rem;
+      align-self: stretch;
+      flex: 0 0 12.5rem;
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 3rem 2rem 3rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 0 0 47.5rem;
+    }
+  
+    .menuBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0rem 0rem 0rem;
+      align-self: stretch;
+      flex: 0 0 12.5rem;
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 3rem 2rem 3rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: stretch;
+      flex: 0 0 47.5rem;
+    }
+  
+    .menuBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0rem 0rem 0rem;
+      align-self: stretch;
+      flex: 0 0 12.5rem;
+    }
+  
+  }
+}
+
+@media (min-width: 1440px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 4rem 4rem 4rem 4rem;
+      > * {
+        margin-top: 2rem;
+      }
+      align-self: stretch;
+      flex: 0 0 69.5rem;
+    }
+  
+    .menuBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0rem 0rem 0rem;
+      align-self: stretch;
+      flex: 0 0 12.5rem;
+    }
+  
+  }
+}
+
+@media (min-width: 1440px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 4rem 4rem 4rem 4rem;
+      > * {
+        margin-top: 2rem;
+      }
+      align-self: stretch;
+      flex: 0 0 69.5rem;
+    }
+  
+    .menuBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0rem 0rem 0rem;
+      align-self: stretch;
+      flex: 0 0 12.5rem;
+    }
+  
+  }
+}
+
+@media (min-width: 1440px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 4rem 4rem 4rem 4rem;
+      > * {
+        margin-top: 2rem;
+      }
+      align-self: stretch;
+      flex: 0 0 69.5rem;
+    }
+  
+    .menuBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0rem 0rem 0rem;
+      align-self: stretch;
+      flex: 0 0 12.5rem;
+    }
+  
+  }
+}
+
+@media (min-width: 1440px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 4rem 4rem 4rem 4rem;
+      > * {
+        margin-top: 2rem;
+      }
+      align-self: stretch;
+      flex: 0 0 69.5rem;
+    }
+  
+    .menuBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0rem 0rem 0rem;
+      align-self: stretch;
+      flex: 0 0 12.5rem;
+    }
+  
+  }
+}
+
+@media (min-width: 1440px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 4rem 4rem 4rem 4rem;
+      > * {
+        margin-top: 2rem;
+      }
+      align-self: stretch;
+      flex: 0 0 69.5rem;
+    }
+  
+    .menuBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0rem 0rem 0rem;
+      align-self: stretch;
+      flex: 0 0 12.5rem;
+    }
+  
+  }
+}
+
+@media (min-width: 1440px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 4rem 4rem 4rem 4rem;
+      > * {
+        margin-top: 2rem;
+      }
+      align-self: stretch;
+      flex: 0 0 69.5rem;
+    }
+  
+    .menuBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0rem 0rem 0rem;
+      align-self: stretch;
+      flex: 0 0 12.5rem;
+    }
+  
+  }
+}
+
+@media (min-width: 1440px) {
+  .portalLayout {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+  
+    .header {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .content {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 1 1 auto;
+    }
+  
+    .vendorDashboardPage {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 4rem 4rem 4rem 4rem;
+      > * {
+        margin-top: 2rem;
+      }
+      align-self: stretch;
+      flex: 0 0 69.5rem;
+    }
+  
+    .menuBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1.5rem 0rem 0rem 0rem;
+      align-self: stretch;
+      flex: 0 0 12.5rem;
+    }
+  
+  }
+}
