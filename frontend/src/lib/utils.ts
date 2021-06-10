@@ -9,7 +9,7 @@ export const getServerUrl = (): string => {
 
 export const isEmptyString = (value, trim = true) => {
   if (value) {
-    return trim && value ? value.trim().length === 0 : value.length === 0;
+    return trim ? value.trim().length === 0 : value.length === 0;
   }
   return true; 
 }
