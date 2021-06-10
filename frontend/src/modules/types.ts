@@ -15,9 +15,18 @@ export type Quote = {
   quoteExpiryDate: string;
 }
 
+export enum Term {
+  TwelveMonths = "12M",
+  TwentyFourMonths = "24M",
+  ThirtySixMonths = "36M",
+  FourtyEightMonths = "48M",
+  SixtyMonths = "60M",
+  SeventyTwoMonths = "72M"
+}
+
 export type QuoteOption = {
   monthlyAmount: number;
-  term: '12M' | '24M' | '36M' | '48M' | '60M' | '72M'
+  term: Term.TwelveMonths | Term.TwentyFourMonths | Term.ThirtySixMonths | Term.FourtyEightMonths | Term.SixtyMonths | Term.SeventyTwoMonths;
   financeRate: number;
   purchaseOptionDate; string;
 }

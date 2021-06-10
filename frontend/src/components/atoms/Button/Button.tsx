@@ -56,7 +56,11 @@ const Button: React.FC<ButtonProps> = ({
   text,
   className,
   icon,
+<<<<<<< HEAD
   disabled,
+=======
+  disabled
+>>>>>>> 4314c08... finished requirement for expiry quote
 }) => {
 
   const currentStyle = styles[`button${type}${size}${fill}${colour}`];

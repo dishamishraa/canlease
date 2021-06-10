@@ -71,11 +71,6 @@ const testRateCardListProps: RateCardListProps = {
   rateCards: rateList
 }
 
-const textTestProps: TextProps = {
-  ...defaultProps.text,
-  value: "Quote Detail"
-}
-
 export type QuoteRateSectionProps = {
   text?: TextProps;
   detailItemList?: DetailItemListProps;
@@ -89,6 +84,7 @@ const QuoteRateSection: React.FC<QuoteRateSectionProps> = ({
   rateCardList,
   className,
 }) => {
+
   return (
     <div className={cx(styles.quoteRateSection, className)}>
       <Text

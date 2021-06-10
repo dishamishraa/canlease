@@ -21,7 +21,7 @@ export type TextProps = {
   align?: TextAlignType;
   size?: TextSizeType;
   type?: TextTypeType;
-  value?: string;
+  value?: React.ReactNode;
   className?: string;
 };
 
