@@ -6,6 +6,7 @@ import { GetQuoteBlockProps, defaultProps as defaultGetQuoteBlockProps  } from '
 import { ContextualMenuProps } from '../../molecules/ContextualMenu';
 import { ContextualMenuItemProps } from '../../atoms/ContextualMenuItem';
 import { defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
+import { isEmptyString } from '../../../lib/utils';
 
 
 export type GetQuoteBlockPresenterProps = {};
@@ -21,16 +22,16 @@ const withPresenter = (
     const [equipmentCost, setEquipmentCost] = useState<string>('');
     const [equipmentLeaseType, setEquipmentLeaseType] = useState<string>(t('get_quote_block.lease_type.options.stretch'));
 
-    const isFormValid = Boolean(equipmentName && equipmentCost);
+    const isFormValid = !isEmptyString(equipmentName) && !isEmptyString(equipmentCost);
     const handleClickNext = () => {
       if(isFormValid){
         history.push({pathname: '/contactInformation'})
       }
     };
-    const handleChangeEquipmentName: TextInputProps['onTextChanged'] = ({ target: { value } }) => setEquipmentName(value);
-    const handleChangeEquipmentCost: TextInputProps['onTextChanged'] = ({ target: { value } }) => setEquipmentCost(value);
-    const handleStretchClick: ContextualMenuItemProps['onContextualMenuItemClicked'] = () => setEquipmentLeaseType(t('get_quote_block.lease_type.options.stretch'));
-    const handleTenClick: ContextualMenuItemProps['onContextualMenuItemClicked'] = () => setEquipmentLeaseType(t('get_quote_block.lease_type.options.ten'));
+    const handleChangeEquipmentName = ({ target: { value } }) => setEquipmentName(value);
+    const handleChangeEquipmentCost = ({ target: { value } }) => setEquipmentCost(value);
+    const handleStretchClick = () => setEquipmentLeaseType(t('get_quote_block.lease_type.options.stretch'));
+    const handleTenClick = () => setEquipmentLeaseType(t('get_quote_block.lease_type.options.ten'));
 
     const contextualMenu: ContextualMenuProps = {
       contextualMenuItemList: {

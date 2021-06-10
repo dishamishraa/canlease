@@ -6,9 +6,7 @@ import { ContactInfoCustomerBlockPresenterProps } from './ContactInfoCustomerBlo
 const withInteractor = (
   Presenter: React.FC<ContactInfoCustomerBlockPresenterProps>,
 ): React.FC<ContactInfoCustomerBlockProps> => {
-  const Interactor: React.FC<ContactInfoCustomerBlockProps> = (props) => {
-    const { user, account, refetchUser } = useContext(AuthContext);
-    
+  const Interactor: React.FC<ContactInfoCustomerBlockProps> = (props) => {    
     return (
       <Presenter 
         {...props}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TextInputProps } from '../../atoms/TextInput';
 import { ContactInfoVendorBlockProps, defaultProps } from './ContactInfoVendorBlock';
+import { isEmptyString } from '../../../lib/utils';
 
 export type ContactInfoVendorBlockPresenterProps = {};
 
@@ -17,15 +17,16 @@ const withPresenter = (
     const [customerEmail, setCustomerEmail] = useState<string>('');
     const [customerCompanyName, setCustomerCompanyName] = useState<string>('');
 
-    const handleChangeVendorName: TextInputProps['onTextChanged'] = ({ target: { value } }) => setVendorName(value);
-    const handleChangeBusinessEmail: TextInputProps['onTextChanged'] = ({ target: { value } }) => setBusinessEmail(value);
-    const handleChangeCompanyName: TextInputProps['onTextChanged'] = ({ target: { value } }) => setCompanyName(value);
-    const handleChangeCustomerName: TextInputProps['onTextChanged'] = ({ target: { value } }) => setCustomerName(value);
-    const handleChangeCustomerEmail: TextInputProps['onTextChanged'] = ({ target: { value } }) => setCustomerEmail(value);
-    const handleChangeCustomerCompanyName: TextInputProps['onTextChanged'] = ({ target: { value } }) => setCustomerCompanyName(value);
+    const handleChangeVendorName = ({ target: { value } }) => setVendorName(value);
+    const handleChangeBusinessEmail = ({ target: { value } }) => setBusinessEmail(value);
+    const handleChangeCompanyName = ({ target: { value } }) => setCompanyName(value);
+    const handleChangeCustomerName = ({ target: { value } }) => setCustomerName(value);
+    const handleChangeCustomerEmail = ({ target: { value } }) => setCustomerEmail(value);
+    const handleChangeCustomerCompanyName = ({ target: { value } }) => setCustomerCompanyName(value);
 
-    const isFormValid = Boolean(vendorName && businessEmail && companyName
-      && customerName && customerEmail && customerCompanyName );
+    const isFormValid = !isEmptyString(vendorName) && !isEmptyString(businessEmail) 
+      && !isEmptyString(companyName) && !isEmptyString(customerName) 
+      && !isEmptyString(customerEmail) && !isEmptyString(customerCompanyName);
     const handleClickViewQuote = () => {
       if(isFormValid){
         //callback function here

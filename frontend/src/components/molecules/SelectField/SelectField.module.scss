@@ -8,6 +8,10 @@
     margin-top: 0.25rem;
   }
 
+  button {
+    width: 100%;
+  }
+
   .label {
     overflow: hidden;
     display: flex;
@@ -40,7 +44,6 @@
   .dropdownMenu {
     width: auto;
     > * {
-      width: 520px;
       height: 100%;
       width: 100%;
     }
