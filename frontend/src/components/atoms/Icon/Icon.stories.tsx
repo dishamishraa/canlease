@@ -204,6 +204,30 @@ export const CheckboxCheckedBasic800: React.VFC<{}> = () => (
     style='Basic800'
     />
 );
+export const CheckboxUncheckedBasic400: React.VFC<{}> = () => (
+  <Icon
+    asset='CheckboxUnchecked'
+    style='Basic400'
+    />
+);
+export const CheckboxCheckedBasic400: React.VFC<{}> = () => (
+  <Icon
+    asset='CheckboxChecked'
+    style='Basic400'
+    />
+);
+export const CheckboxUncheckedBrand500: React.VFC<{}> = () => (
+  <Icon
+    asset='CheckboxUnchecked'
+    style='Brand500'
+    />
+);
+export const CheckboxCheckedBrand500: React.VFC<{}> = () => (
+  <Icon
+    asset='CheckboxChecked'
+    style='Brand500'
+    />
+);
 export const HeartBasic800: React.VFC<{}> = () => (
   <Icon
     asset='Heart'

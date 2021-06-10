@@ -1,0 +1,24 @@
+.stepper {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  > * {
+    margin-top: 0.625rem;
+  }
+
+  .text {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+}

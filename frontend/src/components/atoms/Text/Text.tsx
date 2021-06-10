@@ -3,10 +3,10 @@ import cx from 'classnames';
 
 import styles from './Text.module.scss';
 
-export type TextStyleType = 'Basic800' | 'Basic100' | 'Basic400' | 'Basic500' | 'Red200' | 'Basic600' | 'Brand500';
-export type TextAlignType = 'Left' | 'Center';
+export type TextStyleType = 'Brand500' | 'Basic800' | 'Basic100' | 'Basic400' | 'Basic500' | 'Red200' | 'Basic600';
+export type TextAlignType = 'Center' | 'Left' | 'Right';
 export type TextSizeType = 'Large' | 'Medium' | 'Small';
-export type TextTypeType = 'Heading1' | 'Heading2' | 'Heading3' | 'Heading4' | 'Subtitle1' | 'Subtitle2' | 'Paragraph1' | 'Paragraph2' | 'Paragraph3' | 'ButtonGiant';
+export type TextTypeType = 'Data' | 'CardData' | 'Heading1' | 'Heading2' | 'Heading3' | 'Heading4' | 'Subtitle1' | 'Subtitle2' | 'Paragraph1' | 'Paragraph2' | 'Paragraph3' | 'ButtonGiant';
 
 export const defaultProps = {
   style: 'Basic100' as TextStyleType,
@@ -38,6 +38,20 @@ const Text: React.FC<TextProps> = ({
   let valueView;
   
   switch (type) {
+    case 'Data':
+      valueView = (
+        <p className={styles.value}>
+          {value}
+        </p>
+      );
+      break;
+    case 'CardData':
+      valueView = (
+        <p className={styles.value}>
+          {value}
+        </p>
+      );
+      break;
     case 'Heading1':
       valueView = (
         <h1 className={styles.value}>

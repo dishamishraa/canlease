@@ -3,41 +3,39 @@ import cx from 'classnames';
 
 import styles from './RateCard.module.scss';
 
-import Text, { TextProps } from '../../atoms/Text';
+import RateDetailItemList, { RateDetailItemListProps } from '../RateDetailItemList';
+import RateDetailsItemList, { RateDetailsItemListProps } from '../RateDetailsItemList';
 
 export const defaultProps = {
-  text: {
-    style: 'Basic800',
-    align: 'Left',
-    size: 'Medium',
-    type: 'Paragraph2',
-  } as TextProps,
+  rateDetailItemList: {
+    rateDetailItems: [
+    ],
+  } as RateDetailItemListProps,
+  rateDetailsItemList: {
+    rateDetailItems: [
+    ],
+  } as RateDetailsItemListProps,
 };
 
 export type RateCardProps = {
-  text?: TextProps;
+  rateDetailItemList?: RateDetailItemListProps;
   className?: string;
+  rateDetailsItemList?: RateDetailsItemListProps;
 };
 
 const RateCard: React.FC<RateCardProps> = ({
-  text,
+  rateDetailItemList,
   className,
+  rateDetailsItemList,
 }) => {
   return (
     <div className={cx(styles.rateCard, className)}>
-      <div className={styles.row}>
-        <Text
-          className={styles.text}
-          {...text} />
-        <Text
-          className={styles.text}
-          {...text} />
-      </div>
-      <div className={styles.row}>
-        <Text
-          className={styles.text}
-          {...text} />
-      </div>
+      <RateDetailsItemList
+        className={styles.rateDetailsItemList}
+        {...rateDetailsItemList} />
+      <RateDetailItemList
+        className={styles.rateDetailItemList}
+        {...rateDetailItemList} />
     </div>
   );
 };

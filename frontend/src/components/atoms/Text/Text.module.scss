@@ -1,3 +1,81 @@
+.textBrand500CenterLargeData {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .value {
+    align-self: flex-start;
+    flex: 1 1 auto;
+    font-family: 'Lato', 'sans-serif';
+    font-size: 3rem;
+    font-weight: normal;
+    line-height: 4rem;
+    text-align: center;
+    color: rgb(26, 35, 126);
+  }
+
+}
+.textBrand500LeftLargeCardData {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .value {
+    align-self: flex-start;
+    flex: 1 1 auto;
+    font-family: 'Lato', 'sans-serif';
+    font-size: 1.25rem;
+    font-weight: normal;
+    line-height: 1.5rem;
+    text-align: left;
+    color: rgb(26, 35, 126);
+  }
+
+}
+.textBasic800CenterLargeCardData {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .value {
+    align-self: flex-start;
+    flex: 1 1 auto;
+    font-family: 'Lato', 'sans-serif';
+    font-size: 1.25rem;
+    font-weight: normal;
+    line-height: 1.5rem;
+    text-align: center;
+    color: rgb(43, 45, 69);
+  }
+
+}
 .textBasic800LeftLargeHeading1 {
   overflow: hidden;
   display: flex;
@@ -466,6 +544,32 @@
   }
 
 }
+.textBasic600CenterMediumParagraph2 {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .value {
+    align-self: flex-start;
+    flex: 1 1 auto;
+    font-family: 'Lato', 'sans-serif';
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    text-align: center;
+    color: rgb(128, 125, 144);
+  }
+
+}
 .textBasic400LeftMediumParagraph2 {
   overflow: hidden;
   display: flex;
@@ -518,6 +622,110 @@
   }
 
 }
+.textBrand500CenterMediumParagraph2 {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .value {
+    align-self: flex-start;
+    flex: 1 1 auto;
+    font-family: 'Lato', 'sans-serif';
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    text-align: center;
+    color: rgb(26, 35, 126);
+  }
+
+}
+.textBasic600RightMediumParagraph2 {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .value {
+    align-self: flex-start;
+    flex: 1 1 auto;
+    font-family: 'Lato', 'sans-serif';
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    text-align: right;
+    color: rgb(128, 125, 144);
+  }
+
+}
+.textBasic400RightMediumParagraph2 {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .value {
+    align-self: flex-start;
+    flex: 1 1 auto;
+    font-family: 'Lato', 'sans-serif';
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    text-align: right;
+    color: rgb(210, 211, 223);
+  }
+
+}
+.textBrand500RightMediumParagraph2 {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .value {
+    align-self: flex-start;
+    flex: 1 1 auto;
+    font-family: 'Lato', 'sans-serif';
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    text-align: right;
+    color: rgb(26, 35, 126);
+  }
+
+}
 .textBasic800LeftMediumParagraph3 {
   overflow: hidden;
   display: flex;
@@ -544,6 +752,32 @@
   }
 
 }
+.textBrand500LeftMediumParagraph3 {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .value {
+    align-self: flex-start;
+    flex: 1 1 auto;
+    font-family: 'Lato', 'sans-serif';
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.5rem;
+    text-align: left;
+    color: rgb(26, 35, 126);
+  }
+
+}
 .textBasic800CenterMediumParagraph3 {
   overflow: hidden;
   display: flex;
@@ -566,6 +800,32 @@
     font-weight: 700;
     line-height: 1.5rem;
     text-align: center;
+    color: rgb(43, 45, 69);
+  }
+
+}
+.textBasic800RightMediumParagraph3 {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .value {
+    align-self: flex-start;
+    flex: 1 1 auto;
+    font-family: 'Lato', 'sans-serif';
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.5rem;
+    text-align: right;
     color: rgb(43, 45, 69);
   }
 
@@ -650,6 +910,90 @@
     color: rgb(255, 255, 255);
   }
 
+}
+
+@media (min-width: 768px) {
+  .textBrand500CenterLargeData {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .value {
+      align-self: flex-start;
+      flex: 1 1 auto;
+      font-family: 'Lato', 'sans-serif';
+      font-size: 3rem;
+      font-weight: normal;
+      line-height: 4rem;
+      text-align: center;
+      color: rgb(26, 35, 126);
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .textBrand500LeftLargeCardData {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .value {
+      align-self: flex-start;
+      flex: 1 1 auto;
+      font-family: 'Lato', 'sans-serif';
+      font-size: 1.25rem;
+      font-weight: normal;
+      line-height: 1.5rem;
+      text-align: left;
+      color: rgb(26, 35, 126);
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .textBasic800CenterLargeCardData {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .value {
+      align-self: flex-start;
+      flex: 1 1 auto;
+      font-family: 'Lato', 'sans-serif';
+      font-size: 1.25rem;
+      font-weight: normal;
+      line-height: 1.5rem;
+      text-align: center;
+      color: rgb(43, 45, 69);
+    }
+  
+  }
 }
 
 @media (min-width: 768px) {
@@ -1157,6 +1501,62 @@
 }
 
 @media (min-width: 768px) {
+  .textBasic600CenterMediumParagraph2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .value {
+      align-self: flex-start;
+      flex: 1 1 auto;
+      font-family: 'Lato', 'sans-serif';
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.25rem;
+      text-align: center;
+      color: rgb(128, 125, 144);
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .textBasic600RightMediumParagraph2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .value {
+      align-self: flex-start;
+      flex: 1 1 auto;
+      font-family: 'Lato', 'sans-serif';
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.25rem;
+      text-align: right;
+      color: rgb(128, 125, 144);
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
   .textBasic400LeftMediumParagraph2 {
     display: flex;
     flex-direction: row;
@@ -1178,6 +1578,34 @@
       font-weight: 500;
       line-height: 1.25rem;
       text-align: left;
+      color: rgb(210, 211, 223);
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .textBasic400RightMediumParagraph2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .value {
+      align-self: flex-start;
+      flex: 1 1 auto;
+      font-family: 'Lato', 'sans-serif';
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.25rem;
+      text-align: right;
       color: rgb(210, 211, 223);
     }
   
@@ -1213,6 +1641,62 @@
 }
 
 @media (min-width: 768px) {
+  .textBrand500CenterMediumParagraph2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .value {
+      align-self: flex-start;
+      flex: 1 1 auto;
+      font-family: 'Lato', 'sans-serif';
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.25rem;
+      text-align: center;
+      color: rgb(26, 35, 126);
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .textBrand500RightMediumParagraph2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .value {
+      align-self: flex-start;
+      flex: 1 1 auto;
+      font-family: 'Lato', 'sans-serif';
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.25rem;
+      text-align: right;
+      color: rgb(26, 35, 126);
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
   .textBasic800LeftMediumParagraph3 {
     display: flex;
     flex-direction: row;
@@ -1241,6 +1725,34 @@
 }
 
 @media (min-width: 768px) {
+  .textBrand500LeftMediumParagraph3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .value {
+      align-self: flex-start;
+      flex: 1 1 auto;
+      font-family: 'Lato', 'sans-serif';
+      font-size: 0.875rem;
+      font-weight: 700;
+      line-height: 1.5rem;
+      text-align: left;
+      color: rgb(26, 35, 126);
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
   .textBasic800CenterMediumParagraph3 {
     display: flex;
     flex-direction: row;
@@ -1262,6 +1774,34 @@
       font-weight: 700;
       line-height: 1.5rem;
       text-align: center;
+      color: rgb(43, 45, 69);
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .textBasic800RightMediumParagraph3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .value {
+      align-self: flex-start;
+      flex: 1 1 auto;
+      font-family: 'Lato', 'sans-serif';
+      font-size: 0.875rem;
+      font-weight: 700;
+      line-height: 1.5rem;
+      text-align: right;
       color: rgb(43, 45, 69);
     }
   

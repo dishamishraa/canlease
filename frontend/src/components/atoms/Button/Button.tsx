@@ -61,9 +61,8 @@ const Button: React.FC<ButtonProps> = ({
 
   const currentStyle = styles[`button${type}${size}${fill}${colour}`];
 
-
   let contentView;
- 
+  
   switch (type) {
     case 'Button':
       contentView = (

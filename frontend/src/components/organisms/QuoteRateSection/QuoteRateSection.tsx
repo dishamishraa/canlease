@@ -4,7 +4,7 @@ import cx from 'classnames';
 import styles from './QuoteRateSection.module.scss';
 
 import Text, { TextProps } from '../../atoms/Text';
-import QuoteDetails, { QuoteDetailsProps } from '../QuoteDetails';
+import DetailItemList, { DetailItemListProps } from '../DetailItemList';
 import RateCardList, { RateCardListProps } from '../RateCardList';
 
 export const defaultProps = {
@@ -14,14 +14,10 @@ export const defaultProps = {
     size: 'Large',
     type: 'Heading2',
   } as TextProps,
-  quoteDetails: {
-    text: {
-      style: 'Basic800',
-      align: 'Left',
-      size: 'Medium',
-      type: 'Paragraph3',
-    },
-  } as QuoteDetailsProps,
+  detailItemList: {
+    quoteDetailItems: [
+    ],
+  } as DetailItemListProps,
   rateCardList: {
     rateCards: [
     ],
@@ -30,14 +26,14 @@ export const defaultProps = {
 
 export type QuoteRateSectionProps = {
   text?: TextProps;
-  quoteDetails?: QuoteDetailsProps;
+  detailItemList?: DetailItemListProps;
   rateCardList?: RateCardListProps;
   className?: string;
 };
 
 const QuoteRateSection: React.FC<QuoteRateSectionProps> = ({
   text,
-  quoteDetails,
+  detailItemList,
   rateCardList,
   className,
 }) => {
@@ -46,9 +42,9 @@ const QuoteRateSection: React.FC<QuoteRateSectionProps> = ({
       <Text
         className={styles.text}
         {...text} />
-      <QuoteDetails
-        className={styles.quoteDetails}
-        {...quoteDetails} />
+      <DetailItemList
+        className={styles.detailItemList}
+        {...detailItemList} />
       <RateCardList
         className={styles.rateCardList}
         {...rateCardList} />

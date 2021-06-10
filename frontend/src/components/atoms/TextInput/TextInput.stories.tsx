@@ -16,3 +16,8 @@ export const Password: React.VFC<{}> = () => (
     type='Password'
     />
 );
+export const TextArea: React.VFC<{}> = () => (
+  <TextInput
+    type='TextArea'
+    />
+);

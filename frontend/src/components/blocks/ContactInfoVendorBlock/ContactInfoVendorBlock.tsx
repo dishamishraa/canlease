@@ -59,6 +59,12 @@ export const defaultProps = {
       type: 'Text',
     },
   } as TextFieldProps,
+  blockVendorHeading: {
+    style: 'Basic800',
+    align: 'Left',
+    size: 'Large',
+    type: 'Heading1',
+  } as TextProps,
   customerNameTextField: {
     state: 'Default',
     type: 'Text',
@@ -124,6 +130,7 @@ export type ContactInfoVendorBlockProps = {
   vendorNameTextField?: TextFieldProps;
   vendorBusinessEmailTextField?: TextFieldProps;
   vendorCompanyNameField?: TextFieldProps;
+  blockVendorHeading?: TextProps;
   customerNameTextField?: TextFieldProps;
   customerEmailTextField?: TextFieldProps;
   customerCompanyNameTextField?: TextFieldProps;
@@ -138,6 +145,7 @@ const ContactInfoVendorBlock: React.FC<ContactInfoVendorBlockProps> = ({
   vendorNameTextField,
   vendorBusinessEmailTextField,
   vendorCompanyNameField,
+  blockVendorHeading,
   customerNameTextField,
   customerEmailTextField,
   customerCompanyNameTextField,

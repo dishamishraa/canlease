@@ -6,6 +6,30 @@ export default {
   component: Text,
 };
 
+export const Brand500CenterLargeData: React.VFC<{}> = () => (
+  <Text
+    style='Brand500'
+    align='Center'
+    size='Large'
+    type='Data'
+    />
+);
+export const Brand500LeftLargeCardData: React.VFC<{}> = () => (
+  <Text
+    style='Brand500'
+    align='Left'
+    size='Large'
+    type='CardData'
+    />
+);
+export const Basic800CenterLargeCardData: React.VFC<{}> = () => (
+  <Text
+    style='Basic800'
+    align='Center'
+    size='Large'
+    type='CardData'
+    />
+);
 export const Basic800LeftLargeHeading1: React.VFC<{}> = () => (
   <Text
     style='Basic800'
@@ -142,6 +166,14 @@ export const Basic600LeftMediumParagraph2: React.VFC<{}> = () => (
     type='Paragraph2'
     />
 );
+export const Basic600CenterMediumParagraph2: React.VFC<{}> = () => (
+  <Text
+    style='Basic600'
+    align='Center'
+    size='Medium'
+    type='Paragraph2'
+    />
+);
 export const Basic400LeftMediumParagraph2: React.VFC<{}> = () => (
   <Text
     style='Basic400'
@@ -158,9 +190,49 @@ export const Brand500LeftMediumParagraph2: React.VFC<{}> = () => (
     type='Paragraph2'
     />
 );
+export const Brand500CenterMediumParagraph2: React.VFC<{}> = () => (
+  <Text
+    style='Brand500'
+    align='Center'
+    size='Medium'
+    type='Paragraph2'
+    />
+);
+export const Basic600RightMediumParagraph2: React.VFC<{}> = () => (
+  <Text
+    style='Basic600'
+    align='Right'
+    size='Medium'
+    type='Paragraph2'
+    />
+);
+export const Basic400RightMediumParagraph2: React.VFC<{}> = () => (
+  <Text
+    style='Basic400'
+    align='Right'
+    size='Medium'
+    type='Paragraph2'
+    />
+);
+export const Brand500RightMediumParagraph2: React.VFC<{}> = () => (
+  <Text
+    style='Brand500'
+    align='Right'
+    size='Medium'
+    type='Paragraph2'
+    />
+);
 export const Basic800LeftMediumParagraph3: React.VFC<{}> = () => (
   <Text
     style='Basic800'
+    align='Left'
+    size='Medium'
+    type='Paragraph3'
+    />
+);
+export const Brand500LeftMediumParagraph3: React.VFC<{}> = () => (
+  <Text
+    style='Brand500'
     align='Left'
     size='Medium'
     type='Paragraph3'
@@ -170,6 +242,14 @@ export const Basic800CenterMediumParagraph3: React.VFC<{}> = () => (
   <Text
     style='Basic800'
     align='Center'
+    size='Medium'
+    type='Paragraph3'
+    />
+);
+export const Basic800RightMediumParagraph3: React.VFC<{}> = () => (
+  <Text
+    style='Basic800'
+    align='Right'
     size='Medium'
     type='Paragraph3'
     />
