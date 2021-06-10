@@ -1,0 +1,165 @@
+.resourceCard {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(228, 229, 240);
+  border-radius: 8px;
+
+  .image {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+    align-self: stretch;
+    flex: 0 0 11.25rem;
+  }
+
+  .conent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1rem 1rem 1rem 1rem;
+    > * {
+      margin-top: 0.5rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+  }
+
+  .titleText {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .paragraphText {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: flex-start;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .content {
+    display: none;
+  }
+
+}
+
+@media (min-width: 768px) {
+  .resourceCard {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(228, 229, 240);
+    border-radius: 8px;
+  
+    .image {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+      align-self: stretch;
+      flex: 0 0 11.25rem;
+    }
+  
+    .titleText {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .paragraphText {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: flex-start;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 1rem 1rem 1rem;
+      > * {
+        margin-top: 0.5rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .conent {
+      display: none;
+    }
+  
+  }
+}

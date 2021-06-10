@@ -29,11 +29,9 @@ export const defaultProps = {
 };
 
 export type ActionBlockProps = {
-  promptText?: TextProps;
-  actionButton?: ButtonProps;
-  className?: string;
   text?: TextProps;
   button?: ButtonProps;
+  className?: string;
 };
 
 const onButtonClicked = () => {
@@ -41,9 +39,9 @@ const onButtonClicked = () => {
 }
 
 const ActionBlock: React.FC<ActionBlockProps> = ({
-  className,
   text,
   button,
+  className,
 }) => {
   const { t } = useTranslation();
   const descriptionText = t('contact_us.description');
