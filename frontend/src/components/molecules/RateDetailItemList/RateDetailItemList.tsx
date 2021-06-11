@@ -24,7 +24,7 @@ const RateDetailItemList: React.FC<RateDetailItemListProps> = ({
       className={styles.rateDetailItem}
       {...rateDetailItem} />
   ));
-  
+
   return (
     <div className={cx(styles.rateDetailItemList, className)}>
       {rateDetailItemArray}

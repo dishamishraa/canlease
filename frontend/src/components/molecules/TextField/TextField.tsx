@@ -50,7 +50,6 @@ const TextField: React.FC<TextFieldProps> = ({
   className,
   errorMessage,
 }) => {
-
   const currentStyle = styles[`textField${state}${type}`];
 
   const labelView = (
@@ -63,9 +62,9 @@ const TextField: React.FC<TextFieldProps> = ({
       className={styles.textInput}
       {...textInput} />
   );
-  
+
   let errorMessageView;
-  
+
   switch (`${state}${type}`) {
     case 'DefaultText':
       break;

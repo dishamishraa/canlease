@@ -29,9 +29,8 @@ const ContextualMenuItem: React.FC<ContextualMenuItemProps> = ({
   onContextualMenuItemClicked,
   text,
   className,
-  key
-}) => {
-  return (
+  key,
+}) => (
     <button
       type={contextualMenuItemType}
       onClick={onContextualMenuItemClicked}
@@ -41,8 +40,7 @@ const ContextualMenuItem: React.FC<ContextualMenuItemProps> = ({
         className={styles.text}
         {...text} />
     </button>
-  );
-};
+);
 
 ContextualMenuItem.defaultProps = defaultProps;
 

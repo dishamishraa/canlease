@@ -98,8 +98,7 @@ const CreatePasswordBlock: React.FC<CreatePasswordBlockProps> = ({
   saveButton,
   signInButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.createPasswordBlock, className)}>
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
@@ -126,8 +125,7 @@ const CreatePasswordBlock: React.FC<CreatePasswordBlockProps> = ({
           {...signInButton} />
       </div>
     </div>
-  );
-};
+);
 
 CreatePasswordBlock.defaultProps = defaultProps;
 

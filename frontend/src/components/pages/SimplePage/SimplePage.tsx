@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { Redirect, Route, Switch } from 'react-router-dom';
 import styles from './SimplePage.module.scss';
 
 import UserSelectionBlock, { UserSelectionBlockProps } from '../../blocks/UserSelectionBlock';
@@ -10,7 +11,6 @@ import ContactInfoCustomerBlock, { ContactInfoCustomerBlockProps } from '../../b
 import ContactInfoVendorBlock, { ContactInfoVendorBlockProps } from '../../blocks/ContactInfoVendorBlock';
 import QuoteBlock, { QuoteBlockProps } from '../../blocks/QuoteBlock';
 import ActionBlock, { ActionBlockProps } from '../../blocks/ActionBlock';
-import { Redirect, Route, Switch } from 'react-router-dom';
 
 export const defaultProps = {
   topBar: {
@@ -139,7 +139,7 @@ const routes = {
   contactInformation: '/contactInformation',
   instaQuote: '/instaQuote',
   invalid: '/',
-}
+};
 
 const SimplePage: React.FC<SimplePageProps> = ({
   userSelectionBlock,
@@ -153,11 +153,10 @@ const SimplePage: React.FC<SimplePageProps> = ({
   setUserType,
   userType,
 }) => {
-  
-  const infoBlock = userType === "vendor" ? 
-    (<ContactInfoVendorBlock className={styles.block}
-      {...contactInfoCustomerBlock} />):
-    (<ContactInfoCustomerBlock
+  const infoBlock = userType === 'vendor'
+    ? (<ContactInfoVendorBlock className={styles.block}
+      {...contactInfoCustomerBlock} />)
+    : (<ContactInfoCustomerBlock
       className={styles.block}
       {...contactInfoCustomerBlock} />);
 
@@ -170,8 +169,8 @@ const SimplePage: React.FC<SimplePageProps> = ({
         <Switch>
           <Route exact path={routes.userSelection}>
             <UserSelectionBlock
-              className={styles.block} 
-              {...userSelectionBlock} 
+              className={styles.block}
+              {...userSelectionBlock}
               setUserType={setUserType}
               />
           </Route>

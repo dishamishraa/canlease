@@ -75,8 +75,7 @@ const ForgotPasswordBlock: React.FC<ForgotPasswordBlockProps> = ({
   sendLinkButton,
   signInButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.forgotPasswordBlock, className)}>
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
@@ -100,8 +99,7 @@ const ForgotPasswordBlock: React.FC<ForgotPasswordBlockProps> = ({
           {...signInButton} />
       </div>
     </div>
-  );
-};
+);
 
 ForgotPasswordBlock.defaultProps = defaultProps;
 

@@ -41,8 +41,7 @@ const MenuPage: React.FC<MenuPageProps> = ({
   topBar,
   menuItemList,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.menuPage, className)}>
       <TopBar
         className={styles.topBar}
@@ -51,8 +50,7 @@ const MenuPage: React.FC<MenuPageProps> = ({
         className={styles.menuItemList}
         {...menuItemList} />
     </div>
-  );
-};
+);
 
 MenuPage.defaultProps = defaultProps;
 

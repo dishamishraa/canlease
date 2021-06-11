@@ -38,8 +38,7 @@ const RadioField: React.FC<RadioFieldProps> = ({
   label,
   radioButtonItem,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.radioField, className)}>
       <Text
         className={styles.label}
@@ -51,8 +50,7 @@ const RadioField: React.FC<RadioFieldProps> = ({
         className={styles.radioButtonItem}
         {...radioButtonItem} />
     </div>
-  );
-};
+);
 
 RadioField.defaultProps = defaultProps;
 

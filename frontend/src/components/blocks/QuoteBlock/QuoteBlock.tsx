@@ -1,13 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { Link } from 'react-router-dom';
 import styles from './QuoteBlock.module.scss';
 
 import Text, { TextProps } from '../../atoms/Text';
 import QuoteRateSection, { QuoteRateSectionProps } from '../../organisms/QuoteRateSection';
 import DetailItemList, { DetailItemListProps } from '../../organisms/DetailItemList';
 import Button, { ButtonProps } from '../../atoms/Button';
-import { Link } from 'react-router-dom';
 import Toast, { ToastProps } from '../../atoms/Toast';
 import { ToastTypeType, ToastStyleType } from '../../atoms/Toast/Toast';
 import { IconProps } from '../../atoms/Icon';
@@ -26,7 +26,7 @@ export const defaultProps = {
       size: 'Large',
       type: 'Heading2',
     },
-    detailItemList:{
+    detailItemList: {
       quoteDetailItems: [
       ],
     },
@@ -69,7 +69,7 @@ export const defaultProps = {
       type: 'ButtonGiant',
     },
   } as ButtonProps,
-  expiryToast:{
+  expiryToast: {
     type: 'NoCloseButton' as ToastTypeType,
     style: 'Danger' as ToastStyleType,
     leadingIcon: {
@@ -112,11 +112,11 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
   viewQuoteButton,
   className,
   quoteExpired,
-  expiryToast
+  expiryToast,
 }) => {
   let toastDisplay;
-  if(quoteExpired){
-    toastDisplay = <Toast {...expiryToast}/>
+  if (quoteExpired) {
+    toastDisplay = <Toast {...expiryToast}/>;
   }
   return (
     <div className={cx(styles.quoteBlock, className)}>
@@ -142,7 +142,7 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
       <Button
           className={styles.viewQuoteButton}
           {...viewQuoteButton} />
-      </div>
+    </div>
   );
 };
 

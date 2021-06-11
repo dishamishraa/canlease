@@ -184,8 +184,7 @@ const ReviewCustomerInformationBlock: React.FC<ReviewCustomerInformationBlockPro
   assetDetails,
   nextButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.reviewCustomerInformationBlock, className)}>
       <div className={styles.topContent}>
         <Stepper
@@ -214,8 +213,7 @@ const ReviewCustomerInformationBlock: React.FC<ReviewCustomerInformationBlockPro
         className={styles.nextButton}
         {...nextButton} />
     </div>
-  );
-};
+);
 
 ReviewCustomerInformationBlock.defaultProps = defaultProps;
 

@@ -22,8 +22,7 @@ export type QuoteDetailsProps = {
 const QuoteDetails: React.FC<QuoteDetailsProps> = ({
   text,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.quoteDetails, className)}>
       <div className={styles.row}>
         <Text
@@ -34,8 +33,7 @@ const QuoteDetails: React.FC<QuoteDetailsProps> = ({
           {...text} />
       </div>
     </div>
-  );
-};
+);
 
 QuoteDetails.defaultProps = defaultProps;
 

@@ -36,8 +36,7 @@ const QuoteRateSection: React.FC<QuoteRateSectionProps> = ({
   detailItemList,
   rateCardList,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.quoteRateSection, className)}>
       <Text
         className={styles.text}
@@ -49,8 +48,7 @@ const QuoteRateSection: React.FC<QuoteRateSectionProps> = ({
         className={styles.rateCardList}
         {...rateCardList} />
     </div>
-  );
-};
+);
 
 QuoteRateSection.defaultProps = defaultProps;
 

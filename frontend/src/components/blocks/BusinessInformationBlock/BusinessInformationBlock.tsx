@@ -147,8 +147,7 @@ const BusinessInformationBlock: React.FC<BusinessInformationBlockProps> = ({
   websiteLinkTextField,
   nextButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.businessInformationBlock, className)}>
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
@@ -184,8 +183,7 @@ const BusinessInformationBlock: React.FC<BusinessInformationBlockProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+);
 
 BusinessInformationBlock.defaultProps = defaultProps;
 

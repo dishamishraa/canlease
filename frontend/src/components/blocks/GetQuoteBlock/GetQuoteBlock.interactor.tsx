@@ -8,9 +8,9 @@ const withInteractor = (
 ): React.FC<GetQuoteBlockProps> => {
   const Interactor: React.FC<GetQuoteBlockProps> = (props) => {
     const { user, account, refetchUser } = useContext(AuthContext);
-    
+
     return (
-      <Presenter 
+      <Presenter
         {...props}
       />
     );

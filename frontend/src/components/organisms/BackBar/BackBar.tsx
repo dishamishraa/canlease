@@ -32,15 +32,13 @@ export type BackBarProps = {
 const BackBar: React.FC<BackBarProps> = ({
   backButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.backBar, className)}>
       <Button
         className={styles.backButton}
         {...backButton} />
     </div>
-  );
-};
+);
 
 BackBar.defaultProps = defaultProps;
 

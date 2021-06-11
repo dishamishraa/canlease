@@ -28,7 +28,6 @@ const TabItem: React.FC<TabItemProps> = ({
   text,
   className,
 }) => {
-
   const currentStyle = styles[`tabItem${state}`];
 
   const containerView = (
@@ -41,8 +40,7 @@ const TabItem: React.FC<TabItemProps> = ({
   const selectorView = (
     <div className={styles.selector}/>
   );
-  
-  
+
   switch (state) {
     case 'Selected':
       break;

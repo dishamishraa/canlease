@@ -14,12 +14,10 @@ export type ImageProps = {
 const Image: React.FC<ImageProps> = ({
   className,
   image,
-}) => {
-  return (
-    <div className={cx(styles.image, className)} style={{backgroundImage: `url(${image})`}}/>
+}) => (
+    <div className={cx(styles.image, className)} style={{ backgroundImage: `url(${image})` }}/>
 
-  );
-};
+);
 
 Image.defaultProps = defaultProps;
 

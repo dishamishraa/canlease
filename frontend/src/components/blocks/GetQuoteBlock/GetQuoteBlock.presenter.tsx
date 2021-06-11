@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { TextInputProps } from '../../atoms/TextInput';
-import { GetQuoteBlockProps, defaultProps as defaultGetQuoteBlockProps  } from './GetQuoteBlock';
+import { GetQuoteBlockProps, defaultProps as defaultGetQuoteBlockProps } from './GetQuoteBlock';
 import { ContextualMenuProps } from '../../molecules/ContextualMenu';
 import { ContextualMenuItemProps } from '../../atoms/ContextualMenuItem';
 import { defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 import { isEmptyString } from '../../../lib/utils';
-
 
 export type GetQuoteBlockPresenterProps = {};
 
@@ -17,15 +16,15 @@ const withPresenter = (
   const Presenter: React.FC<GetQuoteBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
     const history = useHistory();
-    
+
     const [equipmentName, setEquipmentName] = useState<string>('');
     const [equipmentCost, setEquipmentCost] = useState<string>('');
     const [equipmentLeaseType, setEquipmentLeaseType] = useState<string>(t('get_quote_block.lease_type.options.stretch'));
 
     const isFormValid = !isEmptyString(equipmentName) && !isEmptyString(equipmentCost);
     const handleClickNext = () => {
-      if(isFormValid){
-        history.push({pathname: '/contactInformation'})
+      if (isFormValid) {
+        history.push({ pathname: '/contactInformation' });
       }
     };
     const handleChangeEquipmentName = ({ target: { value } }) => setEquipmentName(value);
@@ -36,21 +35,22 @@ const withPresenter = (
     const contextualMenu: ContextualMenuProps = {
       contextualMenuItemList: {
         contextualMenuItems: [
-        {
-          onContextualMenuItemClicked: handleStretchClick,
-          text: {
-            ...defaultMenuItemProps.text,
-            value: t('get_quote_block.lease_type.options.stretch')
-          }
-        },
-        {
-          onContextualMenuItemClicked: handleTenClick,
-          text: {
-            ...defaultMenuItemProps.text,
-            value: t('get_quote_block.lease_type.options.ten')
+          {
+            onContextualMenuItemClicked: handleStretchClick,
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('get_quote_block.lease_type.options.stretch'),
+            },
           },
-        },
-      ]}
+          {
+            onContextualMenuItemClicked: handleTenClick,
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('get_quote_block.lease_type.options.ten'),
+            },
+          },
+        ],
+      },
     };
 
     const blockProps: GetQuoteBlockProps = {
@@ -60,7 +60,7 @@ const withPresenter = (
         ...defaultGetQuoteBlockProps.blockHeading,
         value: t('get_quote_block.header'),
       },
-      nameTextField:{
+      nameTextField: {
         ...defaultGetQuoteBlockProps.nameTextField,
         label: {
           ...defaultGetQuoteBlockProps.nameTextField?.label,
@@ -88,26 +88,26 @@ const withPresenter = (
         ...defaultGetQuoteBlockProps.leaseTypeSelectField,
         label: {
           ...defaultGetQuoteBlockProps.leaseTypeSelectField.label,
-          value: t('get_quote_block.lease_type.label')
+          value: t('get_quote_block.lease_type.label'),
         },
         select: {
           ...defaultGetQuoteBlockProps.leaseTypeSelectField.select,
           text: {
             ...defaultGetQuoteBlockProps.leaseTypeSelectField.select?.text,
-            value: equipmentLeaseType
-          }
+            value: equipmentLeaseType,
+          },
         },
-        contextualMenu: contextualMenu,
+        contextualMenu,
         selectId: t('get_quote_block.lease_type.label'),
       },
-      nextButton:{
+      nextButton: {
         ...defaultGetQuoteBlockProps.nextButton,
         text: {
-          value: t('get_quote_block.submit')
+          value: t('get_quote_block.submit'),
         },
         onButtonClicked: handleClickNext,
         disabled: !isFormValid,
-      }
+      },
     };
 
     return (

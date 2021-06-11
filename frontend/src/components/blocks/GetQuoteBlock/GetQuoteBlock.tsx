@@ -91,8 +91,7 @@ const GetQuoteBlock: React.FC<GetQuoteBlockProps> = ({
   leaseTypeSelectField,
   nextButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.getQuoteBlock, className)}>
       <Text
         className={styles.blockHeading}
@@ -110,8 +109,7 @@ const GetQuoteBlock: React.FC<GetQuoteBlockProps> = ({
         className={styles.nextButton}
         {...nextButton} />
     </div>
-  );
-};
+);
 
 GetQuoteBlock.defaultProps = defaultProps;
 

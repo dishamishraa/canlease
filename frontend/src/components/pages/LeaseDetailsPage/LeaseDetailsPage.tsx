@@ -51,8 +51,7 @@ const LeaseDetailsPage: React.FC<LeaseDetailsPageProps> = ({
   topBar,
   block,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.leaseDetailsPage, className)}>
       <TopBar
         className={styles.topBar}
@@ -61,8 +60,7 @@ const LeaseDetailsPage: React.FC<LeaseDetailsPageProps> = ({
         className={styles.block}
         {...block} />
     </div>
-  );
-};
+);
 
 LeaseDetailsPage.defaultProps = defaultProps;
 

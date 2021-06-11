@@ -102,8 +102,7 @@ const StartApplicationBlock: React.FC<StartApplicationBlockProps> = ({
   leaseTypeSelectField,
   nextButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.startApplicationBlock, className)}>
       <div className={styles.topContent}>
         <Stepper
@@ -126,8 +125,7 @@ const StartApplicationBlock: React.FC<StartApplicationBlockProps> = ({
         className={styles.nextButton}
         {...nextButton} />
     </div>
-  );
-};
+);
 
 StartApplicationBlock.defaultProps = defaultProps;
 

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ContactInfoCustomerBlockProps, defaultProps } from './ContactInfoCustomerBlock';
 
-
 export type ContactInfoCustomerBlockPresenterProps = {};
 
 const withPresenter = (
@@ -16,9 +15,9 @@ const withPresenter = (
       ...props,
       blockHeading: {
         ...defaultProps.blockHeading,
-        value: t('contact_info.header_your')
+        value: t('contact_info.header_your'),
       },
-      nameTextField:{
+      nameTextField: {
         ...defaultProps.nameTextField,
         label: {
           ...defaultProps.nameTextField?.label,
@@ -39,12 +38,12 @@ const withPresenter = (
           value: t('contact_info.company_name'),
         },
       },
-      viewQuoteButton:{
+      viewQuoteButton: {
         ...defaultProps.viewQuoteButton,
         text: {
-          value: t('contact_info.submit')
+          value: t('contact_info.submit'),
         },
-      }
+      },
     };
 
     return (

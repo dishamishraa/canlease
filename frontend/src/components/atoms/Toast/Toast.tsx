@@ -45,7 +45,6 @@ const Toast: React.FC<ToastProps> = ({
   className,
   icon,
 }) => {
-
   const currentStyle = styles[`toast${type}${style}`];
 
   const contentView = (
@@ -58,9 +57,9 @@ const Toast: React.FC<ToastProps> = ({
         {...text} />
     </div>
   );
-  
+
   let iconView;
-  
+
   switch (type) {
     case 'NoCloseButton':
       break;

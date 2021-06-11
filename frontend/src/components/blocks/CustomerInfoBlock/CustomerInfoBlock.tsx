@@ -91,8 +91,7 @@ const CustomerInfoBlock: React.FC<CustomerInfoBlockProps> = ({
   disclaimerText,
   button,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.customerInfoBlock, className)}>
       <Text
         className={styles.blockHeading}
@@ -113,8 +112,7 @@ const CustomerInfoBlock: React.FC<CustomerInfoBlockProps> = ({
         className={styles.button}
         {...button} />
     </div>
-  );
-};
+);
 
 CustomerInfoBlock.defaultProps = defaultProps;
 

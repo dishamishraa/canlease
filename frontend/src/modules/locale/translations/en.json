@@ -62,7 +62,10 @@
         "save_quote_button_text": "Save Quote",
         "quote_rate_section_heading_text": "Quote detail",
         "quote_detail":{
-            "based_on_label": "Based on:",
+            "application_amount": {
+                "label": "Based on:",
+                "value": "${{applicationAmount}} (Pre-tax)"
+            },
             "equipment_label": "Equipment:",
             "quote_id_label": "Quote ID:"
         },

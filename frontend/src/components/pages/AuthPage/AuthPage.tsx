@@ -1,10 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { Switch, Route, Redirect } from 'react-router-dom';
 import styles from './AuthPage.module.scss';
 
 import SignInBlock, { SignInBlockProps } from '../../blocks/SignInBlock';
-import { Switch, Route, Redirect } from 'react-router-dom';
 import SignUpBlock from '../../blocks/SignUpBlock';
 import ForgotPasswordBlock from '../../blocks/ForgotPasswordBlock';
 import CreatePasswordBlock from '../../blocks/CreatePasswordBlock';
@@ -121,14 +121,13 @@ const routes = {
   contactInformation: '/account/contactInformation',
   businessInformation: '/account/businessInformation',
   invalid: '/',
-}
+};
 
 const AuthPage: React.FC<AuthPageProps> = ({
   topBar,
   block,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.authPage, className)}>
       <TopBar
         className={styles.topBar}
@@ -139,7 +138,7 @@ const AuthPage: React.FC<AuthPageProps> = ({
             className={styles.block}
             {...block} />
         </Route>
-        
+
         {/* Forgot password routes */}
         <Route exact path={routes.forgotPassword}>
           <ForgotPasswordBlock
@@ -177,15 +176,14 @@ const AuthPage: React.FC<AuthPageProps> = ({
           <BusinessInformationBlock
             className={styles.block} />
         </ProtectedRoute>
-        
+
         <Route path={routes.invalid}>
           <Redirect to={routes.signIn}/>
         </Route>
       </Switch>
-      
+
     </div>
-  );
-};
+);
 
 AuthPage.defaultProps = defaultProps;
 

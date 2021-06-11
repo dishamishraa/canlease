@@ -127,8 +127,7 @@ const AssetInformationBlock: React.FC<AssetInformationBlockProps> = ({
   disclaimerText,
   nextButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.assetInformationBlock, className)}>
       <div className={styles.topContent}>
         <Stepper
@@ -159,8 +158,7 @@ const AssetInformationBlock: React.FC<AssetInformationBlockProps> = ({
         className={styles.nextButton}
         {...nextButton} />
     </div>
-  );
-};
+);
 
 AssetInformationBlock.defaultProps = defaultProps;
 

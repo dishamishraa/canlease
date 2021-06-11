@@ -24,9 +24,9 @@ const ContextualMenuItemList: React.FC<ContextualMenuItemListProps> = ({
     return <ContextualMenuItem
       className={styles.contextualMenuItem}
       {...contextualMenuItem}
-      key={index} />
+      key={index} />;
   });
-  
+
   return (
     <div className={cx(styles.contextualMenuItemList, className)}>
       {contextualMenuItemArray}

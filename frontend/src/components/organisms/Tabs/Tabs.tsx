@@ -26,8 +26,7 @@ const Tabs: React.FC<TabsProps> = ({
   tabsList,
   divider,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.tabs, className)}>
       <TabsList
         className={styles.tabsList}
@@ -36,8 +35,7 @@ const Tabs: React.FC<TabsProps> = ({
         className={styles.divider}
         {...divider} />
     </div>
-  );
-};
+);
 
 Tabs.defaultProps = defaultProps;
 

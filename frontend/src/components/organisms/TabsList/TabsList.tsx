@@ -24,7 +24,7 @@ const TabsList: React.FC<TabsListProps> = ({
       className={styles.tabItem}
       {...tabItem} />
   ));
-  
+
   return (
     <div className={cx(styles.tabsList, className)}>
       {tabItemArray}

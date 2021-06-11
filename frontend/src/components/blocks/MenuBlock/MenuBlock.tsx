@@ -20,15 +20,13 @@ export type MenuBlockProps = {
 const MenuBlock: React.FC<MenuBlockProps> = ({
   menuItemList,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.menuBlock, className)}>
       <MenuItemList
         className={styles.menuItemList}
         {...menuItemList} />
     </div>
-  );
-};
+);
 
 MenuBlock.defaultProps = defaultProps;
 

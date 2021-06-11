@@ -62,8 +62,7 @@ const TableItem: React.FC<TableItemProps> = ({
   assetName,
   cost,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.tableItem, className)}>
       <Text
         className={styles.companyName}
@@ -84,8 +83,7 @@ const TableItem: React.FC<TableItemProps> = ({
         className={styles.cost}
         {...cost} />
     </div>
-  );
-};
+);
 
 TableItem.defaultProps = defaultProps;
 
