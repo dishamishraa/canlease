@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ContactInfoVendorBlockProps, defaultProps } from './ContactInfoVendorBlock';
 import { isEmptyString } from '../../../lib/utils';
+import { ContactInfo } from '../../../lib/types';
 
-export type ContactInfoVendorBlockPresenterProps = {};
+export type ContactInfoVendorBlockPresenterProps = {
+  setContactInfo?: React.Dispatch<React.SetStateAction<ContactInfo>>;
+};
 
 const withPresenter = (
   View: React.FC<ContactInfoVendorBlockProps>,
 ): React.FC<ContactInfoVendorBlockPresenterProps> => {
   const Presenter: React.FC<ContactInfoVendorBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
+    const { setContactInfo } = props;
     const [vendorName, setVendorName] = useState<string>('');
     const [businessEmail, setBusinessEmail] = useState<string>('');
     const [companyName, setCompanyName] = useState<string>('');
@@ -28,8 +32,15 @@ const withPresenter = (
       && !isEmptyString(companyName) && !isEmptyString(customerName) 
       && !isEmptyString(customerEmail) && !isEmptyString(customerCompanyName);
     const handleClickViewQuote = () => {
-      if(isFormValid){
-        //callback function here
+      if(isFormValid && setContactInfo){
+        setContactInfo({
+          vendorName: vendorName,
+          businessEmail: businessEmail,
+          companyName: companyName,
+          customerName: customerName,
+          customerEmail: customerEmail,
+          customerCompanyName: customerCompanyName,
+        })
       }
     };
 

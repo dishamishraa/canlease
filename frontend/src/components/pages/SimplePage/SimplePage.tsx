@@ -11,6 +11,7 @@ import ContactInfoVendorBlock, { ContactInfoVendorBlockProps } from '../../block
 import QuoteBlock, { QuoteBlockProps } from '../../blocks/QuoteBlock';
 import ActionBlock, { ActionBlockProps } from '../../blocks/ActionBlock';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { ContactInfo, EquipmentLeaseInfo } from '../../../lib/types';
 
 export const defaultProps = {
   topBar: {
@@ -131,6 +132,10 @@ export type SimplePageProps = {
   className?: string;
   setUserType?: React.Dispatch<React.SetStateAction<string>>;
   userType?: string;
+  setEquipmentLeaseInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
+  equipmentLeaseInfo?: EquipmentLeaseInfo;
+  setContactInfo?: React.Dispatch<React.SetStateAction<ContactInfo>>;
+  contactInfo?: ContactInfo;
 };
 
 const routes = {
@@ -141,25 +146,25 @@ const routes = {
   invalid: '/',
 }
 
-const SimplePage: React.FC<SimplePageProps> = ({
-  userSelectionBlock,
-  getQuoteBlock,
-  contactInfoCustomerBlock,
-  quoteBlock,
-  topBar,
-  block,
-  actionBlock,
-  className,
-  setUserType,
-  userType,
-}) => {
-  
-  const infoBlock = userType === "vendor" ? 
-    (<ContactInfoVendorBlock className={styles.block}
-      {...contactInfoCustomerBlock} />):
-    (<ContactInfoCustomerBlock
-      className={styles.block}
-      {...contactInfoCustomerBlock} />);
+const SimplePage: React.FC<SimplePageProps> = (props) => {
+  const {
+    userSelectionBlock,
+    getQuoteBlock,
+    contactInfoCustomerBlock,
+    quoteBlock,
+    topBar,
+    block,
+    actionBlock,
+    className,
+    setUserType,
+    setEquipmentLeaseInfo,
+    setContactInfo,
+    userType,
+    equipmentLeaseInfo,
+    contactInfo,
+  } = props
+
+  const ContactInfoBlock = userType === "vendor" ? ContactInfoVendorBlock : ContactInfoCustomerBlock;
 
   return (
     <div className={cx(styles.simplePage, className)}>
@@ -178,10 +183,15 @@ const SimplePage: React.FC<SimplePageProps> = ({
           <Route exact path={routes.getQuote}>
             <GetQuoteBlock
               className={styles.block}
-              {...getQuoteBlock} />
+              {...getQuoteBlock} 
+              setEquipmentLeaseInfo={setEquipmentLeaseInfo}
+              />
           </Route>
           <Route exact path={routes.contactInformation}>
-            {infoBlock}
+            <ContactInfoBlock
+              className={styles.block}
+              {...contactInfoCustomerBlock} 
+              setContactInfo={setContactInfo} />
           </Route>
           <Route exact path={routes.instaQuote}>
             <QuoteBlock

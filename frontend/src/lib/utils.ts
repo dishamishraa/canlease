@@ -10,3 +10,16 @@ export const getServerUrl = (): string => {
 export const isEmptyString = (value) => {
   return value ? value.trim().length === 0 : true;
 }
+
+export const isObject = (value) => {
+  return typeof value === 'object' && !Array.isArray(value) && value !== null;
+}
+
+export const isEmpty = (value) => {
+  return (
+    value === undefined ||
+    value == null ||
+    (isObject(value) && Object.keys(value).length === 0) ||
+    value.length === 0
+  )
+}

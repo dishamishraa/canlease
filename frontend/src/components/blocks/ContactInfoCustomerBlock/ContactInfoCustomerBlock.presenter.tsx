@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ContactInfo } from '../../../lib/types';
 import { ContactInfoCustomerBlockProps, defaultProps } from './ContactInfoCustomerBlock';
 
 
-export type ContactInfoCustomerBlockPresenterProps = {};
+export type ContactInfoCustomerBlockPresenterProps = {
+  setContactInfo?: React.Dispatch<React.SetStateAction<ContactInfo>>;
+};
 
 const withPresenter = (
   View: React.FC<ContactInfoCustomerBlockProps>,

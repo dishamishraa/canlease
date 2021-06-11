@@ -7,9 +7,12 @@ import { ContextualMenuProps } from '../../molecules/ContextualMenu';
 import { ContextualMenuItemProps } from '../../atoms/ContextualMenuItem';
 import { defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 import { isEmptyString } from '../../../lib/utils';
+import { EquipmentLeaseInfo } from '../../../lib/types';
 
 
-export type GetQuoteBlockPresenterProps = {};
+export type GetQuoteBlockPresenterProps = {
+  setEquipmentLeaseInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
+};
 
 const withPresenter = (
   View: React.FC<GetQuoteBlockProps>,
@@ -17,15 +20,18 @@ const withPresenter = (
   const Presenter: React.FC<GetQuoteBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
     const history = useHistory();
+    const { setEquipmentLeaseInfo } = props;
     
     const [equipmentName, setEquipmentName] = useState<string>('');
     const [equipmentCost, setEquipmentCost] = useState<string>('');
     const [equipmentLeaseType, setEquipmentLeaseType] = useState<string>(t('get_quote_block.lease_type.options.stretch'));
 
     const isFormValid = !isEmptyString(equipmentName) && !isEmptyString(equipmentCost);
+
     const handleClickNext = () => {
-      if(isFormValid){
-        history.push({pathname: '/contactInformation'})
+      if(isFormValid && setEquipmentLeaseInfo){
+        setEquipmentLeaseInfo({name: equipmentName, cost: equipmentCost, leastType: equipmentLeaseType});
+        history.push('/contactInformation', {name: equipmentName, cost: equipmentCost, leastType: equipmentLeaseType});
       }
     };
     const handleChangeEquipmentName = ({ target: { value } }) => setEquipmentName(value);
