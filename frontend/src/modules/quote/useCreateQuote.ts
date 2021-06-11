@@ -2,8 +2,8 @@ import { useCallback } from 'react';
 
 import useGet from '../../lib/api/useGet';
 
-import { Quote } from './types';
-import { CreateQuotePayload } from './types';
+import { Quote } from '../types';
+import { CreateQuotePayload } from '../types';
 
 import { createQuote } from './api';
 

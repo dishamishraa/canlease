@@ -46,3 +46,17 @@ export type Lease = {
   optionAmount: number;
   quoteId: string;
 };
+
+export type CreateQuotePayload = {
+  userType: string,
+  asset: string,
+  applicationAmount: number,
+  leaseType: string,
+  contactName: string,
+  contactEmail: string,
+  vendorName: string,
+  vendorEmail: string,
+  contactBusinessName: string,
+  vendorBusinessName: string,
+  quoteOptions: QuoteOption[]
+};
