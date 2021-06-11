@@ -36,7 +36,6 @@ const QuoteDetailItem: React.FC<QuoteDetailItemProps> = ({
   infoText,
   className,
 }) => {
-
   const currentStyle = styles[`quoteDetailItem${type}`];
 
   const labelTextView = (
@@ -49,8 +48,7 @@ const QuoteDetailItem: React.FC<QuoteDetailItemProps> = ({
       className={styles.infoText}
       {...infoText} />
   );
-  
-  
+
   switch (type) {
     case 'Type1':
       break;

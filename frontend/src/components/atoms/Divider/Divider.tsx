@@ -18,7 +18,6 @@ const Divider: React.FC<DividerProps> = ({
   style,
   className,
 }) => {
-
   const currentStyle = styles[`divider${style}`];
 
   return (

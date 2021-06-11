@@ -38,8 +38,7 @@ const TopBlock: React.FC<TopBlockProps> = ({
   blockHeader,
   tabs,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.topBlock, className)}>
       <BlockHeader
         className={styles.blockHeader}
@@ -48,8 +47,7 @@ const TopBlock: React.FC<TopBlockProps> = ({
         className={styles.tabs}
         {...tabs} />
     </div>
-  );
-};
+);
 
 TopBlock.defaultProps = defaultProps;
 

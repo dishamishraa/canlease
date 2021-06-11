@@ -6,13 +6,11 @@ import { ContactInfoVendorBlockPresenterProps } from './ContactInfoVendorBlock.p
 const withInteractor = (
   Presenter: React.FC<ContactInfoVendorBlockPresenterProps>,
 ): React.FC<ContactInfoVendorBlockProps> => {
-  const Interactor: React.FC<ContactInfoVendorBlockProps> = (props) => {    
-    return (
-      <Presenter 
+  const Interactor: React.FC<ContactInfoVendorBlockProps> = (props) => (
+      <Presenter
         {...props}
       />
-    );
-  };
+  );
 
   return Interactor;
 };

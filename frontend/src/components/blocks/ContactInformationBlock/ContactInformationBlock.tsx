@@ -147,8 +147,7 @@ const ContactInformationBlock: React.FC<ContactInformationBlockProps> = ({
   provinceSelectField,
   nextButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.contactInformationBlock, className)}>
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
@@ -184,8 +183,7 @@ const ContactInformationBlock: React.FC<ContactInformationBlockProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+);
 
 ContactInformationBlock.defaultProps = defaultProps;
 

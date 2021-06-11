@@ -27,8 +27,7 @@ const RateCard: React.FC<RateCardProps> = ({
   rateDetailItemList,
   className,
   rateDetailsItemList,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.rateCard, className)}>
       <RateDetailsItemList
         className={styles.rateDetailsItemList}
@@ -37,8 +36,7 @@ const RateCard: React.FC<RateCardProps> = ({
         className={styles.rateDetailItemList}
         {...rateDetailItemList} />
     </div>
-  );
-};
+);
 
 RateCard.defaultProps = defaultProps;
 

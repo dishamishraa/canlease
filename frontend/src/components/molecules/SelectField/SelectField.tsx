@@ -1,12 +1,12 @@
 import React, { CSSProperties, useState } from 'react';
 import cx from 'classnames';
 
+import { Dropdown } from 'react-bootstrap';
 import styles from './SelectField.module.scss';
 
 import Text, { TextProps } from '../../atoms/Text';
 import Select, { SelectProps } from '../../atoms/Select';
 
-import { Dropdown } from 'react-bootstrap';
 import ContextualMenu, { ContextualMenuProps } from '../ContextualMenu';
 
 export const defaultProps = {
@@ -55,9 +55,9 @@ const SelectField: React.FC<SelectFieldProps> = ({
       <Select
         className={cx(styles.select, className)} {...select}/>
     </Dropdown.Toggle>
-    <Dropdown.Menu align='right' style={{width:ref.current?.clientWidth}}>
-      <ContextualMenu 
-        className={cx(styles.dropdownMenu, className)} 
+    <Dropdown.Menu align='right' style={{ width: ref.current?.clientWidth }}>
+      <ContextualMenu
+        className={cx(styles.dropdownMenu, className)}
         {...contextualMenu} />
     </Dropdown.Menu>
   </Dropdown>

@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import styles from './App.module.scss';
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,6 +6,7 @@ import {
   RouteProps,
   Route,
 } from 'react-router-dom';
+import styles from './App.module.scss';
 import InstantQuoteLayout from './components/layout/InstantQuoteLayout';
 import AuthLayout from './components/layout/AuthLayout';
 import { ProtectedRoute } from './modules/auth';
@@ -39,7 +39,7 @@ const App: React.FC<{}> = () => {
         </Route>
         <InvalidRoute path={routes.invalid} />
       </Switch>
-    </Router>    
+    </Router>
   );
 };
 

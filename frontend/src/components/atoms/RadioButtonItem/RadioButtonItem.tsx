@@ -35,7 +35,6 @@ const RadioButtonItem: React.FC<RadioButtonItemProps> = ({
   text,
   className,
 }) => {
-
   const currentStyle = styles[`radioButtonItem${state}`];
 
   const iconView = (
@@ -48,8 +47,7 @@ const RadioButtonItem: React.FC<RadioButtonItemProps> = ({
       className={styles.text}
       {...text} />
   );
-  
-  
+
   switch (state) {
     case 'Unselected':
       break;

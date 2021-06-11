@@ -94,7 +94,6 @@ const DashboardCard: React.FC<DashboardCardProps> = ({
   numberText,
   image,
 }) => {
-
   const currentStyle = styles[`dashboardCard${type}`];
 
   const buttonView = (
@@ -102,9 +101,9 @@ const DashboardCard: React.FC<DashboardCardProps> = ({
       className={styles.button}
       {...button} />
   );
-  
+
   let contentView;
-  
+
   switch (type) {
     case 'DataCard':
       contentView = (

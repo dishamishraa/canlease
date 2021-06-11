@@ -50,7 +50,6 @@ const DetailsSection: React.FC<DetailsSectionProps> = ({
   className,
   button,
 }) => {
-
   const currentStyle = styles[`detailsSection${type}`];
 
   const detailItemListView = (
@@ -58,9 +57,9 @@ const DetailsSection: React.FC<DetailsSectionProps> = ({
       className={styles.detailItemList}
       {...detailItemList} />
   );
-  
+
   let topContentView;
-  
+
   switch (type) {
     case 'Default':
       topContentView = (

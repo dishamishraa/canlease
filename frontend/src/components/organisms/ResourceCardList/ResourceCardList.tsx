@@ -24,7 +24,7 @@ const ResourceCardList: React.FC<ResourceCardListProps> = ({
       className={styles.resourceCard}
       {...resourceCard} />
   ));
-  
+
   return (
     <div className={cx(styles.resourceCardList, className)}>
       {resourceCardArray}

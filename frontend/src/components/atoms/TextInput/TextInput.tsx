@@ -33,7 +33,6 @@ const TextInput: React.FC<TextInputProps> = ({
   className,
   icon,
 }) => {
-
   const currentStyle = styles[`textInput${type}`];
 
   const textView = (
@@ -43,9 +42,9 @@ const TextInput: React.FC<TextInputProps> = ({
       onChange={onTextChanged}
       className={styles.text}/>
   );
-  
+
   let iconView;
-  
+
   switch (type) {
     case 'Text':
       break;

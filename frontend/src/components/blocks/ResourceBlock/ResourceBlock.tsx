@@ -45,8 +45,7 @@ const ResourceBlock: React.FC<ResourceBlockProps> = ({
   blockHeader,
   resourceCardList,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.resourceBlock, className)}>
       <BlockHeader
         className={styles.blockHeader}
@@ -55,8 +54,7 @@ const ResourceBlock: React.FC<ResourceBlockProps> = ({
         className={styles.resourceCardList}
         {...resourceCardList} />
     </div>
-  );
-};
+);
 
 ResourceBlock.defaultProps = defaultProps;
 

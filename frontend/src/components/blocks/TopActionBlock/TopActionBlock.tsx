@@ -49,8 +49,7 @@ const TopActionBlock: React.FC<TopActionBlockProps> = ({
   select,
   button,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.topActionBlock, className)}>
       <div className={styles.content}>
         <TextInput
@@ -64,8 +63,7 @@ const TopActionBlock: React.FC<TopActionBlockProps> = ({
         className={styles.button}
         {...button} />
     </div>
-  );
-};
+);
 
 TopActionBlock.defaultProps = defaultProps;
 

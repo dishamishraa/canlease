@@ -101,8 +101,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
   vendorDashboardPage,
   className,
   menuBlock,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.portalLayout, className)}>
       <Header
         className={styles.header}
@@ -143,8 +142,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+);
 
 PortalLayout.defaultProps = defaultProps;
 

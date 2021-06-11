@@ -24,7 +24,7 @@ const MenuItemList: React.FC<MenuItemListProps> = ({
       className={styles.mainMenuItem}
       {...mainMenuItem} />
   ));
-  
+
   return (
     <div className={cx(styles.menuItemList, className)}>
       {mainMenuItemArray}

@@ -111,8 +111,7 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
   topBar,
   block,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.applicationPage, className)}>
       <TopBar
         className={styles.topBar}
@@ -121,8 +120,7 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
         className={styles.block}
         {...block} />
     </div>
-  );
-};
+);
 
 ApplicationPage.defaultProps = defaultProps;
 

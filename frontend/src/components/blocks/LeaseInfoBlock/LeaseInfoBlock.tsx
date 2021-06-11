@@ -31,8 +31,7 @@ const LeaseInfoBlock: React.FC<LeaseInfoBlockProps> = ({
   blockHeading,
   leaseDetailsSection,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.leaseInfoBlock, className)}>
       <Text
         className={styles.blockHeading}
@@ -41,8 +40,7 @@ const LeaseInfoBlock: React.FC<LeaseInfoBlockProps> = ({
         className={styles.leaseDetailsSection}
         {...leaseDetailsSection} />
     </div>
-  );
-};
+);
 
 LeaseInfoBlock.defaultProps = defaultProps;
 

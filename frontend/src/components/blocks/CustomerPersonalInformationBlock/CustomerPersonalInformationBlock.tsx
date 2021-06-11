@@ -185,8 +185,7 @@ const CustomerPersonalInformationBlock: React.FC<CustomerPersonalInformationBloc
   provinceSelectField,
   nextButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.customerPersonalInformationBlock, className)}>
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
@@ -231,8 +230,7 @@ const CustomerPersonalInformationBlock: React.FC<CustomerPersonalInformationBloc
         </div>
       </div>
     </div>
-  );
-};
+);
 
 CustomerPersonalInformationBlock.defaultProps = defaultProps;
 

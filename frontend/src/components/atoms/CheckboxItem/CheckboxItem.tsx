@@ -35,7 +35,6 @@ const CheckboxItem: React.FC<CheckboxItemProps> = ({
   text,
   className,
 }) => {
-
   const currentStyle = styles[`checkboxItem${state}`];
 
   const iconView = (
@@ -48,8 +47,7 @@ const CheckboxItem: React.FC<CheckboxItemProps> = ({
       className={styles.text}
       {...text} />
   );
-  
-  
+
   switch (state) {
     case 'Unselected':
       break;

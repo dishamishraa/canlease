@@ -33,8 +33,7 @@ const DataBlock: React.FC<DataBlockProps> = ({
   blockHeader,
   dashboardCardList,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.dataBlock, className)}>
       <BlockHeader
         className={styles.blockHeader}
@@ -43,8 +42,7 @@ const DataBlock: React.FC<DataBlockProps> = ({
         className={styles.dashboardCardList}
         {...dashboardCardList} />
     </div>
-  );
-};
+);
 
 DataBlock.defaultProps = defaultProps;
 

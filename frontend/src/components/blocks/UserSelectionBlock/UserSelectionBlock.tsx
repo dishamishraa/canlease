@@ -30,8 +30,7 @@ const UserSelectionBlock: React.FC<UserSelectionBlockProps> = ({
   blockHeading,
   cardList,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.userSelectionBlock, className)}>
       <Text
         className={styles.blockHeading}
@@ -40,8 +39,7 @@ const UserSelectionBlock: React.FC<UserSelectionBlockProps> = ({
         className={styles.cardList}
         {...cardList} />
     </div>
-  );
-};
+);
 
 UserSelectionBlock.defaultProps = defaultProps;
 

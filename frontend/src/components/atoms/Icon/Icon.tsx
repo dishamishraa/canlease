@@ -64,7 +64,6 @@ const Icon: React.FC<IconProps> = ({
   contentAlt,
   className,
 }) => {
-
   const currentStyle = styles[`icon${asset}${style}`];
 
   let content = '';

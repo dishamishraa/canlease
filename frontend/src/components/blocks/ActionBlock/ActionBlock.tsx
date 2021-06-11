@@ -1,11 +1,11 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { useTranslation } from 'react-i18next';
 import styles from './ActionBlock.module.scss';
 
 import Text, { TextProps } from '../../atoms/Text';
 import Button, { ButtonProps } from '../../atoms/Button';
-import { useTranslation } from 'react-i18next';
 
 export const defaultProps = {
   text: {
@@ -35,8 +35,8 @@ export type ActionBlockProps = {
 };
 
 const onButtonClicked = () => {
-  window.open('https://canlease.net/contact/', "_blank")
-}
+  window.open('https://canlease.net/contact/', '_blank');
+};
 
 const ActionBlock: React.FC<ActionBlockProps> = ({
   text,
@@ -49,16 +49,16 @@ const ActionBlock: React.FC<ActionBlockProps> = ({
 
   text = {
     ...defaultProps.text,
-    value: descriptionText
-  }
+    value: descriptionText,
+  };
 
   button = {
     ...defaultProps.button,
-    text:{
+    text: {
       ...defaultProps.button.text,
-      value: buttonText
-    }
-  }
+      value: buttonText,
+    },
+  };
 
   return (
     <div className={cx(styles.actionBlock, className)}>

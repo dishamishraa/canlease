@@ -120,8 +120,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
   header,
   authPage,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.authLayout, className)}>
       <Header
         className={styles.header}
@@ -134,8 +133,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+);
 
 AuthLayout.defaultProps = defaultProps;
 

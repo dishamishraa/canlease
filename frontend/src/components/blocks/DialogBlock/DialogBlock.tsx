@@ -64,8 +64,7 @@ const DialogBlock: React.FC<DialogBlockProps> = ({
   resolutionText,
   doneButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.dialogBlock, className)}>
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
@@ -92,8 +91,7 @@ const DialogBlock: React.FC<DialogBlockProps> = ({
           {...doneButton} />
       </div>
     </div>
-  );
-};
+);
 
 DialogBlock.defaultProps = defaultProps;
 

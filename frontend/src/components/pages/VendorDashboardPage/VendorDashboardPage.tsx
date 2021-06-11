@@ -63,8 +63,7 @@ const VendorDashboardPage: React.FC<VendorDashboardPageProps> = ({
   dataBlock,
   resourceBlock,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.vendorDashboardPage, className)}>
       <DataBlock
         className={styles.dataBlock}
@@ -73,8 +72,7 @@ const VendorDashboardPage: React.FC<VendorDashboardPageProps> = ({
         className={styles.resourceBlock}
         {...resourceBlock} />
     </div>
-  );
-};
+);
 
 VendorDashboardPage.defaultProps = defaultProps;
 

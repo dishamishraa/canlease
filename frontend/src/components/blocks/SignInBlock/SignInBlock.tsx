@@ -94,8 +94,7 @@ const SignInBlock: React.FC<SignInBlockProps> = ({
   nextButton,
   forgotPasswordButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.signInBlock, className)}>
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
@@ -130,8 +129,7 @@ const SignInBlock: React.FC<SignInBlockProps> = ({
           {...nextButton} />
       </div>
     </div>
-  );
-};
+);
 
 SignInBlock.defaultProps = defaultProps;
 

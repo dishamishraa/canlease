@@ -86,8 +86,7 @@ const PersonalInformationBlock: React.FC<PersonalInformationBlockProps> = ({
   radiobuttonList,
   nextButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.personalInformationBlock, className)}>
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
@@ -114,8 +113,7 @@ const PersonalInformationBlock: React.FC<PersonalInformationBlockProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+);
 
 PersonalInformationBlock.defaultProps = defaultProps;
 

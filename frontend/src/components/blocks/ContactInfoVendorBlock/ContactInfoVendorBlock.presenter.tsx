@@ -24,12 +24,12 @@ const withPresenter = (
     const handleChangeCustomerEmail = ({ target: { value } }) => setCustomerEmail(value);
     const handleChangeCustomerCompanyName = ({ target: { value } }) => setCustomerCompanyName(value);
 
-    const isFormValid = !isEmptyString(vendorName) && !isEmptyString(businessEmail) 
-      && !isEmptyString(companyName) && !isEmptyString(customerName) 
+    const isFormValid = !isEmptyString(vendorName) && !isEmptyString(businessEmail)
+      && !isEmptyString(companyName) && !isEmptyString(customerName)
       && !isEmptyString(customerEmail) && !isEmptyString(customerCompanyName);
     const handleClickViewQuote = () => {
-      if(isFormValid){
-        //callback function here
+      if (isFormValid) {
+        // callback function here
       }
     };
 
@@ -38,13 +38,13 @@ const withPresenter = (
       ...props,
       blockHeading: {
         ...defaultProps.blockHeading,
-        value: t('contact_info.header_your')
+        value: t('contact_info.header_your'),
       },
       blockVendorHeading: {
         ...defaultProps.blockHeading,
-        value: t('contact_info.header_customer')
+        value: t('contact_info.header_customer'),
       },
-      vendorNameTextField:{
+      vendorNameTextField: {
         ...defaultProps.vendorNameTextField,
         label: {
           ...defaultProps.vendorNameTextField?.label,
@@ -63,7 +63,7 @@ const withPresenter = (
         },
         textInput: {
           onTextChanged: handleChangeBusinessEmail,
-          textValue: businessEmail
+          textValue: businessEmail,
         },
       },
       vendorCompanyNameField: {
@@ -74,7 +74,7 @@ const withPresenter = (
         },
         textInput: {
           onTextChanged: handleChangeCompanyName,
-          textValue: companyName
+          textValue: companyName,
         },
       },
       customerNameTextField: {
@@ -85,7 +85,7 @@ const withPresenter = (
         },
         textInput: {
           onTextChanged: handleChangeCustomerName,
-          textValue: customerName
+          textValue: customerName,
         },
       },
       customerEmailTextField: {
@@ -96,7 +96,7 @@ const withPresenter = (
         },
         textInput: {
           onTextChanged: handleChangeCustomerEmail,
-          textValue: customerEmail
+          textValue: customerEmail,
         },
       },
       customerCompanyNameTextField: {
@@ -107,21 +107,21 @@ const withPresenter = (
         },
         textInput: {
           onTextChanged: handleChangeCustomerCompanyName,
-          textValue: customerCompanyName
+          textValue: customerCompanyName,
         },
       },
       disclaimerText: {
         ...defaultProps.disclaimerText,
-        value: t('contact_info.disclaimer')
+        value: t('contact_info.disclaimer'),
       },
-      viewQuoteButton:{
+      viewQuoteButton: {
         ...defaultProps.viewQuoteButton,
         text: {
-          value: t('contact_info.submit')
+          value: t('contact_info.submit'),
         },
         onButtonClicked: handleClickViewQuote,
         disabled: !isFormValid,
-      }
+      },
     };
 
     return (

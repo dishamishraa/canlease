@@ -20,15 +20,13 @@ export type ContextualMenuProps = {
 const ContextualMenu: React.FC<ContextualMenuProps> = ({
   contextualMenuItemList,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.contextualMenu, className)}>
       <ContextualMenuItemList
         className={styles.contextualMenuItemList}
         {...contextualMenuItemList} />
     </div>
-  );
-};
+);
 
 ContextualMenu.defaultProps = defaultProps;
 

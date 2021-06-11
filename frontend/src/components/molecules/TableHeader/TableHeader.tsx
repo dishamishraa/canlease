@@ -62,8 +62,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({
   assetName,
   cost,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.tableHeader, className)}>
       <Text
         className={styles.companyName}
@@ -84,8 +83,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({
         className={styles.cost}
         {...cost} />
     </div>
-  );
-};
+);
 
 TableHeader.defaultProps = defaultProps;
 

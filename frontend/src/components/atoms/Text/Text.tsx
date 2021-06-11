@@ -21,7 +21,7 @@ export type TextProps = {
   align?: TextAlignType;
   size?: TextSizeType;
   type?: TextTypeType;
-  value?: string;
+  value?: React.ReactNode;
   className?: string;
 };
 
@@ -36,7 +36,7 @@ const Text: React.FC<TextProps> = ({
   const currentStyle = styles[`text${style}${align}${size}${type}`];
 
   let valueView;
-  
+
   switch (type) {
     case 'Data':
       valueView = (

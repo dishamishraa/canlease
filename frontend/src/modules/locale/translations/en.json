@@ -39,6 +39,46 @@
     "contact_us":{
         "description": "Need help creating a quote? We are happy to assist.",
         "button_text": "Contact Us"
+    },
+    "view_quote":{
+        "heading_text": "Leasing quote",
+        "disclaimer_text": "Quoted payments are pre-tax, subject to credit approval, and are based on first and last monthly payments in advance and one time documentation fee.",
+        "term_detail":{
+            "stretch":{
+                "term_1": "The Full Term  represents the total term of the lease, should you choose NOT to exercise your Purchase Option.",
+                "term_2": "Cost of Finance represents the annual percentage of financing charges you will pay over the term of this rental contact.",
+                "term_3": "Purchase Option represents When and How Much it will cost to assume ownership of the equipment. Example: on a 40M term, you can buy out the lease for 10% of the original cost at month 36 and not owe any further payments (months 37-38-39 and 40 will not be due).",
+                "term_4": "All technology leases cannot exceed a 36-month term."
+            },
+            "ten_dollar":{
+                "term_1": "Cost of Finance represents the annual percentage of financing charges you will pay over the term of this rental contact.",
+                "term_2": "Purchase Option represents When and How Much it will cost to assume ownership of the equipment.",
+                "term_3": "All technology leases cannot exceed a 36-month term."
+            }
+        },
+        "valid_text": "This quote will be valid for 30 days.",
+        "learn_more_text": "Are you looking for a different kind of lease quote to suit your specific business needs (i.e. three month payment deferral, seasonal payments to match your income, large down payment, etc)? [Learn more](https://canlease.net/faq/)",
+        "apply_button_text": "Apply for Finance",
+        "save_quote_button_text": "Save Quote",
+        "quote_rate_section_heading_text": "Quote detail",
+        "quote_detail":{
+            "application_amount": {
+                "label": "Based on:",
+                "value": "${{applicationAmount}} (Pre-tax)"
+            },
+            "equipment_label": "Equipment:",
+            "quote_id_label": "Quote ID:"
+        },
+        "rate_card":{
+            "rate_suffix": "per month",
+            "months_suffix": "months",
+            "cost_suffix": "cost of finance",
+            "stretch_purchase_term": "Own at 10% for {{purchaseOptionDate}} months",
+            "ten_dollar_purchase_term": "Own for $10 at end of term"
+        },
+        "expiry_toast":{
+            "message": "This quote has expired. Please create a new quote."
+        }
     }
 }
   

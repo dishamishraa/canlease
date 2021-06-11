@@ -22,15 +22,13 @@ export type SimpleDetailsSectionProps = {
 const SimpleDetailsSection: React.FC<SimpleDetailsSectionProps> = ({
   text,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.simpleDetailsSection, className)}>
       <Text
         className={styles.text}
         {...text} />
     </div>
-  );
-};
+);
 
 SimpleDetailsSection.defaultProps = defaultProps;
 

@@ -75,8 +75,7 @@ const TermsOfApplicationBlock: React.FC<TermsOfApplicationBlockProps> = ({
   checkboxItem,
   nextButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.termsOfApplicationBlock, className)}>
       <div className={styles.topContent}>
         <Stepper
@@ -96,8 +95,7 @@ const TermsOfApplicationBlock: React.FC<TermsOfApplicationBlockProps> = ({
         className={styles.nextButton}
         {...nextButton} />
     </div>
-  );
-};
+);
 
 TermsOfApplicationBlock.defaultProps = defaultProps;
 

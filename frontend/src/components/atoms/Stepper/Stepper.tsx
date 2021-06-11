@@ -22,15 +22,13 @@ export type StepperProps = {
 const Stepper: React.FC<StepperProps> = ({
   text,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.stepper, className)}>
       <Text
         className={styles.text}
         {...text} />
     </div>
-  );
-};
+);
 
 Stepper.defaultProps = defaultProps;
 

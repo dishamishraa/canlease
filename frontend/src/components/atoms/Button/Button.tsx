@@ -1,12 +1,11 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { Link } from 'react-router-dom';
 import styles from './Button.module.scss';
 
 import Text, { TextProps } from '../Text';
 import Icon, { IconProps } from '../Icon';
-import { Link } from 'react-router-dom';
-
 
 export type ButtonTypeType = 'Button' | 'TextIconButton' | 'IconTextButton';
 export type ButtonSizeType = 'Large' | 'Medium' | 'Small';
@@ -58,11 +57,10 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   disabled,
 }) => {
-
   const currentStyle = styles[`button${type}${size}${fill}${colour}`];
 
   let contentView;
-  
+
   switch (type) {
     case 'Button':
       contentView = (
@@ -99,14 +97,14 @@ const Button: React.FC<ButtonProps> = ({
       break;
   }
 
-  if(linkPath) {
+  if (linkPath) {
     return (
       <Link
         to={linkPath}
         className={cx(currentStyle, className)}>
         {contentView}
       </Link>
-    )
+    );
   }
   return (
     <button

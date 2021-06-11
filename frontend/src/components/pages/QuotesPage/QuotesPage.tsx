@@ -95,8 +95,7 @@ const QuotesPage: React.FC<QuotesPageProps> = ({
   topBar,
   block,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.quotesPage, className)}>
       <TopBar
         className={styles.topBar}
@@ -105,8 +104,7 @@ const QuotesPage: React.FC<QuotesPageProps> = ({
         className={styles.block}
         {...block} />
     </div>
-  );
-};
+);
 
 QuotesPage.defaultProps = defaultProps;
 

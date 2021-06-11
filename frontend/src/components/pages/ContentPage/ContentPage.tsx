@@ -116,8 +116,7 @@ const ContentPage: React.FC<ContentPageProps> = ({
   topActionBlock,
   className,
   table,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.contentPage, className)}>
       <TopBlock
         className={styles.topBlock}
@@ -129,8 +128,7 @@ const ContentPage: React.FC<ContentPageProps> = ({
         className={styles.table}
         {...table} />
     </div>
-  );
-};
+);
 
 ContentPage.defaultProps = defaultProps;
 
