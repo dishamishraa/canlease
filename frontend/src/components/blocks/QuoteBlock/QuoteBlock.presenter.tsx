@@ -7,6 +7,7 @@ import { QuoteBlockProps, defaultProps } from './QuoteBlock';
 import { addLinksAndBreaks } from '../../../lib/reactUtils';
 import { QuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { RateCardProps } from '../../molecules/RateCard';
+import { Quote } from '../../../modules/types'
 
 
 export type QuoteBlockPresenterProps = QuoteBlockProps & {
@@ -22,13 +23,8 @@ const withPresenter = (
         } = props;
 
         const { t } = useTranslation();
-        const history = useHistory();
-        const matchCompletedRoute = useRouteMatch('/quote/:quoteId');
 
         const applyForFinanceButtonClicked = () =>{
-        }
-
-        const saveQuoteButtonClicked = () =>{
         }
 
         let disabled = false;
@@ -93,8 +89,8 @@ const withPresenter = (
                 }
                 rateCardsArray.push(rateCardProp);
             }
-            
         }
+
         let termDetailItemArray: QuoteDetailItemProps[] = []
         for(let i = 1; i <= 4; i++){
             const quoteDetailItem: QuoteDetailItemProps = {

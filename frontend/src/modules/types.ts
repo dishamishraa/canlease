@@ -6,7 +6,6 @@ export type User = {
   updatedAt: string;
 };
 
-//temporary proposed data models
 export type Quote = {
   quoteId: string;
   asset: string;
@@ -45,6 +44,7 @@ export type CreditApplication = {
 export type Lease = {
   leaseNumber: string;
   leaseStartDate: string;
+  leaseEndDate: string;
   fullTerm: number;
   vendorName: string;
   vendorInvoice: number;
@@ -52,6 +52,5 @@ export type Lease = {
   paymentBeforeTax: number;
   purchaseOptionDate: string;
   optionAmount: number;
-  leaseEndDate: string;
   quoteId: string;
 }

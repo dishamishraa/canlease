@@ -1,10 +1,6 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../../modules/auth';
 import { QuoteBlockProps } from './QuoteBlock';
 import { QuoteBlockPresenterProps} from './QuoteBlock.presenter';
-import { Quote } from '../../../modules/types'
-import { getQuote } from '../../../modules/quote/api'
-import mockData from './mockData';
 import { useParams } from 'react-router';
 import useQuoteDetails from '../../../modules/quote/useQuoteDetails'
 
@@ -17,7 +13,6 @@ const withInteractor = (
         const { quoteId } = useParams<{quoteId: string}>();
         const quoteDetails = useQuoteDetails(quoteId)
 
-        // const { quoteDetail }: Quote = getQuote(quoteId);
         return <Presenter
             {...props}
             quoteDetails={quoteDetails}
