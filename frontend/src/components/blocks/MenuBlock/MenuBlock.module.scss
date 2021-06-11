@@ -1,0 +1,20 @@
+.menuBlock {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1.5rem 0rem 0rem 0rem;
+  background-color: rgb(240, 241, 247);
+
+  .menuItemList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+  }
+
+}

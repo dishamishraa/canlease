@@ -1,0 +1,355 @@
+.clickableRateCardDefault {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  > * {
+    margin-top: 0.25rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+  background-color: rgb(240, 241, 247);
+  border-radius: 4px;
+
+  .rateDetailItemList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 0.25rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+}
+.clickableRateCardDefault:disabled {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  > * {
+    margin-top: 0.25rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+  background-color: rgb(240, 241, 247);
+  border-radius: 4px;
+
+  .rateDetailItemList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 0.25rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+}
+.clickableRateCardDefault:hover {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  > * {
+    margin-top: 0.25rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+  background-color: rgb(228, 229, 240);
+  border-radius: 4px;
+
+  .rateDetailItemList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 0.25rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+}
+.clickableRateCardDefault:pressed {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  > * {
+    margin-top: 0.25rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+  background-color: rgb(228, 229, 240);
+  border-radius: 4px;
+
+  .rateDetailItemList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 0.25rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+}
+.clickableRateCardDefault:focused {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  > * {
+    margin-top: 0.25rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+  background-color: rgb(228, 229, 240);
+  border-radius: 4px;
+
+  .rateDetailItemList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 0.25rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+}
+.clickableRateCardSelected {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  > * {
+    margin-top: 0.25rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+  background-color: rgb(240, 241, 247);
+  border: 2px solid rgb(26, 35, 126);
+  border-radius: 4px;
+
+  .rateDetailItemList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 0.25rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+}
+.clickableRateCardSelected:disabled {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  > * {
+    margin-top: 0.25rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+  background-color: rgb(240, 241, 247);
+  border: 2px solid rgb(26, 35, 126);
+  border-radius: 4px;
+
+  .rateDetailItemList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 0.25rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+}
+.clickableRateCardSelected:hover {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  > * {
+    margin-top: 0.25rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+  background-color: rgb(228, 229, 240);
+  border: 2px solid rgb(26, 35, 126);
+  border-radius: 4px;
+
+  .rateDetailItemList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 0.25rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+}
+.clickableRateCardSelected:focused {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  > * {
+    margin-top: 0.25rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+  background-color: rgb(228, 229, 240);
+  border: 2px solid rgb(26, 35, 126);
+  border-radius: 4px;
+
+  .rateDetailItemList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 0.25rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+}
+.clickableRateCardSelected:pressed {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  > * {
+    margin-top: 0.25rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+  background-color: rgb(228, 229, 240);
+  border: 2px solid rgb(26, 35, 126);
+  border-radius: 4px;
+
+  .rateDetailItemList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 0.25rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+}

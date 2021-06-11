@@ -6,10 +6,10 @@ import styles from './TextInput.module.scss';
 import Text, { TextProps } from '../Text';
 import Icon, { IconProps } from '../Icon';
 
-export type TextInputTypeType = 'Text' | 'Password';
+export type TextInputTypeType = 'Text' | 'Password' | 'TextArea';
 
 export const defaultProps = {
-  type: 'Password' as TextInputTypeType,
+  type: 'Text' as TextInputTypeType,
   icon: {
     asset: 'Show',
     style: 'Basic400',
@@ -55,6 +55,8 @@ const TextInput: React.FC<TextInputProps> = ({
           className={styles.icon}
           {...icon} />
       );
+      break;
+    case 'TextArea':
       break;
   }
 

@@ -3,17 +3,21 @@ import cx from 'classnames';
 
 import styles from './PersonalInformationBlock.module.scss';
 
+import Stepper, { StepperProps } from '../../atoms/Stepper';
 import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
+import RadiobuttonList, { RadiobuttonListProps } from '../../organisms/RadiobuttonList';
 import Button, { ButtonProps } from '../../atoms/Button';
 
 export const defaultProps = {
-  description: {
-    style: 'Brand500',
-    align: 'Left',
-    size: 'Medium',
-    type: 'Paragraph2',
-  } as TextProps,
+  stepper: {
+    text: {
+      style: 'Brand500',
+      align: 'Left',
+      size: 'Medium',
+      type: 'Paragraph3',
+    },
+  } as StepperProps,
   blockHeading: {
     style: 'Basic800',
     align: 'Left',
@@ -46,6 +50,10 @@ export const defaultProps = {
       type: 'Text',
     },
   } as TextFieldProps,
+  radiobuttonList: {
+    radioButtonItems: [
+    ],
+  } as RadiobuttonListProps,
   nextButton: {
     type: 'Button',
     size: 'Large',
@@ -61,19 +69,21 @@ export const defaultProps = {
 };
 
 export type PersonalInformationBlockProps = {
-  description?: TextProps;
+  stepper?: StepperProps;
   blockHeading?: TextProps;
   firstNameTextField?: TextFieldProps;
   lastNameTextField?: TextFieldProps;
+  radiobuttonList?: RadiobuttonListProps;
   nextButton?: ButtonProps;
   className?: string;
 };
 
 const PersonalInformationBlock: React.FC<PersonalInformationBlockProps> = ({
-  description,
+  stepper,
   blockHeading,
   firstNameTextField,
   lastNameTextField,
+  radiobuttonList,
   nextButton,
   className,
 }) => {
@@ -81,9 +91,9 @@ const PersonalInformationBlock: React.FC<PersonalInformationBlockProps> = ({
     <div className={cx(styles.personalInformationBlock, className)}>
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
-          <Text
-            className={styles.description}
-            {...description} />
+          <Stepper
+            className={styles.stepper}
+            {...stepper} />
           <Text
             className={styles.blockHeading}
             {...blockHeading} />
@@ -95,6 +105,9 @@ const PersonalInformationBlock: React.FC<PersonalInformationBlockProps> = ({
           <TextField
             className={styles.lastNameTextField}
             {...lastNameTextField} />
+          <RadiobuttonList
+            className={styles.radiobuttonList}
+            {...radiobuttonList} />
           <Button
             className={styles.nextButton}
             {...nextButton} />

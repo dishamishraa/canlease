@@ -42,13 +42,16 @@
     }
   }
 
-  .description {
+  .stepper {
     overflow: hidden;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    align-self: stretch;
+    > * {
+      margin-top: 0.625rem;
+    }
+    align-self: flex-start;
     flex: 0 0 auto;
   }
 
@@ -252,13 +255,16 @@
       }
     }
   
-    .description {
+    .stepper {
       overflow: hidden;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      align-self: stretch;
+      > * {
+        margin-top: 0.625rem;
+      }
+      align-self: flex-start;
       flex: 0 0 auto;
     }
   
@@ -459,12 +465,16 @@
       }
     }
   
-    .description {
+    .stepper {
+      overflow: hidden;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      align-self: stretch;
+      > * {
+        margin-top: 0.625rem;
+      }
+      align-self: flex-start;
       flex: 0 0 auto;
     }
   

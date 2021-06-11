@@ -6,3 +6,7 @@ export const getServerUrl = (): string => {
   }
   return BFF_URL;
 };
+
+export const isEmptyString = (value) => {
+  return value ? value.trim().length === 0 : true;
+}

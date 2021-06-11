@@ -9,17 +9,12 @@
     margin-top: 1rem;
   }
 
-  .block {
-    overflow: hidden;
+  .topContent {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 1.5rem 1rem 1.5rem 1rem;
-    > * {
-      margin-top: 1rem;
-    }
-    align-self: center;
+    align-self: flex-start;
     width: 19rem;
     flex: 0 0 auto;
     @media (max-width: 575px) {
@@ -27,6 +22,32 @@
         margin-top: 0;
       }
     }
+  }
+
+  .topBar {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1rem 0rem 1rem 0rem;
+    align-self: flex-start;
+    width: 19rem;
+    flex: 0 0 auto;
+  }
+
+  .block {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1rem;
+    }
+    align-self: flex-start;
+    width: 19rem;
+    flex: 0 0 auto;
   }
 
   .actionBlock {
@@ -38,15 +59,16 @@
     > * {
       margin-top: 1rem;
     }
-    align-self: center;
+    align-self: flex-start;
     width: 19rem;
-    flex: 0 0 7rem;
+    flex: 0 0 auto;
     @media (max-width: 575px) {
       &:nth-child(1) {
         margin-top: 0;
       }
     }
   }
+
 }
 
 @media (min-width: 576px) {
@@ -61,16 +83,11 @@
       margin-top: 1.5rem;
     }
   
-    .block {
-      overflow: hidden;
+    .topContent {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      padding: 2.5rem 2rem 2.5rem 2rem;
-      > * {
-        margin-top: 1.5rem;
-      }
       align-self: center;
       width: 33rem;
       flex: 0 0 auto;
@@ -79,6 +96,32 @@
           margin-top: 0;
         }
       }
+    }
+  
+    .topBar {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 1rem 0rem;
+      align-self: flex-start;
+      width: 33rem;
+      flex: 0 0 auto;
+    }
+  
+    .block {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: flex-start;
+      width: 33rem;
+      flex: 0 0 auto;
     }
   
     .actionBlock {
@@ -92,7 +135,7 @@
       }
       align-self: center;
       width: 33rem;
-      flex: 0 0 5.5rem;
+      flex: 0 0 auto;
       @media (max-width: 767px) {
         &:nth-child(1) {
           margin-top: 0;
@@ -115,16 +158,11 @@
       margin-top: 1.5rem;
     }
   
-    .block {
-      overflow: hidden;
+    .topContent {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      padding: 2.5rem 2.5rem 3rem 2.5rem;
-      > * {
-        margin-top: 1.5rem;
-      }
       align-self: center;
       width: 37.5rem;
       flex: 0 0 auto;
@@ -133,6 +171,32 @@
           margin-top: 0;
         }
       }
+    }
+  
+    .topBar {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 1rem 0rem;
+      align-self: flex-start;
+      width: 37.5rem;
+      flex: 0 0 auto;
+    }
+  
+    .block {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: flex-start;
+      width: 37.5rem;
+      flex: 0 0 auto;
     }
   
     .actionBlock {
@@ -146,7 +210,7 @@
       }
       align-self: center;
       width: 37.5rem;
-      flex: 0 0 6rem;
+      flex: 0 0 auto;
       @media (max-width: 1023px) {
         &:nth-child(1) {
           margin-top: 0;
@@ -169,16 +233,11 @@
       margin-top: 1.5rem;
     }
   
-    .block {
-      overflow: hidden;
+    .topContent {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      padding: 2.5rem 2.5rem 3rem 2.5rem;
-      > * {
-        margin-top: 1.5rem;
-      }
       align-self: center;
       width: 37.5rem;
       flex: 0 0 auto;
@@ -187,6 +246,32 @@
           margin-top: 0;
         }
       }
+    }
+  
+    .topBar {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 1rem 0rem;
+      align-self: flex-start;
+      width: 37.5rem;
+      flex: 0 0 auto;
+    }
+  
+    .block {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: flex-start;
+      width: 37.5rem;
+      flex: 0 0 auto;
     }
   
     .actionBlock {
@@ -200,7 +285,7 @@
       }
       align-self: center;
       width: 37.5rem;
-      flex: 0 0 6rem;
+      flex: 0 0 auto;
       @media (max-width: 1439px) {
         &:nth-child(1) {
           margin-top: 0;
@@ -223,22 +308,43 @@
       margin-top: 1.5rem;
     }
   
-    .block {
-      overflow: hidden;
+    .topContent {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      padding: 2.5rem 2.5rem 3rem 2.5rem;
-      > * {
-        margin-top: 1.5rem;
-      }
       align-self: center;
       width: 37.5rem;
       flex: 0 0 auto;
       &:nth-child(1) {
         margin-top: 0;
       }
+    }
+  
+    .topBar {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 1rem 0rem;
+      align-self: flex-start;
+      width: 37.5rem;
+      flex: 0 0 auto;
+    }
+  
+    .block {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: flex-start;
+      width: 37.5rem;
+      flex: 0 0 auto;
     }
   
     .actionBlock {
@@ -252,7 +358,7 @@
       }
       align-self: center;
       width: 37.5rem;
-      flex: 0 0 6rem;
+      flex: 0 0 auto;
       &:nth-child(1) {
         margin-top: 0;
       }

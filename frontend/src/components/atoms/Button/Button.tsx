@@ -42,6 +42,7 @@ export type ButtonProps = {
   text?: TextProps;
   className?: string;
   icon?: IconProps;
+  disabled?: boolean;
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -55,13 +56,13 @@ const Button: React.FC<ButtonProps> = ({
   text,
   className,
   icon,
+  disabled,
 }) => {
 
   const currentStyle = styles[`button${type}${size}${fill}${colour}`];
 
-
   let contentView;
- 
+  
   switch (type) {
     case 'Button':
       contentView = (
@@ -111,6 +112,7 @@ const Button: React.FC<ButtonProps> = ({
     <button
       type={buttonType}
       onClick={onButtonClicked}
+      disabled={disabled}
       className={cx(currentStyle, className)}>
       {contentView}
     </button>
