@@ -10,7 +10,7 @@ const mockedAxios = mocked(axios, true);
 describe('SalesforceApi', () => {
   const api = new SalesforceApi();
   describe('createQuote', () => {
-    it('should make request to check user api endpoint', async () => {
+    it('should make request to check create quote api endpoint', async () => {
       await api.createQuote(mockSalesforceContractPayload);
 
       const expectedBody = {
@@ -33,7 +33,7 @@ describe('SalesforceApi', () => {
   });
 
   describe('getQuote', () => {
-    it('should make request to check user api endpoint', async () => {
+    it('should make request to check get quote api endpoint', async () => {
       const id = 1;
       await api.getQuote(id);
 
