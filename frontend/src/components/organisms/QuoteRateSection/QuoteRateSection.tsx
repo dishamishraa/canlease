@@ -6,7 +6,6 @@ import styles from './QuoteRateSection.module.scss';
 import Text, { TextProps } from '../../atoms/Text';
 import DetailItemList, { DetailItemListProps } from '../DetailItemList';
 import RateCardList, { RateCardListProps } from '../RateCardList';
-import { RateCardProps } from '../../molecules/RateCard';
 
 export const defaultProps = {
   text: {
@@ -38,7 +37,6 @@ const QuoteRateSection: React.FC<QuoteRateSectionProps> = ({
   rateCardList,
   className,
 }) => {
-
   return (
     <div className={cx(styles.quoteRateSection, className)}>
       <Text
@@ -49,8 +47,7 @@ const QuoteRateSection: React.FC<QuoteRateSectionProps> = ({
         {...detailItemList} />
       <RateCardList
         className={styles.rateCardList}
-        {...rateCardList} 
-        />
+        {...rateCardList} />
     </div>
   );
 };

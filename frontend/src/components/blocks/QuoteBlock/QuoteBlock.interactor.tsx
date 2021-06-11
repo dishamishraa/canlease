@@ -11,11 +11,13 @@ const withInteractor = (
     const Interactor : React.FC<QuoteBlockProps> = (props) => {
 
         const { quoteId } = useParams<{quoteId: string}>();
-        const quoteDetails = useQuoteDetails(quoteId)
+        const { loading, error, data: quoteDetails} = useQuoteDetails(quoteId)
 
         return <Presenter
             {...props}
             quoteDetails={quoteDetails}
+            loading={loading}
+            error={error}
         />
     }
 

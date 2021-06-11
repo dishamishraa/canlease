@@ -1,7 +1,7 @@
 import axios from 'axios'
 import i18next from 'i18next';
 import { getServerUrl } from '../../lib/utils';
-import { Quote, QuoteOption } from '../types';
+import { Quote } from '../types';
 
 //For view quote
 export const getQuote = async(quoteId: number | string): Promise<Quote> => {

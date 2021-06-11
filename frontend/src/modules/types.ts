@@ -12,23 +12,15 @@ export type Quote = {
   applicationAmount: number;
   quoteOptions: QuoteOption[];
   quoteExpiryDate: string;
-}
-
-export enum Term {
-  TwelveMonths = "12M",
-  TwentyFourMonths = "24M",
-  ThirtySixMonths = "36M",
-  FourtyEightMonths = "48M",
-  SixtyMonths = "60M",
-  SeventyTwoMonths = "72M"
-}
+  leaseType: string;
+};
 
 export type QuoteOption = {
   monthlyAmount: number;
-  term: Term.TwelveMonths | Term.TwentyFourMonths | Term.ThirtySixMonths | Term.FourtyEightMonths | Term.SixtyMonths | Term.SeventyTwoMonths;
+  term: '12M' | '24M' | '36M' | '48M' | '60M' | '72M';
   financeRate: number;
-  purchaseOptionDate; string;
-}
+  purchaseOptionDate: string;
+};
 
 export type CreditApplication = {
   creditAppNumber: string;
@@ -39,7 +31,7 @@ export type CreditApplication = {
   applicationStatus: string;
   quoteId: string;
   asset: string;
-}
+};
 
 export type Lease = {
   leaseNumber: string;
@@ -53,4 +45,4 @@ export type Lease = {
   purchaseOptionDate: string;
   optionAmount: number;
   quoteId: string;
-}
+};

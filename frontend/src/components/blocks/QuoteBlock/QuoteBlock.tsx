@@ -11,8 +11,6 @@ import { Link } from 'react-router-dom';
 import Toast, { ToastProps } from '../../atoms/Toast';
 import { ToastTypeType, ToastStyleType } from '../../atoms/Toast/Toast';
 import { IconProps } from '../../atoms/Icon';
-import { defaultProps as QuoteDetailItemDefaultProp } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
-import { defaultProps as RateDetailItemDefaultProp } from '../../molecules/RateDetailItem/RateDetailItem'
 
 export const defaultProps = {
   blockHeading: {
@@ -29,20 +27,8 @@ export const defaultProps = {
       type: 'Heading2',
     },
     detailItemList:{
-      quoteDetails: {
-        label: {
-          style: 'Basic800',
-          align: 'Left',
-          size: 'Medium',
-          type: 'Paragraph3',
-        },
-        text: {
-          style: 'Basic800',
-          align: 'Left',
-          size: 'Medium',
-          type: 'Paragraph2',
-        },
-      }
+      quoteDetailItems: [
+      ],
     },
     rateCardList: {
       rateCards: [
@@ -101,8 +87,6 @@ export const defaultProps = {
       style: 'Basic100',
     } as IconProps,
   },
-  quoteItemList: QuoteDetailItemDefaultProp,
-  rateDetailItem: RateDetailItemDefaultProp
 };
 
 export type QuoteBlockProps = {
@@ -152,11 +136,9 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
       <Text
         className={styles.validText}
         {...validText} />
-      <div>
-        <Text
+      <Text
           className={styles.learnMoreText}
           {...learnMoreText} />
-      </div>
       <Button
           className={styles.viewQuoteButton}
           {...viewQuoteButton} />
