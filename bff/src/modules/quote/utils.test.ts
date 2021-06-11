@@ -37,18 +37,18 @@ describe('quote utils', () => {
       const valid = validateSendQuote({
         vendorBusinessName: 'vendorBusinessName',
         from: {
-            email: "orders@example.com",
-            name: "Example Order Confirmation"
+          email: 'orders@example.com',
+          name: 'Example Order Confirmation',
         },
-        template_id: "[template_id]",
+        template_id: '[template_id]',
         personalizations: [{
-            to: [
+          to: [
             {
-                email: "john_doe@example.com",
-                name: "John Doe"
+              email: 'john_doe@example.com',
+              name: 'John Doe',
             },
-            ],
-            subject: "Your Example Order Confirmation",
+          ],
+          subject: 'Your Example Order Confirmation',
         }],
       });
       expect(valid).toBe(true);

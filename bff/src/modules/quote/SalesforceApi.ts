@@ -1,12 +1,12 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { SALESFORCE_API_URL } from '../../lib/config';
 
-import { CreateQuote } from './types';
+import { CreateQuote, Quote } from './types';
 
 export default class SalesforceApi {
-  async createQuote(payload: CreateQuote): Promise<void> {
+  async createQuote(payload: CreateQuote): Promise<Quote> {
     try {
-      await axios.post(
+      const response = await axios.post<Quote>(
         `${SALESFORCE_API_URL}/v2/quotes`,
         {
           properties: {
@@ -24,11 +24,24 @@ export default class SalesforceApi {
           },
         },
       );
+      return response.data;
     } catch (error) {
       const message = axios.isAxiosError(error)
         ? error.response?.data?.errorMessage
         : error.message;
-      throw new Error(message);
+      return message;
+    }
+  }
+
+  async getQuote(quoteId: number | string): Promise<Quote> {
+    try {
+      const response = await axios.get<Quote>(`${SALESFORCE_API_URL}/v2/quotes/${quoteId}`);
+      return response.data;
+    } catch (error) {
+      const message = axios.isAxiosError(error)
+        ? error.response?.data?.errorMessage
+        : error.message;
+      return message;
     }
   }
 }

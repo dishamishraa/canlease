@@ -66,6 +66,6 @@ export const createRouter = (controllers: {
   router.use('/users', UserRouter());
 
   router.use('/quote', QuoteRouter(controllers));
-  
+
   return router;
 };

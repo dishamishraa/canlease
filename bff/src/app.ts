@@ -1,7 +1,9 @@
 import { Application } from 'express';
 import createApp from './lib/createApp';
 import { createRouter } from './router';
-import { SalesforceApi, SendGridApi, QuoteService, QuoteController } from './modules/quote';
+import {
+  SalesforceApi, SendGridApi, QuoteService, QuoteController,
+} from './modules/quote';
 
 export default function App(): Application {
   const salesforceApi = new SalesforceApi();
@@ -12,6 +14,6 @@ export default function App(): Application {
   const quoteController = new QuoteController(quoteService);
 
   return createApp(createRouter({
-    quoteController
+    quoteController,
   }));
 }

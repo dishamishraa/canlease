@@ -1,5 +1,5 @@
 import mockSalesforceContractPayload from './mockSalesforceContractPayload';
-import mockSendGridPayload from './mockSendGridPayload'
+import mockSendGridPayload from './mockSendGridPayload';
 
 export {
   mockSalesforceContractPayload,

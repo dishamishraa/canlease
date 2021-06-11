@@ -13,6 +13,7 @@ const mockValidateSendQuote = mocked(validateSendQuote);
 describe('QuoteRouter', () => {
   const quoteController = {
     createQuote: jest.fn(),
+    getQuote: jest.fn(),
     sendQuote: jest.fn(),
   };
   const router = QuoteRouter({ quoteController });
@@ -45,5 +46,4 @@ describe('QuoteRouter', () => {
       expect(status).toEqual(200);
     });
   });
-
 });
