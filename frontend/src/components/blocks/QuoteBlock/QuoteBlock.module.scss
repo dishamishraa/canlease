@@ -1,6 +1,6 @@
 .quoteBlock {
   overflow: hidden;
-  display: table;
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
@@ -10,7 +10,6 @@
   }
   border: 2px solid rgb(210, 211, 223);
   border-radius: 8px;
-  min-height: 100%;
 
   .blockHeading {
     overflow: hidden;
@@ -120,7 +119,6 @@
     }
     align-self: stretch;
     flex: 0 0 auto;
-    width: 100%;
     @media (max-width: 575px) {
       &:nth-child(1) {
         margin-top: 0;
@@ -133,7 +131,7 @@
 @media (min-width: 576px) {
   .quoteBlock {
     overflow: hidden;
-    display: table;
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
@@ -265,7 +263,7 @@
 @media (min-width: 768px) {
   .quoteBlock {
     overflow: hidden;
-    display: table;
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
@@ -275,7 +273,6 @@
     }
     border: 2px solid rgb(210, 211, 223);
     border-radius: 8px;
-    width: 656px;
   
     .blockHeading {
       display: flex;
@@ -356,7 +353,6 @@
       &:nth-child(1) {
         margin-top: 0;
       }
-      width: 292px;
     }
   
     .viewQuoteButton {
@@ -376,34 +372,4 @@
     }
   
   }
-
-  @media (min-width: 1024px) {
-    .quoteBlock{
-      width: 660px;
-      .viewQuoteButton{
-        width: 286px;
-      }
-    }
-    
-  }
-
-  @media (min-width: 1440px) {
-    .quoteBlock{
-      width: 680px;
-      .viewQuoteButton{
-        width: 296px;
-      }
-    }
-  }
-
-}
-
-.buttonContainer{
-  width: 100%;
-  justify-content: space-between;
-
-  @media (min-width: 768px) {
-    display: flex;
-  }
-  
 }

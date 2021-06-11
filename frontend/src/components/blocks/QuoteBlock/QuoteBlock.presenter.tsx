@@ -3,13 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
 import { UseQuoteDetailsResult } from '../../../modules/quote/useQuoteDetails';
 import { QuoteRateSectionProps } from '../../organisms/QuoteRateSection';
-import { RateCardListProps } from '../../organisms/RateCardList';
 import { QuoteBlockProps, defaultProps } from './QuoteBlock';
 import { addLinksAndBreaks } from '../../../lib/reactUtils';
+import { QuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
+import { RateCardProps } from '../../molecules/RateCard';
 
 
 export type QuoteBlockPresenterProps = QuoteBlockProps & {
-    quote: UseQuoteDetailsResult
+    quoteDetails: UseQuoteDetailsResult
 };
 
 const withPresenter = (
@@ -17,7 +18,7 @@ const withPresenter = (
 ): React.FC<QuoteBlockPresenterProps> => {
     const Presenter: React.FC<QuoteBlockPresenterProps> = (props) => {
         const {
-            quote
+            quoteDetails
         } = props;
 
         const { t } = useTranslation();
@@ -31,10 +32,82 @@ const withPresenter = (
         }
 
         let disabled = false;
-        if(quote.data){
+        let rateCardsArray: RateCardProps[] = [];
+        if(quoteDetails.data){
             let today = new Date();
-            let expiryDate = new Date(quote.data.quoteExpiryDate);
+            let expiryDate = new Date(quoteDetails.data.quoteExpiryDate);
             if(today > expiryDate) disabled = true;
+            for(let i = 0; i < quoteDetails.data.quoteOptions.length; i++){
+                const term = quoteDetails.data.quoteOptions[i].term
+                const monthlyAmount = quoteDetails.data.quoteOptions[i].monthlyAmount
+                const financeRate = quoteDetails.data.quoteOptions[i].financeRate
+                const rateCardProp: RateCardProps = {
+                    rateDetailsItemList:{
+                        rateDetailItems:[
+                            {
+                                ...defaultProps.rateDetailItem,
+                                type:"PerMonth",
+                                suffixText:{
+                                    ...defaultProps.rateDetailItem.suffixText,
+                                    value: t('view_quote.rate_card.rate_label')
+                                },
+                                numberText:{
+                                    ...defaultProps.rateDetailItem.numberText,
+                                    value: `$${monthlyAmount}`
+                                }
+                            },
+                            {
+                                ...defaultProps.rateDetailItem,
+                                type:"PerMonth",
+                                suffixText:{
+                                    ...defaultProps.rateDetailItem.suffixText,
+                                    value:  t('view_quote.rate_card.months_label')
+                                },
+                                numberText:{
+                                    ...defaultProps.rateDetailItem.numberText,
+                                    value: term
+                                }
+                            },
+                            {
+                                ...defaultProps.rateDetailItem,
+                                type:"PerMonth",
+                                suffixText:{
+                                    ...defaultProps.rateDetailItem.suffixText,
+                                    value:  t('view_quote.rate_card.cost_label')
+                                },
+                                numberText:{
+                                    ...defaultProps.rateDetailItem.numberText,
+                                    value: `${financeRate}%`
+                                }
+                            },
+                            {
+                                ...defaultProps.rateDetailItem,
+                                type:"Text",
+                                suffixText:{
+                                    ...defaultProps.rateDetailItem.suffixText,
+                                    value: `Own at ${financeRate}% for ${term} months`
+                                }
+                            }
+                        ],
+                    }
+                }
+                rateCardsArray.push(rateCardProp);
+            }
+            
+        }
+        let termDetailItemArray: QuoteDetailItemProps[] = []
+        for(let i = 1; i <= 4; i++){
+            const quoteDetailItem: QuoteDetailItemProps = {
+                labelText:{
+                    ...defaultProps.quoteItemList.labelText,
+                    value: `${i}`
+                },
+                infoText:{
+                    ...defaultProps.quoteItemList.infoText,
+                    value:t('view_quote.term_detail.term_'+(i))
+                }
+            }
+            termDetailItemArray.push(quoteDetailItem)
         }
 
         const quoteRateSectionProps: QuoteRateSectionProps = {
@@ -42,19 +115,43 @@ const withPresenter = (
                 ...defaultProps.quoteRateSection.text,
                 value: t('view_quote.quote_rate_section_heading_text')
             },
-            quoteDetails:{
-                ...defaultProps.quoteRateSection.quoteDetails,
-                // label:{
-                //     ...defaultProps.quoteRateSection.quoteDetails?.label,
-                //     value: 'Label'
-                // },
-                text:{
-                    ...defaultProps.quoteRateSection.quoteDetails?.text,
-                    value: 'Text'
-                }
+            detailItemList:{
+                ...defaultProps.detailItemList,
+                quoteDetailItems:[
+                    {
+                        labelText:{
+                            ...defaultProps.quoteItemList.labelText,
+                            value:t('view_quote.quote_detail.based_on_label')
+                        },
+                        infoText:{
+                            ...defaultProps.quoteItemList.infoText,
+                            value: quoteDetails.data?.applicationAmount
+                        }
+                    },
+                    {
+                        labelText:{
+                            ...defaultProps.quoteItemList.labelText,
+                            value:t('view_quote.quote_detail.equipment_label')
+                        },
+                        infoText:{
+                            ...defaultProps.quoteItemList.infoText,
+                            value: quoteDetails.data?.asset
+                        }
+                    },
+                    {
+                        labelText:{
+                            ...defaultProps.quoteItemList.labelText,
+                            value:t('view_quote.quote_detail.quote_id_label')
+                        },
+                        infoText:{
+                            ...defaultProps.quoteItemList.infoText,
+                            value: quoteDetails.data?.quoteId
+                        }
+                    }
+                ]
             },
             rateCardList:{
-                ...defaultProps.quoteRateSection.rateCardList
+                rateCards:rateCardsArray
             }
         }
 
@@ -68,10 +165,6 @@ const withPresenter = (
             disclaimerText:{
                 ...defaultProps.disclaimerText,
                 value: t('view_quote.disclaimer_text')
-            },
-            conditionsText:{
-                ...defaultProps.conditionsText,
-                value: t('view_quote.conditions_text')
             },
             validText:{
                 ...defaultProps.validText,
@@ -90,15 +183,6 @@ const withPresenter = (
                 onButtonClicked: applyForFinanceButtonClicked,
                 disabled: disabled
             },
-            saveQuoteButton:{
-                ...defaultProps.saveQuoteButton,
-                text:{
-                    ...defaultProps.saveQuoteButton.text,
-                    value:t('view_quote.save_quote_button_text')
-                },
-                onButtonClicked: saveQuoteButtonClicked,
-                disabled: disabled
-            },
             quoteExpired: disabled,
             expiryToast:{
                 ...defaultProps.expiryToast,
@@ -106,6 +190,10 @@ const withPresenter = (
                     ...defaultProps.expiryToast.text,
                     value:t('view_quote.expiry_toast.message')
                 }
+            },
+            detailItemList:{
+                ...defaultProps.detailItemList,
+                quoteDetailItems: termDetailItemArray
             }
         }
 

@@ -15,12 +15,12 @@ const withInteractor = (
     const Interactor : React.FC<QuoteBlockProps> = (props) => {
 
         const { quoteId } = useParams<{quoteId: string}>();
-        const test = useQuoteDetails("1")
+        const quoteDetails = useQuoteDetails(quoteId)
 
         // const { quoteDetail }: Quote = getQuote(quoteId);
         return <Presenter
             {...props}
-            quote={test}
+            quoteDetails={quoteDetails}
         />
     }
 

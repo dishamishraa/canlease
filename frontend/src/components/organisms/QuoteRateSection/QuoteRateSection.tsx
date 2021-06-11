@@ -25,52 +25,6 @@ export const defaultProps = {
   } as RateCardListProps,
 };
 
-const rateCard: RateCardProps = {
-  text: {
-    style: 'Basic800',
-    align: 'Left',
-    size: 'Medium',
-    type: 'Paragraph2',
-    value: 'Rate Card'
-  } as TextProps,
-}
-
-const rateCard2: RateCardProps = {
-  text: {
-    style: 'Basic800',
-    align: 'Left',
-    size: 'Medium',
-    type: 'Paragraph2',
-    value: 'Rate Card'
-  } as TextProps,
-}
-
-const rateCard3: RateCardProps = {
-  text: {
-    style: 'Basic800',
-    align: 'Left',
-    size: 'Medium',
-    type: 'Paragraph2',
-    value: 'Rate Card'
-  } as TextProps,
-}
-
-const rateCard4: RateCardProps = {
-  text: {
-    style: 'Basic800',
-    align: 'Left',
-    size: 'Medium',
-    type: 'Paragraph2',
-    value: 'Rate Card'
-  } as TextProps,
-}
-
-const rateList = [rateCard, rateCard2, rateCard3, rateCard4];
-
-const testRateCardListProps: RateCardListProps = {
-  rateCards: rateList
-}
-
 export type QuoteRateSectionProps = {
   text?: TextProps;
   detailItemList?: DetailItemListProps;
@@ -95,8 +49,7 @@ const QuoteRateSection: React.FC<QuoteRateSectionProps> = ({
         {...detailItemList} />
       <RateCardList
         className={styles.rateCardList}
-        // {...rateCardList} 
-        {...testRateCardListProps}
+        {...rateCardList} 
         />
     </div>
   );

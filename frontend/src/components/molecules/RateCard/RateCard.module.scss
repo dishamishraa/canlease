@@ -31,24 +31,8 @@
     }
   }
 
-<<<<<<< HEAD
   .rateDetailsItemList {
-    display: none;
-=======
-  .text {
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-self: center;
-    // flex: 1 1 auto;
-    @media (max-width: 767px) {
-      &:nth-child(1) {
-        margin-left: 0;
-      }
-    }
->>>>>>> 587a0ab... finished requirement for expiry quote
+    // display: none;
   }
 
 }
@@ -84,21 +68,8 @@
       }
     }
   
-<<<<<<< HEAD
     .rateDetailItemList {
       display: none;
-=======
-    .text {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: flex-start;
-      align-self: center;
-      // flex: 1 1 auto;
-      &:nth-child(1) {
-        margin-left: 0;
-      }
->>>>>>> 587a0ab... finished requirement for expiry quote
     }
   
   }

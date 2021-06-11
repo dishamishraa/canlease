@@ -11,6 +11,8 @@ import { Link } from 'react-router-dom';
 import Toast, { ToastProps } from '../../atoms/Toast';
 import { ToastTypeType, ToastStyleType } from '../../atoms/Toast/Toast';
 import { IconProps } from '../../atoms/Icon';
+import { defaultProps as QuoteDetailItemDefaultProp } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
+import { defaultProps as RateDetailItemDefaultProp } from '../../molecules/RateDetailItem/RateDetailItem'
 
 export const defaultProps = {
   blockHeading: {
@@ -26,25 +28,21 @@ export const defaultProps = {
       size: 'Large',
       type: 'Heading2',
     },
-<<<<<<< HEAD
-    detailItemList: {
-      quoteDetailItems: [
-      ],
-=======
-    quoteDetails: {
-      label: {
-        style: 'Basic800',
-        align: 'Left',
-        size: 'Medium',
-        type: 'Paragraph3',
-      },
-      text: {
-        style: 'Basic800',
-        align: 'Left',
-        size: 'Medium',
-        type: 'Paragraph2',
-      },
->>>>>>> 587a0ab... finished requirement for expiry quote
+    detailItemList:{
+      quoteDetails: {
+        label: {
+          style: 'Basic800',
+          align: 'Left',
+          size: 'Medium',
+          type: 'Paragraph3',
+        },
+        text: {
+          style: 'Basic800',
+          align: 'Left',
+          size: 'Medium',
+          type: 'Paragraph2',
+        },
+      }
     },
     rateCardList: {
       rateCards: [
@@ -85,29 +83,6 @@ export const defaultProps = {
       type: 'ButtonGiant',
     },
   } as ButtonProps,
-<<<<<<< HEAD
-=======
-  saveQuoteButton: {
-    type: 'Button',
-    size: 'Large',
-    fill: 'Basic',
-    colour: 'Basic',
-    text: {
-      style: 'Brand500',
-      align: 'Center',
-      size: 'Small',
-      type: 'ButtonGiant',
-    },
-  } as ButtonProps,
-  learnMoreText: {
-    style: 'Basic800',
-    align: 'Left',
-    size: 'Medium',
-    type: 'Paragraph2',
-  } as TextProps,
-<<<<<<< HEAD
->>>>>>> b3b16f6... commit before rebasing
-=======
   expiryToast:{
     type: 'NoCloseButton' as ToastTypeType,
     style: 'Danger' as ToastStyleType,
@@ -125,8 +100,9 @@ export const defaultProps = {
       asset: 'Close',
       style: 'Basic100',
     } as IconProps,
-  }
->>>>>>> 587a0ab... finished requirement for expiry quote
+  },
+  quoteItemList: QuoteDetailItemDefaultProp,
+  rateDetailItem: RateDetailItemDefaultProp
 };
 
 export type QuoteBlockProps = {
@@ -137,14 +113,9 @@ export type QuoteBlockProps = {
   detailItemList?: DetailItemListProps;
   learnMoreText?: TextProps;
   viewQuoteButton?: ButtonProps;
-  saveQuoteButton?: ButtonProps;
   className?: string;
-<<<<<<< HEAD
-=======
-  learnMoreText?: TextProps;
   quoteExpired?: boolean;
   expiryToast?: ToastProps;
->>>>>>> 587a0ab... finished requirement for expiry quote
 };
 
 const QuoteBlock: React.FC<QuoteBlockProps> = ({
@@ -155,14 +126,9 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
   detailItemList,
   learnMoreText,
   viewQuoteButton,
-  saveQuoteButton,
   className,
-<<<<<<< HEAD
-=======
-  learnMoreText,
   quoteExpired,
   expiryToast
->>>>>>> 587a0ab... finished requirement for expiry quote
 }) => {
   let toastDisplay;
   if(quoteExpired){
@@ -191,16 +157,10 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
           className={styles.learnMoreText}
           {...learnMoreText} />
       </div>
-      <div className={styles.buttonContainer}>
-        <Button
+      <Button
           className={styles.viewQuoteButton}
           {...viewQuoteButton} />
-        <Button
-          className={styles.viewQuoteButton}
-          {...saveQuoteButton} />
       </div>
-      
-    </div>
   );
 };
 
