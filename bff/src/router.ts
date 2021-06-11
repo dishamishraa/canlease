@@ -9,6 +9,8 @@ import { UserRouter } from './modules/user';
 import { InternalServerError, NotFoundError } from './lib/errors';
 import { IDENTITY_URL, PROXY_TIMEOUT } from './lib/config';
 
+import { QuoteControllerContract, QuoteRouter } from './modules/quote';
+
 const swaggerSpecConfig = {
   swaggerDefinition: {
     info: {
@@ -49,7 +51,9 @@ const proxy = createProxyMiddleware({
   onProxyReq: restream,
 });
 
-export const createRouter = (controllers: {}): Router => {
+export const createRouter = (controllers: {
+  quoteController: QuoteControllerContract;
+}): Router => {
   const swaggerSpec = swaggerJsdoc(swaggerSpecConfig);
   const router = Router();
 
@@ -60,6 +64,8 @@ export const createRouter = (controllers: {}): Router => {
   router.post('/token', proxy);
   router.post('/accounts', proxy);
   router.use('/users', UserRouter());
+
+  router.use('/quote', QuoteRouter(controllers));
 
   return router;
 };
