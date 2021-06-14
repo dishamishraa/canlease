@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ContactInfoVendorBlockProps, defaultProps } from './ContactInfoVendorBlock';
 import { isEmptyString } from '../../../lib/utils';
 import { ContactInfo } from '../../../lib/types';
+import { UseCreateQuoteResult } from '../../../modules/quote/useCreateQuote';
 
 export type ContactInfoVendorBlockPresenterProps = {
   setContactInfo?: React.Dispatch<React.SetStateAction<ContactInfo>>;

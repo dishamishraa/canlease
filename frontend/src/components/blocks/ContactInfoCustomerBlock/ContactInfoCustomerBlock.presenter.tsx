@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ContactInfo } from '../../../lib/types';
+import { UseCreateQuoteResult } from '../../../modules/quote/useCreateQuote';
 import { ContactInfoCustomerBlockProps, defaultProps } from './ContactInfoCustomerBlock';
 
 

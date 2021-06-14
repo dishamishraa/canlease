@@ -3,7 +3,8 @@ import { SimplePageProps} from './SimplePage';
 import { EquipmentLeaseInfo, ContactInfoVendor, ContactInfoCustomer, ContactInfo } from '../../../lib/types';
 import { Redirect, useLocation } from 'react-router-dom';
 import { isObject, isEmpty, isEmptyString } from '../../../lib/utils';
-
+import useCreateQuote, { UseCreateQuoteResult } from '../../../modules/quote/useCreateQuote';
+import { CreateQuotePayload } from '../../../modules/quote/types';
 
 export type SimplePagePropsPresenterProps = SimplePageProps & {
 };
@@ -45,6 +46,20 @@ const withPresenter = (
       //   }
       // }, [state]);
 
+      // const quoteState: UseCreateQuoteResult = useCreateQuote({
+      //   userType: "test",
+      //   asset: "test",
+      //   applicationAmount: 123,
+      //   leaseType: "test",
+      //   contactName: "test",
+      //   contactEmail: "test",
+      //   vendorName: "test",
+      //   vendorEmail: "test",
+      //   contactBusinessName: "test",
+      //   vendorBusinessName: "test",
+      //   quoteOptions: []
+      // });
+      
       if(pathname === "/getQuote" && isEmptyString(userType)){
         console.log(!isEmpty(state) && isEmptyString(userType))
         return <Redirect 
