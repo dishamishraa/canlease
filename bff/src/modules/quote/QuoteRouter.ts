@@ -10,7 +10,7 @@ export function createQuoteRouter(controllers: {
   const router = Router();
   const { quoteController } = controllers;
 
-  router.post('/create', errorWrapper(async (req: Request, res: Response) => {
+  router.post('/', errorWrapper(async (req: Request, res: Response) => {
     if (!validateCreateQuote(req.body)) {
       throw BadRequestError();
     }
@@ -28,12 +28,13 @@ export function createQuoteRouter(controllers: {
     res.sendStatus(200);
   }));
 
-  router.post('/get', errorWrapper(async (req: Request, res: Response) => {
-    if (!validateGetQuote(req.body)) {
+  router.get('/:id', errorWrapper(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    if (!validateGetQuote(id)) {
       throw BadRequestError();
     }
 
-    await quoteController.getQuote(req.body);
+    await quoteController.getQuote(id);
     res.sendStatus(200);
   }));
 

@@ -20,13 +20,13 @@ describe('QuoteRouter', () => {
   const router = QuoteRouter({ quoteController });
   const app = createApp(router);
 
-  describe('POST /create', () => {
+  describe('POST /', () => {
     it('should return a 200 status on success', async () => {
       mockValidateCreateQuote.mockReturnValueOnce(true);
       quoteController.createQuote.mockResolvedValueOnce(undefined);
 
       const { status } = await request(app)
-        .post('/create')
+        .post('/')
         .send(mockSalesforceContractPayload);
 
       expect(quoteController.createQuote).toHaveBeenCalledWith(mockSalesforceContractPayload);
@@ -48,16 +48,16 @@ describe('QuoteRouter', () => {
     });
   });
 
-  describe('POST /get', () => {
-    it('', async () => {
+  describe('GET /:id', () => {
+    it('should return a 200 status on success', async () => {
       mockValidateGetQuote.mockReturnValueOnce(true);
       quoteController.getQuote.mockResolvedValueOnce(undefined);
 
       const { status } = await request(app)
-        .post('/get')
-        .send({ quoteId: 1 });
+        .get('/:id')
+        .send();
 
-      expect(quoteController.getQuote).toHaveBeenCalledWith({ quoteId: 1 });
+      expect(quoteController.getQuote).toHaveBeenCalledWith(':id');
       expect(status).toEqual(200);
     });
   });
