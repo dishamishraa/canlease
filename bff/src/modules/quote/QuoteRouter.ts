@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express';
 import { QuoteControllerContract } from './types';
 import { BadRequestError } from '../../lib/errors';
 import { errorWrapper } from '../../lib/utils';
-import { validateCreateQuote, validateSendQuote } from './utils';
+import { validateCreateQuote, validateSendQuote, validateGetQuote } from './utils';
 
 export function createQuoteRouter(controllers: {
   quoteController: QuoteControllerContract;
@@ -25,6 +25,15 @@ export function createQuoteRouter(controllers: {
     }
 
     await quoteController.sendQuote(req.body);
+    res.sendStatus(200);
+  }));
+
+  router.post('/get', errorWrapper(async (req: Request, res: Response) => {
+    if (!validateGetQuote(req.body)) {
+      throw BadRequestError();
+    }
+
+    await quoteController.getQuote(req.body);
     res.sendStatus(200);
   }));
 
