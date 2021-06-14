@@ -1,4 +1,11 @@
 .modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.6);
+
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -56,7 +63,8 @@
     align-items: flex-start;
     padding: 0.625rem 0.625rem 0.625rem 0.625rem;
     align-self: center;
-    width: 11.25rem;
+    width: 120px;
+    height: 117px;
     flex: 0 0 auto;
     @media (max-width: 575px) {
       &:nth-child(1) {
@@ -193,7 +201,8 @@
       align-items: flex-start;
       padding: 0.625rem 0.625rem 0.625rem 0.625rem;
       align-self: center;
-      width: 11.25rem;
+      width: 120px;
+      height: 117px;
       flex: 0 0 auto;
       @media (max-width: 767px) {
         &:nth-child(1) {
@@ -327,7 +336,8 @@
       align-items: flex-start;
       padding: 0.625rem 0.625rem 0.625rem 0.625rem;
       align-self: center;
-      width: 11.25rem;
+      width: 120px;
+      height: 117px;
       flex: 0 0 auto;
       &:nth-child(1) {
         margin-top: 0;

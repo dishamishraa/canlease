@@ -8,6 +8,12 @@
     "contact_us":{
         "description": "Need help creating a quote? We are happy to assist.",
         "button_text": "Contact Us"
+    },
+    "instant_quote_limit":{
+        "title": "You have reached the limit for instant quote trial.",
+        "description": "Create a free account to create and track unlimited quotes and applications",
+        "primary_button": "Create a Free account",
+        "secondary_button": "Sign in"
     }
 }
     

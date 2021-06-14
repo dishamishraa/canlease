@@ -16,7 +16,8 @@ const withPresenter = (
        
         return <View
             setUserType={setUserType}
-            userType={userType}/>;
+            userType={userType}
+            {...props} />;
   };
   return Presenter;
 };

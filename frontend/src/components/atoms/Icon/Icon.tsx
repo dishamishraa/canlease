@@ -56,6 +56,7 @@ export type IconProps = {
   style?: IconStyleType;
   contentAlt?: string;
   className?: string;
+  onIconClicked?:(event?: React.MouseEvent<HTMLImageElement>) => void;
 };
 
 const Icon: React.FC<IconProps> = ({
@@ -63,6 +64,7 @@ const Icon: React.FC<IconProps> = ({
   style,
   contentAlt,
   className,
+  onIconClicked,
 }) => {
 
   const currentStyle = styles[`icon${asset}${style}`];
@@ -195,7 +197,8 @@ const Icon: React.FC<IconProps> = ({
       <img
         className={styles.content}
         alt={contentAlt}
-        src={content} />
+        src={content} 
+        onClick={onIconClicked} />
     </div>
   );
 };
