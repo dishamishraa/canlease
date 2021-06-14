@@ -25,7 +25,6 @@ const Logo: React.FC<LogoProps> = ({
   contentAlt,
   className,
 }) => {
-
   const currentStyle = styles[`logo${size}`];
 
   return (

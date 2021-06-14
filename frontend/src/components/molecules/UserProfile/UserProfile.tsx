@@ -75,14 +75,13 @@ const UserProfile: React.FC<UserProfileProps> = ({
   secondary,
   text,
 }) => {
-
   const currentStyle = styles[`userProfile${style}${state}`];
 
   let userIconView;
   let primaryView;
   let iconView;
   let secondaryView;
-  
+
   switch (state) {
     case 'SignedIn':
       userIconView = (

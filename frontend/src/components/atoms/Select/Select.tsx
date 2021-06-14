@@ -4,6 +4,7 @@ import cx from 'classnames';
 import styles from './Select.module.scss';
 
 import Text, { TextProps } from '../Text';
+
 import Icon, { IconProps } from '../Icon';
 
 export type SelectSelectTypeType = 'button' | 'submit' | 'reset';
@@ -35,8 +36,7 @@ const Select: React.FC<SelectProps> = ({
   text,
   icon,
   className,
-}) => {
-  return (
+}) => (
     <button
       type={selectType}
       onClick={onSelectClicked}
@@ -48,8 +48,7 @@ const Select: React.FC<SelectProps> = ({
         className={styles.icon}
         {...icon} />
     </button>
-  );
-};
+);
 
 Select.defaultProps = defaultProps;
 

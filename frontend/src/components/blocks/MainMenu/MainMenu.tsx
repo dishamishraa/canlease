@@ -20,15 +20,13 @@ export type MainMenuProps = {
 const MainMenu: React.FC<MainMenuProps> = ({
   menuItemList,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.mainMenu, className)}>
       <MenuItemList
         className={styles.menuItemList}
         {...menuItemList} />
     </div>
-  );
-};
+);
 
 MainMenu.defaultProps = defaultProps;
 

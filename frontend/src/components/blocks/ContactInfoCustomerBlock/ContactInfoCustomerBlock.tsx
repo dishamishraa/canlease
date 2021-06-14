@@ -91,8 +91,7 @@ const ContactInfoCustomerBlock: React.FC<ContactInfoCustomerBlockProps> = ({
   disclaimerText,
   viewQuoteButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.contactInfoCustomerBlock, className)}>
       <Text
         className={styles.blockHeading}
@@ -113,8 +112,7 @@ const ContactInfoCustomerBlock: React.FC<ContactInfoCustomerBlockProps> = ({
         className={styles.viewQuoteButton}
         {...viewQuoteButton} />
     </div>
-  );
-};
+);
 
 ContactInfoCustomerBlock.defaultProps = defaultProps;
 

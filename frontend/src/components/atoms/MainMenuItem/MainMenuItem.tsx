@@ -40,7 +40,6 @@ const MainMenuItem: React.FC<MainMenuItemProps> = ({
   text,
   className,
 }) => {
-
   const currentStyle = styles[`mainMenuItem${type}`];
 
   const containerView = (
@@ -53,9 +52,9 @@ const MainMenuItem: React.FC<MainMenuItemProps> = ({
         {...text} />
     </div>
   );
-  
+
   let selectorView;
-  
+
   switch (type) {
     case 'Default':
       break;

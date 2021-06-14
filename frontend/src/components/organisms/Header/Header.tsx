@@ -59,7 +59,6 @@ const Header: React.FC<HeaderProps> = ({
   divider,
   className,
 }) => {
-
   const currentStyle = styles[`header${type}`];
 
   const dividerView = (
@@ -67,9 +66,9 @@ const Header: React.FC<HeaderProps> = ({
       className={styles.divider}
       {...divider} />
   );
-  
+
   let contentView;
-  
+
   switch (type) {
     case 'WithMenu':
       contentView = (

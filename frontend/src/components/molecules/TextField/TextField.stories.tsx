@@ -30,3 +30,15 @@ export const ErrorPassword: React.VFC<{}> = () => (
     type='Password'
     />
 );
+export const DefaultTextArea: React.VFC<{}> = () => (
+  <TextField
+    state='Default'
+    type='TextArea'
+    />
+);
+export const ErrorTextArea: React.VFC<{}> = () => (
+  <TextField
+    state='Error'
+    type='TextArea'
+    />
+);

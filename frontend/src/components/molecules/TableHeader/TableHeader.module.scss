@@ -1,0 +1,91 @@
+.tableHeader {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+  > * {
+    margin-left: 0.75rem;
+  }
+  background-color: rgb(240, 241, 247);
+
+  .companyName {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 1 1 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .contactName {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 1 1 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .status {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 1 1 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .createOn {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 1 1 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .assetName {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 1 1 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .cost {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 1 1 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+}

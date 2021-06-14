@@ -1,11 +1,16 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { Link } from 'react-router-dom';
 import styles from './QuoteBlock.module.scss';
 
 import Text, { TextProps } from '../../atoms/Text';
 import QuoteRateSection, { QuoteRateSectionProps } from '../../organisms/QuoteRateSection';
+import DetailItemList, { DetailItemListProps } from '../../organisms/DetailItemList';
 import Button, { ButtonProps } from '../../atoms/Button';
+import Toast, { ToastProps } from '../../atoms/Toast';
+import { ToastTypeType, ToastStyleType } from '../../atoms/Toast/Toast';
+import { IconProps } from '../../atoms/Icon';
 
 export const defaultProps = {
   blockHeading: {
@@ -21,13 +26,9 @@ export const defaultProps = {
       size: 'Large',
       type: 'Heading2',
     },
-    quoteDetails: {
-      text: {
-        style: 'Basic800',
-        align: 'Left',
-        size: 'Medium',
-        type: 'Paragraph3',
-      },
+    detailItemList: {
+      quoteDetailItems: [
+      ],
     },
     rateCardList: {
       rateCards: [
@@ -40,17 +41,21 @@ export const defaultProps = {
     size: 'Medium',
     type: 'Paragraph3',
   } as TextProps,
-  conditionsText: {
-    style: 'Basic800',
-    align: 'Left',
-    size: 'Medium',
-    type: 'Paragraph2',
-  } as TextProps,
   validText: {
     style: 'Basic800',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph3',
+  } as TextProps,
+  detailItemList: {
+    quoteDetailItems: [
+    ],
+  } as DetailItemListProps,
+  learnMoreText: {
+    style: 'Basic800',
+    align: 'Left',
+    size: 'Medium',
+    type: 'Paragraph2',
   } as TextProps,
   viewQuoteButton: {
     type: 'Button',
@@ -64,37 +69,58 @@ export const defaultProps = {
       type: 'ButtonGiant',
     },
   } as ButtonProps,
-  learnMoreText: {
-    style: 'Basic800',
-    align: 'Left',
-    size: 'Medium',
-    type: 'Paragraph2',
-  } as TextProps,
+  expiryToast: {
+    type: 'NoCloseButton' as ToastTypeType,
+    style: 'Danger' as ToastStyleType,
+    leadingIcon: {
+      asset: 'CloseCircleFilled',
+      style: 'Red200',
+    } as IconProps,
+    text: {
+      style: 'Red200',
+      align: 'Left',
+      size: 'Large',
+      type: 'Paragraph1',
+    } as TextProps,
+    icon: {
+      asset: 'Close',
+      style: 'Basic100',
+    } as IconProps,
+  },
 };
 
 export type QuoteBlockProps = {
   blockHeading?: TextProps;
   quoteRateSection?: QuoteRateSectionProps;
   disclaimerText?: TextProps;
-  conditionsText?: TextProps;
   validText?: TextProps;
+  detailItemList?: DetailItemListProps;
+  learnMoreText?: TextProps;
   viewQuoteButton?: ButtonProps;
   className?: string;
-  learnMoreText?: TextProps;
+  quoteExpired?: boolean;
+  expiryToast?: ToastProps;
 };
 
 const QuoteBlock: React.FC<QuoteBlockProps> = ({
   blockHeading,
   quoteRateSection,
   disclaimerText,
-  conditionsText,
   validText,
+  detailItemList,
+  learnMoreText,
   viewQuoteButton,
   className,
-  learnMoreText,
+  quoteExpired,
+  expiryToast,
 }) => {
+  let toastDisplay;
+  if (quoteExpired) {
+    toastDisplay = <Toast {...expiryToast}/>;
+  }
   return (
     <div className={cx(styles.quoteBlock, className)}>
+      {toastDisplay}
       <Text
         className={styles.blockHeading}
         {...blockHeading} />
@@ -104,18 +130,18 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
       <Text
         className={styles.disclaimerText}
         {...disclaimerText} />
-      <Text
-        className={styles.conditionsText}
-        {...conditionsText} />
+      <DetailItemList
+        className={styles.detailItemList}
+        {...detailItemList} />
       <Text
         className={styles.validText}
         {...validText} />
       <Text
-        className={styles.learnMoreText}
-        {...learnMoreText} />
+          className={styles.learnMoreText}
+          {...learnMoreText} />
       <Button
-        className={styles.viewQuoteButton}
-        {...viewQuoteButton} />
+          className={styles.viewQuoteButton}
+          {...viewQuoteButton} />
     </div>
   );
 };

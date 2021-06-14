@@ -1,0 +1,87 @@
+.menuPage {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1rem 0.5rem 1rem 0.5rem;
+  > * {
+    margin-top: 1rem;
+  }
+
+  .topBar {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1rem 0rem 1rem 0rem;
+    align-self: flex-start;
+    width: 19rem;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .menuItemList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    width: 19rem;
+    flex: 0 0 15rem;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+}
+
+@media (min-width: 576px) {
+  .menuPage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 2rem 2.5rem 1rem 2.5rem;
+    > * {
+      margin-top: 1.5rem;
+    }
+  
+    .topBar {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 1rem 0rem;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .menuItemList {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+  }
+}

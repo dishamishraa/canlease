@@ -3,18 +3,21 @@ import cx from 'classnames';
 
 import styles from './BusinessInformationBlock.module.scss';
 
+import Stepper, { StepperProps } from '../../atoms/Stepper';
 import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import SelectField, { SelectFieldProps } from '../../molecules/SelectField';
 import Button, { ButtonProps } from '../../atoms/Button';
 
 export const defaultProps = {
-  description: {
-    style: 'Brand500',
-    align: 'Left',
-    size: 'Medium',
-    type: 'Paragraph2',
-  } as TextProps,
+  stepper: {
+    text: {
+      style: 'Brand500',
+      align: 'Left',
+      size: 'Medium',
+      type: 'Paragraph3',
+    },
+  } as StepperProps,
   blockHeading: {
     style: 'Basic800',
     align: 'Left',
@@ -121,7 +124,7 @@ export const defaultProps = {
 };
 
 export type BusinessInformationBlockProps = {
-  description?: TextProps;
+  stepper?: StepperProps;
   blockHeading?: TextProps;
   fullLegalNameTextField?: TextFieldProps;
   operatingNameTextField?: TextFieldProps;
@@ -134,7 +137,7 @@ export type BusinessInformationBlockProps = {
 };
 
 const BusinessInformationBlock: React.FC<BusinessInformationBlockProps> = ({
-  description,
+  stepper,
   blockHeading,
   fullLegalNameTextField,
   operatingNameTextField,
@@ -144,14 +147,13 @@ const BusinessInformationBlock: React.FC<BusinessInformationBlockProps> = ({
   websiteLinkTextField,
   nextButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.businessInformationBlock, className)}>
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
-          <Text
-            className={styles.description}
-            {...description} />
+          <Stepper
+            className={styles.stepper}
+            {...stepper} />
           <Text
             className={styles.blockHeading}
             {...blockHeading} />
@@ -181,8 +183,7 @@ const BusinessInformationBlock: React.FC<BusinessInformationBlockProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+);
 
 BusinessInformationBlock.defaultProps = defaultProps;
 

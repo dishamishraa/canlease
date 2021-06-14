@@ -5,7 +5,6 @@ import styles from './SignUpBlock.module.scss';
 
 import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
-import RadiobuttonList, { RadiobuttonListProps } from '../../organisms/RadiobuttonList';
 import Button, { ButtonProps } from '../../atoms/Button';
 
 export const defaultProps = {
@@ -68,10 +67,6 @@ export const defaultProps = {
       },
     },
   } as TextFieldProps,
-  radiobuttonList: {
-    radioButtonItems: [
-    ],
-  } as RadiobuttonListProps,
   signUpButton: {
     type: 'Button',
     size: 'Large',
@@ -104,7 +99,6 @@ export type SignUpBlockProps = {
   emailTextField?: TextFieldProps;
   createPasswordField?: TextFieldProps;
   confirmPasswordField?: TextFieldProps;
-  radiobuttonList?: RadiobuttonListProps;
   signUpButton?: ButtonProps;
   signInButton?: ButtonProps;
   className?: string;
@@ -116,12 +110,10 @@ const SignUpBlock: React.FC<SignUpBlockProps> = ({
   emailTextField,
   createPasswordField,
   confirmPasswordField,
-  radiobuttonList,
   signUpButton,
   signInButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.signUpBlock, className)}>
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
@@ -142,9 +134,6 @@ const SignUpBlock: React.FC<SignUpBlockProps> = ({
           <TextField
             className={styles.confirmPasswordField}
             {...confirmPasswordField} />
-          <RadiobuttonList
-            className={styles.radiobuttonList}
-            {...radiobuttonList} />
           <Button
             className={styles.signUpButton}
             {...signUpButton} />
@@ -159,8 +148,7 @@ const SignUpBlock: React.FC<SignUpBlockProps> = ({
           {...signInButton} />
       </div>
     </div>
-  );
-};
+);
 
 SignUpBlock.defaultProps = defaultProps;
 

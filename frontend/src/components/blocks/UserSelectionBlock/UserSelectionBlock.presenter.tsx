@@ -2,15 +2,13 @@ import React, {useState} from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { UserSelectionBlockProps, defaultProps as UserSelectionBlockDefaultProps } from './UserSelectionBlock';
-import Text, { TextProps } from '../../atoms/Text';
-import CardList, { CardListProps } from '../../organisms/CardList';
-import Modal, { ModalProps, defaultProps as modalPropsDefaultProps  } from '../../organisms/Modal/Modal';
-import { UserSelectionCardProps, defaultProps as userSelectionCardDefaultProps } from '../../molecules/UserSelectionCard/UserSelectionCard';
-import { Cookies, useCookies } from 'react-cookie';
+import { TextProps } from '../../atoms/Text';
+import { CardListProps } from '../../organisms/CardList';
+import { ModalProps, defaultProps as modalPropsDefaultProps  } from '../../organisms/Modal/Modal';
+import { defaultProps as userSelectionCardDefaultProps } from '../../molecules/UserSelectionCard/UserSelectionCard';
 import ClientImage from '../../../resources/images/Client.png';
 import EndUserImage from '../../../resources/images/EndUser.png';
 import LimitImage from '../../../resources/images/Limit.png';
-import Icon, { IconProps } from '../../atoms/Icon';
 
 export type UserSelectionBlockPresenterProps = UserSelectionBlockProps & {
 };
@@ -21,15 +19,11 @@ const withPresenter = (
   const Presenter: React.FC<UserSelectionBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
     const history = useHistory();
-    const location = useLocation();
-    const [cookies, setCookie, removeCookie] = useCookies();
+    const [showModal, setShowModal] = useState(true);
     const {
       className,
       setUserType,
     } = props;
- 
-    const [showModal, setShowModal] = useState(true);
-
     const onCloseModal = () => {
       setShowModal(false)
     }
@@ -93,7 +87,6 @@ const withPresenter = (
                     if (access) {
                       if (setUserType) {
                         setUserType("customer");
-                        setCookie("instantQuote", "", {maxAge: 100})
                         history.push('/getQuote');
                       }
                     } else {
@@ -121,7 +114,6 @@ const withPresenter = (
                     if (access) {
                       if (setUserType) {
                         setUserType("vendor");
-                        setCookie("instantQuote", "", {maxAge: 100})
                         history.push('/getQuote');
                       }
                     } else {

@@ -25,11 +25,10 @@ const UserIcon: React.FC<UserIconProps> = ({
   value,
   className,
 }) => {
-
   const currentStyle = styles[`userIcon${type}${style}`];
 
   let backgroundView;
-  
+
   switch (type) {
     case 'Initials':
       backgroundView = (

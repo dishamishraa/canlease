@@ -1,0 +1,23 @@
+.tableItemList {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  .tableItem {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+    > * {
+      margin-left: 0.75rem;
+    }
+    align-self: flex-start;
+    width: 46rem;
+    flex: 0 0 auto;
+  }
+
+}

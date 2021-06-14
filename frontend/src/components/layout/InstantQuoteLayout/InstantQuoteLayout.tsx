@@ -45,7 +45,25 @@ export const defaultProps = {
     },
   } as HeaderProps,
   simplePage: {
-    getQuoteBlock: {
+    topBar: {
+      backButton: {
+        type: 'IconTextButton',
+        size: 'Small',
+        fill: 'None',
+        colour: 'Basic',
+        icon: {
+          asset: 'ArrowLeft',
+          style: 'Brand500',
+        },
+        text: {
+          style: 'Brand500',
+          align: 'Center',
+          size: 'Small',
+          type: 'ButtonGiant',
+        },
+      },
+    },
+    block: {
       blockHeading: {
         style: 'Basic800',
         align: 'Left',
@@ -144,9 +162,7 @@ const InstantQuoteLayout: React.FC<InstantQuoteLayoutProps> = ({
   header,
   simplePage,
   className,
-}) => {
-
-  return (
+}) => (
     <div className={cx(styles.instantQuoteLayout, className)}>
       <Header
         className={styles.header}
@@ -159,8 +175,7 @@ const InstantQuoteLayout: React.FC<InstantQuoteLayoutProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+);
 
 InstantQuoteLayout.defaultProps = defaultProps;
 

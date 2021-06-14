@@ -69,8 +69,7 @@ const Modal: React.FC<ModalProps> = ({
   primaryButton,
   secondaryButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.modal, className)}>
       <div className={styles.topContent}>
         <Icon
@@ -95,8 +94,7 @@ const Modal: React.FC<ModalProps> = ({
           {...secondaryButton} />
       </div>
     </div>
-  );
-};
+);
 
 Modal.defaultProps = defaultProps;
 

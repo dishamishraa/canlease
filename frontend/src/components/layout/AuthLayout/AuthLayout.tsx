@@ -21,7 +21,7 @@ export const defaultProps = {
     },
   } as HeaderProps,
   authPage: {
-    backBar: {
+    topBar: {
       backButton: {
         type: 'IconTextButton',
         size: 'Small',
@@ -39,7 +39,7 @@ export const defaultProps = {
         },
       },
     },
-    signInBlock: {
+    block: {
       blockHeading: {
         style: 'Basic800',
         align: 'Center',
@@ -120,8 +120,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
   header,
   authPage,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.authLayout, className)}>
       <Header
         className={styles.header}
@@ -134,8 +133,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+);
 
 AuthLayout.defaultProps = defaultProps;
 

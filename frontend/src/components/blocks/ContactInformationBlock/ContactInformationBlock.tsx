@@ -3,18 +3,21 @@ import cx from 'classnames';
 
 import styles from './ContactInformationBlock.module.scss';
 
+import Stepper, { StepperProps } from '../../atoms/Stepper';
 import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import SelectField, { SelectFieldProps } from '../../molecules/SelectField';
 import Button, { ButtonProps } from '../../atoms/Button';
 
 export const defaultProps = {
-  description: {
-    style: 'Brand500',
-    align: 'Left',
-    size: 'Medium',
-    type: 'Paragraph2',
-  } as TextProps,
+  stepper: {
+    text: {
+      style: 'Brand500',
+      align: 'Left',
+      size: 'Medium',
+      type: 'Paragraph3',
+    },
+  } as StepperProps,
   blockHeading: {
     style: 'Basic800',
     align: 'Left',
@@ -121,7 +124,7 @@ export const defaultProps = {
 };
 
 export type ContactInformationBlockProps = {
-  description?: TextProps;
+  stepper?: StepperProps;
   blockHeading?: TextProps;
   emailTextField?: TextFieldProps;
   phoneNumberTextField?: TextFieldProps;
@@ -134,7 +137,7 @@ export type ContactInformationBlockProps = {
 };
 
 const ContactInformationBlock: React.FC<ContactInformationBlockProps> = ({
-  description,
+  stepper,
   blockHeading,
   emailTextField,
   phoneNumberTextField,
@@ -144,14 +147,13 @@ const ContactInformationBlock: React.FC<ContactInformationBlockProps> = ({
   provinceSelectField,
   nextButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.contactInformationBlock, className)}>
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
-          <Text
-            className={styles.description}
-            {...description} />
+          <Stepper
+            className={styles.stepper}
+            {...stepper} />
           <Text
             className={styles.blockHeading}
             {...blockHeading} />
@@ -181,8 +183,7 @@ const ContactInformationBlock: React.FC<ContactInformationBlockProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+);
 
 ContactInformationBlock.defaultProps = defaultProps;
 

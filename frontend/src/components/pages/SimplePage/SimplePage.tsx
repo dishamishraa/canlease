@@ -1,18 +1,37 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { Redirect, Route, Switch } from 'react-router-dom';
 import styles from './SimplePage.module.scss';
 
 import UserSelectionBlock, { UserSelectionBlockProps } from '../../blocks/UserSelectionBlock';
+import TopBar, { TopBarProps } from '../../organisms/TopBar';
 import GetQuoteBlock, { GetQuoteBlockProps } from '../../blocks/GetQuoteBlock';
 import ContactInfoCustomerBlock, { ContactInfoCustomerBlockProps } from '../../blocks/ContactInfoCustomerBlock';
 import ContactInfoVendorBlock, { ContactInfoVendorBlockProps } from '../../blocks/ContactInfoVendorBlock';
 import QuoteBlock, { QuoteBlockProps } from '../../blocks/QuoteBlock';
 import ActionBlock, { ActionBlockProps } from '../../blocks/ActionBlock';
-import { Redirect, Route, Switch } from 'react-router-dom';
 
 export const defaultProps = {
-  getQuoteBlock: {
+  topBar: {
+    backButton: {
+      type: 'IconTextButton',
+      size: 'Small',
+      fill: 'None',
+      colour: 'Basic',
+      icon: {
+        asset: 'ArrowLeft',
+        style: 'Brand500',
+      },
+      text: {
+        style: 'Brand500',
+        align: 'Center',
+        size: 'Small',
+        type: 'ButtonGiant',
+      },
+    },
+  } as TopBarProps,
+  block: {
     blockHeading: {
       style: 'Basic800',
       align: 'Left',
@@ -106,6 +125,8 @@ export type SimplePageProps = {
   contactInfoCustomerBlock?: ContactInfoCustomerBlockProps;
   contactInfoVendorBlock?: ContactInfoVendorBlockProps;
   quoteBlock?: QuoteBlockProps;
+  topBar?: TopBarProps;
+  block?: GetQuoteBlockProps;
   actionBlock?: ActionBlockProps;
   className?: string;
   setUserType?: React.Dispatch<React.SetStateAction<string>>;
@@ -118,49 +139,59 @@ const routes = {
   contactInformation: '/contactInformation',
   instaQuote: '/instaQuote',
   invalid: '/',
-}
+};
 
 const SimplePage: React.FC<SimplePageProps> = ({
   userSelectionBlock,
   getQuoteBlock,
   contactInfoCustomerBlock,
   quoteBlock,
+  topBar,
+  block,
   actionBlock,
   className,
   setUserType,
   userType,
 }) => {
+  const infoBlock = userType === 'vendor'
+    ? (<ContactInfoVendorBlock className={styles.block}
+      {...contactInfoCustomerBlock} />)
+    : (<ContactInfoCustomerBlock
+      className={styles.block}
+      {...contactInfoCustomerBlock} />);
 
   return (
     <div className={cx(styles.simplePage, className)}>
-      <Switch>
-        <Route exact path={routes.userSelection}>
-          <UserSelectionBlock
-            className={styles.block} 
-            {...userSelectionBlock} 
-            setUserType={setUserType}
-            />
-        </Route>
-        <Route exact path={routes.getQuote}>
-          <GetQuoteBlock
-            className={styles.block}
-            {...getQuoteBlock} />
-        </Route>
-        <Route exact path={routes.contactInformation}>
-          <ContactInfoCustomerBlock
-            className={styles.block}
-            {...contactInfoCustomerBlock} />
-        </Route>
-        <Route exact path={routes.instaQuote}>
-          <QuoteBlock
-            className={styles.block}
-            {...quoteBlock} />
-        </Route>
-        <Route path={routes.invalid}>
-          <Redirect to={routes.userSelection}/>
-        </Route>
-      </Switch>
-      
+      <div className={styles.topContent}>
+        <TopBar
+          className={styles.topBar}
+          {...topBar} />
+        <Switch>
+          <Route exact path={routes.userSelection}>
+            <UserSelectionBlock
+              className={styles.block}
+              {...userSelectionBlock}
+              setUserType={setUserType}
+              />
+          </Route>
+          <Route exact path={routes.getQuote}>
+            <GetQuoteBlock
+              className={styles.block}
+              {...getQuoteBlock} />
+          </Route>
+          <Route exact path={routes.contactInformation}>
+            {infoBlock}
+          </Route>
+          <Route exact path={routes.instaQuote}>
+            <QuoteBlock
+              className={styles.block}
+              {...quoteBlock} />
+          </Route>
+          <Route path={routes.invalid}>
+            <Redirect to={routes.userSelection}/>
+          </Route>
+        </Switch>
+      </div>
       <ActionBlock
         className={styles.actionBlock}
         {...actionBlock} />
