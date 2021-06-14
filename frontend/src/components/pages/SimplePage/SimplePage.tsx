@@ -12,6 +12,7 @@ import ContactInfoVendorBlock, { ContactInfoVendorBlockProps } from '../../block
 import QuoteBlock, { QuoteBlockProps } from '../../blocks/QuoteBlock';
 import ActionBlock, { ActionBlockProps } from '../../blocks/ActionBlock';
 import { ContactInfo, EquipmentLeaseInfo } from '../../../lib/types';
+import { UseCreateQuoteResult } from '../../../modules/quote/useCreateQuote';
 
 export const defaultProps = {
   topBar: {
@@ -136,6 +137,7 @@ export type SimplePageProps = {
   equipmentLeaseInfo?: EquipmentLeaseInfo;
   setContactInfo?: React.Dispatch<React.SetStateAction<ContactInfo>>;
   contactInfo?: ContactInfo;
+  createQuote?: UseCreateQuoteResult; 
 };
 
 const routes = {
@@ -162,6 +164,7 @@ const SimplePage: React.FC<SimplePageProps> = (props) => {
     userType,
     equipmentLeaseInfo,
     contactInfo,
+    createQuote
   } = props
 
   const ContactInfoBlock = userType === "vendor" ? ContactInfoVendorBlock : ContactInfoCustomerBlock;
@@ -191,7 +194,7 @@ const SimplePage: React.FC<SimplePageProps> = (props) => {
             <ContactInfoBlock
               className={styles.block}
               {...contactInfoCustomerBlock} 
-              setContactInfo={setContactInfo} />
+              setContactInfo={setContactInfo}/>
           </Route>
           <Route exact path={routes.instaQuote}>
             <QuoteBlock
