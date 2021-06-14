@@ -119,6 +119,16 @@
             "applied": "Applied",
             "expired": "Expired"
         }
+    },
+    "sign_up":{
+        "heading_text": "Sign up",
+        "description": "Create a free Canlease account",
+        "email_label": "Email",
+        "create_password_label": "Create Password",
+        "confirm_password_label": "Confirm Password",
+        "sign_up_button": "SIGN UP",
+        "bottom_content": "Already have an account?",
+        "sign_in_button": "SIGN IN"
     }
 }
   

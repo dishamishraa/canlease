@@ -10,6 +10,12 @@ import Button, { ButtonProps } from '../../atoms/Button';
 export const defaultProps = {
   blockHeading: {
     style: 'Basic800',
+    align: 'Left',
+    size: 'Medium',
+    type: 'Heading2',
+  } as TextProps,
+  bottomContent: {
+    style: 'Basic800',
     align: 'Center',
     size: 'Medium',
     type: 'Paragraph3',
@@ -100,6 +106,7 @@ export type SignUpBlockProps = {
   createPasswordField?: TextFieldProps;
   confirmPasswordField?: TextFieldProps;
   signUpButton?: ButtonProps;
+  bottomContent?: TextProps;
   signInButton?: ButtonProps;
   className?: string;
 };
@@ -111,6 +118,7 @@ const SignUpBlock: React.FC<SignUpBlockProps> = ({
   createPasswordField,
   confirmPasswordField,
   signUpButton,
+  bottomContent,
   signInButton,
   className,
 }) => (
@@ -142,7 +150,7 @@ const SignUpBlock: React.FC<SignUpBlockProps> = ({
       <div className={styles.bottamContent}>
         <Text
           className={styles.blockHeading}
-          {...blockHeading} />
+          {...bottomContent} />
         <Button
           className={styles.signInButton}
           {...signInButton} />
