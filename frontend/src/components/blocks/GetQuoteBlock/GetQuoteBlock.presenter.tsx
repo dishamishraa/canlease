@@ -34,8 +34,13 @@ const withPresenter = (
     const handleClickNext = () => {
       if(isFormValid && setEquipmentLeaseInfo && state){
         const { userType } = state;
-        setEquipmentLeaseInfo({name: equipmentName, cost: equipmentCost, leaseType: equipmentLeaseType});
-        history.push('/contactInformation', {userType: userType, equipmentLeaseInfo: {userType: state.userType, name: equipmentName, cost: equipmentCost, leaseType: equipmentLeaseType}});
+        const leaseInfo = {
+          name: equipmentName, 
+          cost: equipmentCost, 
+          leaseType: equipmentLeaseType,
+        };        
+        setEquipmentLeaseInfo(leaseInfo);
+        history.push('/contactInformation', {userType: userType, equipmentLeaseInfo: leaseInfo});
       }
     };
     const handleChangeEquipmentName = ({ target: { value } }) => setEquipmentName(value);
