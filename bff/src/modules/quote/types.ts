@@ -48,7 +48,7 @@ export type QuoteOption = {
   term: string;
   financeRate: number;
   purchaseOptionDate: string;
-}
+};
 
 export type Quote = {
   quoteId: string;
