@@ -1,6 +1,6 @@
 import mockSalesforceContractPayload from './mockSalesforceContractPayload';
 import mockSendGridPayload from './mockSendGridPayload';
-import quoteResponseData from './mockQuoteResponseObject.json';
+import quoteResponseData from './mockQuoteResponse';
 
 export {
   mockSalesforceContractPayload,

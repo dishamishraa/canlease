@@ -43,18 +43,18 @@ export type SendQuote = {
   }];
 };
 
+export type QuoteOption = {
+  monthlyAmount: number;
+  term: string;
+  financeRate: number;
+  purchaseOptionDate: string;
+}
+
 export type Quote = {
   quoteId: string;
   asset: string;
   applicationAmount: number;
-  quoteOptions: [
-    {
-      monthlyAmount: number;
-      term: string;
-      financeRate: number;
-      purchaseOptionDate: string;
-    }
-  ];
+  quoteOptions: QuoteOption[];
   quoteExpiryDate: string;
 };
 
