@@ -20,6 +20,7 @@ const withPresenter = (
     const [customerName, setCustomerName] = useState<string>('');
     const [customerEmail, setCustomerEmail] = useState<string>('');
     const [customerCompanyName, setCustomerCompanyName] = useState<string>('');
+    
 
     const handleChangeVendorName = ({ target: { value } }) => setVendorName(value);
     const handleChangeBusinessEmail = ({ target: { value } }) => setBusinessEmail(value);

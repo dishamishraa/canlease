@@ -48,6 +48,8 @@ const withPresenter = (
         text: {
           value: t('contact_info.submit'),
         },
+        onButtonClicked: () => {
+        },
       },
     };
 

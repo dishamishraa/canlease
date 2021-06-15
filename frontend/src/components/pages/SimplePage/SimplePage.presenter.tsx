@@ -6,6 +6,8 @@ import { isObject, isEmpty, isEmptyString } from '../../../lib/utils';
 import useCreateQuote, { UseCreateQuoteResult } from '../../../modules/quote/useCreateQuote';
 import { CreateQuotePayload, Quote } from '../../../modules/types';
 import { isVariableStatement } from 'typescript';
+import { Cookies, useCookies } from 'react-cookie';
+import { INSTANT_QUOTE_COOKIE, MAX_AGE } from '../../../lib/config';
 
 export type SimplePagePropsPresenterProps = SimplePageProps & {
 };
@@ -16,6 +18,8 @@ const withPresenter = (
     const Presenter: React.FC<SimplePagePropsPresenterProps> = (props) => {
       const {
       } = props;
+
+      const [cookies, setCookie, removeCookie] = useCookies();
       
       const location = useLocation<({userType: string, equipmentLeaseInfo: EquipmentLeaseInfo})>();
       const history = useHistory();
@@ -60,6 +64,10 @@ const withPresenter = (
             ]
           });
           if (data) {
+            const expiryDate = new Date();
+            expiryDate.setTime(expiryDate.getTime() + Number(MAX_AGE)); 
+            setCookie(INSTANT_QUOTE_COOKIE, {userType: userType}, {expires: expiryDate});
+            
             const { quoteId } = data;
             history.push(`/instaQuote/${quoteId}`)
           }
