@@ -3,6 +3,8 @@ import { QuoteControllerContract } from './types';
 import { BadRequestError } from '../../lib/errors';
 import { errorWrapper } from '../../lib/utils';
 import { validateCreateQuote, validateSendQuote, validateGetQuote } from './utils';
+import { quoteResponseData } from './fixtures';
+
 
 export function createQuoteRouter(controllers: {
   quoteController: QuoteControllerContract;
@@ -10,13 +12,12 @@ export function createQuoteRouter(controllers: {
   const router = Router();
   const { quoteController } = controllers;
 
-  router.post('/', errorWrapper(async (req: Request, res: Response) => {
+    router.post('/', errorWrapper(async (req: Request, res: Response) => {
     if (!validateCreateQuote(req.body)) {
       throw BadRequestError();
     }
-
     await quoteController.createQuote(req.body);
-    res.sendStatus(200);
+    res.sendStatus(200).send(quoteResponseData);
   }));
 
   router.post('/send', errorWrapper(async (req: Request, res: Response) => {
@@ -35,7 +36,7 @@ export function createQuoteRouter(controllers: {
     }
 
     await quoteController.getQuote(id);
-    res.sendStatus(200);
+    res.sendStatus(200).send(quoteResponseData);
   }));
 
   return router;
