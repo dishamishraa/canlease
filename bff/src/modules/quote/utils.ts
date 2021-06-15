@@ -30,6 +30,11 @@ const SendQuoteSchema = Joi.object({
   })),
 });
 
+const quoteId = Joi.alternatives(
+  Joi.string(),
+  Joi.number(),
+).required();
+
 export const validateCreateQuote = (value: unknown): value is CreateQuote => {
   const { error } = CreateQuoteSchema.validate(value, { allowUnknown: true });
   return error === undefined;
@@ -37,5 +42,10 @@ export const validateCreateQuote = (value: unknown): value is CreateQuote => {
 
 export const validateSendQuote = (value: unknown): value is SendQuote => {
   const { error } = SendQuoteSchema.validate(value, { allowUnknown: true });
+  return error === undefined;
+};
+
+export const validateGetQuote = (value: unknown): value is number | string => {
+  const { error } = quoteId.validate(value, { allowUnknown: true });
   return error === undefined;
 };

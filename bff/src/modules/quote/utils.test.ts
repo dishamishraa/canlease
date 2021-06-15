@@ -1,4 +1,4 @@
-import { validateCreateQuote, validateSendQuote } from './utils';
+import { validateCreateQuote, validateSendQuote, validateGetQuote } from './utils';
 
 describe('quote utils', () => {
   describe('validateCreateQuote', () => {
@@ -55,6 +55,18 @@ describe('quote utils', () => {
     });
     it('should return false for invalid payload', () => {
       const valid = validateSendQuote({});
+
+      expect(valid).toBe(false);
+    });
+  });
+
+  describe('validateGetQuote', () => {
+    it('should return true if valid payload', () => {
+      const valid = validateGetQuote('1');
+      expect(valid).toBe(true);
+    });
+    it('should return false for invalid payload', () => {
+      const valid = validateGetQuote('');
 
       expect(valid).toBe(false);
     });
