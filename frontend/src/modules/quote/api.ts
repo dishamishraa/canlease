@@ -19,7 +19,7 @@ export const createQuote = async (payload: CreateQuotePayload): Promise<Quote> =
 export const getQuote = async (quoteId: number | string): Promise<Quote> => {
   console.log(getServerUrl)
   try {
-    const { data } = await axios.get<Quote>(`${getServerUrl()}/quote/${quoteId}}`);
+    const { data } = await axios.get<Quote>(`${getServerUrl()}/quote/${quoteId}`);
     return data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
