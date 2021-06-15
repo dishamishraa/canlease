@@ -17,7 +17,7 @@ export function createQuoteRouter(controllers: {
       throw BadRequestError();
     }
     await quoteController.createQuote(req.body);
-    res.sendStatus(200).send(quoteResponseData);
+    res.status(200).send(quoteResponseData);
   }));
 
   router.post('/send', errorWrapper(async (req: Request, res: Response) => {
@@ -36,7 +36,7 @@ export function createQuoteRouter(controllers: {
     }
 
     await quoteController.getQuote(id);
-    res.sendStatus(200).send(quoteResponseData);
+    res.status(200).send(quoteResponseData);
   }));
 
   return router;
