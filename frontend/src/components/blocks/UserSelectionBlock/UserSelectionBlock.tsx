@@ -35,7 +35,6 @@ export type UserSelectionBlockProps = {
   setUserType?: React.Dispatch<React.SetStateAction<string>>;
   modal?: ModalProps;
   showModal?: boolean;
-  instantQuoteCookie?: string;
 };
 
 const UserSelectionBlock: React.FC<UserSelectionBlockProps> = ({

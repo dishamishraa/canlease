@@ -10,6 +10,7 @@ import ClientImage from '../../../resources/images/Client.png';
 import EndUserImage from '../../../resources/images/EndUser.png';
 import LimitReachedIcon from '../../../resources/icons/LimitReached.svg';
 import Cookies from 'js-cookie';
+import { INSTANT_QUOTE_COOKIE } from '../../../lib/config';
 
 export type UserSelectionBlockPresenterProps = UserSelectionBlockProps & {
 };
@@ -24,7 +25,6 @@ const withPresenter = (
     const {
       className,
       setUserType,
-      instantQuoteCookie,
     } = props;
     const onCloseModal = () => {
       setShowModal(false)
@@ -38,12 +38,12 @@ const withPresenter = (
       }
     }
     let hasInstantQuote = true;
-    if (instantQuoteCookie){
-      const quoteCookie = Cookies.get(instantQuoteCookie);
-      if (quoteCookie){
+
+    const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
+    if (quoteCookie){
         hasInstantQuote = false;
-      }
     }
+  
 
     const modal: ModalProps = {
       ...modalPropsDefaultProps,
@@ -134,7 +134,6 @@ const withPresenter = (
         cardList={cardList} 
         modal={modal}
         showModal={showModal}
-        instantQuoteCookie={instantQuoteCookie}
         />;
   };
   return Presenter;
