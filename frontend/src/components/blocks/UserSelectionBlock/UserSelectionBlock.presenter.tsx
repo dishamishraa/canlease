@@ -28,6 +28,14 @@ const withPresenter = (
       ...UserSelectionBlockDefaultProps.blockHeading,
       value: t('user_type_selection.header'),
     };
+
+    const handleClickUserType = (userType) => {
+      if (setUserType) {
+        setUserType('customer');
+        history.push('/getQuote', {userType: userType});
+      }
+    }
+
     const cardList: CardListProps = {
       userSelectionCards:
             [
@@ -42,12 +50,7 @@ const withPresenter = (
                 button: {
                   ...userSelectionCardDefaultProps.button,
                   type: 'TextIconButton',
-                  onButtonClicked: () => {
-                    if (setUserType) {
-                      setUserType('customer');
-                      history.push('/getQuote', {userType: "customer"});
-                    }
-                  },
+                  onButtonClicked: () => handleClickUserType("customer"),
                   text: {
                     ...userSelectionCardDefaultProps.button.text,
                     value: t('user_type_selection.button'),
@@ -65,12 +68,7 @@ const withPresenter = (
                 button: {
                   ...userSelectionCardDefaultProps.button,
                   type: 'TextIconButton',
-                  onButtonClicked: () => {
-                    if (setUserType) {
-                      setUserType('vendor');
-                      history.push('/getQuote', {userType: "vendor"});
-                    }
-                  },
+                  onButtonClicked: () => handleClickUserType("vendor"),
                   text: {
                     ...userSelectionCardDefaultProps.button.text,
                     value: t('user_type_selection.button'),
