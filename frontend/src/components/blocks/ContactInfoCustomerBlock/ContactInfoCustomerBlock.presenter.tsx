@@ -6,7 +6,7 @@ import { ContactInfoCustomerBlockProps, defaultProps } from './ContactInfoCustom
 
 
 export type ContactInfoCustomerBlockPresenterProps = {
-  setContactInfo?: React.Dispatch<React.SetStateAction<ContactInfo>>;
+  handleCreateQuote?: (contactInfo: ContactInfo)=>void
 };
 
 const withPresenter = (

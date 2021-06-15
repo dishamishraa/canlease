@@ -16,21 +16,6 @@ const withPresenter = (
     const Presenter: React.FC<SimplePagePropsPresenterProps> = (props) => {
       const {
       } = props;
-
-      const defaultEquipmentLeaseInfo: EquipmentLeaseInfo = {
-        name: '',
-        cost: '',
-        leaseType: '',
-      }
-
-      const defaultContactInfoVendor: ContactInfoVendor = {
-        vendorName: '',
-        businessEmail: '',
-        companyName: '',
-        customerName: '',
-        customerEmail: '',
-        customerCompanyName: '',
-      }
       
       const location = useLocation<({userType: string, equipmentLeaseInfo: EquipmentLeaseInfo})>();
       const history = useHistory();
@@ -39,8 +24,7 @@ const withPresenter = (
       const { pathname } = location;
       const [userType, setUserType] = useState('');
       const [equipmentLeaseInfo, setEquipmentLeaseInfo] = useState<EquipmentLeaseInfo>({});
-      const [contactInfo, setContactInfo] = useState<ContactInfo>({});
-      const [{ loading, error }, createQuote] = useCreateQuote();
+      const [{}, createQuote] = useCreateQuote();
 
       useEffect(() => {
         if(state){
@@ -50,11 +34,7 @@ const withPresenter = (
         }
       }, [userType]);
 
-      useEffect(() => {
-          handleCreateQuote();
-      }, [contactInfo]);
-
-      const handleCreateQuote = async () => {
+      const handleCreateQuote = async (contactInfo: ContactInfo) => {
         const { name : equipmentName, cost: equipmentCost, leaseType } = equipmentLeaseInfo
         const { customerName, customerEmail, customerCompanyName } = contactInfo;
         if(userType === "vendor"){
@@ -62,7 +42,7 @@ const withPresenter = (
           const { data } = await createQuote({
             "userType": userType,
             "asset": equipmentName!,
-            "applicationAmount": 0,
+            "applicationAmount": parseInt(equipmentCost!),
             "leaseType": leaseType!,
             "contactName": customerName!,
             "contactEmail": customerEmail!,
@@ -107,8 +87,6 @@ const withPresenter = (
           setEquipmentLeaseInfo={setEquipmentLeaseInfo}
           equipmentLeaseInfo={equipmentLeaseInfo}
           userType={userType}
-          setContactInfo={setContactInfo}
-          contactInfo={contactInfo}
           handleCreateQuote={handleCreateQuote}/>;
   };
   return Presenter;

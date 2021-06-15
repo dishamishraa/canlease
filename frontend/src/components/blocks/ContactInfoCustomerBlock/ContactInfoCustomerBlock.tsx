@@ -81,7 +81,7 @@ export type ContactInfoCustomerBlockProps = {
   disclaimerText?: TextProps;
   viewQuoteButton?: ButtonProps;
   className?: string;
-  setContactInfo?: React.Dispatch<React.SetStateAction<ContactInfo>>;
+  handleCreateQuote?: (contactInfo: ContactInfo)=>void
 };
 
 const ContactInfoCustomerBlock: React.FC<ContactInfoCustomerBlockProps> = ({

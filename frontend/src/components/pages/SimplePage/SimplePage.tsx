@@ -135,9 +135,8 @@ export type SimplePageProps = {
   userType?: string;
   setEquipmentLeaseInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
   equipmentLeaseInfo?: EquipmentLeaseInfo;
-  setContactInfo?: React.Dispatch<React.SetStateAction<ContactInfo>>;
   contactInfo?: ContactInfo;
-  handleCreateQuote?: ()=>{}; 
+  handleCreateQuote?: (contactInfo: ContactInfo)=>void; 
 };
 
 const routes = {
@@ -158,12 +157,9 @@ const SimplePage: React.FC<SimplePageProps> = (props) => {
     block,
     actionBlock,
     className,
+    userType,
     setUserType,
     setEquipmentLeaseInfo,
-    setContactInfo,
-    userType,
-    equipmentLeaseInfo,
-    contactInfo,
     handleCreateQuote
   } = props
 
@@ -194,7 +190,7 @@ const SimplePage: React.FC<SimplePageProps> = (props) => {
             <ContactInfoBlock
               className={styles.block}
               {...contactInfoCustomerBlock} 
-              setContactInfo={setContactInfo}
+              handleCreateQuote={handleCreateQuote}
               />
           </Route>
           <Route exact path={routes.instaQuote}>

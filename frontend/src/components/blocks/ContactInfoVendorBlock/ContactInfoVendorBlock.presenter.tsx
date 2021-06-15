@@ -3,10 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { ContactInfoVendorBlockProps, defaultProps } from './ContactInfoVendorBlock';
 import { isEmptyString } from '../../../lib/utils';
 import { ContactInfo } from '../../../lib/types';
-import { UseCreateQuoteResult } from '../../../modules/quote/useCreateQuote';
 
 export type ContactInfoVendorBlockPresenterProps = {
-  setContactInfo?: React.Dispatch<React.SetStateAction<ContactInfo>>;
+  handleCreateQuote?: (contactInfo: ContactInfo)=>void
 };
 
 const withPresenter = (
@@ -14,7 +13,7 @@ const withPresenter = (
 ): React.FC<ContactInfoVendorBlockPresenterProps> => {
   const Presenter: React.FC<ContactInfoVendorBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
-    const { setContactInfo } = props;
+    const { handleCreateQuote } = props;
     const [vendorName, setVendorName] = useState<string>('');
     const [businessEmail, setBusinessEmail] = useState<string>('');
     const [companyName, setCompanyName] = useState<string>('');
@@ -33,8 +32,8 @@ const withPresenter = (
       && !isEmptyString(companyName) && !isEmptyString(customerName)
       && !isEmptyString(customerEmail) && !isEmptyString(customerCompanyName);
     const handleClickViewQuote = () => {
-      if(isFormValid && setContactInfo){
-        setContactInfo({
+      if(isFormValid && handleCreateQuote){
+        handleCreateQuote({
           vendorName: vendorName,
           businessEmail: businessEmail,
           companyName: companyName,
