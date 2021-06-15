@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { SimplePageProps} from './SimplePage';
 import { EquipmentLeaseInfo, ContactInfoVendor, ContactInfoCustomer, ContactInfo } from '../../../lib/types';
-import { Redirect, useLocation } from 'react-router-dom';
+import { Redirect, useLocation, useHistory } from 'react-router-dom';
 import { isObject, isEmpty, isEmptyString } from '../../../lib/utils';
 import useCreateQuote, { UseCreateQuoteResult } from '../../../modules/quote/useCreateQuote';
-import { CreateQuotePayload } from '../../../modules/quote/types';
+import { CreateQuotePayload, Quote } from '../../../modules/types';
+import { isVariableStatement } from 'typescript';
 
 export type SimplePagePropsPresenterProps = SimplePageProps & {
 };
@@ -19,7 +20,7 @@ const withPresenter = (
       const defaultEquipmentLeaseInfo: EquipmentLeaseInfo = {
         name: '',
         cost: '',
-        leastType: '',
+        leaseType: '',
       }
 
       const defaultContactInfoVendor: ContactInfoVendor = {
@@ -31,44 +32,68 @@ const withPresenter = (
         customerCompanyName: '',
       }
       
-      const location = useLocation<({userType: string})>();
+      const location = useLocation<({userType: string, equipmentLeaseInfo: EquipmentLeaseInfo})>();
+      const history = useHistory();
       const { state } = location;
 
       const { pathname } = location;
       const [userType, setUserType] = useState('');
       const [equipmentLeaseInfo, setEquipmentLeaseInfo] = useState<EquipmentLeaseInfo>({});
       const [contactInfo, setContactInfo] = useState<ContactInfo>({});
+      const [{ loading, error }, createQuote] = useCreateQuote();
 
-      // useEffect(() => {
-      //   if(state){
-      //     const { userType: prevUserType } = state;
-      //     setUserType(prevUserType);
-      //   }
-      // }, [state]);
+      useEffect(() => {
+        if(state){
+          const {userType = "", equipmentLeaseInfo = {}} = state;
+          setUserType(userType);
+          setEquipmentLeaseInfo(equipmentLeaseInfo);
+        }
+      }, [userType]);
 
-      // const quoteState: UseCreateQuoteResult = useCreateQuote({
-      //   userType: "test",
-      //   asset: "test",
-      //   applicationAmount: 123,
-      //   leaseType: "test",
-      //   contactName: "test",
-      //   contactEmail: "test",
-      //   vendorName: "test",
-      //   vendorEmail: "test",
-      //   contactBusinessName: "test",
-      //   vendorBusinessName: "test",
-      //   quoteOptions: []
-      // });
+      useEffect(() => {
+          handleCreateQuote();
+      }, [contactInfo]);
+
+      const handleCreateQuote = async () => {
+        const { name : equipmentName, cost: equipmentCost, leaseType } = equipmentLeaseInfo
+        const { customerName, customerEmail, customerCompanyName } = contactInfo;
+        if(userType === "vendor"){
+          const { vendorName, businessEmail, companyName } = contactInfo as ContactInfoVendor;
+          const { data } = await createQuote({
+            "userType": userType,
+            "asset": equipmentName!,
+            "applicationAmount": 0,
+            "leaseType": leaseType!,
+            "contactName": customerName!,
+            "contactEmail": customerEmail!,
+            "contactBusinessName": customerCompanyName!,
+            "vendorName": vendorName!,
+            "vendorEmail": businessEmail!,
+            "vendorBusinessName": companyName!,
+            "quoteOptions": [
+              {
+                "monthlyAmount": 0,
+                "term": "12M",
+                "financeRate": 0,
+                "purchaseOptionDate": (new Date()).toString()
+              }
+            ]
+          });
+          if (data) {
+            const { quoteId } = data;
+            history.push(`/instaQuote/${quoteId}`)
+          }
+        }
+      }
       
-      if(pathname === "/getQuote" && isEmptyString(userType)){
-        console.log(!isEmpty(state) && isEmptyString(userType))
+      if(pathname === "/getQuote" && isEmpty(state)){
         return <Redirect 
           to={{
             pathname: "/",
           }}
         />
       }
-      if(pathname === "/contactInformation" && isEmpty(equipmentLeaseInfo) && isEmptyString(userType)){
+      if(pathname === "/contactInformation" && isEmpty(state)){
         return <Redirect 
           to={{
             pathname: "/",
@@ -83,7 +108,8 @@ const withPresenter = (
           equipmentLeaseInfo={equipmentLeaseInfo}
           userType={userType}
           setContactInfo={setContactInfo}
-          contactInfo={contactInfo}/>;
+          contactInfo={contactInfo}
+          handleCreateQuote={handleCreateQuote}/>;
   };
   return Presenter;
 };

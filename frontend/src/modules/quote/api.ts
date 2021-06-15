@@ -5,7 +5,7 @@ import { Quote, CreateQuotePayload } from '../types';
 
 export const createQuote = async (payload: CreateQuotePayload): Promise<Quote> => {
   try {
-    const { data } = await axios.post<Quote>(`${getServerUrl}/v2/quote`, payload, { withCredentials: true });
+    const { data } = await axios.post<Quote>(`${getServerUrl()}/quote/create`, payload, { withCredentials: true });
     return data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {

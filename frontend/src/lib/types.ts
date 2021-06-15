@@ -20,24 +20,24 @@ export type ServiceErrorResponse = {
 };
 
 export type EquipmentLeaseInfo = {
-  name?: String,
-  cost?: String,
-  leastType?: String,
+  name?: string,
+  cost?: string,
+  leaseType?: string,
 }
 
 export type ContactInfoVendor = {
-  vendorName?: String,
-  businessEmail?: String,
-  companyName?: String,
-  customerName?: String,
-  customerEmail?: String,
-  customerCompanyName?: String,
+  vendorName?: string,
+  businessEmail?: string,
+  companyName?: string,
+  customerName?: string,
+  customerEmail?: string,
+  customerCompanyName?: string,
 }
 
 export type ContactInfoCustomer = {
-  customerName?: String,
-  customerEmail?: String,
-  customerCompanyName?: String,
+  customerName?: string,
+  customerEmail?: string,
+  customerCompanyName?: string,
 }
 
 export type ContactInfo = ContactInfoVendor | ContactInfoCustomer;

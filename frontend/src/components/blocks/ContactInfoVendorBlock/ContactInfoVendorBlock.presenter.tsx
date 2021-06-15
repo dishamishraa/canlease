@@ -41,7 +41,7 @@ const withPresenter = (
           customerName: customerName,
           customerEmail: customerEmail,
           customerCompanyName: customerCompanyName,
-        })
+        });
       }
     };
 

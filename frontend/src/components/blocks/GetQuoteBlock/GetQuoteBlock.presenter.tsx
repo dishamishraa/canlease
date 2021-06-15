@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { TextInputProps } from '../../atoms/TextInput';
 import { GetQuoteBlockProps, defaultProps as defaultGetQuoteBlockProps } from './GetQuoteBlock';
 import { ContextualMenuProps } from '../../molecules/ContextualMenu';
@@ -21,6 +21,9 @@ const withPresenter = (
     const { t } = useTranslation();
     const history = useHistory();
     const { setEquipmentLeaseInfo } = props;
+    const location = useLocation<({userType: string, equipmentLeaseInfo: EquipmentLeaseInfo})>();
+    const { state } = location;
+    
     
     const [equipmentName, setEquipmentName] = useState<string>('');
     const [equipmentCost, setEquipmentCost] = useState<string>('');
@@ -29,9 +32,10 @@ const withPresenter = (
     const isFormValid = !isEmptyString(equipmentName) && !isEmptyString(equipmentCost);
 
     const handleClickNext = () => {
-      if(isFormValid && setEquipmentLeaseInfo){
-        setEquipmentLeaseInfo({name: equipmentName, cost: equipmentCost, leastType: equipmentLeaseType});
-        history.push('/contactInformation', {name: equipmentName, cost: equipmentCost, leastType: equipmentLeaseType});
+      if(isFormValid && setEquipmentLeaseInfo && state){
+        const { userType } = state;
+        setEquipmentLeaseInfo({name: equipmentName, cost: equipmentCost, leaseType: equipmentLeaseType});
+        history.push('/contactInformation', {userType: userType, equipmentLeaseInfo: {userType: state.userType, name: equipmentName, cost: equipmentCost, leaseType: equipmentLeaseType}});
       }
     };
     const handleChangeEquipmentName = ({ target: { value } }) => setEquipmentName(value);
@@ -86,6 +90,7 @@ const withPresenter = (
           value: t('get_quote_block.cost.label'),
         },
         textInput: {
+          inputType: "number",
           textPlaceholder: t('get_quote_block.cost.placeholder'),
           textValue: equipmentCost,
           onTextChanged: handleChangeEquipmentCost,

@@ -14,16 +14,14 @@ export function createQuoteRouter(controllers: {
     if (!validateCreateQuote(req.body)) {
       throw BadRequestError();
     }
-
-    await quoteController.createQuote(req.body);
-    res.sendStatus(200);
+    const response = await quoteController.createQuote(req.body);
+    res.send(200).json(response)
   }));
 
   router.post('/send', errorWrapper(async (req: Request, res: Response) => {
     if (!validateSendQuote(req.body)) {
       throw BadRequestError();
     }
-
     await quoteController.sendQuote(req.body);
     res.sendStatus(200);
   }));

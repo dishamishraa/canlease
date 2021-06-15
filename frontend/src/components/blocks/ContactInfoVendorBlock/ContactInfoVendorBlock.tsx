@@ -130,7 +130,6 @@ export type ContactInfoVendorBlockProps = {
   disclaimerText?: TextProps;
   viewQuoteButton?: ButtonProps;
   className?: string;
-  createQuote?: ()=>{};
 };
 
 const ContactInfoVendorBlock: React.FC<ContactInfoVendorBlockProps> = ({

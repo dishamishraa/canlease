@@ -45,7 +45,7 @@ const withPresenter = (
                   onButtonClicked: () => {
                     if (setUserType) {
                       setUserType('customer');
-                      history.push('/getQuote');
+                      history.push('/getQuote', {userType: "customer"});
                     }
                   },
                   text: {
@@ -68,7 +68,7 @@ const withPresenter = (
                   onButtonClicked: () => {
                     if (setUserType) {
                       setUserType('vendor');
-                      history.push('/getQuote');
+                      history.push('/getQuote', {userType: "vendor"});
                     }
                   },
                   text: {
