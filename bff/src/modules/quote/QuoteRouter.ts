@@ -15,7 +15,7 @@ export function createQuoteRouter(controllers: {
       throw BadRequestError();
     }
     const response = await quoteController.createQuote(req.body);
-    res.send(200).json(response)
+    res.send(200).json(response);
   }));
 
   router.post('/send', errorWrapper(async (req: Request, res: Response) => {
