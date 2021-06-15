@@ -116,3 +116,10 @@ export type ContactInfoCustomer = {
 }
 
 export type ContactInfo = ContactInfoVendor | ContactInfoCustomer;
+export type CreateAccountPayload = {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  enabled: boolean;
+}

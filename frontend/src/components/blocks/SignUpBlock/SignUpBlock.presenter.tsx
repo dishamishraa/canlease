@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router';
 import { SignUpBlockProps, defaultProps } from './SignUpBlock';
 
 export type SignUpBlockPresenterProps = SignUpBlockProps & {
@@ -10,7 +11,7 @@ const withPresenter = (
 ): React.FC<SignUpBlockPresenterProps> => {
     const Presenter: React.FC<SignUpBlockPresenterProps> = (props) => {
         const { t } = useTranslation();
-
+        const history = useHistory();
         const [email, setEmail] = useState<string>('');
         const [password, setPassword] = useState<string>('');
         const [confirmPassword, setConfirmPassword] = useState<string>('');
@@ -21,10 +22,12 @@ const withPresenter = (
 
         const handleSignUp = () => {
             console.log('sign up')
+            
+            history.push({ pathname: '/account/verifyEmail' });
         }
 
         const handleSignIn = () => {
-            console.log('sign in')
+            history.push({ pathname: '/account/signIn' });
         }
 
         const signUpProps: SignUpBlockProps = {
