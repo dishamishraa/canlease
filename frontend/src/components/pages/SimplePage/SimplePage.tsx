@@ -131,6 +131,7 @@ export type SimplePageProps = {
   className?: string;
   setUserType?: React.Dispatch<React.SetStateAction<string>>;
   userType?: string;
+  instantQuoteCookie?: string;
 };
 
 const routes = {
@@ -152,6 +153,7 @@ const SimplePage: React.FC<SimplePageProps> = ({
   className,
   setUserType,
   userType,
+  instantQuoteCookie,
 }) => {
   const infoBlock = userType === 'vendor'
     ? (<ContactInfoVendorBlock className={styles.block}
@@ -172,6 +174,7 @@ const SimplePage: React.FC<SimplePageProps> = ({
               className={styles.block}
               {...userSelectionBlock}
               setUserType={setUserType}
+              instantQuoteCookie={instantQuoteCookie}
               />
           </Route>
           <Route exact path={routes.getQuote}>

@@ -34,8 +34,8 @@ export type UserSelectionBlockProps = {
   className?: string;
   setUserType?: React.Dispatch<React.SetStateAction<string>>;
   modal?: ModalProps;
-  access?: boolean;
   showModal?: boolean;
+  instantQuoteCookie?: string;
 };
 
 const UserSelectionBlock: React.FC<UserSelectionBlockProps> = ({
@@ -43,11 +43,10 @@ const UserSelectionBlock: React.FC<UserSelectionBlockProps> = ({
   cardList,
   className,
   modal,
-  access,
   showModal,
 }) => {
   let display 
-  if (!access && showModal){
+  if (showModal){
     display = (
       <Modal className={styles.modal} {...modal}/>
     );
@@ -55,7 +54,6 @@ const UserSelectionBlock: React.FC<UserSelectionBlockProps> = ({
 
   return (
     <div className={cx(styles.userSelectionBlock, className)}>
-      {display}
       <Text
         className={styles.blockHeading}
         {...blockHeading} />
@@ -63,8 +61,7 @@ const UserSelectionBlock: React.FC<UserSelectionBlockProps> = ({
         className={styles.cardList}
         {...cardList} 
         />
-    
-      
+         {display}
     </div>
   );
 }

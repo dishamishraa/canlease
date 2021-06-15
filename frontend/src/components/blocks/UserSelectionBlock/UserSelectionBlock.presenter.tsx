@@ -8,7 +8,8 @@ import { ModalProps, defaultProps as modalPropsDefaultProps  } from '../../organ
 import { defaultProps as userSelectionCardDefaultProps } from '../../molecules/UserSelectionCard/UserSelectionCard';
 import ClientImage from '../../../resources/images/Client.png';
 import EndUserImage from '../../../resources/images/EndUser.png';
-import LimitImage from '../../../resources/images/Limit.png';
+import LimitReachedIcon from '../../../resources/icons/LimitReached.svg';
+import Cookies from 'js-cookie';
 
 export type UserSelectionBlockPresenterProps = UserSelectionBlockProps & {
 };
@@ -19,19 +20,31 @@ const withPresenter = (
   const Presenter: React.FC<UserSelectionBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
     const history = useHistory();
-    const [showModal, setShowModal] = useState(true);
+    const [showModal, setShowModal] = useState(false);
     const {
       className,
       setUserType,
+      instantQuoteCookie,
     } = props;
     const onCloseModal = () => {
       setShowModal(false)
     }
+    const onUserTypeSelected = (userType: 'vendor' | 'customer') => {
+      if ((hasInstantQuote) && (setUserType)){
+        setUserType(userType);
+        history.push('/getQuote');
+      } else {
+        setShowModal(true);
+      }
+    }
+    let hasInstantQuote = true;
+    if (instantQuoteCookie){
+      const quoteCookie = Cookies.get(instantQuoteCookie);
+      if (quoteCookie){
+        hasInstantQuote = false;
+      }
+    }
 
-    let access = false;
-    if (!document.cookie.includes("instantQuote")){
-      access = true;
-    } 
     const modal: ModalProps = {
       ...modalPropsDefaultProps,
       closeIcon: {
@@ -39,7 +52,7 @@ const withPresenter = (
         onIconClicked: onCloseModal,
       },
       image: {
-        image: LimitImage,
+        image: LimitReachedIcon,
       },
       titleText: {
         ...modalPropsDefaultProps.titleText,
@@ -84,14 +97,7 @@ const withPresenter = (
                   ...userSelectionCardDefaultProps.button,
                   type: 'TextIconButton',
                   onButtonClicked: () => {
-                    if (access) {
-                      if (setUserType) {
-                        setUserType("customer");
-                        history.push('/getQuote');
-                      }
-                    } else {
-                      setShowModal(true);
-                    }
+                    onUserTypeSelected('customer')
                   },
                   text: {
                     ...userSelectionCardDefaultProps.button.text,
@@ -111,14 +117,7 @@ const withPresenter = (
                   ...userSelectionCardDefaultProps.button,
                   type: 'TextIconButton',
                   onButtonClicked: () => {
-                    if (access) {
-                      if (setUserType) {
-                        setUserType("vendor");
-                        history.push('/getQuote');
-                      }
-                    } else {
-                      setShowModal(true);
-                    }
+                    onUserTypeSelected("vendor");
                   },
                   text: {
                     ...userSelectionCardDefaultProps.button.text,
@@ -134,8 +133,8 @@ const withPresenter = (
         className={className}
         cardList={cardList} 
         modal={modal}
-        access={access}
         showModal={showModal}
+        instantQuoteCookie={instantQuoteCookie}
         />;
   };
   return Presenter;

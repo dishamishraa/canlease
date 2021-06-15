@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ContactInfoCustomerBlockProps, defaultProps } from './ContactInfoCustomerBlock';
-import { Cookies, useCookies } from 'react-cookie';
 
 export type ContactInfoCustomerBlockPresenterProps = {};
 
@@ -10,7 +9,6 @@ const withPresenter = (
 ): React.FC<ContactInfoCustomerBlockPresenterProps> => {
   const Presenter: React.FC<ContactInfoCustomerBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
-    const [cookies, setCookie, removeCookie] = useCookies();
 
     const blockProps: ContactInfoCustomerBlockProps = {
       ...defaultProps,
@@ -46,7 +44,6 @@ const withPresenter = (
           value: t('contact_info.submit'),
         },
         onButtonClicked: () => {
-          setCookie("instantQuote", "", {maxAge: (6*30.5*24*3600)})
         },
       },
     };

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ContactInfoVendorBlockProps, defaultProps } from './ContactInfoVendorBlock';
 import { isEmptyString } from '../../../lib/utils';
-import { Cookies, useCookies } from 'react-cookie';
 
 export type ContactInfoVendorBlockPresenterProps = {};
 
@@ -11,7 +10,6 @@ const withPresenter = (
 ): React.FC<ContactInfoVendorBlockPresenterProps> => {
   const Presenter: React.FC<ContactInfoVendorBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
-    const [cookies, setCookie, removeCookie] = useCookies();
     const [vendorName, setVendorName] = useState<string>('');
     const [businessEmail, setBusinessEmail] = useState<string>('');
     const [companyName, setCompanyName] = useState<string>('');
@@ -33,7 +31,7 @@ const withPresenter = (
     const handleClickViewQuote = () => {
       if (isFormValid) {
         // callback function here
-        setCookie("instantQuote", "", {maxAge: (6*30.5*24*3600)})
+     
       }
     };
 
