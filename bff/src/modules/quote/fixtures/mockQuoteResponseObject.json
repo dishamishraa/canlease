@@ -2,9 +2,31 @@
     "quoteId": "string",
     "asset": "string",
     "applicationAmount": 0,
-    "monthlyAmount": 0,
-    "term": "12M",
-    "financeRate": 0,
-    "purchaseOptionDate": "2021-06-14T19:23:28.744Z",
+    "quoteOptions": [
+      {
+        "monthlyAmount": 0,
+        "term": "12M",
+        "financeRate": 0,
+        "purchaseOptionDate": "2021-06-14T19:23:28.744Z"
+      },
+      {
+        "monthlyAmount": 0,
+        "term": "12M",
+        "financeRate": 0,
+        "purchaseOptionDate": "2021-06-14T19:23:28.744Z"
+      },
+      {
+        "monthlyAmount": 0,
+        "term": "12M",
+        "financeRate": 0,
+        "purchaseOptionDate": "2021-06-14T19:23:28.744Z"
+      },
+      {
+        "monthlyAmount": 0,
+        "term": "12M",
+        "financeRate": 0,
+        "purchaseOptionDate": "2021-06-14T19:23:28.744Z"
+      }
+    ],
     "quoteExpiryDate": "2021-06-14T19:23:28.744Z"
 }
