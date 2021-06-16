@@ -5,7 +5,9 @@ export const VALID_USER_TYPES = [
 ] as const;
 export type UserType = typeof VALID_USER_TYPES[number];
 
-export type CreateQuote = {
+export type CreateQuote = CreateQuoteCustomer | CreateQuoteVendor;
+
+export type CreateQuoteCustomer = {
   userType: UserType;
   asset: string;
   applicationAmount: number;
@@ -24,6 +26,12 @@ export type CreateQuote = {
       purchaseOptionDate: string;
     }
   ];
+};
+
+export type CreateQuoteVendor = CreateQuoteCustomer & {
+  vendorName: string;
+  vendorEmail: string;
+  vendorBusinessName: string;
 };
 
 export type SendQuote = {
