@@ -16,8 +16,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     padding: 1rem 0rem 1rem 0rem;
-    align-self: flex-start;
-    width: 19rem;
+    align-self: stretch;
     flex: 0 0 auto;
     @media (max-width: 575px) {
       &:nth-child(1) {
@@ -32,8 +31,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    align-self: flex-start;
-    width: 19rem;
+    align-self: stretch;
     flex: 0 0 15rem;
     @media (max-width: 575px) {
       &:nth-child(1) {
