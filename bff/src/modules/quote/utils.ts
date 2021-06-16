@@ -9,9 +9,9 @@ const CreateQuoteSchema = Joi.object({
   contactName: Joi.string().required(),
   contactEmail: Joi.string().required(),
   contactBusinessName: Joi.string().required(),
-  vendorName: Joi.string().required(),
-  vendorEmail: Joi.string().required(),
-  vendorBusinessName: Joi.string().required(),
+  vendorName: Joi.string(),
+  vendorEmail: Joi.string(),
+  vendorBusinessName: Joi.string(),
 });
 
 const SendQuoteSchema = Joi.object({

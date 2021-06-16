@@ -47,18 +47,23 @@ export type Lease = {
   quoteId: string;
 };
 
-export type CreateQuotePayload = {
+export type CreateQuotePayload = CreateVendorQuotePayload | CreateCustomerQuotePayload;
+
+export type CreateCustomerQuotePayload = {
   userType: string;
   asset: string;
   applicationAmount: number;
   leaseType: string;
   contactName: string;
   contactEmail: string;
+  contactBusinessName: string;
+  quoteOptions: QuoteOption[];
+};
+
+export type CreateVendorQuotePayload = CreateCustomerQuotePayload & {
   vendorName: string;
   vendorEmail: string;
-  contactBusinessName: string;
   vendorBusinessName: string;
-  quoteOptions: QuoteOption[];
 };
 
 export type EquipmentLeaseInfo = {

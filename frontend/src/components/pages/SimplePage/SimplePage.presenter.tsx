@@ -50,6 +50,7 @@ const withPresenter = (
         if(equipmentLeaseInfo) {
           const { name : equipmentName, cost: equipmentCost, leaseType } = equipmentLeaseInfo
           const { customerName, customerEmail, customerCompanyName } = contactInfo;
+          var quoteData;
           if(userType === "vendor"){
             const { vendorName, businessEmail, companyName } = contactInfo as ContactInfoVendor;
             const { data } = await createQuote({
@@ -65,14 +66,26 @@ const withPresenter = (
               vendorBusinessName: companyName!,
               quoteOptions: []
             });
-            if (data) {
-              const expiryDate = new Date();
-              expiryDate.setTime(expiryDate.getTime() + Number(MAX_AGE)); 
-              setCookie(INSTANT_QUOTE_COOKIE, {userType: userType, equipmentLeaseInfo: equipmentLeaseInfo, contactInfo: contactInfo}, {expires: expiryDate});
-
-              const { quoteId } = data;
-              history.push(`/instaQuote/${quoteId}`)
-            }
+            quoteData = data;
+          } else if (userType === "customer") {
+            const { data } = await createQuote({
+              userType: userType,
+              asset: equipmentName!,
+              applicationAmount: parseInt(equipmentCost!),
+              leaseType: leaseType!,
+              contactName: customerName!,
+              contactEmail: customerEmail!,
+              contactBusinessName: customerCompanyName!,
+              quoteOptions: []
+            });
+            quoteData = data;
+          }
+          if (quoteData) {
+            const expiryDate = new Date();
+            expiryDate.setTime(expiryDate.getTime() + Number(MAX_AGE)); 
+            setCookie(INSTANT_QUOTE_COOKIE, {userType: userType, equipmentLeaseInfo: equipmentLeaseInfo, contactInfo: contactInfo}, {expires: expiryDate});
+            const { quoteId } = quoteData;
+            history.push(`/instaQuote/${quoteId}`)
           }
         }
       }
