@@ -11,7 +11,7 @@ import ContactInfoCustomerBlock, { ContactInfoCustomerBlockProps } from '../../b
 import ContactInfoVendorBlock, { ContactInfoVendorBlockProps } from '../../blocks/ContactInfoVendorBlock';
 import QuoteBlock, { QuoteBlockProps } from '../../blocks/QuoteBlock';
 import ActionBlock, { ActionBlockProps } from '../../blocks/ActionBlock';
-import { ContactInfo, EquipmentLeaseInfo } from '../../../lib/types';
+import { ContactInfo, EquipmentLeaseInfo } from '../../../modules/types';
 import { UseCreateQuoteResult } from '../../../modules/quote/useCreateQuote';
 
 export const defaultProps = {
@@ -147,8 +147,7 @@ const routes = {
   invalid: '/',
 };
 
-const SimplePage: React.FC<SimplePageProps> = (props) => {
-  const {
+const SimplePage: React.FC<SimplePageProps> = ({
     userSelectionBlock,
     getQuoteBlock,
     contactInfoCustomerBlock,
@@ -161,8 +160,7 @@ const SimplePage: React.FC<SimplePageProps> = (props) => {
     setUserType,
     setEquipmentLeaseInfo,
     handleCreateQuote
-  } = props
-
+  }) => {
   const ContactInfoBlock = userType === "vendor" ? ContactInfoVendorBlock : ContactInfoCustomerBlock;
 
   return (

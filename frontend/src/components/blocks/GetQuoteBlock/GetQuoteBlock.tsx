@@ -7,7 +7,7 @@ import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import SelectField, { SelectFieldProps } from '../../molecules/SelectField';
 import Button, { ButtonProps } from '../../atoms/Button';
-import { EquipmentLeaseInfo } from '../../../lib/types';
+import { EquipmentLeaseInfo } from '../../../modules/types';
 
 export const defaultProps = {
   blockHeading: {

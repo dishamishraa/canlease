@@ -19,25 +19,3 @@ export type ServiceErrorResponse = {
   message: string;
 };
 
-export type EquipmentLeaseInfo = {
-  name?: string,
-  cost?: string,
-  leaseType?: string,
-}
-
-export type ContactInfoVendor = {
-  vendorName?: string,
-  businessEmail?: string,
-  companyName?: string,
-  customerName?: string,
-  customerEmail?: string,
-  customerCompanyName?: string,
-}
-
-export type ContactInfoCustomer = {
-  customerName?: string,
-  customerEmail?: string,
-  customerCompanyName?: string,
-}
-
-export type ContactInfo = ContactInfoVendor | ContactInfoCustomer;

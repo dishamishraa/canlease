@@ -6,7 +6,7 @@ import styles from './ContactInfoCustomerBlock.module.scss';
 import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
-import { ContactInfo } from '../../../lib/types';
+import { ContactInfo } from '../../../modules/types';
 export const defaultProps = {
   blockHeading: {
     style: 'Basic800',

@@ -60,3 +60,23 @@ export type CreateQuotePayload = {
   vendorBusinessName: string;
   quoteOptions: QuoteOption[];
 };
+
+export type EquipmentLeaseInfo = {
+  name: string;
+  cost: string;
+  leaseType: string;
+}
+
+export type ContactInfoVendor = ContactInfoCustomer & {
+  vendorName: string;
+  businessEmail: string;
+  companyName: string;
+}
+
+export type ContactInfoCustomer = {
+  customerName: string;
+  customerEmail: string;
+  customerCompanyName: string;
+}
+
+export type ContactInfo = ContactInfoVendor | ContactInfoCustomer;

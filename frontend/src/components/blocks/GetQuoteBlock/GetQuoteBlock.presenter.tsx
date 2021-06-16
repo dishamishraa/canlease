@@ -7,12 +7,14 @@ import { ContextualMenuProps } from '../../molecules/ContextualMenu';
 import { ContextualMenuItemProps } from '../../atoms/ContextualMenuItem';
 import { defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 import { isEmptyString } from '../../../lib/utils';
-import { EquipmentLeaseInfo } from '../../../lib/types';
+import { EquipmentLeaseInfo } from '../../../modules/types';
 
 
 export type GetQuoteBlockPresenterProps = {
   setEquipmentLeaseInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
 };
+
+export type LocationState = {userType?: string, equipmentLeaseInfo?: EquipmentLeaseInfo};
 
 const withPresenter = (
   View: React.FC<GetQuoteBlockProps>,
@@ -21,7 +23,7 @@ const withPresenter = (
     const { t } = useTranslation();
     const history = useHistory();
     const { setEquipmentLeaseInfo } = props;
-    const location = useLocation<({userType: string, equipmentLeaseInfo: EquipmentLeaseInfo})>();
+    const location = useLocation<(LocationState)>();
     const { state } = location;
     
     
