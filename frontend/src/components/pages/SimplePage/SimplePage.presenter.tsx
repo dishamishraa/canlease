@@ -50,41 +50,30 @@ const withPresenter = (
         if(equipmentLeaseInfo) {
           const { name : equipmentName, cost: equipmentCost, leaseType } = equipmentLeaseInfo
           const { customerName, customerEmail, customerCompanyName } = contactInfo;
-          var quoteData;
-          if(userType === "vendor"){
+          let createPayload = {
+            userType: userType,
+            asset: equipmentName, 
+            applicationAmount: parseInt(equipmentCost),
+            leaseType: leaseType,
+            contactName: customerName,
+            contactEmail: customerEmail,
+            contactBusinessName: customerCompanyName,
+          } as CreateQuotePayload;
+          if (userType === 'vendor') {
             const { vendorName, businessEmail, companyName } = contactInfo as ContactInfoVendor;
-            const { data } = await createQuote({
-              userType: userType,
-              asset: equipmentName!,
-              applicationAmount: parseInt(equipmentCost!),
-              leaseType: leaseType!,
-              contactName: customerName!,
-              contactEmail: customerEmail!,
-              contactBusinessName: customerCompanyName!,
-              vendorName: vendorName!,
-              vendorEmail: businessEmail!,
-              vendorBusinessName: companyName!,
-              quoteOptions: []
-            });
-            quoteData = data;
-          } else if (userType === "customer") {
-            const { data } = await createQuote({
-              userType: userType,
-              asset: equipmentName!,
-              applicationAmount: parseInt(equipmentCost!),
-              leaseType: leaseType!,
-              contactName: customerName!,
-              contactEmail: customerEmail!,
-              contactBusinessName: customerCompanyName!,
-              quoteOptions: []
-            });
-            quoteData = data;
+            createPayload = {
+              ...createPayload,
+              vendorName: vendorName,
+              vendorEmail: businessEmail,
+              vendorBusinessName: companyName,
+            }
           }
-          if (quoteData) {
+          const { data } = await createQuote(createPayload);
+          if (data) {
             const expiryDate = new Date();
             expiryDate.setTime(expiryDate.getTime() + Number(MAX_AGE)); 
             setCookie(INSTANT_QUOTE_COOKIE, {userType: userType, equipmentLeaseInfo: equipmentLeaseInfo, contactInfo: contactInfo}, {expires: expiryDate});
-            const { quoteId } = quoteData;
+            const { quoteId } = data;
             history.push(`/instaQuote/${quoteId}`)
           }
         }

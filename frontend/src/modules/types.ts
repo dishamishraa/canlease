@@ -57,7 +57,6 @@ export type CreateCustomerQuotePayload = {
   contactName: string;
   contactEmail: string;
   contactBusinessName: string;
-  quoteOptions: QuoteOption[];
 };
 
 export type CreateVendorQuotePayload = CreateCustomerQuotePayload & {
