@@ -7,6 +7,7 @@ import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import SelectField, { SelectFieldProps } from '../../molecules/SelectField';
 import Button, { ButtonProps } from '../../atoms/Button';
+import { EquipmentLeaseInfo } from '../../../modules/types';
 
 export const defaultProps = {
   blockHeading: {
@@ -82,6 +83,7 @@ export type GetQuoteBlockProps = {
   leaseTypeSelectField?: SelectFieldProps;
   nextButton?: ButtonProps;
   className?: string;
+  setEquipmentLeaseInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
 };
 
 const GetQuoteBlock: React.FC<GetQuoteBlockProps> = ({

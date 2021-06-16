@@ -11,6 +11,8 @@ import ContactInfoCustomerBlock, { ContactInfoCustomerBlockProps } from '../../b
 import ContactInfoVendorBlock, { ContactInfoVendorBlockProps } from '../../blocks/ContactInfoVendorBlock';
 import QuoteBlock, { QuoteBlockProps } from '../../blocks/QuoteBlock';
 import ActionBlock, { ActionBlockProps } from '../../blocks/ActionBlock';
+import { ContactInfo, EquipmentLeaseInfo } from '../../../modules/types';
+import { UseCreateQuoteResult } from '../../../modules/quote/useCreateQuote';
 
 export const defaultProps = {
   topBar: {
@@ -131,34 +133,35 @@ export type SimplePageProps = {
   className?: string;
   setUserType?: React.Dispatch<React.SetStateAction<string>>;
   userType?: string;
+  setEquipmentLeaseInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
+  equipmentLeaseInfo?: EquipmentLeaseInfo;
+  contactInfo?: ContactInfo;
+  handleCreateQuote?: (contactInfo: ContactInfo)=>void; 
 };
 
 const routes = {
   userSelection: '/',
   getQuote: '/getQuote',
   contactInformation: '/contactInformation',
-  instaQuote: '/instaQuote',
+  instaQuote: '/instaQuote/:quoteId',
   invalid: '/',
 };
 
 const SimplePage: React.FC<SimplePageProps> = ({
-  userSelectionBlock,
-  getQuoteBlock,
-  contactInfoCustomerBlock,
-  quoteBlock,
-  topBar,
-  block,
-  actionBlock,
-  className,
-  setUserType,
-  userType,
-}) => {
-  const infoBlock = userType === 'vendor'
-    ? (<ContactInfoVendorBlock className={styles.block}
-      {...contactInfoCustomerBlock} />)
-    : (<ContactInfoCustomerBlock
-      className={styles.block}
-      {...contactInfoCustomerBlock} />);
+    userSelectionBlock,
+    getQuoteBlock,
+    contactInfoCustomerBlock,
+    quoteBlock,
+    topBar,
+    block,
+    actionBlock,
+    className,
+    userType,
+    setUserType,
+    setEquipmentLeaseInfo,
+    handleCreateQuote
+  }) => {
+  const ContactInfoBlock = userType === "vendor" ? ContactInfoVendorBlock : ContactInfoCustomerBlock;
 
   return (
     <div className={cx(styles.simplePage, className)}>
@@ -177,10 +180,16 @@ const SimplePage: React.FC<SimplePageProps> = ({
           <Route exact path={routes.getQuote}>
             <GetQuoteBlock
               className={styles.block}
-              {...getQuoteBlock} />
+              {...getQuoteBlock} 
+              setEquipmentLeaseInfo={setEquipmentLeaseInfo}
+              />
           </Route>
           <Route exact path={routes.contactInformation}>
-            {infoBlock}
+            <ContactInfoBlock
+              className={styles.block}
+              {...contactInfoCustomerBlock} 
+              handleCreateQuote={handleCreateQuote}
+              />
           </Route>
           <Route exact path={routes.instaQuote}>
             <QuoteBlock

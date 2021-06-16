@@ -1,21 +1,17 @@
 import { useCallback } from 'react';
 
 import useGet from '../../lib/api/useGet';
+import usePost, { UsePostResult } from '../../lib/api/usePost';
 
 import { Quote, CreateQuotePayload } from '../types';
 
 import { createQuote } from './api';
 
-export type UseCreateQuoteResult = {
-  loading: boolean;
-  error: undefined | Error;
-  data: Quote | null;
-  refetch: () => void;
-};
+export type UseCreateQuoteResult = UsePostResult<Quote, CreateQuotePayload>
 
-const useCreateQuote = (payload: CreateQuotePayload): UseCreateQuoteResult => {
-  const get = useCallback((): Promise<Quote> => createQuote(payload), [payload]);
-  return useGet(get);
+const useCreateQuote = (): UseCreateQuoteResult => {
+  const get = useCallback((payload: CreateQuotePayload): Promise<Quote> => createQuote(payload), []);
+  return usePost(get);
 };
 
 export default useCreateQuote;

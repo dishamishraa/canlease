@@ -5,14 +5,13 @@ import { errorWrapper } from '../../lib/utils';
 import { validateCreateQuote, validateSendQuote, validateGetQuote } from './utils';
 import { quoteResponseData } from './fixtures';
 
-
 export function createQuoteRouter(controllers: {
   quoteController: QuoteControllerContract;
 }): Router {
   const router = Router();
   const { quoteController } = controllers;
 
-    router.post('/', errorWrapper(async (req: Request, res: Response) => {
+  router.post('/', errorWrapper(async (req: Request, res: Response) => {
     if (!validateCreateQuote(req.body)) {
       throw BadRequestError();
     }
@@ -24,7 +23,6 @@ export function createQuoteRouter(controllers: {
     if (!validateSendQuote(req.body)) {
       throw BadRequestError();
     }
-
     await quoteController.sendQuote(req.body);
     res.sendStatus(200);
   }));

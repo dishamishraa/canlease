@@ -6,7 +6,8 @@ import styles from './TextInput.module.scss';
 import Text, { TextProps } from '../Text';
 import Icon, { IconProps } from '../Icon';
 
-export type TextInputTypeType = 'Text' | 'Password' | 'TextArea';
+export type TextInputTypeType = 'Text' | 'Password' | 'TextArea'
+export type HTMLInputType = 'text' | 'password' | 'number'
 
 export const defaultProps = {
   type: 'Text' as TextInputTypeType,
@@ -23,6 +24,7 @@ export type TextInputProps = {
   onTextChanged?: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
   className?: string;
   icon?: IconProps;
+  inputType?: HTMLInputType;
 };
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -32,11 +34,13 @@ const TextInput: React.FC<TextInputProps> = ({
   onTextChanged,
   className,
   icon,
+  inputType
 }) => {
   const currentStyle = styles[`textInput${type}`];
 
   const textView = (
     <input
+      type={inputType}
       placeholder={textPlaceholder}
       value={textValue}
       onChange={onTextChanged}

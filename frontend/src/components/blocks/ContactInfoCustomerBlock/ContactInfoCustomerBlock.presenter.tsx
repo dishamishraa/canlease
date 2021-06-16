@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ContactInfo } from '../../../modules/types';
+import { UseCreateQuoteResult } from '../../../modules/quote/useCreateQuote';
 import { ContactInfoCustomerBlockProps, defaultProps } from './ContactInfoCustomerBlock';
 
-export type ContactInfoCustomerBlockPresenterProps = {};
+
+export type ContactInfoCustomerBlockPresenterProps = {
+  handleCreateQuote?: (contactInfo: ContactInfo)=>void
+};
 
 const withPresenter = (
   View: React.FC<ContactInfoCustomerBlockProps>,

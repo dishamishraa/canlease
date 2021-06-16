@@ -32,18 +32,18 @@ const withPresenter = (
     const onUserTypeSelected = (userType: 'vendor' | 'customer') => {
       if ((hasInstantQuote) && (setUserType)){
         setUserType(userType);
-        history.push('/getQuote');
+        history.push('/getQuote', {userType: userType});
       } else {
         setShowModal(true);
       }
     }
+
     let hasInstantQuote = true;
 
     const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
     if (quoteCookie){
         hasInstantQuote = false;
     }
-  
 
     const modal: ModalProps = {
       ...modalPropsDefaultProps,
@@ -81,7 +81,8 @@ const withPresenter = (
     const blockHeading: TextProps = {
       ...UserSelectionBlockDefaultProps.blockHeading,
       value: t('user_type_selection.header'),
-    }; 
+    };
+
     const cardList: CardListProps = {
       userSelectionCards:
             [
@@ -96,9 +97,7 @@ const withPresenter = (
                 button: {
                   ...userSelectionCardDefaultProps.button,
                   type: 'TextIconButton',
-                  onButtonClicked: () => {
-                    onUserTypeSelected('customer')
-                  },
+                  onButtonClicked: () => onUserTypeSelected("customer"),
                   text: {
                     ...userSelectionCardDefaultProps.button.text,
                     value: t('user_type_selection.button'),
@@ -116,9 +115,7 @@ const withPresenter = (
                 button: {
                   ...userSelectionCardDefaultProps.button,
                   type: 'TextIconButton',
-                  onButtonClicked: () => {
-                    onUserTypeSelected("vendor");
-                  },
+                  onButtonClicked: () => onUserTypeSelected("vendor"),
                   text: {
                     ...userSelectionCardDefaultProps.button.text,
                     value: t('user_type_selection.button'),
