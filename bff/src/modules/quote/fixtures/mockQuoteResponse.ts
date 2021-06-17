@@ -31,7 +31,7 @@ const mockResponse: Quote = {
     },
   ],
   quoteExpiryDate: '2021-06-22T19:23:28.744Z',
-  leaseType: 'string',
+  leaseType: 'stretch',
 };
 
 export default mockResponse;
