@@ -36,8 +36,8 @@ describe('quote utils', () => {
     it('should return true if valid payload', () => {
       const valid = validateSendQuote({
         email: 'vendorBusinessName',
-        actionUrl: 'https://www.redthreadinnovations.com'
-      })
+        actionUrl: 'https://www.redthreadinnovations.com',
+      });
       expect(valid).toBe(true);
     });
     it('should return false for invalid payload', () => {

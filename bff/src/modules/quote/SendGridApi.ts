@@ -11,7 +11,7 @@ import { SendQuote } from './types';
 
 export default class SendGridApi {
   constructor() {
-    sendgridMail.setApiKey(SENDGRID_API_KEY as string);
+    sendgridMail.setApiKey(SENDGRID_API_KEY);
   }
 
   async sendQuote(payload: SendQuote): Promise<void> {
@@ -19,11 +19,11 @@ export default class SendGridApi {
     try {
       const data: MailDataRequired = {
         to: email,
-        from: SENDGRID_FROM_EMAIL as string,
+        from: SENDGRID_FROM_EMAIL,
         dynamicTemplateData: {
           action_url: actionUrl,
         },
-        templateId: SENDGRID_QUOTE_TEMPLATE_ID as string,
+        templateId: SENDGRID_QUOTE_TEMPLATE_ID,
       };
       await sendgridMail.send(data);
     } catch (error) {

@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { mocked } from 'ts-jest/utils';
+import { send } from '@sendgrid/mail';
+import createError from 'http-errors';
 import {
   SENDGRID_API_URL,
   SENDGRID_API_KEY,
@@ -7,10 +9,7 @@ import {
   SENDGRID_QUOTE_TEMPLATE_ID,
 } from '../../lib/config';
 import SendGridApi from './SendGridApi';
-import { send } from '@sendgrid/mail';
 import { mockSendGridPayload } from './fixtures';
-import createError from 'http-errors';
-
 
 jest.mock('@sendgrid/mail');
 
@@ -28,11 +27,11 @@ describe('SendGridAPI', () => {
       await api.sendQuote(mockSendGridPayload);
       expect(mockedSend).toHaveBeenCalledWith({
         to: 'test@testmail.com',
-        from: SENDGRID_FROM_EMAIL as string,
+        from: SENDGRID_FROM_EMAIL,
         dynamicTemplateData: {
-          action_url: "https://www.redthreadinnovations.com"
+          action_url: 'https://www.redthreadinnovations.com',
         },
-        templateId: SENDGRID_QUOTE_TEMPLATE_ID as string,
+        templateId: SENDGRID_QUOTE_TEMPLATE_ID,
       });
     });
   });
@@ -40,6 +39,6 @@ describe('SendGridAPI', () => {
     mockedSend.mockRejectedValue({});
 
     await expect(api.sendQuote(mockSendGridPayload))
-    .rejects.toThrowError(createError.InternalServerError);
+      .rejects.toThrowError(createError.InternalServerError);
   });
 });
