@@ -35,22 +35,9 @@ describe('quote utils', () => {
   describe('validateSendQuote', () => {
     it('should return true if valid payload', () => {
       const valid = validateSendQuote({
-        vendorBusinessName: 'vendorBusinessName',
-        from: {
-          email: 'orders@example.com',
-          name: 'Example Order Confirmation',
-        },
-        template_id: '[template_id]',
-        personalizations: [{
-          to: [
-            {
-              email: 'john_doe@example.com',
-              name: 'John Doe',
-            },
-          ],
-          subject: 'Your Example Order Confirmation',
-        }],
-      });
+        email: 'vendorBusinessName',
+        actionUrl: 'https://www.redthreadinnovations.com'
+      })
       expect(valid).toBe(true);
     });
     it('should return false for invalid payload', () => {

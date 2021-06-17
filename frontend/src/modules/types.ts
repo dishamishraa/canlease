@@ -84,3 +84,8 @@ export type ContactInfoCustomer = {
 }
 
 export type ContactInfo = ContactInfoVendor | ContactInfoCustomer;
+
+export type SendQuotePayload = {
+  email: string;
+  actionUrl: string;
+}

@@ -35,20 +35,8 @@ export type CreateQuoteVendor = CreateQuoteCustomer & {
 };
 
 export type SendQuote = {
-  from: {
-    email: string;
-    name: string;
-  };
-  template_id: string;
-  personalizations: [{
-    to: [
-      {
-        email: string;
-        name: string;
-      },
-    ];
-    subject: string;
-  }];
+  email: string;
+  actionUrl: string;
 };
 
 export type QuoteOption = {
