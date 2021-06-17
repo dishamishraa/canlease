@@ -52,6 +52,7 @@ export type Quote = {
   applicationAmount: number;
   quoteOptions: QuoteOption[];
   quoteExpiryDate: string;
+  leaseType: string;
 };
 
 export interface QuoteControllerContract {
