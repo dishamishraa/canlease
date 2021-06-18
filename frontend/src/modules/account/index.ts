@@ -1,3 +1,3 @@
-import useCreateIdentityAccount from './useCreateIdentityAccount';
+import createIdentityAccount from './useCreateIdentityAccount';
 
-export { useCreateIdentityAccount };
+export { createIdentityAccount };

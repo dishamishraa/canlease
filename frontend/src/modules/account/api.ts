@@ -1,10 +1,9 @@
 import axios from 'axios';
 import i18next from 'i18next';
 import { getServerUrl } from '../../lib/utils';
-import { CreateAccountPayload } from '../types';
+import { AccountTokenResponse, IdentityAccountPayload } from '../types';
 
-
-export const createIdentityAccount = async (payload: CreateAccountPayload): Promise<any> => {
+export const createIdentityAccount = async (payload: IdentityAccountPayload): Promise<AccountTokenResponse> => {
     try {
       const { data } = await axios.post(`${getServerUrl}/accounts`, payload);
       return data;
@@ -15,3 +14,4 @@ export const createIdentityAccount = async (payload: CreateAccountPayload): Prom
       throw error;
     }
   };
+

@@ -126,8 +126,16 @@
         "email_label": "Email",
         "create_password_label": "Create Password",
         "confirm_password_label": "Confirm Password",
-        "sign_up_button": "SIGN UP",
         "bottom_content": "Already have an account?",
+        "error_message": {
+            "empty": "{{field}} cannot be empty",
+            "invalid_email": "Please enter a valid email address",
+            "password_mismatch": "Passwords do not match",
+            "account_exist": "An account with this email already exists"
+        }
+    },
+    "header":{
+        "sign_up_button": "SIGN UP",
         "sign_in_button": "SIGN IN"
     }
 }

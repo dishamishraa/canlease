@@ -116,9 +116,21 @@ export type ContactInfoCustomer = {
 }
 
 export type ContactInfo = ContactInfoVendor | ContactInfoCustomer;
-export type CreateAccountPayload = {
+
+//Identity Accounts
+export type IdentityAccountPayload = {
   email: string;
   password: string;
+  firstName: string;
+  lastName: string;
+  enabled: boolean;
+}
+
+export type AccountTokenResponse = {
+  id: number;
+  uuid: string;
+  token: string;
+  email: string;
   firstName: string;
   lastName: string;
   enabled: boolean;

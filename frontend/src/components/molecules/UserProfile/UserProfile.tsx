@@ -7,6 +7,8 @@ import UserIcon, { UserIconProps } from '../../atoms/UserIcon';
 import Icon, { IconProps } from '../../atoms/Icon';
 import Button, { ButtonProps } from '../../atoms/Button';
 import Text, { TextProps } from '../../atoms/Text';
+import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router';
 
 export type UserProfileStyleType = 'Light';
 export type UserProfileStateType = 'SignedIn' | 'None' | 'SignedOut';
@@ -81,6 +83,35 @@ const UserProfile: React.FC<UserProfileProps> = ({
   let primaryView;
   let iconView;
   let secondaryView;
+
+  const { t } = useTranslation();
+  const history = useHistory();
+
+  const handleSignIn = () => {
+    history.push('/account/signin')
+  }
+
+  const handleSignUp = () => {
+    history.push('/account/signUp')
+  }
+
+  primary = {
+    ...primary,
+    text: {
+      ...primary?.text,
+      value: t('header.sign_in_button')
+    },
+    onButtonClicked: handleSignIn
+  }
+
+  secondary = {
+    ...secondary,
+    text: {
+      ...secondary?.text,
+      value: t('header.sign_up_button')
+    },
+    onButtonClicked: handleSignUp
+  }
 
   switch (state) {
     case 'SignedIn':
