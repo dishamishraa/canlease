@@ -7,6 +7,9 @@ import { addLinksAndBreaks } from '../../../lib/reactUtils';
 import { QuoteDetailItemProps, defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { RateCardProps } from '../../molecules/RateCard';
 import { Quote } from '../../../modules/types';
+import { ModalProps, defaultProps as modalPropsDefaultProps  } from '../../organisms/Modal/Modal';
+import EmailIcon from '../../../resources/icons/Email.svg';
+
 
 import { defaultProps as defaultRateDetailItemProps, RateDetailItemProps } from '../../molecules/RateDetailItem/RateDetailItem';
 
@@ -27,9 +30,22 @@ const withPresenter = (
     } = props;
 
     const { t } = useTranslation();
-
+    const location = useLocation<({userType: string})>();
+    const { state } = location;
     const applyForFinanceButtonClicked = () => {
     };
+
+    const [showModal, setShowModal] = useState(false);
+
+    useEffect(() => {
+      if(state){
+        setShowModal(true);
+      }
+    }, [])
+    
+    const onCloseModal = () => {
+      setShowModal(false)
+    }
 
     if (error) {
       // return error view
@@ -38,6 +54,40 @@ const withPresenter = (
     if (loading) {
       // return loading view
     }
+
+    const modal: ModalProps = {
+      ...modalPropsDefaultProps,
+      closeIcon: {
+        ...modalPropsDefaultProps.closeIcon,
+        onIconClicked: onCloseModal,
+      },
+      image: {
+        image: EmailIcon,
+      },
+      titleText: {
+        ...modalPropsDefaultProps.titleText,
+        value: t('quote_email_sent.title'),
+      },
+      descriptionText: {
+        ...modalPropsDefaultProps.descriptionText,
+        value: t('quote_email_sent.description'),
+      },
+      primaryButton: {
+        ...modalPropsDefaultProps.primaryButton,
+        text: {
+          ...modalPropsDefaultProps.primaryButton.text,
+          value: t('quote_email_sent.primary_button'),
+        }
+      },
+      secondaryButton: {
+        ...modalPropsDefaultProps.secondaryButton,
+        text: {
+          ...modalPropsDefaultProps.secondaryButton.text,
+          value: t('quote_email_sent.secondary_button'),
+        },
+        onButtonClicked: onCloseModal,
+      }
+    };
 
     let disabled = false;
     const rateCardsArray: RateCardProps[] = [];
@@ -244,6 +294,8 @@ const withPresenter = (
     return (
             <View
             {...quoteBlockProps}
+            modal={modal}
+            showModal={showModal}
             />
     );
   };
