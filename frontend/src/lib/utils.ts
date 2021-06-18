@@ -48,11 +48,13 @@ export const isExpiring = (value) => {
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
   return diffDays > 25 && 29 < diffDays;
 }
+
 export const isExpired = (value) => {
   const today = new Date();
   const expiryDate = new Date(value);
   return today > expiryDate;
 }
+
 export const createdOn = (value) => {
   const date = new Date(value);
   date.setDate(date.getDate()-30)

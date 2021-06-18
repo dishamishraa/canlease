@@ -9,6 +9,8 @@ import UserIcon, { UserIconProps } from '../../atoms/UserIcon';
 import Icon, { IconProps } from '../../atoms/Icon';
 import Button, { ButtonProps } from '../../atoms/Button';
 import Text, { TextProps } from '../../atoms/Text';
+import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router';
 
 export type UserProfileStyleType = 'Light';
 export type UserProfileStateType = 'SignedIn' | 'None' | 'SignedOut';
