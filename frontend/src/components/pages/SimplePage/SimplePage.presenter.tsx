@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SimplePageProps} from './SimplePage';
-import { EquipmentLeaseInfo, ContactInfoVendor, ContactInfoCustomer, ContactInfo, SendQuotePayload } from '../../../modules/types';
+import { EquipmentLeaseInfo, ContactInfoVendor, ContactInfoCustomer, ContactInfo } from '../../../modules/types';
 import { Redirect, useLocation, useHistory } from 'react-router-dom';
 import { isObject, isEmpty, isEmptyString } from '../../../lib/utils';
 import useCreateQuote, { UseCreateQuoteResult } from '../../../modules/quote/useCreateQuote';
@@ -9,11 +9,9 @@ import { isVariableStatement } from 'typescript';
 import { Cookies, useCookies } from 'react-cookie'
 import { INSTANT_QUOTE_COOKIE, MAX_AGE, FRONTEND_URL } from '../../../lib/config';
 import { APIResponse } from '../../../lib/api/types';
-import { sendQuote } from '../../../modules/quote/api';
 
 export type SimplePagePropsPresenterProps = SimplePageProps & {
   createQuote: (payload: CreateQuotePayload) => Promise<APIResponse<Quote>>;
-  sendQuote: (payload: SendQuotePayload) => Promise<APIResponse<void>>;
 };
 
 const withPresenter = (
@@ -77,7 +75,6 @@ const withPresenter = (
 
             expiryDate.setTime(expiryDate.getTime() + Number(MAX_AGE)); 
             setCookie(INSTANT_QUOTE_COOKIE, {userType: userType, equipmentLeaseInfo: equipmentLeaseInfo, contactInfo: contactInfo}, {expires: expiryDate});
-            await sendQuote({email: customerEmail, actionUrl:`${FRONTEND_URL}/instaQuote/${quoteId}`})
             history.push(`/instaQuote/${quoteId}`)
           }
         }

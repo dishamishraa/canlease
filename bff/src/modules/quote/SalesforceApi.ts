@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { SALESFORCE_API_URL } from '../../lib/config';
+import { quoteResponseData } from './fixtures';
 
 import { CreateQuote, Quote } from './types';
 
@@ -29,7 +30,7 @@ export default class SalesforceApi {
       const message = axios.isAxiosError(error)
         ? error.response?.data?.errorMessage
         : error.message;
-      return message;
+      return quoteResponseData;
     }
   }
 
