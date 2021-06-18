@@ -127,6 +127,8 @@
         "create_password_label": "Create Password",
         "confirm_password_label": "Confirm Password",
         "bottom_content": "Already have an account?",
+        "sign_up_button": "SIGN UP",
+        "sign_in_button": "SIGN IN",
         "error_message": {
             "empty": "{{field}} cannot be empty",
             "invalid_email": "Please enter a valid email address",
@@ -137,6 +139,19 @@
     "header":{
         "sign_up_button": "SIGN UP",
         "sign_in_button": "SIGN IN"
+    },
+    "email_verification":{
+        "header": {
+            "default": "Please verify your email",
+            "resent": "Verification email resent"
+        },
+        "description": {
+            "default": "A verification link has been sent to your email. Please verify your email to complete sign up.",
+            "resent": "The verification link has been resent."
+        },
+        "question": "Don’t see the email?",
+        "resolution": "Check your spam folder or click [here]({{resendLink}}) to resend the verification link.",
+        "done_button": "DONE"
     }
 }
   
