@@ -13,12 +13,12 @@ export default class QuoteController implements QuoteControllerContract {
   async createQuote(payload: CreateQuote): Promise<Quote> {
     const quote = await this.createQuoteService.createQuote(payload);
     const { quoteId } = quote;
-    const { userType, contactEmail} = payload;
+    const { userType, contactEmail } = payload;
     const actionUrl = `${FRONTEND_URL}/instaQuote/${quoteId}`;
-    this.createQuoteService.sendQuote({email: contactEmail, actionUrl});
+    this.createQuoteService.sendQuote({ email: contactEmail, actionUrl });
     if (userType === 'vendor') {
       const { vendorEmail } = payload;
-      this.createQuoteService.sendQuote({email: vendorEmail, actionUrl});
+      this.createQuoteService.sendQuote({ email: vendorEmail, actionUrl });
     }
     return quote;
   }
