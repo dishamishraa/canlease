@@ -6,7 +6,7 @@ import { CreateApplication } from './types';
 export default class SalesforceApi {
   async createApplication(payload: CreateApplication): Promise<void> {
     try {
-      await axios.post<void>(
+      const response = await axios.post<void>(
         `${SALESFORCE_API_URL}/v2/credit_apps`,
         {
           properties: {
@@ -42,6 +42,7 @@ export default class SalesforceApi {
           },
         },
       );
+      return response.data;
     } catch (error) {
       return error.message;
     }
