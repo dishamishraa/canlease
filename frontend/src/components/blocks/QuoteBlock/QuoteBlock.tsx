@@ -11,6 +11,7 @@ import Button, { ButtonProps } from '../../atoms/Button';
 import Toast, { ToastProps } from '../../atoms/Toast';
 import { ToastTypeType, ToastStyleType } from '../../atoms/Toast/Toast';
 import { IconProps } from '../../atoms/Icon';
+import Modal, { ModalProps } from '../../organisms/Modal';
 
 export const defaultProps = {
   blockHeading: {
@@ -100,6 +101,8 @@ export type QuoteBlockProps = {
   className?: string;
   quoteExpired?: boolean;
   expiryToast?: ToastProps;
+  modal?: ModalProps;
+  showModal?: boolean;
 };
 
 const QuoteBlock: React.FC<QuoteBlockProps> = ({
@@ -113,10 +116,19 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
   className,
   quoteExpired,
   expiryToast,
+  showModal,
+  modal,
 }) => {
   let toastDisplay;
   if (quoteExpired) {
     toastDisplay = <Toast {...expiryToast}/>;
+  }
+
+  let modalDisplay 
+  if (showModal){
+    modalDisplay = (
+      <Modal className={styles.modal} {...modal}/>
+    );
   }
   return (
     <div className={cx(styles.quoteBlock, className)}>
@@ -142,6 +154,7 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
       <Button
           className={styles.viewQuoteButton}
           {...viewQuoteButton} />
+      {modalDisplay}
     </div>
   );
 };

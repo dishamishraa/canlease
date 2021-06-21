@@ -15,19 +15,8 @@ const CreateQuoteSchema = Joi.object({
 });
 
 const SendQuoteSchema = Joi.object({
-  vendorBusinessName: Joi.string().required(),
-  from: Joi.object({
-    email: Joi.string().required(),
-    name: Joi.string().required(),
-  }),
-  template_id: Joi.string().required(),
-  personalizations: Joi.array().items(Joi.object({
-    to: Joi.array().items(Joi.object({
-      email: Joi.string().required(),
-      name: Joi.string().required(),
-    })),
-    subject: Joi.string().required(),
-  })),
+  email: Joi.string().required(),
+  actionUrl: Joi.string().required(),
 });
 
 const quoteId = Joi.alternatives(

@@ -46,6 +46,12 @@
         "primary_button": "Create a Free account",
         "secondary_button": "Sign in"
     },
+    "quote_email_sent":{
+        "title": "Email sent!",
+        "description": "The quote has been sent to your customer. Sign up to view this quote. Create and track unlimited quotes and lease applications with a free Canlease account.",
+        "primary_button": "Create a Free account",
+        "secondary_button": "Close"
+    },
     "view_quote":{
         "heading_text": "Leasing quote",
         "disclaimer_text": "Quoted payments are pre-tax, subject to credit approval, and are based on first and last monthly payments in advance and one time documentation fee.",

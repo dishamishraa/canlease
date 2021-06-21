@@ -6,8 +6,8 @@ import { isObject, isEmpty, isEmptyString } from '../../../lib/utils';
 import useCreateQuote, { UseCreateQuoteResult } from '../../../modules/quote/useCreateQuote';
 import { CreateQuotePayload, Quote } from '../../../modules/types';
 import { isVariableStatement } from 'typescript';
-import { Cookies, useCookies } from 'react-cookie';
-import { INSTANT_QUOTE_COOKIE, MAX_AGE } from '../../../lib/config';
+import { Cookies, useCookies } from 'react-cookie'
+import { INSTANT_QUOTE_COOKIE, MAX_AGE, FRONTEND_URL } from '../../../lib/config';
 import { APIResponse } from '../../../lib/api/types';
 
 export type SimplePagePropsPresenterProps = SimplePageProps & {
@@ -70,11 +70,12 @@ const withPresenter = (
           }
           const { data } = await createQuote(createPayload);
           if (data) {
+            const { quoteId } = data;
             const expiryDate = new Date();
+
             expiryDate.setTime(expiryDate.getTime() + Number(MAX_AGE)); 
             setCookie(INSTANT_QUOTE_COOKIE, {userType: userType, equipmentLeaseInfo: equipmentLeaseInfo, contactInfo: contactInfo}, {expires: expiryDate});
-            const { quoteId } = data;
-            history.push(`/instaQuote/${quoteId}`)
+            history.push(`/instaQuote/${quoteId}`, {userType})
           }
         }
       }
