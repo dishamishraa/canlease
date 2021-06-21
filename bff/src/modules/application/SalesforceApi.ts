@@ -38,7 +38,7 @@ export default class SalesforceApi {
             vendorPortalId: payload.vendorPortalId,
             quoteId: payload.quoteId,
             expectedDeliveryDate: payload.expectedDeliveryDate,
-            bankruptcyDetails: payload.bankruptcyDetails
+            bankruptcyDetails: payload.bankruptcyDetails,
           },
         },
       );

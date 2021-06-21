@@ -41,5 +41,5 @@ describe('application utils', () => {
       const valid = validateCreateApplication({});
       expect(valid).toBe(false);
     });
-  })
+  });
 });

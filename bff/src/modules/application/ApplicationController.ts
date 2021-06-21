@@ -1,16 +1,15 @@
 import {
-    CreateApplication, ApplicationControllerContract, ApplicationServiceContract,
-  } from './types';
-  
+  CreateApplication, ApplicationControllerContract, ApplicationServiceContract,
+} from './types';
+
 export default class ApplicationController implements ApplicationControllerContract {
-    private createApplicationService: ApplicationServiceContract;
+  private createApplicationService: ApplicationServiceContract;
 
-    constructor(createApplicationService: ApplicationServiceContract) {
-        this.createApplicationService = createApplicationService;
-    }
+  constructor(createApplicationService: ApplicationServiceContract) {
+    this.createApplicationService = createApplicationService;
+  }
 
-    async createApplication(payload: CreateApplication): Promise<void> {
-        return this.createApplicationService.createApplication(payload);
-    }
+  async createApplication(payload: CreateApplication): Promise<void> {
+    return this.createApplicationService.createApplication(payload);
+  }
 }
-  

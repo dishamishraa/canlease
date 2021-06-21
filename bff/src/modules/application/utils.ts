@@ -1,5 +1,7 @@
 import Joi from 'joi';
-import { CreateApplication, VALID_BUSINESS_TYPES, VALID_CONDITION_TYPES, VALID_TERM_TYPES } from './types';
+import {
+  CreateApplication, VALID_BUSINESS_TYPES, VALID_CONDITION_TYPES, VALID_TERM_TYPES,
+} from './types';
 
 const CreateQuoteSchema = Joi.object({
   leasePortalId: Joi.string().required(),
@@ -32,7 +34,6 @@ const CreateQuoteSchema = Joi.object({
   // expectedDeliveryDate: Joi.string().required(),
   // bankruptcyDetails: Joi.string().required()
 });
-
 
 export const validateCreateApplication = (value: unknown): value is CreateApplication => {
   const { error } = CreateQuoteSchema.validate(value, { allowUnknown: true });

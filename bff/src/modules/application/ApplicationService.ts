@@ -7,7 +7,6 @@ import {
 export default class ApplicationService implements ApplicationServiceContract {
   private salesforceApi: SalesforceApi;
 
-
   constructor(salesforceApi: SalesforceApi) {
     this.salesforceApi = salesforceApi;
   }

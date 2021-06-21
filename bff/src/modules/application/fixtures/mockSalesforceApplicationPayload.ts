@@ -29,7 +29,7 @@ const payload: CreateApplication = {
   vendorPortalId: 'string',
   quoteId: 'string',
   expectedDeliveryDate: 'string',
-  bankruptcyDetails: 'string'
+  bankruptcyDetails: 'string',
 };
 
 export default payload;
