@@ -160,7 +160,7 @@ const routes = {
   resetLinkSent: '/account/resetSent',
   createPassword: '/account/createPassword',
   signUp: '/account/signUp',
-  verifyEmail: '/account/verifyEmail',
+  verifyEmail: '/account/verifyEmail/:accountId',
   personalInformation: '/account/personalInformation',
   contactInformation: '/account/contactInformation',
   businessInformation: '/account/businessInformation',
