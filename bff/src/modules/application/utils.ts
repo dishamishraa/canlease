@@ -32,7 +32,7 @@ const CreateQuoteSchema = Joi.object({
   vendorPortalId: Joi.string().required(),
   quoteId: Joi.string().required(),
   expectedDeliveryDate: Joi.string().required(),
-  bankruptcyDetails: Joi.string().required()
+  bankruptcyDetails: Joi.string().required(),
 });
 
 export const validateCreateApplication = (value: unknown): value is CreateApplication => {
