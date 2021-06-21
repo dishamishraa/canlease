@@ -1,8 +1,5 @@
 import QuoteController from './QuoteController';
 import { mockSalesforceContractPayload, mockSendGridPayload } from './fixtures';
-import SalesforceApi from './SalesforceApi';
-
-jest.mock('./SalesforceApi')
 
 describe('QuoteController', () => {
   const createQuoteService = {
