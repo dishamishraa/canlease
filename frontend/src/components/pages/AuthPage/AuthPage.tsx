@@ -5,7 +5,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import styles from './AuthPage.module.scss';
 
 import SignInBlock, { SignInBlockProps } from '../../blocks/SignInBlock';
-import SignUpBlock from '../../blocks/SignUpBlock';
+import SignUpBlock, { SignUpBlockProps } from '../../blocks/SignUpBlock';
 import ForgotPasswordBlock from '../../blocks/ForgotPasswordBlock';
 import CreatePasswordBlock from '../../blocks/CreatePasswordBlock';
 import DialogBlock from '../../blocks/DialogBlock';
@@ -14,6 +14,7 @@ import PersonalInformationBlock from '../../blocks/PersonalInformationBlock';
 import ContactInformationBlock from '../../blocks/ContactInformationBlock';
 import BusinessInformationBlock from '../../blocks/BusinessInformationBlock';
 import TopBar, { TopBarProps } from '../../organisms/TopBar';
+import { IdentityAccountPayload, SignInPayload } from '../../../modules/types';
 
 export const defaultProps = {
   topBar: {
@@ -108,6 +109,10 @@ export type AuthPageProps = {
   topBar?: TopBarProps;
   block?: SignInBlockProps;
   className?: string;
+  signUpBlock?: SignUpBlockProps;
+  signInBlock?: SignInBlockProps;
+  handleCreateIdentityAccount?:(payload: IdentityAccountPayload)=>void;
+  handleSignIn?:(payload: SignInPayload)=>void;
 };
 
 const routes = {
@@ -116,7 +121,7 @@ const routes = {
   resetLinkSent: '/account/resetSent',
   createPassword: '/account/createPassword',
   signUp: '/account/signUp',
-  verifyEmail: '/account/verifyEmail',
+  verifyEmail: '/account/verifyEmail/:accountId',
   personalInformation: '/account/personalInformation',
   contactInformation: '/account/contactInformation',
   businessInformation: '/account/businessInformation',
@@ -127,6 +132,10 @@ const AuthPage: React.FC<AuthPageProps> = ({
   topBar,
   block,
   className,
+  signUpBlock,
+  signInBlock,
+  handleCreateIdentityAccount,
+  handleSignIn
 }) => (
     <div className={cx(styles.authPage, className)}>
       <TopBar
@@ -136,7 +145,9 @@ const AuthPage: React.FC<AuthPageProps> = ({
         <Route exact path={routes.signIn}>
           <SignInBlock
             className={styles.block}
-            {...block} />
+            {...signInBlock} 
+            handleSignIn={handleSignIn}
+            />
         </Route>
 
         {/* Forgot password routes */}
@@ -156,7 +167,10 @@ const AuthPage: React.FC<AuthPageProps> = ({
         {/* Sign up routes */}
         <Route exact path={routes.signUp}>
           <SignUpBlock
-            className={styles.block} />
+            className={styles.block} 
+            {...signUpBlock}
+            handleCreateIdentityAccount={handleCreateIdentityAccount}
+            />
         </Route>
         <Route exact path={routes.verifyEmail}>
           <DialogBlock

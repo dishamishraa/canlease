@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { defaultProps, DialogBlockProps } from './DialogBlock';
 import { addLinksAndBreaks } from '../../../lib/reactUtils';
 import EmailImage from '../../../resources/images/email_verification.png'
+import { useHistory } from 'react-router';
 
 export type DialogBlockPresenterProps = DialogBlockProps & {
-
 };
 
 const withPresenter = (
@@ -13,10 +13,19 @@ const withPresenter = (
   ): React.FC<DialogBlockPresenterProps> => {
     const Presenter: React.FC<DialogBlockPresenterProps> = (props) => {
         const { t } = useTranslation();
-
+        const history = useHistory();
+        const [header, setHeader] = useState<string>(t('email_verification.header.default'));
+        const [description, setDescription] = useState<string>(t('email_verification.description.default'));
         const handleResend = () => {
-            console.log('resend')
+            setHeader(t('email_verification.header.resent'))
+            setDescription(t('email_verification.description.resent'));
+            // send the confirmation email
         }
+
+        const handleDone = () => {
+            history.push('/account/signin');
+        }
+        
         const dialogBlockProps: DialogBlockProps = {
             ...defaultProps,
             image: {
@@ -24,11 +33,11 @@ const withPresenter = (
             },
             blockHeading: {
                 ...defaultProps.blockHeading,
-                value: t('email_verification.header.default')
+                value: header
             },
             description: {
                 ...defaultProps.description,
-                value: t('email_verification.description.default')
+                value: description
             },
             questionText: {
                 ...defaultProps.questionText,
@@ -37,7 +46,7 @@ const withPresenter = (
             resolutionText: {
                 ...defaultProps.resolutionText,
                 value: addLinksAndBreaks(t('email_verification.resolution', {
-                    resendLink: "https://www.google.com/"
+                    resendLink: ''
                 })) 
             },
             doneButton: {
@@ -45,7 +54,8 @@ const withPresenter = (
                 text: {
                     ...defaultProps.doneButton.text,
                     value: t('email_verification.done_button')
-                }
+                },
+                onButtonClicked: handleDone
             }
         }
 

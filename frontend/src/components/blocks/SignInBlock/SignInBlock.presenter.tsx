@@ -1,0 +1,127 @@
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router';
+import { SignInBlockProps, defaultProps } from './SignInBlock';
+import { isEmptyString, isEmail } from '../../../lib/utils';
+import { APIResponse } from '../../../lib/api/types';
+import { SignInPayload, AccountTokenResponse } from '../../../modules/types'
+import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField' 
+
+export type SignInBlockPresenterProps = SignInBlockProps & {
+    handleSignIn?:(payload: SignInPayload) => void;
+};
+
+const withPresenter = (
+    View: React.FC<SignInBlockProps>,
+): React.FC<SignInBlockPresenterProps> => {
+    const Presenter: React.FC<SignInBlockPresenterProps> = (props) => {
+        const {
+            handleSignIn
+        } = props
+        const { t } = useTranslation();
+        const history = useHistory();
+        const [email, setEmail] = useState<string>('');
+        const [password, setPassword] = useState<string>('');
+
+        const handleEmail = ({ target: { value } }) => {
+            setEmail(value);
+        }
+        const handlePassowrd = ({ target: { value } }) => {
+            setPassword(value);
+        }
+
+        const handleNext = () => {
+            if(handleSignIn && !isEmptyString(email) && !isEmptyString(password)){
+                handleSignIn({
+                    email: email,
+                    password: password
+                })
+            }
+        }
+
+        const handleFogetPassword = () => {
+            history.push('/account/forgotPassword');
+        }
+
+        const handleSignUp = () => {
+            history.push('/account/signUp');
+        }
+
+        const signInProps: SignInBlockProps = {
+            ...defaultProps,
+            blockHeading:{
+                ...defaultProps.blockHeading,
+                value: t('authentication.heading_text.sign_in')
+            },
+            description: {
+                ...defaultProps.description,
+                value: t('authentication.description.sign_in')
+            },
+            emailTextField: {
+                ...defaultProps.emailTextField,
+                label: {
+                    ...defaultProps.emailTextField.label,
+                    value: t('authentication.email_label'),
+                },
+                textInput: {
+                    textValue: email,
+                    onTextChanged: handleEmail
+                },
+                errorMessage: {
+                    ...defaultTextFieldProps.errorMessage,
+                    value: t('authentication.error_message.account_exist')
+                },
+            },
+            passwordField: {
+                ...defaultProps.passwordField,
+                label: {
+                    ...defaultProps.passwordField.label,
+                    value: t('authentication.password_label')
+                },
+                textInput: {
+                    ...defaultProps.passwordField.textInput,
+                    textValue: password,
+                    onTextChanged: handlePassowrd
+                },
+            },
+            nextButton: {
+                ...defaultProps.nextButton,
+                text: {
+                    ...defaultProps.nextButton.text,
+                    value: t('authentication.next_button')
+                },
+                onButtonClicked: handleNext
+            },
+            forgotPasswordButton: {
+                ...defaultProps.forgotPasswordButton,
+                text:{
+                    ...defaultProps.forgotPasswordButton.text,
+                    value: t('authentication.forget_password_button')
+                },
+                onButtonClicked: handleFogetPassword
+            },
+            bottomContent: {
+                ...defaultProps.bottomContent,
+                value: t('authentication.bottom_content.sign_in')
+            },
+            signUpButton: {
+                ...defaultProps.signUpButton,
+                text: {
+                    ...defaultProps.signUpButton.text,
+                    value: t('authentication.sign_up_button')
+                },
+                onButtonClicked: handleSignUp
+            }
+        }
+
+        return (
+            <View 
+            {...signInProps}
+            />
+        );
+    };
+
+    return Presenter;
+};
+
+export default withPresenter;

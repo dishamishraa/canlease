@@ -1,3 +1,5 @@
+import { CreatePasswordBlockProps } from "../components/blocks/CreatePasswordBlock";
+
 export type User = {
   id: number;
   uuid: string;
@@ -126,6 +128,15 @@ export type IdentityAccountPayload = {
   enabled: boolean;
 }
 
+export type Account = {
+  id: number;
+  uuid: string;
+  email: string;
+  firstname: string;
+  lastname: string;
+  enabled: boolean;
+}
+
 export type AccountTokenResponse = {
   id: number;
   uuid: string;
@@ -134,4 +145,9 @@ export type AccountTokenResponse = {
   firstName: string;
   lastName: string;
   enabled: boolean;
+}
+
+export type SignInPayload = {
+  email: string;
+  password: string;
 }

@@ -122,13 +122,29 @@
     },
     "sign_up":{
         "heading_text": "Sign up",
-        "description": "Create a free Canlease account",
+        "description": "Create a free Canlease account"
+    },
+    "authentication":{
+        "heading_text": {
+            "sign_up": "Sign up",
+            "sign_in": "Sign in"
+        },
+        "description": {
+            "sign_up": "Create a free Canlease account",
+            "sign_in": "Sign in to Canlease portal"
+        },
         "email_label": "Email",
+        "password_label": "Password",
         "create_password_label": "Create Password",
         "confirm_password_label": "Confirm Password",
-        "bottom_content": "Already have an account?",
+        "bottom_content": {
+            "sign_up": "Already have an account?",
+            "sign_in": "New to Canlease?"
+        },
         "sign_up_button": "SIGN UP",
         "sign_in_button": "SIGN IN",
+        "next_button": "NEXT",
+        "forget_password_button": "Forgot my password",
         "error_message": {
             "empty": "{{field}} cannot be empty",
             "invalid_email": "Please enter a valid email address",

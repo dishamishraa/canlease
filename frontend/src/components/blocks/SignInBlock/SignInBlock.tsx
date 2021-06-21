@@ -6,9 +6,16 @@ import styles from './SignInBlock.module.scss';
 import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
+import { SignInPayload } from '../../../modules/types';
 
 export const defaultProps = {
   blockHeading: {
+    style: 'Basic800',
+    align: 'Left',
+    size: 'Medium',
+    type: 'Heading2',
+  } as TextProps,
+  bottomContent: {
     style: 'Basic800',
     align: 'Center',
     size: 'Medium',
@@ -53,10 +60,10 @@ export const defaultProps = {
   nextButton: {
     type: 'Button',
     size: 'Large',
-    fill: 'Basic',
-    colour: 'Basic',
+    fill: 'Colour',
+    colour: 'Brand',
     text: {
-      style: 'Brand500',
+      style: 'Basic100',
       align: 'Center',
       size: 'Small',
       type: 'ButtonGiant',
@@ -66,6 +73,18 @@ export const defaultProps = {
     type: 'Button',
     size: 'Small',
     fill: 'None',
+    colour: 'Basic',
+    text: {
+      style: 'Brand500',
+      align: 'Center',
+      size: 'Small',
+      type: 'ButtonGiant',
+    },
+  } as ButtonProps,
+  signUpButton: {
+    type: 'Button',
+    size: 'Large',
+    fill: 'Basic',
     colour: 'Basic',
     text: {
       style: 'Brand500',
@@ -84,6 +103,9 @@ export type SignInBlockProps = {
   nextButton?: ButtonProps;
   forgotPasswordButton?: ButtonProps;
   className?: string;
+  bottomContent?: TextProps;
+  signUpButton?: ButtonProps;
+  handleSignIn?:(payload: SignInPayload)=>void
 };
 
 const SignInBlock: React.FC<SignInBlockProps> = ({
@@ -94,6 +116,8 @@ const SignInBlock: React.FC<SignInBlockProps> = ({
   nextButton,
   forgotPasswordButton,
   className,
+  bottomContent,
+  signUpButton
 }) => (
     <div className={cx(styles.signInBlock, className)}>
       <div className={styles.topContent}>
@@ -123,10 +147,10 @@ const SignInBlock: React.FC<SignInBlockProps> = ({
       <div className={styles.bottamContent}>
         <Text
           className={styles.blockHeading}
-          {...blockHeading} />
+          {...bottomContent} />
         <Button
           className={styles.nextButton}
-          {...nextButton} />
+          {...signUpButton} />
       </div>
     </div>
 );

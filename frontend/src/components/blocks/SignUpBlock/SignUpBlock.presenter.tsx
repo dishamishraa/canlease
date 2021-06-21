@@ -8,7 +8,7 @@ import { IdentityAccountPayload, AccountTokenResponse } from '../../../modules/t
 import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField'
 
 export type SignUpBlockPresenterProps = SignUpBlockProps & {
-    createIdentityAccount: (payload: IdentityAccountPayload) => Promise<APIResponse<AccountTokenResponse>>;
+    handleCreateIdentityAccount?: (payload: IdentityAccountPayload)=>void
 };
 
 const withPresenter = (
@@ -16,8 +16,8 @@ const withPresenter = (
 ): React.FC<SignUpBlockPresenterProps> => {
     const Presenter: React.FC<SignUpBlockPresenterProps> = (props) => {
         const {
-            createIdentityAccount
-        } = props;
+            handleCreateIdentityAccount
+        } = props
         const { t } = useTranslation();
         const history = useHistory();
         const [email, setEmail] = useState<string>('');
@@ -37,19 +37,6 @@ const withPresenter = (
         const handleConfirmPassword = ({ target: { value } }) => {
             setConfirmPassword(value);
         }
-        const handleCreateIdentityAccount = async() => {
-            let identityAccountPayload: IdentityAccountPayload = {
-                email: email,
-                password: password,
-                firstName: '',
-                lastName: '',
-                enabled: false
-            }
-            const { data, error } = await createIdentityAccount(identityAccountPayload);
-            if(error){
-                setEmailError('Error')
-            }
-        }
 
         const handleSignUp = () => {
             // verify fields
@@ -61,12 +48,17 @@ const withPresenter = (
                 }
             }else{
                 // fields are valid, call sign up api
-                handleCreateIdentityAccount()
-
-                // push verification page
-                history.push({ pathname: '/account/verifyEmail' });
+                if(handleCreateIdentityAccount){
+                    handleCreateIdentityAccount({
+                        email: email,
+                        password: password,
+                        firstName: '',
+                        lastName: '',
+                        enabled: false
+                    })
+                }
             }
-        }
+        };
 
         const handleSignIn = () => {
             history.push({ pathname: '/account/signIn' });
@@ -76,17 +68,17 @@ const withPresenter = (
             ...defaultProps,
             blockHeading:{
                 ...defaultProps.blockHeading,
-                value: t('sign_up.heading_text')
+                value: t('authentication.heading_text.sign_up')
             },
             description: {
                 ...defaultProps.description,
-                value: t('sign_up.description')
+                value: t('authentication.description.sign_up')
             },
             emailTextField: {
                 ...defaultProps.emailTextField,
                 label: {
                     ...defaultProps.emailTextField.label,
-                    value: t('sign_up.email_label'),
+                    value: t('authentication.email_label'),
                 },
                 textInput: {
                     textValue: email,
@@ -94,7 +86,7 @@ const withPresenter = (
                 },
                 errorMessage: {
                     ...defaultTextFieldProps.errorMessage,
-                    value: t('sign_up.error_message.account_exist')
+                    value: t('authentication.error_message.account_exist')
                 },
                 state: emailError
             },
@@ -102,7 +94,7 @@ const withPresenter = (
                 ...defaultProps.createPasswordField,
                 label: {
                     ...defaultProps.createPasswordField.label,
-                    value: t('sign_up.create_password_label')
+                    value: t('authentication.create_password_label')
                 },
                 textInput: {
                     ...defaultProps.createPasswordField.textInput,
@@ -111,7 +103,7 @@ const withPresenter = (
                 },
                 errorMessage: {
                     ...defaultTextFieldProps.errorMessage,
-                    value: t('sign_up.error_message.password_mismatch')
+                    value: t('authentication.error_message.password_mismatch')
                 },
                 state: passwordError
             },
@@ -119,7 +111,7 @@ const withPresenter = (
                 ...defaultProps.confirmPasswordField,
                 label: {
                     ...defaultProps.confirmPasswordField.label,
-                    value: t('sign_up.confirm_password_label')
+                    value: t('authentication.confirm_password_label')
                 },
                 textInput: {
                     ...defaultProps.confirmPasswordField.textInput,
@@ -128,7 +120,7 @@ const withPresenter = (
                 },
                 errorMessage: {
                     ...defaultTextFieldProps.errorMessage,
-                    value: t('sign_up.error_message.password_mismatch')
+                    value: t('authentication.error_message.password_mismatch')
                 },
                 state: confirmPasswordError
             },
@@ -136,19 +128,19 @@ const withPresenter = (
                 ...defaultProps.signUpButton,
                 text: {
                     ...defaultProps.signUpButton.text,
-                    value: t('sign_up.sign_up_button')
+                    value: t('authentication.sign_up_button')
                 },
                 onButtonClicked: handleSignUp
             },
             bottomContent: {
                 ...defaultProps.bottomContent,
-                value: t('sign_up.bottom_content')
+                value: t('authentication.bottom_content.sign_up')
             },
             signInButton: {
                 ...defaultProps.signInButton,
                 text: {
                     ...defaultProps.signInButton.text,
-                    value: t('sign_up.sign_in_button')
+                    value: t('authentication.sign_in_button')
                 },
                 onButtonClicked: handleSignIn
             }
@@ -162,6 +154,6 @@ const withPresenter = (
     };
 
     return Presenter;
-}
+};
 
 export default withPresenter;
