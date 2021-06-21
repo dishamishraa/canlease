@@ -16,6 +16,7 @@ export default class SendGridApi {
 
   async sendQuote(payload: SendQuote): Promise<void> {
     const { email, actionUrl } = payload;
+    // TODO implement sendgrid, no api and key
     try {
       const data: MailDataRequired = {
         to: email,
@@ -26,7 +27,7 @@ export default class SendGridApi {
         templateId: SENDGRID_QUOTE_TEMPLATE_ID,
       };
       await sendgridMail.send(data);
-    } catch (error) {
+    } catch {
       throw InternalServerError('Unable to send quote email');
     }
   }

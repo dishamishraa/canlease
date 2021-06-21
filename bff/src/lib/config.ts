@@ -16,7 +16,7 @@ export const {
 
   BFF_URL = '',
 
-  FRONTEND_URL = window.env?.REACT_APP_FRONTEND_URL,
+  FRONTEND_URL = '',
   FRONTEND_DOMAIN = '',
 
   IDENTITY_URL = '',
