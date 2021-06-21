@@ -2,12 +2,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-declare global {
-  interface Window {
-    env: any;
-  }
-}
-
 export const {
   /**
    * Port to mount server on to
