@@ -15,9 +15,9 @@ export const createIdentityAccount = async (payload: AccountRequest): Promise<Ac
     }
   };
 
-export const verifyAccount = async(accountId: number | string, token: string): Promise<AccountTokenResponse> => {
+export const resendVerifyAccount = async(email: string): Promise<AccountTokenResponse> => {
   try{
-    const { data } = await axios.post<AccountTokenResponse>(`${getServerUrl}/accounts/${accountId}/actions/verifyAccount`, token);
+    const { data } = await axios.post<AccountTokenResponse>(`${getServerUrl}/actions/resendVerifyEmail/${email}`, );
     return data;
   }catch (error){
     if (axios.isAxiosError(error) && error.response) {

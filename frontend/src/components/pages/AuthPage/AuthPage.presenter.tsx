@@ -29,7 +29,7 @@ const withPresenter = (
         const { data } = await createIdentityAccount(payload);
         if(data){
           // change url base on how the verify end point is structured
-          history.push(`/account/verifyEmail/${data.id}`);
+          history.push(`/account/verifyEmail/${data.email}`);
         }
       }
 

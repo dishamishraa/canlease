@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { defaultProps, DialogBlockProps } from './DialogBlock';
 import { addLinksAndBreaks } from '../../../lib/reactUtils';
 import EmailImage from '../../../resources/images/email_verification.png'
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
+import useResendVerifyAccount from '../../../modules/account/useResendVerifyAccount';
 
 export type DialogBlockPresenterProps = DialogBlockProps & {
 };
@@ -14,12 +15,16 @@ const withPresenter = (
     const Presenter: React.FC<DialogBlockPresenterProps> = (props) => {
         const { t } = useTranslation();
         const history = useHistory();
+        const { email } = useParams<{email: string}>();
         const [header, setHeader] = useState<string>(t('email_verification.header.default'));
         const [description, setDescription] = useState<string>(t('email_verification.description.default'));
         const handleResend = () => {
             setHeader(t('email_verification.header.resent'))
             setDescription(t('email_verification.description.resent'));
             // send the confirmation email
+            if(email){
+                useResendVerifyAccount(email)
+            }
         }
 
         const handleDone = () => {
