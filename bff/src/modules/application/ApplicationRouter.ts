@@ -5,17 +5,17 @@ import { errorWrapper } from '../../lib/utils';
 import { validateCreateApplication } from './utils';
 
 export function createApplicationRouter(controllers: {
-  applicationontroller: ApplicationControllerContract;
+  applicationController: ApplicationControllerContract;
 }): Router {
   const router = Router();
-  const { applicationontroller } = controllers;
+  const { applicationController } = controllers;
 
   router.post('/', errorWrapper(async (req: Request, res: Response) => {
     if (!validateCreateApplication(req.body)) {
       throw BadRequestError();
     }
-    await applicationontroller.createApplication(req.body);
-    res.status(200);
+    await applicationController.createApplication(req.body);
+    res.sendStatus(200);
   }));
 
   return router;
