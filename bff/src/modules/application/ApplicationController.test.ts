@@ -12,7 +12,7 @@ describe('QuoteController', () => {
       await controller.createApplication(mockSalesforceApplicationPayload);
 
       expect(createApplicationService.createApplication)
-      .toHaveBeenCalledWith(mockSalesforceApplicationPayload);
+        .toHaveBeenCalledWith(mockSalesforceApplicationPayload);
     });
   });
 });

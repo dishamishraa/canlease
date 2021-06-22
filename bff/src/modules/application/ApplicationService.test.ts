@@ -13,7 +13,7 @@ describe('QuoteService', () => {
       await service.createApplication(mockSalesforceApplicationPayload);
 
       expect(salesforceApi.createApplication)
-      .toHaveBeenCalledWith(mockSalesforceApplicationPayload);
+        .toHaveBeenCalledWith(mockSalesforceApplicationPayload);
     });
   });
 });
