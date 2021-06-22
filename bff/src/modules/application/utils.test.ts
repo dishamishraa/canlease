@@ -1,5 +1,4 @@
 import { validateCreateApplication } from './utils';
-import { mockSalesforceApplicationPayload } from './fixtures';
 
 describe('application utils', () => {
   describe('validateCreateApplication', () => {

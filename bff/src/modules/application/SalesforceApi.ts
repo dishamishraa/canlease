@@ -43,7 +43,7 @@ export default class SalesforceApi {
         },
       );
     } catch (error) {
-      return error.message;
+      throw error.message;
     }
   }
 }
