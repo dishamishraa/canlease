@@ -4,11 +4,11 @@ import { useHistory } from 'react-router';
 import { SignUpBlockProps, defaultProps } from './SignUpBlock';
 import { isEmptyString, isEmail } from '../../../lib/utils';
 import { APIResponse } from '../../../lib/api/types';
-import { IdentityAccountPayload, AccountTokenResponse } from '../../../modules/types'
+import { AccountRequest, AccountTokenResponse } from '../../../modules/types'
 import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField'
 
 export type SignUpBlockPresenterProps = SignUpBlockProps & {
-    handleCreateIdentityAccount?: (payload: IdentityAccountPayload)=>void
+    handleCreateIdentityAccount?: (payload: AccountRequest)=>void
 };
 
 const withPresenter = (
@@ -26,6 +26,9 @@ const withPresenter = (
         const [emailError, setEmailError] = useState<TextFieldStateType>('Default');
         const [passwordError, setPasswordError] = useState<TextFieldStateType>('Default');
         const [confirmPasswordError, setConfirmPasswordError] = useState<TextFieldStateType>('Default')
+        const [emailErrorMessage, setEmailErrorMessage] = useState<string>('');
+        const [passwordErrorMessage, setPasswordErrorMessage] = useState<string>('');
+        const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] = useState<string>('');
 
         const handleEmail = ({ target: { value } }) => {
             setEmail(value);
@@ -33,19 +36,21 @@ const withPresenter = (
         }
         const handlePassowrd = ({ target: { value } }) => {
             setPassword(value);
+            setPasswordError('Default')
         }
         const handleConfirmPassword = ({ target: { value } }) => {
             setConfirmPassword(value);
+            setConfirmPasswordError('Default')
         }
 
         const handleSignUp = () => {
             // verify fields
             if(isEmptyString(email) || isEmptyString(password) || isEmptyString(confirmPassword)){
-                if(!(password === confirmPassword)){
-                    //show error message when passwords don't match
-                    setConfirmPasswordError('Error')
-                    setPasswordError('Error')
-                }
+                
+            }else if(!(password === confirmPassword)){
+                //show error message when passwords don't match
+                setConfirmPasswordError('Error')
+                setPasswordError('Error')
             }else{
                 // fields are valid, call sign up api
                 if(handleCreateIdentityAccount){
@@ -78,7 +83,7 @@ const withPresenter = (
                 ...defaultProps.emailTextField,
                 label: {
                     ...defaultProps.emailTextField.label,
-                    value: t('authentication.email_label'),
+                    value: t('text_field_label.email'),
                 },
                 textInput: {
                     textValue: email,
@@ -86,7 +91,8 @@ const withPresenter = (
                 },
                 errorMessage: {
                     ...defaultTextFieldProps.errorMessage,
-                    value: t('authentication.error_message.account_exist')
+                    value: emailErrorMessage
+                    // value: t('authentication.error_message.account_exist')
                 },
                 state: emailError
             },
@@ -94,7 +100,7 @@ const withPresenter = (
                 ...defaultProps.createPasswordField,
                 label: {
                     ...defaultProps.createPasswordField.label,
-                    value: t('authentication.create_password_label')
+                    value: t('text_field_label.create_password')
                 },
                 textInput: {
                     ...defaultProps.createPasswordField.textInput,
@@ -103,7 +109,7 @@ const withPresenter = (
                 },
                 errorMessage: {
                     ...defaultTextFieldProps.errorMessage,
-                    value: t('authentication.error_message.password_mismatch')
+                    value: passwordErrorMessage
                 },
                 state: passwordError
             },
@@ -111,7 +117,7 @@ const withPresenter = (
                 ...defaultProps.confirmPasswordField,
                 label: {
                     ...defaultProps.confirmPasswordField.label,
-                    value: t('authentication.confirm_password_label')
+                    value: t('text_field_label.confirm_password')
                 },
                 textInput: {
                     ...defaultProps.confirmPasswordField.textInput,
@@ -120,7 +126,7 @@ const withPresenter = (
                 },
                 errorMessage: {
                     ...defaultTextFieldProps.errorMessage,
-                    value: t('authentication.error_message.password_mismatch')
+                    value: confirmPasswordErrorMessage
                 },
                 state: confirmPasswordError
             },
@@ -128,7 +134,7 @@ const withPresenter = (
                 ...defaultProps.signUpButton,
                 text: {
                     ...defaultProps.signUpButton.text,
-                    value: t('authentication.sign_up_button')
+                    value: t('button_text.sign_up')
                 },
                 onButtonClicked: handleSignUp
             },
@@ -140,7 +146,7 @@ const withPresenter = (
                 ...defaultProps.signInButton,
                 text: {
                     ...defaultProps.signInButton.text,
-                    value: t('authentication.sign_in_button')
+                    value: t('button_text.sign_in')
                 },
                 onButtonClicked: handleSignIn
             }

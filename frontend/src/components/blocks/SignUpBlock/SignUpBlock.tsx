@@ -6,7 +6,7 @@ import styles from './SignUpBlock.module.scss';
 import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
-import { IdentityAccountPayload } from '../../../modules/types';
+import { AccountRequest } from '../../../modules/types';
 
 export const defaultProps = {
   blockHeading: {
@@ -110,7 +110,7 @@ export type SignUpBlockProps = {
   bottomContent?: TextProps;
   signInButton?: ButtonProps;
   className?: string;
-  handleCreateIdentityAccount?:(payload: IdentityAccountPayload)=>void
+  handleCreateIdentityAccount?:(payload: AccountRequest)=>void
 };
 
 const SignUpBlock: React.FC<SignUpBlockProps> = ({

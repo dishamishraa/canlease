@@ -133,28 +133,10 @@
             "sign_up": "Create a free Canlease account",
             "sign_in": "Sign in to Canlease portal"
         },
-        "email_label": "Email",
-        "password_label": "Password",
-        "create_password_label": "Create Password",
-        "confirm_password_label": "Confirm Password",
         "bottom_content": {
             "sign_up": "Already have an account?",
             "sign_in": "New to Canlease?"
-        },
-        "sign_up_button": "SIGN UP",
-        "sign_in_button": "SIGN IN",
-        "next_button": "NEXT",
-        "forget_password_button": "Forgot my password",
-        "error_message": {
-            "empty": "{{field}} cannot be empty",
-            "invalid_email": "Please enter a valid email address",
-            "password_mismatch": "Passwords do not match",
-            "account_exist": "An account with this email already exists"
         }
-    },
-    "header":{
-        "sign_up_button": "SIGN UP",
-        "sign_in_button": "SIGN IN"
     },
     "email_verification":{
         "header": {
@@ -166,8 +148,31 @@
             "resent": "The verification link has been resent."
         },
         "question": "Don’t see the email?",
-        "resolution": "Check your spam folder or click [here]({{resendLink}}) to resend the verification link.",
-        "done_button": "DONE"
+        "resolution": "Check your spam folder or click [here]({{resendLink}}) to resend the verification link."
+    },
+    "forgot_password":{
+        "header": "Forgot password",
+        "description": "Enter your email and we will send you a link to create a new password."
+    },
+    "error_message": {
+        "empty": "{{field}} cannot be empty",
+        "invalid_email": "Please enter a valid email address",
+        "password_mismatch": "Passwords do not match",
+        "account_exist": "An account with this email already exists"
+    },
+    "button_text": {
+        "sign_in": "SIGN IN",
+        "sign_up": "SIGN UP",
+        "forgot_password": "Forgot my password",
+        "done": "DONE",
+        "next": "NEXT",
+        "send_link": "SEND LINK"
+    },
+    "text_field_label":{
+        "email": "Email",
+        "password": "Password",
+        "create_password": "Create password",
+        "confirm_password": "Confirm password"
     }
 }
   

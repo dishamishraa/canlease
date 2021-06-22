@@ -14,7 +14,7 @@ import PersonalInformationBlock from '../../blocks/PersonalInformationBlock';
 import ContactInformationBlock from '../../blocks/ContactInformationBlock';
 import BusinessInformationBlock from '../../blocks/BusinessInformationBlock';
 import TopBar, { TopBarProps } from '../../organisms/TopBar';
-import { IdentityAccountPayload, SignInPayload } from '../../../modules/types';
+import { AccountRequest, SignInPayload } from '../../../modules/types';
 
 export const defaultProps = {
   topBar: {
@@ -111,7 +111,7 @@ export type AuthPageProps = {
   className?: string;
   signUpBlock?: SignUpBlockProps;
   signInBlock?: SignInBlockProps;
-  handleCreateIdentityAccount?:(payload: IdentityAccountPayload)=>void;
+  handleCreateIdentityAccount?:(payload: AccountRequest)=>void;
   handleSignIn?:(payload: SignInPayload)=>void;
 };
 

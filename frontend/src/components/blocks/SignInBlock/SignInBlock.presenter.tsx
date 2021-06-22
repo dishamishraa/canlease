@@ -61,7 +61,7 @@ const withPresenter = (
                 ...defaultProps.emailTextField,
                 label: {
                     ...defaultProps.emailTextField.label,
-                    value: t('authentication.email_label'),
+                    value: t('text_field_label.email'),
                 },
                 textInput: {
                     textValue: email,
@@ -76,7 +76,7 @@ const withPresenter = (
                 ...defaultProps.passwordField,
                 label: {
                     ...defaultProps.passwordField.label,
-                    value: t('authentication.password_label')
+                    value: t('text_field_label.password')
                 },
                 textInput: {
                     ...defaultProps.passwordField.textInput,
@@ -88,7 +88,7 @@ const withPresenter = (
                 ...defaultProps.nextButton,
                 text: {
                     ...defaultProps.nextButton.text,
-                    value: t('authentication.next_button')
+                    value: t('button_text.next')
                 },
                 onButtonClicked: handleNext
             },
@@ -96,7 +96,7 @@ const withPresenter = (
                 ...defaultProps.forgotPasswordButton,
                 text:{
                     ...defaultProps.forgotPasswordButton.text,
-                    value: t('authentication.forget_password_button')
+                    value: t('button_text.forgot_password')
                 },
                 onButtonClicked: handleFogetPassword
             },
@@ -108,7 +108,7 @@ const withPresenter = (
                 ...defaultProps.signUpButton,
                 text: {
                     ...defaultProps.signUpButton.text,
-                    value: t('authentication.sign_up_button')
+                    value: t('button_text.sign_up')
                 },
                 onButtonClicked: handleSignUp
             }

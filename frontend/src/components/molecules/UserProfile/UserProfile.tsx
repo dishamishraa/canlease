@@ -99,7 +99,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
     ...primary,
     text: {
       ...primary?.text,
-      value: t('header.sign_in_button')
+      value: t('button_text.sign_in')
     },
     onButtonClicked: handleSignIn
   }
@@ -108,7 +108,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
     ...secondary,
     text: {
       ...secondary?.text,
-      value: t('header.sign_up_button')
+      value: t('button_text.sign_up')
     },
     onButtonClicked: handleSignUp
   }

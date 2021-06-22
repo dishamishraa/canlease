@@ -53,7 +53,7 @@ const withPresenter = (
                 ...defaultProps.doneButton,
                 text: {
                     ...defaultProps.doneButton.text,
-                    value: t('email_verification.done_button')
+                    value: t('button_text.done')
                 },
                 onButtonClicked: handleDone
             }

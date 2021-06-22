@@ -1,13 +1,13 @@
 import { useCallback } from 'react';
 import usePost, { UsePostResult } from '../../lib/api/usePost';
-import { Account, IdentityAccountPayload } from '../types';
+import { AccountTokenResponse, AccountRequest } from '../types';
 import { createIdentityAccount } from './api';
 
 
-export type useCreateIdentityAccountResult = UsePostResult<Account, IdentityAccountPayload>
+export type useCreateIdentityAccountResult = UsePostResult<AccountTokenResponse, AccountRequest>
 
 const useCreateIdentityAccount = (): useCreateIdentityAccountResult => {
-  const post = useCallback((payload: IdentityAccountPayload): Promise<Account> => createIdentityAccount(payload), []);
+  const post = useCallback((payload: AccountRequest): Promise<AccountTokenResponse> => createIdentityAccount(payload), []);
   return usePost(post);
 };
 

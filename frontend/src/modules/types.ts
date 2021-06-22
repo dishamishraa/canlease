@@ -81,6 +81,32 @@ export type Lease = {
   quoteId: string;
 };
 
+export type Profile = {
+  name: string;
+  firstname: string;
+  lastname: string;
+  companyName: string;
+  phone: string;
+  email: string;
+  title: string;
+  address: string;
+  street: string;
+  city: string;
+  province: string;
+  postalCode: string;
+  country: string;
+  website: string;
+  rateCard: string;
+  feePercentage: number;
+  theCompanyId: string;
+  portalId: string;
+  rateCardId: string;
+  userType: 'customer' | 'vendor' | 'rep';
+  operationName: string;
+  businessSector: string;
+  businessPhone: string;
+}
+
 export type CreateQuotePayload = CreateVendorQuotePayload | CreateCustomerQuotePayload;
 
 export type CreateCustomerQuotePayload = {
@@ -120,7 +146,7 @@ export type ContactInfoCustomer = {
 export type ContactInfo = ContactInfoVendor | ContactInfoCustomer;
 
 //Identity Accounts
-export type IdentityAccountPayload = {
+export type AccountRequest = {
   email: string;
   password: string;
   firstName: string;
