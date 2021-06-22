@@ -18,14 +18,15 @@ describe('ApplicationRouter', () => {
 
   describe('POST /', () => {
     it('should return a 200 status on success', async () => {
-        mockValidateCreateApplication.mockReturnValueOnce(true);
-        applicationController.createApplication.mockResolvedValueOnce(undefined);
+      mockValidateCreateApplication.mockReturnValueOnce(true);
+      applicationController.createApplication.mockResolvedValueOnce(undefined);
 
       const { status } = await request(app)
         .post('/')
         .send(mockSalesforceApplicationPayload);
 
-      expect(applicationController.createApplication).toHaveBeenCalledWith(mockSalesforceApplicationPayload);
+      expect(applicationController.createApplication)
+      .toHaveBeenCalledWith(mockSalesforceApplicationPayload);
       expect(status).toEqual(200);
     });
   });

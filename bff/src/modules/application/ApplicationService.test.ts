@@ -12,7 +12,8 @@ describe('QuoteService', () => {
     it('should call api with payload', async () => {
       await service.createApplication(mockSalesforceApplicationPayload);
 
-      expect(salesforceApi.createApplication).toHaveBeenCalledWith(mockSalesforceApplicationPayload);
+      expect(salesforceApi.createApplication)
+      .toHaveBeenCalledWith(mockSalesforceApplicationPayload);
     });
   });
 });

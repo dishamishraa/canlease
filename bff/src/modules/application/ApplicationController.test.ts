@@ -11,7 +11,8 @@ describe('QuoteController', () => {
     it('should call service with payload to create quote', async () => {
       await controller.createApplication(mockSalesforceApplicationPayload);
 
-      expect(createApplicationService.createApplication).toHaveBeenCalledWith(mockSalesforceApplicationPayload);
+      expect(createApplicationService.createApplication)
+      .toHaveBeenCalledWith(mockSalesforceApplicationPayload);
     });
   });
 });
