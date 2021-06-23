@@ -141,11 +141,13 @@
     "email_verification":{
         "header": {
             "default": "Please verify your email",
-            "resent": "Verification email resent"
+            "resent": "Verification email resent",
+            "reset": "Reset link sent!"
         },
         "description": {
             "default": "A verification link has been sent to your email. Please verify your email to complete sign up.",
-            "resent": "The verification link has been resent."
+            "resent": "The verification link has been resent.",
+            "reset": "A password reset link has been sent to your email."
         },
         "question": "Don’t see the email?",
         "resolution": "Check your spam folder or click [here]({{resendLink}}) to resend the verification link."

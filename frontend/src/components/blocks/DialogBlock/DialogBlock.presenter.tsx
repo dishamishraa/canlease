@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { defaultProps, DialogBlockProps } from './DialogBlock';
-import { addLinksAndBreaks } from '../../../lib/reactUtils';
 import EmailImage from '../../../resources/images/email_verification.png'
-import { useHistory, useParams } from 'react-router';
-import useResendVerifyAccount from '../../../modules/account/useResendVerifyAccount';
+import { useHistory, useLocation, useParams } from 'react-router';
+import { useResendVerifyAccount } from '../../../modules/account';
+import { APIResponse } from '../../../lib/api/types';
+import { resendVerifyAccount } from '../../../modules/account/api';
 
 export type DialogBlockPresenterProps = DialogBlockProps & {
+    resendVerifyAccount: (email: string) => Promise<APIResponse<void>>
 };
+
+interface DialogBlockContentType {
+    email?: string;
+    contentType: string;
+}
 
 const withPresenter = (
     View: React.FC<DialogBlockProps>,
@@ -15,20 +22,49 @@ const withPresenter = (
     const Presenter: React.FC<DialogBlockPresenterProps> = (props) => {
         const { t } = useTranslation();
         const history = useHistory();
-        const { email } = useParams<{email: string}>();
-        const [header, setHeader] = useState<string>(t('email_verification.header.default'));
-        const [description, setDescription] = useState<string>(t('email_verification.description.default'));
-        const handleResend = () => {
-            setHeader(t('email_verification.header.resent'))
-            setDescription(t('email_verification.description.resent'));
-            // send the confirmation email
+        const location = useLocation();
+        const state = location.state as DialogBlockContentType;
+        const { contentType, email } = state;
+        const [header, setHeader] = useState<string>('');
+        const [description, setDescription] = useState<string>('');
+        const [questionText, setQuestionText] = useState<string>('');
+        const [resolutionText, setResolutionText] = useState<string>('');
+        const [doneButton, setDoneButton] = useState<{text: string, link: string}>({text: '', link: '/'});
+        
+        // set states base on content type
+        useEffect(() =>{
+            if(state){
+                switch (contentType){
+                    case "VerifyEmail":
+                        setHeader(t('email_verification.header.default'))
+                        setDescription(t('email_verification.description.default'))
+                        setQuestionText(t('email_verification.question'))
+                        setResolutionText(t('email_verification.resolution'))
+                        setDoneButton({text: t('button_text.done'), link: '/account/signin'});
+                        break;
+                    case "ResetLink":
+                        setHeader(t('email_verification.header.reset'))
+                        setDescription(t('email_verification.description.reset'))
+                        setQuestionText(t('email_verification.question'))
+                        setResolutionText(t('email_verification.resolution'))
+                        setDoneButton({text: t('button_text.done'), link: '/account/signin'});
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }, [])
+
+        const handleResend = async() => {
             if(email){
-                useResendVerifyAccount(email)
+                setHeader(t('email_verification.header.resent'))
+                setDescription(t('email_verification.description.resent'));
+                resendVerifyAccount(email)
             }
         }
 
         const handleDone = () => {
-            history.push('/account/signin');
+            history.push(doneButton.link);
         }
         
         const dialogBlockProps: DialogBlockProps = {
@@ -46,19 +82,17 @@ const withPresenter = (
             },
             questionText: {
                 ...defaultProps.questionText,
-                value: t('email_verification.question')
+                value: questionText
             },
             resolutionText: {
                 ...defaultProps.resolutionText,
-                value: addLinksAndBreaks(t('email_verification.resolution', {
-                    resendLink: ''
-                })) 
+                value: resolutionText
             },
             doneButton: {
                 ...defaultProps.doneButton,
                 text: {
                     ...defaultProps.doneButton.text,
-                    value: t('button_text.done')
+                    value: doneButton.text
                 },
                 onButtonClicked: handleDone
             }

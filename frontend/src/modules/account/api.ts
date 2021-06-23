@@ -15,15 +15,12 @@ export const createIdentityAccount = async (payload: AccountRequest): Promise<Ac
     }
   };
 
-export const resendVerifyAccount = async(email: string): Promise<AccountTokenResponse> => {
+export const resendVerifyAccount = async(email: string): Promise<void> => {
   try{
-    const { data } = await axios.post<AccountTokenResponse>(`${getServerUrl}/actions/resendVerifyEmail/${email}`, );
-    return data;
+    await axios.post(`${getServerUrl}/actions/resendVerifyEmail`, { params: {
+      email
+    }});
   }catch (error){
-    if (axios.isAxiosError(error) && error.response) {
-      throw error;
-    }
-    throw error;
   }
 }
 

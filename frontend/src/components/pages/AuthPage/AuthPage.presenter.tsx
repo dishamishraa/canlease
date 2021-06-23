@@ -21,15 +21,19 @@ const withPresenter = (
       } = props
 
       const history = useHistory();
-      const { state } = useLocation();
       const [cookies, setCookie, removeCookie] = useCookies();
 
       //sign up
       const handleCreateIdentityAccount = async(payload: AccountRequest) => {
         const { data } = await createIdentityAccount(payload);
         if(data){
-          // change url base on how the verify end point is structured
-          history.push(`/account/verifyEmail/${data.email}`);
+          history.push({
+            pathname: '/account/verifyEmail', 
+            state: {
+              email: data.email,
+              contentType: 'VerifyEmail'
+            }
+          });
         }
       }
 
@@ -43,10 +47,16 @@ const withPresenter = (
             //find the salesforce profile with the identity account id
 
             //check the userType and push to the correct dashboard
-
+            
           }else{
             //if not verified, send a verification email and take to verify email page
-
+            history.push({
+              pathname: '/account/verifyEmail', 
+              state: {
+                email: data.email,
+                contentType: 'VerifyEmail'
+              }
+            });
           }
         }
       }

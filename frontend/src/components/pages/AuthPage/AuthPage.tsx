@@ -121,7 +121,7 @@ const routes = {
   resetLinkSent: '/account/resetSent',
   createPassword: '/account/createPassword',
   signUp: '/account/signUp',
-  verifyEmail: '/account/verifyEmail/:accountId',
+  verifyEmail: '/account/verifyEmail',
   personalInformation: '/account/personalInformation',
   contactInformation: '/account/contactInformation',
   businessInformation: '/account/businessInformation',
