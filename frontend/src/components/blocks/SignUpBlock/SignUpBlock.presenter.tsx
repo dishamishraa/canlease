@@ -26,9 +26,6 @@ const withPresenter = (
     const [emailError, setEmailError] = useState<TextFieldStateType>('Default');
     const [passwordError, setPasswordError] = useState<TextFieldStateType>('Default');
     const [confirmPasswordError, setConfirmPasswordError] = useState<TextFieldStateType>('Default');
-    const [emailErrorMessage, setEmailErrorMessage] = useState<string>('');
-    const [passwordErrorMessage, setPasswordErrorMessage] = useState<string>('');
-    const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] = useState<string>('');
 
     const handleEmail = ({ target: { value } }) => {
       setEmail(value);
@@ -45,22 +42,22 @@ const withPresenter = (
 
     const handleSignUp = () => {
       // verify fields
-      if (isEmptyString(email) || isEmptyString(password) || isEmptyString(confirmPassword)) {
-
-      } else if (!(password === confirmPassword)) {
-        // show error message when passwords don't match
-        setConfirmPasswordError('Error');
-        setPasswordError('Error');
-      } else {
-        // fields are valid, call sign up api
-        if (handleCreateIdentityAccount) {
-          handleCreateIdentityAccount({
-            email,
-            password,
-            firstName: '',
-            lastName: '',
-            enabled: false,
-          });
+      if (!isEmptyString(email) && !isEmptyString(password) && !isEmptyString(confirmPassword)) {
+        if (!(password === confirmPassword)) {
+          // show error message when passwords don't match
+          setConfirmPasswordError('Error');
+          setPasswordError('Error');
+        } else {
+          // fields are valid, call sign up api
+          if (handleCreateIdentityAccount) {
+            handleCreateIdentityAccount({
+              email,
+              password,
+              firstName: '',
+              lastName: '',
+              enabled: false,
+            });
+          }
         }
       }
     };
@@ -91,8 +88,7 @@ const withPresenter = (
         },
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
-          value: emailErrorMessage,
-          // value: t('authentication.error_message.account_exist')
+          value: t('error_message.account_exist')
         },
         state: emailError,
       },
@@ -109,7 +105,7 @@ const withPresenter = (
         },
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
-          value: passwordErrorMessage,
+          value: t('error_message.password_mismatch'),
         },
         state: passwordError,
       },
@@ -126,7 +122,7 @@ const withPresenter = (
         },
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
-          value: confirmPasswordErrorMessage,
+          value: t('error_message.password_mismatch'),
         },
         state: confirmPasswordError,
       },
