@@ -27,7 +27,7 @@ describe('ApplicationRouter', () => {
 
       expect(applicationController.createApplication)
         .toHaveBeenCalledWith(mockSalesforceApplicationPayload);
-      expect(status).toEqual(200);
+      expect(status).toEqual(204);
     });
   });
 });

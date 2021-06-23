@@ -1,5 +1,4 @@
-import SalesforceApi from './SalesforceApi';
-
+import SalesforceApi from '../../lib/salesforce/SalesforceApi';
 import {
   CreateApplication, ApplicationServiceContract,
 } from './types';

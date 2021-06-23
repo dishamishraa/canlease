@@ -15,7 +15,7 @@ export function createApplicationRouter(controllers: {
       throw BadRequestError();
     }
     await applicationController.createApplication(req.body);
-    res.sendStatus(200);
+    res.sendStatus(204);
   }));
 
   return router;

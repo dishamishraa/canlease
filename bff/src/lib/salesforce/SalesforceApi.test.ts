@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { mocked } from 'ts-jest/utils';
-import { SALESFORCE_API_URL } from '../../lib/config';
+import { SALESFORCE_API_URL } from '../config';
 import SalesforceApi from './SalesforceApi';
-import { mockSalesforceApplicationPayload } from './fixtures';
+import { mockSalesforceApplicationPayload } from '../../modules/application/fixtures';
+import { mockSalesforceContractPayload } from '../../modules/quote/fixtures';
 
 jest.mock('axios');
 const mockedAxios = mocked(axios, true);
@@ -13,7 +14,7 @@ describe('SalesforceApi', () => {
     it('should make request to create application api endpoint', async () => {
       await api.createApplication(mockSalesforceApplicationPayload);
       const expectedBody = {
-        properties: {
+        payload: {
           leasePortalId: mockSalesforceApplicationPayload.leasePortalId,
           operatingName: mockSalesforceApplicationPayload.operatingName,
           businessName: mockSalesforceApplicationPayload.businessName,
@@ -46,6 +47,37 @@ describe('SalesforceApi', () => {
         },
       };
       expect(mockedAxios.post).toHaveBeenCalledWith(`${SALESFORCE_API_URL}/v2/credit_apps`, expectedBody);
+    });
+  });
+  describe('createQuote', () => {
+    it('should make request to check create quote api endpoint', async () => {
+      await api.createQuote(mockSalesforceContractPayload);
+
+      const expectedBody = {
+        properties: {
+          userType: mockSalesforceContractPayload.userType,
+          asset: mockSalesforceContractPayload.asset,
+          applicationAmount: mockSalesforceContractPayload.applicationAmount,
+          leaseType: mockSalesforceContractPayload.leaseType,
+          contactName: mockSalesforceContractPayload.contactName,
+          contactEmail: mockSalesforceContractPayload.contactEmail,
+          contactBusinessName: mockSalesforceContractPayload.contactBusinessName,
+          vendorName: mockSalesforceContractPayload.vendorName,
+          vendorEmail: mockSalesforceContractPayload.vendorEmail,
+          vendorBusinessName: mockSalesforceContractPayload.vendorBusinessName,
+          quoteOptions: mockSalesforceContractPayload.quoteOptions,
+        },
+      };
+      expect(mockedAxios.post).toHaveBeenCalledWith(`${SALESFORCE_API_URL}/v2/quotes`, expectedBody);
+    });
+  });
+
+  describe('getQuote', () => {
+    it('should make request to check get quote api endpoint', async () => {
+      const id = 1;
+      await api.getQuote(id);
+
+      expect(mockedAxios.get).toHaveBeenCalledWith(`${SALESFORCE_API_URL}/v2/quotes/${id}`);
     });
   });
 });

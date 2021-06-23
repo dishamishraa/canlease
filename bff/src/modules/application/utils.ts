@@ -3,7 +3,7 @@ import {
   CreateApplication, VALID_BUSINESS_TYPES, VALID_CONDITION_TYPES, VALID_TERM_TYPES,
 } from './types';
 
-const CreateQuoteSchema = Joi.object({
+const CreateApplicationSchema = Joi.object({
   leasePortalId: Joi.string().required(),
   operatingName: Joi.string().required(),
   businessName: Joi.string().required(),
@@ -36,6 +36,6 @@ const CreateQuoteSchema = Joi.object({
 });
 
 export const validateCreateApplication = (value: unknown): value is CreateApplication => {
-  const { error } = CreateQuoteSchema.validate(value, { allowUnknown: true });
+  const { error } = CreateApplicationSchema.validate(value, { allowUnknown: true });
   return error === undefined;
 };
