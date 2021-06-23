@@ -38,12 +38,12 @@ const withPresenter = (
     const [equipmentLeaseInfo, setEquipmentLeaseInfo] = useState<EquipmentLeaseInfo>(defaultEquipmentLeaseInfo);
 
     useEffect(() => {
-      if (state) {
-        const { userType = '', equipmentLeaseInfo } = state;
+      if(state){
+        const {userType = "", equipmentLeaseInfo} = state;
         setUserType(userType);
         setEquipmentLeaseInfo(equipmentLeaseInfo);
       }
-    }, [state, userType]);
+    }, [userType]);
 
     const handleCreateQuote = async (contactInfo: ContactInfo) => {
       if (equipmentLeaseInfo) {
@@ -67,41 +67,6 @@ const withPresenter = (
             vendorBusinessName: companyName,
           };
         }
-<<<<<<< HEAD
-      }, [userType]);
-
-      const handleCreateQuote = async (contactInfo: ContactInfo) => {
-        if(equipmentLeaseInfo) {
-          const { name : equipmentName, cost: equipmentCost, leaseType } = equipmentLeaseInfo
-          const { customerName, customerEmail, customerCompanyName } = contactInfo;
-          let createPayload = {
-            userType: userType,
-            asset: equipmentName, 
-            applicationAmount: parseInt(equipmentCost),
-            leaseType: leaseType,
-            contactName: customerName,
-            contactEmail: customerEmail,
-            contactBusinessName: customerCompanyName,
-          } as CreateQuotePayload;
-          if (userType === 'vendor') {
-            const { vendorName, businessEmail, companyName } = contactInfo as ContactInfoVendor;
-            createPayload = {
-              ...createPayload,
-              vendorName: vendorName,
-              vendorEmail: businessEmail,
-              vendorBusinessName: companyName,
-            }
-          }
-          const { data } = await createQuote(createPayload);
-          if (data) {
-            const { quoteId } = data;
-            const expiryDate = new Date();
-
-            expiryDate.setTime(expiryDate.getTime() + Number(MAX_AGE)); 
-            setCookie(INSTANT_QUOTE_COOKIE, {userType: userType, equipmentLeaseInfo: equipmentLeaseInfo, contactInfo: contactInfo}, {expires: expiryDate});
-            history.push(`/instaQuote/${quoteId}`, {userType})
-          }
-=======
         const { data } = await createQuote(createPayload);
         if (data) {
           const expiryDate = new Date();
@@ -109,7 +74,6 @@ const withPresenter = (
           setCookie(INSTANT_QUOTE_COOKIE, { userType, equipmentLeaseInfo, contactInfo }, { expires: expiryDate });
           const { quoteId } = data;
           history.push(`/instaQuote/${quoteId}`);
->>>>>>> 7561f49... ran lint fix
         }
       }
     };
