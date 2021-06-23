@@ -26,24 +26,22 @@ const withPresenter = (
     const location = useLocation<({userType: string; equipmentLeaseInfo: EquipmentLeaseInfo})>();
     const history = useHistory();
     const { state } = location;
-
     const defaultEquipmentLeaseInfo = {
       name: '',
       cost: '',
       leaseType: '',
     };
-
     const { pathname } = location;
     const [userType, setUserType] = useState('');
     const [equipmentLeaseInfo, setEquipmentLeaseInfo] = useState<EquipmentLeaseInfo>(defaultEquipmentLeaseInfo);
 
     useEffect(() => {
-      if(state){
-        const {userType = "", equipmentLeaseInfo} = state;
+      if (state) {
+        const { userType = '', equipmentLeaseInfo } = state;
         setUserType(userType);
         setEquipmentLeaseInfo(equipmentLeaseInfo);
       }
-    }, [userType]);
+    }, [state, userType]);
 
     const handleCreateQuote = async (contactInfo: ContactInfo) => {
       if (equipmentLeaseInfo) {

@@ -1,4 +1,4 @@
-import { CreatePasswordBlockProps } from "../components/blocks/CreatePasswordBlock";
+import { CreatePasswordBlockProps } from '../components/blocks/CreatePasswordBlock';
 
 export type User = {
   id: number;
@@ -156,7 +156,7 @@ export type Account = {
   firstname: string;
   lastname: string;
   enabled: boolean;
-}
+};
 
 export type AccountTokenResponse = {
   id: string;
