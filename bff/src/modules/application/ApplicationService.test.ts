@@ -4,6 +4,8 @@ import { mockSalesforceApplicationPayload } from './fixtures';
 describe('QuoteService', () => {
   const salesforceApi = {
     createApplication: jest.fn(),
+    createQuote: jest.fn(),
+    getQuote: jest.fn(),
   };
 
   const service = new ApplicationService(salesforceApi);
