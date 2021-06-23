@@ -3,6 +3,7 @@ import { mockSalesforceContractPayload, mockSendGridPayload } from './fixtures';
 
 describe('QuoteService', () => {
   const salesforceApi = {
+    createApplication: jest.fn(),
     createQuote: jest.fn(),
     getQuote: jest.fn(),
   };

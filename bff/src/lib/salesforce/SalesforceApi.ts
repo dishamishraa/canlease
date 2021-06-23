@@ -1,10 +1,25 @@
 import axios from 'axios';
-import { SALESFORCE_API_URL } from '../../lib/config';
-import { quoteResponseData } from './fixtures';
+import { SALESFORCE_API_URL } from '../config';
 
-import { CreateQuote, Quote } from './types';
+import { CreateApplication } from '../../modules/application/types';
+
+import { quoteResponseData } from '../../modules/quote/fixtures';
+import { CreateQuote, Quote } from '../../modules/quote/types';
 
 export default class SalesforceApi {
+  async createApplication(payload: CreateApplication): Promise<void> {
+    try {
+      await axios.post<void>(
+        `${SALESFORCE_API_URL}/v2/credit_apps`,
+        {
+          payload,
+        },
+      );
+    } catch (error) {
+      throw error.message;
+    }
+  }
+
   async createQuote(payload: CreateQuote): Promise<Quote> {
     try {
       const response = await axios.post<Quote>(

@@ -1,4 +1,4 @@
-import SalesforceApi from './SalesforceApi';
+import SalesforceApi from '../../lib/salesforce/SalesforceApi';
 import SendGridApi from './SendGridApi';
 import {
   CreateQuote, Quote, SendQuote, QuoteServiceContract,

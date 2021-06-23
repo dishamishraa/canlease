@@ -10,6 +10,7 @@ import { InternalServerError, NotFoundError } from './lib/errors';
 import { IDENTITY_URL, PROXY_TIMEOUT } from './lib/config';
 
 import { QuoteControllerContract, QuoteRouter } from './modules/quote';
+import { ApplicationControllerContract, ApplicationRouter } from './modules/application';
 
 const swaggerSpecConfig = {
   swaggerDefinition: {
@@ -53,6 +54,7 @@ const proxy = createProxyMiddleware({
 
 export const createRouter = (controllers: {
   quoteController: QuoteControllerContract;
+  applicationController: ApplicationControllerContract;
 }): Router => {
   const swaggerSpec = swaggerJsdoc(swaggerSpecConfig);
   const router = Router();
@@ -66,6 +68,7 @@ export const createRouter = (controllers: {
   router.use('/users', UserRouter());
 
   router.use('/quote', QuoteRouter(controllers));
+  router.use('/credit_apps', ApplicationRouter(controllers));
 
   return router;
 };
