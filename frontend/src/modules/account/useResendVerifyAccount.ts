@@ -4,8 +4,8 @@ import { resendVerifyAccount } from './api'
 
 
 const useResendVerifyAccount = () => {
-    const handleResendVerifyAccount = useCallback((email: string): Promise<void> => resendVerifyAccount(email), []);
-    return usePost(handleResendVerifyAccount);
+    const post = useCallback((email: string): Promise<void> => resendVerifyAccount(email), []);
+    return usePost(post);
 }
 
 export default useResendVerifyAccount

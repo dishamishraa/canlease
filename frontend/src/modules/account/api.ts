@@ -35,3 +35,12 @@ export const signIn = async (payload: SignInPayload): Promise<AccountTokenRespon
     throw error;
   }
 }
+
+export const forgotPassword = async(email: string): Promise<void> => {
+  try{
+    await axios.post(`${getServerUrl}/actions/forgotPassword`, { params: {
+      email
+    }});
+  }catch (error){
+  }
+}

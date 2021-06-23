@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { defaultProps, DialogBlockProps } from './DialogBlock';
 import EmailImage from '../../../resources/images/email_verification.png'
 import { useHistory, useLocation, useParams } from 'react-router';
-import { useResendVerifyAccount } from '../../../modules/account';
 import { APIResponse } from '../../../lib/api/types';
-import { resendVerifyAccount } from '../../../modules/account/api';
+import { forgotPassword, resendVerifyAccount } from '../../../modules/account/api';
 
 export type DialogBlockPresenterProps = DialogBlockProps & {
     resendVerifyAccount: (email: string) => Promise<APIResponse<void>>
+    forgotPassword: (email:string)=> Promise<APIResponse<void>>;
 };
 
 interface DialogBlockContentType {
@@ -59,7 +59,16 @@ const withPresenter = (
             if(email){
                 setHeader(t('email_verification.header.resent'))
                 setDescription(t('email_verification.description.resent'));
-                resendVerifyAccount(email)
+                switch (contentType){
+                    case "VerifyEmail":
+                        resendVerifyAccount(email);
+                        break;
+                    case "ResetLink":
+                        forgotPassword(email);
+                    default:
+                        break;
+                }
+                
             }
         }
 

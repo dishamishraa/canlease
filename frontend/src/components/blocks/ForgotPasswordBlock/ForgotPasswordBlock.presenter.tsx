@@ -5,8 +5,10 @@ import { ForgotPasswordBlockProps, defaultProps } from './ForgotPasswordBlock';
 import { isEmptyString, isEmail } from '../../../lib/utils';
 import { APIResponse } from '../../../lib/api/types';
 import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField' 
+import { forgotPassword } from '../../../modules/account/api';
 
 export type ForgotPasswordBlockPresenterProps = ForgotPasswordBlockProps & {
+    forgotPassword: (email:string)=> Promise<APIResponse<void>>;
 };
 
 const withPresenter = (
@@ -18,9 +20,12 @@ const withPresenter = (
         const { t } = useTranslation();
         const history = useHistory();
         const [email, setEmail] = useState<string>('');
+        const [errorMessage, setErrorMessage] = useState<string>('');
+        const [emailError, setEmailError] = useState<TextFieldStateType>('Default')
 
         const handleEmail = ({ target: { value } }) => {
             setEmail(value);
+            setEmailError('Default')
         }
 
         const handleSignIn = () => {
@@ -28,8 +33,19 @@ const withPresenter = (
         }
 
         const handleSendLink = () => {
-            // call send reset link email api then push reset email message
-            history.push('/account/resetSent')
+            if(isEmptyString(email)){
+                setEmailError('Error')
+                setErrorMessage(t('error_message.empty'));
+            }else if(!isEmail(email)){
+                setEmailError('Error');
+                setEmailError(t('error_message.invalid_email'));
+            }else{
+                forgotPassword(email);
+                history.push({pathname: '/account/resetSent', state: {
+                    email: email,
+                    contentType: 'ResetLink'
+                }})
+            }
         }
 
         const forgotPasswordBlockProps: ForgotPasswordBlockProps = {
@@ -52,6 +68,11 @@ const withPresenter = (
                     textValue: email,
                     onTextChanged: handleEmail
                 },
+                errorMessage: {
+                    ...defaultProps.emailTextField.errorMessage,
+                    value: errorMessage
+                },
+                state: emailError
             },
             sendLinkButton: {
                 ...defaultProps.sendLinkButton,
