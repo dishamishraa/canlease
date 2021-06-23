@@ -4,16 +4,16 @@ import { ForgotPasswordBlockProps } from './ForgotPasswordBlock';
 import { useForgotPassword } from '../../../modules/account';
 
 const withInteractor = (
-    Presenter: React.FC<ForgotPasswordBlockPresenterProps>,
+  Presenter: React.FC<ForgotPasswordBlockPresenterProps>,
 ): React.FC<ForgotPasswordBlockProps> => {
-    const Interactor: React.FC<ForgotPasswordBlockProps> = (props) => {
-      const [{}, forgotPassword] = useForgotPassword();
-      return <Presenter
+  const Interactor: React.FC<ForgotPasswordBlockProps> = (props) => {
+    const [{}, forgotPassword] = useForgotPassword();
+    return <Presenter
               {...props}
               forgotPassword={forgotPassword}
           />;
-    };
-    return Interactor;
   };
+  return Interactor;
+};
 
 export default withInteractor;

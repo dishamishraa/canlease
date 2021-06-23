@@ -18,4 +18,3 @@ export type ServiceErrorResponse = {
   type: string;
   message: string;
 };
-

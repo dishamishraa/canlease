@@ -111,8 +111,8 @@ export type AuthPageProps = {
   className?: string;
   signUpBlock?: SignUpBlockProps;
   signInBlock?: SignInBlockProps;
-  handleCreateIdentityAccount?:(payload: AccountRequest)=>void;
-  handleSignIn?:(payload: SignInPayload)=>void;
+  handleCreateIdentityAccount?: (payload: AccountRequest) => void;
+  handleSignIn?: (payload: SignInPayload) => void;
 };
 
 const routes = {
@@ -135,7 +135,7 @@ const AuthPage: React.FC<AuthPageProps> = ({
   signUpBlock,
   signInBlock,
   handleCreateIdentityAccount,
-  handleSignIn
+  handleSignIn,
 }) => (
     <div className={cx(styles.authPage, className)}>
       <TopBar
@@ -145,7 +145,7 @@ const AuthPage: React.FC<AuthPageProps> = ({
         <Route exact path={routes.signIn}>
           <SignInBlock
             className={styles.block}
-            {...signInBlock} 
+            {...signInBlock}
             handleSignIn={handleSignIn}
             />
         </Route>
@@ -167,7 +167,7 @@ const AuthPage: React.FC<AuthPageProps> = ({
         {/* Sign up routes */}
         <Route exact path={routes.signUp}>
           <SignUpBlock
-            className={styles.block} 
+            className={styles.block}
             {...signUpBlock}
             handleCreateIdentityAccount={handleCreateIdentityAccount}
             />

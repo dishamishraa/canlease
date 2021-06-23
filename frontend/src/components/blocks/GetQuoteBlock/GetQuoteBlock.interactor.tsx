@@ -6,14 +6,11 @@ import { GetQuoteBlockPresenterProps } from './GetQuoteBlock.presenter';
 const withInteractor = (
   Presenter: React.FC<GetQuoteBlockPresenterProps>,
 ): React.FC<GetQuoteBlockProps> => {
-  const Interactor: React.FC<GetQuoteBlockProps> = (props) => {
-    
-    return (
+  const Interactor: React.FC<GetQuoteBlockProps> = (props) => (
       <Presenter
         {...props}
       />
-    );
-  };
+  );
 
   return Interactor;
 };

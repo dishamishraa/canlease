@@ -44,8 +44,8 @@ const UserSelectionBlock: React.FC<UserSelectionBlockProps> = ({
   modal,
   showModal,
 }) => {
-  let display 
-  if (showModal){
+  let display;
+  if (showModal) {
     display = (
       <Modal className={styles.modal} {...modal}/>
     );
@@ -58,12 +58,12 @@ const UserSelectionBlock: React.FC<UserSelectionBlockProps> = ({
         {...blockHeading} />
       <CardList
         className={styles.cardList}
-        {...cardList} 
+        {...cardList}
         />
          {display}
     </div>
   );
-}
+};
 
 UserSelectionBlock.defaultProps = defaultProps;
 export default UserSelectionBlock;

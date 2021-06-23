@@ -5,9 +5,8 @@ import { UseCreateQuoteResult } from '../../../modules/quote/useCreateQuote';
 import { ContactInfoCustomerBlockProps, defaultProps } from './ContactInfoCustomerBlock';
 import { isEmptyString } from '../../../lib/utils';
 
-
 export type ContactInfoCustomerBlockPresenterProps = {
-  handleCreateQuote?: (contactInfo: ContactInfo)=>void
+  handleCreateQuote?: (contactInfo: ContactInfo) => void;
 };
 
 const withPresenter = (
@@ -24,10 +23,10 @@ const withPresenter = (
     const handleChangeCustomerEmail = ({ target: { value } }) => setCustomerEmail(value);
     const handleChangeCustomerCompanyName = ({ target: { value } }) => setCustomerCompanyName(value);
 
-    const isFormValid = !isEmptyString(customerName) && !isEmptyString(customerEmail) 
+    const isFormValid = !isEmptyString(customerName) && !isEmptyString(customerEmail)
     && !isEmptyString(customerCompanyName);
     const handleClickViewQuote = () => {
-      if(isFormValid && handleCreateQuote){
+      if (isFormValid && handleCreateQuote) {
         handleCreateQuote({
           customerName,
           customerEmail,
@@ -35,7 +34,7 @@ const withPresenter = (
         });
       }
     };
-    
+
     const blockProps: ContactInfoCustomerBlockProps = {
       ...defaultProps,
       ...props,

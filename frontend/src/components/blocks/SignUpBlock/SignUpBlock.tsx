@@ -110,7 +110,7 @@ export type SignUpBlockProps = {
   bottomContent?: TextProps;
   signInButton?: ButtonProps;
   className?: string;
-  handleCreateIdentityAccount?:(payload: AccountRequest)=>void
+  handleCreateIdentityAccount?: (payload: AccountRequest) => void;
 };
 
 const SignUpBlock: React.FC<SignUpBlockProps> = ({

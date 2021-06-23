@@ -1,4 +1,4 @@
-import { CreatePasswordBlockProps } from "../components/blocks/CreatePasswordBlock";
+import { CreatePasswordBlockProps } from '../components/blocks/CreatePasswordBlock';
 
 export type User = {
   id: number;
@@ -105,7 +105,7 @@ export type Profile = {
   operationName: string;
   businessSector: string;
   businessPhone: string;
-}
+};
 
 export type CreateQuotePayload = CreateVendorQuotePayload | CreateCustomerQuotePayload;
 
@@ -129,30 +129,30 @@ export type EquipmentLeaseInfo = {
   name: string;
   cost: string;
   leaseType: string;
-}
+};
 
 export type ContactInfoVendor = ContactInfoCustomer & {
   vendorName: string;
   businessEmail: string;
   companyName: string;
-}
+};
 
 export type ContactInfoCustomer = {
   customerName: string;
   customerEmail: string;
   customerCompanyName: string;
-}
+};
 
 export type ContactInfo = ContactInfoVendor | ContactInfoCustomer;
 
-//Identity Accounts
+// Identity Accounts
 export type AccountRequest = {
   email: string;
   password: string;
   firstName: string;
   lastName: string;
   enabled: boolean;
-}
+};
 
 export type Account = {
   id: number;
@@ -161,7 +161,7 @@ export type Account = {
   firstname: string;
   lastname: string;
   enabled: boolean;
-}
+};
 
 export type AccountTokenResponse = {
   id: number;
@@ -171,9 +171,9 @@ export type AccountTokenResponse = {
   firstName: string;
   lastName: string;
   enabled: boolean;
-}
+};
 
 export type SignInPayload = {
   email: string;
   password: string;
-}
+};

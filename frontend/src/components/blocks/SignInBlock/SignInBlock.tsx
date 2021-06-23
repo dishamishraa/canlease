@@ -105,7 +105,7 @@ export type SignInBlockProps = {
   className?: string;
   bottomContent?: TextProps;
   signUpButton?: ButtonProps;
-  handleSignIn?:(payload: SignInPayload)=>void
+  handleSignIn?: (payload: SignInPayload) => void;
 };
 
 const SignInBlock: React.FC<SignInBlockProps> = ({
@@ -117,7 +117,7 @@ const SignInBlock: React.FC<SignInBlockProps> = ({
   forgotPasswordButton,
   className,
   bottomContent,
-  signUpButton
+  signUpButton,
 }) => (
     <div className={cx(styles.signInBlock, className)}>
       <div className={styles.topContent}>

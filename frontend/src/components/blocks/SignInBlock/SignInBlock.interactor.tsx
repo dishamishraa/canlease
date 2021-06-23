@@ -1,16 +1,14 @@
 import React, { useContext } from 'react';
 import { SignInBlockPresenterProps } from './SignInBlock.presenter';
-import { SignInBlockProps } from './SignInBlock'
+import { SignInBlockProps } from './SignInBlock';
 
 const withInteractor = (
-    Presenter: React.FC<SignInBlockPresenterProps>,
+  Presenter: React.FC<SignInBlockPresenterProps>,
 ): React.FC<SignInBlockProps> => {
-    const Interactor: React.FC<SignInBlockProps> = (props) => {
-      return <Presenter
+  const Interactor: React.FC<SignInBlockProps> = (props) => <Presenter
               {...props}
           />;
-    };
-    return Interactor;
-  };
+  return Interactor;
+};
 
 export default withInteractor;

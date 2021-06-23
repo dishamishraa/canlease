@@ -4,4 +4,4 @@ import withPresenter from './SignUpBlock.presenter';
 
 export type { SignUpBlockProps };
 
-export default withInteractor(withPresenter(SignUpBlock))
+export default withInteractor(withPresenter(SignUpBlock));

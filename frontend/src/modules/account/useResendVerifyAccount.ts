@@ -1,11 +1,10 @@
 import { useCallback } from 'react';
 import usePost from '../../lib/api/usePost';
-import { resendVerifyAccount } from './api'
-
+import { resendVerifyAccount } from './api';
 
 const useResendVerifyAccount = () => {
-    const post = useCallback((email: string): Promise<void> => resendVerifyAccount(email), []);
-    return usePost(post);
-}
+  const post = useCallback((email: string): Promise<void> => resendVerifyAccount(email), []);
+  return usePost(post);
+};
 
-export default useResendVerifyAccount
+export default useResendVerifyAccount;
