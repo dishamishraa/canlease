@@ -1,5 +1,5 @@
 import ProfileService from './ProfileService';
-import { mockSalesforceProfilePayload, mockAddQuotePayload } from './fixture'
+import { mockSalesforceProfilePayload, mockAddQuotePayload } from './fixture';
 
 describe('QuoteService', () => {
   const salesforceApi = {

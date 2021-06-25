@@ -2,7 +2,7 @@ import request from 'supertest';
 import { mocked } from 'ts-jest/utils';
 import { ProfileRouter } from '.';
 import createApp from '../../lib/createApp';
-import { mockSalesforceProfilePayload, mockAddQuotePayload } from './fixture'
+import { mockSalesforceProfilePayload, mockAddQuotePayload } from './fixture';
 import { validateAddQuote, validateCreateProfile, validateId } from './utils';
 
 jest.mock('./utils');
@@ -44,19 +44,6 @@ describe('ProfileRouter', () => {
       expect(profileController.getProfile)
         .toHaveBeenCalledWith(':id');
       expect(status).toEqual(200);
-    });
-  });
-
-  describe('POST /:id/add', () => {
-    it('should return a 204 status on success', async () => {
-      mockValidateAddQuote.mockReturnValueOnce(true);
-      const { status } = await request(app)
-        .post('/:id/add')
-        .send(mockAddQuotePayload);
-
-      expect(profileController.addQuoteToProfile)
-        .toHaveBeenCalledWith(mockAddQuotePayload);
-      expect(status).toEqual(204);
     });
   });
 

@@ -1,5 +1,5 @@
 import profileResponse from './mockProfileResponse';
-import mockSalesforceProfilePayload from './mockSalesForceProfilePayload';
+import mockSalesforceProfilePayload from './mockSalesforceProfilePayload';
 import mockAddQuotePayload from './mockAddQuotePayload';
 
 export {
