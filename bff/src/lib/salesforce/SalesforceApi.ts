@@ -5,6 +5,7 @@ import { CreateApplication } from '../../modules/application/types';
 
 import { quoteResponseData } from '../../modules/quote/fixtures';
 import { CreateQuote, Quote } from '../../modules/quote/types';
+import { AddQuote, CreateProfile, Profile } from '../../modules/profile/types';
 
 export default class SalesforceApi {
   async createApplication(payload: CreateApplication): Promise<void> {
@@ -52,6 +53,66 @@ export default class SalesforceApi {
   async getQuote(quoteId: number | string): Promise<Quote> {
     try {
       const response = await axios.get<Quote>(`${SALESFORCE_API_URL}/v2/quotes/${quoteId}`);
+      return response.data;
+    } catch (error) {
+      const message = axios.isAxiosError(error)
+        ? error.response?.data?.errorMessage
+        : error.message;
+      return message;
+    }
+  }
+
+  async getProfile(portalId: number | string): Promise<Profile> {
+    try {
+      const response = await axios.get<Profile>(`${SALESFORCE_API_URL}/v2/profile/${portalId}`);
+      return response.data;
+    } catch (error) {
+      const message = axios.isAxiosError(error)
+        ? error.response?.data?.errorMessage
+        : error.message;
+      return message;
+    }
+  }
+
+  async createProfile(payload: CreateProfile): Promise<Profile> {
+    try {
+      const response = await axios.post<Profile>(`${SALESFORCE_API_URL}/v2/profile`, payload);
+      return response.data;
+    } catch (error) {
+      const message = axios.isAxiosError(error)
+        ? error.response?.data?.errorMessage
+        : error.message;
+      return message;
+    }
+  }
+
+  async addQuoteToProfile(portalId: number | string, payload: AddQuote): Promise<void> {
+    try {
+      await axios.post<void>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/add_quote`, payload);
+      return;
+    } catch (error) {
+      const message = axios.isAxiosError(error)
+        ? error.response?.data?.errorMessage
+        : error.message;
+      return message;
+    }
+  }
+
+  async getAllQuotesFromProfile(portalId: number | string): Promise<Quote[]> {
+    try {
+      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/quote`);
+      return response.data;
+    } catch (error) {
+      const message = axios.isAxiosError(error)
+        ? error.response?.data?.errorMessage
+        : error.message;
+      return message;
+    }
+  }
+
+  async getAllCustomerQuotesFromProfile(portalId: number | string): Promise<Quote[]> {
+    try {
+      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/customer_quote`);
       return response.data;
     } catch (error) {
       const message = axios.isAxiosError(error)
