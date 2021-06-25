@@ -6,6 +6,11 @@ describe('QuoteService', () => {
     createApplication: jest.fn(),
     createQuote: jest.fn(),
     getQuote: jest.fn(),
+    getProfile: jest.fn(),
+    createProfile: jest.fn(),
+    addQuoteToProfile: jest.fn(),
+    getAllQuotesFromProfile: jest.fn(),
+    getAllCustomerQuotesFromProfile: jest.fn()
   };
   const sendGridApi = {
     sendQuote: jest.fn(),
