@@ -10,7 +10,7 @@ describe('QuoteService', () => {
     createProfile: jest.fn(),
     addQuoteToProfile: jest.fn(),
     getAllQuotesFromProfile: jest.fn(),
-    getAllCustomerQuotesFromProfile: jest.fn()
+    getAllCustomerQuotesFromProfile: jest.fn(),
   };
 
   const service = new ApplicationService(salesforceApi);
