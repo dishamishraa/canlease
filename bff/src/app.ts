@@ -8,8 +8,8 @@ import {
   ApplicationService, ApplicationController,
 } from './modules/application';
 import {
-  ProfileService, ProfileController
-} from './modules/profile'
+  ProfileService, ProfileController,
+} from './modules/profile';
 import SalesforceApi from './lib/salesforce/SalesforceApi';
 
 export default function App(): Application {
@@ -28,6 +28,6 @@ export default function App(): Application {
   return createApp(createRouter({
     quoteController,
     applicationController,
-    profileController
+    profileController,
   }));
 }

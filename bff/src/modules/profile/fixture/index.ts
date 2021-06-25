@@ -1,3 +1,3 @@
-import profileResponse from './mockProfileResponse'
+import profileResponse from './mockProfileResponse';
 
 export { profileResponse };

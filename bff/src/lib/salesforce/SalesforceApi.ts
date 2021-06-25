@@ -88,13 +88,14 @@ export default class SalesforceApi {
 
   async addQuoteToProfile(portalId: number | string, payload: AddQuote): Promise<void> {
     try {
-      await axios.post<void>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/add_quote`, payload);
-      return;
+      await axios.post<void>(
+        `${SALESFORCE_API_URL}/v2/profile/${portalId}/add_quote`,
+        {
+          payload,
+        },
+      );
     } catch (error) {
-      const message = axios.isAxiosError(error)
-        ? error.response?.data?.errorMessage
-        : error.message;
-      return message;
+      throw error.message;
     }
   }
 
