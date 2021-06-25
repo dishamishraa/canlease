@@ -1,6 +1,5 @@
 import ProfileController from './ProfileController';
-import { mockSalesforceProfilePayload, mockAddQuotePayload } from './fixture';
-import { ProfileServiceContract } from '.';
+import { mockSalesforceProfilePayload, mockAddQuotePayload} from './fixture'
 
 describe('ProfileController', () => {
   const profileService = {

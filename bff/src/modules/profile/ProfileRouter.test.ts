@@ -1,8 +1,8 @@
 import request from 'supertest';
 import { mocked } from 'ts-jest/utils';
-import { ProfileControllerContract, ProfileRouter } from '.';
+import { ProfileRouter } from '.';
 import createApp from '../../lib/createApp';
-import { mockSalesforceProfilePayload, mockAddQuotePayload } from './fixture';
+import { mockSalesforceProfilePayload, mockAddQuotePayload } from './fixture'
 import { validateAddQuote, validateCreateProfile, validateId } from './utils';
 
 jest.mock('./utils');
