@@ -12,11 +12,10 @@ const withPresenter = (
       const {
         
       } = props;
-      const { search } = useLocation();
-      const queryParams = new URLSearchParams(search).get('search');
-      const [searchQuery, setSearchQuery] = useState(queryParams || '');
+      const [searchQuery, setSearchQuery] = useState("");
       const [contentType, setContentType] = useState('Quote');
       const [statusFilter, setStatusFilter] = useState('All');
+      const [tab, setTab] = useState("Customer");
 
       return <View
           {...props}
@@ -25,6 +24,8 @@ const withPresenter = (
           contentType={contentType}
           statusFilter={statusFilter}
           setStatusFilter={setStatusFilter}
+          tab={tab}
+          setTab={setTab}
           />;
   };
   return Presenter;

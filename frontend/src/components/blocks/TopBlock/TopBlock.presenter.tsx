@@ -6,6 +6,8 @@ import TabItem, { TabItemProps, defaultProps as  TabItemDefaultProps} from '../.
 
 export type TopBlockPresenterProps = TopBlockProps & {
     contentType?: string;
+    tab?: string;
+    setTab?: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const withPresenter = (
@@ -15,9 +17,17 @@ const withPresenter = (
     const {
         className,
         contentType,
+        tab,
+        setTab,
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
+
+    const handleTabClicked = (value) => (event: any) => {
+      if (setTab){
+        setTab(value);
+      }
+    }
 
     const topBlockProps: TopBlockProps = {
         ...defaultProps,
@@ -33,19 +43,23 @@ const withPresenter = (
               tabItems: [
                   {
                     ...TabItemDefaultProps,
+                    state: tab === 'Customer' ? 'Selected' : 'Unselected',
                     text:{
                         ...TabItemDefaultProps.text,
                         style: 'Basic800',
                         value: contentType === "Quote" ? t('application_page.quotes.customer_quotes') : t('application_page.applications.customer_quotes')
-                    }
+                    },
+                    onTabClicked: handleTabClicked("Customer"),
                   }, 
                   {
                     ...TabItemDefaultProps,
+                    state: tab === 'Personal' ? 'Selected' : 'Unselected',
                     text:{
                         ...TabItemDefaultProps.text,
                         style: 'Basic800',
                         value: contentType === "Quote" ? t('application_page.quotes.personal_quotes') : t('application_page.applications.personal_quotes')
-                    }
+                    },
+                    onTabClicked: handleTabClicked("Personal"),
 
                   }
                   

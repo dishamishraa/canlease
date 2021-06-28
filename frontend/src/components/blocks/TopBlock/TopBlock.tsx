@@ -33,6 +33,8 @@ export type TopBlockProps = {
   tabs?: TabsProps;
   className?: string;
   contentType?: string;
+  tab?: string;
+  setTab?: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const TopBlock: React.FC<TopBlockProps> = ({
