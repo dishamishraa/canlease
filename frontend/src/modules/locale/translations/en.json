@@ -234,6 +234,27 @@
         "business_phone": "Business phone",
         "website_link": "Website link (optional)"
     },
-    "stepper": "STEP {{current}}/{{total}}"
+    "stepper": "STEP {{current}}/{{total}}",
+    "application_page": {
+        "quotes": {
+            "header": "Quotes",
+            "customer_quotes": "Customer quotes",
+            "personal_quotes": "Personal quotes"
+        },
+        "applications": {
+            "header":  "Applications",
+            "customer_applications": "Customer applications",
+            "personal_applications": "Personal applications"
+        },
+        "table_headers": {
+            "company": "Company",
+            "name": "Name",
+            "status": "Status",
+            "create_on": "Created on",
+            "asset": "Asset",
+            "cost": "Cost"
+        },
+        "search_placeholder": "Search"
+    }
 }
   
