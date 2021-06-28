@@ -32,6 +32,7 @@ export type TopBlockProps = {
   blockHeader?: BlockHeaderProps;
   tabs?: TabsProps;
   className?: string;
+  contentType?: string;
 };
 
 const TopBlock: React.FC<TopBlockProps> = ({

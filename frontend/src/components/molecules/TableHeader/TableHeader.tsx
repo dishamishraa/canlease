@@ -62,28 +62,35 @@ const TableHeader: React.FC<TableHeaderProps> = ({
   assetName,
   cost,
   className,
-}) => (
-    <div className={cx(styles.tableHeader, className)}>
-      <Text
-        className={styles.companyName}
-        {...companyName} />
-      <Text
-        className={styles.contactName}
-        {...contactName} />
-      <Text
-        className={styles.status}
-        {...status} />
-      <Text
-        className={styles.createOn}
-        {...createOn} />
-      <Text
-        className={styles.assetName}
-        {...assetName} />
-      <Text
-        className={styles.cost}
-        {...cost} />
-    </div>
-);
+}) => {
+  let dispayContantName;
+  if (contactName?.value) {
+    dispayContantName= (   <Text
+      className={styles.contactName}
+      {...contactName} />)
+  }
+
+  return (
+      <div className={cx(styles.tableHeader, className)}>
+        <Text
+          className={styles.companyName}
+          {...companyName} />
+        {dispayContantName}
+        <Text
+          className={styles.status}
+          {...status} />
+        <Text
+          className={styles.createOn}
+          {...createOn} />
+        <Text
+          className={styles.assetName}
+          {...assetName} />
+        <Text
+          className={styles.cost}
+          {...cost} />
+      </div>
+  );
+}
 
 TableHeader.defaultProps = defaultProps;
 

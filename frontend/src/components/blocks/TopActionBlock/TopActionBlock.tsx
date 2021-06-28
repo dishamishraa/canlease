@@ -42,6 +42,8 @@ export type TopActionBlockProps = {
   select?: SelectProps;
   button?: ButtonProps;
   className?: string;
+  searchQuery?: string;
+  setSearchQuery?: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const TopActionBlock: React.FC<TopActionBlockProps> = ({
@@ -58,10 +60,11 @@ const TopActionBlock: React.FC<TopActionBlockProps> = ({
         <Select
           className={styles.select}
           {...select} />
+        <Button
+          className={styles.button}
+          {...button} />
       </div>
-      <Button
-        className={styles.button}
-        {...button} />
+ 
     </div>
 );
 

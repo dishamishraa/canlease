@@ -38,6 +38,19 @@
     align-self: stretch;
     flex: 1 1 auto;
   }
+  .contentPage {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 2rem 4.5rem 4rem 4.5rem;
+    > * {
+      margin-top: 1rem;
+    }
+    align-self: stretch;
+    flex: 1 1 auto;
+  }
 
   .vendorDashboardPage {
     overflow: hidden;

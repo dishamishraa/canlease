@@ -55,6 +55,8 @@ export type TableProps = {
   tableHeader?: TableHeaderProps;
   tableItemList?: TableItemListProps;
   className?: string;
+  contentType?: string;
+  searchQuery?: string;
 };
 
 const Table: React.FC<TableProps> = ({

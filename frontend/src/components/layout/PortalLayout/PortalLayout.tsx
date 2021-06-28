@@ -5,7 +5,11 @@ import styles from './PortalLayout.module.scss';
 
 import Header, { HeaderProps } from '../../organisms/Header';
 import VendorDashboardPage, { VendorDashboardPageProps } from '../../pages/VendorDashboardPage';
+import ApplicationPage, { ApplicationPageProps } from '../../pages/ApplicationPage';
+import ContentPage, { ContentPageProps } from '../../pages/ContentPage';
 import MenuBlock, { MenuBlockProps } from '../../blocks/MenuBlock';
+import MainMenuItem from '../../atoms/MainMenuItem';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 export const defaultProps = {
   header: {
@@ -92,16 +96,29 @@ export const defaultProps = {
 export type PortalLayoutProps = {
   header?: HeaderProps;
   vendorDashboardPage?: VendorDashboardPageProps;
+  applicationPage?: ApplicationPageProps;
   className?: string;
   menuBlock?: MenuBlockProps;
+  contentPage?: ContentPageProps;
+};
+
+const routes = {
+  dashboard: '/portal/dashboard',
+  application: '/portal/application',
+  content: '/portal/content',
+  invalid: '/',
 };
 
 const PortalLayout: React.FC<PortalLayoutProps> = ({
   header,
   vendorDashboardPage,
+  applicationPage,
   className,
   menuBlock,
-}) => (
+  contentPage,
+}) => {
+  
+  return (
     <div className={cx(styles.portalLayout, className)}>
       <Header
         className={styles.header}
@@ -111,38 +128,32 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
           <MenuBlock
             className={styles.menuBlock}
             {...menuBlock} />
-          <VendorDashboardPage
-            className={styles.vendorDashboardPage}
-            {...vendorDashboardPage} />
-        </div>
-        <Header
-          className={styles.header}
-          {...header} />
-        <div className={styles.content}>
-          <VendorDashboardPage
-            className={styles.vendorDashboardPage}
-            {...vendorDashboardPage} />
-        </div>
-      </div>
-      <div className={styles.body}>
-        <div className={styles.content}>
-          <MenuBlock
-            className={styles.menuBlock}
-            {...menuBlock} />
-          <VendorDashboardPage
-            className={styles.vendorDashboardPage}
-            {...vendorDashboardPage} />
-        </div>
-      </div>
-      <div className={styles.body}>
-        <div className={styles.content}>
-          <VendorDashboardPage
-            className={styles.vendorDashboardPage}
-            {...vendorDashboardPage} />
+          <Switch>
+            <Route path={routes.application}>
+                 <ApplicationPage
+                className={styles.applicationPage}
+                {...applicationPage} />
+            </Route>
+            <Route path={routes.dashboard}>
+                 <VendorDashboardPage
+                className={styles.vendorDashboardPage}
+                {...vendorDashboardPage} />
+            </Route>
+            <Route path={routes.content}>
+                 <ContentPage
+                className={styles.contentPage}
+                {...contentPage} />
+            </Route>
+            <Route path={routes.invalid}>
+              <Redirect to={routes.dashboard}/>
+            </Route>
+          </Switch>
         </div>
       </div>
+  
     </div>
-);
+  );
+}
 
 PortalLayout.defaultProps = defaultProps;
 
