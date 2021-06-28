@@ -47,7 +47,7 @@ const withPresenter = (
                     text:{
                         ...TabItemDefaultProps.text,
                         style: 'Basic800',
-                        value: contentType === "Quote" ? t('application_page.quotes.customer_quotes') : t('application_page.applications.customer_quotes')
+                        value: contentType === "Quote" ? t('application_page.quotes.customer_quotes') : t('application_page.applications.customer_applications')
                     },
                     onTabClicked: handleTabClicked("Customer"),
                   }, 
@@ -57,7 +57,7 @@ const withPresenter = (
                     text:{
                         ...TabItemDefaultProps.text,
                         style: 'Basic800',
-                        value: contentType === "Quote" ? t('application_page.quotes.personal_quotes') : t('application_page.applications.personal_quotes')
+                        value: contentType === "Quote" ? t('application_page.quotes.personal_quotes') : t('application_page.applications.personal_applications')
                     },
                     onTabClicked: handleTabClicked("Personal"),
 

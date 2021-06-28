@@ -11,6 +11,7 @@ export type TablePresenterProps = TableProps & {
     contentType?: string;
     searchQuery?: string;
     statusFilter?: string;
+    tab?: string;
 };
 
 const withPresenter = (
@@ -21,6 +22,7 @@ const withPresenter = (
         contentType,
         searchQuery,
         statusFilter,
+        tab,
     } = props;
     const { t } = useTranslation();
     const tableItemArray: TableItemProps[] = [];
@@ -88,53 +90,71 @@ const withPresenter = (
         }
         return filteredArray;
     }
-
-    quotes.forEach((quote) => {
-        const {companyName, name, applicationAmount} = quote
-        const tableItemProps: TableItemProps = {
-            companyName: {
-                ...TableItemDefaultProps.companyName,
-                value: companyName,
-            },
-            // contactName: contactNameTableItem,
-            contactName:{
-                ...TableItemDefaultProps.contactName,
-                value: name,
-            },
-            status: {
-                ...TableItemDefaultProps.status,
-                value: "Expiring soon"
-            },
-            createOn: {
-                ...TableItemDefaultProps.createOn,
-                value: "test"
-            },
-            assetName: {
-                ...TableItemDefaultProps.assetName,
-                value: "test"
-            },
-            cost: {
-                ...TableItemDefaultProps.cost,
-                value: applicationAmount,
-            },
-        }
-        tableItemArray.push(tableItemProps);
-    })
+    if (tab === 'Customer') {
+        quotes.forEach((quote) => {
+            const {companyName, name, applicationAmount} = quote
+            const tableItemProps: TableItemProps = {
+                companyName: {
+                    ...TableItemDefaultProps.companyName,
+                    value: companyName,
+                },
+                contactName:{
+                    ...TableItemDefaultProps.contactName,
+                    value: name,
+                },
+                status: {
+                    ...TableItemDefaultProps.status,
+                    value: "Expiring soon"
+                },
+                createOn: {
+                    ...TableItemDefaultProps.createOn,
+                    value: "test"
+                },
+                assetName: {
+                    ...TableItemDefaultProps.assetName,
+                    value: "test"
+                },
+                cost: {
+                    ...TableItemDefaultProps.cost,
+                    value: applicationAmount,
+                },
+            }
+            tableItemArray.push(tableItemProps);
+        })
+    }
+    if (tab === 'Personal') {
+        quotes.forEach((quote) => {
+            const {companyName, name, applicationAmount} = quote
+            const tableItemProps: TableItemProps = {
+                companyName: {
+                    ...TableItemDefaultProps.companyName,
+                    value: companyName,
+                },
+                status: {
+                    ...TableItemDefaultProps.status,
+                    value: "Expiring soon"
+                },
+                createOn: {
+                    ...TableItemDefaultProps.createOn,
+                    value: "test"
+                },
+                assetName: {
+                    ...TableItemDefaultProps.assetName,
+                    value: "test"
+                },
+                cost: {
+                    ...TableItemDefaultProps.cost,
+                    value: applicationAmount,
+                },
+            }
+            tableItemArray.push(tableItemProps);
+        })
+    }
 
     filteredTableItemArray = filterTableItems(tableItemArray, searchQuery, statusFilter)
 
     tableItemListProps = {
         tableItems: filteredTableItemArray,
-    }
-
-    //only show if its for a customer
-    const contactName: TextProps = {
-        ...defaultProps.tableHeader.contactName,
-        value: t('application_page.table_headers.name'),
-    }
-    const contactNameTableItem: TextProps = {
-        ...TableItemDefaultProps.contactName,
-        value: "test"
     }
 
     const tableProps: TableProps = {
@@ -145,7 +165,10 @@ const withPresenter = (
                 ...defaultProps.tableHeader.companyName,
                 value: t('application_page.table_headers.company'),
             },
-            contactName,
+            contactName: {
+                ...defaultProps.tableHeader.contactName,
+                value: tab === "Customer" ? t('application_page.table_headers.name'): "",
+            },
             status: {
                 ...defaultProps.tableHeader.status,
                 value: t('application_page.table_headers.status'),

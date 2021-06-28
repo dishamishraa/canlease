@@ -150,7 +150,8 @@ const ContentPage: React.FC<ContentPageProps> = ({
         {...table} 
         contentType={contentType}
         searchQuery={searchQuery}
-        statusFilter={statusFilter} />
+        statusFilter={statusFilter} 
+        tab={tab}/>
     </div>
 );
 
