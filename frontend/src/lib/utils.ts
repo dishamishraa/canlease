@@ -21,3 +21,17 @@ export const isEmpty = (value) => {
     value.length === 0
   )
 }
+
+
+export const isExpiring = (value) => {
+  const date = new Date(value); 
+  const today = new Date();
+  const diffTime = Math.abs(today.getTime() - date.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+  return diffDays > 25 && 29 < diffDays;
+}
+export const isExpired = (value) => {
+  const today = new Date();
+  const expiryDate = new Date(value);
+  return today > expiryDate;
+}

@@ -6,12 +6,16 @@ import { TableItemListProps } from '../../organisms/TableItemList';
 import { TableItemProps } from '../../molecules/TableItem';
 import Text, { TextProps } from '../../atoms/Text';
 import TableItem, { defaultProps as TableItemDefaultProps } from '../../molecules/TableItem/TableItem';
+import { isExpiring, isExpired } from '../../../lib/utils';
+import { Quote } from '../../../modules/types';
 
 export type TablePresenterProps = TableProps & {
     contentType?: string;
     searchQuery?: string;
     statusFilter?: string;
     tab?: string;
+    personalQuotes: Quote[] | null;
+    customerQuotes: Quote[] | null;
 };
 
 const withPresenter = (
@@ -22,12 +26,24 @@ const withPresenter = (
         contentType,
         searchQuery,
         statusFilter,
+        personalQuotes,
+        customerQuotes,
         tab,
     } = props;
     const { t } = useTranslation();
     const tableItemArray: TableItemProps[] = [];
     let filteredTableItemArray: TableItemProps[] = [];
     let tableItemListProps: TableItemListProps = {};
+
+    const checkStatus = (quoteExpiryDate) => {
+        if(isExpiring(quoteExpiryDate)){
+            return "Expiring soon"
+        } else if (isExpired(quoteExpiryDate)) {
+            return "Expired"
+        } else {
+            return "Active"
+        }
+    }
 
     const quotes = [ 
         {
@@ -44,7 +60,7 @@ const withPresenter = (
                 purchaseOptionDate: "2021-06-25T19:53:52.343Z"
               }
             ],
-            quoteExpiryDate: "2021-06-25T19:53:52.343Z"
+            quoteExpiryDate: "2021-08-25T19:53:52.343Z"
         },
         {
             companyName: "xxxx",
@@ -92,7 +108,7 @@ const withPresenter = (
     }
     if (tab === 'Customer') {
         quotes.forEach((quote) => {
-            const {companyName, name, applicationAmount} = quote
+            const {companyName, name, applicationAmount, quoteExpiryDate} = quote
             const tableItemProps: TableItemProps = {
                 companyName: {
                     ...TableItemDefaultProps.companyName,
@@ -104,7 +120,7 @@ const withPresenter = (
                 },
                 status: {
                     ...TableItemDefaultProps.status,
-                    value: "Expiring soon"
+                    value: checkStatus(quoteExpiryDate),
                 },
                 createOn: {
                     ...TableItemDefaultProps.createOn,
@@ -124,7 +140,7 @@ const withPresenter = (
     }
     if (tab === 'Personal') {
         quotes.forEach((quote) => {
-            const {companyName, name, applicationAmount} = quote
+            const {companyName, name, applicationAmount, quoteExpiryDate} = quote
             const tableItemProps: TableItemProps = {
                 companyName: {
                     ...TableItemDefaultProps.companyName,
@@ -132,7 +148,7 @@ const withPresenter = (
                 },
                 status: {
                     ...TableItemDefaultProps.status,
-                    value: "Expiring soon"
+                    value: checkStatus(quoteExpiryDate),
                 },
                 createOn: {
                     ...TableItemDefaultProps.createOn,

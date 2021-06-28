@@ -27,3 +27,27 @@ export const getQuote = async (quoteId: number | string): Promise<Quote> => {
     throw error;
   }
 };
+
+export const getAllQuotesFromProfile = async(portalId: number | string): Promise<Quote[]> => {
+  try {
+    const { data } = await axios.get<Quote[]>(`${getServerUrl()}/profile/${portalId}/quote`, { withCredentials: true });
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      throw error;
+    }
+    throw error;
+  }
+};
+
+export const getAllCustomerQuotesFromProfile = async(portalId: number | string): Promise<Quote[]> => {
+  try {
+    const { data } = await axios.get<Quote[]>(`${getServerUrl()}/profile/${portalId}/customer_quote`, { withCredentials: true });
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      throw error;
+    }
+    throw error;
+  }
+};

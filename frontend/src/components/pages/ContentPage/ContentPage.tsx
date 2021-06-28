@@ -1,11 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
-
+import { Redirect, Route, Switch } from 'react-router-dom';
 import styles from './ContentPage.module.scss';
 
 import TopBlock, { TopBlockProps } from '../../blocks/TopBlock';
 import TopActionBlock, { TopActionBlockProps } from '../../blocks/TopActionBlock';
 import Table, { TableProps } from '../../blocks/Table';
+import QuoteBlock, { QuoteBlockProps } from '../../blocks/QuoteBlock';
 
 export const defaultProps = {
   topBlock: {
@@ -107,6 +108,7 @@ export const defaultProps = {
 export type ContentPageProps = {
   topBlock?: TopBlockProps;
   topActionBlock?: TopActionBlockProps;
+  quoteBlock?: QuoteBlockProps;
   className?: string;
   table?: TableProps;
   contentType?: string;
@@ -118,9 +120,16 @@ export type ContentPageProps = {
   setTab?: React.Dispatch<React.SetStateAction<string>>;
 };
 
+const routes = {
+  content: '/portal/content',
+  leasingQuote: '/portal/content/:quoteId',
+  invalid: '/',
+};
+
 const ContentPage: React.FC<ContentPageProps> = ({
   topBlock,
   topActionBlock,
+  quoteBlock,
   className,
   table,
   contentType,
@@ -132,26 +141,39 @@ const ContentPage: React.FC<ContentPageProps> = ({
   setTab,
 }) => (
     <div className={cx(styles.contentPage, className)}>
-      <TopBlock
-        className={styles.topBlock}
-        {...topBlock} 
-        contentType={contentType}
-        tab={tab}
-        setTab={setTab}/>
-      <TopActionBlock
-        className={styles.topActionBlock}
-        {...topActionBlock}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery} 
-        statusFilter={statusFilter}
-        setStatusFilter={setStatusFilter}/>
-      <Table
-        className={styles.table}
-        {...table} 
-        contentType={contentType}
-        searchQuery={searchQuery}
-        statusFilter={statusFilter} 
-        tab={tab}/>
+      <Switch>
+        <Route exact path={routes.content}>
+          <TopBlock
+          className={styles.topBlock}
+          {...topBlock} 
+          contentType={contentType}
+          tab={tab}
+          setTab={setTab}/>
+        <TopActionBlock
+          className={styles.topActionBlock}
+          {...topActionBlock}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery} 
+          statusFilter={statusFilter}
+          setStatusFilter={setStatusFilter}/>
+        <Table
+          className={styles.table}
+          {...table} 
+          contentType={contentType}
+          searchQuery={searchQuery}
+          statusFilter={statusFilter} 
+          tab={tab}/>
+        </Route>
+        <Route exact path={routes.leasingQuote}>
+           <QuoteBlock
+              className={styles.block}
+              {...quoteBlock} />
+        </Route>
+        <Route path={routes.invalid}>
+            <Redirect to={routes.content}/>
+        </Route>
+      </Switch>
+
     </div>
 );
 
