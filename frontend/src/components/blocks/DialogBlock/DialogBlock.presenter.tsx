@@ -16,6 +16,15 @@ interface DialogBlockContentType {
   contentType: string;
 }
 
+type DialogBlockTextDisplay = {
+  header: string,
+  description: string,
+  questionText: string,
+  resolutionText: string,
+  doneButton: string,
+  url: string
+}
+
 const withPresenter = (
   View: React.FC<DialogBlockProps>,
 ): React.FC<DialogBlockPresenterProps> => {
@@ -25,29 +34,38 @@ const withPresenter = (
     const location = useLocation();
     const state = location.state as DialogBlockContentType;
     const { contentType, email } = state;
-    const [header, setHeader] = useState<string>('');
-    const [description, setDescription] = useState<string>('');
-    const [questionText, setQuestionText] = useState<string>('');
-    const [resolutionText, setResolutionText] = useState<string>('');
-    const [doneButton, setDoneButton] = useState<{text: string; link: string}>({ text: '', link: '/' });
+    const [display, setDisplay] = useState<DialogBlockTextDisplay>({
+      header:'',
+      description: '',
+      questionText: '',
+      resolutionText: '',
+      doneButton: '',
+      url: '/'
+    });
 
     // set states base on content type
     useEffect(() => {
       if (state) {
         switch (contentType) {
           case 'VerifyEmail':
-            setHeader(t('email_verification.header.default'));
-            setDescription(t('email_verification.description.default'));
-            setQuestionText(t('email_verification.question'));
-            setResolutionText(t('email_verification.resolution'));
-            setDoneButton({ text: t('button_text.done'), link: '/account/signin' });
+            setDisplay({
+              header: t('email_verification.header.default'),
+              description: t('email_verification.description.default'),
+              questionText: t('email_verification.question'),
+              resolutionText: t('email_verification.resolution'),
+              doneButton: t('button_text.done'),
+              url: '/account/signin'
+            });
             break;
           case 'ResetLink':
-            setHeader(t('email_verification.header.reset'));
-            setDescription(t('email_verification.description.reset'));
-            setQuestionText(t('email_verification.question'));
-            setResolutionText(t('email_verification.resolution'));
-            setDoneButton({ text: t('button_text.done'), link: '/account/signin' });
+            setDisplay({
+              header: t('email_verification.header.reset'),
+              description: t('email_verification.description.reset'),
+              questionText: t('email_verification.question'),
+              resolutionText: t('email_verification.resolution'),
+              doneButton: t('button_text.done'),
+              url: '/account/signin'
+            });
             break;
           default:
             break;
@@ -57,14 +75,17 @@ const withPresenter = (
 
     const handleResend = async () => {
       if (email) {
-        setHeader(t('email_verification.header.resent'));
-        setDescription(t('email_verification.description.resent'));
+        setDisplay({
+          ...display,
+          header: t('email_verification.header.reset'),
+          description: t('email_verification.description.resent')
+        });
         switch (contentType) {
           case 'VerifyEmail':
-            resendVerifyAccount(email);
+            await resendVerifyAccount(email);
             break;
           case 'ResetLink':
-            forgotPassword(email);
+            await forgotPassword(email);
           default:
             break;
         }
@@ -72,7 +93,7 @@ const withPresenter = (
     };
 
     const handleDone = () => {
-      history.push(doneButton.link);
+      history.push(display.url);
     };
 
     const dialogBlockProps: DialogBlockProps = {
@@ -82,25 +103,25 @@ const withPresenter = (
       },
       blockHeading: {
         ...defaultProps.blockHeading,
-        value: header,
+        value: display.header,
       },
       description: {
         ...defaultProps.description,
-        value: description,
+        value: display.description,
       },
       questionText: {
         ...defaultProps.questionText,
-        value: questionText,
+        value: display.questionText,
       },
       resolutionText: {
         ...defaultProps.resolutionText,
-        value: resolutionText,
+        value: display.resolutionText,
       },
       doneButton: {
         ...defaultProps.doneButton,
         text: {
           ...defaultProps.doneButton.text,
-          value: doneButton.text,
+          value: display.doneButton,
         },
         onButtonClicked: handleDone,
       },

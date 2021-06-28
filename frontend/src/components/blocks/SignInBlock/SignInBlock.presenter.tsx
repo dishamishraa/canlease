@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 import { SignInBlockProps, defaultProps } from './SignInBlock';
 import { isEmptyString, isEmail } from '../../../lib/utils';
-import { APIResponse } from '../../../lib/api/types';
 import { SignInPayload, AccountTokenResponse } from '../../../modules/types';
 import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField';
 
@@ -26,7 +25,7 @@ const withPresenter = (
     const handleEmail = ({ target: { value } }) => {
       setEmail(value);
     };
-    const handlePassowrd = ({ target: { value } }) => {
+    const handlePassword = ({ target: { value } }) => {
       setPassword(value);
     };
 
@@ -39,7 +38,7 @@ const withPresenter = (
       }
     };
 
-    const handleFogetPassword = () => {
+    const handleForgetPassword = () => {
       history.push('/account/forgotPassword');
     };
 
@@ -81,7 +80,7 @@ const withPresenter = (
         textInput: {
           ...defaultProps.passwordField.textInput,
           textValue: password,
-          onTextChanged: handlePassowrd,
+          onTextChanged: handlePassword,
         },
       },
       nextButton: {
@@ -98,7 +97,7 @@ const withPresenter = (
           ...defaultProps.forgotPasswordButton.text,
           value: t('button_text.forgot_password'),
         },
-        onButtonClicked: handleFogetPassword,
+        onButtonClicked: handleForgetPassword,
       },
       bottomContent: {
         ...defaultProps.bottomContent,

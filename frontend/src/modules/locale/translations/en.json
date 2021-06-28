@@ -156,6 +156,10 @@
         "header": "Forgot password",
         "description": "Enter your email and we will send you a link to create a new password."
     },
+    "create_password":{
+        "header": "Create password",
+        "description": "Create a new password for Canlease portal"
+    },
     "error_message": {
         "empty": "{{field}} cannot be empty",
         "invalid_email": "Please enter a valid email address",
@@ -168,7 +172,8 @@
         "forgot_password": "Forgot my password",
         "done": "DONE",
         "next": "NEXT",
-        "send_link": "SEND LINK"
+        "send_link": "SEND LINK",
+        "save": "SAVE"
     },
     "text_field_label":{
         "email": "Email",

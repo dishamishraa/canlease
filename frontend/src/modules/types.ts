@@ -154,15 +154,6 @@ export type AccountRequest = {
   enabled: boolean;
 };
 
-export type Account = {
-  id: number;
-  uuid: string;
-  email: string;
-  firstname: string;
-  lastname: string;
-  enabled: boolean;
-};
-
 export type AccountTokenResponse = {
   id: number;
   uuid: string;
@@ -177,3 +168,8 @@ export type SignInPayload = {
   email: string;
   password: string;
 };
+
+export type UpdatePasswordPayload = {
+  id: string | number;
+  password: string;
+}

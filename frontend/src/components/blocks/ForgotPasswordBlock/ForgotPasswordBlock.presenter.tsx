@@ -32,7 +32,7 @@ const withPresenter = (
       history.push('/account/signin');
     };
 
-    const handleSendLink = () => {
+    const handleSendLink = async() => {
       if (isEmptyString(email)) {
         setEmailError('Error');
         setErrorMessage(t('error_message.empty', {
@@ -42,7 +42,7 @@ const withPresenter = (
         setEmailError('Error');
         setErrorMessage(t('error_message.invalid_email'));
       } else {
-        forgotPassword(email);
+        await forgotPassword(email);
         history.push({
           pathname: '/account/resetSent',
           state: {

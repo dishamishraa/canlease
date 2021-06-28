@@ -7,8 +7,8 @@ const withInteractor = (
   Presenter: React.FC<DialogBlockPresenterProps>,
 ): React.FC <DialogBlockProps> => {
   const Interactor: React.FC <DialogBlockProps> = (props) => {
-    const [{}, resendVerifyAccount] = useResendVerifyAccount();
-    const [{}, forgotPassword] = useForgotPassword();
+    const [{loading: resendLoading}, resendVerifyAccount] = useResendVerifyAccount();
+    const [{loading: forgotPasswordLoading}, forgotPassword] = useForgotPassword();
     return (
       <Presenter
         {...props}

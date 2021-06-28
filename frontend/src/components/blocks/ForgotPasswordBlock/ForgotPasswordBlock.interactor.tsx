@@ -7,7 +7,7 @@ const withInteractor = (
   Presenter: React.FC<ForgotPasswordBlockPresenterProps>,
 ): React.FC<ForgotPasswordBlockProps> => {
   const Interactor: React.FC<ForgotPasswordBlockProps> = (props) => {
-    const [{}, forgotPassword] = useForgotPassword();
+    const [{loading}, forgotPassword] = useForgotPassword();
     return <Presenter
               {...props}
               forgotPassword={forgotPassword}

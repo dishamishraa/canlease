@@ -39,35 +39,33 @@ const withPresenter = (
 
     // sign in
     const handleSignIn = async (payload: SignInPayload) => {
-      const { data } = await signIn(payload);
-      if (data) {
-        // if already verified, go to vendor/user dashboard
-        setCookie('token', data.token);
-        if (data.enabled) {
-          // find the salesforce profile with the identity account id
-
-          // check the userType and push to the correct dashboard
-
-        } else {
-          // if not verified, send a verification email and take to verify email page
+      console.log('sign in')
+      const { data, error } = await signIn(payload);
+      if(error){
+        if(error.message === 'User has not confirmed sign up'){
           history.push({
             pathname: '/account/verifyEmail',
             state: {
-              email: data.email,
+              email: payload.email,
               contentType: 'VerifyEmail',
             },
           });
         }
       }
-    };
+      if(data){
+      // find the salesforce profile with the identity account id
+      // check the userType and push to the correct dashboard
 
-    // reset password
+      // if no related profile found, push setup page
+      } 
+    };
 
     // setup account
 
     return <View
           {...props}
           handleCreateIdentityAccount={handleCreateIdentityAccount}
+          handleSignIn={handleSignIn}
           />;
   };
   return Presenter;

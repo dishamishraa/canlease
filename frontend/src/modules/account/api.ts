@@ -2,7 +2,7 @@ import axios from 'axios';
 import i18next from 'i18next';
 import { getServerUrl } from '../../lib/utils';
 import {
-  AccountTokenResponse, AccountRequest, SignInPayload, Account, Profile,
+  AccountTokenResponse, AccountRequest, SignInPayload, UpdatePasswordPayload,
 } from '../types';
 
 export const createIdentityAccount = async (payload: AccountRequest): Promise<AccountTokenResponse> => {
@@ -50,3 +50,14 @@ export const forgotPassword = async (email: string): Promise<void> => {
   } catch (error) {
   }
 };
+
+export const updatePassword = async (payload: UpdatePasswordPayload): Promise<void> => {
+  try{
+    const { id, password} = payload;
+    await axios.post(`${getServerUrl}/${id}/actions/updatePassword`, {
+      password
+    },
+    { withCredentials: true },);
+  }catch (error) {
+  }
+}
