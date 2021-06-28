@@ -10,6 +10,7 @@ import TableItem, { defaultProps as TableItemDefaultProps } from '../../molecule
 export type TablePresenterProps = TableProps & {
     contentType?: string;
     searchQuery?: string;
+    statusFilter?: string;
 };
 
 const withPresenter = (
@@ -19,6 +20,7 @@ const withPresenter = (
     const {
         contentType,
         searchQuery,
+        statusFilter,
     } = props;
     const { t } = useTranslation();
     const tableItemArray: TableItemProps[] = [];
@@ -60,11 +62,20 @@ const withPresenter = (
         }
     ]
 
-    const filterTableItems = (itemsArray, searchQuery) => {
-        if(!searchQuery){
+    const filterTableItems = (itemsArray, searchQuery, statusFilter) => {
+        let filteredArray = itemsArray;
+        if(!searchQuery && statusFilter === "All"){
             return itemsArray;
-        } else {
-            return itemsArray.filter((item) => {
+        } 
+        if (statusFilter != "All"){
+            filteredArray = filteredArray.filter((item) => {
+                const status = item.status.value.toLowerCase();
+                const filter = statusFilter.toLowerCase();
+                return status.includes(filter)
+            })
+        }
+        if (searchQuery){
+            filteredArray = filteredArray.filter((item) => {
                 const itemCompanyName = item.companyName.value.toLowerCase();
                 const itemContactName = item.contactName.value.toLowerCase();
                 const itemStatus = item.status.value.toLowerCase();
@@ -75,6 +86,7 @@ const withPresenter = (
                 return itemCompanyName.includes(search) | itemContactName.includes(search) | itemStatus.includes(search) | itemCreateOn.includes(search) | itemAssetName.includes(search) | itemCost.includes(search);
             })
         }
+        return filteredArray;
     }
 
     quotes.forEach((quote) => {
@@ -91,7 +103,7 @@ const withPresenter = (
             },
             status: {
                 ...TableItemDefaultProps.status,
-                value: "test"
+                value: "Expiring soon"
             },
             createOn: {
                 ...TableItemDefaultProps.createOn,
@@ -109,7 +121,7 @@ const withPresenter = (
         tableItemArray.push(tableItemProps);
     })
 
-    filteredTableItemArray = filterTableItems(tableItemArray, searchQuery)
+    filteredTableItemArray = filterTableItems(tableItemArray, searchQuery, statusFilter)
 
     tableItemListProps = {
         tableItems: filteredTableItemArray,

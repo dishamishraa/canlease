@@ -15,15 +15,17 @@ const withPresenter = (
       const { search } = useLocation();
       const queryParams = new URLSearchParams(search).get('search');
       const [searchQuery, setSearchQuery] = useState(queryParams || '');
-
-
       const [contentType, setContentType] = useState('Quote');
+      const [statusFilter, setStatusFilter] = useState('All');
 
       return <View
           {...props}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
-          contentType={contentType} />;
+          contentType={contentType}
+          statusFilter={statusFilter}
+          setStatusFilter={setStatusFilter}
+          />;
   };
   return Presenter;
 };

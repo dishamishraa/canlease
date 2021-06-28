@@ -112,6 +112,8 @@ export type ContentPageProps = {
   contentType?: string;
   searchQuery?: string;
   setSearchQuery?: React.Dispatch<React.SetStateAction<string>>;
+  statusFilter?: string;
+  setStatusFilter?: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const ContentPage: React.FC<ContentPageProps> = ({
@@ -122,6 +124,8 @@ const ContentPage: React.FC<ContentPageProps> = ({
   contentType,
   searchQuery,
   setSearchQuery,
+  statusFilter,
+  setStatusFilter,
 }) => (
     <div className={cx(styles.contentPage, className)}>
       <TopBlock
@@ -132,12 +136,15 @@ const ContentPage: React.FC<ContentPageProps> = ({
         className={styles.topActionBlock}
         {...topActionBlock}
         searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery} />
+        setSearchQuery={setSearchQuery} 
+        statusFilter={statusFilter}
+        setStatusFilter={setStatusFilter}/>
       <Table
         className={styles.table}
         {...table} 
         contentType={contentType}
-        searchQuery={searchQuery}/>
+        searchQuery={searchQuery}
+        statusFilter={statusFilter} />
     </div>
 );
 

@@ -5,24 +5,27 @@ import styles from './TopActionBlock.module.scss';
 
 import TextInput, { TextInputProps } from '../../atoms/TextInput';
 import Select, { SelectProps } from '../../atoms/Select';
+import SelectField, { SelectFieldProps } from '../../molecules/SelectField';
 import Button, { ButtonProps } from '../../atoms/Button';
 
 export const defaultProps = {
   textInput: {
     type: 'Text',
   } as TextInputProps,
-  select: {
-    text: {
-      style: 'Basic800',
-      align: 'Left',
-      size: 'Large',
-      type: 'Paragraph1',
+  statusSearchField: {
+    select: {
+      text: {
+        style: 'Basic800',
+        align: 'Left',
+        size: 'Large',
+        type: 'Paragraph1',
+      },
+      icon: {
+        asset: 'ChevronDown',
+        style: 'Basic800',
+      },
     },
-    icon: {
-      asset: 'ChevronDown',
-      style: 'Basic800',
-    },
-  } as SelectProps,
+  } as SelectFieldProps,
   button: {
     type: 'Button',
     size: 'Large',
@@ -39,27 +42,29 @@ export const defaultProps = {
 
 export type TopActionBlockProps = {
   textInput?: TextInputProps;
-  select?: SelectProps;
   button?: ButtonProps;
   className?: string;
   searchQuery?: string;
   setSearchQuery?: React.Dispatch<React.SetStateAction<string>>;
+  statusSearchField?: SelectFieldProps;
+  statusFilter?: string;
+  setStatusFilter?: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const TopActionBlock: React.FC<TopActionBlockProps> = ({
   textInput,
-  select,
   button,
   className,
+  statusSearchField,
 }) => (
     <div className={cx(styles.topActionBlock, className)}>
       <div className={styles.content}>
         <TextInput
           className={styles.textInput}
           {...textInput} />
-        <Select
-          className={styles.select}
-          {...select} />
+        <SelectField
+        className={styles.select}
+        {...statusSearchField} />
         <Button
           className={styles.button}
           {...button} />

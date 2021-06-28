@@ -111,7 +111,14 @@
             "asset": "Asset",
             "cost": "Cost"
         },
-        "search_placeholder": "Search"
+        "search_placeholder": "Search",
+        "select": {
+            "all": "All",
+            "active": "Active",
+            "expiring_soon": "Expiring soon",
+            "applied": "Applied",
+            "expired": "Expired"
+        }
     }
 }
   
