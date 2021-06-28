@@ -64,7 +64,8 @@ export default class SalesforceApi {
 
   async getProfile(portalId: number | string): Promise<Profile> {
     try {
-      const response = await axios.get<Profile>(`${SALESFORCE_API_URL}/v2/profile/${portalId}`);
+      const response = await axios.get<Profile>(`${SALESFORCE_API_URL}/v2/profile/${portalId}`,
+      { withCredentials: true });
       return response.data;
     } catch (error) {
       const message = axios.isAxiosError(error)
@@ -76,7 +77,8 @@ export default class SalesforceApi {
 
   async createProfile(payload: CreateProfile): Promise<Profile> {
     try {
-      const response = await axios.post<Profile>(`${SALESFORCE_API_URL}/v2/profile`, payload);
+      const response = await axios.post<Profile>(`${SALESFORCE_API_URL}/v2/profile`, payload,
+      { withCredentials: true });
       return response.data;
     } catch (error) {
       const message = axios.isAxiosError(error)
@@ -89,11 +91,8 @@ export default class SalesforceApi {
   async addQuoteToProfile(portalId: number | string, payload: AddQuote): Promise<void> {
     try {
       await axios.post<void>(
-        `${SALESFORCE_API_URL}/v2/profile/${portalId}/add_quote`,
-        {
-          payload,
-        },
-      );
+        `${SALESFORCE_API_URL}/v2/profile/${portalId}/add_quote`, payload,
+        { withCredentials: true });
     } catch (error) {
       throw error.message;
     }
@@ -101,7 +100,8 @@ export default class SalesforceApi {
 
   async getAllQuotesFromProfile(portalId: number | string): Promise<Quote[]> {
     try {
-      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/quote`);
+      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/quote`,
+      { withCredentials: true });
       return response.data;
     } catch (error) {
       const message = axios.isAxiosError(error)
@@ -113,7 +113,8 @@ export default class SalesforceApi {
 
   async getAllCustomerQuotesFromProfile(portalId: number | string): Promise<Quote[]> {
     try {
-      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/customer_quote`);
+      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/customer_quote`,
+      { withCredentials: true });
       return response.data;
     } catch (error) {
       const message = axios.isAxiosError(error)
