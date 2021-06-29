@@ -101,7 +101,7 @@ export default class SalesforceApi {
   }
 
   async getUserPortfolio(portalId: string): Promise<Portfolio> {
-    try{
+    try {
       const response = await axios.get<Portfolio>(`${SALESFORCE_API_URL}/v2/portfolio/${portalId}`);
       return response.data;
     } catch (error) {
@@ -157,7 +157,7 @@ export default class SalesforceApi {
   }
   
   async getCustomerPortfolio(portalId: string): Promise<Portfolio> {
-    try{
+    try {
       const response = await axios.get<Portfolio>(`${SALESFORCE_API_URL}/v2/portfolio/${portalId}/customer_portfolio`);
       return response.data;
     } catch (error) {
@@ -167,7 +167,4 @@ export default class SalesforceApi {
       return message;
     }
   }
-  
 }
-
-
