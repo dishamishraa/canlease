@@ -7,7 +7,7 @@ import { TableItemProps } from '../../molecules/TableItem';
 import Text, { TextProps } from '../../atoms/Text';
 import TableItem, { defaultProps as TableItemDefaultProps } from '../../molecules/TableItem/TableItem';
 import { isExpiring, isExpired, createdOn} from '../../../lib/utils';
-import { Quote } from '../../../modules/types';
+import { Portfolio, Quote } from '../../../modules/types';
 
 export type TablePresenterProps = TableProps & {
     contentType?: string;
@@ -16,6 +16,8 @@ export type TablePresenterProps = TableProps & {
     tab?: string;
     personalQuotes: Quote[] | null;
     customerQuotes: Quote[] | null;
+    personalPortfolio: Portfolio | null;
+    customerPortfolio: Portfolio | null;
 };
 
 const withPresenter = (
@@ -28,6 +30,8 @@ const withPresenter = (
         statusFilter,
         personalQuotes,
         customerQuotes,
+        personalPortfolio,
+        customerPortfolio,
         tab,
     } = props;
     const { t } = useTranslation();
@@ -36,12 +40,37 @@ const withPresenter = (
     let filteredTableItemArray: TableItemProps[] = [];
     let tableItemListProps: TableItemListProps = {};
 
+ 
+    if (customerPortfolio){
+        console.log(customerPortfolio)
+    }
+    if (personalPortfolio){
+        console.log(personalPortfolio)
+    }
+ 
 
-    const checkStatus = (quoteExpiryDate) => {
-        if(isExpiring(quoteExpiryDate)){
+    const checkStatus = (quoteExpiryDate, tab, quoteId) => {
+        let isApplied;
+        if (tab === 'Customer' && customerPortfolio) {
+            const { createApps } = customerPortfolio
+            isApplied = createApps.some(function(el) {
+                return el.quoteId === quoteId;
+            })
+        }
+        else if (personalPortfolio){
+            const { createApps } = personalPortfolio
+            isApplied = createApps.some(function(el) {
+                return el.quoteId === quoteId;
+            })
+        }
+        if(isApplied){
+            return "Applied"
+        }
+        else if (isExpired(quoteExpiryDate)) {
+            return  "Expired"
+        }
+        else if(isExpiring(quoteExpiryDate)){
             return "Expiring soon"
-        } else if (isExpired(quoteExpiryDate)) {
-            return "Expired"
         } else {
             return "Active"
         }
@@ -89,9 +118,9 @@ const withPresenter = (
         } 
         if (statusFilter != "All"){
             filteredArray = filteredArray.filter((item) => {
-                const status = item.status.value.toLowerCase();
+                const status = item.status?.value.toLowerCase();
                 const filter = statusFilter.toLowerCase();
-                return status.includes(filter)
+                return status?.includes(filter)
             })
         }
         if (searchQuery){
@@ -103,7 +132,7 @@ const withPresenter = (
                 const itemAssetName = item.assetName?.value.toLowerCase();
                 const itemCost = item.cost?.value.toString().toLowerCase();
                 const search = searchQuery.toLowerCase();
-                return itemCompanyName.includes(search) | itemContactName.includes(search) | itemStatus.includes(search) | itemCreateOn.includes(search) | itemAssetName.includes(search) | itemCost.includes(search);
+                return itemCompanyName?.includes(search) | itemContactName?.includes(search) | itemStatus?.includes(search) | itemCreateOn?.includes(search) | itemAssetName?.includes(search) | itemCost?.includes(search);
             })
         }
         return filteredArray;
@@ -122,7 +151,7 @@ const withPresenter = (
                 },
                 status: {
                     ...TableItemDefaultProps.status,
-                    value: checkStatus(quoteExpiryDate),
+                    value: checkStatus(quoteExpiryDate, tab, quoteId),
                 },
                 createOn: {
                     ...TableItemDefaultProps.createOn,
@@ -153,7 +182,7 @@ const withPresenter = (
                 },
                 status: {
                     ...TableItemDefaultProps.status,
-                    value: checkStatus(quoteExpiryDate),
+                    value: checkStatus(quoteExpiryDate, tab, quoteId),
                 },
                 createOn: {
                     ...TableItemDefaultProps.createOn,

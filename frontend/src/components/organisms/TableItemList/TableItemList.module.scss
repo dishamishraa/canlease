@@ -19,5 +19,105 @@
     width: 46rem;
     flex: 0 0 auto;
   }
+}
 
+@media (min-width: 576px) {
+  .tableItemList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  
+    .tableItem {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+      > * {
+        margin-left: 0.75rem;
+      }
+      align-self: flex-start;
+      width: 32rem;
+      flex: 0 0 auto;
+    }
+  }
+}
+
+
+@media (min-width: 768px) {
+  .tableItemList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  
+    .tableItem {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+      > * {
+        margin-left: 0.75rem;
+      }
+      align-self: flex-start;
+      width: 46rem;
+      flex: 0 0 auto;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .tableItemList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  
+    .tableItem {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+      > * {
+        margin-left: 0.75rem;
+      }
+      align-self: flex-start;
+      width: 58rem;
+      flex: 0 0 auto;
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .tableItemList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  
+    .tableItem {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+      > * {
+        margin-left: 0.75rem;
+      }
+      align-self: flex-start;
+      width: 78rem;
+      flex: 0 0 auto;
+    }
+  }
 }

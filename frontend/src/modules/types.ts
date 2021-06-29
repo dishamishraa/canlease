@@ -22,10 +22,15 @@ export type QuoteOption = {
   purchaseOptionDate: string;
 };
 
+export type Portfolio = {
+  createApps: CreditApplication[];
+  leases: Lease[];
+}
+
 export type CreditApplication = {
   creditAppNumber: string;
   createdDate: string;
-  applcicationAmount: number;
+  applicationAmount: number;
   description: string;
   creditStatus: string;
   applicationStatus: string;
