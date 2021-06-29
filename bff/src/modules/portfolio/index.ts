@@ -5,10 +5,10 @@ import PortfolioService from './PortfolioService';
 import { PortfolioControllerContract, PortfolioServiceContract } from './types';
 
 export {
-    PortfolioControllerContract,
-    PortfolioServiceContract,
-    PortfolioController,
-    PortfolioService,
+  PortfolioControllerContract,
+  PortfolioServiceContract,
+  PortfolioController,
+  PortfolioService,
 };
 
 export const PortfolioRouter = (controllers: {

@@ -2,7 +2,7 @@ import request from 'supertest';
 import { mocked } from 'ts-jest/utils';
 import { PortfolioRouter } from '.';
 import createApp from '../../lib/createApp';
-import {  validateId } from './utils';
+import { validateId } from './utils';
 
 jest.mock('./utils');
 const mockValidateId = mocked(validateId);
@@ -14,7 +14,6 @@ describe('PortfolioRouter', () => {
   };
   const router = PortfolioRouter({ portfolioController });
   const app = createApp(router);
-
 
   describe('GET /:id', () => {
     it('should return a 200 status on success', async () => {

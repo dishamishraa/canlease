@@ -15,8 +15,8 @@ export function createPortfolioRouter(controllers: {
     const { id } = req.params;
     if (!validateId(id)) {
       throw BadRequestError();
-    } 
-    
+    }
+
     await portfolioController.getUserPortfolio(id);
     res.status(200).send(portfolioResponse);
   }));
@@ -26,10 +26,9 @@ export function createPortfolioRouter(controllers: {
     if (!validateId(id)) {
       throw BadRequestError();
     }
-    
+
     await portfolioController.getCustomerPortfolio(id);
     res.status(200).send(portfolioResponse);
-
   }));
 
   return router;

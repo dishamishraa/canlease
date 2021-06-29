@@ -1,6 +1,6 @@
 import SalesforceApi from '../../lib/salesforce/SalesforceApi';
 
-import {Portfolio, PortfolioServiceContract,} from './types';
+import { Portfolio, PortfolioServiceContract } from './types';
 
 export default class PortfolioService implements PortfolioServiceContract {
   private api: SalesforceApi;

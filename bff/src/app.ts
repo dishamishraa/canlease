@@ -9,7 +9,7 @@ import {
 } from './modules/application';
 import {
   PortfolioService, PortfolioController,
-} from './modules/portfolio'
+} from './modules/portfolio';
 import SalesforceApi from './lib/salesforce/SalesforceApi';
 
 export default function App(): Application {
@@ -25,7 +25,6 @@ export default function App(): Application {
   const portfolioSalesforceApi = new SalesforceApi();
   const portfolioService = new PortfolioService(portfolioSalesforceApi);
   const portfolioController = new PortfolioController(portfolioService);
-
 
   return createApp(createRouter({
     quoteController,
