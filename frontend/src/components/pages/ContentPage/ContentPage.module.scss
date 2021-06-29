@@ -92,20 +92,6 @@
         }
       }
     }
-
-    .block {
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      > * {
-        margin-top: 1.5rem;
-      }
-      align-self: flex-start;
-      width: 33rem;
-      flex: 0 0 auto;
-    }
   
     .topActionBlock {
       overflow: hidden;
@@ -172,20 +158,6 @@
         }
       }
     }
-
-    .block {
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      > * {
-        margin-top: 1.5rem;
-      }
-      align-self: flex-start;
-      width: 37.5rem;
-      flex: 0 0 auto;
-    }
   
     .topActionBlock {
       overflow: hidden;
@@ -251,19 +223,6 @@
           margin-top: 0;
         }
       }
-    }
-    .block {
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      > * {
-        margin-top: 1.5rem;
-      }
-      align-self: flex-start;
-      width: 37.5rem;
-      flex: 0 0 auto;
     }
   
     .topActionBlock {
@@ -341,20 +300,6 @@
       &:nth-child(1) {
         margin-top: 0;
       }
-    }
-
-    .block {
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      > * {
-        margin-top: 1.5rem;
-      }
-      align-self: flex-start;
-      width: 37.5rem;
-      flex: 0 0 auto;
     }
   
     .topActionBlock {

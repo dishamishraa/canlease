@@ -13,6 +13,7 @@ import { QuoteControllerContract, QuoteRouter } from './modules/quote';
 import { ApplicationControllerContract, ApplicationRouter } from './modules/application';
 import { PortfolioControllerContract, PortfolioRouter } from './modules/portfolio';
 import { ProfileControllerContract, ProfileRouter } from './modules/profile';
+import { PortfolioControllerContract, PortfolioRouter } from './modules/portfolio';
 
 const swaggerSpecConfig = {
   swaggerDefinition: {
@@ -59,6 +60,7 @@ export const createRouter = (controllers: {
   applicationController: ApplicationControllerContract;
   portfolioController: PortfolioControllerContract;
   profileController: ProfileControllerContract;
+  portfolioController: PortfolioControllerContract;
 }): Router => {
   const swaggerSpec = swaggerJsdoc(swaggerSpecConfig);
   const router = Router();
@@ -75,6 +77,7 @@ export const createRouter = (controllers: {
   router.use('/credit_apps', ApplicationRouter(controllers));
   router.use('/portfolio', PortfolioRouter(controllers));
   router.use('/profile', ProfileRouter(controllers));
+  router.use('/portfolio', PortfolioRouter(controllers));
 
   return router;
 };

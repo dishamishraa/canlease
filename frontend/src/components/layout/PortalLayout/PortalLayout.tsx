@@ -107,7 +107,7 @@ export type PortalLayoutProps = {
 const routes = {
   dashboard: '/portal/dashboard',
   application: '/portal/application',
-  content: '/portal/content',
+  content: '/portal/content/:portalId',
   leasingQuote: '/portal/viewquote/:quoteId',
   invalid: '/',
 };
