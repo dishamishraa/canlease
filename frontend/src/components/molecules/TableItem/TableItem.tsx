@@ -52,6 +52,7 @@ export type TableItemProps = {
   assetName?: TextProps;
   cost?: TextProps;
   className?: string;
+  onTableItemClicked?: (event?: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
 const TableItem: React.FC<TableItemProps> = ({
@@ -62,6 +63,7 @@ const TableItem: React.FC<TableItemProps> = ({
   assetName,
   cost,
   className,
+  onTableItemClicked,
 }) => {
   let dispayContantName;
   if (contactName?.value) {
@@ -71,7 +73,7 @@ const TableItem: React.FC<TableItemProps> = ({
       {...contactName} />)
   }
   return (
-      <div className={cx(styles.tableItem, className)}>
+      <div className={cx(styles.tableItem, className)} onClick={onTableItemClicked}>
         <Text
           className={styles.companyName}
           {...companyName} />

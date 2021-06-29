@@ -35,3 +35,8 @@ export const isExpired = (value) => {
   const expiryDate = new Date(value);
   return today > expiryDate;
 }
+export const createdOn = (value) => {
+  const date = new Date(value);
+  date.setDate(date.getDate()-30)
+  return date.toDateString();
+}

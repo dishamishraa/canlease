@@ -6,7 +6,7 @@ import { TableItemListProps } from '../../organisms/TableItemList';
 import { TableItemProps } from '../../molecules/TableItem';
 import Text, { TextProps } from '../../atoms/Text';
 import TableItem, { defaultProps as TableItemDefaultProps } from '../../molecules/TableItem/TableItem';
-import { isExpiring, isExpired } from '../../../lib/utils';
+import { isExpiring, isExpired, createdOn} from '../../../lib/utils';
 import { Quote } from '../../../modules/types';
 
 export type TablePresenterProps = TableProps & {
@@ -31,9 +31,11 @@ const withPresenter = (
         tab,
     } = props;
     const { t } = useTranslation();
+    const history = useHistory();
     const tableItemArray: TableItemProps[] = [];
     let filteredTableItemArray: TableItemProps[] = [];
     let tableItemListProps: TableItemListProps = {};
+
 
     const checkStatus = (quoteExpiryDate) => {
         if(isExpiring(quoteExpiryDate)){
@@ -45,10 +47,12 @@ const withPresenter = (
         }
     }
 
+    const checkCreatedOn = (quoteExpiryDate) => {
+        return createdOn(quoteExpiryDate)
+    }
+
     const quotes = [ 
         {
-            companyName: "sdf",
-            name: "asdf",
             quoteId: "string",
             asset: "string",
             applicationAmount: 0,
@@ -63,9 +67,7 @@ const withPresenter = (
             quoteExpiryDate: "2021-08-25T19:53:52.343Z"
         },
         {
-            companyName: "xxxx",
-            name: "azf",
-            quoteId: "string",
+            quoteId: "id",
             asset: "string",
             applicationAmount: 100,
             quoteOptions: [
@@ -94,12 +96,12 @@ const withPresenter = (
         }
         if (searchQuery){
             filteredArray = filteredArray.filter((item) => {
-                const itemCompanyName = item.companyName.value.toLowerCase();
-                const itemContactName = item.contactName.value.toLowerCase();
-                const itemStatus = item.status.value.toLowerCase();
-                const itemCreateOn = item.createOn.value.toLowerCase();
-                const itemAssetName = item.assetName.value.toLowerCase();
-                const itemCost = item.cost.value.toString().toLowerCase();
+                const itemCompanyName = item.companyName?.value.toLowerCase();
+                const itemContactName = item.contactName?.value.toLowerCase();
+                const itemStatus = item.status?.value.toLowerCase();
+                const itemCreateOn = item.createOn?.value.toLowerCase();
+                const itemAssetName = item.assetName?.value.toLowerCase();
+                const itemCost = item.cost?.value.toString().toLowerCase();
                 const search = searchQuery.toLowerCase();
                 return itemCompanyName.includes(search) | itemContactName.includes(search) | itemStatus.includes(search) | itemCreateOn.includes(search) | itemAssetName.includes(search) | itemCost.includes(search);
             })
@@ -108,15 +110,15 @@ const withPresenter = (
     }
     if (tab === 'Customer') {
         quotes.forEach((quote) => {
-            const {companyName, name, applicationAmount, quoteExpiryDate} = quote
+            const {applicationAmount, quoteExpiryDate, quoteId, asset} = quote
             const tableItemProps: TableItemProps = {
                 companyName: {
                     ...TableItemDefaultProps.companyName,
-                    value: companyName,
+                    value: "company",
                 },
                 contactName:{
                     ...TableItemDefaultProps.contactName,
-                    value: name,
+                    value: "name",
                 },
                 status: {
                     ...TableItemDefaultProps.status,
@@ -124,27 +126,30 @@ const withPresenter = (
                 },
                 createOn: {
                     ...TableItemDefaultProps.createOn,
-                    value: "test"
+                    value: checkCreatedOn(quoteExpiryDate),
                 },
                 assetName: {
                     ...TableItemDefaultProps.assetName,
-                    value: "test"
+                    value: asset,
                 },
                 cost: {
                     ...TableItemDefaultProps.cost,
                     value: applicationAmount,
                 },
+                onTableItemClicked: () => {
+                    history.push(`/portal/viewquote/${quoteId}`)
+                }
             }
             tableItemArray.push(tableItemProps);
         })
     }
     if (tab === 'Personal') {
         quotes.forEach((quote) => {
-            const {companyName, name, applicationAmount, quoteExpiryDate} = quote
+            const {applicationAmount, quoteExpiryDate, asset, quoteId} = quote
             const tableItemProps: TableItemProps = {
                 companyName: {
                     ...TableItemDefaultProps.companyName,
-                    value: companyName,
+                    value: "company",
                 },
                 status: {
                     ...TableItemDefaultProps.status,
@@ -152,16 +157,19 @@ const withPresenter = (
                 },
                 createOn: {
                     ...TableItemDefaultProps.createOn,
-                    value: "test"
+                    value: checkCreatedOn(quoteExpiryDate),
                 },
                 assetName: {
                     ...TableItemDefaultProps.assetName,
-                    value: "test"
+                    value: asset,
                 },
                 cost: {
                     ...TableItemDefaultProps.cost,
                     value: applicationAmount,
                 },
+                onTableItemClicked: () => {
+                    history.push(`/portal/viewquote/${quoteId}`)
+                }
             }
             tableItemArray.push(tableItemProps);
         })

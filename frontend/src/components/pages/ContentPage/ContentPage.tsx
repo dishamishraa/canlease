@@ -1,6 +1,5 @@
 import React from 'react';
 import cx from 'classnames';
-import { Redirect, Route, Switch } from 'react-router-dom';
 import styles from './ContentPage.module.scss';
 
 import TopBlock, { TopBlockProps } from '../../blocks/TopBlock';
@@ -120,12 +119,6 @@ export type ContentPageProps = {
   setTab?: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const routes = {
-  content: '/portal/content',
-  leasingQuote: '/portal/content/:quoteId',
-  invalid: '/',
-};
-
 const ContentPage: React.FC<ContentPageProps> = ({
   topBlock,
   topActionBlock,
@@ -141,8 +134,6 @@ const ContentPage: React.FC<ContentPageProps> = ({
   setTab,
 }) => (
     <div className={cx(styles.contentPage, className)}>
-      <Switch>
-        <Route exact path={routes.content}>
           <TopBlock
           className={styles.topBlock}
           {...topBlock} 
@@ -163,16 +154,6 @@ const ContentPage: React.FC<ContentPageProps> = ({
           searchQuery={searchQuery}
           statusFilter={statusFilter} 
           tab={tab}/>
-        </Route>
-        <Route exact path={routes.leasingQuote}>
-           <QuoteBlock
-              className={styles.block}
-              {...quoteBlock} />
-        </Route>
-        <Route path={routes.invalid}>
-            <Redirect to={routes.content}/>
-        </Route>
-      </Switch>
 
     </div>
 );
