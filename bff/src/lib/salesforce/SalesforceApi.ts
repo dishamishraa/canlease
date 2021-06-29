@@ -50,7 +50,7 @@ export default class SalesforceApi {
     }
   }
 
-  async getQuote(quoteId: number | string): Promise<Quote> {
+  async getQuote(quoteId: string): Promise<Quote> {
     try {
       const response = await axios.get<Quote>(`${SALESFORCE_API_URL}/v2/quotes/${quoteId}`);
       return response.data;
@@ -62,10 +62,9 @@ export default class SalesforceApi {
     }
   }
 
-  async getProfile(portalId: number | string): Promise<Profile> {
+  async getProfile(portalId: string): Promise<Profile> {
     try {
-      const response = await axios.get<Profile>(`${SALESFORCE_API_URL}/v2/profile/${portalId}`,
-      { withCredentials: true });
+      const response = await axios.get<Profile>(`${SALESFORCE_API_URL}/v2/profile/${portalId}`);
       return response.data;
     } catch (error) {
       const message = axios.isAxiosError(error)
@@ -77,8 +76,7 @@ export default class SalesforceApi {
 
   async createProfile(payload: CreateProfile): Promise<Profile> {
     try {
-      const response = await axios.post<Profile>(`${SALESFORCE_API_URL}/v2/profile`, payload,
-      { withCredentials: true });
+      const response = await axios.post<Profile>(`${SALESFORCE_API_URL}/v2/profile`, payload);
       return response.data;
     } catch (error) {
       const message = axios.isAxiosError(error)
@@ -88,20 +86,17 @@ export default class SalesforceApi {
     }
   }
 
-  async addQuoteToProfile(portalId: number | string, payload: AddQuote): Promise<void> {
+  async addQuoteToProfile(portalId: string, payload: AddQuote): Promise<void> {
     try {
-      await axios.post<void>(
-        `${SALESFORCE_API_URL}/v2/profile/${portalId}/add_quote`, payload,
-        { withCredentials: true });
+      await axios.post<void>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/add_quote`, payload);
     } catch (error) {
       throw error.message;
     }
   }
 
-  async getAllQuotesFromProfile(portalId: number | string): Promise<Quote[]> {
+  async getAllQuotesFromProfile(portalId: string): Promise<Quote[]> {
     try {
-      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/quote`,
-      { withCredentials: true });
+      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/quote`);
       return response.data;
     } catch (error) {
       const message = axios.isAxiosError(error)
@@ -111,10 +106,9 @@ export default class SalesforceApi {
     }
   }
 
-  async getAllCustomerQuotesFromProfile(portalId: number | string): Promise<Quote[]> {
+  async getAllCustomerQuotesFromProfile(portalId: string): Promise<Quote[]> {
     try {
-      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/customer_quote`,
-      { withCredentials: true });
+      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/customer_quote`);
       return response.data;
     } catch (error) {
       const message = axios.isAxiosError(error)
