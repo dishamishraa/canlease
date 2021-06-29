@@ -4,7 +4,6 @@ import { CreateProfile, AddQuote } from './types';
 
 const id = Joi.alternatives(
   Joi.string(),
-  Joi.number(),
 ).required();
 
 const CreateProfileSchema = Joi.object({
@@ -42,7 +41,7 @@ export const validateAddQuote = (value: unknown): value is AddQuote => {
   return error === undefined;
 };
 
-export const validateId = (value: unknown): value is number | string => {
+export const validateId = (value: unknown): value is string => {
   const { error } = id.validate(value, { allowUnknown: true });
   return error === undefined;
 };

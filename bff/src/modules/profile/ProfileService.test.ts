@@ -17,10 +17,10 @@ describe('QuoteService', () => {
 
   describe('getProfile', () => {
     it('should call api with portal id', async () => {
-      await service.getProfile(1);
+      await service.getProfile('1');
 
       expect(salesforceApi.getProfile)
-        .toHaveBeenCalledWith(1);
+        .toHaveBeenCalledWith('1');
     });
   });
 
@@ -35,28 +35,28 @@ describe('QuoteService', () => {
 
   describe('addQuoteToProfile', () => {
     it('should call api with portal id and payload', async () => {
-      await service.addQuoteToProfile(1, mockAddQuotePayload);
+      await service.addQuoteToProfile('1', mockAddQuotePayload);
 
       expect(salesforceApi.addQuoteToProfile)
-        .toHaveBeenCalledWith(1, mockAddQuotePayload);
+        .toHaveBeenCalledWith('1', mockAddQuotePayload);
     });
   });
 
   describe('getAllQuotesFromProfile', () => {
     it('should call api with portal id', async () => {
-      await service.getAllQuotesFromProfile(1);
+      await service.getAllQuotesFromProfile('1');
 
       expect(salesforceApi.getAllQuotesFromProfile)
-        .toHaveBeenCalledWith(1);
+        .toHaveBeenCalledWith('1');
     });
   });
 
   describe('getAllCustomerQuotesFromProfile', () => {
     it('should call api with portal id', async () => {
-      await service.getAllCustomerQuotesFromProfile(1);
+      await service.getAllCustomerQuotesFromProfile('1');
 
       expect(salesforceApi.getAllCustomerQuotesFromProfile)
-        .toHaveBeenCalledWith(1);
+        .toHaveBeenCalledWith('1');
     });
   });
 });

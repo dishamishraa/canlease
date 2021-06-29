@@ -10,7 +10,7 @@ export default class ProfileController implements ProfileControllerContract {
     this.service = service;
   }
 
-  async getProfile(portalId: string | number): Promise<Profile> {
+  async getProfile(portalId: string): Promise<Profile> {
     return this.service.getProfile(portalId);
   }
 
@@ -18,15 +18,15 @@ export default class ProfileController implements ProfileControllerContract {
     return this.service.createProfile(payload);
   }
 
-  async addQuoteToProfile(portalId: string | number, payload: AddQuote): Promise<void> {
+  async addQuoteToProfile(portalId: string, payload: AddQuote): Promise<void> {
     return this.service.addQuoteToProfile(portalId, payload);
   }
 
-  async getAllQuotesFromProfile(portalId: string | number): Promise<Quote[]> {
+  async getAllQuotesFromProfile(portalId: string): Promise<Quote[]> {
     return this.service.getAllQuotesFromProfile(portalId);
   }
 
-  async getAllCustomerQuotesFromProfile(portalId: string | number): Promise<Quote[]> {
+  async getAllCustomerQuotesFromProfile(portalId: string): Promise<Quote[]> {
     return this.service.getAllCustomerQuotesFromProfile(portalId);
   }
 }

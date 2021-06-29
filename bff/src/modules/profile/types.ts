@@ -53,17 +53,17 @@ export type AddQuote = {
 };
 
 export interface ProfileControllerContract {
-  getProfile(portalId: number | string): Promise<Profile>;
+  getProfile(portalId: string): Promise<Profile>;
   createProfile(payload: CreateProfile): Promise<Profile>;
-  addQuoteToProfile(portalId: number | string, payload: AddQuote): Promise<void>;
-  getAllQuotesFromProfile(portalId: number | string): Promise<Quote[]>;
-  getAllCustomerQuotesFromProfile(portalId: number | string): Promise<Quote[]>;
+  addQuoteToProfile(portalId: string, payload: AddQuote): Promise<void>;
+  getAllQuotesFromProfile(portalId: string): Promise<Quote[]>;
+  getAllCustomerQuotesFromProfile(portalId: string): Promise<Quote[]>;
 }
 
 export interface ProfileServiceContract {
-  getProfile(portalId: number | string): Promise<Profile>;
+  getProfile(portalId: string): Promise<Profile>;
   createProfile(payload: CreateProfile): Promise<Profile>;
-  addQuoteToProfile(portalId: number | string, payload: AddQuote): Promise<void>;
-  getAllQuotesFromProfile(portalId: number | string): Promise<Quote[]>;
-  getAllCustomerQuotesFromProfile(portalId: number | string): Promise<Quote[]>;
+  addQuoteToProfile(portalId: string, payload: AddQuote): Promise<void>;
+  getAllQuotesFromProfile(portalId: string): Promise<Quote[]>;
+  getAllCustomerQuotesFromProfile(portalId: string): Promise<Quote[]>;
 }

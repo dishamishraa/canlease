@@ -60,11 +60,11 @@ describe('ProfileRouter', () => {
     });
   });
 
-  describe('GET /:id/quotes/customer', () => {
+  describe('GET /:id/customer_quotes', () => {
     it('should return a 200 status on success', async () => {
       mockValidateId.mockReturnValueOnce(true);
       const { status } = await request(app)
-        .get('/:id/quotes/customer')
+        .get('/:id/customer_quotes')
         .send();
 
       expect(profileController.getAllCustomerQuotesFromProfile)
