@@ -10,8 +10,8 @@ export type useAllCustomerQuotesFromProfileResult = {
   refetch: () => void;
 };
 
-const useAllCustomerQuotesFromProfile = (quoteId: number | string): useAllCustomerQuotesFromProfileResult => {
-  const get = useCallback((): Promise<Quote[]>  => getAllCustomerQuotesFromProfile(quoteId), [quoteId]);
+const useAllCustomerQuotesFromProfile = (portalId: string): useAllCustomerQuotesFromProfileResult => {
+  const get = useCallback((): Promise<Quote[]>  => getAllCustomerQuotesFromProfile(portalId), [portalId]);
   return useGet(get);
 };
 

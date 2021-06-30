@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { TableProps } from './Table';
 import { TablePresenterProps } from './Table.presenter';
 import { useParams } from 'react-router';
-import useAllQuotesFromProfile from '../../../modules/quote/useAllQuotesFromProfile';
-import useAllCustomerQuotesFromProfile from '../../../modules/quote/useAllCustomerQuotesFromProfile';
+import useAllQuotesFromProfile from '../../../modules/profile/useAllQuotesFromProfile';
+import useAllCustomerQuotesFromProfile from '../../../modules/profile/useAllCustomerQuotesFromProfile';
 import useCustomerPortfolio from '../../../modules/portfolio/useCustomerPortfolio';
 import getUserPortfolio from '../../../modules/portfolio/useUserPortfolio';
 

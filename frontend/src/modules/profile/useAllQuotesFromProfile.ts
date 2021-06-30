@@ -10,8 +10,8 @@ export type useAllQuotesFromProfileResult = {
   refetch: () => void;
 };
 
-const useAllQuotesFromProfile = (quoteId: number | string): useAllQuotesFromProfileResult => {
-  const get = useCallback((): Promise<Quote[]>  => getAllQuotesFromProfile(quoteId), [quoteId]);
+const useAllQuotesFromProfile = (portalId: string): useAllQuotesFromProfileResult => {
+  const get = useCallback((): Promise<Quote[]>  => getAllQuotesFromProfile(portalId), [portalId]);
   return useGet(get);
 };
 

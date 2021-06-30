@@ -39,16 +39,7 @@ const withPresenter = (
     const tableItemArray: TableItemProps[] = [];
     let filteredTableItemArray: TableItemProps[] = [];
     let tableItemListProps: TableItemListProps = {};
-
  
-    if (customerPortfolio){
-        console.log(customerPortfolio)
-    }
-    if (personalPortfolio){
-        console.log(personalPortfolio)
-    }
- 
-
     const checkStatus = (quoteExpiryDate, tab, quoteId) => {
         let isApplied;
         if (tab === 'Customer' && customerPortfolio) {
@@ -80,37 +71,6 @@ const withPresenter = (
         return createdOn(quoteExpiryDate)
     }
 
-    const quotes = [ 
-        {
-            quoteId: "string",
-            asset: "string",
-            applicationAmount: 0,
-            quoteOptions: [
-              {
-                monthlyAmount: 0,
-                term: "12M",
-                financeRate: 0,
-                purchaseOptionDate: "2021-06-25T19:53:52.343Z"
-              }
-            ],
-            quoteExpiryDate: "2021-08-25T19:53:52.343Z"
-        },
-        {
-            quoteId: "id",
-            asset: "string",
-            applicationAmount: 100,
-            quoteOptions: [
-              {
-                monthlyAmount: 0,
-                term: "12M",
-                financeRate: 0,
-                purchaseOptionDate: "2021-06-25T19:53:52.343Z"
-              }
-            ],
-            quoteExpiryDate: "2021-06-25T19:53:52.343Z"
-        }
-    ]
-
     const filterTableItems = (itemsArray, searchQuery, statusFilter) => {
         let filteredArray = itemsArray;
         if(!searchQuery && statusFilter === "All"){
@@ -137,8 +97,8 @@ const withPresenter = (
         }
         return filteredArray;
     }
-    if (tab === 'Customer') {
-        quotes.forEach((quote) => {
+    if (tab === 'Customer' && customerQuotes) {
+        customerQuotes.forEach((quote) => {
             const {applicationAmount, quoteExpiryDate, quoteId, asset} = quote
             const tableItemProps: TableItemProps = {
                 companyName: {
@@ -172,8 +132,8 @@ const withPresenter = (
             tableItemArray.push(tableItemProps);
         })
     }
-    if (tab === 'Personal') {
-        quotes.forEach((quote) => {
+    if (tab === 'Personal' && personalQuotes) {
+        personalQuotes.forEach((quote) => {
             const {applicationAmount, quoteExpiryDate, asset, quoteId} = quote
             const tableItemProps: TableItemProps = {
                 companyName: {

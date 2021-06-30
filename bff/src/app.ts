@@ -28,7 +28,7 @@ export default function App(): Application {
   const portfolioSalesforceApi = new SalesforceApi();
   const portfolioService = new PortfolioService(portfolioSalesforceApi);
   const portfolioController = new PortfolioController(portfolioService);
-  
+
   const profileService = new ProfileService(quoteSalesforceApi);
   const profileController = new ProfileController(profileService);
 
