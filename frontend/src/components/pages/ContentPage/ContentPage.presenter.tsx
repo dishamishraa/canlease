@@ -12,10 +12,10 @@ const withPresenter = (
     const Presenter: React.FC<ContentPagePresenterProps> = (props) => {
       const {
       } = props;
-      const [searchQuery, setSearchQuery] = useState("");
+      const [searchQuery, setSearchQuery] = useState('');
       const [contentType, setContentType] = useState('Quote');
       const [statusFilter, setStatusFilter] = useState('All');
-      const [tab, setTab] = useState("Customer");
+      const [tab, setTab] = useState<'Customer' | 'Personal'>('Customer');
 
       return <View
           {...props}

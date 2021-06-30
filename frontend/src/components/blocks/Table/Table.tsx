@@ -58,7 +58,7 @@ export type TableProps = {
   contentType?: string;
   searchQuery?: string;
   statusFilter?: string;
-  tab?: string;
+  tab?: 'Customer' | 'Personal';
 };
 
 const Table: React.FC<TableProps> = ({

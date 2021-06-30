@@ -115,8 +115,8 @@ export type ContentPageProps = {
   setSearchQuery?: React.Dispatch<React.SetStateAction<string>>;
   statusFilter?: string;
   setStatusFilter?: React.Dispatch<React.SetStateAction<string>>;
-  tab?: string;
-  setTab?: React.Dispatch<React.SetStateAction<string>>;
+  tab?: 'Customer' | 'Personal';
+  setTab?: React.Dispatch<React.SetStateAction<'Customer' | 'Personal'>>;
 };
 
 const ContentPage: React.FC<ContentPageProps> = ({

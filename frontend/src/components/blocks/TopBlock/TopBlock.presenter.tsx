@@ -7,8 +7,8 @@ import { Profile } from '../../../modules/types';
 
 export type TopBlockPresenterProps = TopBlockProps & {
     contentType?: string;
-    tab?: string;
-    setTab?: React.Dispatch<React.SetStateAction<string>>;
+    tab?: 'Customer' | 'Personal';
+    setTab?: React.Dispatch<React.SetStateAction<'Customer' | 'Personal'>>;
     profile: Profile | null;
 };
 
@@ -32,7 +32,7 @@ const withPresenter = (
         const { userType } = profile;
         if (userType === 'customer' && setTab){
           setHideTabs(true);
-          setTab("Personal");
+          setTab('Personal');
         }
       }
     }, [profile])
@@ -49,7 +49,7 @@ const withPresenter = (
             ...defaultProps.blockHeader,
             text: {
                 ...defaultProps.blockHeader.text,
-                value: contentType === "Quote"? t('application_page.quotes.header') : t('application_page.applications.header')
+                value: contentType === 'Quote'? t('application_page.quotes.header') : t('application_page.applications.header')
             }
         },
         tabs: {
@@ -61,9 +61,9 @@ const withPresenter = (
                     text:{
                         ...TabItemDefaultProps.text,
                         style: 'Basic800',
-                        value: contentType === "Quote" ? t('application_page.quotes.customer_quotes') : t('application_page.applications.customer_applications')
+                        value: contentType === 'Quote' ? t('application_page.quotes.customer_quotes') : t('application_page.applications.customer_applications')
                     },
-                    onTabClicked: handleTabClicked("Customer"),
+                    onTabClicked: handleTabClicked('Customer'),
                   }, 
                   {
                     ...TabItemDefaultProps,
@@ -71,9 +71,9 @@ const withPresenter = (
                     text:{
                         ...TabItemDefaultProps.text,
                         style: 'Basic800',
-                        value: contentType === "Quote" ? t('application_page.quotes.personal_quotes') : t('application_page.applications.personal_applications')
+                        value: contentType === 'Quote' ? t('application_page.quotes.personal_quotes') : t('application_page.applications.personal_applications')
                     },
-                    onTabClicked: handleTabClicked("Personal"),
+                    onTabClicked: handleTabClicked('Personal'),
 
                   }
                   

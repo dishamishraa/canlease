@@ -13,7 +13,7 @@ export type TablePresenterProps = TableProps & {
     contentType?: string;
     searchQuery?: string;
     statusFilter?: string;
-    tab?: string;
+    tab?: 'Customer' | 'Personal';
     personalQuotes: Quote[] | null;
     customerQuotes: Quote[] | null;
     personalPortfolio: Portfolio | null;
@@ -55,15 +55,15 @@ const withPresenter = (
             })
         }
         if(isApplied){
-            return "Applied"
+            return t('application_page.status.applied')
         }
         else if (isExpired(quoteExpiryDate)) {
-            return  "Expired"
+            return  t('application_page.status.expired')
         }
         else if(isExpiring(quoteExpiryDate)){
-            return "Expiring soon"
+            return t('application_page.status.expiring_soon')
         } else {
-            return "Active"
+            return t('application_page.status.active')
         }
     }
 
@@ -73,10 +73,10 @@ const withPresenter = (
 
     const filterTableItems = (itemsArray, searchQuery, statusFilter) => {
         let filteredArray = itemsArray;
-        if(!searchQuery && statusFilter === "All"){
+        if(!searchQuery && statusFilter === 'All'){
             return itemsArray;
         } 
-        if (statusFilter != "All"){
+        if (statusFilter != 'All'){
             filteredArray = filteredArray.filter((item) => {
                 const status = item.status?.value.toLowerCase();
                 const filter = statusFilter.toLowerCase();
@@ -92,7 +92,8 @@ const withPresenter = (
                 const itemAssetName = item.assetName?.value.toLowerCase();
                 const itemCost = item.cost?.value.toString().toLowerCase();
                 const search = searchQuery.toLowerCase();
-                return itemCompanyName?.includes(search) | itemContactName?.includes(search) | itemStatus?.includes(search) | itemCreateOn?.includes(search) | itemAssetName?.includes(search) | itemCost?.includes(search);
+                return itemCompanyName?.includes(search) || itemContactName?.includes(search) || itemStatus?.includes(search) || 
+                        itemCreateOn?.includes(search) || itemAssetName?.includes(search) || itemCost?.includes(search);
             })
         }
         return filteredArray;
@@ -103,11 +104,11 @@ const withPresenter = (
             const tableItemProps: TableItemProps = {
                 companyName: {
                     ...TableItemDefaultProps.companyName,
-                    value: "company",
+                    value: 'company',
                 },
                 contactName:{
                     ...TableItemDefaultProps.contactName,
-                    value: "name",
+                    value: 'name',
                 },
                 status: {
                     ...TableItemDefaultProps.status,
@@ -138,7 +139,7 @@ const withPresenter = (
             const tableItemProps: TableItemProps = {
                 companyName: {
                     ...TableItemDefaultProps.companyName,
-                    value: "company",
+                    value: 'company',
                 },
                 status: {
                     ...TableItemDefaultProps.status,
@@ -180,7 +181,7 @@ const withPresenter = (
             },
             contactName: {
                 ...defaultProps.tableHeader.contactName,
-                value: tab === "Customer" ? t('application_page.table_headers.name'): "",
+                value: tab === 'Customer' ? t('application_page.table_headers.name'): '',
             },
             status: {
                 ...defaultProps.tableHeader.status,

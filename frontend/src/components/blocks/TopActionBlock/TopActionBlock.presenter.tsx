@@ -38,38 +38,38 @@ const withPresenter = (
         contextualMenuItemList: {
           contextualMenuItems: [
             {
-              onContextualMenuItemClicked: handleSetStatusFilter(t('application_page.select.all')),
+              onContextualMenuItemClicked: handleSetStatusFilter(t('application_page.status.all')),
               text: {
                 ...defaultMenuItemProps.text,
-                value: t('application_page.select.all'),
+                value: t('application_page.status.all'),
               },
             },
             {
-              onContextualMenuItemClicked: handleSetStatusFilter(t('application_page.select.active')),
+              onContextualMenuItemClicked: handleSetStatusFilter(t('application_page.status.active')),
               text: {
                 ...defaultMenuItemProps.text,
-                value: t('application_page.select.active'),
+                value: t('application_page.status.active'),
               },
             },
             {
-                onContextualMenuItemClicked: handleSetStatusFilter(t('application_page.select.expiring_soon')),
+                onContextualMenuItemClicked: handleSetStatusFilter(t('application_page.status.expiring_soon')),
                 text: {
                   ...defaultMenuItemProps.text,
-                  value: t('application_page.select.expiring_soon'),
+                  value: t('application_page.status.expiring_soon'),
                 },
             },
             {
-              onContextualMenuItemClicked: handleSetStatusFilter(t('application_page.select.applied')),
+              onContextualMenuItemClicked: handleSetStatusFilter(t('application_page.status.applied')),
               text: {
                 ...defaultMenuItemProps.text,
-                value: t('application_page.select.applied'),
+                value: t('application_page.status.applied'),
               },
             },
             {
-              onContextualMenuItemClicked: handleSetStatusFilter(t('application_page.select.expired')),
+              onContextualMenuItemClicked: handleSetStatusFilter(t('application_page.status.expired')),
               text: {
                 ...defaultMenuItemProps.text,
-                value: t('application_page.select.expired'),
+                value: t('application_page.status.expired'),
               },
             },
           ],

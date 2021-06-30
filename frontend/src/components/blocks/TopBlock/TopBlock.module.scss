@@ -36,7 +36,7 @@
         margin-top: 0;
       }
     }
-    display: table-cell;
+    display: inline;
   }
 
 }
@@ -76,7 +76,7 @@
       &:nth-child(1) {
         margin-top: 0;
       }
-      display: table-cell;
+      display: inline;
     }
   
   }
