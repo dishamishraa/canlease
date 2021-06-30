@@ -14,7 +14,7 @@ import PersonalInformationBlock from '../../blocks/PersonalInformationBlock';
 import ContactInformationBlock from '../../blocks/ContactInformationBlock';
 import BusinessInformationBlock from '../../blocks/BusinessInformationBlock';
 import TopBar, { TopBarProps } from '../../organisms/TopBar';
-import { AccountRequest, SignInPayload } from '../../../modules/types';
+import { AccountRequest, CreateProfilePayload, SignInPayload } from '../../../modules/types';
 
 export const defaultProps = {
   topBar: {
@@ -105,6 +105,38 @@ export const defaultProps = {
   } as SignInBlockProps,
 };
 
+
+export type PersonalInformation = {
+  firstName: string;
+  lastName: string;
+}
+
+export type ContactInformation = {
+  email: string;
+  phone: string;
+  street: string;
+  city: string;
+  postalCode: string;
+  province: string;
+}
+
+export type BusinessInformation = {
+  companyName: string;
+  operatingName: string;
+  businessSector: string;
+  operatingSinceDate: string;
+  businessPhone: string;
+  website?: string;
+}
+
+export type AuthPageLocationState = {
+  personalInfo: PersonalInformation,
+  contactInfo: ContactInformation,
+  businessInfo: PersonalInformation,
+  email: string,
+  id: string
+}
+
 export type AuthPageProps = {
   topBar?: TopBarProps;
   block?: SignInBlockProps;
@@ -113,6 +145,11 @@ export type AuthPageProps = {
   signInBlock?: SignInBlockProps;
   handleCreateIdentityAccount?: (payload: AccountRequest) => void;
   handleSignIn?: (payload: SignInPayload) => void;
+  handleGetProfile?: (id: string | number) => void;
+  handleCompleteSetup?: () => void;
+  setPersonalInfo?: React.Dispatch<React.SetStateAction<PersonalInformation>>;
+  setContactInfo?: React.Dispatch<React.SetStateAction<ContactInformation>>;
+  setBusinessInfo?: React.Dispatch<React.SetStateAction<BusinessInformation>>;
 };
 
 const routes = {
@@ -136,6 +173,10 @@ const AuthPage: React.FC<AuthPageProps> = ({
   signInBlock,
   handleCreateIdentityAccount,
   handleSignIn,
+  handleCompleteSetup,
+  setPersonalInfo,
+  setContactInfo,
+  setBusinessInfo,
 }) => (
     <div className={cx(styles.authPage, className)}>
       <TopBar
@@ -180,15 +221,20 @@ const AuthPage: React.FC<AuthPageProps> = ({
         {/* Account setup routes */}
         <ProtectedRoute exact path={routes.personalInformation}>
           <PersonalInformationBlock
-            className={styles.block} />
+            className={styles.block}
+            setPersonalInfo={setPersonalInfo}
+            />
         </ProtectedRoute>
         <ProtectedRoute exact path={routes.contactInformation}>
           <ContactInformationBlock
-            className={styles.block} />
+            className={styles.block}
+            setContactInfo={setContactInfo} />
         </ProtectedRoute>
         <ProtectedRoute exact path={routes.businessInformation}>
           <BusinessInformationBlock
-            className={styles.block} />
+            className={styles.block}
+            handleCompleteSetup={handleCompleteSetup}
+            setBusinessInfo={setBusinessInfo} />
         </ProtectedRoute>
 
         <Route path={routes.invalid}>

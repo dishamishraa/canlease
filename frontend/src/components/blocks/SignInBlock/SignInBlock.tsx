@@ -7,6 +7,9 @@ import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
 import { SignInPayload } from '../../../modules/types';
+import Toast, { ToastProps } from '../../atoms/Toast';
+import { ToastTypeType, ToastStyleType } from '../../atoms/Toast/Toast';
+import { IconProps } from '../../atoms/Icon';
 
 export const defaultProps = {
   blockHeading: {

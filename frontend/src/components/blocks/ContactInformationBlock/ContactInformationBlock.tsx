@@ -8,6 +8,7 @@ import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import SelectField, { SelectFieldProps } from '../../molecules/SelectField';
 import Button, { ButtonProps } from '../../atoms/Button';
+import { ContactInformation } from '../../pages/AuthPage/AuthPage';
 
 export const defaultProps = {
   stepper: {
@@ -134,6 +135,7 @@ export type ContactInformationBlockProps = {
   provinceSelectField?: SelectFieldProps;
   nextButton?: ButtonProps;
   className?: string;
+  setContactInfo?: React.Dispatch<React.SetStateAction<ContactInformation>>;
 };
 
 const ContactInformationBlock: React.FC<ContactInformationBlockProps> = ({

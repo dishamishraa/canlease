@@ -19,6 +19,7 @@ const withPresenter = (
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
+    const { state } = useLocation();
     const [email, setEmail] = useState<string>('');
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [emailError, setEmailError] = useState<TextFieldStateType>('Default');

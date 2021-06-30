@@ -12,7 +12,7 @@ const withInteractor = (
       <Presenter
         {...props}
         updatePassword={updatePassword}
-        // loading={loading}
+        loading={loading}
       />
     );
   };

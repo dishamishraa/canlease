@@ -1,5 +1,3 @@
-import { CreatePasswordBlockProps } from '../components/blocks/CreatePasswordBlock';
-
 export type User = {
   id: number;
   uuid: string;
@@ -106,6 +104,26 @@ export type Profile = {
   businessSector: string;
   businessPhone: string;
 };
+
+export type CreateProfilePayload = {
+  companyName: string,
+  street: string;
+  province: string;
+  postalCode: string;
+  country: string;
+  firstName: string;
+  lastName: string;
+  portalId: string;
+  userType: string;
+  email: string;
+  phone: string;
+  title: string;
+  operatingName: string;
+  operatingSinceDate: string;
+  businessSector: string;
+  businessPhone: string;
+  website?: string;
+}
 
 export type CreateQuotePayload = CreateVendorQuotePayload | CreateCustomerQuotePayload;
 

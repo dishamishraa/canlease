@@ -7,18 +7,23 @@ import { UpdatePasswordPayload } from '../../../modules/types'
 import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField';
 import { isEmptyString } from '../../../lib/utils';
 import { updatePassword } from '../../../modules/account/api';
+import { useCookies } from 'react-cookie';
 
 export type CreatePasswordBlockPresenterProps = CreatePasswordBlockProps & {
-    updatePassword?:(payload: UpdatePasswordPayload) => Promise<APIResponse<void>>; 
+    updatePassword?:(payload: UpdatePasswordPayload) => Promise<APIResponse<void>>;
 };
 
 const withPresenter = (
   View: React.FC<CreatePasswordBlockProps>,
 ): React.FC<CreatePasswordBlockPresenterProps> => {
   const Presenter: React.FC<CreatePasswordBlockPresenterProps> = (props) => {
+    const {
+        loading
+    } = props
     const { t } = useTranslation();
     const history = useHistory();
     const location = useLocation();
+    const [cookies, setCookie, removeCookie] = useCookies();
     const [createPassword, setCreatePassword] = useState<string>('')
     const [createPasswordError, setCreatePasswordError] = useState<TextFieldStateType>('Default');
     const [confirmPassword, setConfirmPassword] = useState<string>('')
@@ -38,14 +43,13 @@ const withPresenter = (
         setConfirmPasswordError('Default');
     };
 
-    const handleSaveQuote = async() => {
+    const handleSavePassword = async() => {
         if(!(createPassword === confirmPassword)){
             setCreatePasswordError('Error')
             setConfirmPasswordError('Error')
         }else{
             await updatePassword({
-                // determine whether to get passed through param or data
-                id: 1,
+                id: cookies.id,
                 password: createPassword,
             }).then(() => {
                 history.push({
@@ -56,6 +60,10 @@ const withPresenter = (
                 })
             })
         }
+    }
+
+    const handleIconClick = () => {
+        console.log('click')
     }
 
     const createPasswordBlockProps: CreatePasswordBlockPresenterProps = {
@@ -76,7 +84,7 @@ const withPresenter = (
             },
             textInput: {
                 textValue: createPassword,
-                onTextChanged: handleCreatePassword
+                onTextChanged: handleCreatePassword,
             },
             errorMessage: {
                 ...defaultTextFieldProps.errorMessage,
@@ -106,7 +114,7 @@ const withPresenter = (
                 ...defaultProps.saveButton.text,
                 value: t('button_text.save')
             },
-            onButtonClicked: handleSaveQuote,
+            onButtonClicked: handleSavePassword,
             disabled: (isEmptyString(createPassword) || isEmptyString(confirmPassword))
         },
         signInButton: {

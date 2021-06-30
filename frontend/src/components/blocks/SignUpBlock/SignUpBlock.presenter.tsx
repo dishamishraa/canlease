@@ -55,7 +55,7 @@ const withPresenter = (
               password,
               firstName: '',
               lastName: '',
-              enabled: false,
+              enabled: true,
             });
           }
         }

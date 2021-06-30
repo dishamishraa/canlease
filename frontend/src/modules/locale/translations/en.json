@@ -160,6 +160,44 @@
         "header": "Create password",
         "description": "Create a new password for Canlease portal"
     },
+    "personal_information":{
+        "header": "Personal information",
+        "radio_text": {
+            "supplier": "I am an equipment supplier",
+            "own_use": "My company will acquire equipment for our own use"
+        }
+    },
+    "contact_information":{
+        "header": "Contact information",
+        "province": {
+            "AB": "Alberta (AB)",
+            "BC": "British Columbia (BC)",
+            "MB": "Manitoba (MB)",
+            "NB": "New Brunswick (NB)",
+            "NL": "Newfoundland and Labrador (NL)",
+            "NT": "Northwest Territories (NT)",
+            "NS": "Nova Scotia (NS)",
+            "NU": "Nunavut (NU)",
+            "ON": "Ontario (ON)",
+            "PE": "Prince Edward Island (PE)",
+            "QC": "Quebec (OC)",
+            "SK": "Saskatchewan (SK)",
+            "YT": "Yukon (YT)"
+        }
+    },
+    "business_information":{
+        "header": "Business information",
+        "business_sector_options":{
+            "0": "Agriculture and Landscaping",
+            "1": "Construction and Transportation",
+            "2": "Healthcare",
+            "3": "Industrial and Material Handling",
+            "4": "Office and Telecommunications",
+            "5": "Service",
+            "6": "Other"
+        },
+        "operating_since_placeholder": "DD/MM/YYYY"
+    },
     "error_message": {
         "empty": "{{field}} cannot be empty",
         "invalid_email": "Please enter a valid email address",
@@ -173,13 +211,29 @@
         "done": "DONE",
         "next": "NEXT",
         "send_link": "SEND LINK",
-        "save": "SAVE"
+        "save": "SAVE",
+        "complete_setup": "Complete setup"
     },
     "text_field_label":{
         "email": "Email",
         "password": "Password",
         "create_password": "Create password",
-        "confirm_password": "Confirm password"
-    }
+        "confirm_password": "Confirm password",
+        "first_name": "First name",
+        "last_name": "Last name",
+        "phone_number": "Phone number",
+        "unit_number": "Unit number (Optional)",
+        "street_address": "Street address",
+        "city": "City",
+        "postal_code": "Postal code",
+        "province": "Province",
+        "full_legal_name": "Full legal name",
+        "operating_name": "Operating name",
+        "business_sector": "Business sector",
+        "operating_since": "Operating since",
+        "business_phone": "Business phone",
+        "website_link": "Website link (optional)"
+    },
+    "stepper": "STEP {{current}}/{{total}}"
 }
   

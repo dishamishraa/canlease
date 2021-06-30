@@ -38,6 +38,10 @@ const withPresenter = (
       }
     };
 
+    const handleIconClick = () => {
+      console.log('click')
+    }
+
     const handleForgetPassword = () => {
       history.push('/account/forgotPassword');
     };
@@ -64,7 +68,7 @@ const withPresenter = (
         },
         textInput: {
           textValue: email,
-          onTextChanged: handleEmail,
+          onTextChanged: handleEmail
         },
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
@@ -81,6 +85,10 @@ const withPresenter = (
           ...defaultProps.passwordField.textInput,
           textValue: password,
           onTextChanged: handlePassword,
+          // icon: {
+          //   ...defaultTextFieldProps.textInput.icon,
+          //   onIconClicked: handleIconClick
+          // }
         },
       },
       nextButton: {

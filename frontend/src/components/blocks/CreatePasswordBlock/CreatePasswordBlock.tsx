@@ -88,6 +88,7 @@ export type CreatePasswordBlockProps = {
   saveButton?: ButtonProps;
   signInButton?: ButtonProps;
   className?: string;
+  loading?: boolean;
 };
 
 const CreatePasswordBlock: React.FC<CreatePasswordBlockProps> = ({
