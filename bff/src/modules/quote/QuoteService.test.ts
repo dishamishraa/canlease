@@ -28,9 +28,9 @@ describe('QuoteService', () => {
 
   describe('getQuote', () => {
     it('should call api with id', async () => {
-      await service.getQuote(1);
+      await service.getQuote('1');
 
-      expect(salesforceApi.getQuote).toHaveBeenCalledWith(1);
+      expect(salesforceApi.getQuote).toHaveBeenCalledWith('1');
     });
   });
 
