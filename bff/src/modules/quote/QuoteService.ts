@@ -18,7 +18,7 @@ export default class QuoteService implements QuoteServiceContract {
     return this.createQuoteApi.createQuote(payload);
   }
 
-  async getQuote(quoteId: number | string): Promise<Quote> {
+  async getQuote(quoteId: string): Promise<Quote> {
     return this.createQuoteApi.getQuote(quoteId);
   }
 
