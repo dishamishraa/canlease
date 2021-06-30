@@ -8,6 +8,11 @@ describe('QuoteService', () => {
     getQuote: jest.fn(),
     getUserPortfolio: jest.fn(),
     getCustomerPortfolio: jest.fn(),
+    getProfile: jest.fn(),
+    createProfile: jest.fn(),
+    addQuoteToProfile: jest.fn(),
+    getAllQuotesFromProfile: jest.fn(),
+    getAllCustomerQuotesFromProfile: jest.fn(),
   };
   const sendGridApi = {
     sendQuote: jest.fn(),
@@ -25,9 +30,9 @@ describe('QuoteService', () => {
 
   describe('getQuote', () => {
     it('should call api with id', async () => {
-      await service.getQuote(1);
+      await service.getQuote('1');
 
-      expect(salesforceApi.getQuote).toHaveBeenCalledWith(1);
+      expect(salesforceApi.getQuote).toHaveBeenCalledWith('1');
     });
   });
 

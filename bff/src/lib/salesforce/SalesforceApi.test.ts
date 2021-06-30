@@ -74,7 +74,7 @@ describe('SalesforceApi', () => {
 
   describe('getQuote', () => {
     it('should make request to check get quote api endpoint', async () => {
-      const id = 1;
+      const id = '1';
       await api.getQuote(id);
 
       expect(mockedAxios.get).toHaveBeenCalledWith(`${SALESFORCE_API_URL}/v2/quotes/${id}`);
