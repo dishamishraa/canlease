@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ContentPageProps } from './ContentPage';
 import { Redirect, useLocation, useHistory } from 'react-router-dom';
+import { Profile } from '../../../modules/types';
 
 export type ContentPagePresenterProps = ContentPageProps & {
 };
@@ -10,7 +11,6 @@ const withPresenter = (
   ): React.FC<ContentPagePresenterProps> => {
     const Presenter: React.FC<ContentPagePresenterProps> = (props) => {
       const {
-        
       } = props;
       const [searchQuery, setSearchQuery] = useState("");
       const [contentType, setContentType] = useState('Quote');

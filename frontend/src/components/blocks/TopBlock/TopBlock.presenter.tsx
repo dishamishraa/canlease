@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TopBlockProps, defaultProps } from './TopBlock';
 import TabItem, { TabItemProps, defaultProps as  TabItemDefaultProps} from '../../atoms/TabItem/TabItem';
+import { Profile } from '../../../modules/types';
 
 export type TopBlockPresenterProps = TopBlockProps & {
     contentType?: string;
     tab?: string;
     setTab?: React.Dispatch<React.SetStateAction<string>>;
+    profile: Profile | null;
 };
 
 const withPresenter = (
@@ -19,9 +21,21 @@ const withPresenter = (
         contentType,
         tab,
         setTab,
+        profile,
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
+    const [hideTabs, setHideTabs] = useState(false);
+
+    useEffect(() => {
+      if(profile){
+        const { userType } = profile;
+        if (userType === 'customer' && setTab){
+          setHideTabs(true);
+          setTab("Personal");
+        }
+      }
+    }, [profile])
 
     const handleTabClicked = (value) => (event: any) => {
       if (setTab){
@@ -72,6 +86,7 @@ const withPresenter = (
     return <View
         {...topBlockProps}
         className={className}
+        hideTabs={hideTabs}
         />;
   };
   return Presenter;

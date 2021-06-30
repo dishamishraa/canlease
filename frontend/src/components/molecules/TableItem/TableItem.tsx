@@ -7,37 +7,37 @@ import Text, { TextProps } from '../../atoms/Text';
 
 export const defaultProps = {
   companyName: {
-    style: 'Basic400',
+    style: 'Basic600',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
   contactName: {
-    style: 'Basic400',
+    style: 'Basic600',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
   status: {
-    style: 'Basic400',
+    style: 'Basic600',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
   createOn: {
-    style: 'Basic400',
+    style: 'Basic600',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
   assetName: {
-    style: 'Basic400',
+    style: 'Basic600',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
   cost: {
-    style: 'Basic400',
+    style: 'Basic600',
     align: 'Right',
     size: 'Medium',
     type: 'Paragraph2',
