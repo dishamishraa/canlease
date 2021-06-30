@@ -6,6 +6,8 @@ describe('QuoteService', () => {
     createApplication: jest.fn(),
     createQuote: jest.fn(),
     getQuote: jest.fn(),
+    getUserPortfolio: jest.fn(),
+    getCustomerPortfolio: jest.fn(),
     getProfile: jest.fn(),
     createProfile: jest.fn(),
     addQuoteToProfile: jest.fn(),

@@ -10,11 +10,12 @@ import styles from './App.module.scss';
 import InstantQuoteLayout from './components/layout/InstantQuoteLayout';
 import AuthLayout from './components/layout/AuthLayout';
 import { ProtectedRoute } from './modules/auth';
+import PortalLayout from './components/layout/PortalLayout';
 
 const routes = {
   home: '/',
   login: '/account',
-  dashboard: '/dashboard',
+  portal: '/portal',
   invalid: '/',
 };
 
@@ -31,8 +32,8 @@ const App: React.FC<{}> = () => {
         <Route path={routes.login}>
           <AuthLayout {...props} />
         </Route>
-        <ProtectedRoute path={routes.dashboard}>
-          <div></div>
+        <ProtectedRoute path={routes.portal}>
+          <PortalLayout {...props} />
         </ProtectedRoute>
         <Route path={routes.home}>
           <InstantQuoteLayout {...props} />

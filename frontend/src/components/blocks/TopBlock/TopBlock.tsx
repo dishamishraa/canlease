@@ -32,22 +32,35 @@ export type TopBlockProps = {
   blockHeader?: BlockHeaderProps;
   tabs?: TabsProps;
   className?: string;
+  contentType?: string;
+  tab?: 'Customer' | 'Personal';
+  setTab?: React.Dispatch<React.SetStateAction<'Customer' | 'Personal'>>;
+  hideTabs?: boolean;
 };
 
 const TopBlock: React.FC<TopBlockProps> = ({
   blockHeader,
   tabs,
   className,
-}) => (
-    <div className={cx(styles.topBlock, className)}>
-      <BlockHeader
-        className={styles.blockHeader}
-        {...blockHeader} />
+  hideTabs,
+}) => {
+  let displayTabs;
+  if (!hideTabs){
+    displayTabs = (
       <Tabs
-        className={styles.tabs}
-        {...tabs} />
-    </div>
-);
+      className={styles.tabs}
+      {...tabs} />
+    );
+  }
+  return (
+      <div className={cx(styles.topBlock, className)}>
+        <BlockHeader
+          className={styles.blockHeader}
+          {...blockHeader} />
+        {displayTabs}
+      </div>
+  );
+}
 
 TopBlock.defaultProps = defaultProps;
 

@@ -22,10 +22,42 @@ export type QuoteOption = {
   purchaseOptionDate: string;
 };
 
+export type Portfolio = {
+  createApps: CreditApplication[];
+  leases: Lease[];
+}
+
+
+export type Profile = {
+    name: string;
+    firstname: string;
+    lastname: string;
+    companyName: string;
+    phone: string;
+    email: string;
+    title: string;
+    address: string;
+    street: string;
+    city: string;
+    province: string;
+    postalCode: string;
+    country: string;
+    website: string;
+    rateCard: string;
+    feePercentage: number;
+    theCompanyId: string;
+    portalId: string;
+    rateCardId: string;
+    userType: 'customer' | 'vendor' | 'rep';
+    operationName: string;
+    businessSector: string;
+    businessPhone: string;
+  };
+
 export type CreditApplication = {
   creditAppNumber: string;
   createdDate: string;
-  applcicationAmount: number;
+  applicationAmount: number;
   description: string;
   creditStatus: string;
   applicationStatus: string;

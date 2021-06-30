@@ -11,6 +11,7 @@ import { IDENTITY_URL, PROXY_TIMEOUT } from './lib/config';
 
 import { QuoteControllerContract, QuoteRouter } from './modules/quote';
 import { ApplicationControllerContract, ApplicationRouter } from './modules/application';
+import { PortfolioControllerContract, PortfolioRouter } from './modules/portfolio';
 import { ProfileControllerContract, ProfileRouter } from './modules/profile';
 
 const swaggerSpecConfig = {
@@ -56,6 +57,7 @@ const proxy = createProxyMiddleware({
 export const createRouter = (controllers: {
   quoteController: QuoteControllerContract;
   applicationController: ApplicationControllerContract;
+  portfolioController: PortfolioControllerContract;
   profileController: ProfileControllerContract;
 }): Router => {
   const swaggerSpec = swaggerJsdoc(swaggerSpecConfig);
@@ -71,6 +73,7 @@ export const createRouter = (controllers: {
 
   router.use('/quote', QuoteRouter(controllers));
   router.use('/credit_apps', ApplicationRouter(controllers));
+  router.use('/portfolio', PortfolioRouter(controllers));
   router.use('/profile', ProfileRouter(controllers));
 
   return router;

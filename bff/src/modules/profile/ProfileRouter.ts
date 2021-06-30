@@ -4,6 +4,7 @@ import { BadRequestError } from '../../lib/errors';
 import { errorWrapper } from '../../lib/utils';
 import { validateAddQuote, validateCreateProfile, validateId } from './utils';
 import mockResponse from './fixture/mockProfileResponse';
+import { mockQuoteListResponse } from '../quote/fixtures';
 
 export function createProfileRouter(controllers: {
   profileController: ProfileControllerContract;
@@ -41,22 +42,22 @@ export function createProfileRouter(controllers: {
     res.status(204);
   }));
 
-  router.get('/:id/quotes', errorWrapper(async (req: Request, res: Response) => {
+  router.get('/:id/quote', errorWrapper(async (req: Request, res: Response) => {
     const { id } = req.params;
     if (!validateId(id)) {
       throw BadRequestError();
     }
     const data = await profileController.getAllQuotesFromProfile(id);
-    res.status(200).send(data);
+    res.status(200).send(mockQuoteListResponse);
   }));
 
-  router.get('/:id/customer_quotes', errorWrapper(async (req: Request, res: Response) => {
+  router.get('/:id/customer_quote', errorWrapper(async (req: Request, res: Response) => {
     const { id } = req.params;
     if (!validateId(id)) {
       throw BadRequestError();
     }
     const data = await profileController.getAllCustomerQuotesFromProfile(id);
-    res.status(200).send(data);
+    res.status(200).send(mockQuoteListResponse);
   }));
 
   return router;

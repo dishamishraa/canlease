@@ -97,7 +97,7 @@ const withPresenter = (
           value: t('get_quote_block.cost.label'),
         },
         textInput: {
-          inputType: "number",
+          inputType: 'number',
           textPlaceholder: t('get_quote_block.cost.placeholder'),
           textValue: equipmentCost,
           onTextChanged: handleChangeEquipmentCost,
