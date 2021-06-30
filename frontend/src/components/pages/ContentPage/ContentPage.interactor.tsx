@@ -3,6 +3,7 @@ import { useCreateQuote } from '../../../modules/quote';
 import { ContentPageProps } from './ContentPage';
 import { ContentPagePresenterProps } from './ContentPage.presenter';
 
+
 const withInteractor = (
   Presenter: React.FC<ContentPagePresenterProps>,
 ): React.FC <ContentPageProps> => {
