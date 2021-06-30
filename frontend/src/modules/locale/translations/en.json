@@ -92,34 +92,6 @@
             "message": "This quote has expired. Please create a new quote."
         }
     },
-    "application_page": {
-        "quotes": {
-            "header": "Quotes",
-            "customer_quotes": "Customer quotes",
-            "personal_quotes": "Personal quotes"
-        },
-        "applications": {
-            "header":  "Applications",
-            "customer_applications": "Customer applications",
-            "personal_applications": "Personal applications"
-        },
-        "table_headers": {
-            "company": "Company",
-            "name": "Name",
-            "status": "Status",
-            "create_on": "Created on",
-            "asset": "Asset",
-            "cost": "Cost"
-        },
-        "search_placeholder": "Search",
-        "status": {
-            "all": "All",
-            "active": "Active",
-            "expiring_soon": "Expiring soon",
-            "applied": "Applied",
-            "expired": "Expired"
-        }
-    },
     "sign_up":{
         "heading_text": "Sign up",
         "description": "Create a free Canlease account"
@@ -254,7 +226,14 @@
             "asset": "Asset",
             "cost": "Cost"
         },
-        "search_placeholder": "Search"
+        "search_placeholder": "Search",
+        "status": {
+            "all": "All",
+            "active": "Active",
+            "expiring_soon": "Expiring soon",
+            "applied": "Applied",
+            "expired": "Expired"
+        }
     }
 }
   
