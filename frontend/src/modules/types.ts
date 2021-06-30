@@ -1,5 +1,3 @@
-import { CreatePasswordBlockProps } from '../components/blocks/CreatePasswordBlock';
-
 export type User = {
   id: number;
   uuid: string;
