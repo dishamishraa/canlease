@@ -7,7 +7,7 @@ export type Application = {
   applicationStatus: string;
   quoteId: string;
   asset: string;
-}
+};
 export type Lease = {
   leaseNumber: string;
   leaseStartDate: string;
@@ -20,7 +20,7 @@ export type Lease = {
   purchaseOptionDate: string;
   optionAmount: number;
   quoteId: string;
-}
+};
 
 export type Portfolio = {
   createApps: Application[];

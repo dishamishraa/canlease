@@ -127,7 +127,7 @@ const withPresenter = (
                     value: applicationAmount,
                 },
                 onTableItemClicked: () => {
-                    history.push(`/portal/viewquote/${quoteId}`)
+                    history.push(`/portal/content/quote/${quoteId}`)
                 }
             }
             tableItemArray.push(tableItemProps);
@@ -158,7 +158,7 @@ const withPresenter = (
                     value: applicationAmount,
                 },
                 onTableItemClicked: () => {
-                    history.push(`/portal/viewquote/${quoteId}`)
+                    history.push(`/portal/content/quote/${quoteId}`)
                 }
             }
             tableItemArray.push(tableItemProps);

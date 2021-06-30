@@ -144,7 +144,6 @@ const routes = {
   getQuote: '/getQuote',
   contactInformation: '/contactInformation',
   instaQuote: '/instaQuote/:quoteId',
-  leasingQuote: '/portal/viewquote/:quoteId',
   invalid: '/',
 };
 
@@ -193,11 +192,6 @@ const SimplePage: React.FC<SimplePageProps> = ({
               />
           </Route>
           <Route exact path={routes.instaQuote}>
-            <QuoteBlock
-              className={styles.block}
-              {...quoteBlock} />
-          </Route>
-          <Route exact path={routes.leasingQuote}>
             <QuoteBlock
               className={styles.block}
               {...quoteBlock} />
