@@ -1,0 +1,183 @@
+.dashboardRateCardBlock {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  > * {
+    margin-top: 1rem;
+  }
+
+  .blockHeader {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .dashboardRateCardList {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+}
+
+@media (min-width: 576px) {
+  .dashboardRateCardBlock {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1rem;
+    }
+  
+    .blockHeader {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-end;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .dashboardRateCardList {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1rem;
+        margin-left: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .dashboardRateCardBlock {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1rem;
+    }
+  
+    .blockHeader {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-end;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .dashboardRateCardList {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1rem;
+        margin-left: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .dashboardRateCardBlock {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1rem;
+    }
+  
+    .blockHeader {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-end;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .dashboardRateCardList {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1rem;
+        margin-left: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+  }
+}

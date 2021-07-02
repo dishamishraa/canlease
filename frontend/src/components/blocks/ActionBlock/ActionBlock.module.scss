@@ -10,7 +10,7 @@
   background-color: rgb(240, 241, 247);
   border-radius: 8px;
 
-  .promptText {
+  .text {
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -25,7 +25,7 @@
     }
   }
 
-  .actionButton {
+  .button {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -43,14 +43,6 @@
     }
   }
 
-  .text {
-    display: none;
-  }
-
-  .button {
-    display: none;
-  }
-
 }
 
 @media (min-width: 576px) {
@@ -66,7 +58,7 @@
     background-color: rgb(240, 241, 247);
     border-radius: 8px;
   
-    .promptText {
+    .text {
       overflow: hidden;
       display: flex;
       flex-direction: row;
@@ -81,7 +73,7 @@
       }
     }
   
-    .actionButton {
+    .button {
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -122,118 +114,6 @@
       align-items: flex-start;
       align-self: stretch;
       flex: 0 0 auto;
-      @media (max-width: 1023px) {
-        &:nth-child(1) {
-          margin-top: 0;
-        }
-      }
-    }
-  
-    .button {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem 1.5rem 1rem 1.5rem;
-      > * {
-        margin-left: 0.5rem;
-      }
-      align-self: center;
-      flex: 0 0 auto;
-      @media (max-width: 1023px) {
-        &:nth-child(1) {
-          margin-top: 0;
-        }
-      }
-    }
-  
-    .promptText {
-      display: none;
-    }
-  
-    .actionButton {
-      display: none;
-    }
-  
-  }
-}
-
-@media (min-width: 1024px) {
-  .actionBlock {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 2rem 2rem 2rem 2rem;
-    > * {
-      margin-top: 1.5rem;
-    }
-    background-color: rgb(240, 241, 247);
-    border-radius: 8px;
-  
-    .text {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: flex-start;
-      align-self: stretch;
-      flex: 0 0 auto;
-      @media (max-width: 1439px) {
-        &:nth-child(1) {
-          margin-top: 0;
-        }
-      }
-    }
-  
-    .button {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem 1.5rem 1rem 1.5rem;
-      > * {
-        margin-left: 0.5rem;
-      }
-      align-self: center;
-      flex: 0 0 auto;
-      @media (max-width: 1439px) {
-        &:nth-child(1) {
-          margin-top: 0;
-        }
-      }
-    }
-  
-    .promptText {
-      display: none;
-    }
-  
-    .actionButton {
-      display: none;
-    }
-  
-  }
-}
-
-@media (min-width: 1440px) {
-  .actionBlock {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 2rem 2rem 2rem 2rem;
-    > * {
-      margin-top: 1.5rem;
-    }
-    background-color: rgb(240, 241, 247);
-    border-radius: 8px;
-  
-    .text {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: flex-start;
-      align-self: stretch;
-      flex: 0 0 auto;
       &:nth-child(1) {
         margin-top: 0;
       }
@@ -253,14 +133,6 @@
       &:nth-child(1) {
         margin-top: 0;
       }
-    }
-  
-    .promptText {
-      display: none;
-    }
-  
-    .actionButton {
-      display: none;
     }
   
   }

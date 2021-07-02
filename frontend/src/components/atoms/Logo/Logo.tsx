@@ -3,13 +3,11 @@ import cx from 'classnames';
 
 import styles from './Logo.module.scss';
 
-import LogoLarge from '../../../resources/icons/LogoLarge.svg';
-
 export type LogoSizeType = 'Large' | 'Small';
 
 export const defaultProps = {
   size: 'Small' as LogoSizeType,
-  content: LogoLarge,
+  content: ContentAsset,
 };
 
 export type LogoProps = {
@@ -30,6 +28,10 @@ const Logo: React.FC<LogoProps> = ({
 
   return (
     <div className={cx(currentStyle, className)}>
+      <img
+        className={styles.content}
+        alt={contentAlt}
+        src={content} />
       <img
         className={styles.content}
         alt={contentAlt}

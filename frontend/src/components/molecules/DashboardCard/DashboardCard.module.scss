@@ -1,0 +1,540 @@
+.dashboardCardDataCard {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+  > * {
+    margin-top: 2rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(228, 229, 240);
+  border-radius: 8px;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .dataText {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+  }
+
+  .labelText {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+  }
+
+  .button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: center;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+}
+.dashboardCardLeaseCard {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+  > * {
+    margin-top: 1.5rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(228, 229, 240);
+  border-radius: 8px;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 0.5rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .statusText {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .assetNameText {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .costText {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .vendorNameText {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .numberText {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: center;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+}
+.dashboardCardCreateQuoteCard {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+  > * {
+    margin-top: 2rem;
+  }
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+  background-color: rgb(240, 241, 247);
+  border-radius: 8px;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .image {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+    align-self: center;
+    width: 4rem;
+    flex: 0 0 4rem;
+  }
+
+  .button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: center;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+}
+
+@media (min-width: 768px) {
+  .dashboardCardDataCard {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+    > * {
+      margin-top: 2rem;
+    }
+    align-self: flex-start;
+    width: 45rem;
+    flex: 0 0 8.25rem;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(228, 229, 240);
+    border-radius: 8px;
+  
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .dataText {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .labelText {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .dashboardCardCreateQuoteCard {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+    > * {
+      margin-top: 1rem;
+    }
+    align-self: flex-start;
+    width: 45rem;
+    flex: 0 0 8.25rem;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+    background-color: rgb(240, 241, 247);
+    border-radius: 8px;
+  
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem 1rem 0.5rem 1rem;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .image {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+      align-self: center;
+      width: 4rem;
+      flex: 0 0 4rem;
+    }
+  
+    .dataText {
+      display: none;
+    }
+  
+    .labelText {
+      display: none;
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .dashboardCardLeaseCard {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+    > * {
+      margin-top: 1.5rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(228, 229, 240);
+    border-radius: 8px;
+  
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 0.25rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .statusText {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .assetNameText {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .costText {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .vendorNameText {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .numberText {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .dataText {
+      display: none;
+    }
+  
+    .labelText {
+      display: none;
+    }
+  
+  }
+}

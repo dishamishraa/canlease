@@ -6,7 +6,7 @@ import styles from './Button.module.scss';
 import Text, { TextProps } from '../Text';
 import Icon, { IconProps } from '../Icon';
 
-export type ButtonTypeType = 'Button' | 'TextIconButton' | 'IconTextButton';
+export type ButtonTypeType = 'Button' | 'TextIconButton' | 'Icon' | 'IconTextButton';
 export type ButtonSizeType = 'Large' | 'Medium' | 'Small';
 export type ButtonFillType = 'Colour' | 'Basic' | 'None';
 export type ButtonColourType = 'Brand' | 'Basic' | 'Danger';
@@ -55,16 +55,10 @@ const Button: React.FC<ButtonProps> = ({
 
   const currentStyle = styles[`button${type}${size}${fill}${colour}`];
 
-  let textView;
   let contentView;
   
   switch (type) {
     case 'Button':
-      textView = (
-        <Text
-          className={styles.text}
-          {...text} />
-      );
       contentView = (
         <div className={styles.content}>
           <Text
@@ -79,6 +73,15 @@ const Button: React.FC<ButtonProps> = ({
           <Text
             className={styles.text}
             {...text} />
+          <Icon
+            className={styles.icon}
+            {...icon} />
+        </div>
+      );
+      break;
+    case 'Icon':
+      contentView = (
+        <div className={styles.content}>
           <Icon
             className={styles.icon}
             {...icon} />
@@ -104,7 +107,6 @@ const Button: React.FC<ButtonProps> = ({
       type={buttonType}
       onClick={onButtonClicked}
       className={cx(currentStyle, className)}>
-      {textView}
       {contentView}
     </button>
   );

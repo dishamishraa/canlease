@@ -16,6 +16,7 @@ export const defaultProps = {
   } as TextProps,
   vendorNameTextField: {
     state: 'Default',
+    type: 'Text',
     label: {
       style: 'Basic800',
       align: 'Left',
@@ -23,10 +24,12 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
+      type: 'Text',
     },
   } as TextFieldProps,
   vendorBusinessEmailTextField: {
     state: 'Default',
+    type: 'Text',
     label: {
       style: 'Basic800',
       align: 'Left',
@@ -34,10 +37,12 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
+      type: 'Text',
     },
   } as TextFieldProps,
   vendorCompanyNameField: {
     state: 'Default',
+    type: 'Text',
     label: {
       style: 'Basic800',
       align: 'Left',
@@ -45,10 +50,18 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
+      type: 'Text',
     },
   } as TextFieldProps,
+  blockVendorHeading: {
+    style: 'Basic800',
+    align: 'Left',
+    size: 'Large',
+    type: 'Heading1',
+  } as TextProps,
   customerNameTextField: {
     state: 'Default',
+    type: 'Text',
     label: {
       style: 'Basic800',
       align: 'Left',
@@ -56,10 +69,12 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
+      type: 'Text',
     },
   } as TextFieldProps,
   customerEmailTextField: {
     state: 'Default',
+    type: 'Text',
     label: {
       style: 'Basic800',
       align: 'Left',
@@ -67,10 +82,12 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
+      type: 'Text',
     },
   } as TextFieldProps,
   customerCompanyNameTextField: {
     state: 'Default',
+    type: 'Text',
     label: {
       style: 'Basic800',
       align: 'Left',
@@ -78,6 +95,7 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
+      type: 'Text',
     },
   } as TextFieldProps,
   disclaimerText: {
@@ -105,6 +123,7 @@ export type ContactInfoVendorBlockProps = {
   vendorNameTextField?: TextFieldProps;
   vendorBusinessEmailTextField?: TextFieldProps;
   vendorCompanyNameField?: TextFieldProps;
+  blockVendorHeading?: TextProps;
   customerNameTextField?: TextFieldProps;
   customerEmailTextField?: TextFieldProps;
   customerCompanyNameTextField?: TextFieldProps;
@@ -118,6 +137,7 @@ const ContactInfoVendorBlock: React.FC<ContactInfoVendorBlockProps> = ({
   vendorNameTextField,
   vendorBusinessEmailTextField,
   vendorCompanyNameField,
+  blockVendorHeading,
   customerNameTextField,
   customerEmailTextField,
   customerCompanyNameTextField,
@@ -139,6 +159,9 @@ const ContactInfoVendorBlock: React.FC<ContactInfoVendorBlockProps> = ({
       <TextField
         className={styles.vendorCompanyNameField}
         {...vendorCompanyNameField} />
+      <Text
+        className={styles.blockVendorHeading}
+        {...blockVendorHeading} />
       <TextField
         className={styles.customerNameTextField}
         {...customerNameTextField} />

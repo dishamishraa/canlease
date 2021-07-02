@@ -1,73 +1,76 @@
 .userIconInitialsDefault {
+  align-self: flex-start;
+  height: 2rem;
+  flex: 0 0 2rem;
+  &:nth-child(1) {
+    margin-left: 0;
+  }
 
   .background {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     height: 100%;
-    border-radius: 50%;
-    background-color: #484F98;
+    filter: brightness(0) saturate(100%) invert(33%) sepia(12%) saturate(2477%) hue-rotate(197deg) brightness(92%) contrast(95%);
   }
 
   .value {
-    font-family: 'Inter', 'sans-serif';
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.25rem;
-    text-align: center;
-    color: rgb(255, 255, 255);
-  }
-
-}
-.userIconImageDefault {
-
-  .userIcon {
     width: 100%;
     height: 100%;
-  }
-
-}
-
-.userIconInitialsOrange {
-
-  .background {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: #FFAA00;
-  }
-
-  .value {
-    font-family: 'Inter', 'sans-serif';
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.25rem;
+    font-family: 'Lato', 'sans-serif';
+    font-size: 0.75rem;
+    font-weight: normal;
+    line-height: 1.5rem;
     text-align: center;
     color: rgb(255, 255, 255);
   }
 
 }
 .userIconInitialsGreen {
+  align-self: flex-start;
+  height: 2rem;
+  flex: 0 0 2rem;
+  &:nth-child(1) {
+    margin-left: 0;
+  }
 
   .background {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     height: 100%;
-    border-radius: 50%;
-    background-color: #00D68F;
+    filter: brightness(0) saturate(100%) invert(61%) sepia(98%) saturate(1214%) hue-rotate(110deg) brightness(92%) contrast(101%);
   }
 
   .value {
-    font-family: 'Inter', 'sans-serif';
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.25rem;
+    width: 100%;
+    height: 100%;
+    font-family: 'Lato', 'sans-serif';
+    font-size: 0.75rem;
+    font-weight: normal;
+    line-height: 1.5rem;
+    text-align: center;
+    color: rgb(255, 255, 255);
+  }
+
+}
+.userIconInitialsOrange {
+  align-self: flex-start;
+  height: 2rem;
+  flex: 0 0 2rem;
+  &:nth-child(1) {
+    margin-left: 0;
+  }
+
+  .background {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(58%) sepia(94%) saturate(913%) hue-rotate(0deg) brightness(104%) contrast(104%);
+  }
+
+  .value {
+    width: 100%;
+    height: 100%;
+    font-family: 'Lato', 'sans-serif';
+    font-size: 0.75rem;
+    font-weight: normal;
+    line-height: 1.5rem;
     text-align: center;
     color: rgb(255, 255, 255);
   }

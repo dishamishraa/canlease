@@ -24,6 +24,12 @@ export const PlusBasic100: React.VFC<{}> = () => (
     style='Basic100'
     />
 );
+export const PlusBasic400: React.VFC<{}> = () => (
+  <Icon
+    asset='Plus'
+    style='Basic400'
+    />
+);
 export const SettingsBasic800: React.VFC<{}> = () => (
   <Icon
     asset='Settings'
@@ -34,6 +40,12 @@ export const CloseBasic800: React.VFC<{}> = () => (
   <Icon
     asset='Close'
     style='Basic800'
+    />
+);
+export const CloseBasic100: React.VFC<{}> = () => (
+  <Icon
+    asset='Close'
+    style='Basic100'
     />
 );
 export const MoreHorizontalBasic800: React.VFC<{}> = () => (
@@ -52,6 +64,12 @@ export const ArrowLeftBasic800: React.VFC<{}> = () => (
   <Icon
     asset='ArrowLeft'
     style='Basic800'
+    />
+);
+export const ArrowLeftBrand500: React.VFC<{}> = () => (
+  <Icon
+    asset='ArrowLeft'
+    style='Brand500'
     />
 );
 export const ArrowRightBasic800: React.VFC<{}> = () => (
@@ -126,6 +144,12 @@ export const TrashBasic800: React.VFC<{}> = () => (
     style='Basic800'
     />
 );
+export const TrashRed200: React.VFC<{}> = () => (
+  <Icon
+    asset='Trash'
+    style='Red200'
+    />
+);
 export const PictureBasic800: React.VFC<{}> = () => (
   <Icon
     asset='Picture'
@@ -150,6 +174,30 @@ export const RadioButtonOffBasic800: React.VFC<{}> = () => (
     style='Basic800'
     />
 );
+export const RadioButtonOnBasic400: React.VFC<{}> = () => (
+  <Icon
+    asset='RadioButtonOn'
+    style='Basic400'
+    />
+);
+export const RadioButtonOffBasic400: React.VFC<{}> = () => (
+  <Icon
+    asset='RadioButtonOff'
+    style='Basic400'
+    />
+);
+export const RadioButtonOnBrand500: React.VFC<{}> = () => (
+  <Icon
+    asset='RadioButtonOn'
+    style='Brand500'
+    />
+);
+export const RadioButtonOffBrand500: React.VFC<{}> = () => (
+  <Icon
+    asset='RadioButtonOff'
+    style='Brand500'
+    />
+);
 export const CheckboxUncheckedBasic800: React.VFC<{}> = () => (
   <Icon
     asset='CheckboxUnchecked'
@@ -160,6 +208,30 @@ export const CheckboxCheckedBasic800: React.VFC<{}> = () => (
   <Icon
     asset='CheckboxChecked'
     style='Basic800'
+    />
+);
+export const CheckboxUncheckedBasic400: React.VFC<{}> = () => (
+  <Icon
+    asset='CheckboxUnchecked'
+    style='Basic400'
+    />
+);
+export const CheckboxCheckedBasic400: React.VFC<{}> = () => (
+  <Icon
+    asset='CheckboxChecked'
+    style='Basic400'
+    />
+);
+export const CheckboxUncheckedBrand500: React.VFC<{}> = () => (
+  <Icon
+    asset='CheckboxUnchecked'
+    style='Brand500'
+    />
+);
+export const CheckboxCheckedBrand500: React.VFC<{}> = () => (
+  <Icon
+    asset='CheckboxChecked'
+    style='Brand500'
     />
 );
 export const HeartBasic800: React.VFC<{}> = () => (
@@ -184,6 +256,12 @@ export const CloseCircleFilledBasic800: React.VFC<{}> = () => (
   <Icon
     asset='CloseCircleFilled'
     style='Basic800'
+    />
+);
+export const CloseCircleFilledRed200: React.VFC<{}> = () => (
+  <Icon
+    asset='CloseCircleFilled'
+    style='Red200'
     />
 );
 export const CheckmarkCircleFilledBasic800: React.VFC<{}> = () => (
@@ -220,5 +298,119 @@ export const Share2Basic800: React.VFC<{}> = () => (
   <Icon
     asset='Share2'
     style='Basic800'
+    />
+);
+export const ShowBasic800: React.VFC<{}> = () => (
+  <Icon
+    asset='Show'
+    style='Basic800'
+    />
+);
+export const HideBasic800: React.VFC<{}> = () => (
+  <Icon
+    asset='Hide'
+    style='Basic800'
+    />
+);
+export const ShowBrand500: React.VFC<{}> = () => (
+  <Icon
+    asset='Show'
+    style='Brand500'
+    />
+);
+export const HideBrand500: React.VFC<{}> = () => (
+  <Icon
+    asset='Hide'
+    style='Brand500'
+    />
+);
+export const ShowBasic400: React.VFC<{}> = () => (
+  <Icon
+    asset='Show'
+    style='Basic400'
+    />
+);
+export const HideBasic400: React.VFC<{}> = () => (
+  <Icon
+    asset='Hide'
+    style='Basic400'
+    />
+);
+export const DashboardBasic800: React.VFC<{}> = () => (
+  <Icon
+    asset='Dashboard'
+    style='Basic800'
+    />
+);
+export const DashboardBasic400: React.VFC<{}> = () => (
+  <Icon
+    asset='Dashboard'
+    style='Basic400'
+    />
+);
+export const DashboardBrand500: React.VFC<{}> = () => (
+  <Icon
+    asset='Dashboard'
+    style='Brand500'
+    />
+);
+export const QuotesBasic800: React.VFC<{}> = () => (
+  <Icon
+    asset='Quotes'
+    style='Basic800'
+    />
+);
+export const QuotesBasic400: React.VFC<{}> = () => (
+  <Icon
+    asset='Quotes'
+    style='Basic400'
+    />
+);
+export const QuotesBrand500: React.VFC<{}> = () => (
+  <Icon
+    asset='Quotes'
+    style='Brand500'
+    />
+);
+export const ApplicationsBasic800: React.VFC<{}> = () => (
+  <Icon
+    asset='Applications'
+    style='Basic800'
+    />
+);
+export const ApplicationsBasic400: React.VFC<{}> = () => (
+  <Icon
+    asset='Applications'
+    style='Basic400'
+    />
+);
+export const ApplicationsBrand500: React.VFC<{}> = () => (
+  <Icon
+    asset='Applications'
+    style='Brand500'
+    />
+);
+export const RateCardsBasic800: React.VFC<{}> = () => (
+  <Icon
+    asset='RateCards'
+    style='Basic800'
+    />
+);
+export const RateCardsBasic400: React.VFC<{}> = () => (
+  <Icon
+    asset='RateCards'
+    style='Basic400'
+    />
+);
+export const RateCardsBrand500: React.VFC<{}> = () => (
+  <Icon
+    asset='RateCards'
+    style='Brand500'
+    />
+);
+export const EditBrand500: React.VFC<{}> = () => (
+  <Icon
+    asset='Edit'
+    style='Brand500'
     />
 );

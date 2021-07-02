@@ -1,0 +1,172 @@
+.topBlockWithTabs {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  > * {
+    margin-top: 1.5rem;
+  }
+  align-self: flex-start;
+  width: 19rem;
+  flex: 0 0 7.0625rem;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .blockHeader {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .tabs {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+}
+.topBlockNoTabs {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  > * {
+    margin-top: 1.5rem;
+  }
+  align-self: flex-start;
+  width: 19rem;
+  flex: 0 0 2.5rem;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .blockHeader {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+}
+
+@media (min-width: 768px) {
+  .topBlockWithTabs {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1.5rem;
+    }
+    align-self: flex-start;
+    width: 37.5rem;
+    flex: 0 0 7.0625rem;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .blockHeader {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-end;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .tabs {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .topBlockNoTabs {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1.5rem;
+    }
+    align-self: flex-start;
+    width: 37.5rem;
+    flex: 0 0 2.5rem;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  
+    .blockHeader {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-end;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .tabs {
+      display: none;
+    }
+  
+  }
+}

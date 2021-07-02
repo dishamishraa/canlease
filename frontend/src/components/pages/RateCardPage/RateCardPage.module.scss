@@ -1,0 +1,161 @@
+.rateCardPage {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+  > * {
+    margin-top: 2rem;
+  }
+
+  .dashboardRateCardBlock {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1rem;
+    }
+    align-self: flex-start;
+    width: 19rem;
+    flex: 0 0 38.5rem;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+}
+
+@media (min-width: 576px) {
+  .rateCardPage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 2rem 2rem 2rem 2rem;
+    > * {
+      margin-top: 1.5rem;
+    }
+  
+    .dashboardRateCardBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .rateCardPage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 2rem 2rem 2rem 2rem;
+    > * {
+      margin-top: 1.5rem;
+    }
+  
+    .dashboardRateCardBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .rateCardPage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 3rem 2rem 3rem 2rem;
+    > * {
+      margin-top: 1.5rem;
+    }
+  
+    .dashboardRateCardBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 1439px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 1440px) {
+  .rateCardPage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 4rem 4rem 4rem 4rem;
+    > * {
+      margin-top: 2rem;
+    }
+  
+    .dashboardRateCardBlock {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+  }
+}

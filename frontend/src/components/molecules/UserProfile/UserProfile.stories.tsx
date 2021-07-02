@@ -12,6 +12,12 @@ export const LightSignedIn: React.VFC<{}> = () => (
     state='SignedIn'
     />
 );
+export const LightNone: React.VFC<{}> = () => (
+  <UserProfile
+    style='Light'
+    state='None'
+    />
+);
 export const LightSignedOut: React.VFC<{}> = () => (
   <UserProfile
     style='Light'

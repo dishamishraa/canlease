@@ -1,0 +1,391 @@
+.confirmationModal {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1rem 1rem 1rem 1rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+
+  .topContainer {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    > * {
+      margin-left: 0.625rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+  }
+
+  .icon {
+    align-self: flex-start;
+    height: 1.5rem;
+    flex: 0 0 1.5rem;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .container {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    > * {
+      margin-top: 0.5rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+  }
+
+  .title {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .body {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .buttonGroup {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1rem 0rem 0rem 0rem;
+    > * {
+      margin-left: 1rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .primary {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: flex-start;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .secondary {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: flex-start;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  }
+
+}
+
+@media (min-width: 576px) {
+  .confirmationModal {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+  
+    .topContainer {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: flex-start;
+      > * {
+        margin-left: 0.625rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .icon {
+      align-self: flex-start;
+      height: 1.5rem;
+      flex: 0 0 1.5rem;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-left: 0;
+        }
+      }
+    }
+  
+    .container {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      > * {
+        margin-top: 0.5rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .title {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .buttonGroup {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 0rem 0rem;
+      > * {
+        margin-left: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .primary {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem 1.5rem 1rem 1.5rem;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: flex-start;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-left: 0;
+        }
+      }
+    }
+  
+    .secondary {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem 1.5rem 1rem 1.5rem;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: flex-start;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-left: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .confirmationModal {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 2rem 2rem 2rem 2rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+  
+    .topContainer {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: flex-start;
+      > * {
+        margin-left: 0.625rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .icon {
+      align-self: flex-start;
+      height: 1.5rem;
+      flex: 0 0 1.5rem;
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  
+    .container {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      > * {
+        margin-top: 0.5rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+    }
+  
+    .title {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .body {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .buttonGroup {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 0rem 0rem;
+      > * {
+        margin-left: 1rem;
+      }
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .primary {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem 1.5rem 1rem 1.5rem;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: flex-start;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  
+    .secondary {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem 1.5rem 1rem 1.5rem;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: flex-start;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  
+  }
+}

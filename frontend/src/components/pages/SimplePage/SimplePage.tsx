@@ -3,16 +3,30 @@ import cx from 'classnames';
 
 import styles from './SimplePage.module.scss';
 
-import UserSelectionBlock, { UserSelectionBlockProps } from '../../blocks/UserSelectionBlock';
+import TopBar, { TopBarProps } from '../../organisms/TopBar';
 import GetQuoteBlock, { GetQuoteBlockProps } from '../../blocks/GetQuoteBlock';
-import ContactInfoCustomerBlock, { ContactInfoCustomerBlockProps } from '../../blocks/ContactInfoCustomerBlock';
-import ContactInfoVendorBlock, { ContactInfoVendorBlockProps } from '../../blocks/ContactInfoVendorBlock';
-import QuoteBlock, { QuoteBlockProps } from '../../blocks/QuoteBlock';
 import ActionBlock, { ActionBlockProps } from '../../blocks/ActionBlock';
-import { Route, Switch } from 'react-router-dom';
 
 export const defaultProps = {
-  getQuoteBlock: {
+  topBar: {
+    backButton: {
+      type: 'IconTextButton',
+      size: 'Small',
+      fill: 'None',
+      colour: 'Basic',
+      icon: {
+        asset: 'ArrowLeft',
+        style: 'Brand500',
+      },
+      text: {
+        style: 'Brand500',
+        align: 'Center',
+        size: 'Small',
+        type: 'ButtonGiant',
+      },
+    },
+  } as TopBarProps,
+  block: {
     blockHeading: {
       style: 'Basic800',
       align: 'Left',
@@ -21,6 +35,7 @@ export const defaultProps = {
     },
     nameTextField: {
       state: 'Default',
+      type: 'Text',
       label: {
         style: 'Basic800',
         align: 'Left',
@@ -28,10 +43,12 @@ export const defaultProps = {
         type: 'Paragraph2',
       },
       textInput: {
+        type: 'Text',
       },
     },
     costTextField: {
       state: 'Default',
+      type: 'Text',
       label: {
         style: 'Basic800',
         align: 'Left',
@@ -39,6 +56,7 @@ export const defaultProps = {
         type: 'Paragraph2',
       },
       textInput: {
+        type: 'Text',
       },
     },
     leaseTypeSelectField: {
@@ -97,48 +115,28 @@ export const defaultProps = {
 };
 
 export type SimplePageProps = {
-  userSelectionBlock?: UserSelectionBlockProps;
-  getQuoteBlock?: GetQuoteBlockProps;
-  contactInfoCustomerBlock?: ContactInfoCustomerBlockProps;
-  contactInfoVendorBlock?: ContactInfoVendorBlockProps;
-  quoteBlock?: QuoteBlockProps;
+  topBar?: TopBarProps;
+  block?: GetQuoteBlockProps;
   actionBlock?: ActionBlockProps;
   className?: string;
 };
 
 const SimplePage: React.FC<SimplePageProps> = ({
-  userSelectionBlock,
-  getQuoteBlock,
-  contactInfoCustomerBlock,
-  quoteBlock,
+  topBar,
+  block,
   actionBlock,
   className,
 }) => {
   return (
     <div className={cx(styles.simplePage, className)}>
-      <Switch>
-        <Route exact path='/'>
-          <UserSelectionBlock
-            className={styles.block} 
-            {...userSelectionBlock} />
-        </Route>
-        <Route exact path='/getQuote'>
-          <GetQuoteBlock
-            className={styles.block}
-            {...getQuoteBlock} />
-        </Route>
-        <Route exact path='/contactInformation'>
-          <ContactInfoCustomerBlock
-            className={styles.block}
-            {...contactInfoCustomerBlock} />
-        </Route>
-        <Route exact path='/instaQuote'>
-          <QuoteBlock
-            className={styles.block}
-            {...quoteBlock} />
-        </Route>
-      </Switch>
-      
+      <div className={styles.topContent}>
+        <TopBar
+          className={styles.topBar}
+          {...topBar} />
+        <GetQuoteBlock
+          className={styles.block}
+          {...block} />
+      </div>
       <ActionBlock
         className={styles.actionBlock}
         {...actionBlock} />
