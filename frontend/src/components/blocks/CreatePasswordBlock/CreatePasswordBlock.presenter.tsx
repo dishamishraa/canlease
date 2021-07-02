@@ -25,6 +25,7 @@ const withPresenter = (
     const { t } = useTranslation();
     const history = useHistory();
     const location = useLocation();
+    const { portalId } = useParams<{portalId: string}>();
     const [cookies, setCookie, removeCookie] = useCookies();
     const [createPassword, setCreatePassword] = useState<string>('')
     const [createPasswordError, setCreatePasswordError] = useState<TextFieldStateType>('Default');
@@ -59,7 +60,7 @@ const withPresenter = (
             setConfirmPasswordError('Error')
         }else{
             await updatePassword({
-                id: cookies.id,
+                id: portalId,
                 password: createPassword,
             }).then(() => {
                 history.push({
