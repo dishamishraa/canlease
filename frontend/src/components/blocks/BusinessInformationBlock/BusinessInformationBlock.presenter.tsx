@@ -8,6 +8,7 @@ import { AuthPageLocationState, BusinessInformation } from '../../pages/AuthPage
 import { ContextualMenuItemProps, defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 import { ContextualMenuProps } from '../../molecules/ContextualMenu/ContextualMenu';
 import { CreateProfilePayload } from '../../../modules/types';
+import { isEmptyString } from '../../../lib/utils';
 
 export type BusinessInformationBlockPresenterProps = BusinessInformationBlockProps & {
   setBusinessInfo?: React.Dispatch<React.SetStateAction<BusinessInformation>>;
@@ -31,6 +32,11 @@ const withPresenter = (
     const [businessSector, setBusinessSector] = useState<string>('');
     const [businessPhone, setBusinessPhone] = useState<string>('');
     const [website, setWebsite] = useState<string>('');
+    const formInvalid = (isEmptyString(fullLegalName) 
+    || isEmptyString(operatingName) 
+    || isEmptyString(operatingSince)
+    || isEmptyString(businessSector)
+    || isEmptyString(businessPhone))
 
     const handleFullLegalName = ({ target: { value } }) => {
       setFullLegalName(value);
@@ -176,7 +182,8 @@ const withPresenter = (
           ...defaultProps.nextButton.text,
           value: t('button_text.complete_setup')
         },
-        onButtonClicked: handleNext
+        onButtonClicked: handleNext,
+        disabled: formInvalid
       }
     }
     return <View

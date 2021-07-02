@@ -29,6 +29,7 @@ const withPresenter = (
     const [password, setPassword] = useState<string>('');
     const [passwordVisibility, setPasswordVisibility] = useState<HTMLInputType>('password');
     const [toastMessage, setToastMessage] = useState<string>('');
+    const formInvalid = (isEmptyString(email) || isEmptyString(password))
 
     useEffect(() => {
       if(state && message){
@@ -117,6 +118,7 @@ const withPresenter = (
           value: t('button_text.next'),
         },
         onButtonClicked: handleNext,
+        disabled: formInvalid
       },
       forgotPasswordButton: {
         ...defaultProps.forgotPasswordButton,
@@ -128,7 +130,7 @@ const withPresenter = (
       },
       bottomContent: {
         ...defaultProps.bottomContent,
-        value: t('authentication.bottom_content.sign_in'),
+        value: t('authentication.bottom_content'),
       },
       signUpButton: {
         ...defaultProps.signUpButton,
