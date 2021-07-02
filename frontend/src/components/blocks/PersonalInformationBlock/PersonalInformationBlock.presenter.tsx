@@ -6,8 +6,8 @@ import { APIResponse } from '../../../lib/api/types';
 import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField';
 import { defaultProps as defaultRadioButtonItemProps, RadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
 import { isEmptyString } from '../../../lib/utils';
-import { PersonalInformation, AuthPageLocationState } from '../../pages/AuthPage/AuthPage';
-import { UserType } from '../../../modules/types'
+import { PersonalInformation, AuthPageLocationState, routes } from '../../pages/AuthPage/AuthPage';
+import { UserType } from '../../../modules/types';
 
 export type PersonalInformationBlockPresenterProps = PersonalInformationBlockProps & {
   setPersonalInfo?: React.Dispatch<React.SetStateAction<PersonalInformation>>;
@@ -28,7 +28,7 @@ const withPresenter = (
     const [lastName, setLastName] = useState<string>('');
     const [userType, setUserType] = useState<UserType>('vendor');
 
-    const FormInvalid = (isEmptyString(firstName) || isEmptyString(lastName))
+    const formInvalid = (isEmptyString(firstName) || isEmptyString(lastName))
 
     const handleFirstName = ({ target: { value } }) => {
       setFirstName(value);
@@ -45,7 +45,7 @@ const withPresenter = (
           lastName: lastName,
           userType: userType
         });
-        history.push({pathname: '/account/contactInformation', state: {
+        history.push({pathname: routes.contactInformation, state: {
           email: email
         }}) 
       }
@@ -134,7 +134,7 @@ const withPresenter = (
           value: t('button_text.next')
         },
         onButtonClicked: handleNext,
-        disabled: FormInvalid
+        disabled: formInvalid
       }
     }
 

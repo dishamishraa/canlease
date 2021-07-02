@@ -246,9 +246,8 @@
             "account_exist": "An account with this email already exists"
         }
     },
-    "header":{
-        "sign_up_button": "SIGN UP",
-        "sign_in_button": "SIGN IN"
+    "toast_message": {
+        "reset_password": "New password set"
     }
 }
   

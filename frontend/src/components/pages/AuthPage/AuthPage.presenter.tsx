@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect, useLocation, useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-import { AuthPageProps, PersonalInformation, ContactInformation, BusinessInformation } from './AuthPage';
+import { AuthPageProps, PersonalInformation, ContactInformation, BusinessInformation, routes } from './AuthPage';
 import { AccountTokenResponse, AccountRequest, SignInPayload, CreateProfilePayload, Profile, UpdateNamePayload } from '../../../modules/types';
 import { APIResponse } from '../../../lib/api/types';
 import { getProfile } from '../../../modules/profile/api';
-import { AUTH_COOKIE, MAX_AGE } from '../../../lib/config'
+import { AUTH_COOKIE, MAX_AGE } from '../../../lib/config';
+import { routes as appRoutes } from '../../../App';
 
 export type AuthPagePresenterProps = AuthPageProps & {
   createIdentityAccount: (payload: AccountRequest) => Promise<APIResponse<AccountTokenResponse>>;
@@ -36,6 +37,7 @@ const withPresenter = (
     const [contactInfo, setContactInfo] = useState<ContactInformation>({
       email: '',
       phone: '',
+      unitNumber: '',
       street: '',
       city: '',
       postalCode: '',
@@ -57,7 +59,7 @@ const withPresenter = (
       if (data) {
         setEmail(data.email);
         history.push({
-          pathname: '/account/verifyEmail',
+          pathname: routes.verifyEmail,
           state: {
             email: email,
             contentType: 'VerifyEmail',
@@ -73,7 +75,7 @@ const withPresenter = (
       if(error){
         if(error.message === 'User has not confirmed sign up'){
           history.push({
-            pathname: '/account/verifyEmail',
+            pathname: routes.verifyEmail,
             state: {
               email: email,
               contentType: 'VerifyEmail',
@@ -83,20 +85,20 @@ const withPresenter = (
       }
       if(signInData){
         // store jwt token in cookie
-        setCookie(AUTH_COOKIE, { token: signInData.token } , { httpOnly: true, secure: true });
+        setCookie(AUTH_COOKIE, signInData.token);
         setId(signInData.id);
         // find the salesforce profile with the identity account id
         const data = await getProfile(id);
         if(data){
           // push to dashboard
           const { userType } = data;
-          history.push({ pathname: '/dashboard', state: {
+          history.push({ pathname: appRoutes.portal, state: {
             userType: userType
           }});
         }else{
           // if no related profile found, push setup page
           history.push({
-            pathname: '/account/personalInformation',
+            pathname: routes.personalInformation,
             state: {
               email: email
             }
@@ -124,7 +126,7 @@ const withPresenter = (
           lastName: lastName
         }
         await updateName(updateNamePayload);
-        history.push({ pathname: '/dashboard', state: {
+        history.push({ pathname: appRoutes.portal, state: {
           userType: userType
         }});
       }
