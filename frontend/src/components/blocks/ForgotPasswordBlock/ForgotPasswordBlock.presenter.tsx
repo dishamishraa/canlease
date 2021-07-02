@@ -6,6 +6,7 @@ import { isEmptyString, isEmail } from '../../../lib/utils';
 import { APIResponse } from '../../../lib/api/types';
 import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField';
 import { forgotPassword } from '../../../modules/account/api';
+import { routes } from '../../pages/AuthPage/AuthPage'
 
 export type ForgotPasswordBlockPresenterProps = ForgotPasswordBlockProps & {
   forgotPassword: (email: string) => Promise<APIResponse<void>>;
@@ -28,27 +29,23 @@ const withPresenter = (
 
     const handleEmail = ({ target: { value } }) => {
       setEmail(value);
-      setEmailError('Default');
+      if(emailError === 'Error'){
+        setEmailError('Default');
+      }
     };
 
     const handleSignIn = () => {
-      history.push('/account/signin');
+      history.push(routes.signIn);
     };
 
     const handleSendLink = async() => {
-      // if (isEmptyString(email)) {
-      //   setEmailError('Error');
-      //   setErrorMessage(t('error_message.empty', {
-      //     field: t('text_field_label.email'),
-      //   }));
-      // } else 
       if (!isEmail(email)) {
         setEmailError('Error');
         setErrorMessage(t('error_message.invalid_email'));
       } else {
         await forgotPassword(email);
         history.push({
-          pathname: '/account/resetSent',
+          pathname: routes.resetLinkSent,
           state: {
             email,
             contentType: 'ResetLink',

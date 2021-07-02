@@ -96,20 +96,6 @@
         "heading_text": "Sign up",
         "description": "Create a free Canlease account"
     },
-    "authentication":{
-        "heading_text": {
-            "sign_up": "Sign up",
-            "sign_in": "Sign in"
-        },
-        "description": {
-            "sign_up": "Create a free Canlease account",
-            "sign_in": "Sign in to Canlease portal"
-        },
-        "bottom_content": {
-            "sign_up": "Already have an account?",
-            "sign_in": "New to Canlease?"
-        }
-    },
     "email_verification":{
         "header": {
             "default": "Please verify your email",
@@ -238,6 +224,23 @@
     "header":{
         "sign_up_button": "SIGN UP",
         "sign_in_button": "SIGN IN"
+    },
+    "authentication":{
+        "heading_text": {
+            "sign_up": "Sign up",
+            "sign_in": "Sign in"
+        },
+        "description": {
+            "sign_up": "Create a free Canlease account",
+            "sign_in": "Sign in to Canlease portal"
+        },
+        "bottom_content": {
+            "sign_up": "Already have an account?",
+            "sign_in": "New to Canlease?"
+        }
+    },
+    "toast_message": {
+        "reset_password": "New password set"
     }
 }
   

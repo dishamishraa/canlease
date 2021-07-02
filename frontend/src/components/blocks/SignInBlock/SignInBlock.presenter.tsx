@@ -7,6 +7,7 @@ import { SignInPayload, AccountTokenResponse } from '../../../modules/types';
 import { defaultProps as defaultTextFieldProps, TextFieldStateType, TextFieldTypeType } from '../../molecules/TextField/TextField';
 import { defaultProps as defaultToastProps, ToastProps, ToastStyleType, ToastTypeType } from '../../atoms/Toast/Toast';
 import { HTMLInputType } from '../../atoms/TextInput/TextInput';
+import { routes } from '../../pages/AuthPage/AuthPage'
 
 export type SignInBlockPresenterProps = SignInBlockProps & {
   handleSignIn?: (payload: SignInPayload) => void;
@@ -34,7 +35,7 @@ const withPresenter = (
       if(state && message){
         setToastMessage(message)
       }
-    },[message])
+    },[state, message])
 
     const handleEmail = ({ target: { value } }) => {
       setEmail(value);
@@ -61,11 +62,11 @@ const withPresenter = (
     }
 
     const handleForgetPassword = () => {
-      history.push('/account/forgotPassword');
+      history.push({ pathname: routes.forgotPassword });
     };
 
     const handleSignUp = () => {
-      history.push('/account/signUp');
+      history.push({ pathname: routes.signUp });
     };
 
     const signInProps: SignInBlockProps = {
