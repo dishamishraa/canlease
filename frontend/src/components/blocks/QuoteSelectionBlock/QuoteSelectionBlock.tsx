@@ -86,8 +86,7 @@ const QuoteSelectionBlock: React.FC<QuoteSelectionBlockProps> = ({
   viewQuoteButton,
   className,
   clickableRateCardList,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.quoteSelectionBlock, className)}>
       <div className={styles.topContent}>
         <Stepper
@@ -113,8 +112,7 @@ const QuoteSelectionBlock: React.FC<QuoteSelectionBlockProps> = ({
         className={styles.viewQuoteButton}
         {...viewQuoteButton} />
     </div>
-  );
-};
+);
 
 QuoteSelectionBlock.defaultProps = defaultProps;
 

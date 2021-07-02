@@ -226,8 +226,7 @@ const ReviewApplicationInformationBlock: React.FC<ReviewApplicationInformationBl
   profileBusinessDetails,
   nextButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.reviewApplicationInformationBlock, className)}>
       <div className={styles.topContent}>
         <Stepper
@@ -271,8 +270,7 @@ const ReviewApplicationInformationBlock: React.FC<ReviewApplicationInformationBl
         className={styles.nextButton}
         {...nextButton} />
     </div>
-  );
-};
+);
 
 ReviewApplicationInformationBlock.defaultProps = defaultProps;
 

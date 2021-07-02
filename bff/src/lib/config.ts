@@ -19,6 +19,12 @@ export const {
    * Proxy Timeout Duration
    */
   PROXY_TIMEOUT = 30000,
+  SALESFORCE_API_URL = '',
+
+  SENDGRID_API_URL = '',
+  SENDGRID_API_KEY = '',
+  SENDGRID_FROM_EMAIL = '',
+  SENDGRID_QUOTE_TEMPLATE_ID = '',
 
   IDENTITY_SESSION_COOKIE_NAME = '',
 } = process.env;

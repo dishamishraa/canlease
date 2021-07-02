@@ -55,14 +55,17 @@ export type TableProps = {
   tableHeader?: TableHeaderProps;
   tableItemList?: TableItemListProps;
   className?: string;
+  contentType?: string;
+  searchQuery?: string;
+  statusFilter?: string;
+  tab?: 'Customer' | 'Personal';
 };
 
 const Table: React.FC<TableProps> = ({
   tableHeader,
   tableItemList,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.table, className)}>
       <TableHeader
         className={styles.tableHeader}
@@ -71,8 +74,7 @@ const Table: React.FC<TableProps> = ({
         className={styles.tableItemList}
         {...tableItemList} />
     </div>
-  );
-};
+);
 
 Table.defaultProps = defaultProps;
 

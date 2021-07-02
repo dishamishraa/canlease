@@ -7,37 +7,37 @@ import Text, { TextProps } from '../../atoms/Text';
 
 export const defaultProps = {
   companyName: {
-    style: 'Basic400',
+    style: 'Basic600',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
   contactName: {
-    style: 'Basic400',
+    style: 'Basic600',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
   status: {
-    style: 'Basic400',
+    style: 'Basic600',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
   createOn: {
-    style: 'Basic400',
+    style: 'Basic600',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
   assetName: {
-    style: 'Basic400',
+    style: 'Basic600',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
   cost: {
-    style: 'Basic400',
+    style: 'Basic600',
     align: 'Right',
     size: 'Medium',
     type: 'Paragraph2',
@@ -52,6 +52,7 @@ export type TableItemProps = {
   assetName?: TextProps;
   cost?: TextProps;
   className?: string;
+  onTableItemClicked?: (event?: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
 const TableItem: React.FC<TableItemProps> = ({
@@ -62,30 +63,36 @@ const TableItem: React.FC<TableItemProps> = ({
   assetName,
   cost,
   className,
+  onTableItemClicked,
 }) => {
+  let dispayContantName;
+  if (contactName?.value) {
+    dispayContantName= (   
+    <Text
+      className={styles.contactName}
+      {...contactName} />)
+  }
   return (
-    <div className={cx(styles.tableItem, className)}>
-      <Text
-        className={styles.companyName}
-        {...companyName} />
-      <Text
-        className={styles.contactName}
-        {...contactName} />
-      <Text
-        className={styles.status}
-        {...status} />
-      <Text
-        className={styles.createOn}
-        {...createOn} />
-      <Text
-        className={styles.assetName}
-        {...assetName} />
-      <Text
-        className={styles.cost}
-        {...cost} />
-    </div>
+      <div className={cx(styles.tableItem, className)} onClick={onTableItemClicked}>
+        <Text
+          className={styles.companyName}
+          {...companyName} />
+        {dispayContantName}
+        <Text
+          className={styles.status}
+          {...status} />
+        <Text
+          className={styles.createOn}
+          {...createOn} />
+        <Text
+          className={styles.assetName}
+          {...assetName} />
+        <Text
+          className={styles.cost}
+          {...cost} />
+      </div>
   );
-};
+}
 
 TableItem.defaultProps = defaultProps;
 

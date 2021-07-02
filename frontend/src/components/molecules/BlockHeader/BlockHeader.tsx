@@ -47,7 +47,6 @@ const BlockHeader: React.FC<BlockHeaderProps> = ({
   className,
   button,
 }) => {
-
   const currentStyle = styles[`blockHeader${style}${type}`];
 
   const textView = (
@@ -55,9 +54,9 @@ const BlockHeader: React.FC<BlockHeaderProps> = ({
       className={styles.text}
       {...text} />
   );
-  
+
   let buttonView;
-  
+
   switch (type) {
     case 'Default':
       break;

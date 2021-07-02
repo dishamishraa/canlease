@@ -19,12 +19,14 @@ const ContextualMenuItemList: React.FC<ContextualMenuItemListProps> = ({
   contextualMenuItems,
   className,
 }) => {
-  const contextualMenuItemArray = contextualMenuItems?.map((contextualMenuItem) => (
-    <ContextualMenuItem
+  const contextualMenuItemArray = contextualMenuItems?.map((contextualMenuItem, index) => {
+    const { text } = contextualMenuItem;
+    return <ContextualMenuItem
       className={styles.contextualMenuItem}
-      {...contextualMenuItem} />
-  ));
-  
+      {...contextualMenuItem}
+      key={index} />;
+  });
+
   return (
     <div className={cx(styles.contextualMenuItemList, className)}>
       {contextualMenuItemArray}

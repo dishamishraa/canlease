@@ -6,13 +6,7 @@ export default {
   component: TopBlock,
 };
 
-export const WithTabs: React.VFC<{}> = () => (
+export const Default: React.VFC<{}> = () => (
   <TopBlock
-    type='WithTabs'
-    />
-);
-export const NoTabs: React.VFC<{}> = () => (
-  <TopBlock
-    type='NoTabs'
     />
 );

@@ -48,8 +48,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
   paragraphText,
   button,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.resourceCard, className)}>
       <Image
         className={styles.image}
@@ -77,8 +76,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
           {...button} />
       </div>
     </div>
-  );
-};
+);
 
 ResourceCard.defaultProps = defaultProps;
 

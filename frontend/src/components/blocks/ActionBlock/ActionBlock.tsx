@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { useTranslation } from 'react-i18next';
 import styles from './ActionBlock.module.scss';
 
 import Text, { TextProps } from '../../atoms/Text';
@@ -33,11 +34,32 @@ export type ActionBlockProps = {
   className?: string;
 };
 
+const onButtonClicked = () => {
+  window.open('https://canlease.net/contact/', '_blank');
+};
+
 const ActionBlock: React.FC<ActionBlockProps> = ({
   text,
   button,
   className,
 }) => {
+  const { t } = useTranslation();
+  const descriptionText = t('contact_us.description');
+  const buttonText = t('contact_us.button_text');
+
+  text = {
+    ...defaultProps.text,
+    value: descriptionText,
+  };
+
+  button = {
+    ...defaultProps.button,
+    text: {
+      ...defaultProps.button.text,
+      value: buttonText,
+    },
+  };
+
   return (
     <div className={cx(styles.actionBlock, className)}>
       <Text
@@ -45,7 +67,8 @@ const ActionBlock: React.FC<ActionBlockProps> = ({
         {...text} />
       <Button
         className={styles.button}
-        {...button} />
+        {...button}
+        onButtonClicked={onButtonClicked}/>
     </div>
   );
 };

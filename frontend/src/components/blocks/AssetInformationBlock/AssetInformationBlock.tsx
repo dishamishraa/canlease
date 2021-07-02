@@ -46,9 +46,9 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     radioButtonItem: {
-      state: 'Selected',
+      state: 'Unselected',
       icon: {
-        asset: 'RadioButtonOn',
+        asset: 'RadioButtonOff',
         style: 'Basic800',
       },
       text: {
@@ -85,6 +85,12 @@ export const defaultProps = {
       type: 'Text',
     },
   } as TextFieldProps,
+  disclaimerText: {
+    style: 'Basic800',
+    align: 'Left',
+    size: 'Medium',
+    type: 'Paragraph2',
+  } as TextProps,
   nextButton: {
     type: 'Button',
     size: 'Large',
@@ -106,6 +112,7 @@ export type AssetInformationBlockProps = {
   assetConditionRadioField?: RadioFieldProps;
   ageOfAssetTextField?: TextFieldProps;
   expectedDeliveryDateTextField?: TextFieldProps;
+  disclaimerText?: TextProps;
   nextButton?: ButtonProps;
   className?: string;
 };
@@ -117,10 +124,10 @@ const AssetInformationBlock: React.FC<AssetInformationBlockProps> = ({
   assetConditionRadioField,
   ageOfAssetTextField,
   expectedDeliveryDateTextField,
+  disclaimerText,
   nextButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.assetInformationBlock, className)}>
       <div className={styles.topContent}>
         <Stepper
@@ -144,12 +151,14 @@ const AssetInformationBlock: React.FC<AssetInformationBlockProps> = ({
           className={styles.expectedDeliveryDateTextField}
           {...expectedDeliveryDateTextField} />
       </div>
+      <Text
+        className={styles.disclaimerText}
+        {...disclaimerText} />
       <Button
         className={styles.nextButton}
         {...nextButton} />
     </div>
-  );
-};
+);
 
 AssetInformationBlock.defaultProps = defaultProps;
 

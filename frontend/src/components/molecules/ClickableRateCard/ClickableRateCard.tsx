@@ -26,7 +26,6 @@ const ClickableRateCard: React.FC<ClickableRateCardProps> = ({
   rateDetailItemList,
   className,
 }) => {
-
   const currentStyle = styles[`clickableRateCard${state}`];
 
   const rateDetailItemListView = (
@@ -34,8 +33,6 @@ const ClickableRateCard: React.FC<ClickableRateCardProps> = ({
       className={styles.rateDetailItemList}
       {...rateDetailItemList} />
   );
-  
-  
   switch (state) {
     case 'Default':
       break;

@@ -24,7 +24,6 @@ const DetailItemList: React.FC<DetailItemListProps> = ({
       className={styles.quoteDetailItem}
       {...quoteDetailItem} />
   ));
-  
   return (
     <div className={cx(styles.detailItemList, className)}>
       {quoteDetailItemArray}

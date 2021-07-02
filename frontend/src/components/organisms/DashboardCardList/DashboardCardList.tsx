@@ -24,7 +24,6 @@ const DashboardCardList: React.FC<DashboardCardListProps> = ({
       className={styles.dashboardCard}
       {...dashboardCard} />
   ));
-  
   return (
     <div className={cx(styles.dashboardCardList, className)}>
       {dashboardCardArray}

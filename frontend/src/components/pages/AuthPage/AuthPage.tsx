@@ -1,10 +1,19 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { Switch, Route, Redirect } from 'react-router-dom';
 import styles from './AuthPage.module.scss';
 
-import TopBar, { TopBarProps } from '../../organisms/TopBar';
 import SignInBlock, { SignInBlockProps } from '../../blocks/SignInBlock';
+import SignUpBlock from '../../blocks/SignUpBlock';
+import ForgotPasswordBlock from '../../blocks/ForgotPasswordBlock';
+import CreatePasswordBlock from '../../blocks/CreatePasswordBlock';
+import DialogBlock from '../../blocks/DialogBlock';
+import { ProtectedRoute } from '../../../modules/auth';
+import PersonalInformationBlock from '../../blocks/PersonalInformationBlock';
+import ContactInformationBlock from '../../blocks/ContactInformationBlock';
+import BusinessInformationBlock from '../../blocks/BusinessInformationBlock';
+import TopBar, { TopBarProps } from '../../organisms/TopBar';
 
 export const defaultProps = {
   topBar: {
@@ -101,22 +110,80 @@ export type AuthPageProps = {
   className?: string;
 };
 
+const routes = {
+  signIn: '/account/signIn',
+  forgotPassword: '/account/forgotPassword',
+  resetLinkSent: '/account/resetSent',
+  createPassword: '/account/createPassword',
+  signUp: '/account/signUp',
+  verifyEmail: '/account/verifyEmail',
+  personalInformation: '/account/personalInformation',
+  contactInformation: '/account/contactInformation',
+  businessInformation: '/account/businessInformation',
+  invalid: '/',
+};
+
 const AuthPage: React.FC<AuthPageProps> = ({
   topBar,
   block,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.authPage, className)}>
       <TopBar
         className={styles.topBar}
         {...topBar} />
-      <SignInBlock
-        className={styles.block}
-        {...block} />
+      <Switch>
+        <Route exact path={routes.signIn}>
+          <SignInBlock
+            className={styles.block}
+            {...block} />
+        </Route>
+
+        {/* Forgot password routes */}
+        <Route exact path={routes.forgotPassword}>
+          <ForgotPasswordBlock
+            className={styles.block} />
+        </Route>
+        <Route exact path={routes.resetLinkSent}>
+          <DialogBlock
+            className={styles.block} />
+        </Route>
+        <Route exact path={routes.createPassword}>
+          <CreatePasswordBlock
+            className={styles.block} />
+        </Route>
+
+        {/* Sign up routes */}
+        <Route exact path={routes.signUp}>
+          <SignUpBlock
+            className={styles.block} />
+        </Route>
+        <Route exact path={routes.verifyEmail}>
+          <DialogBlock
+            className={styles.block} />
+        </Route>
+
+        {/* Account setup routes */}
+        <ProtectedRoute exact path={routes.personalInformation}>
+          <PersonalInformationBlock
+            className={styles.block} />
+        </ProtectedRoute>
+        <ProtectedRoute exact path={routes.contactInformation}>
+          <ContactInformationBlock
+            className={styles.block} />
+        </ProtectedRoute>
+        <ProtectedRoute exact path={routes.businessInformation}>
+          <BusinessInformationBlock
+            className={styles.block} />
+        </ProtectedRoute>
+
+        <Route path={routes.invalid}>
+          <Redirect to={routes.signIn}/>
+        </Route>
+      </Switch>
+
     </div>
-  );
-};
+);
 
 AuthPage.defaultProps = defaultProps;
 

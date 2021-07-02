@@ -9,7 +9,6 @@ export type UserIconStyleType = 'Default' | 'Green' | 'Orange';
 export const defaultProps = {
   type: 'Initials' as UserIconTypeType,
   style: 'Orange' as UserIconStyleType,
-  background: BackgroundAsset,
   value: '',
 };
 

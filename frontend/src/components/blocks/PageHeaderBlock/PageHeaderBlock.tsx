@@ -26,15 +26,13 @@ export type PageHeaderBlockProps = {
 const PageHeaderBlock: React.FC<PageHeaderBlockProps> = ({
   blockHeader,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.pageHeaderBlock, className)}>
       <BlockHeader
         className={styles.blockHeader}
         {...blockHeader} />
     </div>
-  );
-};
+);
 
 PageHeaderBlock.defaultProps = defaultProps;
 

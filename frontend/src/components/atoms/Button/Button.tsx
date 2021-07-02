@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { Link } from 'react-router-dom';
 import styles from './Button.module.scss';
 
 import Text, { TextProps } from '../Text';
@@ -36,9 +37,11 @@ export type ButtonProps = {
   colour?: ButtonColourType;
   buttonType?: ButtonButtonTypeType;
   onButtonClicked?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
+  linkPath?: string; // use for general navigation between pages
   text?: TextProps;
   className?: string;
   icon?: IconProps;
+  disabled?: boolean;
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -48,15 +51,16 @@ const Button: React.FC<ButtonProps> = ({
   colour,
   buttonType,
   onButtonClicked,
+  linkPath,
   text,
   className,
   icon,
+  disabled,
 }) => {
-
   const currentStyle = styles[`button${type}${size}${fill}${colour}`];
 
   let contentView;
-  
+
   switch (type) {
     case 'Button':
       contentView = (
@@ -102,10 +106,20 @@ const Button: React.FC<ButtonProps> = ({
       break;
   }
 
+  if (linkPath) {
+    return (
+      <Link
+        to={linkPath}
+        className={cx(currentStyle, className)}>
+        {contentView}
+      </Link>
+    );
+  }
   return (
     <button
       type={buttonType}
       onClick={onButtonClicked}
+      disabled={disabled}
       className={cx(currentStyle, className)}>
       {contentView}
     </button>

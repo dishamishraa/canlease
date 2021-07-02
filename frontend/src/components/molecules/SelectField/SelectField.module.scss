@@ -8,6 +8,10 @@
     margin-top: 0.25rem;
   }
 
+  button {
+    width: 100%;
+  }
+
   .label {
     overflow: hidden;
     display: flex;
@@ -34,6 +38,14 @@
     flex: 0 0 auto;
     &:nth-child(1) {
       margin-top: 0;
+    }
+  }
+
+  .dropdownMenu {
+    width: auto;
+    > * {
+      height: 100%;
+      width: 100%;
     }
   }
 

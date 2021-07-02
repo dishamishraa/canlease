@@ -36,7 +36,6 @@ const RateDetailItem: React.FC<RateDetailItemProps> = ({
   suffixText,
   className,
 }) => {
-
   const currentStyle = styles[`rateDetailItem${type}`];
 
   const suffixTextView = (
@@ -44,9 +43,9 @@ const RateDetailItem: React.FC<RateDetailItemProps> = ({
       className={styles.suffixText}
       {...suffixText} />
   );
-  
+
   let numberTextView;
-  
+
   switch (type) {
     case 'PerMonth':
       numberTextView = (

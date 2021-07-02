@@ -1,12 +1,17 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { Link } from 'react-router-dom';
 import styles from './QuoteBlock.module.scss';
 
 import Text, { TextProps } from '../../atoms/Text';
 import QuoteRateSection, { QuoteRateSectionProps } from '../../organisms/QuoteRateSection';
 import DetailItemList, { DetailItemListProps } from '../../organisms/DetailItemList';
 import Button, { ButtonProps } from '../../atoms/Button';
+import Toast, { ToastProps } from '../../atoms/Toast';
+import { ToastTypeType, ToastStyleType } from '../../atoms/Toast/Toast';
+import { IconProps } from '../../atoms/Icon';
+import Modal, { ModalProps } from '../../organisms/Modal';
 
 export const defaultProps = {
   blockHeading: {
@@ -65,6 +70,24 @@ export const defaultProps = {
       type: 'ButtonGiant',
     },
   } as ButtonProps,
+  expiryToast: {
+    type: 'NoCloseButton' as ToastTypeType,
+    style: 'Danger' as ToastStyleType,
+    leadingIcon: {
+      asset: 'CloseCircleFilled',
+      style: 'Red200',
+    } as IconProps,
+    text: {
+      style: 'Red200',
+      align: 'Left',
+      size: 'Large',
+      type: 'Paragraph1',
+    } as TextProps,
+    icon: {
+      asset: 'Close',
+      style: 'Basic100',
+    } as IconProps,
+  },
 };
 
 export type QuoteBlockProps = {
@@ -76,6 +99,10 @@ export type QuoteBlockProps = {
   learnMoreText?: TextProps;
   viewQuoteButton?: ButtonProps;
   className?: string;
+  quoteExpired?: boolean;
+  expiryToast?: ToastProps;
+  modal?: ModalProps;
+  showModal?: boolean;
 };
 
 const QuoteBlock: React.FC<QuoteBlockProps> = ({
@@ -87,9 +114,25 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
   learnMoreText,
   viewQuoteButton,
   className,
+  quoteExpired,
+  expiryToast,
+  showModal,
+  modal,
 }) => {
+  let toastDisplay;
+  if (quoteExpired) {
+    toastDisplay = <Toast {...expiryToast}/>;
+  }
+
+  let modalDisplay 
+  if (showModal){
+    modalDisplay = (
+      <Modal className={styles.modal} {...modal}/>
+    );
+  }
   return (
     <div className={cx(styles.quoteBlock, className)}>
+      {toastDisplay}
       <Text
         className={styles.blockHeading}
         {...blockHeading} />
@@ -106,11 +149,12 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
         className={styles.validText}
         {...validText} />
       <Text
-        className={styles.learnMoreText}
-        {...learnMoreText} />
+          className={styles.learnMoreText}
+          {...learnMoreText} />
       <Button
-        className={styles.viewQuoteButton}
-        {...viewQuoteButton} />
+          className={styles.viewQuoteButton}
+          {...viewQuoteButton} />
+      {modalDisplay}
     </div>
   );
 };

@@ -1,15 +1,14 @@
 import React from 'react';
 import cx from 'classnames';
-
 import styles from './ContentPage.module.scss';
-
+import { Switch, Route, Redirect } from 'react-router-dom';
 import TopBlock, { TopBlockProps } from '../../blocks/TopBlock';
 import TopActionBlock, { TopActionBlockProps } from '../../blocks/TopActionBlock';
 import Table, { TableProps } from '../../blocks/Table';
+import QuoteBlock, { QuoteBlockProps } from '../../blocks/QuoteBlock';
 
 export const defaultProps = {
   topBlock: {
-    type: 'WithTabs',
     blockHeader: {
       style: 'Heading1',
       type: 'Default',
@@ -108,30 +107,72 @@ export const defaultProps = {
 export type ContentPageProps = {
   topBlock?: TopBlockProps;
   topActionBlock?: TopActionBlockProps;
+  quoteBlock?: QuoteBlockProps;
   className?: string;
   table?: TableProps;
+  contentType?: string;
+  searchQuery?: string;
+  setSearchQuery?: React.Dispatch<React.SetStateAction<string>>;
+  statusFilter?: string;
+  setStatusFilter?: React.Dispatch<React.SetStateAction<string>>;
+  tab?: 'Customer' | 'Personal';
+  setTab?: React.Dispatch<React.SetStateAction<'Customer' | 'Personal'>>;
+};
+
+const routes = {
+  contentList: '/portal/content/list/:portalId',
+  leasingQuote: '/portal/content/quote/:quoteId',
 };
 
 const ContentPage: React.FC<ContentPageProps> = ({
   topBlock,
   topActionBlock,
+  quoteBlock,
   className,
   table,
-}) => {
-  return (
+  contentType,
+  searchQuery,
+  setSearchQuery,
+  statusFilter,
+  setStatusFilter,
+  tab,
+  setTab,
+}) => (
     <div className={cx(styles.contentPage, className)}>
-      <TopBlock
-        className={styles.topBlock}
-        {...topBlock} />
-      <TopActionBlock
-        className={styles.topActionBlock}
-        {...topActionBlock} />
-      <Table
-        className={styles.table}
-        {...table} />
+      <Switch>
+        <Route path={routes.contentList}>
+          <TopBlock
+            className={styles.topBlock}
+            {...topBlock} 
+            contentType={contentType}
+            tab={tab}
+            setTab={setTab}/>
+          <TopActionBlock
+            className={styles.topActionBlock}
+            {...topActionBlock}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery} 
+            statusFilter={statusFilter}
+            setStatusFilter={setStatusFilter}/>
+          <Table
+            className={styles.table}
+            {...table} 
+            contentType={contentType}
+            searchQuery={searchQuery}
+            statusFilter={statusFilter} 
+            tab={tab}/>
+          </Route>
+          <Route path={routes.leasingQuote}>
+            <div className={styles.topContent}>
+              <QuoteBlock
+                  className={styles.block}
+                  {...quoteBlock} />
+            </div>
+          </Route>
+      </Switch>
+
     </div>
-  );
-};
+);
 
 ContentPage.defaultProps = defaultProps;
 

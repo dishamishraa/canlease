@@ -1,4 +1,5 @@
 .headerWithMenu {
+  z-index: 3;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -70,7 +71,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     > * {
       margin-left: 0.5rem;
@@ -92,6 +93,7 @@
 
 }
 .headerDefault {
+  z-index: 3;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -152,7 +154,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     > * {
       margin-left: 0.5rem;
@@ -176,6 +178,7 @@
 
 @media (min-width: 768px) {
   .headerWithMenu {
+    z-index: 3;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -247,7 +250,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: row;
-      justify-content: flex-start;
+      justify-content: flex-end;
       align-items: center;
       > * {
         margin-left: 0.5rem;
@@ -272,6 +275,7 @@
 
 @media (min-width: 768px) {
   .headerDefault {
+    z-index: 3;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -332,7 +336,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: row;
-      justify-content: flex-start;
+      justify-content: flex-end;
       align-items: center;
       > * {
         margin-left: 0.5rem;
@@ -361,6 +365,7 @@
 
 @media (min-width: 1024px) {
   .headerWithMenu {
+    z-index: 3;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -421,7 +426,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: row;
-      justify-content: flex-start;
+      justify-content: flex-end;
       align-items: center;
       > * {
         margin-left: 0.5rem;
@@ -450,6 +455,7 @@
 
 @media (min-width: 1024px) {
   .headerDefault {
+    z-index: 3;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -458,9 +464,8 @@
     > * {
       margin-top: 1.25rem;
     }
-    align-self: flex-start;
-    width: 64rem;
-    flex: 0 0 4.5625rem;
+    align-self: stretch;
+    flex: 0 0 auto;
     &:nth-child(1) {
       margin-top: 0;
     }
@@ -505,7 +510,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: row;
-      justify-content: flex-start;
+      justify-content: flex-end;
       align-items: center;
       > * {
         margin-left: 0.5rem;

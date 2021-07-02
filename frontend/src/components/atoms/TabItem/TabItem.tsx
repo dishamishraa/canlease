@@ -21,14 +21,15 @@ export type TabItemProps = {
   state?: TabItemStateType;
   text?: TextProps;
   className?: string;
+  onTabClicked?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 const TabItem: React.FC<TabItemProps> = ({
   state,
   text,
   className,
+  onTabClicked,
 }) => {
-
   const currentStyle = styles[`tabItem${state}`];
 
   const containerView = (
@@ -41,8 +42,6 @@ const TabItem: React.FC<TabItemProps> = ({
   const selectorView = (
     <div className={styles.selector}/>
   );
-  
-  
   switch (state) {
     case 'Selected':
       break;
@@ -51,10 +50,11 @@ const TabItem: React.FC<TabItemProps> = ({
   }
 
   return (
-    <div className={cx(currentStyle, className)}>
-      {containerView}
-      {selectorView}
-    </div>
+     <button className={cx(currentStyle, className)}
+     onClick={onTabClicked}>
+        {containerView}
+        {selectorView}
+    </button>
   );
 };
 

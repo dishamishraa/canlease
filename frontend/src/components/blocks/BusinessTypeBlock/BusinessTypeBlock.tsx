@@ -149,8 +149,7 @@ const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
   disclaimerText,
   nextButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.businessTypeBlock, className)}>
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
@@ -186,8 +185,7 @@ const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+);
 
 BusinessTypeBlock.defaultProps = defaultProps;
 

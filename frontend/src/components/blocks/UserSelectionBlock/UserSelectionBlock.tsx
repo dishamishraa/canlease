@@ -5,6 +5,7 @@ import styles from './UserSelectionBlock.module.scss';
 
 import Text, { TextProps } from '../../atoms/Text';
 import CardList, { CardListProps } from '../../organisms/CardList';
+import Modal, { ModalProps } from '../../organisms/Modal';
 
 export const defaultProps = {
   blockHeading: {
@@ -17,19 +18,39 @@ export const defaultProps = {
     userSelectionCards: [
     ],
   } as CardListProps,
+  modal: {
+    titleText: {
+      style: 'Basic800',
+      align: 'Center',
+      size: 'Large',
+      type: 'Heading1',
+    } as TextProps,
+  } as ModalProps,
 };
 
 export type UserSelectionBlockProps = {
   blockHeading?: TextProps;
   cardList?: CardListProps;
   className?: string;
+  setUserType?: React.Dispatch<React.SetStateAction<string>>;
+  modal?: ModalProps;
+  showModal?: boolean;
 };
 
 const UserSelectionBlock: React.FC<UserSelectionBlockProps> = ({
   blockHeading,
   cardList,
   className,
+  modal,
+  showModal,
 }) => {
+  let display 
+  if (showModal){
+    display = (
+      <Modal className={styles.modal} {...modal}/>
+    );
+  }
+
   return (
     <div className={cx(styles.userSelectionBlock, className)}>
       <Text
@@ -37,11 +58,12 @@ const UserSelectionBlock: React.FC<UserSelectionBlockProps> = ({
         {...blockHeading} />
       <CardList
         className={styles.cardList}
-        {...cardList} />
+        {...cardList} 
+        />
+         {display}
     </div>
   );
-};
+}
 
 UserSelectionBlock.defaultProps = defaultProps;
-
 export default UserSelectionBlock;

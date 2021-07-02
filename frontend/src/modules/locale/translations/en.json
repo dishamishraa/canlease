@@ -1,1 +1,124 @@
-{}
+{
+    "get_quote_block": {
+        "header": "Get a quote",
+        "name": {
+            "label": "Equipment Name",
+            "placeholder": "e.g. Macbook Pro 13 inch"
+        },
+        "cost": {
+            "label": "Equipment Cost (before tax)",
+            "placeholder": "CAD"
+        },
+        "lease_type": {
+            "label": "Lease type",
+            "options": {
+                "stretch": "Stretch",
+                "ten": "$10 end"
+            }
+        },
+        "submit": "Next"
+    },
+    "contact_info": {
+        "header_your": "Your Information",
+        "header_customer": "Customer Information",
+        "name": "Name",
+        "business_email": "Business email",
+        "company_name": "Company name",
+        "customer_name": "Customer name",
+        "customer_email": "Customer email",
+        "customer_company_name": "Customer company name",
+        "submit": "View quote",
+        "disclaimer": "Canlease is committed to protecting and respecting your privacy, and we'll only use your personal information to provide the services you requested from us. By creating this quote, you agree to be contacted by one of our representatives at a later time."
+    },
+    "user_type_selection": {
+        "header": "Who are you creating this quote for?",
+        "end_user": "I am creating this quote for myself",
+        "vendor": "I am creating this quote for my customer",
+        "button": "Select"
+    },
+    "contact_us":{
+        "description": "Need help creating a quote? We are happy to assist.",
+        "button_text": "Contact Us"
+    },
+    "instant_quote_limit":{
+        "title": "You have reached the limit for instant quote trial.",
+        "description": "Create a free account to create and track unlimited quotes and applications",
+        "primary_button": "Create a Free account",
+        "secondary_button": "Sign in"
+    },
+    "quote_email_sent":{
+        "title": "Email sent!",
+        "description": "The quote has been sent to your customer. Sign up to view this quote. Create and track unlimited quotes and lease applications with a free Canlease account.",
+        "primary_button": "Create a Free account",
+        "secondary_button": "Close"
+    },
+    "view_quote":{
+        "heading_text": "Leasing quote",
+        "disclaimer_text": "Quoted payments are pre-tax, subject to credit approval, and are based on first and last monthly payments in advance and one time documentation fee.",
+        "term_detail":{
+            "stretch":{
+                "term_1": "The Full Term  represents the total term of the lease, should you choose NOT to exercise your Purchase Option.",
+                "term_2": "Cost of Finance represents the annual percentage of financing charges you will pay over the term of this rental contact.",
+                "term_3": "Purchase Option represents When and How Much it will cost to assume ownership of the equipment. Example: on a 40M term, you can buy out the lease for 10% of the original cost at month 36 and not owe any further payments (months 37-38-39 and 40 will not be due).",
+                "term_4": "All technology leases cannot exceed a 36-month term."
+            },
+            "ten_dollar":{
+                "term_1": "Cost of Finance represents the annual percentage of financing charges you will pay over the term of this rental contact.",
+                "term_2": "Purchase Option represents When and How Much it will cost to assume ownership of the equipment.",
+                "term_3": "All technology leases cannot exceed a 36-month term."
+            }
+        },
+        "valid_text": "This quote will be valid for 30 days.",
+        "learn_more_text": "Are you looking for a different kind of lease quote to suit your specific business needs (i.e. three month payment deferral, seasonal payments to match your income, large down payment, etc)? [Learn more](https://canlease.net/faq/)",
+        "apply_button_text": "Apply for Finance",
+        "save_quote_button_text": "Save Quote",
+        "quote_rate_section_heading_text": "Quote detail",
+        "quote_detail":{
+            "application_amount": {
+                "label": "Based on:",
+                "value": "${{applicationAmount}} (Pre-tax)"
+            },
+            "equipment_label": "Equipment:",
+            "quote_id_label": "Quote ID:"
+        },
+        "rate_card":{
+            "rate_suffix": "per month",
+            "months_suffix": "months",
+            "cost_suffix": "cost of finance",
+            "stretch_purchase_term": "Own at 10% for {{purchaseOptionDate}} months",
+            "ten_dollar_purchase_term": "Own for $10 at end of term"
+        },
+        "expiry_toast":{
+            "message": "This quote has expired. Please create a new quote."
+        }
+    },
+    "application_page": {
+        "quotes": {
+            "header": "Quotes",
+            "customer_quotes": "Customer quotes",
+            "personal_quotes": "Personal quotes"
+        },
+        "applications": {
+            "header":  "Applications",
+            "customer_applications": "Customer applications",
+            "personal_applications": "Personal applications"
+        },
+        "table_headers": {
+            "company": "Company",
+            "name": "Name",
+            "status": "Status",
+            "create_on": "Created on",
+            "asset": "Asset",
+            "cost": "Cost"
+        },
+        "search_placeholder": "Search",
+        "status": {
+            "all": "All",
+            "active": "Active",
+            "expiring_soon": "Expiring soon",
+            "applied": "Applied",
+            "expired": "Expired"
+        }
+    }
+}
+  

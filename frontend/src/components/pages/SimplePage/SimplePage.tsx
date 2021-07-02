@@ -1,11 +1,18 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { Redirect, Route, Switch } from 'react-router-dom';
 import styles from './SimplePage.module.scss';
 
+import UserSelectionBlock, { UserSelectionBlockProps } from '../../blocks/UserSelectionBlock';
 import TopBar, { TopBarProps } from '../../organisms/TopBar';
 import GetQuoteBlock, { GetQuoteBlockProps } from '../../blocks/GetQuoteBlock';
+import ContactInfoCustomerBlock, { ContactInfoCustomerBlockProps } from '../../blocks/ContactInfoCustomerBlock';
+import ContactInfoVendorBlock, { ContactInfoVendorBlockProps } from '../../blocks/ContactInfoVendorBlock';
+import QuoteBlock, { QuoteBlockProps } from '../../blocks/QuoteBlock';
 import ActionBlock, { ActionBlockProps } from '../../blocks/ActionBlock';
+import { ContactInfo, EquipmentLeaseInfo } from '../../../modules/types';
+import { UseCreateQuoteResult } from '../../../modules/quote/useCreateQuote';
 
 export const defaultProps = {
   topBar: {
@@ -115,27 +122,84 @@ export const defaultProps = {
 };
 
 export type SimplePageProps = {
+  userSelectionBlock?: UserSelectionBlockProps;
+  getQuoteBlock?: GetQuoteBlockProps;
+  contactInfoCustomerBlock?: ContactInfoCustomerBlockProps;
+  contactInfoVendorBlock?: ContactInfoVendorBlockProps;
+  quoteBlock?: QuoteBlockProps;
   topBar?: TopBarProps;
   block?: GetQuoteBlockProps;
   actionBlock?: ActionBlockProps;
   className?: string;
+  setUserType?: React.Dispatch<React.SetStateAction<string>>;
+  userType?: string;
+  setEquipmentLeaseInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
+  equipmentLeaseInfo?: EquipmentLeaseInfo;
+  contactInfo?: ContactInfo;
+  handleCreateQuote?: (contactInfo: ContactInfo)=>void; 
+};
+
+const routes = {
+  userSelection: '/',
+  getQuote: '/getQuote',
+  contactInformation: '/contactInformation',
+  instaQuote: '/instaQuote/:quoteId',
+  invalid: '/',
 };
 
 const SimplePage: React.FC<SimplePageProps> = ({
-  topBar,
-  block,
-  actionBlock,
-  className,
-}) => {
+    userSelectionBlock,
+    getQuoteBlock,
+    contactInfoCustomerBlock,
+    quoteBlock,
+    topBar,
+    block,
+    actionBlock,
+    className,
+    userType,
+    setUserType,
+    setEquipmentLeaseInfo,
+    handleCreateQuote
+  }) => {
+  const ContactInfoBlock = userType === "vendor" ? ContactInfoVendorBlock : ContactInfoCustomerBlock;
+
   return (
     <div className={cx(styles.simplePage, className)}>
       <div className={styles.topContent}>
         <TopBar
           className={styles.topBar}
           {...topBar} />
-        <GetQuoteBlock
-          className={styles.block}
-          {...block} />
+        <Switch>
+          <Route exact path={routes.userSelection}>
+            <UserSelectionBlock
+              className={styles.block}
+              {...userSelectionBlock}
+              setUserType={setUserType}
+              />
+          </Route>
+          <Route exact path={routes.getQuote}>
+            <GetQuoteBlock
+              className={styles.block}
+              {...getQuoteBlock} 
+              setEquipmentLeaseInfo={setEquipmentLeaseInfo}
+              />
+          </Route>
+          <Route exact path={routes.contactInformation}>
+            <ContactInfoBlock
+              className={styles.block}
+              {...contactInfoCustomerBlock} 
+              handleCreateQuote={handleCreateQuote}
+              />
+          </Route>
+          <Route exact path={routes.instaQuote}>
+            <QuoteBlock
+              className={styles.block}
+              {...quoteBlock} />
+          </Route>
+          <Route path={routes.invalid}>
+            <Redirect to={routes.userSelection}/>
+          </Route>
+        </Switch>
       </div>
       <ActionBlock
         className={styles.actionBlock}

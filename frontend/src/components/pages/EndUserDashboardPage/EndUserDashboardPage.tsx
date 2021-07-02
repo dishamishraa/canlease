@@ -89,8 +89,7 @@ const EndUserDashboardPage: React.FC<EndUserDashboardPageProps> = ({
   quotesBlock,
   applicationsBlock,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.endUserDashboardPage, className)}>
       <PageHeaderBlock
         className={styles.pageHeaderBlock}
@@ -102,8 +101,7 @@ const EndUserDashboardPage: React.FC<EndUserDashboardPageProps> = ({
         className={styles.applicationsBlock}
         {...applicationsBlock} />
     </div>
-  );
-};
+);
 
 EndUserDashboardPage.defaultProps = defaultProps;
 

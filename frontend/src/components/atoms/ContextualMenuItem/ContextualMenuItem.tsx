@@ -9,7 +9,7 @@ export type ContextualMenuItemContextualMenuItemTypeType = 'button' | 'submit' |
 
 export const defaultProps = {
   text: {
-    style: 'Basic400',
+    style: 'Basic100',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph2',
@@ -21,6 +21,7 @@ export type ContextualMenuItemProps = {
   onContextualMenuItemClicked?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
   text?: TextProps;
   className?: string;
+  key?: number;
 };
 
 const ContextualMenuItem: React.FC<ContextualMenuItemProps> = ({
@@ -28,18 +29,18 @@ const ContextualMenuItem: React.FC<ContextualMenuItemProps> = ({
   onContextualMenuItemClicked,
   text,
   className,
-}) => {
-  return (
+  key,
+}) => (
     <button
       type={contextualMenuItemType}
       onClick={onContextualMenuItemClicked}
-      className={cx(styles.contextualMenuItem, className)}>
+      className={cx(styles.contextualMenuItem, className)}
+      key={key}>
       <Text
         className={styles.text}
         {...text} />
     </button>
-  );
-};
+);
 
 ContextualMenuItem.defaultProps = defaultProps;
 

@@ -36,38 +36,23 @@ const QuoteDetailItem: React.FC<QuoteDetailItemProps> = ({
   infoText,
   className,
 }) => {
-
   const currentStyle = styles[`quoteDetailItem${type}`];
 
-  let labelTextView;
-  let infoTextView;
-  
+  const labelTextView = (
+    <Text
+      className={styles.labelText}
+      {...labelText} />
+  );
+  const infoTextView = (
+    <Text
+      className={styles.infoText}
+      {...infoText} />
+  );
+
   switch (type) {
     case 'Type1':
-      labelTextView = (
-        <Text
-          className={styles.labelText}
-          {...labelText} />
-      );
-      infoTextView = (
-        <Text
-          className={styles.infoText}
-          {...infoText} />
-      );
       break;
     case 'Type2':
-      labelTextView = (
-        <Text
-          className={styles.labelText}
-          {...labelText} />
-      );
-      infoTextView = (
-        <Text
-          className={styles.infoText}
-          {...infoText} />
-      );
-      break;
-    case 'Type3':
       break;
   }
 

@@ -20,15 +20,13 @@ export type LeaseDetailsSectionProps = {
 const LeaseDetailsSection: React.FC<LeaseDetailsSectionProps> = ({
   detailItemList,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.leaseDetailsSection, className)}>
       <DetailItemList
         className={styles.detailItemList}
         {...detailItemList} />
     </div>
-  );
-};
+);
 
 LeaseDetailsSection.defaultProps = defaultProps;
 

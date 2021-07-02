@@ -20,6 +20,10 @@ export const defaultProps = {
   } as TextProps,
   textInput: {
     type: 'TextArea',
+    icon: {
+      asset: 'Show',
+      style: 'Brand500',
+    },
   } as TextInputProps,
   errorMessage: {
     style: 'Red200',
@@ -46,7 +50,6 @@ const TextField: React.FC<TextFieldProps> = ({
   className,
   errorMessage,
 }) => {
-
   const currentStyle = styles[`textField${state}${type}`];
 
   const labelView = (
@@ -59,9 +62,9 @@ const TextField: React.FC<TextFieldProps> = ({
       className={styles.textInput}
       {...textInput} />
   );
-  
+
   let errorMessageView;
-  
+
   switch (`${state}${type}`) {
     case 'DefaultText':
       break;

@@ -6,10 +6,7 @@ import styles from './TopBlock.module.scss';
 import BlockHeader, { BlockHeaderProps } from '../../molecules/BlockHeader';
 import Tabs, { TabsProps } from '../../organisms/Tabs';
 
-export type TopBlockTypeType = 'WithTabs' | 'NoTabs';
-
 export const defaultProps = {
-  type: 'NoTabs' as TopBlockTypeType,
   blockHeader: {
     style: 'Heading1',
     type: 'Default',
@@ -32,48 +29,38 @@ export const defaultProps = {
 };
 
 export type TopBlockProps = {
-  type?: TopBlockTypeType;
   blockHeader?: BlockHeaderProps;
   tabs?: TabsProps;
   className?: string;
+  contentType?: string;
+  tab?: 'Customer' | 'Personal';
+  setTab?: React.Dispatch<React.SetStateAction<'Customer' | 'Personal'>>;
+  hideTabs?: boolean;
 };
 
 const TopBlock: React.FC<TopBlockProps> = ({
-  type,
   blockHeader,
   tabs,
   className,
+  hideTabs,
 }) => {
-
-  const currentStyle = styles[`topBlock${type}`];
-
-  const blockHeaderView = (
-    <BlockHeader
-      className={styles.blockHeader}
-      {...blockHeader} />
-  );
-  
-  let tabsView;
-  
-  switch (type) {
-    case 'WithTabs':
-      tabsView = (
-        <Tabs
-          className={styles.tabs}
-          {...tabs} />
-      );
-      break;
-    case 'NoTabs':
-      break;
+  let displayTabs;
+  if (!hideTabs){
+    displayTabs = (
+      <Tabs
+      className={styles.tabs}
+      {...tabs} />
+    );
   }
-
   return (
-    <div className={cx(currentStyle, className)}>
-      {blockHeaderView}
-      {tabsView}
-    </div>
+      <div className={cx(styles.topBlock, className)}>
+        <BlockHeader
+          className={styles.blockHeader}
+          {...blockHeader} />
+        {displayTabs}
+      </div>
   );
-};
+}
 
 TopBlock.defaultProps = defaultProps;
 

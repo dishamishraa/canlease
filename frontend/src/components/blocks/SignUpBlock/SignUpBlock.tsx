@@ -113,8 +113,7 @@ const SignUpBlock: React.FC<SignUpBlockProps> = ({
   signUpButton,
   signInButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.signUpBlock, className)}>
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
@@ -149,8 +148,7 @@ const SignUpBlock: React.FC<SignUpBlockProps> = ({
           {...signInButton} />
       </div>
     </div>
-  );
-};
+);
 
 SignUpBlock.defaultProps = defaultProps;
 

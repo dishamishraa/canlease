@@ -40,8 +40,7 @@ const UserSelectionCard: React.FC<UserSelectionCardProps> = ({
   text,
   button,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.userSelectionCard, className)}>
       <Image
         className={styles.image}
@@ -55,8 +54,7 @@ const UserSelectionCard: React.FC<UserSelectionCardProps> = ({
           {...button} />
       </div>
     </div>
-  );
-};
+);
 
 UserSelectionCard.defaultProps = defaultProps;
 

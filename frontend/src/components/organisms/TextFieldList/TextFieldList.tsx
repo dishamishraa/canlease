@@ -19,7 +19,7 @@ const TextFieldList: React.FC<TextFieldListProps> = ({
   textFields,
   className,
 }) => {
-  const textFieldArray = textFields?.map((textField) => (
+  const textFieldItemArray = textFields?.map((textField) => (
     <TextField
       className={styles.textFieldItem}
       {...textField} />

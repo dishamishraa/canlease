@@ -7,6 +7,7 @@ import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import SelectField, { SelectFieldProps } from '../../molecules/SelectField';
 import Button, { ButtonProps } from '../../atoms/Button';
+import { EquipmentLeaseInfo } from '../../../modules/types';
 
 export const defaultProps = {
   blockHeading: {
@@ -50,7 +51,7 @@ export const defaultProps = {
     },
     select: {
       text: {
-        style: 'Basic500',
+        style: 'Basic800',
         align: 'Left',
         size: 'Large',
         type: 'Paragraph1',
@@ -82,6 +83,7 @@ export type GetQuoteBlockProps = {
   leaseTypeSelectField?: SelectFieldProps;
   nextButton?: ButtonProps;
   className?: string;
+  setEquipmentLeaseInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
 };
 
 const GetQuoteBlock: React.FC<GetQuoteBlockProps> = ({
@@ -91,8 +93,7 @@ const GetQuoteBlock: React.FC<GetQuoteBlockProps> = ({
   leaseTypeSelectField,
   nextButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.getQuoteBlock, className)}>
       <Text
         className={styles.blockHeading}
@@ -110,8 +111,7 @@ const GetQuoteBlock: React.FC<GetQuoteBlockProps> = ({
         className={styles.nextButton}
         {...nextButton} />
     </div>
-  );
-};
+);
 
 GetQuoteBlock.defaultProps = defaultProps;
 
