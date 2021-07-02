@@ -9,7 +9,6 @@ import UserIcon, { UserIconProps } from '../../atoms/UserIcon';
 import Icon, { IconProps } from '../../atoms/Icon';
 import Button, { ButtonProps } from '../../atoms/Button';
 import Text, { TextProps } from '../../atoms/Text';
-import { routes } from '../../pages/AuthPage/AuthPage'
 
 export type UserProfileStyleType = 'Light';
 export type UserProfileStateType = 'SignedIn' | 'None' | 'SignedOut';
@@ -89,11 +88,11 @@ const UserProfile: React.FC<UserProfileProps> = ({
   const history = useHistory();
 
   const handleSignIn = () => {
-    history.push({ pathname: routes.signIn });
+    history.push('/account/signin');
   };
 
   const handleSignUp = () => {
-    history.push({ pathname: routes.signUp });
+    history.push('/account/signUp');
   };
 
   primary = {

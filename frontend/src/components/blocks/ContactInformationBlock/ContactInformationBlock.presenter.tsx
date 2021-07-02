@@ -4,9 +4,9 @@ import { useHistory, useLocation, useParams } from 'react-router';
 import { defaultProps, ContactInformationBlockProps } from './ContactInformationBlock';
 import { APIResponse } from '../../../lib/api/types';
 import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField';
-import { AuthPageLocationState, ContactInformation, routes } from '../../pages/AuthPage/AuthPage';
+import { AuthPageLocationState, ContactInformation } from '../../pages/AuthPage/AuthPage';
 import { isEmptyString } from '../../../lib/utils';
-import { ContextualMenuItemProps, defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
+import { defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 import { ContextualMenuProps } from '../../molecules/ContextualMenu/ContextualMenu';
 
 export type ContactInformationBlockPresenterProps = ContactInformationBlockProps & {
@@ -25,23 +25,18 @@ const withPresenter = (
     const { state } = useLocation<AuthPageLocationState>()
     const { email } = state || {};
     const [phoneNumber, setPhoneNumber] = useState<string>('');
-    const [unitNumber, setUnitNumber] = useState<string>('')
     const [streetAddress, setStreetAddress] = useState<string>('');
     const [city, setCity] = useState<string>('');
     const [postalCode, setPostalCode] = useState<string>('');
     const [province, setProvince] = useState<string>('');
 
-    const formInvalid = (isEmptyString(phoneNumber) 
+    const FormInvalid = (isEmptyString(phoneNumber) 
     || isEmptyString(streetAddress)
     || isEmptyString(city)
     || isEmptyString(postalCode))
 
     const handlePhoneNumber = ({ target: { value } }) => {
       setPhoneNumber(value);
-    };
-
-    const handleUnitNumber = ({ target: { value } }) => {
-      setUnitNumber(value);
     };
 
     const handleStreetAddress = ({ target: { value } }) => {
@@ -58,28 +53,129 @@ const withPresenter = (
 
     const handleNext = () => {
       if(setContactInfo && state && email){
+        console.log('here')
         setContactInfo({
           email: email,
           phone: phoneNumber,
-          unitNumber: unitNumber,
           street: streetAddress,
           city: city,
           postalCode: postalCode,
           province: province
         });
-        history.push({pathname: routes.businessInformation})
+        history.push({pathname: '/account/businessInformation'})
       }
     }
 
-    const contextualMenuItems: ContextualMenuItemProps[] = [];
-    for (let i = 0; i < 12; i++) {
-      contextualMenuItems.push({
-        text: {
-          ...defaultMenuItemProps.text,
-          value: t(`contact_information.province.${i}`),
-        },
-        onContextualMenuItemClicked: () => setProvince(t(`contact_information.province.${i}`)),
-      })
+    const handleSelectOption0 = () => setProvince(t('contact_information.province.0'));
+    const handleSelectOption1 = () => setProvince(t('contact_information.province.1'));
+    const handleSelectOption2 = () => setProvince(t('contact_information.province.2'));
+    const handleSelectOption3 = () => setProvince(t('contact_information.province.3'));
+    const handleSelectOption4 = () => setProvince(t('contact_information.province.4'));
+    const handleSelectOption5 = () => setProvince(t('contact_information.province.5'));
+    const handleSelectOption6 = () => setProvince(t('contact_information.province.6'));
+    const handleSelectOption7 = () => setProvince(t('contact_information.province.7'));
+    const handleSelectOption8 = () => setProvince(t('contact_information.province.8'));
+    const handleSelectOption9 = () => setProvince(t('contact_information.province.9'));
+    const handleSelectOption10 = () => setProvince(t('contact_information.province.10'));
+    const handleSelectOption11 = () => setProvince(t('contact_information.province.11'));
+    const handleSelectOption12 = () => setProvince(t('contact_information.province.12'));
+
+    const contextualMenu: ContextualMenuProps = {
+      contextualMenuItemList: {
+        contextualMenuItems: [
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('contact_information.province.0'),
+            },
+            onContextualMenuItemClicked: handleSelectOption0
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('contact_information.province.1'),
+            },
+            onContextualMenuItemClicked: handleSelectOption1
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('contact_information.province.2'),
+            },
+            onContextualMenuItemClicked: handleSelectOption2
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('contact_information.province.3'),
+            },
+            onContextualMenuItemClicked: handleSelectOption3
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('contact_information.province.4'),
+            },
+            onContextualMenuItemClicked: handleSelectOption4
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('contact_information.province.5'),
+            },
+            onContextualMenuItemClicked: handleSelectOption5
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('contact_information.province.6'),
+            },
+            onContextualMenuItemClicked: handleSelectOption6
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('contact_information.province.7'),
+            },
+            onContextualMenuItemClicked: handleSelectOption7
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('contact_information.province.8'),
+            },
+            onContextualMenuItemClicked: handleSelectOption8
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('contact_information.province.9'),
+            },
+            onContextualMenuItemClicked: handleSelectOption9
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('contact_information.province.10'),
+            },
+            onContextualMenuItemClicked: handleSelectOption10
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('contact_information.province.11'),
+            },
+            onContextualMenuItemClicked: handleSelectOption11
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('contact_information.province.12'),
+            },
+            onContextualMenuItemClicked: handleSelectOption12
+          },
+        ]
+      }
     }
 
     const contactInformationBlockProps: ContactInformationBlockProps = {
@@ -117,17 +213,6 @@ const withPresenter = (
         textInput: {
           textValue: phoneNumber,
           onTextChanged: handlePhoneNumber
-        },
-      },
-      unitNumberTextField:{
-        ...defaultProps.unitNumberTextField,
-        label: {
-          ...defaultProps.unitNumberTextField.label,
-          value: t('text_field_label.unit_number'),
-        },
-        textInput: {
-          textValue: unitNumber,
-          onTextChanged: handleUnitNumber
         },
       },
       streetAddressTextField: {
@@ -176,11 +261,7 @@ const withPresenter = (
             value: province,
           },
         },
-        contextualMenu: {
-          contextualMenuItemList: {
-            contextualMenuItems
-          }
-        },
+        contextualMenu,
         selectId: t('text_field_label.province'),
       },
       nextButton: {
@@ -190,7 +271,7 @@ const withPresenter = (
           value: t('button_text.next')
         },
         onButtonClicked: handleNext,
-        disabled: formInvalid
+        disabled: FormInvalid
       }
     }
 

@@ -7,7 +7,6 @@ import { APIResponse } from '../../../lib/api/types';
 import { AccountRequest, AccountTokenResponse } from '../../../modules/types';
 import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField';
 import { HTMLInputType } from '../../atoms/TextInput/TextInput';
-import { routes } from '../../pages/AuthPage/AuthPage'
 
 export type SignUpBlockPresenterProps = SignUpBlockProps & {
   handleCreateIdentityAccount?: (payload: AccountRequest) => void;
@@ -34,21 +33,15 @@ const withPresenter = (
 
     const handleEmail = ({ target: { value } }) => {
       setEmail(value);
-      if(emailError === 'Error'){
-        setEmailError('Default');
-      }
+      setEmailError('Default');
     };
     const handlePassowrd = ({ target: { value } }) => {
       setPassword(value);
-      if(passwordError === 'Error'){
-        setPasswordError('Default');
-      }
+      setPasswordError('Default');
     };
     const handleConfirmPassword = ({ target: { value } }) => {
       setConfirmPassword(value);
-      if(confirmPasswordError === 'Error'){
-        setConfirmPasswordError('Default');
-      }
+      setConfirmPasswordError('Default');
     };
 
     const handleSignUp = () => {
@@ -74,7 +67,7 @@ const withPresenter = (
     };
 
     const handleSignIn = () => {
-      history.push({ pathname: routes.signIn });
+      history.push({ pathname: '/account/signIn' });
     };
 
     const togglePasswordVisibility = () => {

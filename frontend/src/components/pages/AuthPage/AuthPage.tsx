@@ -115,7 +115,6 @@ export type PersonalInformation = {
 export type ContactInformation = {
   email: string;
   phone: string;
-  unitNumber: string;
   street: string;
   city: string;
   postalCode: string;
@@ -155,7 +154,7 @@ export type AuthPageProps = {
   handleToastDisplay?: (toastType: string) => void;
 };
 
-export const routes = {
+const routes = {
   signIn: '/account/signIn',
   forgotPassword: '/account/forgotPassword',
   resetLinkSent: '/account/resetSent',

@@ -5,10 +5,9 @@ import { defaultProps, BusinessInformationBlockProps } from './BusinessInformati
 import { APIResponse } from '../../../lib/api/types';
 import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField';
 import { AuthPageLocationState, BusinessInformation } from '../../pages/AuthPage/AuthPage';
-import { ContextualMenuItemProps, defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
+import { defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 import { ContextualMenuProps } from '../../molecules/ContextualMenu/ContextualMenu';
 import { CreateProfilePayload } from '../../../modules/types';
-import { isEmptyString } from '../../../lib/utils';
 
 export type BusinessInformationBlockPresenterProps = BusinessInformationBlockProps & {
   setBusinessInfo?: React.Dispatch<React.SetStateAction<BusinessInformation>>;
@@ -32,17 +31,12 @@ const withPresenter = (
     const [businessSector, setBusinessSector] = useState<string>('');
     const [businessPhone, setBusinessPhone] = useState<string>('');
     const [website, setWebsite] = useState<string>('');
-    const formInvalid = (isEmptyString(fullLegalName)
-    || isEmptyString(operatingName)
-    || isEmptyString(operatingSince)
-    || isEmptyString(businessSector)
-    || isEmptyString(businessPhone))
 
     const handleFullLegalName = ({ target: { value } }) => {
       setFullLegalName(value);
     };
 
-    const handleOperatingName = ({ target: { value } }) => {
+    const handleoperatingName = ({ target: { value } }) => {
       setOperatingName(value);
     };
 
@@ -72,16 +66,69 @@ const withPresenter = (
       }
     }
 
-    const contextualMenuItems: ContextualMenuItemProps[] = [];
-    for (let i = 0; i < 7; i++) {
-      contextualMenuItems.push({
-        text: {
-          ...defaultMenuItemProps.text,
-          value: t(`business_information.business_sector_options.${i}`),
-        },
-        onContextualMenuItemClicked: () => setBusinessSector(t(`business_information.business_sector_options.${i}`)),
-      })
-    }
+    const handleSelectOption0 = () => setBusinessSector(t('business_information.business_sector_options.0'));
+    const handleSelectOption1 = () => setBusinessSector(t('business_information.business_sector_options.1'));
+    const handleSelectOption2 = () => setBusinessSector(t('business_information.business_sector_options.2'));
+    const handleSelectOption3 = () => setBusinessSector(t('business_information.business_sector_options.3'));
+    const handleSelectOption4 = () => setBusinessSector(t('business_information.business_sector_options.4'));
+    const handleSelectOption5 = () => setBusinessSector(t('business_information.business_sector_options.5'));
+    const handleSelectOption6 = () => setBusinessSector(t('business_information.business_sector_options.6'));
+
+    const contextualMenu: ContextualMenuProps = {
+      contextualMenuItemList: {
+        contextualMenuItems: [
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('business_information.business_sector_options.0'),
+            },
+            onContextualMenuItemClicked: handleSelectOption0
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('business_information.business_sector_options.1'),
+            },
+            onContextualMenuItemClicked: handleSelectOption1
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('business_information.business_sector_options.2'),
+            },
+            onContextualMenuItemClicked: handleSelectOption2
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('business_information.business_sector_options.3'),
+            },
+            onContextualMenuItemClicked: handleSelectOption3
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('business_information.business_sector_options.4'),
+            },
+            onContextualMenuItemClicked: handleSelectOption4
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('business_information.business_sector_options.5'),
+            },
+            onContextualMenuItemClicked: handleSelectOption5
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('business_information.business_sector_options.6'),
+            },
+            onContextualMenuItemClicked: handleSelectOption6
+          },
+        ],
+      },
+    };
 
     const businessInformationBlockProps: BusinessInformationBlockProps = {
       ...defaultProps,
@@ -118,7 +165,7 @@ const withPresenter = (
         },
         textInput: {
           textValue: operatingName,
-          onTextChanged: handleOperatingName
+          onTextChanged: handleoperatingName
         },
       },
       businessSectorSelectField: {
@@ -134,11 +181,7 @@ const withPresenter = (
             value: businessSector,
           },
         },
-        contextualMenu:{
-          contextualMenuItemList: {
-            contextualMenuItems
-          }
-        },
+        contextualMenu,
         selectId: t('text_field_label.business_sector'),
       },
       operatingSinceTextField: {
@@ -182,8 +225,7 @@ const withPresenter = (
           ...defaultProps.nextButton.text,
           value: t('button_text.complete_setup')
         },
-        onButtonClicked: handleNext,
-        disabled: formInvalid
+        onButtonClicked: handleNext
       }
     }
     return <View

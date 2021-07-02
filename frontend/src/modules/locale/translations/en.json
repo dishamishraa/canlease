@@ -234,13 +234,21 @@
             "sign_up": "Create a free Canlease account",
             "sign_in": "Sign in to Canlease portal"
         },
-        "bottom_content": {
-            "sign_up": "Already have an account?",
-            "sign_in": "New to Canlease?"
+        "email_label": "Email",
+        "password_label": "Password",
+        "create_password_label": "Create Password",
+        "confirm_password_label": "Confirm Password",
+        "bottom_content": "Already have an account?",
+        "error_message": {
+            "empty": "{{field}} cannot be empty",
+            "invalid_email": "Please enter a valid email address",
+            "password_mismatch": "Passwords do not match",
+            "account_exist": "An account with this email already exists"
         }
     },
-    "toast_message": {
-        "reset_password": "New password set"
+    "header":{
+        "sign_up_button": "SIGN UP",
+        "sign_in_button": "SIGN IN"
     }
 }
   

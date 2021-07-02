@@ -51,19 +51,6 @@ export const defaultProps = {
       type: 'Text',
     },
   } as TextFieldProps,
-  unitNumberTextField: {
-    state: 'Default',
-    type: 'Text',
-    label: {
-      style: 'Basic800',
-      align: 'Left',
-      size: 'Medium',
-      type: 'Paragraph2',
-    },
-    textInput: {
-      type: 'Text',
-    },
-  } as TextFieldProps,
   streetAddressTextField: {
     state: 'Default',
     type: 'Text',
@@ -142,7 +129,6 @@ export type ContactInformationBlockProps = {
   blockHeading?: TextProps;
   emailTextField?: TextFieldProps;
   phoneNumberTextField?: TextFieldProps;
-  unitNumberTextField?: TextFieldProps;
   streetAddressTextField?: TextFieldProps;
   cityTextField?: TextFieldProps;
   postalCodeTextField?: TextFieldProps;
@@ -157,7 +143,6 @@ const ContactInformationBlock: React.FC<ContactInformationBlockProps> = ({
   blockHeading,
   emailTextField,
   phoneNumberTextField,
-  unitNumberTextField,
   streetAddressTextField,
   cityTextField,
   postalCodeTextField,
@@ -182,9 +167,6 @@ const ContactInformationBlock: React.FC<ContactInformationBlockProps> = ({
           <TextField
             className={styles.phoneNumberTextField}
             {...phoneNumberTextField} />
-          <TextField
-            className={styles.unitNumberTextField}
-            {...unitNumberTextField} />
           <TextField
             className={styles.streetAddressTextField}
             {...streetAddressTextField} />

@@ -9,7 +9,6 @@ import { isEmptyString } from '../../../lib/utils';
 import { updatePassword } from '../../../modules/account/api';
 import { useCookies } from 'react-cookie';
 import { HTMLInputType } from '../../atoms/TextInput/TextInput';
-import { routes } from '../../pages/AuthPage/AuthPage'
 
 export type CreatePasswordBlockPresenterProps = CreatePasswordBlockProps & {
     updatePassword?:(payload: UpdatePasswordPayload) => Promise<APIResponse<void>>;
@@ -33,28 +32,24 @@ const withPresenter = (
     const [passwordVisibility, setPasswordVisibility] = useState<HTMLInputType>('password');
     const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState<HTMLInputType>('password');
 
-    const formInvalid = (isEmptyString(createPassword) || isEmptyString(confirmPassword))
+    const FormInvalid = (isEmptyString(createPassword) || isEmptyString(confirmPassword))
 
     const handleSignIn = () => {
-        history.push({pathname: routes.signIn})
+        history.push({pathname: '/account/signin'})
     }
 
     const handleCreatePassword = ({ target: { value } }) => {
         setCreatePassword(value);
-        if(createPasswordError === 'Error'){
-            setCreatePasswordError('Default');
-        }
+        setCreatePasswordError('Default');
       };
 
     const handleConfirmPassword = ({ target: { value } }) => {
         setConfirmPassword(value);
-        if(confirmPasswordError === 'Error'){
-            setConfirmPasswordError('Default');
-        }
+        setConfirmPasswordError('Default');
     };
 
     const handleSavePassword = async() => {
-        if(createPassword !== confirmPassword){
+        if(!(createPassword === confirmPassword)){
             setCreatePasswordError('Error')
             setConfirmPasswordError('Error')
         }else{
@@ -63,9 +58,9 @@ const withPresenter = (
                 password: createPassword,
             }).then(() => {
                 history.push({
-                    pathname: routes.signIn,
+                    pathname: '/account/signin',
                     state: {
-                        message: t('toast_message.reset_password')
+                        message: 'New password set'
                     }
                 })
             })
@@ -149,7 +144,7 @@ const withPresenter = (
                 value: t('button_text.save')
             },
             onButtonClicked: handleSavePassword,
-            disabled: formInvalid
+            disabled: FormInvalid
         },
         signInButton: {
             ...defaultProps.signInButton,

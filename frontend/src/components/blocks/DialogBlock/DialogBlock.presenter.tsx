@@ -12,7 +12,7 @@ export type DialogBlockPresenterProps = DialogBlockProps & {
 
 interface DialogBlockContentType {
   email?: string;
-  contentType: 'VerifyEmail' | 'ResetLink';
+  contentType: string;
 }
 
 type DialogBlockTextDisplay = {
