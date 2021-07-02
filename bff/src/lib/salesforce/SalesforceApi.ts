@@ -155,7 +155,7 @@ export default class SalesforceApi {
       return message;
     }
   }
-
+  
   async getCustomerPortfolio(portalId: string): Promise<Portfolio> {
     try {
       const response = await axios.get<Portfolio>(`${SALESFORCE_API_URL}/v2/portfolio/${portalId}/customer_portfolio`);
