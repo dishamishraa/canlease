@@ -7,7 +7,6 @@ import { quoteResponseData } from '../../modules/quote/fixtures';
 import { CreateQuote, Quote } from '../../modules/quote/types';
 import { Portfolio } from '../../modules/portfolio/types';
 import { AddQuote, CreateProfile, Profile } from '../../modules/profile/types';
-import { Portfolio } from '../../modules/portfolio/types';
 
 export default class SalesforceApi {
   async createApplication(payload: CreateApplication): Promise<void> {
@@ -55,18 +54,6 @@ export default class SalesforceApi {
   async getQuote(quoteId: string): Promise<Quote> {
     try {
       const response = await axios.get<Quote>(`${SALESFORCE_API_URL}/v2/quotes/${quoteId}`);
-      return response.data;
-    } catch (error) {
-      const message = axios.isAxiosError(error)
-        ? error.response?.data?.errorMessage
-        : error.message;
-      return message;
-    }
-  }
-
-  async getUserPortfolio(portalId: string): Promise<Portfolio> {
-    try {
-      const response = await axios.get<Portfolio>(`${SALESFORCE_API_URL}/v2/portfolio/${portalId}`);
       return response.data;
     } catch (error) {
       const message = axios.isAxiosError(error)
@@ -147,18 +134,6 @@ export default class SalesforceApi {
   async getAllCustomerQuotesFromProfile(portalId: string): Promise<Quote[]> {
     try {
       const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/customer_quote`);
-      return response.data;
-    } catch (error) {
-      const message = axios.isAxiosError(error)
-        ? error.response?.data?.errorMessage
-        : error.message;
-      return message;
-    }
-  }
-  
-  async getCustomerPortfolio(portalId: string): Promise<Portfolio> {
-    try {
-      const response = await axios.get<Portfolio>(`${SALESFORCE_API_URL}/v2/portfolio/${portalId}/customer_portfolio`);
       return response.data;
     } catch (error) {
       const message = axios.isAxiosError(error)

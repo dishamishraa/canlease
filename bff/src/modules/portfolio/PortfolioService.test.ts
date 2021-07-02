@@ -12,11 +12,6 @@ describe('PortfolioService', () => {
     getAllCustomerQuotesFromProfile: jest.fn(),
     getUserPortfolio: jest.fn(),
     getCustomerPortfolio: jest.fn(),
-    getProfile: jest.fn(),
-    createProfile: jest.fn(),
-    addQuoteToProfile: jest.fn(),
-    getAllQuotesFromProfile: jest.fn(),
-    getAllCustomerQuotesFromProfile: jest.fn(),
   };
 
   const service = new PortfolioService(salesforceApi);
