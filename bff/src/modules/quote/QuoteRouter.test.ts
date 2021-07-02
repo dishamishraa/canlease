@@ -13,9 +13,16 @@ const mockValidateGetQuote = mocked(validateGetQuote);
 
 describe('QuoteRouter', () => {
   const quoteController = {
+    createApplication: jest.fn(),
     createQuote: jest.fn(),
     getQuote: jest.fn(),
-    sendQuote: jest.fn(),
+    getProfile: jest.fn(),
+    createProfile: jest.fn(),
+    addQuoteToProfile: jest.fn(),
+    getAllQuotesFromProfile: jest.fn(),
+    getAllCustomerQuotesFromProfile: jest.fn(),
+    getUserPortfolio: jest.fn(),
+    getCustomerPortfolio: jest.fn(),
   };
   const router = QuoteRouter({ quoteController });
   const app = createApp(router);

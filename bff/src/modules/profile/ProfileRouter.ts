@@ -4,7 +4,7 @@ import { BadRequestError } from '../../lib/errors';
 import { errorWrapper } from '../../lib/utils';
 import { validateAddQuote, validateCreateProfile, validateId } from './utils';
 import mockResponse from './fixture/mockProfileResponse';
-import { mockQuoteListResponse } from '../quote/fixtures';
+import mockQuoteListResponse from '../quote/fixtures/mockQuoteListResponse';
 
 export function createProfileRouter(controllers: {
   profileController: ProfileControllerContract;
