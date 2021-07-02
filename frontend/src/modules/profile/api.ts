@@ -3,7 +3,7 @@ import i18next from 'i18next';
 import { getServerUrl } from '../../lib/utils';
 import { Quote, CreateQuotePayload, Profile, CreateProfilePayload} from '../types';
 
-export const getProfile = async (id: number | string): Promise<Profile> => {
+export const getProfile = async (id: string): Promise<Profile> => {
     try {
         const { data } = await axios.get<Profile>(`${getServerUrl()}/profile/${id}`, { withCredentials: true });
         return data as Profile;

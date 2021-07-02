@@ -7,6 +7,7 @@ import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../..
 import { defaultProps as defaultRadioButtonItemProps, RadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
 import { isEmptyString } from '../../../lib/utils';
 import { PersonalInformation, AuthPageLocationState } from '../../pages/AuthPage/AuthPage';
+import { UserType } from '../../../modules/types'
 
 export type PersonalInformationBlockPresenterProps = PersonalInformationBlockProps & {
   setPersonalInfo?: React.Dispatch<React.SetStateAction<PersonalInformation>>;
@@ -21,9 +22,11 @@ const withPresenter = (
     } = props
     const { t } = useTranslation();
     const history = useHistory();
-    const { state } = useLocation<AuthPageLocationState>()
+    const { state } = useLocation<AuthPageLocationState>();
+    const { email } = state || {};
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
+    const [userType, setUserType] = useState<UserType>('vendor');
 
     const FormInvalid = (isEmptyString(firstName) || isEmptyString(lastName))
 
@@ -39,12 +42,21 @@ const withPresenter = (
       if(setPersonalInfo && state){
         setPersonalInfo({
           firstName: firstName,
-          lastName: lastName
+          lastName: lastName,
+          userType: userType
         });
         history.push({pathname: '/account/contactInformation', state: {
-          email: state.email
+          email: email
         }}) 
       }
+    }
+
+    const handleRadioSelectionVendor = () => {
+      setUserType('vendor');
+    }
+
+    const handleRadioSelectionCustomer = () => {
+      setUserType('customer');
     }
 
     const radiobuttonPropsList: RadioButtonItemProps[] = [
@@ -54,6 +66,10 @@ const withPresenter = (
         text: {
           ...defaultRadioButtonItemProps.text,
           value: t('personal_information.radio_text.supplier')
+        },
+        icon: {
+          ...defaultRadioButtonItemProps.icon,
+          onIconClicked: handleRadioSelectionVendor
         }
       },
       {
@@ -62,6 +78,10 @@ const withPresenter = (
         text: {
           ...defaultRadioButtonItemProps.text,
           value: t('personal_information.radio_text.own_use')
+        },
+        icon: {
+          ...defaultRadioButtonItemProps.icon,
+          onIconClicked: handleRadioSelectionCustomer
         }
       }
     ]

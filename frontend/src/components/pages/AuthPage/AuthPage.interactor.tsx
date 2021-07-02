@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { AuthPageProps } from './AuthPage';
 import { AuthPagePresenterProps } from './AuthPage.presenter';
-import { useCreateIdentityAccount, useSignIn } from '../../../modules/account';
+import { useCreateIdentityAccount, useSignIn, useUpdateName } from '../../../modules/account';
 import { useGetProfile, useCreateProfile } from '../../../modules/profile';
 import { AuthContext, AuthContextValue } from '../../../modules/auth';
+import { useParams } from 'react-router';
 
 const withInteractor = (
   Presenter: React.FC<AuthPagePresenterProps>,
@@ -11,16 +12,15 @@ const withInteractor = (
   const Interactor: React.FC <AuthPageProps> = (props) => {
     const [{loading: createAccountLoading, error: createAccountError}, createIdentityAccount] = useCreateIdentityAccount();
     const [{loading: signInLoading, error: signInError}, signIn] = useSignIn();
-    // const [{loading: getProfileLoading, error: getProfileError}, getProfile] = useGetProfile('1');
     const [{loading: createProfileLoading, error: createProfileError}, createProfile] = useCreateProfile();
-    const { user, account }: AuthContextValue = useContext(AuthContext);
+    const [{loading: updateLoading}, updateName] = useUpdateName();
     return (
       <Presenter
         {...props}
         createIdentityAccount = { createIdentityAccount }
         signIn = { signIn }
-        // getProfile = { getProfile }
         createProfile = { createProfile }
+        updateName = { updateName }
       />
     );
   };

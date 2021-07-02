@@ -14,7 +14,7 @@ import PersonalInformationBlock from '../../blocks/PersonalInformationBlock';
 import ContactInformationBlock from '../../blocks/ContactInformationBlock';
 import BusinessInformationBlock from '../../blocks/BusinessInformationBlock';
 import TopBar, { TopBarProps } from '../../organisms/TopBar';
-import { AccountRequest, CreateProfilePayload, SignInPayload } from '../../../modules/types';
+import { AccountRequest, CreateProfilePayload, SignInPayload, UserType } from '../../../modules/types';
 
 export const defaultProps = {
   topBar: {
@@ -109,6 +109,7 @@ export const defaultProps = {
 export type PersonalInformation = {
   firstName: string;
   lastName: string;
+  userType: UserType;
 }
 
 export type ContactInformation = {
@@ -150,6 +151,7 @@ export type AuthPageProps = {
   setPersonalInfo?: React.Dispatch<React.SetStateAction<PersonalInformation>>;
   setContactInfo?: React.Dispatch<React.SetStateAction<ContactInformation>>;
   setBusinessInfo?: React.Dispatch<React.SetStateAction<BusinessInformation>>;
+  handleToastDisplay?: (toastType: string) => void;
 };
 
 const routes = {

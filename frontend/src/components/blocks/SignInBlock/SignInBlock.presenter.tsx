@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import { SignInBlockProps, defaultProps } from './SignInBlock';
 import { isEmptyString, isEmail } from '../../../lib/utils';
 import { SignInPayload, AccountTokenResponse } from '../../../modules/types';
-import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField';
+import { defaultProps as defaultTextFieldProps, TextFieldStateType, TextFieldTypeType } from '../../molecules/TextField/TextField';
+import { defaultProps as defaultToastProps, ToastProps, ToastStyleType, ToastTypeType } from '../../atoms/Toast/Toast';
+import { HTMLInputType } from '../../atoms/TextInput/TextInput';
 
 export type SignInBlockPresenterProps = SignInBlockProps & {
   handleSignIn?: (payload: SignInPayload) => void;
+  setToastMessage?: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const withPresenter = (
@@ -19,8 +22,18 @@ const withPresenter = (
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
+    const { state } = useLocation<{message: string}>();
+    const { message } = state || {};
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [passwordVisibility, setPasswordVisibility] = useState<HTMLInputType>('password');
+    const [toastMessage, setToastMessage] = useState<string>('');
+
+    useEffect(() => {
+      if(state && message){
+        setToastMessage(message)
+      }
+    },[message])
 
     const handleEmail = ({ target: { value } }) => {
       setEmail(value);
@@ -38,8 +51,12 @@ const withPresenter = (
       }
     };
 
-    const handleIconClick = () => {
-      console.log('click')
+    const togglePasswordVisibility = () => {
+      if(passwordVisibility === 'password'){
+        setPasswordVisibility('text');
+      }else{
+        setPasswordVisibility('password');
+      }
     }
 
     const handleForgetPassword = () => {
@@ -85,10 +102,11 @@ const withPresenter = (
           ...defaultProps.passwordField.textInput,
           textValue: password,
           onTextChanged: handlePassword,
-          // icon: {
-          //   ...defaultTextFieldProps.textInput.icon,
-          //   onIconClicked: handleIconClick
-          // }
+          icon: {
+            ...defaultTextFieldProps.textInput.icon,
+            onIconClicked: togglePasswordVisibility
+          },
+          inputType: passwordVisibility
         },
       },
       nextButton: {
@@ -119,6 +137,17 @@ const withPresenter = (
         },
         onButtonClicked: handleSignUp,
       },
+      toastMessage: toastMessage,
+      toastProps: {
+        ...defaultToastProps,
+        type: 'NoCloseButton',
+        text: {
+          ...defaultToastProps.text,
+          style: 'Basic400',
+          value: toastMessage
+        },
+        style: 'Dark',
+      }
     };
 
     return (

@@ -111,6 +111,7 @@ export type SignUpBlockProps = {
   signInButton?: ButtonProps;
   className?: string;
   handleCreateIdentityAccount?: (payload: AccountRequest) => void;
+  accountExist?: boolean;
 };
 
 const SignUpBlock: React.FC<SignUpBlockProps> = ({

@@ -24,6 +24,8 @@ const withPresenter = (
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [emailError, setEmailError] = useState<TextFieldStateType>('Default');
 
+    const isFormValid = !isEmptyString(email)
+
     const handleEmail = ({ target: { value } }) => {
       setEmail(value);
       setEmailError('Default');
@@ -34,12 +36,13 @@ const withPresenter = (
     };
 
     const handleSendLink = async() => {
-      if (isEmptyString(email)) {
-        setEmailError('Error');
-        setErrorMessage(t('error_message.empty', {
-          field: t('text_field_label.email'),
-        }));
-      } else if (!isEmail(email)) {
+      // if (isEmptyString(email)) {
+      //   setEmailError('Error');
+      //   setErrorMessage(t('error_message.empty', {
+      //     field: t('text_field_label.email'),
+      //   }));
+      // } else 
+      if (!isEmail(email)) {
         setEmailError('Error');
         setErrorMessage(t('error_message.invalid_email'));
       } else {
@@ -87,6 +90,7 @@ const withPresenter = (
           value: t('button_text.send_link'),
         },
         onButtonClicked: handleSendLink,
+        disabled: !isFormValid
       },
       signInButton: {
         ...defaultProps.signInButton,

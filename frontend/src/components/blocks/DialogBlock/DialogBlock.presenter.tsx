@@ -4,7 +4,6 @@ import { useHistory, useLocation, useParams } from 'react-router';
 import { defaultProps, DialogBlockProps } from './DialogBlock';
 import EmailImage from '../../../resources/images/email_verification.png';
 import { APIResponse } from '../../../lib/api/types';
-import { forgotPassword, resendVerifyAccount } from '../../../modules/account/api';
 
 export type DialogBlockPresenterProps = DialogBlockProps & {
   resendVerifyAccount: (email: string) => Promise<APIResponse<void>>;
@@ -29,11 +28,15 @@ const withPresenter = (
   View: React.FC<DialogBlockProps>,
 ): React.FC<DialogBlockPresenterProps> => {
   const Presenter: React.FC<DialogBlockPresenterProps> = (props) => {
+    const {
+      resendVerifyAccount,
+      forgotPassword
+    } = props
     const { t } = useTranslation();
     const history = useHistory();
     const location = useLocation();
     const state = location.state as DialogBlockContentType;
-    const { contentType, email } = state;
+    const { contentType, email } = state || {};
     const [display, setDisplay] = useState<DialogBlockTextDisplay>({
       header:'',
       description: '',

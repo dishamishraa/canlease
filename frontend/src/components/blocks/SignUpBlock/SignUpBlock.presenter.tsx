@@ -6,6 +6,7 @@ import { isEmptyString, isEmail } from '../../../lib/utils';
 import { APIResponse } from '../../../lib/api/types';
 import { AccountRequest, AccountTokenResponse } from '../../../modules/types';
 import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField';
+import { HTMLInputType } from '../../atoms/TextInput/TextInput';
 
 export type SignUpBlockPresenterProps = SignUpBlockProps & {
   handleCreateIdentityAccount?: (payload: AccountRequest) => void;
@@ -26,6 +27,9 @@ const withPresenter = (
     const [emailError, setEmailError] = useState<TextFieldStateType>('Default');
     const [passwordError, setPasswordError] = useState<TextFieldStateType>('Default');
     const [confirmPasswordError, setConfirmPasswordError] = useState<TextFieldStateType>('Default');
+    const [passwordVisibility, setPasswordVisibility] = useState<HTMLInputType>('password');
+    const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState<HTMLInputType>('password');
+    const FormInvalid = (isEmptyString(email) || isEmptyString(password) || isEmptyString(confirmPassword));
 
     const handleEmail = ({ target: { value } }) => {
       setEmail(value);
@@ -66,6 +70,22 @@ const withPresenter = (
       history.push({ pathname: '/account/signIn' });
     };
 
+    const togglePasswordVisibility = () => {
+      if(passwordVisibility === 'password'){
+        setPasswordVisibility('text');
+      }else{
+        setPasswordVisibility('password');
+      }
+    }
+
+    const toggleConfirmPasswordVisibility = () => {
+        if(confirmPasswordVisibility === 'password'){
+            setConfirmPasswordVisibility('text')
+        }else{
+            setConfirmPasswordVisibility('password')
+        }
+    }
+
     const signUpProps: SignUpBlockProps = {
       ...defaultProps,
       blockHeading: {
@@ -102,6 +122,11 @@ const withPresenter = (
           ...defaultProps.createPasswordField.textInput,
           textValue: password,
           onTextChanged: handlePassowrd,
+          inputType: passwordVisibility,
+          icon: {
+            ...defaultTextFieldProps.textInput.icon,
+            onIconClicked: togglePasswordVisibility
+          }
         },
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
@@ -119,6 +144,11 @@ const withPresenter = (
           ...defaultProps.confirmPasswordField.textInput,
           textValue: confirmPassword,
           onTextChanged: handleConfirmPassword,
+          inputType: confirmPasswordVisibility,
+          icon: {
+            ...defaultTextFieldProps.textInput.icon,
+            onIconClicked: toggleConfirmPasswordVisibility
+          }
         },
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
@@ -133,6 +163,7 @@ const withPresenter = (
           value: t('button_text.sign_up'),
         },
         onButtonClicked: handleSignUp,
+        disabled: FormInvalid
       },
       bottomContent: {
         ...defaultProps.bottomContent,

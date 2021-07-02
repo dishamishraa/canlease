@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { Redirect, useLocation, useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { AuthPageProps, PersonalInformation, ContactInformation, BusinessInformation } from './AuthPage';
-import { AccountTokenResponse, AccountRequest, SignInPayload, CreateProfilePayload, Profile } from '../../../modules/types';
+import { AccountTokenResponse, AccountRequest, SignInPayload, CreateProfilePayload, Profile, UpdateNamePayload } from '../../../modules/types';
 import { APIResponse } from '../../../lib/api/types';
-import { AuthContext, AuthProvider } from '../../../modules/auth';
-import { User } from '../../../lib/types';
+import { getProfile } from '../../../modules/profile/api';
+import { AUTH_COOKIE, MAX_AGE } from '../../../lib/config'
 
 export type AuthPagePresenterProps = AuthPageProps & {
   createIdentityAccount: (payload: AccountRequest) => Promise<APIResponse<AccountTokenResponse>>;
   signIn: (payload: SignInPayload) => Promise<APIResponse<AccountTokenResponse>>;
-  // getProfile: (id: string | number) => Promise<APIResponse<Profile>>;
   createProfile: (payload: CreateProfilePayload) => Promise<APIResponse<Profile>>;
+  updateName: (payload: UpdateNamePayload) => Promise<APIResponse<void>>;
 };
 
 const withPresenter = (
@@ -21,8 +21,8 @@ const withPresenter = (
     const {
       createIdentityAccount,
       signIn,
-      // getProfile,
-      createProfile
+      createProfile,
+      updateName,
     } = props;
 
     const history = useHistory();
@@ -30,7 +30,8 @@ const withPresenter = (
     const [cookies, setCookie, removeCookie] = useCookies();
     const [personalInfo, setPersonalInfo] = useState<PersonalInformation>({
       firstName: '',
-      lastName: ''
+      lastName: '',
+      userType: 'vendor'
     });
     const [contactInfo, setContactInfo] = useState<ContactInformation>({
       email: '',
@@ -48,10 +49,7 @@ const withPresenter = (
       businessPhone: '',
     });
     const [email, setEmail] = useState<string>('');
-
-    console.log(personalInfo)
-    console.log(contactInfo)
-    console.log(businessInfo)
+    const [id, setId] = useState<string>('');
     
     // sign up
     const handleCreateIdentityAccount = async (payload: AccountRequest) => {
@@ -61,7 +59,7 @@ const withPresenter = (
         history.push({
           pathname: '/account/verifyEmail',
           state: {
-            email: data.email,
+            email: email,
             contentType: 'VerifyEmail',
           },
         });
@@ -71,51 +69,64 @@ const withPresenter = (
     // sign in
     const handleSignIn = async (payload: SignInPayload) => {
       const { data: signInData, error } = await signIn(payload);
+      setEmail(payload.email);
       if(error){
         if(error.message === 'User has not confirmed sign up'){
           history.push({
             pathname: '/account/verifyEmail',
             state: {
-              email: payload.email,
+              email: email,
               contentType: 'VerifyEmail',
             },
           });
         }
       }
-      // if(signInData){
+      if(signInData){
         // store jwt token in cookie
-        // setCookie('token', signInData.token);
+        setCookie(AUTH_COOKIE, { token: signInData.token } , { httpOnly: true, secure: true });
+        setId(signInData.id);
         // find the salesforce profile with the identity account id
-        // const { data: profileData } = await getProfile('1')
-        // if(profileData){
-          // if found, check the userType and push to the correct dashboard
-        // }else{
+        const data = await getProfile(id);
+        if(data){
+          // push to dashboard
+          const { userType } = data;
+          history.push({ pathname: '/dashboard', state: {
+            userType: userType
+          }});
+        }else{
           // if no related profile found, push setup page
           history.push({
             pathname: '/account/personalInformation',
             state: {
-              // email: signInData.email
-              email: "test@gmail.com"
+              email: email
             }
           })
-        // }
-      // } 
+        }
+      } 
     };
 
     const handleCompleteSetup = async() => {
-      console.log(state)
       const payload: CreateProfilePayload = {
         ...personalInfo,
         ...contactInfo,
         ...businessInfo,
         country: 'Canada',
-        portalId: '1',
-        userType: 'customer',
+        portalId: id,
         title: ''
       }
+      const { portalId, firstName, lastName, userType } = payload
       const { data } = await createProfile(payload);
       if(data){
         // update identity with first name and last name
+        const updateNamePayload: UpdateNamePayload = {
+          id: portalId,
+          firstName: firstName,
+          lastName: lastName
+        }
+        await updateName(updateNamePayload);
+        history.push({ pathname: '/dashboard', state: {
+          userType: userType
+        }});
       }
     }
 

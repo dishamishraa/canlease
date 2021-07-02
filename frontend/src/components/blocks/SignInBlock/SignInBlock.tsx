@@ -8,8 +8,9 @@ import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
 import { SignInPayload } from '../../../modules/types';
 import Toast, { ToastProps } from '../../atoms/Toast';
-import { ToastTypeType, ToastStyleType } from '../../atoms/Toast/Toast';
+import { ToastTypeType, ToastStyleType, defaultProps as defaultToastProps } from '../../atoms/Toast/Toast';
 import { IconProps } from '../../atoms/Icon';
+import { isEmptyString } from '../../../lib/utils';
 
 export const defaultProps = {
   blockHeading: {
@@ -109,6 +110,9 @@ export type SignInBlockProps = {
   bottomContent?: TextProps;
   signUpButton?: ButtonProps;
   handleSignIn?: (payload: SignInPayload) => void;
+  toastProps?: ToastProps;
+  toastMessage?: string;
+  setToastMessage?: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const SignInBlock: React.FC<SignInBlockProps> = ({
@@ -121,8 +125,16 @@ const SignInBlock: React.FC<SignInBlockProps> = ({
   className,
   bottomContent,
   signUpButton,
-}) => (
+  toastMessage,
+  toastProps
+}) => {
+  let toastDisplay;
+  if(!isEmptyString(toastMessage)){
+    toastDisplay = <Toast {...toastProps}/>
+  }
+  return (
     <div className={cx(styles.signInBlock, className)}>
+      {toastDisplay}
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
           <Text
@@ -157,6 +169,7 @@ const SignInBlock: React.FC<SignInBlockProps> = ({
       </div>
     </div>
 );
+}
 
 SignInBlock.defaultProps = defaultProps;
 

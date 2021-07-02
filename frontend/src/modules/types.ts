@@ -79,6 +79,8 @@ export type Lease = {
   quoteId: string;
 };
 
+export type UserType = 'customer' | 'vendor' | 'rep';
+
 export type Profile = {
   name: string;
   firstname: string;
@@ -99,7 +101,7 @@ export type Profile = {
   theCompanyId: string;
   portalId: string;
   rateCardId: string;
-  userType: 'customer' | 'vendor' | 'rep';
+  userType: UserType;
   operationName: string;
   businessSector: string;
   businessPhone: string;
@@ -173,7 +175,7 @@ export type AccountRequest = {
 };
 
 export type AccountTokenResponse = {
-  id: number;
+  id: string;
   uuid: string;
   token: string;
   email: string;
@@ -190,4 +192,10 @@ export type SignInPayload = {
 export type UpdatePasswordPayload = {
   id: string | number;
   password: string;
+}
+
+export type UpdateNamePayload = {
+  id: string;
+  firstName: string;
+  lastName: string;
 }

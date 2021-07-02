@@ -66,21 +66,65 @@ const withPresenter = (
       }
     }
 
-    const handleStretchClick = () => {
-
-    }
-
-    const items = t('business_information.business_sector_options');
+    const handleSelectOption0 = () => setBusinessSector(t('business_information.business_sector_options.0'));
+    const handleSelectOption1 = () => setBusinessSector(t('business_information.business_sector_options.1'));
+    const handleSelectOption2 = () => setBusinessSector(t('business_information.business_sector_options.2'));
+    const handleSelectOption3 = () => setBusinessSector(t('business_information.business_sector_options.3'));
+    const handleSelectOption4 = () => setBusinessSector(t('business_information.business_sector_options.4'));
+    const handleSelectOption5 = () => setBusinessSector(t('business_information.business_sector_options.5'));
+    const handleSelectOption6 = () => setBusinessSector(t('business_information.business_sector_options.6'));
 
     const contextualMenu: ContextualMenuProps = {
       contextualMenuItemList: {
         contextualMenuItems: [
           {
-            onContextualMenuItemClicked: handleStretchClick,
             text: {
               ...defaultMenuItemProps.text,
-              value: t('business_information.business_sector_options[0]'),
+              value: t('business_information.business_sector_options.0'),
             },
+            onContextualMenuItemClicked: handleSelectOption0
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('business_information.business_sector_options.1'),
+            },
+            onContextualMenuItemClicked: handleSelectOption1
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('business_information.business_sector_options.2'),
+            },
+            onContextualMenuItemClicked: handleSelectOption2
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('business_information.business_sector_options.3'),
+            },
+            onContextualMenuItemClicked: handleSelectOption3
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('business_information.business_sector_options.4'),
+            },
+            onContextualMenuItemClicked: handleSelectOption4
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('business_information.business_sector_options.5'),
+            },
+            onContextualMenuItemClicked: handleSelectOption5
+          },
+          {
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t('business_information.business_sector_options.6'),
+            },
+            onContextualMenuItemClicked: handleSelectOption6
           },
         ],
       },

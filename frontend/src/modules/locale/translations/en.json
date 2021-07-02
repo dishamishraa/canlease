@@ -170,19 +170,19 @@
     "contact_information":{
         "header": "Contact information",
         "province": {
-            "AB": "Alberta (AB)",
-            "BC": "British Columbia (BC)",
-            "MB": "Manitoba (MB)",
-            "NB": "New Brunswick (NB)",
-            "NL": "Newfoundland and Labrador (NL)",
-            "NT": "Northwest Territories (NT)",
-            "NS": "Nova Scotia (NS)",
-            "NU": "Nunavut (NU)",
-            "ON": "Ontario (ON)",
-            "PE": "Prince Edward Island (PE)",
-            "QC": "Quebec (OC)",
-            "SK": "Saskatchewan (SK)",
-            "YT": "Yukon (YT)"
+            "0": "Alberta (AB)",
+            "1": "British Columbia (BC)",
+            "2": "Manitoba (MB)",
+            "3": "New Brunswick (NB)",
+            "4": "Newfoundland and Labrador (NL)",
+            "5": "Northwest Territories (NT)",
+            "6": "Nova Scotia (NS)",
+            "7": "Nunavut (NU)",
+            "8": "Ontario (ON)",
+            "9": "Prince Edward Island (PE)",
+            "10": "Quebec (OC)",
+            "11": "Saskatchewan (SK)",
+            "12": "Yukon (YT)"
         }
     },
     "business_information":{

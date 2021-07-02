@@ -8,6 +8,7 @@ import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../..
 import { isEmptyString } from '../../../lib/utils';
 import { updatePassword } from '../../../modules/account/api';
 import { useCookies } from 'react-cookie';
+import { HTMLInputType } from '../../atoms/TextInput/TextInput';
 
 export type CreatePasswordBlockPresenterProps = CreatePasswordBlockProps & {
     updatePassword?:(payload: UpdatePasswordPayload) => Promise<APIResponse<void>>;
@@ -28,6 +29,10 @@ const withPresenter = (
     const [createPasswordError, setCreatePasswordError] = useState<TextFieldStateType>('Default');
     const [confirmPassword, setConfirmPassword] = useState<string>('')
     const [confirmPasswordError, setConfirmPasswordError] = useState<TextFieldStateType>('Default');
+    const [passwordVisibility, setPasswordVisibility] = useState<HTMLInputType>('password');
+    const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState<HTMLInputType>('password');
+
+    const FormInvalid = (isEmptyString(createPassword) || isEmptyString(confirmPassword))
 
     const handleSignIn = () => {
         history.push({pathname: '/account/signin'})
@@ -55,15 +60,27 @@ const withPresenter = (
                 history.push({
                     pathname: '/account/signin',
                     state: {
-                        message: 'Success'
+                        message: 'New password set'
                     }
                 })
             })
         }
     }
 
-    const handleIconClick = () => {
-        console.log('click')
+    const togglePasswordVisibility = () => {
+        if(passwordVisibility === 'password'){
+          setPasswordVisibility('text');
+        }else{
+          setPasswordVisibility('password');
+        }
+    }
+
+    const toggleConfirmPasswordVisibility = () => {
+        if(confirmPasswordVisibility === 'password'){
+            setConfirmPasswordVisibility('text')
+        }else{
+            setConfirmPasswordVisibility('password')
+        }
     }
 
     const createPasswordBlockProps: CreatePasswordBlockPresenterProps = {
@@ -83,8 +100,14 @@ const withPresenter = (
                 value: t('text_field_label.create_password')
             },
             textInput: {
+                ...defaultProps.createPasswordField.textInput,
                 textValue: createPassword,
                 onTextChanged: handleCreatePassword,
+                inputType: passwordVisibility,
+                icon: {
+                    ...defaultTextFieldProps.textInput.icon,
+                    onIconClicked: togglePasswordVisibility
+                }
             },
             errorMessage: {
                 ...defaultTextFieldProps.errorMessage,
@@ -101,10 +124,16 @@ const withPresenter = (
             errorMessage: {
                 ...defaultTextFieldProps.errorMessage,
                 value: t('error_message.password_mismatch'),
-              },
+            },
             textInput: {
+                ...defaultProps.confirmPasswordField.textInput,
                 textValue: confirmPassword,
-                onTextChanged: handleConfirmPassword
+                onTextChanged: handleConfirmPassword,
+                inputType: confirmPasswordVisibility,
+                icon: {
+                    ...defaultTextFieldProps.textInput.icon,
+                    onIconClicked: toggleConfirmPasswordVisibility
+                }
             },
             state: confirmPasswordError
         },
@@ -115,7 +144,7 @@ const withPresenter = (
                 value: t('button_text.save')
             },
             onButtonClicked: handleSavePassword,
-            disabled: (isEmptyString(createPassword) || isEmptyString(confirmPassword))
+            disabled: FormInvalid
         },
         signInButton: {
             ...defaultProps.signInButton,
