@@ -147,8 +147,13 @@ export type AccountRequest = {
   enabled: boolean;
 };
 
+<<<<<<< HEAD
 export type Account = {
   id: number;
+=======
+export type AccountTokenResponse = {
+  id: string;
+>>>>>>> 8810175... commit before rebase with develop
   uuid: string;
   email: string;
   firstname: string;
