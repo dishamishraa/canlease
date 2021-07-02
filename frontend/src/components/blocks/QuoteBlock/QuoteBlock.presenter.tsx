@@ -93,7 +93,6 @@ const withPresenter = (
     const rateCardsArray: RateCardProps[] = [];
     let quoteRateSectionProps: QuoteRateSectionProps = {};
     const termDetailItemArray: QuoteDetailItemProps[] = [];
-    console.log(termDetailItemArray)
     const termDisplay = {
       '12M': 12,
       '24M': 24,

@@ -16,8 +16,3 @@ export const Type2: React.VFC<{}> = () => (
     type='Type2'
     />
 );
-export const Type3: React.VFC<{}> = () => (
-  <QuoteDetailItem
-    type='Type3'
-    />
-);

@@ -5,10 +5,10 @@ import styles from './QuoteDetailItem.module.scss';
 
 import Text, { TextProps } from '../../atoms/Text';
 
-export type QuoteDetailItemTypeType = 'Type1' | 'Type2' | 'Type3';
+export type QuoteDetailItemTypeType = 'Type1' | 'Type2';
 
 export const defaultProps = {
-  type: 'Type3' as QuoteDetailItemTypeType,
+  type: 'Type2' as QuoteDetailItemTypeType,
   labelText: {
     style: 'Basic800',
     align: 'Left',
