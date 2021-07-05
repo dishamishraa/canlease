@@ -35,8 +35,7 @@ const Select: React.FC<SelectProps> = ({
   text,
   icon,
   className,
-}) => {
-  return (
+}) => (
     <button
       type={selectType}
       onClick={onSelectClicked}
@@ -48,8 +47,7 @@ const Select: React.FC<SelectProps> = ({
         className={styles.icon}
         {...icon} />
     </button>
-  );
-};
+);
 
 Select.defaultProps = defaultProps;
 
