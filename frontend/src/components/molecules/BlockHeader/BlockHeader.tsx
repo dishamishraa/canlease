@@ -10,13 +10,13 @@ export type BlockHeaderStyleType = 'Heading1' | 'Heading2';
 export type BlockHeaderTypeType = 'Default' | 'WithButton';
 
 export const defaultProps = {
-  style: 'Heading2' as BlockHeaderStyleType,
+  style: 'Heading1' as BlockHeaderStyleType,
   type: 'WithButton' as BlockHeaderTypeType,
   text: {
     style: 'Basic800',
     align: 'Left',
     size: 'Large',
-    type: 'Heading2',
+    type: 'Heading1',
   } as TextProps,
   button: {
     type: 'Button',

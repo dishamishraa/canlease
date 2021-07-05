@@ -18,3 +18,9 @@ export const Heading2WithButton: React.VFC<{}> = () => (
     type='WithButton'
     />
 );
+export const Heading1WithButton: React.VFC<{}> = () => (
+  <BlockHeader
+    style='Heading1'
+    type='WithButton'
+    />
+);

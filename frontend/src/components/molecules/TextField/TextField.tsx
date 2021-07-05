@@ -11,7 +11,7 @@ export type TextFieldTypeType = 'Text' | 'Password' | 'TextArea';
 
 export const defaultProps = {
   state: 'Error' as TextFieldStateType,
-  type: 'Password' as TextFieldTypeType,
+  type: 'TextArea' as TextFieldTypeType,
   label: {
     style: 'Basic800',
     align: 'Left',
@@ -19,7 +19,7 @@ export const defaultProps = {
     type: 'Paragraph2',
   } as TextProps,
   textInput: {
-    type: 'Password',
+    type: 'TextArea',
     icon: {
       asset: 'Show',
       style: 'Brand500',

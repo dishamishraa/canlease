@@ -24,7 +24,6 @@ const ClickableRateCardList: React.FC<ClickableRateCardListProps> = ({
       className={styles.clickableRateCard}
       {...clickableRateCard} />
   ));
-
   return (
     <div className={cx(styles.clickableRateCardList, className)}>
       {clickableRateCardArray}

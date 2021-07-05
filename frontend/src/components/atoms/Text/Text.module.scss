@@ -884,6 +884,33 @@
   }
 
 }
+.textRed200CenterSmallButtonGiant {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .value {
+    align-self: flex-start;
+    flex: 1 1 auto;
+    font-family: 'Lato', 'sans-serif';
+    font-size: 0.875rem;
+    font-weight: normal;
+    line-height: 1rem;
+    text-transform: uppercase;
+    text-align: center;
+    color: rgb(216, 36, 0);
+  }
+
+}
 .textBasic100CenterSmallButtonGiant {
   overflow: hidden;
   display: flex;
@@ -1861,6 +1888,35 @@
       text-transform: uppercase;
       text-align: center;
       color: rgb(26, 35, 126);
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .textRed200CenterSmallButtonGiant {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .value {
+      align-self: flex-start;
+      flex: 1 1 auto;
+      font-family: 'Lato', 'sans-serif';
+      font-size: 0.875rem;
+      font-weight: normal;
+      line-height: 1rem;
+      text-transform: uppercase;
+      text-align: center;
+      color: rgb(216, 36, 0);
     }
   
   }

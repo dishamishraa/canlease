@@ -42,12 +42,13 @@ import DashboardAsset from '../../../resources/icons/Dashboard.svg';
 import QuotesAsset from '../../../resources/icons/Quotes.svg';
 import ApplicationsAsset from '../../../resources/icons/Applications.svg';
 import RateCardsAsset from '../../../resources/icons/RateCards.svg';
+import EditAsset from '../../../resources/icons/Edit.svg';
 
-export type IconAssetType = 'Plus' | 'Settings' | 'Close' | 'MoreHorizontal' | 'MoreVertical' | 'ArrowLeft' | 'ArrowRight' | 'ArrowUp' | 'ArrowDown' | 'ChevronUp' | 'ChevronDown' | 'ChevronLeft' | 'ChevronRight' | 'AlertCircle' | 'AlertTriangle' | 'QuestionMarkCircle' | 'Trash' | 'Picture' | 'Film' | 'RadioButtonOn' | 'RadioButtonOff' | 'CheckboxUnchecked' | 'CheckboxChecked' | 'Heart' | 'HeartFilled' | 'Options' | 'CloseCircleFilled' | 'CheckmarkCircleFilled' | 'CheckmarkCircle' | 'Menu' | 'ExternalLink' | 'Share' | 'Share2' | 'Show' | 'Hide' | 'Dashboard' | 'Quotes' | 'Applications' | 'RateCards';
+export type IconAssetType = 'Plus' | 'Settings' | 'Close' | 'MoreHorizontal' | 'MoreVertical' | 'ArrowLeft' | 'ArrowRight' | 'ArrowUp' | 'ArrowDown' | 'ChevronUp' | 'ChevronDown' | 'ChevronLeft' | 'ChevronRight' | 'AlertCircle' | 'AlertTriangle' | 'QuestionMarkCircle' | 'Trash' | 'Picture' | 'Film' | 'RadioButtonOn' | 'RadioButtonOff' | 'CheckboxUnchecked' | 'CheckboxChecked' | 'Heart' | 'HeartFilled' | 'Options' | 'CloseCircleFilled' | 'CheckmarkCircleFilled' | 'CheckmarkCircle' | 'Menu' | 'ExternalLink' | 'Share' | 'Share2' | 'Show' | 'Hide' | 'Dashboard' | 'Quotes' | 'Applications' | 'RateCards' | 'Edit';
 export type IconStyleType = 'Basic800' | 'Brand500' | 'Basic100' | 'Basic400' | 'Red200';
 
 export const defaultProps = {
-  asset: 'RateCards' as IconAssetType,
+  asset: 'Edit' as IconAssetType,
   style: 'Brand500' as IconStyleType,
 };
 
@@ -186,6 +187,9 @@ const Icon: React.FC<IconProps> = ({
       break;
     case 'RateCards':
       content = RateCardsAsset;
+      break;
+    case 'Edit':
+      content = EditAsset;
       break;
     default:
       break;

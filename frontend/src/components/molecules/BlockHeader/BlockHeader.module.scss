@@ -61,6 +61,44 @@
   }
 
 }
+.blockHeaderHeading1WithButton {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .text {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-end;
+    flex: 1 1 auto;
+  }
+
+  .button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: flex-end;
+    flex: 0 0 auto;
+  }
+
+}
 
 @media (min-width: 768px) {
   .blockHeaderHeading1Default {
@@ -91,6 +129,46 @@
 
 @media (min-width: 768px) {
   .blockHeaderHeading2WithButton {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .text {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: flex-end;
+      flex: 1 1 auto;
+    }
+  
+    .button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem 1rem 0.5rem 1rem;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: flex-end;
+      flex: 0 0 auto;
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .blockHeaderHeading1WithButton {
     overflow: hidden;
     display: flex;
     flex-direction: row;

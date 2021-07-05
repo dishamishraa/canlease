@@ -24,7 +24,6 @@ const RateCardList: React.FC<RateCardListProps> = ({
       className={styles.rateCard}
       {...rateCard} />
   ));
-
   return (
     <div className={cx(styles.rateCardList, className)}>
       {rateCardArray}

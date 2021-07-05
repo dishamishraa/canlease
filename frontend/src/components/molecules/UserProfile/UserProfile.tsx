@@ -81,7 +81,6 @@ const UserProfile: React.FC<UserProfileProps> = ({
   let primaryView;
   let iconView;
   let secondaryView;
-
   switch (state) {
     case 'SignedIn':
       userIconView = (

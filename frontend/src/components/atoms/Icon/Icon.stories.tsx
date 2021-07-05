@@ -144,6 +144,12 @@ export const TrashBasic800: React.VFC<{}> = () => (
     style='Basic800'
     />
 );
+export const TrashRed200: React.VFC<{}> = () => (
+  <Icon
+    asset='Trash'
+    style='Red200'
+    />
+);
 export const PictureBasic800: React.VFC<{}> = () => (
   <Icon
     asset='Picture'
@@ -399,6 +405,12 @@ export const RateCardsBasic400: React.VFC<{}> = () => (
 export const RateCardsBrand500: React.VFC<{}> = () => (
   <Icon
     asset='RateCards'
+    style='Brand500'
+    />
+);
+export const EditBrand500: React.VFC<{}> = () => (
+  <Icon
+    asset='Edit'
     style='Brand500'
     />
 );

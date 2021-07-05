@@ -47,7 +47,6 @@ const CheckboxItem: React.FC<CheckboxItemProps> = ({
       className={styles.text}
       {...text} />
   );
-
   switch (state) {
     case 'Unselected':
       break;

@@ -42,7 +42,6 @@ const TabItem: React.FC<TabItemProps> = ({
   const selectorView = (
     <div className={styles.selector}/>
   );
-
   switch (state) {
     case 'Selected':
       break;

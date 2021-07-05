@@ -20,7 +20,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    align-self: center;
+    align-self: start;
     flex: 0 0 auto;
     @media (max-width: 767px) {
       &:nth-child(1) {
@@ -67,7 +67,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    align-self: center;
+    align-self: start;
     flex: 0 0 auto;
     @media (max-width: 767px) {
       &:nth-child(1) {
@@ -115,7 +115,7 @@
       flex-direction: row;
       justify-content: flex-start;
       align-items: flex-start;
-      align-self: center;
+      align-self: start;
       flex: 0 0 auto;
       @media (max-width: 767px) {
         &:nth-child(1) {
@@ -161,7 +161,7 @@
       flex-direction: row;
       justify-content: flex-start;
       align-items: flex-start;
-      align-self: center;
+      align-self: start;
       flex: 0 0 auto;
       &:nth-child(1) {
         margin-left: 0;

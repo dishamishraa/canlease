@@ -8,9 +8,8 @@
   > * {
     margin-top: 2rem;
   }
-  align-self: flex-start;
-  width: 17rem;
-  flex: 0 0 8.25rem;
+  align-self: stretch;
+  flex: 0 0 auto;
   @media (max-width: 767px) {
     &:nth-child(1) {
       margin-top: 0;
@@ -82,9 +81,8 @@
   > * {
     margin-top: 1.5rem;
   }
-  align-self: flex-start;
-  width: 17rem;
-  flex: 0 0 11.25rem;
+  align-self: stretch;
+  flex: 0 0 auto;
   @media (max-width: 767px) {
     &:nth-child(1) {
       margin-top: 0;
@@ -214,9 +212,8 @@
   > * {
     margin-top: 2rem;
   }
-  align-self: flex-start;
-  width: 17rem;
-  flex: 0 0 9.25rem;
+  align-self: stretch;
+  flex: 0 0 auto;
   @media (max-width: 767px) {
     &:nth-child(1) {
       margin-top: 0;

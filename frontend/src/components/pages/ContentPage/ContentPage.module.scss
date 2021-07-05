@@ -9,11 +9,17 @@
     margin-top: 1.5rem;
   }
 
+  .topBlock {
+    overflow: hidden;
+  }
   .topContent {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    > * {
+      margin-top: 1.5rem;
+    }
     align-self: stretch;
     flex: 0 0 auto;
     @media (max-width: 575px) {
@@ -23,7 +29,7 @@
     }
   }
 
-  .topBlock {
+  .topActionBlock {
     overflow: hidden;
     display: flex;
     flex-direction: column;

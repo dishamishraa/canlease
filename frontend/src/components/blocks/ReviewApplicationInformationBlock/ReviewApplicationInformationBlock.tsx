@@ -23,6 +23,12 @@ export const defaultProps = {
     size: 'Large',
     type: 'Heading1',
   } as TextProps,
+  sectionHeadingOne: {
+    style: 'Basic800',
+    align: 'Left',
+    size: 'Large',
+    type: 'Heading2',
+  } as TextProps,
   quoteDetails: {
     type: 'WithEditButton',
     text: {
@@ -123,11 +129,11 @@ export const defaultProps = {
       ],
     },
   } as DetailsSectionProps,
-  sectionHeading: {
+  sectionHeadingTwo: {
     style: 'Basic800',
     align: 'Left',
     size: 'Large',
-    type: 'Heading1',
+    type: 'Heading2',
   } as TextProps,
   text: {
     style: 'Basic800',
@@ -191,11 +197,12 @@ export const defaultProps = {
 export type ReviewApplicationInformationBlockProps = {
   stepper?: StepperProps;
   blockHeading?: TextProps;
+  sectionHeadingOne?: TextProps;
   quoteDetails?: DetailsSectionProps;
   paymentDetails?: DetailsSectionProps;
   assetDetails?: DetailsSectionProps;
   businessTypeDetails?: DetailsSectionProps;
-  sectionHeading?: TextProps;
+  sectionHeadingTwo?: TextProps;
   text?: TextProps;
   personalDetails?: DetailsSectionProps;
   contactDetails?: DetailsSectionProps;
@@ -207,11 +214,12 @@ export type ReviewApplicationInformationBlockProps = {
 const ReviewApplicationInformationBlock: React.FC<ReviewApplicationInformationBlockProps> = ({
   stepper,
   blockHeading,
+  sectionHeadingOne,
   quoteDetails,
   paymentDetails,
   assetDetails,
   businessTypeDetails,
-  sectionHeading,
+  sectionHeadingTwo,
   text,
   personalDetails,
   contactDetails,
@@ -228,6 +236,9 @@ const ReviewApplicationInformationBlock: React.FC<ReviewApplicationInformationBl
           className={styles.blockHeading}
           {...blockHeading} />
       </div>
+      <Text
+        className={styles.sectionHeadingOne}
+        {...sectionHeadingOne} />
       <DetailsSection
         className={styles.quoteDetails}
         {...quoteDetails} />
@@ -241,8 +252,8 @@ const ReviewApplicationInformationBlock: React.FC<ReviewApplicationInformationBl
         className={styles.businessTypeDetails}
         {...businessTypeDetails} />
       <Text
-        className={styles.sectionHeading}
-        {...sectionHeading} />
+        className={styles.sectionHeadingTwo}
+        {...sectionHeadingTwo} />
       <Text
         className={styles.text}
         {...text} />

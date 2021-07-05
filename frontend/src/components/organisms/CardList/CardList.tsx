@@ -24,7 +24,6 @@ const CardList: React.FC<CardListProps> = ({
       className={styles.userSelectionCard}
       {...userSelectionCard} />
   ));
-
   return (
     <div className={cx(styles.cardList, className)}>
       {userSelectionCardArray}

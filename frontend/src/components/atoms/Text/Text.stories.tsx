@@ -270,6 +270,14 @@ export const Brand500CenterSmallButtonGiant: React.VFC<{}> = () => (
     type='ButtonGiant'
     />
 );
+export const Red200CenterSmallButtonGiant: React.VFC<{}> = () => (
+  <Text
+    style='Red200'
+    align='Center'
+    size='Small'
+    type='ButtonGiant'
+    />
+);
 export const Basic100CenterSmallButtonGiant: React.VFC<{}> = () => (
   <Text
     style='Basic100'
