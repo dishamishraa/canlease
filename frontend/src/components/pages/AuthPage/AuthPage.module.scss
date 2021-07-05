@@ -13,8 +13,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     padding: 1rem 0rem 1rem 0rem;
-    align-self: flex-start;
-    width: 19rem;
+    align-self: stretch;
     flex: 0 0 auto;
   }
 
@@ -28,9 +27,8 @@
     > * {
       margin-top: 2.5rem;
     }
-    align-self: flex-start;
-    width: 17rem;
-    flex: 0 0 34.1875rem;
+    align-self: stretch;
+    flex: 0 0 auto;
   }
 
 }
@@ -67,8 +65,8 @@
         margin-top: 2.5rem;
       }
       align-self: center;
-      width: 26.25rem;
-      flex: 0 0 30rem;
+      width: 31.25rem;
+      flex: 0 0 auto;
     }
   
   }
@@ -106,8 +104,8 @@
         margin-top: 2.5rem;
       }
       align-self: center;
-      width: 26.25rem;
-      flex: 0 0 30rem;
+      width: 31.25rem;
+      flex: 0 0 auto;
     }
   
   }
@@ -145,8 +143,8 @@
         margin-top: 2.5rem;
       }
       align-self: center;
-      width: 26.25rem;
-      flex: 0 0 30rem;
+      width: 31.25rem;
+      flex: 0 0 auto;
     }
   
   }
@@ -184,8 +182,8 @@
         margin-top: 2.5rem;
       }
       align-self: center;
-      width: 26.25rem;
-      flex: 0 0 30rem;
+      width: 31.25rem;
+      flex: 0 0 auto;
     }
   
   }

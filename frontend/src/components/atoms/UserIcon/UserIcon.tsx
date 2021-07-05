@@ -15,8 +15,6 @@ export const defaultProps = {
 export type UserIconProps = {
   type?: UserIconTypeType;
   style?: UserIconStyleType;
-  background?: string;
-  backgroundAlt?: string;
   value?: string;
   className?: string;
 };
@@ -24,36 +22,28 @@ export type UserIconProps = {
 const UserIcon: React.FC<UserIconProps> = ({
   type,
   style,
-  background,
-  backgroundAlt,
   value,
   className,
 }) => {
-
   const currentStyle = styles[`userIcon${type}${style}`];
 
-  const backgroundView = (
-    <img
-      className={styles.background}
-      alt={backgroundAlt}
-      src={background} />
-  );
-  const valueView = (
-    <p className={styles.value}>
-      {value}
-    </p>
-  );
-  
-  
+  let backgroundView;
+
   switch (type) {
     case 'Initials':
+      backgroundView = (
+        <div className={styles.background}>
+          <p className={styles.value}>
+            {value}
+          </p>
+        </div>
+      );
       break;
   }
 
   return (
     <div className={cx(currentStyle, className)}>
       {backgroundView}
-      {valueView}
     </div>
   );
 };

@@ -2,14 +2,14 @@
   overflow: hidden;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
   > * {
     margin-left: 0.5rem;
   }
   align-self: flex-start;
-  width: 4rem;
-  flex: 0 0 2rem;
+  width: 50%;
+  flex: 0 0 auto;
   @media (max-width: 767px) {
     &:nth-child(1) {
       margin-top: 0;
@@ -66,14 +66,13 @@
   overflow: hidden;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
   > * {
     margin-left: 0.5rem;
   }
   align-self: flex-start;
-  width: 11.5rem;
-  flex: 0 0 2rem;
+  flex: 0 0 auto;
   @media (max-width: 767px) {
     &:nth-child(1) {
       margin-top: 0;
@@ -123,14 +122,13 @@
     overflow: hidden;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     > * {
       margin-left: 0.5rem;
     }
     align-self: flex-start;
-    width: 9.9375rem;
-    flex: 0 0 2rem;
+    flex: 0 0 auto;
     @media (max-width: 767px) {
       &:nth-child(1) {
         margin-top: 0;
@@ -212,14 +210,13 @@
     overflow: hidden;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     > * {
       margin-left: 0.5rem;
     }
     align-self: flex-start;
-    width: 11.5rem;
-    flex: 0 0 2rem;
+    flex: 0 0 auto;
     &:nth-child(1) {
       margin-top: 0;
     }

@@ -1228,7 +1228,7 @@
   }
 
 }
-.buttonIconTextButtonSmallNoneBasic:hover {
+.buttonIconTextButtonSmallNoneBasic:hover:enabled {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -1276,7 +1276,7 @@
   }
 
 }
-.buttonButtonSmallNoneBasic:hover {
+.buttonButtonSmallNoneBasic:hover:enabled {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -1648,7 +1648,7 @@
   }
 
 }
-.buttonTextIconButtonLargeBasicBasic:hover {
+.buttonTextIconButtonLargeBasicBasic:hover:enabled {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -1961,7 +1961,7 @@
   }
 
 }
-.buttonTextIconButtonLargeColourBrand:hover {
+.buttonTextIconButtonLargeColourBrand:hover:enabled {
   display: flex;
   flex-direction: row;
   justify-content: center;
