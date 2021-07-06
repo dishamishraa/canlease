@@ -19,7 +19,7 @@ export const createIdentityAccount = async (payload: AccountRequest): Promise<Ac
 
 export const resendVerifyAccount = async (email: string): Promise<void> => {
   try {
-    await axios.post(`${getServerUrl()}/accounts/actions/resendVerifyEmail`, {
+    await axios.post(`${getServerUrl()}/actions/resendVerifyEmail`, {
       params: {
         email,
       },
@@ -42,7 +42,7 @@ export const signIn = async (payload: SignInPayload): Promise<AccountTokenRespon
 
 export const forgotPassword = async (email: string): Promise<void> => {
   try {
-    await axios.post(`${getServerUrl()}/accounts/actions/forgotPassword`, {
+    await axios.post(`${getServerUrl()}/actions/forgotPassword`, {
       params: {
         email,
       },
@@ -54,7 +54,7 @@ export const forgotPassword = async (email: string): Promise<void> => {
 export const updatePassword = async (payload: UpdatePasswordPayload): Promise<void> => {
   try{
     const { id, password} = payload;
-    await axios.post(`${getServerUrl()}/accounts/${id}/actions/updatePassword`, {
+    await axios.post(`${getServerUrl()}/${id}/actions/updatePassword`, {
       password
     },
     { withCredentials: true },);
@@ -65,7 +65,7 @@ export const updatePassword = async (payload: UpdatePasswordPayload): Promise<vo
 export const updateName = async (payload: UpdateNamePayload): Promise<void> => {
   try{
     const { id, firstName, lastName } = payload;
-    await axios.patch(`${getServerUrl()}/accounts/${id}`, {
+    await axios.post(`${getServerUrl()}/accounts/${id}`, {
       firstName,
       lastName
     },
