@@ -29,7 +29,6 @@ services:
       - .env
     environment:
       - IDENTITY_SESSION_COOKIE_NAME
-      - IDENTITY_URL
       - PORT=${BFF_PORT}
       - BFF_URL=http://localhost:${BFF_PORT}
       - FRONTEND_URL=https://localhost:${FRONTEND_PORT}
@@ -86,7 +85,7 @@ services:
       - POSTGRES_PASSWORD=password
 
       - IDENTITY_SESSION_COOKIE_NAME=${IDENTITY_SESSION_COOKIE_NAME}
-      - TOKEN_ISSUER=https://localhost:9000
+      - TOKEN_ISSUER=
       - TOKEN_AUDIENCE=${SPINDL_APP_URL}
       - TOKEN_EXPIRY=${IDENTITY_TOKEN_EXPIRY}
       - TOKEN_MAX_AGE=${IDENTITY_TOKEN_MAX_AGE}
