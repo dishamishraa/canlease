@@ -34,7 +34,7 @@ services:
       - BFF_URL=http://localhost:${BFF_PORT}
       - FRONTEND_URL=https://localhost:${FRONTEND_PORT}
       - FRONTEND_DOMAIN=${DOMAIN}
-      - IDENTITY_URL=http://localhost:${IDENTITY_PORT}
+      - IDENTITY_URL=http://identity:${IDENTITY_PORT}
 
     ports:
       - "${BFF_PORT}:${BFF_PORT}"

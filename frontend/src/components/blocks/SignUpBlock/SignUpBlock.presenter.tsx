@@ -64,8 +64,8 @@ const withPresenter = (
             handleCreateIdentityAccount({
               email,
               password,
-              firstName: '',
-              lastName: '',
+              firstName: 'temp',
+              lastName: 'temp',
               enabled: true,
             });
           }

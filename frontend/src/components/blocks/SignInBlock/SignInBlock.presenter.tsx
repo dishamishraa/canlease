@@ -130,7 +130,7 @@ const withPresenter = (
       },
       bottomContent: {
         ...defaultProps.bottomContent,
-        value: t('authentication.bottom_content'),
+        value: t('authentication.bottom_content.sign_in'),
       },
       signUpButton: {
         ...defaultProps.signUpButton,
