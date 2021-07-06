@@ -48,6 +48,21 @@
     flex: 0 0 auto;
   }
 
+  .sectionHeadingOne {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
   .quoteDetails {
     overflow: hidden;
     display: flex;
@@ -124,7 +139,7 @@
     }
   }
 
-  .sectionHeading {
+  .sectionHeadingTwo {
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -282,6 +297,21 @@
       flex: 0 0 auto;
     }
   
+    .sectionHeadingOne {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
     .quoteDetails {
       overflow: hidden;
       display: flex;
@@ -358,7 +388,7 @@
       }
     }
   
-    .sectionHeading {
+    .sectionHeadingTwo {
       overflow: hidden;
       display: flex;
       flex-direction: row;
@@ -515,6 +545,18 @@
       flex: 0 0 auto;
     }
   
+    .sectionHeadingOne {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
     .quoteDetails {
       overflow: hidden;
       display: flex;
@@ -583,7 +625,7 @@
       }
     }
   
-    .sectionHeading {
+    .sectionHeadingTwo {
       display: flex;
       flex-direction: row;
       justify-content: flex-start;

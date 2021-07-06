@@ -33,7 +33,6 @@ const ClickableRateCard: React.FC<ClickableRateCardProps> = ({
       className={styles.rateDetailItemList}
       {...rateDetailItemList} />
   );
-
   switch (state) {
     case 'Default':
       break;

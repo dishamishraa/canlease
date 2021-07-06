@@ -47,7 +47,6 @@ const RadioButtonItem: React.FC<RadioButtonItemProps> = ({
       className={styles.text}
       {...text} />
   );
-
   switch (state) {
     case 'Unselected':
       break;

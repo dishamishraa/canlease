@@ -24,7 +24,6 @@ const RadiobuttonList: React.FC<RadiobuttonListProps> = ({
       className={styles.radioButtonItem}
       {...radioButtonItem} />
   ));
-
   return (
     <div className={cx(styles.radiobuttonList, className)}>
       {radioButtonItemArray}

@@ -62,6 +62,14 @@ export const TextIconButtonLargeBasicBasic: React.VFC<{}> = () => (
     colour='Basic'
     />
 );
+export const IconMediumBasicBasic: React.VFC<{}> = () => (
+  <Button
+    type='Icon'
+    size='Medium'
+    fill='Basic'
+    colour='Basic'
+    />
+);
 export const IconTextButtonSmallNoneBasic: React.VFC<{}> = () => (
   <Button
     type='IconTextButton'
@@ -76,6 +84,14 @@ export const ButtonSmallNoneBasic: React.VFC<{}> = () => (
     size='Small'
     fill='None'
     colour='Basic'
+    />
+);
+export const ButtonSmallNoneDanger: React.VFC<{}> = () => (
+  <Button
+    type='Button'
+    size='Small'
+    fill='None'
+    colour='Danger'
     />
 );
 export const TextIconButtonLargeColourBrand: React.VFC<{}> = () => (

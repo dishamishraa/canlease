@@ -24,7 +24,6 @@ const TableItemList: React.FC<TableItemListProps> = ({
       className={styles.tableItem}
       {...tableItem} />
   ));
-
   return (
     <div className={cx(styles.tableItemList, className)}>
       {tableItemArray}

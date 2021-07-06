@@ -13,7 +13,8 @@
     justify-content: flex-start;
     align-items: flex-start;
     padding: 1rem 0rem 1rem 0rem;
-    align-self: stretch;
+    align-self: flex-start;
+    width: 19rem;
     flex: 0 0 auto;
   }
 
@@ -27,7 +28,8 @@
     > * {
       margin-top: 2.5rem;
     }
-    align-self: stretch;
+    align-self: flex-start;
+    width: 19rem;
     flex: 0 0 29rem;
   }
 
