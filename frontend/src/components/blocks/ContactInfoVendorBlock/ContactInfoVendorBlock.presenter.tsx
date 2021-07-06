@@ -5,7 +5,7 @@ import { isEmptyString } from '../../../lib/utils';
 import { ContactInfo } from '../../../modules/types';
 
 export type ContactInfoVendorBlockPresenterProps = {
-  handleCreateQuote?: (contactInfo: ContactInfo)=>void
+  handleCreateQuote?: (contactInfo: ContactInfo) => void;
 };
 
 const withPresenter = (
@@ -20,7 +20,6 @@ const withPresenter = (
     const [customerName, setCustomerName] = useState<string>('');
     const [customerEmail, setCustomerEmail] = useState<string>('');
     const [customerCompanyName, setCustomerCompanyName] = useState<string>('');
-    
 
     const handleChangeVendorName = ({ target: { value } }) => setVendorName(value);
     const handleChangeBusinessEmail = ({ target: { value } }) => setBusinessEmail(value);
@@ -33,7 +32,7 @@ const withPresenter = (
       && !isEmptyString(companyName) && !isEmptyString(customerName)
       && !isEmptyString(customerEmail) && !isEmptyString(customerCompanyName);
     const handleClickViewQuote = () => {
-      if(isFormValid && handleCreateQuote){
+      if (isFormValid && handleCreateQuote) {
         handleCreateQuote({
           vendorName,
           businessEmail,

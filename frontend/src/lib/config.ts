@@ -13,5 +13,6 @@ export const {
   window.env?.REACT_APP_SESSION_COOKIE_NAME,
   REACT_APP_IS_DEV: IS_DEV = false,
   INSTANT_QUOTE_COOKIE = 'instantQuote',
-  MAX_AGE = 6*30.5*24*3600*1000,
+  AUTH_COOKIE = 'auth-token',
+  MAX_AGE = 6 * 30.5 * 24 * 3600 * 1000,
 } = process.env;

@@ -13,11 +13,12 @@ export function createProfileRouter(controllers: {
   const { profileController } = controllers;
 
   router.post('/', errorWrapper(async (req: Request, res: Response) => {
+    res.status(200).send(mockResponse);
     if (!validateCreateProfile(req.body)) {
       throw BadRequestError();
     }
     const data = await profileController.createProfile(req.body);
-    res.status(200).send(mockResponse);
+    res.status(200).send(data);
   }));
 
   router.get('/:id', errorWrapper(async (req: Request, res: Response) => {

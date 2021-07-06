@@ -12,7 +12,7 @@ import AuthLayout from './components/layout/AuthLayout';
 import { ProtectedRoute } from './modules/auth';
 import PortalLayout from './components/layout/PortalLayout';
 
-const routes = {
+export const routes = {
   home: '/',
   login: '/account',
   portal: '/portal',

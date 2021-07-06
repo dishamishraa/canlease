@@ -8,6 +8,8 @@ import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import SelectField, { SelectFieldProps } from '../../molecules/SelectField';
 import Button, { ButtonProps } from '../../atoms/Button';
+import { BusinessInformation } from '../../pages/AuthPage/AuthPage';
+import { CreateProfilePayload } from '../../../modules/types';
 
 export const defaultProps = {
   stepper: {
@@ -134,6 +136,7 @@ export type BusinessInformationBlockProps = {
   websiteLinkTextField?: TextFieldProps;
   nextButton?: ButtonProps;
   className?: string;
+  setBusinessInfo?: React.Dispatch<React.SetStateAction<BusinessInformation>>;
 };
 
 const BusinessInformationBlock: React.FC<BusinessInformationBlockProps> = ({

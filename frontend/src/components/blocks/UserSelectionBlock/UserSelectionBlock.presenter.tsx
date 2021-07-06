@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import Cookies from 'js-cookie';
 import { UserSelectionBlockProps, defaultProps as UserSelectionBlockDefaultProps } from './UserSelectionBlock';
 import { TextProps } from '../../atoms/Text';
 import { CardListProps } from '../../organisms/CardList';
-import { ModalProps, defaultProps as modalPropsDefaultProps  } from '../../organisms/Modal/Modal';
+import { ModalProps, defaultProps as modalPropsDefaultProps } from '../../organisms/Modal/Modal';
 import { defaultProps as userSelectionCardDefaultProps } from '../../molecules/UserSelectionCard/UserSelectionCard';
 import ClientImage from '../../../resources/images/Client.png';
 import EndUserImage from '../../../resources/images/EndUser.png';
 import LimitReachedIcon from '../../../resources/icons/LimitReached.svg';
-import Cookies from 'js-cookie';
 import { INSTANT_QUOTE_COOKIE } from '../../../lib/config';
 
 export type UserSelectionBlockPresenterProps = UserSelectionBlockProps & {
@@ -27,22 +27,22 @@ const withPresenter = (
       setUserType,
     } = props;
     const onCloseModal = () => {
-      setShowModal(false)
-    }
+      setShowModal(false);
+    };
     const onUserTypeSelected = (userType: 'vendor' | 'customer') => {
-      if ((hasInstantQuote) && (setUserType)){
+      if ((hasInstantQuote) && (setUserType)) {
         setUserType(userType);
-        history.push('/getQuote', {userType: userType});
+        history.push('/getQuote', { userType });
       } else {
         setShowModal(true);
       }
-    }
+    };
 
     let hasInstantQuote = true;
 
     const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
-    if (quoteCookie){
-        hasInstantQuote = false;
+    if (quoteCookie) {
+      hasInstantQuote = false;
     }
 
     const modal: ModalProps = {
@@ -67,17 +67,17 @@ const withPresenter = (
         text: {
           ...modalPropsDefaultProps.primaryButton.text,
           value: t('instant_quote_limit.primary_button'),
-        }
+        },
       },
       secondaryButton: {
         ...modalPropsDefaultProps.secondaryButton,
         text: {
           ...modalPropsDefaultProps.secondaryButton.text,
           value: t('instant_quote_limit.secondary_button'),
-        }
-      }
+        },
+      },
     };
- 
+
     const blockHeading: TextProps = {
       ...UserSelectionBlockDefaultProps.blockHeading,
       value: t('user_type_selection.header'),
@@ -97,7 +97,7 @@ const withPresenter = (
                 button: {
                   ...userSelectionCardDefaultProps.button,
                   type: 'TextIconButton',
-                  onButtonClicked: () => onUserTypeSelected("customer"),
+                  onButtonClicked: () => onUserTypeSelected('customer'),
                   text: {
                     ...userSelectionCardDefaultProps.button.text,
                     value: t('user_type_selection.button'),
@@ -115,7 +115,7 @@ const withPresenter = (
                 button: {
                   ...userSelectionCardDefaultProps.button,
                   type: 'TextIconButton',
-                  onButtonClicked: () => onUserTypeSelected("vendor"),
+                  onButtonClicked: () => onUserTypeSelected('vendor'),
                   text: {
                     ...userSelectionCardDefaultProps.button.text,
                     value: t('user_type_selection.button'),
@@ -128,7 +128,7 @@ const withPresenter = (
     return <View
         blockHeading={blockHeading}
         className={className}
-        cardList={cardList} 
+        cardList={cardList}
         modal={modal}
         showModal={showModal}
         />;

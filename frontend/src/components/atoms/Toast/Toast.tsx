@@ -49,9 +49,6 @@ const Toast: React.FC<ToastProps> = ({
 
   const contentView = (
     <div className={styles.content}>
-      <Icon
-        className={styles.leadingIcon}
-        {...leadingIcon} />
       <Text
         className={styles.text}
         {...text} />

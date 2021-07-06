@@ -10,6 +10,7 @@ import ContentPage, { ContentPageProps } from '../../pages/ContentPage';
 import MenuBlock, { MenuBlockProps } from '../../blocks/MenuBlock';
 import MainMenuItem from '../../atoms/MainMenuItem';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import SimplePage, { SimplePageProps } from '../../pages/SimplePage/SimplePage';
 
 export const defaultProps = {
   header: {
@@ -100,12 +101,14 @@ export type PortalLayoutProps = {
   className?: string;
   menuBlock?: MenuBlockProps;
   contentPage?: ContentPageProps;
+  simplePage?: SimplePageProps;
 };
 
 const routes = {
   dashboard: '/portal/dashboard',
   application: '/portal/application',
-  content: '/portal/content',
+  content: '/portal/content/:portalId',
+  leasingQuote: '/portal/viewquote/:quoteId',
   invalid: '/',
 };
 
@@ -116,6 +119,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
   className,
   menuBlock,
   contentPage,
+  simplePage,
 }) => {
   
   return (
@@ -143,6 +147,11 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
                  <ContentPage
                 className={styles.contentPage}
                 {...contentPage} />
+            </Route>
+            <Route path={routes.leasingQuote}>
+                 <SimplePage
+                className={styles.contentPage}
+                {...simplePage} />
             </Route>
             <Route path={routes.invalid}>
               <Redirect to={routes.dashboard}/>

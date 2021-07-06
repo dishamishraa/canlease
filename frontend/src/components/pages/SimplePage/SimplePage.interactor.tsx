@@ -6,7 +6,6 @@ import { SimplePagePropsPresenterProps } from './SimplePage.presenter';
 const withInteractor = (
   Presenter: React.FC<SimplePagePropsPresenterProps>,
 ): React.FC <SimplePageProps> => {
-  
   const Interactor: React.FC <SimplePageProps> = (props) => {
     const [{}, createQuote] = useCreateQuote();
     return (
@@ -15,7 +14,7 @@ const withInteractor = (
         createQuote = {createQuote}
       />
     );
-  }
+  };
   return Interactor;
 };
 export default withInteractor;

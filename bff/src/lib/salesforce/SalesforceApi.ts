@@ -63,18 +63,6 @@ export default class SalesforceApi {
     }
   }
 
-  async getUserPortfolio(portalId: string): Promise<Portfolio> {
-    try {
-      const response = await axios.get<Portfolio>(`${SALESFORCE_API_URL}/v2/portfolio/${portalId}`);
-      return response.data;
-    } catch (error) {
-      const message = axios.isAxiosError(error)
-        ? error.response?.data?.errorMessage
-        : error.message;
-      return message;
-    }
-  }
-
   async getCustomerPortfolio(portalId: string): Promise<Portfolio> {
     try {
       const response = await axios.get<Portfolio>(`${SALESFORCE_API_URL}/v2/portfolio/${portalId}/customer_portfolio`);
@@ -90,6 +78,18 @@ export default class SalesforceApi {
   async getProfile(portalId: string): Promise<Profile> {
     try {
       const response = await axios.get<Profile>(`${SALESFORCE_API_URL}/v2/profile/${portalId}`);
+      return response.data;
+    } catch (error) {
+      const message = axios.isAxiosError(error)
+        ? error.response?.data?.errorMessage
+        : error.message;
+      return message;
+    }
+  }
+
+  async getUserPortfolio(portalId: string): Promise<Portfolio> {
+    try {
+      const response = await axios.get<Portfolio>(`${SALESFORCE_API_URL}/v2/portfolio/${portalId}`);
       return response.data;
     } catch (error) {
       const message = axios.isAxiosError(error)
