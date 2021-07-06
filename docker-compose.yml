@@ -75,7 +75,6 @@ services:
     ports:
       - "${IDENTITY_PORT}:${IDENTITY_PORT}"
     environment:
-      - SERVICE_BASE_PATH=identity
       - BACKEND_PORT=${IDENTITY_PORT}
 
       - POSTGRES_HOST=db

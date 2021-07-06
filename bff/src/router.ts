@@ -70,7 +70,7 @@ export const createRouter = (controllers: {
 
   router.get('/', (req: Request, res: Response) => res.json({ running: true }));
   router.post('/token', proxy);
-  router.post('/accounts', proxy);
+  router.use('/accounts', proxy);
   router.use('/users', UserRouter());
 
   router.use('/quote', QuoteRouter(controllers));

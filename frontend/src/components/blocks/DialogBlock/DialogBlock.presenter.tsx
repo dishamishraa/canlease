@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useHistory, useLocation, useParams } from 'react-router';
 import { defaultProps, DialogBlockProps } from './DialogBlock';
 import EmailImage from '../../../resources/images/email_verification.png';
 import { APIResponse } from '../../../lib/api/types';
+import { Link } from 'react-router-dom';
 
 export type DialogBlockPresenterProps = DialogBlockProps & {
   resendVerifyAccount: (email: string) => Promise<APIResponse<void>>;
@@ -19,7 +20,7 @@ type DialogBlockTextDisplay = {
   header: string,
   description: string,
   questionText: string,
-  resolutionText: string,
+  resolutionText: React.ReactNode,
   doneButton: string,
   url: string
 }
@@ -38,12 +39,12 @@ const withPresenter = (
     const state = location.state as DialogBlockContentType;
     const { contentType, email } = state || {};
     const [display, setDisplay] = useState<DialogBlockTextDisplay>({
-      header:'',
+      header: '',
       description: '',
-      questionText: '',
-      resolutionText: '',
-      doneButton: '',
-      url: '/'
+      questionText: t('email_verification.question'),
+      resolutionText: <Trans i18nKey="email_verification.resolution" t={t}>Check your spam folder or click <Link to={history.location} onClick={() => handleResend()}>here</Link> to resend the verification link.</Trans>,
+      doneButton: t('button_text.done'),
+      url: '/account/signin'
     });
 
     // set states base on content type
@@ -52,22 +53,16 @@ const withPresenter = (
         switch (contentType) {
           case 'VerifyEmail':
             setDisplay({
+              ...display,
               header: t('email_verification.header.default'),
               description: t('email_verification.description.default'),
-              questionText: t('email_verification.question'),
-              resolutionText: t('email_verification.resolution'),
-              doneButton: t('button_text.done'),
-              url: '/account/signin'
             });
             break;
           case 'ResetLink':
             setDisplay({
+              ...display,
               header: t('email_verification.header.reset'),
               description: t('email_verification.description.reset'),
-              questionText: t('email_verification.question'),
-              resolutionText: t('email_verification.resolution'),
-              doneButton: t('button_text.done'),
-              url: '/account/signin'
             });
             break;
           default:
@@ -81,7 +76,7 @@ const withPresenter = (
         setDisplay({
           ...display,
           header: t('email_verification.header.reset'),
-          description: t('email_verification.description.resent')
+          description: t('email_verification.description.resent'),
         });
         switch (contentType) {
           case 'VerifyEmail':
