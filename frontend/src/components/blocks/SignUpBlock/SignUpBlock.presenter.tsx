@@ -54,7 +54,7 @@ const withPresenter = (
     const handleSignUp = () => {
       // verify fields
       if (!isEmptyString(email) && !isEmptyString(password) && !isEmptyString(confirmPassword)) {
-        if (!(password === confirmPassword)) {
+        if (password !== confirmPassword) {
           // show error message when passwords don't match
           setConfirmPasswordError('Error');
           setPasswordError('Error');
@@ -64,8 +64,6 @@ const withPresenter = (
             handleCreateIdentityAccount({
               email,
               password,
-              firstName: 'temp',
-              lastName: 'temp',
               enabled: true,
             });
           }

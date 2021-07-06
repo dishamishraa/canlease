@@ -51,17 +51,16 @@ const withPresenter = (
       businessPhone: '',
     });
     const [email, setEmail] = useState<string>('');
-    const [id, setId] = useState<string>('');
+    const [id, setId] = useState(localStorage.getItem('id'));
     
     // sign up
     const handleCreateIdentityAccount = async (payload: AccountRequest) => {
       const { data } = await createIdentityAccount(payload);
       if (data) {
-        setEmail(data.email);
         history.push({
           pathname: routes.verifyEmail,
           state: {
-            email: email,
+            email: data.email,
             contentType: 'VerifyEmail',
           },
         });
@@ -71,13 +70,12 @@ const withPresenter = (
     // sign in
     const handleSignIn = async (payload: SignInPayload) => {
       const { data: signInData, error } = await signIn(payload);
-      setEmail(payload.email);
       if(error){
         if(error.message === 'User has not confirmed sign up'){
           history.push({
             pathname: routes.verifyEmail,
             state: {
-              email: email,
+              email: payload.email,
               contentType: 'VerifyEmail',
             },
           });
@@ -88,7 +86,7 @@ const withPresenter = (
         setCookie(AUTH_COOKIE, signInData.token);
         setId(signInData.id);
         // find the salesforce profile with the identity account id
-        const data = await getProfile(id);
+        const data = await getProfile(signInData.id);
         if(data){
           // push to dashboard
           const { userType } = data;
@@ -100,35 +98,44 @@ const withPresenter = (
           history.push({
             pathname: routes.personalInformation,
             state: {
-              email: email
+              email: signInData.email
             }
           })
         }
       } 
     };
 
-    const handleCompleteSetup = async() => {
-      const payload: CreateProfilePayload = {
-        ...personalInfo,
-        ...contactInfo,
-        ...businessInfo,
-        country: 'Canada',
-        portalId: id,
-        title: ''
+    useEffect(()=>{
+      handleCompleteSetup();
+      if(id){
+        localStorage.setItem('id', id);
       }
-      const { portalId, firstName, lastName, userType } = payload
-      const { data } = await createProfile(payload);
-      if(data){
-        // update identity with first name and last name
-        const updateNamePayload: UpdateNamePayload = {
-          id: portalId,
-          firstName: firstName,
-          lastName: lastName
+    }, [businessInfo, id])
+
+    const handleCompleteSetup = async() => {
+      if(id){
+        const payload: CreateProfilePayload = {
+          ...personalInfo,
+          ...contactInfo,
+          ...businessInfo,
+          country: 'Canada',
+          portalId: id,
+          title: ''
         }
-        await updateName(updateNamePayload);
-        history.push({ pathname: appRoutes.portal, state: {
-          userType: userType
-        }});
+        const { portalId, firstName, lastName, userType } = payload
+        const { data } = await createProfile(payload);
+        if(data){
+          // update identity with first name and last name
+          const updateNamePayload: UpdateNamePayload = {
+            id: portalId,
+            firstName: firstName,
+            lastName: lastName
+          }
+          await updateName(updateNamePayload);
+          history.push({ pathname: appRoutes.portal, state: {
+            userType: userType
+          }});
+        }
       }
     }
 

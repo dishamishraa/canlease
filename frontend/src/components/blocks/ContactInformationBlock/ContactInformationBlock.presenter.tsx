@@ -34,7 +34,8 @@ const withPresenter = (
     const formInvalid = (isEmptyString(phoneNumber) 
     || isEmptyString(streetAddress)
     || isEmptyString(city)
-    || isEmptyString(postalCode))
+    || isEmptyString(postalCode)
+    || isEmptyString(province))
 
     const handlePhoneNumber = ({ target: { value } }) => {
       setPhoneNumber(value);

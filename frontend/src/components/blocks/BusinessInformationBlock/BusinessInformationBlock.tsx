@@ -137,7 +137,6 @@ export type BusinessInformationBlockProps = {
   nextButton?: ButtonProps;
   className?: string;
   setBusinessInfo?: React.Dispatch<React.SetStateAction<BusinessInformation>>;
-  handleCompleteSetup?: () => void;
 };
 
 const BusinessInformationBlock: React.FC<BusinessInformationBlockProps> = ({

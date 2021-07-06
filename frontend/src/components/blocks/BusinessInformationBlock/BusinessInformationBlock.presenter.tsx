@@ -12,7 +12,6 @@ import { isEmptyString } from '../../../lib/utils';
 
 export type BusinessInformationBlockPresenterProps = BusinessInformationBlockProps & {
   setBusinessInfo?: React.Dispatch<React.SetStateAction<BusinessInformation>>;
-  handleCompleteSetup?: () => void;
 };
 
 const withPresenter = (
@@ -21,7 +20,6 @@ const withPresenter = (
   const Presenter: React.FC<BusinessInformationBlockPresenterProps> = (props) => {
     const {
       setBusinessInfo,
-      handleCompleteSetup
     } = props
     const { t } = useTranslation();
     const history = useHistory();
@@ -59,7 +57,7 @@ const withPresenter = (
     };
 
     const handleNext = () => {      
-      if(handleCompleteSetup && setBusinessInfo){
+      if(setBusinessInfo){
         setBusinessInfo({
           operatingName: operatingName,
           operatingSinceDate: operatingSince,
@@ -67,8 +65,7 @@ const withPresenter = (
           website: website,
           businessPhone: businessPhone,
           companyName: fullLegalName,
-        });
-        handleCompleteSetup();
+        })
       }
     }
 

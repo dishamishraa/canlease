@@ -92,7 +92,7 @@ export type CreateProfilePayload = {
   userType: string;
   email: string;
   phone: string;
-  title: string;
+  title?: string;
   operatingName: string;
   operatingSinceDate: string;
   businessSector: string;
@@ -142,8 +142,8 @@ export type ContactInfo = ContactInfoVendor | ContactInfoCustomer;
 export type AccountRequest = {
   email: string;
   password: string;
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
   enabled: boolean;
 };
 

@@ -42,9 +42,6 @@ const withPresenter = (
 
     const handleCreatePassword = ({ target: { value } }) => {
         setCreatePassword(value);
-        if(createPasswordError === 'Error'){
-            setCreatePasswordError('Default');
-        }
       };
 
     const handleConfirmPassword = ({ target: { value } }) => {
@@ -56,7 +53,6 @@ const withPresenter = (
 
     const handleSavePassword = async() => {
         if(createPassword !== confirmPassword){
-            setCreatePasswordError('Error')
             setConfirmPasswordError('Error')
         }else{
             await updatePassword({

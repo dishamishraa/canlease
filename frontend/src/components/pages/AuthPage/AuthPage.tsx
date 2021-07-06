@@ -176,7 +176,6 @@ const AuthPage: React.FC<AuthPageProps> = ({
   signInBlock,
   handleCreateIdentityAccount,
   handleSignIn,
-  handleCompleteSetup,
   setPersonalInfo,
   setContactInfo,
   setBusinessInfo,
@@ -236,7 +235,6 @@ const AuthPage: React.FC<AuthPageProps> = ({
         <ProtectedRoute exact path={routes.businessInformation}>
           <BusinessInformationBlock
             className={styles.block}
-            handleCompleteSetup={handleCompleteSetup}
             setBusinessInfo={setBusinessInfo} />
         </ProtectedRoute>
 
