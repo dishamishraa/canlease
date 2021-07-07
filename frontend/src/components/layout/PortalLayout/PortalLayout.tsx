@@ -107,7 +107,8 @@ export type PortalLayoutProps = {
 };
 
 const routes = {
-  dashboard: '/portal/dashboard',
+  vendorDashboard: '/portal/vendor/dashboard',
+  userDashboard: '/portal/user/dashboard',
   application: '/portal/application',
   content: '/portal/content/:portalId',
   leasingQuote: '/portal/viewquote/:quoteId',
@@ -124,14 +125,6 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
   simplePage,
   endUserDashboardPage,
 }) => {
-  let userType = 'customer';
-  const DashboardPage =  userType === 'customer' ? 
-        <VendorDashboardPage
-        className={styles.vendorDashboardPage}
-        {...vendorDashboardPage} /> :  
-        <EndUserDashboardPage
-        className={styles.vendorDashboardPage}
-        {...endUserDashboardPage} />;
         
   return (
     <div className={cx(styles.portalLayout, className)}>
@@ -149,7 +142,12 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
                 className={styles.applicationPage}
                 {...applicationPage} />
             </Route>
-            <Route path={routes.dashboard}>
+            <Route path={routes.vendorDashboard}>
+                  <VendorDashboardPage
+              className={styles.vendorDashboardPage}
+              {...vendorDashboardPage} />;
+            </Route>
+            <Route path={routes.userDashboard}>
                   <EndUserDashboardPage
               className={styles.contentPage}
               {...endUserDashboardPage} />;
@@ -165,7 +163,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
                 {...simplePage} />
             </Route>
             <Route path={routes.invalid}>
-              <Redirect to={routes.dashboard}/>
+              <Redirect to={routes.vendorDashboard}/>
             </Route>
           </Switch>
         </div>
