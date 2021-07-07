@@ -29,6 +29,7 @@ const withPresenter = (
       const quotesArray: DashboardCardProps[] = [];
       const applicationArray: DashboardCardProps[] = [];
 
+
       const checkQuoteStatus = (quoteExpiryDate, quoteId) => {
         let isApplied;
         if (userPortfolio) {
@@ -52,10 +53,10 @@ const withPresenter = (
 
       if (customerQuotes){
         customerQuotes.sort(function(a,b) {
-            var keyA = new Date(a.quoteExpiryDate),
-            keyB = new Date(b.quoteExpiryDate);
-            if (keyA < keyB) return +1;
-            if (keyA > keyB) return -1;
+            const createdDateA = new Date(createdOn(a.quoteExpiryDate));
+            const createdDateB = new Date(createdOn(b.quoteExpiryDate));
+            if (createdDateA < createdDateB) return -1;
+            if (createdDateA > createdDateB) return +1;
             return 0;
         });
 
@@ -123,12 +124,13 @@ const withPresenter = (
         const { createApps } = userPortfolio
 
         createApps.sort(function(a,b) {
-            var keyA = new Date(a.createdDate),
-            keyB = new Date(b.createdDate);
-            if (keyA < keyB) return -1;
-            if (keyA > keyB) return 1;
+            const createdDateA = new Date(a.createdDate);
+            const createdDateB = new Date(b.createdDate);
+            if (createdDateA < createdDateB) return -1;
+            if (createdDateA > createdDateB) return +1;
             return 0;
         });
+
         createApps.length = 3;
         createApps.forEach((application) => {
             const { asset, applicationAmount, creditAppNumber, creditStatus } = application;

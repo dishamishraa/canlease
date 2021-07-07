@@ -58,7 +58,7 @@ const mockQuoteListResponse: Quote[] = [
         purchaseOptionDate: '2021-06-14T19:23:28.744Z',
       },
     ],
-    quoteExpiryDate: '2021-07-06T19:23:28.744Z',
+    quoteExpiryDate: '2021-10-10T19:23:28.744Z',
     leaseType: 'stretch',
   },
 ];
