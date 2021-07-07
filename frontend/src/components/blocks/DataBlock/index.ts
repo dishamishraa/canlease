@@ -1,8 +1,4 @@
-import DataBlockView, { DataBlockProps } from './DataBlock';
-import withPresenter from './DataBlock.presenter';
-import withInteractor from './DataBlock.interactor';
-
-const DataBlock = withInteractor(withPresenter(DataBlockView));
+import DataBlock, { DataBlockProps } from './DataBlock';
 
 export type { DataBlockProps };
 export default DataBlock;

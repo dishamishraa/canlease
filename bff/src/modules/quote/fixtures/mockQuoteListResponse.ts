@@ -25,10 +25,40 @@ const mockQuoteListResponse: Quote[] = [
         monthlyAmount: 0,
         term: '12M',
         financeRate: 0,
+        purchaseOptionDate: '2021-09-14T19:23:28.744Z',
+      },
+    ],
+    quoteExpiryDate: '2021-08-22T19:23:28.744Z',
+    leaseType: 'stretch',
+  },
+  {
+    quoteId: 'id2',
+    asset: 'thirdAsset',
+    applicationAmount: 100,
+    quoteOptions: [
+      {
+        monthlyAmount: 0,
+        term: '12M',
+        financeRate: 0,
         purchaseOptionDate: '2021-06-14T19:23:28.744Z',
       },
     ],
     quoteExpiryDate: '2021-08-22T19:23:28.744Z',
+    leaseType: 'stretch',
+  },
+  {
+    quoteId: 'id3',
+    asset: 'fourthAsset',
+    applicationAmount: 100,
+    quoteOptions: [
+      {
+        monthlyAmount: 0,
+        term: '12M',
+        financeRate: 0,
+        purchaseOptionDate: '2021-06-14T19:23:28.744Z',
+      },
+    ],
+    quoteExpiryDate: '2021-07-06T19:23:28.744Z',
     leaseType: 'stretch',
   },
 ];

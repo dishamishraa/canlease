@@ -131,7 +131,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
         {...vendorDashboardPage} /> :  
         <EndUserDashboardPage
         className={styles.vendorDashboardPage}
-        {...vendorDashboardPage} />;
+        {...endUserDashboardPage} />;
         
   return (
     <div className={cx(styles.portalLayout, className)}>
@@ -150,7 +150,9 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
                 {...applicationPage} />
             </Route>
             <Route path={routes.dashboard}>
-                {DashboardPage}
+                  <EndUserDashboardPage
+              className={styles.contentPage}
+              {...endUserDashboardPage} />;
             </Route>
             <Route path={routes.content}>
                  <ContentPage

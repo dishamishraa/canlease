@@ -241,6 +241,15 @@
     },
     "toast_message": {
         "reset_password": "New password set"
+    },
+    "customer_dashboard": {
+        "header": "Welcome {{name}}",
+        "quotes_header": "Quotes",
+        "applications_header": "Applications",
+        "view_button": "VIEW",
+        "see_all_button": "SEE ALL",
+        "create_quote": "CREATE QUOTE",
+        "apply_finance": "APPLY FOR FINANCE"
     }
 }
   

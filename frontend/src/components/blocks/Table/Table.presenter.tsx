@@ -164,7 +164,7 @@ const withPresenter = (
             tableItemArray.push(tableItemProps);
         })
     }
-
+    
     filteredTableItemArray = filterTableItems(tableItemArray, searchQuery, statusFilter)
 
     tableItemListProps = {
