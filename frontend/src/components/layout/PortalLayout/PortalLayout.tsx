@@ -11,6 +11,7 @@ import MenuBlock, { MenuBlockProps } from '../../blocks/MenuBlock';
 import MainMenuItem from '../../atoms/MainMenuItem';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import SimplePage, { SimplePageProps } from '../../pages/SimplePage/SimplePage';
+import EndUserDashboardPage, { EndUserDashboardPageProps } from '../../pages/EndUserDashboardPage';
 
 export const defaultProps = {
   header: {
@@ -102,6 +103,7 @@ export type PortalLayoutProps = {
   menuBlock?: MenuBlockProps;
   contentPage?: ContentPageProps;
   simplePage?: SimplePageProps;
+  endUserDashboardPage?: EndUserDashboardPageProps;
 };
 
 const routes = {
@@ -120,8 +122,17 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
   menuBlock,
   contentPage,
   simplePage,
+  endUserDashboardPage,
 }) => {
-  
+  let userType = 'customer';
+  const DashboardPage =  userType === 'customer' ? 
+        <VendorDashboardPage
+        className={styles.vendorDashboardPage}
+        {...vendorDashboardPage} /> :  
+        <EndUserDashboardPage
+        className={styles.vendorDashboardPage}
+        {...vendorDashboardPage} />;
+        
   return (
     <div className={cx(styles.portalLayout, className)}>
       <Header
@@ -139,9 +150,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
                 {...applicationPage} />
             </Route>
             <Route path={routes.dashboard}>
-                 <VendorDashboardPage
-                className={styles.vendorDashboardPage}
-                {...vendorDashboardPage} />
+                {DashboardPage}
             </Route>
             <Route path={routes.content}>
                  <ContentPage
