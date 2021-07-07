@@ -2,6 +2,21 @@ import { Quote } from '../types';
 
 const mockQuoteListResponse: Quote[] = [
   {
+    quoteId: 'id3',
+    asset: 'fourthAsset',
+    applicationAmount: 100,
+    quoteOptions: [
+      {
+        monthlyAmount: 0,
+        term: '12M',
+        financeRate: 0,
+        purchaseOptionDate: '2021-06-14T19:23:28.744Z',
+      },
+    ],
+    quoteExpiryDate: '2021-08-05T19:23:28.744Z',
+    leaseType: 'stretch',
+  },
+  {
     quoteId: 'string',
     asset: 'firstAsset',
     applicationAmount: 200,
@@ -28,7 +43,7 @@ const mockQuoteListResponse: Quote[] = [
         purchaseOptionDate: '2021-09-14T19:23:28.744Z',
       },
     ],
-    quoteExpiryDate: '2021-08-22T19:23:28.744Z',
+    quoteExpiryDate: '2020-07-05T19:23:28.744Z',
     leaseType: 'stretch',
   },
   {
@@ -43,22 +58,7 @@ const mockQuoteListResponse: Quote[] = [
         purchaseOptionDate: '2021-06-14T19:23:28.744Z',
       },
     ],
-    quoteExpiryDate: '2021-08-22T19:23:28.744Z',
-    leaseType: 'stretch',
-  },
-  {
-    quoteId: 'id3',
-    asset: 'fourthAsset',
-    applicationAmount: 100,
-    quoteOptions: [
-      {
-        monthlyAmount: 0,
-        term: '12M',
-        financeRate: 0,
-        purchaseOptionDate: '2021-06-14T19:23:28.744Z',
-      },
-    ],
-    quoteExpiryDate: '2021-10-10T19:23:28.744Z',
+    quoteExpiryDate: '2021-08-02T19:23:28.744Z',
     leaseType: 'stretch',
   },
 ];

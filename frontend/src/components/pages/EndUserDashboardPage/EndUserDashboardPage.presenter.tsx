@@ -52,16 +52,15 @@ const withPresenter = (
      }
 
       if (customerQuotes){
+          console.log(customerQuotes)
         customerQuotes.sort(function(a,b) {
             const createdDateA = new Date(createdOn(a.quoteExpiryDate));
             const createdDateB = new Date(createdOn(b.quoteExpiryDate));
-            if (createdDateA < createdDateB) return -1;
-            if (createdDateA > createdDateB) return +1;
+            if (createdDateA < createdDateB) return 1;
+            if (createdDateA > createdDateB) return -1;
             return 0;
         });
-
-        customerQuotes.length = 3;
-
+       
         customerQuotes.forEach((quote) => {
             const {applicationAmount, quoteExpiryDate, quoteId, asset} = quote
             const quotesBlockProps: DashboardCardProps = {
@@ -100,6 +99,7 @@ const withPresenter = (
             }
             quotesArray.push(quotesBlockProps);
         })
+        quotesArray.length = 3;
         const createQuoteProps: DashboardCardProps = {
             ...dashBoardCardProps,
             type:"CreateQuoteCard",
@@ -122,16 +122,14 @@ const withPresenter = (
       
       if (userPortfolio){
         const { createApps } = userPortfolio
-
         createApps.sort(function(a,b) {
             const createdDateA = new Date(a.createdDate);
             const createdDateB = new Date(b.createdDate);
-            if (createdDateA < createdDateB) return -1;
-            if (createdDateA > createdDateB) return +1;
+            if (createdDateA < createdDateB) return 1;
+            if (createdDateA > createdDateB) return -1;
             return 0;
         });
 
-        createApps.length = 3;
         createApps.forEach((application) => {
             const { asset, applicationAmount, creditAppNumber, creditStatus } = application;
          
@@ -170,6 +168,7 @@ const withPresenter = (
             }
             applicationArray.push(applicationsBlockProps);
         }) 
+        applicationArray.length = 3;
         const applyForFinance: DashboardCardProps = {
             ...dashBoardCardProps,
             type:"CreateQuoteCard",
