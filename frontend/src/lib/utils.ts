@@ -34,7 +34,7 @@ export const isExpired = (value) => {
 export const createdOn = (value) => {
   const date = new Date(value);
   date.setDate(date.getDate()-30)
-  return date.toDateString();
+  return date;
 }
 export const isEmail = (value) => {
   const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

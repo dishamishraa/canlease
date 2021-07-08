@@ -11,6 +11,7 @@ const withInteractor = (
   Presenter: React.FC<TablePresenterProps>,
 ): React.FC <TableProps> => {
   const Interactor: React.FC <TableProps> = (props) => {
+    //TODO get portalId from Auth Context
   const { portalId } = useParams<{portalId: string}>();
   const { data: personalQuotes } = useAllQuotesFromProfile(portalId);
   const { data: customerQuotes } = useAllCustomerQuotesFromProfile(portalId);

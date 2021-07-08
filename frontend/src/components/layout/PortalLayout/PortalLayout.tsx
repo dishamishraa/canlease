@@ -10,7 +10,7 @@ import ContentPage, { ContentPageProps } from '../../pages/ContentPage';
 import MenuBlock, { MenuBlockProps } from '../../blocks/MenuBlock';
 import MainMenuItem from '../../atoms/MainMenuItem';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import SimplePage, { SimplePageProps } from '../../pages/SimplePage/SimplePage';
+import EndUserDashboardPage, { EndUserDashboardPageProps } from '../../pages/EndUserDashboardPage';
 
 export const defaultProps = {
   header: {
@@ -101,14 +101,13 @@ export type PortalLayoutProps = {
   className?: string;
   menuBlock?: MenuBlockProps;
   contentPage?: ContentPageProps;
-  simplePage?: SimplePageProps;
+  endUserDashboardPage?: EndUserDashboardPageProps;
 };
 
-const routes = {
+export const routes = {
   dashboard: '/portal/dashboard',
   application: '/portal/application',
-  content: '/portal/content/:portalId',
-  leasingQuote: '/portal/viewquote/:quoteId',
+  content: '/portal/content',
   invalid: '/',
 };
 
@@ -119,9 +118,9 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
   className,
   menuBlock,
   contentPage,
-  simplePage,
 }) => {
-  
+  let userType = 'user';
+  const DashboardPage = userType === 'vendor' ? VendorDashboardPage : EndUserDashboardPage;
   return (
     <div className={cx(styles.portalLayout, className)}>
       <Header
@@ -139,19 +138,13 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
                 {...applicationPage} />
             </Route>
             <Route path={routes.dashboard}>
-                 <VendorDashboardPage
-                className={styles.vendorDashboardPage}
-                {...vendorDashboardPage} />
+              <DashboardPage
+                className={styles.contentPage}/>;
             </Route>
             <Route path={routes.content}>
                  <ContentPage
                 className={styles.contentPage}
                 {...contentPage} />
-            </Route>
-            <Route path={routes.leasingQuote}>
-                 <SimplePage
-                className={styles.contentPage}
-                {...simplePage} />
             </Route>
             <Route path={routes.invalid}>
               <Redirect to={routes.dashboard}/>

@@ -68,7 +68,7 @@ const withPresenter = (
     }
 
     const checkCreatedOn = (quoteExpiryDate) => {
-        return createdOn(quoteExpiryDate)
+        return createdOn(quoteExpiryDate).toDateString();
     }
 
     const filterTableItems = (itemsArray, searchQuery, statusFilter) => {
@@ -164,7 +164,7 @@ const withPresenter = (
             tableItemArray.push(tableItemProps);
         })
     }
-
+    
     filteredTableItemArray = filterTableItems(tableItemArray, searchQuery, statusFilter)
 
     tableItemListProps = {
