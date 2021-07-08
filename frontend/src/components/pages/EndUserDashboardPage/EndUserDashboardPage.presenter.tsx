@@ -52,7 +52,6 @@ const withPresenter = (
      }
 
       if (customerQuotes){
-          console.log(customerQuotes)
         customerQuotes.sort(function(a,b) {
             const createdDateA = new Date(createdOn(a.quoteExpiryDate));
             const createdDateB = new Date(createdOn(b.quoteExpiryDate));
@@ -61,7 +60,7 @@ const withPresenter = (
             return 0;
         });
        
-        customerQuotes.forEach((quote) => {
+        customerQuotes.every((quote, index) => {
             const {applicationAmount, quoteExpiryDate, quoteId, asset} = quote
             const quotesBlockProps: DashboardCardProps = {
                 ...dashBoardCardProps,
@@ -98,8 +97,11 @@ const withPresenter = (
                 }
             }
             quotesArray.push(quotesBlockProps);
+            if (index == 2) {
+              return false 
+            }
+            return true
         })
-        quotesArray.length = 3;
         const createQuoteProps: DashboardCardProps = {
             ...dashBoardCardProps,
             type:"CreateQuoteCard",
@@ -113,7 +115,7 @@ const withPresenter = (
                   value: t('customer_dashboard.create_quote'),
                 },
                 onButtonClicked: () => {
-                  
+                  //TODO create quote from dashboard
                 }
             }
         }
@@ -130,7 +132,7 @@ const withPresenter = (
             return 0;
         });
 
-        createApps.forEach((application) => {
+        createApps.every((application, index) => {
             const { asset, applicationAmount, creditAppNumber, creditStatus } = application;
          
             const applicationsBlockProps: DashboardCardProps = {
@@ -163,12 +165,16 @@ const withPresenter = (
                     value: t('customer_dashboard.view_button'),
                   },
                   onButtonClicked: () => {
+                    //TODO view application
                   }
                 }
             }
             applicationArray.push(applicationsBlockProps);
+            if (index == 2) {
+              return false 
+            }
+            return true
         }) 
-        applicationArray.length = 3;
         const applyForFinance: DashboardCardProps = {
             ...dashBoardCardProps,
             type:"CreateQuoteCard",
@@ -182,7 +188,7 @@ const withPresenter = (
                   value: t('customer_dashboard.apply_finance'),
                 },
                 onButtonClicked: () => {
-                  
+                  //TODO apply for finance from dashboard
                 }
             }
         }
@@ -219,7 +225,7 @@ const withPresenter = (
                   value: t('customer_dashboard.see_all_button'),
                 },
                 onButtonClicked: () => {
-                    history.push('/portal/content/list/1', {contentType: "quotes"})
+                  history.push('/portal/content/list/1', {contentType: "quotes"})
                 }
               },
             },
@@ -242,7 +248,7 @@ const withPresenter = (
                   value: t('customer_dashboard.see_all_button'),
                 },
                 onButtonClicked: () => {
-                    history.push('/portal/content/list/1', {contentType: "applications"})
+                  history.push('/portal/content/list/1', {contentType: "applications"})
                 }
               },
             },
