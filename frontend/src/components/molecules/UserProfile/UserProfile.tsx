@@ -1,12 +1,15 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router';
 import styles from './UserProfile.module.scss';
 
 import UserIcon, { UserIconProps } from '../../atoms/UserIcon';
 import Icon, { IconProps } from '../../atoms/Icon';
 import Button, { ButtonProps } from '../../atoms/Button';
 import Text, { TextProps } from '../../atoms/Text';
+import { routes } from '../../pages/AuthPage/AuthPage'
 
 export type UserProfileStyleType = 'Light';
 export type UserProfileStateType = 'SignedIn' | 'None' | 'SignedOut';
@@ -81,6 +84,36 @@ const UserProfile: React.FC<UserProfileProps> = ({
   let primaryView;
   let iconView;
   let secondaryView;
+
+  const { t } = useTranslation();
+  const history = useHistory();
+
+  const handleSignIn = () => {
+    history.push({ pathname: routes.signIn });
+  };
+
+  const handleSignUp = () => {
+    history.push({ pathname: routes.signUp });
+  };
+
+  primary = {
+    ...primary,
+    text: {
+      ...primary?.text,
+      value: t('button_text.sign_in'),
+    },
+    onButtonClicked: handleSignIn,
+  };
+
+  secondary = {
+    ...secondary,
+    text: {
+      ...secondary?.text,
+      value: t('button_text.sign_up'),
+    },
+    onButtonClicked: handleSignUp,
+  };
+
   switch (state) {
     case 'SignedIn':
       userIconView = (

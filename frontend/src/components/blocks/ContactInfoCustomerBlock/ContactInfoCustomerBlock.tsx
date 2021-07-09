@@ -7,6 +7,7 @@ import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
 import { ContactInfo } from '../../../modules/types';
+
 export const defaultProps = {
   blockHeading: {
     style: 'Basic800',
@@ -81,7 +82,7 @@ export type ContactInfoCustomerBlockProps = {
   disclaimerText?: TextProps;
   viewQuoteButton?: ButtonProps;
   className?: string;
-  handleCreateQuote?: (contactInfo: ContactInfo)=>void
+  handleCreateQuote?: (contactInfo: ContactInfo) => void;
 };
 
 const ContactInfoCustomerBlock: React.FC<ContactInfoCustomerBlockProps> = ({

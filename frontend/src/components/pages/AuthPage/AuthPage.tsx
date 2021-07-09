@@ -5,7 +5,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import styles from './AuthPage.module.scss';
 
 import SignInBlock, { SignInBlockProps } from '../../blocks/SignInBlock';
-import SignUpBlock from '../../blocks/SignUpBlock';
+import SignUpBlock, { SignUpBlockProps } from '../../blocks/SignUpBlock';
 import ForgotPasswordBlock from '../../blocks/ForgotPasswordBlock';
 import CreatePasswordBlock from '../../blocks/CreatePasswordBlock';
 import DialogBlock from '../../blocks/DialogBlock';
@@ -14,6 +14,7 @@ import PersonalInformationBlock from '../../blocks/PersonalInformationBlock';
 import ContactInformationBlock from '../../blocks/ContactInformationBlock';
 import BusinessInformationBlock from '../../blocks/BusinessInformationBlock';
 import TopBar, { TopBarProps } from '../../organisms/TopBar';
+import { AccountRequest, CreateProfilePayload, SignInPayload, UserType } from '../../../modules/types';
 
 export const defaultProps = {
   topBar: {
@@ -104,19 +105,63 @@ export const defaultProps = {
   } as SignInBlockProps,
 };
 
+
+export type PersonalInformation = {
+  firstName: string;
+  lastName: string;
+  userType: UserType;
+}
+
+export type ContactInformation = {
+  email: string;
+  phone: string;
+  unitNumber: string;
+  street: string;
+  city: string;
+  postalCode: string;
+  province: string;
+}
+
+export type BusinessInformation = {
+  companyName: string;
+  operatingName: string;
+  businessSector: string;
+  operatingSinceDate: string;
+  businessPhone: string;
+  website?: string;
+}
+
+export type AuthPageLocationState = {
+  personalInfo: PersonalInformation,
+  contactInfo: ContactInformation,
+  businessInfo: PersonalInformation,
+  email: string,
+  id: string
+}
+
 export type AuthPageProps = {
   topBar?: TopBarProps;
   block?: SignInBlockProps;
   className?: string;
+  signUpBlock?: SignUpBlockProps;
+  signInBlock?: SignInBlockProps;
+  handleCreateIdentityAccount?: (payload: AccountRequest) => void;
+  handleSignIn?: (payload: SignInPayload) => void;
+  handleGetProfile?: (id: string | number) => void;
+  handleCompleteSetup?: () => void;
+  setPersonalInfo?: React.Dispatch<React.SetStateAction<PersonalInformation>>;
+  setContactInfo?: React.Dispatch<React.SetStateAction<ContactInformation>>;
+  setBusinessInfo?: React.Dispatch<React.SetStateAction<BusinessInformation>>;
+  handleToastDisplay?: (toastType: string) => void;
 };
 
-const routes = {
+export const routes = {
   signIn: '/account/signIn',
   forgotPassword: '/account/forgotPassword',
   resetLinkSent: '/account/resetSent',
   createPassword: '/account/createPassword',
   signUp: '/account/signUp',
-  verifyEmail: '/account/verifyEmail',
+  verifyEmail: '/account/verifyEmail/:accountId',
   personalInformation: '/account/personalInformation',
   contactInformation: '/account/contactInformation',
   businessInformation: '/account/businessInformation',
@@ -127,6 +172,13 @@ const AuthPage: React.FC<AuthPageProps> = ({
   topBar,
   block,
   className,
+  signUpBlock,
+  signInBlock,
+  handleCreateIdentityAccount,
+  handleSignIn,
+  setPersonalInfo,
+  setContactInfo,
+  setBusinessInfo,
 }) => (
     <div className={cx(styles.authPage, className)}>
       <TopBar
@@ -136,7 +188,9 @@ const AuthPage: React.FC<AuthPageProps> = ({
         <Route exact path={routes.signIn}>
           <SignInBlock
             className={styles.block}
-            {...block} />
+            {...signInBlock}
+            handleSignIn={handleSignIn}
+            />
         </Route>
 
         {/* Forgot password routes */}
@@ -156,7 +210,10 @@ const AuthPage: React.FC<AuthPageProps> = ({
         {/* Sign up routes */}
         <Route exact path={routes.signUp}>
           <SignUpBlock
-            className={styles.block} />
+            className={styles.block}
+            {...signUpBlock}
+            handleCreateIdentityAccount={handleCreateIdentityAccount}
+            />
         </Route>
         <Route exact path={routes.verifyEmail}>
           <DialogBlock
@@ -166,15 +223,19 @@ const AuthPage: React.FC<AuthPageProps> = ({
         {/* Account setup routes */}
         <ProtectedRoute exact path={routes.personalInformation}>
           <PersonalInformationBlock
-            className={styles.block} />
+            className={styles.block}
+            setPersonalInfo={setPersonalInfo}
+            />
         </ProtectedRoute>
         <ProtectedRoute exact path={routes.contactInformation}>
           <ContactInformationBlock
-            className={styles.block} />
+            className={styles.block}
+            setContactInfo={setContactInfo} />
         </ProtectedRoute>
         <ProtectedRoute exact path={routes.businessInformation}>
           <BusinessInformationBlock
-            className={styles.block} />
+            className={styles.block}
+            setBusinessInfo={setBusinessInfo} />
         </ProtectedRoute>
 
         <Route path={routes.invalid}>

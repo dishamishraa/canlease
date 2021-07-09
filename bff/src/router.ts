@@ -11,7 +11,9 @@ import { IDENTITY_URL, PROXY_TIMEOUT } from './lib/config';
 
 import { QuoteControllerContract, QuoteRouter } from './modules/quote';
 import { ApplicationControllerContract, ApplicationRouter } from './modules/application';
-import { PortfolioControllerContract, PortfolioRouter } from './modules/portfolio';
+import {
+  PortfolioControllerContract, PortfolioRouter,
+} from './modules/portfolio';
 import { ProfileControllerContract, ProfileRouter } from './modules/profile';
 
 const swaggerSpecConfig = {
@@ -68,13 +70,14 @@ export const createRouter = (controllers: {
 
   router.get('/', (req: Request, res: Response) => res.json({ running: true }));
   router.post('/token', proxy);
-  router.post('/accounts', proxy);
+  router.use('/accounts', proxy);
   router.use('/users', UserRouter());
 
   router.use('/quote', QuoteRouter(controllers));
   router.use('/credit_apps', ApplicationRouter(controllers));
   router.use('/portfolio', PortfolioRouter(controllers));
   router.use('/profile', ProfileRouter(controllers));
+  router.use('/portfolio', PortfolioRouter(controllers));
 
   return router;
 };

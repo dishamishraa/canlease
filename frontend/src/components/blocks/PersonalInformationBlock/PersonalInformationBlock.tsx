@@ -8,6 +8,7 @@ import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import RadiobuttonList, { RadiobuttonListProps } from '../../organisms/RadiobuttonList';
 import Button, { ButtonProps } from '../../atoms/Button';
+import { PersonalInformation } from '../../pages/AuthPage/AuthPage';
 
 export const defaultProps = {
   stepper: {
@@ -76,6 +77,7 @@ export type PersonalInformationBlockProps = {
   radiobuttonList?: RadiobuttonListProps;
   nextButton?: ButtonProps;
   className?: string;
+  setPersonalInfo?: React.Dispatch<React.SetStateAction<PersonalInformation>>;
 };
 
 const PersonalInformationBlock: React.FC<PersonalInformationBlockProps> = ({

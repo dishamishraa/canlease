@@ -8,6 +8,7 @@ import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import SelectField, { SelectFieldProps } from '../../molecules/SelectField';
 import Button, { ButtonProps } from '../../atoms/Button';
+import { ContactInformation } from '../../pages/AuthPage/AuthPage';
 
 export const defaultProps = {
   stepper: {
@@ -38,6 +39,19 @@ export const defaultProps = {
     },
   } as TextFieldProps,
   phoneNumberTextField: {
+    state: 'Default',
+    type: 'Text',
+    label: {
+      style: 'Basic800',
+      align: 'Left',
+      size: 'Medium',
+      type: 'Paragraph2',
+    },
+    textInput: {
+      type: 'Text',
+    },
+  } as TextFieldProps,
+  unitNumberTextField: {
     state: 'Default',
     type: 'Text',
     label: {
@@ -128,12 +142,14 @@ export type ContactInformationBlockProps = {
   blockHeading?: TextProps;
   emailTextField?: TextFieldProps;
   phoneNumberTextField?: TextFieldProps;
+  unitNumberTextField?: TextFieldProps;
   streetAddressTextField?: TextFieldProps;
   cityTextField?: TextFieldProps;
   postalCodeTextField?: TextFieldProps;
   provinceSelectField?: SelectFieldProps;
   nextButton?: ButtonProps;
   className?: string;
+  setContactInfo?: React.Dispatch<React.SetStateAction<ContactInformation>>;
 };
 
 const ContactInformationBlock: React.FC<ContactInformationBlockProps> = ({
@@ -141,6 +157,7 @@ const ContactInformationBlock: React.FC<ContactInformationBlockProps> = ({
   blockHeading,
   emailTextField,
   phoneNumberTextField,
+  unitNumberTextField,
   streetAddressTextField,
   cityTextField,
   postalCodeTextField,
@@ -165,6 +182,9 @@ const ContactInformationBlock: React.FC<ContactInformationBlockProps> = ({
           <TextField
             className={styles.phoneNumberTextField}
             {...phoneNumberTextField} />
+          <TextField
+            className={styles.unitNumberTextField}
+            {...unitNumberTextField} />
           <TextField
             className={styles.streetAddressTextField}
             {...streetAddressTextField} />

@@ -18,12 +18,12 @@ const CreateProfileSchema = Joi.object({
   userType: Joi.string().valid(...VALID_USER_TYPES).required(),
   email: Joi.string().required(),
   phone: Joi.string().required(),
-  title: Joi.string().required(),
+  title: Joi.string(),
   operatingName: Joi.string().required(),
   operatingSinceDate: Joi.string().required(),
   businessSector: Joi.string().required(),
   businessPhone: Joi.string().required(),
-  website: Joi.string().required(),
+  website: Joi.string(),
 });
 
 const AddQuoteSchema = Joi.object({

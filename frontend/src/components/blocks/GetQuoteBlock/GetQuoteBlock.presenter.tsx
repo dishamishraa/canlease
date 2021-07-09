@@ -9,12 +9,11 @@ import { defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenu
 import { isEmptyString } from '../../../lib/utils';
 import { EquipmentLeaseInfo } from '../../../modules/types';
 
-
 export type GetQuoteBlockPresenterProps = {
   setEquipmentLeaseInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
 };
 
-export type LocationState = {userType?: string, equipmentLeaseInfo?: EquipmentLeaseInfo};
+export type LocationState = {userType?: string; equipmentLeaseInfo?: EquipmentLeaseInfo};
 
 const withPresenter = (
   View: React.FC<GetQuoteBlockProps>,
@@ -25,8 +24,7 @@ const withPresenter = (
     const { setEquipmentLeaseInfo } = props;
     const location = useLocation<(LocationState)>();
     const { state } = location;
-    
-    
+
     const [equipmentName, setEquipmentName] = useState<string>('');
     const [equipmentCost, setEquipmentCost] = useState<string>('');
     const [equipmentLeaseType, setEquipmentLeaseType] = useState<string>(t('get_quote_block.lease_type.options.stretch'));
@@ -34,15 +32,15 @@ const withPresenter = (
     const isFormValid = !isEmptyString(equipmentName) && !isEmptyString(equipmentCost);
 
     const handleClickNext = () => {
-      if(isFormValid && setEquipmentLeaseInfo && state){
+      if (isFormValid && setEquipmentLeaseInfo && state) {
         const { userType } = state;
         const leaseInfo = {
-          name: equipmentName, 
-          cost: equipmentCost, 
+          name: equipmentName,
+          cost: equipmentCost,
           leaseType: equipmentLeaseType,
-        };        
+        };
         setEquipmentLeaseInfo(leaseInfo);
-        history.push('/contactInformation', {userType: userType, equipmentLeaseInfo: leaseInfo});
+        history.push('/contactInformation', { userType, equipmentLeaseInfo: leaseInfo });
       }
     };
     const handleChangeEquipmentName = ({ target: { value } }) => setEquipmentName(value);

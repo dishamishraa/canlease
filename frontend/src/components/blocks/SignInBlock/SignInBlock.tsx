@@ -6,9 +6,20 @@ import styles from './SignInBlock.module.scss';
 import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
+import { SignInPayload } from '../../../modules/types';
+import Toast, { ToastProps } from '../../atoms/Toast';
+import { ToastTypeType, ToastStyleType, defaultProps as defaultToastProps } from '../../atoms/Toast/Toast';
+import { IconProps } from '../../atoms/Icon';
+import { isEmptyString } from '../../../lib/utils';
 
 export const defaultProps = {
   blockHeading: {
+    style: 'Basic800',
+    align: 'Left',
+    size: 'Medium',
+    type: 'Heading2',
+  } as TextProps,
+  bottomContent: {
     style: 'Basic800',
     align: 'Center',
     size: 'Medium',
@@ -53,10 +64,10 @@ export const defaultProps = {
   nextButton: {
     type: 'Button',
     size: 'Large',
-    fill: 'Basic',
-    colour: 'Basic',
+    fill: 'Colour',
+    colour: 'Brand',
     text: {
-      style: 'Brand500',
+      style: 'Basic100',
       align: 'Center',
       size: 'Small',
       type: 'ButtonGiant',
@@ -66,6 +77,18 @@ export const defaultProps = {
     type: 'Button',
     size: 'Small',
     fill: 'None',
+    colour: 'Basic',
+    text: {
+      style: 'Brand500',
+      align: 'Center',
+      size: 'Small',
+      type: 'ButtonGiant',
+    },
+  } as ButtonProps,
+  signUpButton: {
+    type: 'Button',
+    size: 'Large',
+    fill: 'Basic',
     colour: 'Basic',
     text: {
       style: 'Brand500',
@@ -84,6 +107,12 @@ export type SignInBlockProps = {
   nextButton?: ButtonProps;
   forgotPasswordButton?: ButtonProps;
   className?: string;
+  bottomContent?: TextProps;
+  signUpButton?: ButtonProps;
+  handleSignIn?: (payload: SignInPayload) => void;
+  toastProps?: ToastProps;
+  toastMessage?: string;
+  setToastMessage?: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const SignInBlock: React.FC<SignInBlockProps> = ({
@@ -94,8 +123,18 @@ const SignInBlock: React.FC<SignInBlockProps> = ({
   nextButton,
   forgotPasswordButton,
   className,
-}) => (
+  bottomContent,
+  signUpButton,
+  toastMessage,
+  toastProps
+}) => {
+  let toastDisplay;
+  if(!isEmptyString(toastMessage)){
+    toastDisplay = <Toast {...toastProps}/>
+  }
+  return (
     <div className={cx(styles.signInBlock, className)}>
+      {toastDisplay}
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
           <Text
@@ -123,13 +162,14 @@ const SignInBlock: React.FC<SignInBlockProps> = ({
       <div className={styles.bottamContent}>
         <Text
           className={styles.blockHeading}
-          {...blockHeading} />
+          {...bottomContent} />
         <Button
           className={styles.nextButton}
-          {...nextButton} />
+          {...signUpButton} />
       </div>
     </div>
 );
+}
 
 SignInBlock.defaultProps = defaultProps;
 

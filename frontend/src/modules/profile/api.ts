@@ -1,9 +1,9 @@
 import axios from 'axios';
 import i18next from 'i18next';
 import { getServerUrl } from '../../lib/utils';
-import { Quote, CreateQuotePayload, Profile} from '../types';
+import { Quote, CreateQuotePayload, Profile, CreateProfilePayload} from '../types';
 
-export const getProfile = async (id: number | string): Promise<Profile> => {
+export const getProfile = async (id: string): Promise<Profile> => {
     try {
         const { data } = await axios.get<Profile>(`${getServerUrl()}/profile/${id}`, { withCredentials: true });
         return data as Profile;
@@ -38,3 +38,14 @@ export const getAllQuotesFromProfile = async(portalId: string): Promise<Quote[]>
       throw error;
     }
   };
+export const createProfile = async (payload: CreateProfilePayload): Promise<Profile> => {
+  try {
+    const { data } = await axios.post<Profile>(`${getServerUrl()}/profile`, payload, { withCredentials: true });
+    return data as Profile;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      throw error;
+    }
+    throw error;
+  }
+}

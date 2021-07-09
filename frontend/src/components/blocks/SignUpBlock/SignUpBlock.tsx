@@ -6,9 +6,16 @@ import styles from './SignUpBlock.module.scss';
 import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
+import { AccountRequest } from '../../../modules/types';
 
 export const defaultProps = {
   blockHeading: {
+    style: 'Basic800',
+    align: 'Left',
+    size: 'Medium',
+    type: 'Heading2',
+  } as TextProps,
+  bottomContent: {
     style: 'Basic800',
     align: 'Center',
     size: 'Medium',
@@ -100,8 +107,11 @@ export type SignUpBlockProps = {
   createPasswordField?: TextFieldProps;
   confirmPasswordField?: TextFieldProps;
   signUpButton?: ButtonProps;
+  bottomContent?: TextProps;
   signInButton?: ButtonProps;
   className?: string;
+  handleCreateIdentityAccount?: (payload: AccountRequest) => void;
+  accountExist?: boolean;
 };
 
 const SignUpBlock: React.FC<SignUpBlockProps> = ({
@@ -111,6 +121,7 @@ const SignUpBlock: React.FC<SignUpBlockProps> = ({
   createPasswordField,
   confirmPasswordField,
   signUpButton,
+  bottomContent,
   signInButton,
   className,
 }) => (
@@ -142,7 +153,7 @@ const SignUpBlock: React.FC<SignUpBlockProps> = ({
       <div className={styles.bottamContent}>
         <Text
           className={styles.blockHeading}
-          {...blockHeading} />
+          {...bottomContent} />
         <Button
           className={styles.signInButton}
           {...signInButton} />

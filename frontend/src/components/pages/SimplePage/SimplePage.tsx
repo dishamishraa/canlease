@@ -136,7 +136,7 @@ export type SimplePageProps = {
   setEquipmentLeaseInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
   equipmentLeaseInfo?: EquipmentLeaseInfo;
   contactInfo?: ContactInfo;
-  handleCreateQuote?: (contactInfo: ContactInfo)=>void; 
+  handleCreateQuote?: (contactInfo: ContactInfo) => void;
 };
 
 const routes = {
@@ -148,20 +148,20 @@ const routes = {
 };
 
 const SimplePage: React.FC<SimplePageProps> = ({
-    userSelectionBlock,
-    getQuoteBlock,
-    contactInfoCustomerBlock,
-    quoteBlock,
-    topBar,
-    block,
-    actionBlock,
-    className,
-    userType,
-    setUserType,
-    setEquipmentLeaseInfo,
-    handleCreateQuote
-  }) => {
-  const ContactInfoBlock = userType === "vendor" ? ContactInfoVendorBlock : ContactInfoCustomerBlock;
+  userSelectionBlock,
+  getQuoteBlock,
+  contactInfoCustomerBlock,
+  quoteBlock,
+  topBar,
+  block,
+  actionBlock,
+  className,
+  userType,
+  setUserType,
+  setEquipmentLeaseInfo,
+  handleCreateQuote,
+}) => {
+  const ContactInfoBlock = userType === 'vendor' ? ContactInfoVendorBlock : ContactInfoCustomerBlock;
 
   return (
     <div className={cx(styles.simplePage, className)}>
@@ -180,14 +180,14 @@ const SimplePage: React.FC<SimplePageProps> = ({
           <Route exact path={routes.getQuote}>
             <GetQuoteBlock
               className={styles.block}
-              {...getQuoteBlock} 
+              {...getQuoteBlock}
               setEquipmentLeaseInfo={setEquipmentLeaseInfo}
               />
           </Route>
           <Route exact path={routes.contactInformation}>
             <ContactInfoBlock
               className={styles.block}
-              {...contactInfoCustomerBlock} 
+              {...contactInfoCustomerBlock}
               handleCreateQuote={handleCreateQuote}
               />
           </Route>
