@@ -9,7 +9,7 @@ import {
   SENDGRID_QUOTE_TEMPLATE_ID,
 } from '../../lib/config';
 import SendGridApi from './SendGridApi';
-import { mockSendGridPayload } from './fixtures';
+import mockSendQuote from './fixtures/mockSendQuote';
 
 jest.mock('@sendgrid/mail');
 
@@ -24,12 +24,12 @@ describe('SendGridAPI', () => {
   describe('sendQuote', () => {
     it('should send quote email', async () => {
       mockedSend.mockResolvedValue({});
-      await api.sendQuote(mockSendGridPayload);
+      await api.sendQuote(mockSendQuote);
       expect(mockedSend).toHaveBeenCalledWith({
         to: 'test@testmail.com',
         from: SENDGRID_FROM_EMAIL,
         dynamicTemplateData: {
-          action_url: 'https://www.redthreadinnovations.com',
+          action_url: '/instaQuote/abc',
         },
         templateId: SENDGRID_QUOTE_TEMPLATE_ID,
       });
@@ -38,7 +38,7 @@ describe('SendGridAPI', () => {
   it('should throw FailedToSendEmail on error', async () => {
     mockedSend.mockRejectedValue({});
 
-    await expect(api.sendQuote(mockSendGridPayload))
+    await expect(api.sendQuote(mockSendQuote))
       .rejects.toThrowError(createError.InternalServerError);
   });
 });

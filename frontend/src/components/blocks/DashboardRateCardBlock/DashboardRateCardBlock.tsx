@@ -33,8 +33,7 @@ const DashboardRateCardBlock: React.FC<DashboardRateCardBlockProps> = ({
   blockHeader,
   dashboardRateCardList,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.dashboardRateCardBlock, className)}>
       <BlockHeader
         className={styles.blockHeader}
@@ -43,8 +42,7 @@ const DashboardRateCardBlock: React.FC<DashboardRateCardBlockProps> = ({
         className={styles.dashboardRateCardList}
         {...dashboardRateCardList} />
     </div>
-  );
-};
+);
 
 DashboardRateCardBlock.defaultProps = defaultProps;
 

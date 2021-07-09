@@ -1,10 +1,12 @@
 import { Router, Request, Response } from 'express';
 import { ProfileControllerContract } from './types';
-import { BadRequestError } from '../../lib/errors';
-import { errorWrapper } from '../../lib/utils';
-import { validateAddQuote, validateCreateProfile, validateId } from './utils';
-import mockResponse from './fixture/mockProfileResponse';
-import { mockQuoteListResponse } from '../quote/fixtures';
+import { BadRequestError, UnauthorizedError } from '../../lib/errors';
+import { errorWrapper, getCookie, validateId } from '../../lib/utils';
+import {
+  decodeIdentityToken,
+} from './utils';
+import { IDENTITY_SESSION_COOKIE_NAME } from '../../lib/config';
+import { validateCreateProfile, validateAddQuote } from '../../lib/salesforce/utils';
 
 export function createProfileRouter(controllers: {
   profileController: ProfileControllerContract;
@@ -13,7 +15,6 @@ export function createProfileRouter(controllers: {
   const { profileController } = controllers;
 
   router.post('/', errorWrapper(async (req: Request, res: Response) => {
-    res.status(200).send(mockResponse);
     if (!validateCreateProfile(req.body)) {
       throw BadRequestError();
     }
@@ -21,20 +22,22 @@ export function createProfileRouter(controllers: {
     res.status(200).send(data);
   }));
 
-  router.get('/:id', errorWrapper(async (req: Request, res: Response) => {
-    const { id } = req.params;
-    if (!validateId(id)) {
-      throw BadRequestError();
+  router.get('/me', errorWrapper(async (req: Request, res: Response) => {
+    const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
+    if (!identityToken) {
+      throw UnauthorizedError("identityToken empty");
     }
-    // mock
-    if (id === '1') {
-      res.status(200).send(mockResponse);
+
+    const identityTokenPayload = decodeIdentityToken(identityToken);
+    if (!identityTokenPayload) {
+      throw UnauthorizedError("identityTokenPayload empty");
     }
-    const data = await profileController.getProfile(id);
+
+    const data = await profileController.getProfile(`${identityTokenPayload.id}`);
     res.status(200).send(data);
   }));
 
-  router.post('/actions/add_quote', errorWrapper(async (req: Request, res: Response) => {
+  router.post('/:id/actions/add_quote', errorWrapper(async (req: Request, res: Response) => {
     const { id } = req.params;
     if (!validateId(id) || !validateAddQuote(req.body)) {
       throw BadRequestError();
@@ -49,7 +52,7 @@ export function createProfileRouter(controllers: {
       throw BadRequestError();
     }
     const data = await profileController.getAllQuotesFromProfile(id);
-    res.status(200).send(mockQuoteListResponse);
+    res.status(200).send(data);
   }));
 
   router.get('/:id/customer_quote', errorWrapper(async (req: Request, res: Response) => {
@@ -58,7 +61,7 @@ export function createProfileRouter(controllers: {
       throw BadRequestError();
     }
     const data = await profileController.getAllCustomerQuotesFromProfile(id);
-    res.status(200).send(mockQuoteListResponse);
+    res.status(200).send(data);
   }));
 
   return router;

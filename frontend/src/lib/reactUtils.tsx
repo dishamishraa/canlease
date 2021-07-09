@@ -3,7 +3,10 @@ import React from 'react';
 const LINK_REGEX = /\[([^\]]*)\]\(([^\)]*)\)/g;
 const NEW_LINE_REGEX = /\r\n|\r|\n/g;
 
-const replaceNewlines = (text: string): React.ReactNode[] => text.split(NEW_LINE_REGEX).flatMap((e) => [<br />, e]).slice(1);
+const replaceNewlines = (text: string): React.ReactNode[] => text
+  .split(NEW_LINE_REGEX)
+  .flatMap((e) => [<br />, e])
+  .slice(1);
 
 export const addLinksAndBreaks = (value: string): string | React.ReactNode[] => {
   if (!value) return '';

@@ -62,8 +62,7 @@ const RateCardTableHeader: React.FC<RateCardTableHeaderProps> = ({
   assetName,
   cost,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.rateCardTableHeader, className)}>
       <Text
         className={styles.companyName}
@@ -84,8 +83,7 @@ const RateCardTableHeader: React.FC<RateCardTableHeaderProps> = ({
         className={styles.cost}
         {...cost} />
     </div>
-  );
-};
+);
 
 RateCardTableHeader.defaultProps = defaultProps;
 

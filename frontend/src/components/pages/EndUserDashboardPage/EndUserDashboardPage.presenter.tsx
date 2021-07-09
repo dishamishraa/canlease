@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { EndUserDashboardPageProps, defaultProps } from './EndUserDashboardPage';
-import { Redirect, useLocation, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Portfolio, Quote, Profile } from '../../../modules/types';
 import { DashboardCardProps, defaultProps as dashBoardCardProps } from '../../molecules/DashboardCard/DashboardCard';
 import { isExpiring, isExpired, createdOn} from '../../../lib/utils';
 import CreateQuote from '../../../resources/icons/CreateQuote.svg';
+import { Portfolio } from '../../../modules/portfolio/types';
+import { Profile } from '../../../modules/profile/types';
+import { Quote } from '../../../modules/quote/types';
 
 export type EndUserDashboardPagePresenterProps = EndUserDashboardPageProps & {
     customerQuotes?: Quote[] | null,
@@ -45,7 +47,7 @@ const withPresenter = (
             return  t('application_page.status.expired')
         }
         else if(isExpiring(quoteExpiryDate)){
-            return t('application_page.status.expiring_soon')
+            return t('application_page.status.expiring')
         } else {
             return t('application_page.status.active')
         }
@@ -92,7 +94,7 @@ const withPresenter = (
                     value: t('customer_dashboard.view_button'),
                   },
                   onButtonClicked: () => {
-                    history.push(`/portal/content/quote/${quoteId}`)
+                    history.push(`/portal/quotes/quote/${quoteId}`)
                   }
                 }
             }
@@ -225,7 +227,7 @@ const withPresenter = (
                   value: t('customer_dashboard.see_all_button'),
                 },
                 onButtonClicked: () => {
-                  history.push('/portal/content/list/1', {contentType: "quotes"})
+                  history.push('/portal/quotes')
                 }
               },
             },
@@ -248,7 +250,7 @@ const withPresenter = (
                   value: t('customer_dashboard.see_all_button'),
                 },
                 onButtonClicked: () => {
-                  history.push('/portal/content/list/1', {contentType: "applications"})
+                  history.push('/portal/quotes')
                 }
               },
             },

@@ -128,8 +128,7 @@ const GetQuoteRepBlock: React.FC<GetQuoteRepBlockProps> = ({
   rateCardSelectField,
   nextButton,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.getQuoteRepBlock, className)}>
       <Text
         className={styles.blockHeading}
@@ -153,8 +152,7 @@ const GetQuoteRepBlock: React.FC<GetQuoteRepBlockProps> = ({
         className={styles.nextButton}
         {...nextButton} />
     </div>
-  );
-};
+);
 
 GetQuoteRepBlock.defaultProps = defaultProps;
 

@@ -1,5 +1,6 @@
+import mockAddQuote from '../../lib/salesforce/fixtures/mockAddQuote';
+import mockCreateProfile from '../../lib/salesforce/fixtures/mockCreateProfile';
 import ProfileController from './ProfileController';
-import { mockSalesforceProfilePayload, mockAddQuotePayload } from './fixture';
 
 describe('ProfileController', () => {
   const profileService = {
@@ -20,17 +21,17 @@ describe('ProfileController', () => {
 
   describe('createProfile', () => {
     it('should call service with payload to create profile', async () => {
-      await controller.createProfile(mockSalesforceProfilePayload);
+      await controller.createProfile(mockCreateProfile);
 
-      expect(profileService.createProfile).toHaveBeenCalledWith(mockSalesforceProfilePayload);
+      expect(profileService.createProfile).toHaveBeenCalledWith(mockCreateProfile);
     });
   });
 
   describe('addQuoteToProfile', () => {
     it('should call service with portal id and payload to create profile', async () => {
-      await controller.addQuoteToProfile('1', mockAddQuotePayload);
+      await controller.addQuoteToProfile('1', mockAddQuote);
 
-      expect(profileService.addQuoteToProfile).toHaveBeenCalledWith('1', mockAddQuotePayload);
+      expect(profileService.addQuoteToProfile).toHaveBeenCalledWith('1', mockAddQuote);
     });
   });
 

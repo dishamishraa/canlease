@@ -1,8 +1,8 @@
 import { AddQuote } from '../types';
 
-const payload: AddQuote = {
+const mockAddQuote: AddQuote = {
   quoteId: '1',
   portalId: '1',
 };
 
-export default payload;
+export default mockAddQuote;

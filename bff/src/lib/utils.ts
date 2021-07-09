@@ -1,7 +1,17 @@
+import Joi from 'joi';
 import {
   Request, Response, NextFunction, CookieOptions,
 } from 'express';
 import { FRONTEND_DOMAIN } from './config';
+
+const id = Joi.alternatives(
+  Joi.string(),
+).required();
+
+export const validateId = (value: unknown): value is string => {
+  const { error } = id.validate(value, { allowUnknown: true });
+  return error === undefined;
+};
 
 export const errorWrapper = (
   callback: (req: Request, res: Response, next: NextFunction) => Promise<void> | void,

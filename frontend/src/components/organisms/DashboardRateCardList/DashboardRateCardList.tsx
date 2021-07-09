@@ -24,7 +24,7 @@ const DashboardRateCardList: React.FC<DashboardRateCardListProps> = ({
       className={styles.dashboardRateCard}
       {...dashboardRateCard} />
   ));
-  
+
   return (
     <div className={cx(styles.dashboardRateCardList, className)}>
       {dashboardRateCardArray}

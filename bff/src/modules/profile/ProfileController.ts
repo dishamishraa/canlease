@@ -1,6 +1,8 @@
-import { Quote } from '../quote/types';
 import {
-  Profile, CreateProfile, AddQuote, ProfileControllerContract, ProfileServiceContract,
+  Profile, CreateProfile, AddQuote, Quote,
+} from '../../lib/salesforce/types';
+import {
+  ProfileControllerContract, ProfileServiceContract,
 } from './types';
 
 export default class ProfileController implements ProfileControllerContract {
@@ -10,23 +12,23 @@ export default class ProfileController implements ProfileControllerContract {
     this.service = service;
   }
 
-  async getProfile(portalId: string): Promise<Profile> {
+  getProfile(portalId: string): Promise<Profile> {
     return this.service.getProfile(portalId);
   }
 
-  async createProfile(payload: CreateProfile): Promise<Profile> {
+  createProfile(payload: CreateProfile): Promise<Profile> {
     return this.service.createProfile(payload);
   }
 
-  async addQuoteToProfile(portalId: string, payload: AddQuote): Promise<void> {
+  addQuoteToProfile(portalId: string, payload: AddQuote): Promise<void> {
     return this.service.addQuoteToProfile(portalId, payload);
   }
 
-  async getAllQuotesFromProfile(portalId: string): Promise<Quote[]> {
+  getAllQuotesFromProfile(portalId: string): Promise<Quote[]> {
     return this.service.getAllQuotesFromProfile(portalId);
   }
 
-  async getAllCustomerQuotesFromProfile(portalId: string): Promise<Quote[]> {
+  getAllCustomerQuotesFromProfile(portalId: string): Promise<Quote[]> {
     return this.service.getAllCustomerQuotesFromProfile(portalId);
   }
 }

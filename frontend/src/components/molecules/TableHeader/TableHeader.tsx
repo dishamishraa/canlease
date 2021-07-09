@@ -65,9 +65,9 @@ const TableHeader: React.FC<TableHeaderProps> = ({
 }) => {
   let dispayContantName;
   if (contactName?.value) {
-    dispayContantName= (   <Text
+    dispayContantName = (<Text
       className={styles.contactName}
-      {...contactName} />)
+      {...contactName} />);
   }
 
   return (
@@ -90,7 +90,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({
           {...cost} />
       </div>
   );
-}
+};
 
 TableHeader.defaultProps = defaultProps;
 

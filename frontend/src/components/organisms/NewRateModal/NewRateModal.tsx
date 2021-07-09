@@ -65,8 +65,7 @@ const NewRateModal: React.FC<NewRateModalProps> = ({
   primary,
   secondary,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.newRateModal, className)}>
       <div className={styles.topContainer}>
         <Icon
@@ -90,8 +89,7 @@ const NewRateModal: React.FC<NewRateModalProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+);
 
 NewRateModal.defaultProps = defaultProps;
 

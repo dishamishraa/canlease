@@ -1,6 +1,6 @@
 import { CreateProfile } from '../types';
 
-const payload: CreateProfile = {
+const mockCreateProfile: CreateProfile = {
   companyName: 'string',
   street: 'string',
   province: 'string',
@@ -20,4 +20,4 @@ const payload: CreateProfile = {
   website: 'string',
 };
 
-export default payload;
+export default mockCreateProfile;

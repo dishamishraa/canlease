@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useLocation, useParams } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import { defaultProps, ContactInformationBlockProps } from './ContactInformationBlock';
-import { APIResponse } from '../../../lib/api/types';
-import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField';
-import { AuthPageLocationState, ContactInformation, routes } from '../../pages/AuthPage/AuthPage';
 import { isEmptyString } from '../../../lib/utils';
 import { ContextualMenuItemProps, defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
-import { ContextualMenuProps } from '../../molecules/ContextualMenu/ContextualMenu';
+import { AuthPageLocationState, ContactInformation } from '../../../modules/types';
 
 export type ContactInformationBlockPresenterProps = ContactInformationBlockProps & {
   setContactInfo?: React.Dispatch<React.SetStateAction<ContactInformation>>;
@@ -19,23 +16,23 @@ const withPresenter = (
   const Presenter: React.FC<ContactInformationBlockPresenterProps> = (props) => {
     const {
       setContactInfo,
-    } = props
+    } = props;
     const { t } = useTranslation();
     const history = useHistory();
-    const { state } = useLocation<AuthPageLocationState>()
+    const { state } = useLocation<AuthPageLocationState>();
     const { email } = state || {};
     const [phoneNumber, setPhoneNumber] = useState<string>('');
-    const [unitNumber, setUnitNumber] = useState<string>('')
+    const [unitNumber, setUnitNumber] = useState<string>('');
     const [streetAddress, setStreetAddress] = useState<string>('');
     const [city, setCity] = useState<string>('');
     const [postalCode, setPostalCode] = useState<string>('');
     const [province, setProvince] = useState<string>('');
 
-    const formInvalid = (isEmptyString(phoneNumber) 
+    const formInvalid = (isEmptyString(phoneNumber)
     || isEmptyString(streetAddress)
     || isEmptyString(city)
     || isEmptyString(postalCode)
-    || isEmptyString(province))
+    || isEmptyString(province));
 
     const handlePhoneNumber = ({ target: { value } }) => {
       setPhoneNumber(value);
@@ -58,19 +55,19 @@ const withPresenter = (
     };
 
     const handleNext = () => {
-      if(setContactInfo && state && email){
+      if (setContactInfo && state && email) {
         setContactInfo({
-          email: email,
+          email,
           phone: phoneNumber,
-          unitNumber: unitNumber,
+          unitNumber,
           street: streetAddress,
-          city: city,
-          postalCode: postalCode,
-          province: province
+          city,
+          postalCode,
+          province,
         });
-        history.push({pathname: routes.businessInformation})
+        history.push('/account/businessInformation');
       }
-    }
+    };
 
     const contextualMenuItems: ContextualMenuItemProps[] = [];
     for (let i = 0; i < 12; i++) {
@@ -80,7 +77,7 @@ const withPresenter = (
           value: t(`contact_information.province.${i}`),
         },
         onContextualMenuItemClicked: () => setProvince(t(`contact_information.province.${i}`)),
-      })
+      });
     }
 
     const contactInformationBlockProps: ContactInformationBlockProps = {
@@ -91,13 +88,13 @@ const withPresenter = (
           ...defaultProps.stepper.text,
           value: t('stepper', {
             current: '2',
-            total: '3'
-          })
-        }
+            total: '3',
+          }),
+        },
       },
       blockHeading: {
         ...defaultProps.blockHeading,
-        value: t('contact_information.header')
+        value: t('contact_information.header'),
       },
       emailTextField: {
         ...defaultProps.emailTextField,
@@ -106,7 +103,7 @@ const withPresenter = (
           value: t('text_field_label.email'),
         },
         textInput: {
-          textValue: email
+          textValue: email,
         },
       },
       phoneNumberTextField: {
@@ -117,10 +114,10 @@ const withPresenter = (
         },
         textInput: {
           textValue: phoneNumber,
-          onTextChanged: handlePhoneNumber
+          onTextChanged: handlePhoneNumber,
         },
       },
-      unitNumberTextField:{
+      unitNumberTextField: {
         ...defaultProps.unitNumberTextField,
         label: {
           ...defaultProps.unitNumberTextField.label,
@@ -128,7 +125,7 @@ const withPresenter = (
         },
         textInput: {
           textValue: unitNumber,
-          onTextChanged: handleUnitNumber
+          onTextChanged: handleUnitNumber,
         },
       },
       streetAddressTextField: {
@@ -139,7 +136,7 @@ const withPresenter = (
         },
         textInput: {
           textValue: streetAddress,
-          onTextChanged: handleStreetAddress
+          onTextChanged: handleStreetAddress,
         },
       },
       cityTextField: {
@@ -150,7 +147,7 @@ const withPresenter = (
         },
         textInput: {
           textValue: city,
-          onTextChanged: handleCity
+          onTextChanged: handleCity,
         },
       },
       postalCodeTextField: {
@@ -161,7 +158,7 @@ const withPresenter = (
         },
         textInput: {
           textValue: postalCode,
-          onTextChanged: handlePostalCode
+          onTextChanged: handlePostalCode,
         },
       },
       provinceSelectField: {
@@ -179,8 +176,8 @@ const withPresenter = (
         },
         contextualMenu: {
           contextualMenuItemList: {
-            contextualMenuItems
-          }
+            contextualMenuItems,
+          },
         },
         selectId: t('text_field_label.province'),
       },
@@ -188,16 +185,17 @@ const withPresenter = (
         ...defaultProps.nextButton,
         text: {
           ...defaultProps.nextButton.text,
-          value: t('button_text.next')
+          value: t('button_text.next'),
         },
         onButtonClicked: handleNext,
-        disabled: formInvalid
-      }
-    }
+        disabled: formInvalid,
+      },
+    };
 
     return <View
-          {...contactInformationBlockProps}
-          />;
+      {...props}
+      {...contactInformationBlockProps}
+      />;
   };
   return Presenter;
 };

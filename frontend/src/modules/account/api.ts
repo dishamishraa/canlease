@@ -1,17 +1,21 @@
 import axios from 'axios';
-import i18next from 'i18next';
-import { getServerUrl } from '../../lib/utils';
+import { ApiError } from '../../lib/api/types';
+import { BFF_URL } from '../../lib/config';
 import {
-  AccountTokenResponse, AccountRequest, SignInPayload, UpdatePasswordPayload, UpdateNamePayload,
-} from '../types';
+  AccountResponse, SignInPayload, SignUpPayload, UpdateNamePayload, UpdatePasswordPayload,
+} from './types';
 
-export const createIdentityAccount = async (payload: AccountRequest): Promise<AccountTokenResponse> => {
+export const signUp = async (payload: SignUpPayload): Promise<AccountResponse> => {
   try {
-    const { data } = await axios.post<AccountTokenResponse>(`${getServerUrl()}/accounts`, payload);
+    const { data } = await axios.post<AccountResponse>(`${BFF_URL}/accounts`, payload);
     return data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
-      throw error;
+      throw new ApiError({
+        code: error.response.status,
+        type: error.response.statusText,
+        message: error.message,
+      });
     }
     throw error;
   }
@@ -19,22 +23,34 @@ export const createIdentityAccount = async (payload: AccountRequest): Promise<Ac
 
 export const resendVerifyAccount = async (email: string): Promise<void> => {
   try {
-    await axios.post(`${getServerUrl()}/accounts/actions/resendVerifyEmail`, {
+    await axios.post(`${BFF_URL}/accounts/actions/resendVerifyEmail`, {
       params: {
         email,
       },
     });
   } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      throw new ApiError({
+        code: error.response.status,
+        type: error.response.statusText,
+        message: error.message,
+      });
+    }
+    throw error;
   }
 };
 
-export const signIn = async (payload: SignInPayload): Promise<AccountTokenResponse> => {
+export const signIn = async (payload: SignInPayload): Promise<AccountResponse> => {
   try {
-    const { data } = await axios.post<AccountTokenResponse>(`${getServerUrl()}/token`, payload);
+    const { data } = await axios.post<AccountResponse>(`${BFF_URL}/token`, payload);
     return data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
-      throw error;
+      throw new ApiError({
+        code: error.response.status,
+        type: error.response.statusText,
+        message: error.message,
+      });
     }
     throw error;
   }
@@ -42,34 +58,58 @@ export const signIn = async (payload: SignInPayload): Promise<AccountTokenRespon
 
 export const forgotPassword = async (email: string): Promise<void> => {
   try {
-    await axios.post(`${getServerUrl()}/accounts/actions/forgotPassword`, {
+    await axios.post(`${BFF_URL}/accounts/actions/forgotPassword`, {
       params: {
         email,
       },
     });
   } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      throw new ApiError({
+        code: error.response.status,
+        type: error.response.statusText,
+        message: error.message,
+      });
+    }
+    throw error;
   }
 };
 
 export const updatePassword = async (payload: UpdatePasswordPayload): Promise<void> => {
-  try{
-    const { id, password} = payload;
-    await axios.post(`${getServerUrl()}/accounts/${id}/actions/updatePassword`, {
-      password
+  try {
+    const { id, password } = payload;
+    await axios.post(`${BFF_URL}/accounts/${id}/actions/updatePassword`, {
+      password,
     },
-    { withCredentials: true },);
-  }catch (error) {
+    { withCredentials: true });
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      throw new ApiError({
+        code: error.response.status,
+        type: error.response.statusText,
+        message: error.message,
+      });
+    }
+    throw error;
   }
-}
+};
 
 export const updateName = async (payload: UpdateNamePayload): Promise<void> => {
-  try{
+  try {
     const { id, firstName, lastName } = payload;
-    await axios.patch(`${getServerUrl()}/accounts/${id}`, {
+    await axios.patch(`${BFF_URL}/accounts/${id}`, {
       firstName,
-      lastName
+      lastName,
     },
-    { withCredentials: true },);
-  }catch (error) {
+    { withCredentials: true });
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      throw new ApiError({
+        code: error.response.status,
+        type: error.response.statusText,
+        message: error.message,
+      });
+    }
+    throw error;
   }
-}
+};

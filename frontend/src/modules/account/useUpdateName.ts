@@ -1,11 +1,11 @@
 import { useCallback } from 'react';
-import usePost from '../../lib/api/usePost';
+import usePost, { UsePostResult } from '../../lib/api/usePost';
 import { updateName } from './api';
-import { UpdateNamePayload } from '../types'
+import { UpdateNamePayload } from './types';
 
-const useUpdateName = () => {
+const useUpdateName = (): UsePostResult<void, UpdateNamePayload> => {
   const post = useCallback((payload: UpdateNamePayload): Promise<void> => updateName(payload), []);
   return usePost(post);
-}
+};
 
 export default useUpdateName;

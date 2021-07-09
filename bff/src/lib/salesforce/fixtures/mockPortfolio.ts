@@ -1,6 +1,6 @@
 import { Portfolio } from '../types';
 
-const portfolioResponse: Portfolio = {
+const mockPortfolio: Portfolio = {
   createApps: [
     {
       creditAppNumber: 'string',
@@ -30,4 +30,4 @@ const portfolioResponse: Portfolio = {
   ],
 };
 
-export default portfolioResponse;
+export default mockPortfolio;

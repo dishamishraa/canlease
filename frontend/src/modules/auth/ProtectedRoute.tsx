@@ -1,33 +1,26 @@
 import React, { useContext } from 'react';
-import { Route, RouteProps } from 'react-router-dom';
+import { Redirect, Route, RouteProps } from 'react-router-dom';
 import { IS_DEV } from '../../lib/config';
 import ErrorHandler from '../error/ErrorHandler';
-import { redirectToLogin } from './api';
 import { AuthContext } from './AuthContext';
-import { useServiceStatus } from './getServiceStatus';
 
 const CheckUserAccess: React.FC<RouteProps> = (props) => {
   const authContext = useContext(AuthContext);
-  const { user, loading: userLoading, error: userError } = authContext;
-  const { loading, error } = useServiceStatus();
+  const { account, loading, error } = authContext;
 
-  if (loading || userLoading) {
+  if (loading) {
     return <div>Loading...</div>;
   }
 
-  if (!user) {
-    redirectToLogin();
-    return <div>Loading...</div>;
-  }
-
-  if (userError) {
-    return <ErrorHandler error={userError} />;
+  if (!account) {
+    return <Redirect to='/account' />;
   }
 
   if (error) {
     return <ErrorHandler error={error} />;
   }
 
+  // if no errors then proceed to the route
   return <Route {...props} />;
 };
 

@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
 import { QuoteControllerContract } from './types';
 import { BadRequestError } from '../../lib/errors';
-import { errorWrapper } from '../../lib/utils';
-import { validateCreateQuote, validateSendQuote, validateGetQuote } from './utils';
-import { quoteResponseData } from './fixtures';
+import { errorWrapper, validateId } from '../../lib/utils';
+import { validateSendQuote } from './utils';
+import { validateCreateQuote } from '../../lib/salesforce/utils';
 
 export function createQuoteRouter(controllers: {
   quoteController: QuoteControllerContract;
@@ -29,12 +29,12 @@ export function createQuoteRouter(controllers: {
 
   router.get('/:id', errorWrapper(async (req: Request, res: Response) => {
     const { id } = req.params;
-    if (!validateGetQuote(id)) {
+    if (!validateId(id)) {
       throw BadRequestError();
     }
 
-    await quoteController.getQuote(id);
-    res.status(200).send(quoteResponseData);
+    const response = await quoteController.getQuote(id);
+    res.status(200).send(response);
   }));
 
   return router;

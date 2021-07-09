@@ -1,52 +1,36 @@
 import axios from 'axios';
-import i18next from 'i18next';
-import { getServerUrl } from '../../lib/utils';
-import { Quote, CreateQuotePayload } from '../types';
+import { ApiError } from '../../lib/api/types';
+import { BFF_URL } from '../../lib/config';
+import { Quote, CreateQuotePayload } from './types';
 
 export const createQuote = async (payload: CreateQuotePayload): Promise<Quote> => {
   try {
-    const { data } = await axios.post<Quote>(`${getServerUrl()}/quote`, payload, { withCredentials: true });
+    const { data } = await axios.post<Quote>(`${BFF_URL}/quote`, payload, { withCredentials: true });
     return data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
-      throw error;
+      throw new ApiError({
+        code: error.response.status,
+        type: error.response.statusText,
+        message: error.message,
+      });
     }
     throw error;
   }
 };
 
 // For view quote
-export const getQuote = async (quoteId: number | string): Promise<Quote> => {
+export const getQuote = async (quoteId: string): Promise<Quote> => {
   try {
-    const { data } = await axios.get<Quote>(`${getServerUrl()}/quote/${quoteId}`);
+    const { data } = await axios.get<Quote>(`${BFF_URL}/quote/${quoteId}`);
     return data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
-      throw error;
-    }
-    throw error;
-  }
-};
-
-export const getAllQuotesFromProfile = async(portalId: number | string): Promise<Quote[]> => {
-  try {
-    const { data } = await axios.get<Quote[]>(`${getServerUrl()}/profile/${portalId}/quote`, { withCredentials: true });
-    return data;
-  } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
-      throw error;
-    }
-    throw error;
-  }
-};
-
-export const getAllCustomerQuotesFromProfile = async(portalId: number | string): Promise<Quote[]> => {
-  try {
-    const { data } = await axios.get<Quote[]>(`${getServerUrl()}/profile/${portalId}/customer_quote`, { withCredentials: true });
-    return data;
-  } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
-      throw error;
+      throw new ApiError({
+        code: error.response.status,
+        type: error.response.statusText,
+        message: error.message,
+      });
     }
     throw error;
   }

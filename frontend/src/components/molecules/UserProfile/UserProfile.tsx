@@ -9,7 +9,6 @@ import UserIcon, { UserIconProps } from '../../atoms/UserIcon';
 import Icon, { IconProps } from '../../atoms/Icon';
 import Button, { ButtonProps } from '../../atoms/Button';
 import Text, { TextProps } from '../../atoms/Text';
-import { routes } from '../../pages/AuthPage/AuthPage'
 
 export type UserProfileStyleType = 'Light';
 export type UserProfileStateType = 'SignedIn' | 'None' | 'SignedOut';
@@ -89,14 +88,14 @@ const UserProfile: React.FC<UserProfileProps> = ({
   const history = useHistory();
 
   const handleSignIn = () => {
-    history.push({ pathname: routes.signIn });
+    history.push('/account/signIn');
   };
 
   const handleSignUp = () => {
-    history.push({ pathname: routes.signUp });
+    history.push('/account/signUp');
   };
 
-  primary = {
+  const primaryProps = {
     ...primary,
     text: {
       ...primary?.text,
@@ -105,7 +104,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
     onButtonClicked: handleSignIn,
   };
 
-  secondary = {
+  const secondaryProps = {
     ...secondary,
     text: {
       ...secondary?.text,
@@ -133,12 +132,12 @@ const UserProfile: React.FC<UserProfileProps> = ({
       primaryView = (
         <Button
           className={styles.primary}
-          {...primary} />
+          {...primaryProps} />
       );
       secondaryView = (
         <Button
           className={styles.secondary}
-          {...secondary} />
+          {...secondaryProps} />
       );
       break;
   }

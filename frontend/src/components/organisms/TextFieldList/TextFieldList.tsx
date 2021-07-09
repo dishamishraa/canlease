@@ -24,7 +24,7 @@ const TextFieldList: React.FC<TextFieldListProps> = ({
       className={styles.textFieldItem}
       {...textField} />
   ));
-  
+
   return (
     <div className={cx(styles.textFieldList, className)}>
       {textFieldItemArray}

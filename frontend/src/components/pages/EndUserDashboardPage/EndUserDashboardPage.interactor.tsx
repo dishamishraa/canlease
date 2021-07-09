@@ -1,20 +1,19 @@
 import React, { useContext } from 'react';
-import { useCreateQuote } from '../../../modules/quote';
+import { AuthContext } from '../../../modules/auth';
+import { useUserPortfolio } from '../../../modules/portfolio';
+import { useQuotes } from '../../../modules/profile';
 import { EndUserDashboardPageProps } from './EndUserDashboardPage';
 import { EndUserDashboardPagePresenterProps } from './EndUserDashboardPage.presenter';
-import useAllQuotesFromProfile from '../../../modules/profile/useAllQuotesFromProfile';
-import useUserPortfolio from '../../../modules/portfolio/useUserPortfolio';
-import useGetProfile from '../../../modules/profile/useGetProfile';
 
 const withInteractor = (
   Presenter: React.FC<EndUserDashboardPagePresenterProps>,
 ): React.FC <EndUserDashboardPageProps> => {
   
   const Interactor: React.FC <EndUserDashboardPageProps> = (props) => {
-    //TODO Replace test data with portal id from auth context
-    const { data: customerQuotes } = useAllQuotesFromProfile('1');
-    const { data: userPortfolio } = useUserPortfolio('1');
-    const { data: profile } = useGetProfile('1');
+    const { account, profile } = useContext(AuthContext);
+    const portalId = account?.uuid || '';
+    const { data: customerQuotes } = useQuotes(portalId);
+    const { data: userPortfolio } = useUserPortfolio(portalId);
     return (
       <Presenter
         {...props}

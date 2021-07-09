@@ -1,19 +1,20 @@
 import SalesforceApi from '../../lib/salesforce/SalesforceApi';
+import { Portfolio } from '../../lib/salesforce/types';
 
-import { Portfolio, PortfolioServiceContract } from './types';
+import { PortfolioServiceContract } from './types';
 
 export default class PortfolioService implements PortfolioServiceContract {
-  private api: SalesforceApi;
+  private salesforceApi: SalesforceApi;
 
-  constructor(api: SalesforceApi) {
-    this.api = api;
+  constructor(salesforceApi: SalesforceApi) {
+    this.salesforceApi = salesforceApi;
   }
 
-  async getUserPortfolio(portalId: string): Promise<Portfolio> {
-    return this.api.getUserPortfolio(portalId);
+  getUserPortfolio(portalId: string): Promise<Portfolio> {
+    return this.salesforceApi.getUserPortfolio(portalId);
   }
 
-  async getCustomerPortfolio(portalId: string): Promise<Portfolio> {
-    return this.api.getCustomerPortfolio(portalId);
+  getCustomerPortfolio(portalId: string): Promise<Portfolio> {
+    return this.salesforceApi.getCustomerPortfolio(portalId);
   }
 }

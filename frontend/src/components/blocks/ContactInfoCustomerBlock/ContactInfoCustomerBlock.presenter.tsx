@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ContactInfo } from '../../../modules/types';
-import { UseCreateQuoteResult } from '../../../modules/quote/useCreateQuote';
+import { ContactInfoCustomer } from '../../../modules/types';
 import { ContactInfoCustomerBlockProps, defaultProps } from './ContactInfoCustomerBlock';
 import { isEmptyString } from '../../../lib/utils';
 
 export type ContactInfoCustomerBlockPresenterProps = {
-  handleCreateQuote?: (contactInfo: ContactInfo) => void;
+  handleCreateQuote?: (contactInfo: ContactInfoCustomer) => void;
 };
 
 const withPresenter = (
@@ -28,6 +27,7 @@ const withPresenter = (
     const handleClickViewQuote = () => {
       if (isFormValid && handleCreateQuote) {
         handleCreateQuote({
+          type: 'customer',
           customerName,
           customerEmail,
           customerCompanyName,
@@ -91,6 +91,7 @@ const withPresenter = (
 
     return (
       <View
+        {...props}
         {...blockProps}
       />
     );

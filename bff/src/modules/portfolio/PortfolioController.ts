@@ -1,4 +1,5 @@
-import { Portfolio, PortfolioControllerContract, PortfolioServiceContract } from './types';
+import { Portfolio } from '../../lib/salesforce/types';
+import { PortfolioControllerContract, PortfolioServiceContract } from './types';
 
 export default class PortfolioController implements PortfolioControllerContract {
   private service: PortfolioServiceContract;
@@ -7,11 +8,11 @@ export default class PortfolioController implements PortfolioControllerContract 
     this.service = service;
   }
 
-  async getUserPortfolio(portalId: string): Promise<Portfolio> {
+  getUserPortfolio(portalId: string): Promise<Portfolio> {
     return this.service.getUserPortfolio(portalId);
   }
 
-  async getCustomerPortfolio(portalId: string): Promise<Portfolio> {
+  getCustomerPortfolio(portalId: string): Promise<Portfolio> {
     return this.service.getCustomerPortfolio(portalId);
   }
 }

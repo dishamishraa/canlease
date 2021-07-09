@@ -24,7 +24,7 @@ const RateCardTableItemList: React.FC<RateCardTableItemListProps> = ({
       className={styles.rateCardTableItem}
       {...rateCardTableItem} />
   ));
-  
+
   return (
     <div className={cx(styles.rateCardTableItemList, className)}>
       {rateCardTableItemArray}

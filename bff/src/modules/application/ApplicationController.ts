@@ -1,5 +1,6 @@
+import { CreateApplication } from '../../lib/salesforce/types';
 import {
-  CreateApplication, ApplicationControllerContract, ApplicationServiceContract,
+  ApplicationControllerContract, ApplicationServiceContract,
 } from './types';
 
 export default class ApplicationController implements ApplicationControllerContract {
@@ -9,7 +10,7 @@ export default class ApplicationController implements ApplicationControllerContr
     this.createApplicationService = createApplicationService;
   }
 
-  async createApplication(payload: CreateApplication): Promise<void> {
+  createApplication(payload: CreateApplication): Promise<void> {
     return this.createApplicationService.createApplication(payload);
   }
 }

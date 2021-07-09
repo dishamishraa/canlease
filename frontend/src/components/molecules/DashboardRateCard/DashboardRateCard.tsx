@@ -46,14 +46,13 @@ const DashboardRateCard: React.FC<DashboardRateCardProps> = ({
   className,
   image,
 }) => {
-
   const currentStyle = styles[`dashboardRateCard${type}`];
 
   let dataTextView;
   let contentView;
   let bottamContentView;
   let buttonView;
-  
+
   switch (type) {
     case 'RateCard':
       dataTextView = (

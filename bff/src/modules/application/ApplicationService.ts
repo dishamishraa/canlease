@@ -1,6 +1,7 @@
 import SalesforceApi from '../../lib/salesforce/SalesforceApi';
+import { CreateApplication } from '../../lib/salesforce/types';
 import {
-  CreateApplication, ApplicationServiceContract,
+  ApplicationServiceContract,
 } from './types';
 
 export default class ApplicationService implements ApplicationServiceContract {
@@ -10,7 +11,7 @@ export default class ApplicationService implements ApplicationServiceContract {
     this.salesforceApi = salesforceApi;
   }
 
-  async createApplication(payload: CreateApplication): Promise<void> {
+  createApplication(payload: CreateApplication): Promise<void> {
     return this.salesforceApi.createApplication(payload);
   }
 }

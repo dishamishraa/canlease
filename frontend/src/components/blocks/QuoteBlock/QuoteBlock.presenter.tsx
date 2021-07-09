@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { QuoteRateSectionProps } from '../../organisms/QuoteRateSection';
 import { QuoteBlockProps, defaultProps } from './QuoteBlock';
 import { addLinksAndBreaks } from '../../../lib/reactUtils';
 import { QuoteDetailItemProps, defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { RateCardProps } from '../../molecules/RateCard';
-import { Quote } from '../../../modules/types';
-import { ModalProps, defaultProps as modalPropsDefaultProps  } from '../../organisms/Modal/Modal';
+import { ModalProps, defaultProps as modalPropsDefaultProps } from '../../organisms/Modal/Modal';
 import EmailIcon from '../../../resources/icons/Email.svg';
 
-
-import { defaultProps as defaultRateDetailItemProps, RateDetailItemProps } from '../../molecules/RateDetailItem/RateDetailItem';
+import { defaultProps as defaultRateDetailItemProps } from '../../molecules/RateDetailItem/RateDetailItem';
+import { Quote } from '../../../modules/quote/types';
 
 export type QuoteBlockPresenterProps = QuoteBlockProps & {
   quoteDetails: Quote | null;
-  loading;
-  error;
+  error?: Error;
+  loading: boolean;
 };
 
 const withPresenter = (
@@ -38,14 +37,14 @@ const withPresenter = (
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-      if(state){
+      if (state) {
         setShowModal(true);
       }
-    }, [])
-    
+    }, [state]);
+
     const onCloseModal = () => {
-      setShowModal(false)
-    }
+      setShowModal(false);
+    };
 
     if (error) {
       // return error view
@@ -77,7 +76,7 @@ const withPresenter = (
         text: {
           ...modalPropsDefaultProps.primaryButton.text,
           value: t('quote_email_sent.primary_button'),
-        }
+        },
       },
       secondaryButton: {
         ...modalPropsDefaultProps.secondaryButton,
@@ -86,7 +85,7 @@ const withPresenter = (
           value: t('quote_email_sent.secondary_button'),
         },
         onButtonClicked: onCloseModal,
-      }
+      },
     };
 
     let disabled = false;
@@ -293,6 +292,7 @@ const withPresenter = (
 
     return (
             <View
+            {...props}
             {...quoteBlockProps}
             modal={modal}
             showModal={showModal}

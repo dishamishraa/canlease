@@ -103,7 +103,6 @@ const RateCardTableItem: React.FC<RateCardTableItemProps> = ({
   className,
   button,
 }) => {
-
   const currentStyle = styles[`rateCardTableItem${type}`];
 
   let companyNameView;
@@ -113,7 +112,7 @@ const RateCardTableItem: React.FC<RateCardTableItemProps> = ({
   let createOnView;
   let assetNameView;
   let buttonGroupView;
-  
+
   switch (type) {
     case 'Default':
       companyNameView = (

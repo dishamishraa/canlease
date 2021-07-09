@@ -32,15 +32,13 @@ export type RateCardPageProps = {
 const RateCardPage: React.FC<RateCardPageProps> = ({
   dashboardRateCardBlock,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.rateCardPage, className)}>
       <DashboardRateCardBlock
         className={styles.dashboardRateCardBlock}
         {...dashboardRateCardBlock} />
     </div>
-  );
-};
+);
 
 RateCardPage.defaultProps = defaultProps;
 

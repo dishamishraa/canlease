@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect, useLocation, useHistory } from 'react-router-dom';
-import { isVariableStatement } from 'typescript';
-import { Cookies, useCookies } from 'react-cookie'
-import { INSTANT_QUOTE_COOKIE, MAX_AGE, FRONTEND_URL } from '../../../lib/config';
+import { useCookies } from 'react-cookie';
+import { INSTANT_QUOTE_COOKIE, MAX_AGE } from '../../../lib/config';
 import { SimplePageProps } from './SimplePage';
-import { EquipmentLeaseInfo, ContactInfoVendor, ContactInfoCustomer, ContactInfo, CreateQuotePayload, Quote } from '../../../modules/types';
-import { isObject, isEmpty, isEmptyString } from '../../../lib/utils';
-import useCreateQuote, { UseCreateQuoteResult } from '../../../modules/quote/useCreateQuote';
+import {
+  EquipmentLeaseInfo, ContactInfo,
+} from '../../../modules/types';
+import { isEmpty } from '../../../lib/utils';
 import { APIResponse } from '../../../lib/api/types';
+import { CreateQuotePayload, Quote } from '../../../modules/quote/types';
 
 export type SimplePagePropsPresenterProps = SimplePageProps & {
   createQuote: (payload: CreateQuotePayload) => Promise<APIResponse<Quote>>;
@@ -21,25 +22,29 @@ const withPresenter = (
       createQuote,
     } = props;
 
-    const [cookies, setCookie, removeCookie] = useCookies();
+    const [cookies, setCookie] = useCookies();
 
-    const location = useLocation<({userType: string; equipmentLeaseInfo: EquipmentLeaseInfo})>();
+    const { state, pathname } = useLocation<({
+      userType: string;
+      equipmentLeaseInfo: EquipmentLeaseInfo;
+    })>();
+
     const history = useHistory();
-    const { state } = location;
     const defaultEquipmentLeaseInfo = {
       name: '',
       cost: '',
       leaseType: '',
     };
-    const { pathname } = location;
     const [userType, setUserType] = useState('');
-    const [equipmentLeaseInfo, setEquipmentLeaseInfo] = useState<EquipmentLeaseInfo>(defaultEquipmentLeaseInfo);
+    const [
+      equipmentLeaseInfo,
+      setEquipmentLeaseInfo,
+    ] = useState<EquipmentLeaseInfo>(defaultEquipmentLeaseInfo);
 
     useEffect(() => {
       if (state) {
-        const { userType = '', equipmentLeaseInfo } = state;
-        setUserType(userType);
-        setEquipmentLeaseInfo(equipmentLeaseInfo);
+        setUserType(state.userType);
+        setEquipmentLeaseInfo(state.equipmentLeaseInfo);
       }
     }, [state, userType]);
 
@@ -47,7 +52,8 @@ const withPresenter = (
       if (equipmentLeaseInfo) {
         const { name: equipmentName, cost: equipmentCost, leaseType } = equipmentLeaseInfo;
         const { customerName, customerEmail, customerCompanyName } = contactInfo;
-        let createPayload = {
+
+        let createPayload: CreateQuotePayload = {
           userType,
           asset: equipmentName,
           applicationAmount: parseInt(equipmentCost),
@@ -56,8 +62,9 @@ const withPresenter = (
           contactEmail: customerEmail,
           contactBusinessName: customerCompanyName,
         } as CreateQuotePayload;
-        if (userType === 'vendor') {
-          const { vendorName, businessEmail, companyName } = contactInfo as ContactInfoVendor;
+
+        if (contactInfo.type === 'vendor') {
+          const { vendorName, businessEmail, companyName } = contactInfo;
           createPayload = {
             ...createPayload,
             vendorName,
@@ -65,11 +72,20 @@ const withPresenter = (
             vendorBusinessName: companyName,
           };
         }
+
         const { data } = await createQuote(createPayload);
         if (data) {
           const expiryDate = new Date();
           expiryDate.setTime(expiryDate.getTime() + Number(MAX_AGE));
-          setCookie(INSTANT_QUOTE_COOKIE, { userType, equipmentLeaseInfo, contactInfo }, { expires: expiryDate });
+
+          setCookie(INSTANT_QUOTE_COOKIE,
+            {
+              userType, equipmentLeaseInfo, contactInfo,
+            },
+            {
+              expires: expiryDate,
+            });
+
           const { quoteId } = data;
           history.push(`/instaQuote/${quoteId}`, {userType})
         }
@@ -93,6 +109,7 @@ const withPresenter = (
 
     return <View
           {...props}
+          showBackButton={pathname !== '/'}
           setUserType={setUserType}
           setEquipmentLeaseInfo={setEquipmentLeaseInfo}
           equipmentLeaseInfo={equipmentLeaseInfo}

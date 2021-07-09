@@ -5,7 +5,6 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { ClientRequest } from 'http';
-import { UserRouter } from './modules/user';
 import { InternalServerError, NotFoundError } from './lib/errors';
 import { IDENTITY_URL, PROXY_TIMEOUT } from './lib/config';
 
@@ -71,13 +70,11 @@ export const createRouter = (controllers: {
   router.get('/', (req: Request, res: Response) => res.json({ running: true }));
   router.post('/token', proxy);
   router.use('/accounts', proxy);
-  router.use('/users', UserRouter());
 
   router.use('/quote', QuoteRouter(controllers));
   router.use('/credit_apps', ApplicationRouter(controllers));
   router.use('/portfolio', PortfolioRouter(controllers));
   router.use('/profile', ProfileRouter(controllers));
-  router.use('/portfolio', PortfolioRouter(controllers));
 
   return router;
 };

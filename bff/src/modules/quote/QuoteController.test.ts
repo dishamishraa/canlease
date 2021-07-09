@@ -1,9 +1,10 @@
+import mockCreateQuote from '../../lib/salesforce/fixtures/mockCreateQuote';
+import mockSendQuote from './fixtures/mockSendQuote';
 import QuoteController from './QuoteController';
-import { mockSalesforceContractPayload, mockSendGridPayload } from './fixtures';
 
 describe('QuoteController', () => {
   const createQuoteService = {
-    createQuote: jest.fn().mockResolvedValue(mockSalesforceContractPayload),
+    createQuote: jest.fn(),
     getQuote: jest.fn(),
     sendQuote: jest.fn(),
   };
@@ -11,23 +12,23 @@ describe('QuoteController', () => {
 
   describe('createQuote', () => {
     it('should call service with payload to create quote', async () => {
-      await controller.createQuote(mockSalesforceContractPayload);
+      await controller.createQuote(mockCreateQuote);
 
-      expect(createQuoteService.createQuote).toHaveBeenCalledWith(mockSalesforceContractPayload);
+      expect(createQuoteService.createQuote).toHaveBeenCalledWith(mockCreateQuote);
     });
   });
   describe('getQuote', () => {
     it('should call service with id', async () => {
-      await controller.getQuote(1);
+      await controller.getQuote("abc");
 
-      expect(createQuoteService.getQuote).toHaveBeenCalledWith(1);
+      expect(createQuoteService.getQuote).toHaveBeenCalledWith("abc");
     });
   });
   describe('sendQuote', () => {
     it('should call service with payload to send quote', async () => {
-      await controller.sendQuote(mockSendGridPayload);
+      await controller.sendQuote(mockSendQuote);
 
-      expect(createQuoteService.sendQuote).toHaveBeenCalledWith(mockSendGridPayload);
+      expect(createQuoteService.sendQuote).toHaveBeenCalledWith(mockSendQuote);
     });
   });
 });

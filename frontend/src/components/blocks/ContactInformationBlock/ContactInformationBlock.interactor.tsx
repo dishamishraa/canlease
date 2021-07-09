@@ -5,13 +5,11 @@ import { ContactInformationBlockPresenterProps } from './ContactInformationBlock
 const withInteractor = (
   Presenter: React.FC<ContactInformationBlockPresenterProps>,
 ): React.FC <ContactInformationBlockProps> => {
-  const Interactor: React.FC <ContactInformationBlockProps> = (props) => {
-    return (
+  const Interactor: React.FC <ContactInformationBlockProps> = (props) => (
       <Presenter
         {...props}
       />
-    );
-  };
+  );
   return Interactor;
 };
 export default withInteractor;

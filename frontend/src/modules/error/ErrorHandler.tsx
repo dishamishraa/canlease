@@ -1,6 +1,6 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { ApiError } from '../../lib/api/types';
-import { redirectToLogin } from '../auth/api';
 
 export type ErrorHandlerProps = {
   error: Error;
@@ -11,8 +11,7 @@ const ErrorHandler: React.FC<ErrorHandlerProps> = ({
 }) => {
   if (error instanceof ApiError) {
     if (error.code === 401) {
-      redirectToLogin();
-      return <div>Loading...</div>;
+      return <Redirect to='/account' />;
     }
   }
 

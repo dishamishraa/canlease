@@ -1,55 +1,14 @@
-import { Quote, UserType } from '../quote/types';
+import {
+  Profile, CreateProfile, AddQuote, Quote,
+} from '../../lib/salesforce/types';
 
-export type Profile = {
-  name: string;
+export type IdentityTokenPayload = {
+  id: number;
+  uuid: string;
+  email: string;
   firstName: string;
   lastName: string;
-  companyName: string;
-  phone: string;
-  email: string;
-  title: string;
-  address: string;
-  street: string;
-  city: string;
-  province: string;
-  postalCode: string;
-  country: string;
-  website: string;
-  rateCard: string;
-  feePercentage: number;
-  theCompanyId: string;
-  portalId: string;
-  rateCardId: string;
-  userType: UserType;
-  operatingName: string;
-  operatingSinceDate: string;
-  businessSector: string;
-  businessPhone: string;
-};
-
-export type CreateProfile = {
-  companyName: string;
-  street: string;
-  province: string;
-  postalCode: string;
-  country: string;
-  firstName: string;
-  lastName: string;
-  portalId: string;
-  userType: UserType;
-  email: string;
-  phone: string;
-  title: string;
-  operatingName: string;
-  operatingSinceDate: string;
-  businessSector: string;
-  businessPhone: string;
-  website: string;
-};
-
-export type AddQuote = {
-  quoteId: string;
-  portalId: string;
+  enabled: boolean;
 };
 
 export interface ProfileControllerContract {

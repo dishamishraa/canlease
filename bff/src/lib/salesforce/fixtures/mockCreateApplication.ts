@@ -1,6 +1,6 @@
 import { CreateApplication } from '../types';
 
-const payload: CreateApplication = {
+const mockCreateApplication: CreateApplication = {
   leasePortalId: 'string',
   operatingName: 'string',
   businessName: 'string',
@@ -32,4 +32,4 @@ const payload: CreateApplication = {
   bankruptcyDetails: 'string',
 };
 
-export default payload;
+export default mockCreateApplication;

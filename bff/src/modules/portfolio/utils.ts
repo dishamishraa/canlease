@@ -1,5 +1,4 @@
 import Joi from 'joi';
-import { Portfolio } from './types';
 
 const id = Joi.alternatives(
   Joi.string(),

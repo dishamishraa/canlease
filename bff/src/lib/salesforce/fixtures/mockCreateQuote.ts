@@ -1,6 +1,6 @@
 import { CreateQuote } from '../types';
 
-const payload: CreateQuote = {
+const mockCreateQuote: CreateQuote = {
   userType: 'customer',
   asset: 'asset',
   applicationAmount: 0,
@@ -21,4 +21,4 @@ const payload: CreateQuote = {
   ],
 };
 
-export default payload;
+export default mockCreateQuote;

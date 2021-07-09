@@ -106,8 +106,7 @@ const RateCardDetailsPage: React.FC<RateCardDetailsPageProps> = ({
   blockHeader,
   className,
   rateCardTable,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.rateCardDetailsPage, className)}>
       <TopBar
         className={styles.topBar}
@@ -119,8 +118,7 @@ const RateCardDetailsPage: React.FC<RateCardDetailsPageProps> = ({
         className={styles.rateCardTable}
         {...rateCardTable} />
     </div>
-  );
-};
+);
 
 RateCardDetailsPage.defaultProps = defaultProps;
 

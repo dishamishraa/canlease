@@ -5,6 +5,7 @@ import styles from './TopBlock.module.scss';
 
 import BlockHeader, { BlockHeaderProps } from '../../molecules/BlockHeader';
 import Tabs, { TabsProps } from '../../organisms/Tabs';
+import { ContentType, ContentTypeTabs } from '../../../modules/types';
 
 export const defaultProps = {
   blockHeader: {
@@ -32,9 +33,8 @@ export type TopBlockProps = {
   blockHeader?: BlockHeaderProps;
   tabs?: TabsProps;
   className?: string;
-  contentType?: string;
-  tab?: 'Customer' | 'Personal';
-  setTab?: React.Dispatch<React.SetStateAction<'Customer' | 'Personal'>>;
+  contentType?: ContentType;
+  tab?: ContentTypeTabs;
   hideTabs?: boolean;
 };
 
@@ -45,7 +45,7 @@ const TopBlock: React.FC<TopBlockProps> = ({
   hideTabs,
 }) => {
   let displayTabs;
-  if (!hideTabs){
+  if (!hideTabs) {
     displayTabs = (
       <Tabs
       className={styles.tabs}
@@ -60,7 +60,7 @@ const TopBlock: React.FC<TopBlockProps> = ({
         {displayTabs}
       </div>
   );
-}
+};
 
 TopBlock.defaultProps = defaultProps;
 

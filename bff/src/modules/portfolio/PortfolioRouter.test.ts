@@ -1,11 +1,6 @@
 import request from 'supertest';
-import { mocked } from 'ts-jest/utils';
 import { PortfolioRouter } from '.';
 import createApp from '../../lib/createApp';
-import { validateId } from './utils';
-
-jest.mock('./utils');
-const mockValidateId = mocked(validateId);
 
 describe('PortfolioRouter', () => {
   const portfolioController = {
@@ -17,7 +12,6 @@ describe('PortfolioRouter', () => {
 
   describe('GET /:id', () => {
     it('should return a 200 status on success', async () => {
-      mockValidateId.mockReturnValueOnce(true);
       const { status } = await request(app)
         .get('/:id')
         .send();
@@ -30,7 +24,6 @@ describe('PortfolioRouter', () => {
 
   describe('GET /:id/customer_portfolio', () => {
     it('should return a 200 status on success', async () => {
-      mockValidateId.mockReturnValueOnce(true);
       const { status } = await request(app)
         .get('/:id/customer_portfolio')
         .send();

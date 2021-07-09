@@ -90,8 +90,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
   topBar,
   block,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.profilePage, className)}>
       <TopBar
         className={styles.topBar}
@@ -100,8 +99,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
         className={styles.block}
         {...block} />
     </div>
-  );
-};
+);
 
 ProfilePage.defaultProps = defaultProps;
 

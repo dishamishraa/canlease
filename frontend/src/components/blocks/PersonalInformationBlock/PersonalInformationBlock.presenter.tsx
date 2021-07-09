@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useLocation, useParams } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import { defaultProps, PersonalInformationBlockProps } from './PersonalInformationBlock';
-import { APIResponse } from '../../../lib/api/types';
-import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField';
 import { defaultProps as defaultRadioButtonItemProps, RadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
 import { isEmptyString } from '../../../lib/utils';
-import { PersonalInformation, AuthPageLocationState, routes } from '../../pages/AuthPage/AuthPage';
-import { UserType } from '../../../modules/types';
+import { UserType } from '../../../modules/profile/types';
+import { PersonalInformation, AuthPageLocationState } from '../../../modules/types';
 
 export type PersonalInformationBlockPresenterProps = PersonalInformationBlockProps & {
   setPersonalInfo?: React.Dispatch<React.SetStateAction<PersonalInformation>>;
@@ -18,8 +16,8 @@ const withPresenter = (
 ): React.FC<PersonalInformationBlockPresenterProps> => {
   const Presenter: React.FC<PersonalInformationBlockPresenterProps> = (props) => {
     const {
-      setPersonalInfo
-    } = props
+      setPersonalInfo,
+    } = props;
     const { t } = useTranslation();
     const history = useHistory();
     const { state } = useLocation<AuthPageLocationState>();
@@ -28,36 +26,39 @@ const withPresenter = (
     const [lastName, setLastName] = useState<string>('');
     const [userType, setUserType] = useState<UserType>('vendor');
 
-    const formInvalid = (isEmptyString(firstName) || isEmptyString(lastName))
+    const formInvalid = (isEmptyString(firstName) || isEmptyString(lastName));
 
     const handleFirstName = ({ target: { value } }) => {
       setFirstName(value);
     };
 
-    const handleLastName = ({ target: { value }}) => {
+    const handleLastName = ({ target: { value } }) => {
       setLastName(value);
-    }
+    };
 
     const handleNext = () => {
-      if(setPersonalInfo && state){
+      if (setPersonalInfo && state) {
         setPersonalInfo({
-          firstName: firstName,
-          lastName: lastName,
-          userType: userType
+          firstName,
+          lastName,
+          userType,
         });
-        history.push({pathname: routes.contactInformation, state: {
-          email: email
-        }}) 
+        history.push({
+          pathname: '/account/contactInformation',
+          state: {
+            email,
+          },
+        });
       }
-    }
+    };
 
     const handleRadioSelectionVendor = () => {
       setUserType('vendor');
-    }
+    };
 
     const handleRadioSelectionCustomer = () => {
       setUserType('customer');
-    }
+    };
 
     const radiobuttonPropsList: RadioButtonItemProps[] = [
       {
@@ -65,26 +66,26 @@ const withPresenter = (
         state: 'Selected',
         text: {
           ...defaultRadioButtonItemProps.text,
-          value: t('personal_information.radio_text.supplier')
+          value: t('personal_information.radio_text.supplier'),
         },
         icon: {
           ...defaultRadioButtonItemProps.icon,
-          onIconClicked: handleRadioSelectionVendor
-        }
+          onIconClicked: handleRadioSelectionVendor,
+        },
       },
       {
         ...defaultRadioButtonItemProps,
         state: 'Unselected',
         text: {
           ...defaultRadioButtonItemProps.text,
-          value: t('personal_information.radio_text.own_use')
+          value: t('personal_information.radio_text.own_use'),
         },
         icon: {
           ...defaultRadioButtonItemProps.icon,
-          onIconClicked: handleRadioSelectionCustomer
-        }
-      }
-    ]
+          onIconClicked: handleRadioSelectionCustomer,
+        },
+      },
+    ];
 
     const personalInformationBlockProps: PersonalInformationBlockProps = {
       ...defaultProps,
@@ -94,13 +95,13 @@ const withPresenter = (
           ...defaultProps.stepper.text,
           value: t('stepper', {
             current: '1',
-            total: '3'
-          })
-        }
+            total: '3',
+          }),
+        },
       },
       blockHeading: {
         ...defaultProps.blockHeading,
-        value: t('personal_information.header')
+        value: t('personal_information.header'),
       },
       firstNameTextField: {
         ...defaultProps.firstNameTextField,
@@ -110,7 +111,7 @@ const withPresenter = (
         },
         textInput: {
           textValue: firstName,
-          onTextChanged: handleFirstName
+          onTextChanged: handleFirstName,
         },
       },
       lastNameTextField: {
@@ -121,26 +122,27 @@ const withPresenter = (
         },
         textInput: {
           textValue: lastName,
-          onTextChanged: handleLastName
+          onTextChanged: handleLastName,
         },
       },
-      radiobuttonList : {
-        radioButtonItems: radiobuttonPropsList
+      radiobuttonList: {
+        radioButtonItems: radiobuttonPropsList,
       },
       nextButton: {
         ...defaultProps.nextButton,
         text: {
           ...defaultProps.nextButton.text,
-          value: t('button_text.next')
+          value: t('button_text.next'),
         },
         onButtonClicked: handleNext,
-        disabled: formInvalid
-      }
-    }
+        disabled: formInvalid,
+      },
+    };
 
     return <View
-          {...personalInformationBlockProps}
-          />;
+      {...props}
+      {...personalInformationBlockProps}
+      />;
   };
   return Presenter;
 };

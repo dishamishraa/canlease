@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router';
+import { ContentFilter, ContentTypeTabs } from '../../../modules/types';
 import { ContentPageProps } from './ContentPage';
-import { Redirect, useLocation, useHistory } from 'react-router-dom';
-import { Profile } from '../../../modules/types';
 
 export type ContentPagePresenterProps = ContentPageProps & {
 };
 
 const withPresenter = (
-    View: React.FC<ContentPageProps>,
-  ): React.FC<ContentPagePresenterProps> => {
-    const Presenter: React.FC<ContentPagePresenterProps> = (props) => {
-      const {
-      } = props;
-      const [searchQuery, setSearchQuery] = useState('');
-      const [contentType, setContentType] = useState('Quote');
-      const [statusFilter, setStatusFilter] = useState('All');
-      const [tab, setTab] = useState<'Customer' | 'Personal'>('Customer');
+  View: React.FC<ContentPageProps>,
+): React.FC<ContentPagePresenterProps> => {
+  const Presenter: React.FC<ContentPagePresenterProps> = (props) => {
+    const [searchQuery, setSearchQuery] = useState('');
+    const [statusFilter, setStatusFilter] = useState<ContentFilter>('all');
+    const { pathname } = useLocation();
 
-      return <View
+    let tab: ContentTypeTabs = 'Personal';
+    if(pathname.toLowerCase().includes('/customer')) {
+      tab = 'Customer';
+    }
+
+    return <View
           {...props}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
-          contentType={contentType}
           statusFilter={statusFilter}
           setStatusFilter={setStatusFilter}
           tab={tab}
-          setTab={setTab}
           />;
   };
   return Presenter;

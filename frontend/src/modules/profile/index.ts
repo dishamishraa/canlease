@@ -1,7 +1,11 @@
-import useGetProfile from './useGetProfile'
-import useCreateProfile from './useCreateProfile'
+import useProfile from './useProfile';
+import useCreateProfile from './useCreateProfile';
+import useQuotes from './useQuotes';
+import useCustomerQuotes from './useCustomerQuotes';
 
 export {
-    useGetProfile,
-    useCreateProfile
+  useProfile,
+  useCreateProfile,
+  useQuotes,
+  useCustomerQuotes,
 };

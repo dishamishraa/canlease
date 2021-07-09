@@ -61,8 +61,7 @@ const RateCardTable: React.FC<RateCardTableProps> = ({
   rateCardTableHeader,
   rateCardTableItemList,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.rateCardTable, className)}>
       <RateCardTableHeader
         className={styles.rateCardTableHeader}
@@ -71,8 +70,7 @@ const RateCardTable: React.FC<RateCardTableProps> = ({
         className={styles.rateCardTableItemList}
         {...rateCardTableItemList} />
     </div>
-  );
-};
+);
 
 RateCardTable.defaultProps = defaultProps;
 

@@ -129,6 +129,7 @@ const withPresenter = (
 
     return (
       <View
+        {...props}
         {...blockProps}
       />
     );

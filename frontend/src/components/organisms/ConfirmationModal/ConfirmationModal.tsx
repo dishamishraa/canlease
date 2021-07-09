@@ -66,8 +66,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   primary,
   secondary,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.confirmationModal, className)}>
       <div className={styles.topContainer}>
         <Icon
@@ -91,8 +90,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+);
 
 ConfirmationModal.defaultProps = defaultProps;
 

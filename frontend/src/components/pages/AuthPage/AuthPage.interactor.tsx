@@ -1,24 +1,27 @@
 import React, { useContext } from 'react';
+import { useSignIn, useSignUp, useUpdateName } from '../../../modules/account';
+import { AuthContext } from '../../../modules/auth';
+import { useCreateProfile } from '../../../modules/profile';
+import { getProfile } from '../../../modules/profile/api';
 import { AuthPageProps } from './AuthPage';
 import { AuthPagePresenterProps } from './AuthPage.presenter';
-import { useCreateIdentityAccount, useSignIn, useUpdateName } from '../../../modules/account';
-import { useGetProfile, useCreateProfile } from '../../../modules/profile';
-import { AuthContext, AuthContextValue } from '../../../modules/auth';
-import { useParams } from 'react-router';
 
 const withInteractor = (
   Presenter: React.FC<AuthPagePresenterProps>,
 ): React.FC <AuthPageProps> => {
   const Interactor: React.FC <AuthPageProps> = (props) => {
-    const [{loading: createAccountLoading, error: createAccountError}, createIdentityAccount] = useCreateIdentityAccount();
-    const [{loading: signInLoading, error: signInError}, signIn] = useSignIn();
-    const [{loading: createProfileLoading, error: createProfileError}, createProfile] = useCreateProfile();
-    const [{loading: updateLoading}, updateName] = useUpdateName();
+    const { setProfile } = useContext(AuthContext);
+    const [signUpState, signUp] = useSignUp();
+    const [signInState, signIn] = useSignIn();
+    const [createProfileState, createProfile] = useCreateProfile();
+    const [updateNameState, updateName] = useUpdateName();
     return (
       <Presenter
         {...props}
-        createIdentityAccount = { createIdentityAccount }
+        signUp = { signUp }
         signIn = { signIn }
+        fetchProfile = { getProfile }
+        setProfile = { setProfile }
         createProfile = { createProfile }
         updateName = { updateName }
       />

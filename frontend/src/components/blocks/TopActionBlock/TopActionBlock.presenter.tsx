@@ -1,17 +1,12 @@
-import React, {useState} from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { TopActionBlockProps, defaultProps} from './TopActionBlock';
-import Text, { TextProps } from '../../atoms/Text';
-import TableItem, { defaultProps as TableItemDefaultProps } from '../../molecules/TableItem/TableItem';
+import { TopActionBlockProps, defaultProps } from './TopActionBlock';
 import { ContextualMenuProps } from '../../molecules/ContextualMenu';
-import { defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
+import { ContextualMenuItemProps, defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
+import { ContentFilter } from '../../../modules/types';
 
 export type TopActionBlockPresenterProps = TopActionBlockProps & {
-    searchQuery?: string;
-    setSearchQuery?: React.Dispatch<React.SetStateAction<string>>;
-    statusFilter?: string;
-    setStatusFilter?: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const withPresenter = (
@@ -19,98 +14,79 @@ const withPresenter = (
 ): React.FC<TopActionBlockPresenterProps> => {
   const Presenter: React.FC<TopActionBlockPresenterProps> = (props) => {
     const {
-        className,
-        searchQuery,
-        setSearchQuery,
-        statusFilter,
-        setStatusFilter,
+      className,
+      contentType,
+      searchQuery,
+      setSearchQuery,
+      statusFilter,
+      setStatusFilter,
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
 
-    const handleSetStatusFilter = (value) => (event: any) => {
-        if (setStatusFilter){
-            setStatusFilter(value);
-        }
-    }
+    const handleSetStatusFilter = (value: ContentFilter) => () => {
+      if (setStatusFilter) {
+        setStatusFilter(value);
+      }
+    };
+
+    const filterOptions: ContentFilter[] = contentType === 'Application' ? 
+      ['all', 'under_review', 'financed', 'rejected', 'not_active'] : 
+      ['all', 'active', 'expiring', 'applied', 'expired'];
 
     const contextualMenu: ContextualMenuProps = {
-        contextualMenuItemList: {
-          contextualMenuItems: [
-            {
-              onContextualMenuItemClicked: handleSetStatusFilter(t('application_page.status.all')),
-              text: {
-                ...defaultMenuItemProps.text,
-                value: t('application_page.status.all'),
-              },
+      contextualMenuItemList: {
+        contextualMenuItems: filterOptions.map((option): ContextualMenuItemProps => {
+          return {
+            onContextualMenuItemClicked: handleSetStatusFilter(option),
+            text: {
+              ...defaultMenuItemProps.text,
+              value: t(`application_page.status.${option}`),
             },
-            {
-              onContextualMenuItemClicked: handleSetStatusFilter(t('application_page.status.active')),
-              text: {
-                ...defaultMenuItemProps.text,
-                value: t('application_page.status.active'),
-              },
-            },
-            {
-                onContextualMenuItemClicked: handleSetStatusFilter(t('application_page.status.expiring_soon')),
-                text: {
-                  ...defaultMenuItemProps.text,
-                  value: t('application_page.status.expiring_soon'),
-                },
-            },
-            {
-              onContextualMenuItemClicked: handleSetStatusFilter(t('application_page.status.applied')),
-              text: {
-                ...defaultMenuItemProps.text,
-                value: t('application_page.status.applied'),
-              },
-            },
-            {
-              onContextualMenuItemClicked: handleSetStatusFilter(t('application_page.status.expired')),
-              text: {
-                ...defaultMenuItemProps.text,
-                value: t('application_page.status.expired'),
-              },
-            },
-          ],
-        },
-      };
+          }
+        })
+      },
+    };
 
     const topActionBlockProps: TopActionBlockProps = {
-        ...defaultProps,
-        textInput: {
-            ...defaultProps.textInput,
-            textPlaceholder: t('application_page.search_placeholder'),
-            textValue: searchQuery,
-            onTextChanged: (e) => {
-                if(setSearchQuery){
-                    setSearchQuery(e.target.value)
-                }
-            },
+      ...defaultProps,
+      textInput: {
+        ...defaultProps.textInput,
+        textPlaceholder: t('application_page.search_placeholder'),
+        textValue: searchQuery,
+        onTextChanged: (e) => {
+          if (setSearchQuery) {
+            setSearchQuery(e.target.value);
+          }
         },
-        statusSearchField:{
-            ...defaultProps.statusSearchField,
-            select: {
-                ...defaultProps.statusSearchField.select,
-                text: {
-                  ...defaultProps.statusSearchField.select?.text,
-                  value: statusFilter,
-                },
-            },
-            contextualMenu,
+      },
+      statusSearchField: {
+        ...defaultProps.statusSearchField,
+        select: {
+          ...defaultProps.statusSearchField.select,
+          text: {
+            ...defaultProps.statusSearchField.select?.text,
+            value: statusFilter,
+          },
         },
-        button: {
-            ...defaultProps.button,
-            onButtonClicked: () => {
-                history.push('/portal/application')
-            },
-            text:{
-                value: t('view_quote.apply_button_text')
-            }
+        contextualMenu,
+      },
+      button: {
+        ...defaultProps.button,
+        onButtonClicked: () => {
+          if(contentType === 'Application') {
+            // TODO
+          } else {
+            // TODO
+          }
+        },
+        text: {
+          ...defaultProps.button.text,
+          value: contentType === 'Application' ? t('view_quote.apply_button_text') : 'Create Quote', // TODO localize
+        },
 
-        }
-    }
-
+      },
+    };
 
     return <View
         {...topActionBlockProps}

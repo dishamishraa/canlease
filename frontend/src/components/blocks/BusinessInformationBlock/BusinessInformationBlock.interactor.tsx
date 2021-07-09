@@ -5,13 +5,11 @@ import { BusinessInformationBlockPresenterProps } from './BusinessInformationBlo
 const withInteractor = (
   Presenter: React.FC<BusinessInformationBlockPresenterProps>,
 ): React.FC <BusinessInformationBlockProps> => {
-  const Interactor: React.FC <BusinessInformationBlockProps> = (props) => {
-    return (
+  const Interactor: React.FC <BusinessInformationBlockProps> = (props) => (
       <Presenter
         {...props}
       />
-    );
-  };
+  );
   return Interactor;
 };
 export default withInteractor;

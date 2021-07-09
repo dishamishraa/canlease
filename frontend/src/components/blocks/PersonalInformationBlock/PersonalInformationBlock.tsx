@@ -8,7 +8,7 @@ import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import RadiobuttonList, { RadiobuttonListProps } from '../../organisms/RadiobuttonList';
 import Button, { ButtonProps } from '../../atoms/Button';
-import { PersonalInformation } from '../../pages/AuthPage/AuthPage';
+import { PersonalInformation } from '../../../modules/types';
 
 export const defaultProps = {
   stepper: {

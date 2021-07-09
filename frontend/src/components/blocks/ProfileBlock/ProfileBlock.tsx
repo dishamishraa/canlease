@@ -76,8 +76,7 @@ const ProfileBlock: React.FC<ProfileBlockProps> = ({
   contactDetailsSection,
   businessDetailsSection,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.profileBlock, className)}>
       <div className={styles.headingContent}>
         <Text
@@ -97,8 +96,7 @@ const ProfileBlock: React.FC<ProfileBlockProps> = ({
         className={styles.businessDetailsSection}
         {...businessDetailsSection} />
     </div>
-  );
-};
+);
 
 ProfileBlock.defaultProps = defaultProps;
 

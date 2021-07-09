@@ -1,6 +1,6 @@
 import { Profile } from '../types';
 
-const mockResponse: Profile = {
+const mockProfile: Profile = {
   name: 'string',
   firstName: 'string',
   lastName: 'string',
@@ -27,4 +27,4 @@ const mockResponse: Profile = {
   businessPhone: 'string',
 };
 
-export default mockResponse;
+export default mockProfile;

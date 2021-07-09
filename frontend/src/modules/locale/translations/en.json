@@ -1,4 +1,5 @@
 {
+    "back_button": "Back",
     "get_quote_block": {
         "header": "Get a quote",
         "name": {
@@ -216,9 +217,13 @@
         "status": {
             "all": "All",
             "active": "Active",
-            "expiring_soon": "Expiring soon",
+            "expiring": "Expiring soon",
             "applied": "Applied",
-            "expired": "Expired"
+            "expired": "Expired",
+            "under_review": "Under review",
+            "financed": "Financed",
+            "rejected": "Rejected",
+            "not_active": "Not active"
         }
     },
     "header":{

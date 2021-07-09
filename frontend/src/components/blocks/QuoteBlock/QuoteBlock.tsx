@@ -124,8 +124,8 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
     toastDisplay = <Toast {...expiryToast}/>;
   }
 
-  let modalDisplay 
-  if (showModal){
+  let modalDisplay;
+  if (showModal) {
     modalDisplay = (
       <Modal className={styles.modal} {...modal}/>
     );

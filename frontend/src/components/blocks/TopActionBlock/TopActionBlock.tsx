@@ -7,6 +7,7 @@ import TextInput, { TextInputProps } from '../../atoms/TextInput';
 import Select, { SelectProps } from '../../atoms/Select';
 import SelectField, { SelectFieldProps } from '../../molecules/SelectField';
 import Button, { ButtonProps } from '../../atoms/Button';
+import { ContentFilter, ContentType } from '../../../modules/types';
 
 export const defaultProps = {
   textInput: {
@@ -45,10 +46,11 @@ export type TopActionBlockProps = {
   button?: ButtonProps;
   className?: string;
   searchQuery?: string;
+  contentType?: ContentType;
   setSearchQuery?: React.Dispatch<React.SetStateAction<string>>;
   statusSearchField?: SelectFieldProps;
-  statusFilter?: string;
-  setStatusFilter?: React.Dispatch<React.SetStateAction<string>>;
+  statusFilter?: ContentFilter;
+  setStatusFilter?: React.Dispatch<React.SetStateAction<ContentFilter>>;
 };
 
 const TopActionBlock: React.FC<TopActionBlockProps> = ({
@@ -69,7 +71,7 @@ const TopActionBlock: React.FC<TopActionBlockProps> = ({
           className={styles.button}
           {...button} />
       </div>
- 
+
     </div>
 );
 

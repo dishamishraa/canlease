@@ -1,13 +1,7 @@
 import request from 'supertest';
-import { mocked } from 'ts-jest/utils';
 import { ApplicationRouter } from '.';
 import createApp from '../../lib/createApp';
-import { mockSalesforceApplicationPayload } from './fixtures';
-import { validateCreateApplication } from './utils';
-
-jest.mock('./utils');
-
-const mockValidateCreateApplication = mocked(validateCreateApplication);
+import mockCreateApplication from '../../lib/salesforce/fixtures/mockCreateApplication';
 
 describe('ApplicationRouter', () => {
   const applicationController = {
@@ -18,15 +12,14 @@ describe('ApplicationRouter', () => {
 
   describe('POST /', () => {
     it('should return a 200 status on success', async () => {
-      mockValidateCreateApplication.mockReturnValueOnce(true);
       applicationController.createApplication.mockResolvedValueOnce(undefined);
 
       const { status } = await request(app)
         .post('/')
-        .send(mockSalesforceApplicationPayload);
+        .send(mockCreateApplication);
 
       expect(applicationController.createApplication)
-        .toHaveBeenCalledWith(mockSalesforceApplicationPayload);
+        .toHaveBeenCalledWith(mockCreateApplication);
       expect(status).toEqual(204);
     });
   });

@@ -1,16 +1,17 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { Switch, Route, Redirect } from 'react-router-dom';
 import styles from './PortalLayout.module.scss';
 
 import Header, { HeaderProps } from '../../organisms/Header';
-import VendorDashboardPage, { VendorDashboardPageProps } from '../../pages/VendorDashboardPage';
-import ApplicationPage, { ApplicationPageProps } from '../../pages/ApplicationPage';
-import ContentPage, { ContentPageProps } from '../../pages/ContentPage';
-import MenuBlock, { MenuBlockProps } from '../../blocks/MenuBlock';
-import MainMenuItem from '../../atoms/MainMenuItem';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import EndUserDashboardPage, { EndUserDashboardPageProps } from '../../pages/EndUserDashboardPage';
+
+import EndUserDashboardPage from '../../pages/EndUserDashboardPage';
+import VendorDashboardPage from '../../pages/VendorDashboardPage';
+import ApplicationPage from '../../pages/ApplicationPage';
+import ContentPage from '../../pages/ContentPage';
+import SimplePage from '../../pages/SimplePage/SimplePage';
+import MenuBlock from '../../blocks/MenuBlock';
 
 export const defaultProps = {
   header: {
@@ -40,84 +41,24 @@ export const defaultProps = {
       style: 'Horizontal',
     },
   } as HeaderProps,
-  vendorDashboardPage: {
-    dataBlock: {
-      blockHeader: {
-        style: 'Heading1',
-        type: 'Default',
-        text: {
-          style: 'Basic800',
-          align: 'Left',
-          size: 'Large',
-          type: 'Heading1',
-        },
-      },
-      dashboardCardList: {
-        dashboardCards: [
-        ],
-      },
-    },
-    resourceBlock: {
-      blockHeader: {
-        style: 'Heading2',
-        type: 'WithButton',
-        text: {
-          style: 'Basic800',
-          align: 'Left',
-          size: 'Large',
-          type: 'Heading2',
-        },
-        button: {
-          type: 'Button',
-          size: 'Medium',
-          fill: 'Basic',
-          colour: 'Basic',
-          text: {
-            style: 'Brand500',
-            align: 'Center',
-            size: 'Small',
-            type: 'ButtonGiant',
-          },
-        },
-      },
-      resourceCardList: {
-        resourceCards: [
-        ],
-      },
-    },
-  } as VendorDashboardPageProps,
-  menuBlock: {
-    menuItemList: {
-      mainMenuItems: [
-      ],
-    },
-  } as MenuBlockProps,
 };
 
 export type PortalLayoutProps = {
   header?: HeaderProps;
-  vendorDashboardPage?: VendorDashboardPageProps;
-  applicationPage?: ApplicationPageProps;
   className?: string;
-  menuBlock?: MenuBlockProps;
-  contentPage?: ContentPageProps;
-  endUserDashboardPage?: EndUserDashboardPageProps;
 };
 
 export const routes = {
   dashboard: '/portal/dashboard',
-  application: '/portal/application',
-  content: '/portal/content',
+  applications: '/portal/applications',
+  quotes: '/portal/quotes',
+  leasingQuote: '/portal/viewquote/:quoteId',
   invalid: '/',
 };
 
 const PortalLayout: React.FC<PortalLayoutProps> = ({
   header,
-  vendorDashboardPage,
-  applicationPage,
   className,
-  menuBlock,
-  contentPage,
 }) => {
   let userType = 'user';
   const DashboardPage = userType === 'vendor' ? VendorDashboardPage : EndUserDashboardPage;
@@ -129,22 +70,19 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
       <div className={styles.body}>
         <div className={styles.content}>
           <MenuBlock
-            className={styles.menuBlock}
-            {...menuBlock} />
+            className={styles.menuBlock} />
           <Switch>
-            <Route path={routes.application}>
-                 <ApplicationPage
-                className={styles.applicationPage}
-                {...applicationPage} />
-            </Route>
             <Route path={routes.dashboard}>
               <DashboardPage
-                className={styles.contentPage}/>;
+                className={styles.page}/>;
             </Route>
-            <Route path={routes.content}>
-                 <ContentPage
-                className={styles.contentPage}
-                {...contentPage} />
+            <Route path={[routes.quotes, routes.applications]}>
+              <ContentPage
+                className={styles.page} />
+            </Route>
+            <Route path={routes.leasingQuote}>
+              <SimplePage
+                className={styles.page} />
             </Route>
             <Route path={routes.invalid}>
               <Redirect to={routes.dashboard}/>
@@ -152,7 +90,6 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
           </Switch>
         </div>
       </div>
-  
     </div>
   );
 }

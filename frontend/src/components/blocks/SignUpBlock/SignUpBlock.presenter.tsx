@@ -3,14 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 import { SignUpBlockProps, defaultProps } from './SignUpBlock';
 import { isEmptyString, isEmail } from '../../../lib/utils';
-import { APIResponse } from '../../../lib/api/types';
-import { AccountRequest, AccountTokenResponse } from '../../../modules/types';
 import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField';
 import { HTMLInputType } from '../../atoms/TextInput/TextInput';
-import { routes } from '../../pages/AuthPage/AuthPage'
+import { SignUpPayload } from '../../../modules/account/types';
 
 export type SignUpBlockPresenterProps = SignUpBlockProps & {
-  handleCreateIdentityAccount?: (payload: AccountRequest) => void;
+  handleSignUp?: (payload: SignUpPayload) => void;
 };
 
 const withPresenter = (
@@ -18,7 +16,7 @@ const withPresenter = (
 ): React.FC<SignUpBlockPresenterProps> => {
   const Presenter: React.FC<SignUpBlockPresenterProps> = (props) => {
     const {
-      handleCreateIdentityAccount,
+      handleSignUp: doSignUp,
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
@@ -34,19 +32,19 @@ const withPresenter = (
 
     const handleEmail = ({ target: { value } }) => {
       setEmail(value);
-      if(emailError === 'Error'){
+      if (emailError === 'Error') {
         setEmailError('Default');
       }
     };
     const handlePassowrd = ({ target: { value } }) => {
       setPassword(value);
-      if(passwordError === 'Error'){
+      if (passwordError === 'Error') {
         setPasswordError('Default');
       }
     };
     const handleConfirmPassword = ({ target: { value } }) => {
       setConfirmPassword(value);
-      if(confirmPasswordError === 'Error'){
+      if (confirmPasswordError === 'Error') {
         setConfirmPasswordError('Default');
       }
     };
@@ -60,8 +58,8 @@ const withPresenter = (
           setPasswordError('Error');
         } else {
           // fields are valid, call sign up api
-          if (handleCreateIdentityAccount) {
-            handleCreateIdentityAccount({
+          if (doSignUp) {
+            doSignUp({
               email,
               password,
               enabled: true,
@@ -72,24 +70,24 @@ const withPresenter = (
     };
 
     const handleSignIn = () => {
-      history.push({ pathname: routes.signIn });
+      history.push('/account/signIn');
     };
 
     const togglePasswordVisibility = () => {
-      if(passwordVisibility === 'password'){
+      if (passwordVisibility === 'password') {
         setPasswordVisibility('text');
-      }else{
+      } else {
         setPasswordVisibility('password');
       }
-    }
+    };
 
     const toggleConfirmPasswordVisibility = () => {
-        if(confirmPasswordVisibility === 'password'){
-            setConfirmPasswordVisibility('text')
-        }else{
-            setConfirmPasswordVisibility('password')
-        }
-    }
+      if (confirmPasswordVisibility === 'password') {
+        setConfirmPasswordVisibility('text');
+      } else {
+        setConfirmPasswordVisibility('password');
+      }
+    };
 
     const signUpProps: SignUpBlockProps = {
       ...defaultProps,
@@ -113,7 +111,7 @@ const withPresenter = (
         },
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
-          value: t('error_message.account_exist')
+          value: t('error_message.account_exist'),
         },
         state: emailError,
       },
@@ -130,8 +128,8 @@ const withPresenter = (
           inputType: passwordVisibility,
           icon: {
             ...defaultTextFieldProps.textInput.icon,
-            onIconClicked: togglePasswordVisibility
-          }
+            onIconClicked: togglePasswordVisibility,
+          },
         },
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
@@ -152,8 +150,8 @@ const withPresenter = (
           inputType: confirmPasswordVisibility,
           icon: {
             ...defaultTextFieldProps.textInput.icon,
-            onIconClicked: toggleConfirmPasswordVisibility
-          }
+            onIconClicked: toggleConfirmPasswordVisibility,
+          },
         },
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
@@ -168,7 +166,7 @@ const withPresenter = (
           value: t('button_text.sign_up'),
         },
         onButtonClicked: handleSignUp,
-        disabled: FormInvalid
+        disabled: FormInvalid,
       },
       bottomContent: {
         ...defaultProps.bottomContent,
@@ -186,6 +184,7 @@ const withPresenter = (
 
     return (
             <View
+            {...props}
             {...signUpProps}
             />
     );

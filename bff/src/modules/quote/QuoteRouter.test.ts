@@ -2,14 +2,8 @@ import request from 'supertest';
 import { mocked } from 'ts-jest/utils';
 import { QuoteRouter } from '.';
 import createApp from '../../lib/createApp';
-import { mockSalesforceContractPayload, mockSendGridPayload } from './fixtures';
-import { validateCreateQuote, validateSendQuote, validateGetQuote } from './utils';
-
-jest.mock('./utils');
-
-const mockValidateCreateQuote = mocked(validateCreateQuote);
-const mockValidateSendQuote = mocked(validateSendQuote);
-const mockValidateGetQuote = mocked(validateGetQuote);
+import mockCreateQuote from '../../lib/salesforce/fixtures/mockCreateQuote';
+import mockSendQuote from './fixtures/mockSendQuote';
 
 describe('QuoteRouter', () => {
   const quoteController = {
@@ -22,42 +16,39 @@ describe('QuoteRouter', () => {
 
   describe('POST /', () => {
     it('should return a 200 status on success', async () => {
-      mockValidateCreateQuote.mockReturnValueOnce(true);
       quoteController.createQuote.mockResolvedValueOnce(undefined);
 
       const { status } = await request(app)
         .post('/')
-        .send(mockSalesforceContractPayload);
+        .send(mockCreateQuote);
 
-      expect(quoteController.createQuote).toHaveBeenCalledWith(mockSalesforceContractPayload);
+      expect(quoteController.createQuote).toHaveBeenCalledWith(mockCreateQuote);
       expect(status).toEqual(200);
     });
   });
 
   describe('POST /send', () => {
     it('should return a 200 status on success', async () => {
-      mockValidateSendQuote.mockReturnValueOnce(true);
       quoteController.sendQuote.mockResolvedValueOnce(undefined);
 
       const { status } = await request(app)
         .post('/send')
-        .send(mockSendGridPayload);
+        .send(mockSendQuote);
 
-      expect(quoteController.sendQuote).toHaveBeenCalledWith(mockSendGridPayload);
+      expect(quoteController.sendQuote).toHaveBeenCalledWith(mockSendQuote);
       expect(status).toEqual(200);
     });
   });
 
   describe('GET /:id', () => {
     it('should return a 200 status on success', async () => {
-      mockValidateGetQuote.mockReturnValueOnce(true);
       quoteController.getQuote.mockResolvedValueOnce(undefined);
 
       const { status } = await request(app)
-        .get('/:id')
+        .get('/abc')
         .send();
 
-      expect(quoteController.getQuote).toHaveBeenCalledWith(':id');
+      expect(quoteController.getQuote).toHaveBeenCalledWith('abc');
       expect(status).toEqual(200);
     });
   });

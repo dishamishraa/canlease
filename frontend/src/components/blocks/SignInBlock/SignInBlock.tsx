@@ -6,11 +6,9 @@ import styles from './SignInBlock.module.scss';
 import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
-import { SignInPayload } from '../../../modules/types';
 import Toast, { ToastProps } from '../../atoms/Toast';
-import { ToastTypeType, ToastStyleType, defaultProps as defaultToastProps } from '../../atoms/Toast/Toast';
-import { IconProps } from '../../atoms/Icon';
 import { isEmptyString } from '../../../lib/utils';
+import { SignInPayload } from '../../../modules/account/types';
 
 export const defaultProps = {
   blockHeading: {
@@ -126,11 +124,11 @@ const SignInBlock: React.FC<SignInBlockProps> = ({
   bottomContent,
   signUpButton,
   toastMessage,
-  toastProps
+  toastProps,
 }) => {
   let toastDisplay;
-  if(!isEmptyString(toastMessage)){
-    toastDisplay = <Toast {...toastProps}/>
+  if (!isEmptyString(toastMessage)) {
+    toastDisplay = <Toast {...toastProps}/>;
   }
   return (
     <div className={cx(styles.signInBlock, className)}>
@@ -168,8 +166,8 @@ const SignInBlock: React.FC<SignInBlockProps> = ({
           {...signUpButton} />
       </div>
     </div>
-);
-}
+  );
+};
 
 SignInBlock.defaultProps = defaultProps;
 

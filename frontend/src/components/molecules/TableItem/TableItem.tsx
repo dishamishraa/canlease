@@ -67,10 +67,10 @@ const TableItem: React.FC<TableItemProps> = ({
 }) => {
   let dispayContantName;
   if (contactName?.value) {
-    dispayContantName= (   
+    dispayContantName = (
     <Text
       className={styles.contactName}
-      {...contactName} />)
+      {...contactName} />);
   }
   return (
       <div className={cx(styles.tableItem, className)} onClick={onTableItemClicked}>
@@ -92,7 +92,7 @@ const TableItem: React.FC<TableItemProps> = ({
           {...cost} />
       </div>
   );
-}
+};
 
 TableItem.defaultProps = defaultProps;
 

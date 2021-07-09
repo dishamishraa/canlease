@@ -1,5 +1,6 @@
+import mockCreateQuote from '../../lib/salesforce/fixtures/mockCreateQuote';
+import mockSendQuote from './fixtures/mockSendQuote';
 import QuoteService from './QuoteService';
-import { mockSalesforceContractPayload, mockSendGridPayload } from './fixtures';
 
 describe('QuoteService', () => {
   const salesforceApi = {
@@ -22,9 +23,9 @@ describe('QuoteService', () => {
 
   describe('createQuote', () => {
     it('should call api with payload', async () => {
-      await service.createQuote(mockSalesforceContractPayload);
+      await service.createQuote(mockCreateQuote);
 
-      expect(salesforceApi.createQuote).toHaveBeenCalledWith(mockSalesforceContractPayload);
+      expect(salesforceApi.createQuote).toHaveBeenCalledWith(mockCreateQuote);
     });
   });
 
@@ -38,9 +39,9 @@ describe('QuoteService', () => {
 
   describe('sendQuote', () => {
     it('should call api with payload', async () => {
-      await service.sendQuote(mockSendGridPayload);
+      await service.sendQuote(mockSendQuote);
 
-      expect(sendGridApi.sendQuote).toHaveBeenCalledWith(mockSendGridPayload);
+      expect(sendGridApi.sendQuote).toHaveBeenCalledWith(mockSendQuote);
     });
   });
 });

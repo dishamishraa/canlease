@@ -1,5 +1,5 @@
+import mockCreateApplication from '../../lib/salesforce/fixtures/mockCreateApplication';
 import ApplicationService from './ApplicationService';
-import { mockSalesforceApplicationPayload } from './fixtures';
 
 describe('QuoteService', () => {
   const salesforceApi = {
@@ -19,10 +19,10 @@ describe('QuoteService', () => {
 
   describe('createApplication', () => {
     it('should call api with payload', async () => {
-      await service.createApplication(mockSalesforceApplicationPayload);
+      await service.createApplication(mockCreateApplication);
 
       expect(salesforceApi.createApplication)
-        .toHaveBeenCalledWith(mockSalesforceApplicationPayload);
+        .toHaveBeenCalledWith(mockCreateApplication);
     });
   });
 });

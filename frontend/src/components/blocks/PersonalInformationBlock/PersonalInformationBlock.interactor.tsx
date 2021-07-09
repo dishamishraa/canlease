@@ -5,13 +5,11 @@ import { PersonalInformationBlockPresenterProps } from './PersonalInformationBlo
 const withInteractor = (
   Presenter: React.FC<PersonalInformationBlockPresenterProps>,
 ): React.FC <PersonalInformationBlockProps> => {
-  const Interactor: React.FC <PersonalInformationBlockProps> = (props) => {
-    return (
+  const Interactor: React.FC <PersonalInformationBlockProps> = (props) => (
       <Presenter
         {...props}
       />
-    );
-  };
+  );
   return Interactor;
 };
 export default withInteractor;

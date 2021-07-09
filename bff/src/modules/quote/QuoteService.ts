@@ -1,28 +1,29 @@
 import SalesforceApi from '../../lib/salesforce/SalesforceApi';
+import { CreateQuote, Quote } from '../../lib/salesforce/types';
 import SendGridApi from './SendGridApi';
 import {
-  CreateQuote, Quote, SendQuote, QuoteServiceContract,
+  QuoteServiceContract, SendQuote,
 } from './types';
 
 export default class QuoteService implements QuoteServiceContract {
-  private createQuoteApi: SalesforceApi;
+  private salesforceApi: SalesforceApi;
 
   private sendGridApi: SendGridApi;
 
-  constructor(createQuoteApi: SalesforceApi, sendGridApi: SendGridApi) {
-    this.createQuoteApi = createQuoteApi;
+  constructor(salesforceApi: SalesforceApi, sendGridApi: SendGridApi) {
+    this.salesforceApi = salesforceApi;
     this.sendGridApi = sendGridApi;
   }
 
-  async createQuote(payload: CreateQuote): Promise<Quote> {
-    return this.createQuoteApi.createQuote(payload);
+  createQuote(payload: CreateQuote): Promise<Quote> {
+    return this.salesforceApi.createQuote(payload);
   }
 
-  async getQuote(quoteId: string): Promise<Quote> {
-    return this.createQuoteApi.getQuote(quoteId);
+  getQuote(quoteId: string): Promise<Quote> {
+    return this.salesforceApi.getQuote(quoteId);
   }
 
-  async sendQuote(payload: SendQuote): Promise<void> {
+  sendQuote(payload: SendQuote): Promise<void> {
     return this.sendGridApi.sendQuote(payload);
   }
 }

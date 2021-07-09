@@ -1,9 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { PortfolioControllerContract } from './types';
 import { BadRequestError } from '../../lib/errors';
-import { errorWrapper } from '../../lib/utils';
-import { validateId } from './utils';
-import { portfolioResponse } from './fixtures';
+import { errorWrapper, validateId } from '../../lib/utils';
 
 export function createPortfolioRouter(controllers: {
   portfolioController: PortfolioControllerContract;
@@ -17,8 +15,8 @@ export function createPortfolioRouter(controllers: {
       throw BadRequestError();
     }
 
-    await portfolioController.getUserPortfolio(id);
-    res.status(200).send(portfolioResponse);
+    const response = await portfolioController.getUserPortfolio(id);
+    res.status(200).send(response);
   }));
 
   router.get('/:id/customer_portfolio', errorWrapper(async (req: Request, res: Response) => {
@@ -27,8 +25,8 @@ export function createPortfolioRouter(controllers: {
       throw BadRequestError();
     }
 
-    await portfolioController.getCustomerPortfolio(id);
-    res.status(200).send(portfolioResponse);
+    const response = await portfolioController.getCustomerPortfolio(id);
+    res.status(200).send(response);
   }));
 
   return router;

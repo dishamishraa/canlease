@@ -1,5 +1,6 @@
+import mockAddQuote from '../../lib/salesforce/fixtures/mockAddQuote';
+import mockCreateProfile from '../../lib/salesforce/fixtures/mockCreateProfile';
 import ProfileService from './ProfileService';
-import { mockSalesforceProfilePayload, mockAddQuotePayload } from './fixture';
 
 describe('QuoteService', () => {
   const salesforceApi = {
@@ -28,19 +29,19 @@ describe('QuoteService', () => {
 
   describe('createProfile', () => {
     it('should call api with payload', async () => {
-      await service.createProfile(mockSalesforceProfilePayload);
+      await service.createProfile(mockCreateProfile);
 
       expect(salesforceApi.createProfile)
-        .toHaveBeenCalledWith(mockSalesforceProfilePayload);
+        .toHaveBeenCalledWith(mockCreateProfile);
     });
   });
 
   describe('addQuoteToProfile', () => {
     it('should call api with portal id and payload', async () => {
-      await service.addQuoteToProfile('1', mockAddQuotePayload);
+      await service.addQuoteToProfile('1', mockAddQuote);
 
       expect(salesforceApi.addQuoteToProfile)
-        .toHaveBeenCalledWith('1', mockAddQuotePayload);
+        .toHaveBeenCalledWith('1', mockAddQuote);
     });
   });
 

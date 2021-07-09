@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ContactInfoVendorBlockProps, defaultProps } from './ContactInfoVendorBlock';
 import { isEmptyString } from '../../../lib/utils';
-import { ContactInfo } from '../../../modules/types';
+import { ContactInfoVendor } from '../../../modules/types';
 
 export type ContactInfoVendorBlockPresenterProps = {
-  handleCreateQuote?: (contactInfo: ContactInfo) => void;
+  handleCreateQuote?: (contactInfo: ContactInfoVendor) => void;
 };
 
 const withPresenter = (
@@ -34,6 +34,7 @@ const withPresenter = (
     const handleClickViewQuote = () => {
       if (isFormValid && handleCreateQuote) {
         handleCreateQuote({
+          type: 'vendor',
           vendorName,
           businessEmail,
           companyName,
@@ -137,6 +138,7 @@ const withPresenter = (
 
     return (
       <View
+        {...props}
         {...blockProps}
       />
     );

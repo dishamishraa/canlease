@@ -5,6 +5,7 @@ import styles from './Table.module.scss';
 
 import TableHeader, { TableHeaderProps } from '../../molecules/TableHeader';
 import TableItemList, { TableItemListProps } from '../../organisms/TableItemList';
+import { ContentFilter, ContentType, ContentTypeTabs } from '../../../modules/types';
 
 export const defaultProps = {
   tableHeader: {
@@ -55,10 +56,10 @@ export type TableProps = {
   tableHeader?: TableHeaderProps;
   tableItemList?: TableItemListProps;
   className?: string;
-  contentType?: string;
+  contentType?: ContentType;
   searchQuery?: string;
-  statusFilter?: string;
-  tab?: 'Customer' | 'Personal';
+  statusFilter?: ContentFilter;
+  tab?: ContentTypeTabs;
 };
 
 const Table: React.FC<TableProps> = ({

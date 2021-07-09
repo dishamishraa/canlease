@@ -74,8 +74,7 @@ const NewRateCardModal: React.FC<NewRateCardModalProps> = ({
   primary,
   secondary,
   className,
-}) => {
-  return (
+}) => (
     <div className={cx(styles.newRateCardModal, className)}>
       <div className={styles.topContainer}>
         <Icon
@@ -99,8 +98,7 @@ const NewRateCardModal: React.FC<NewRateCardModalProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+);
 
 NewRateCardModal.defaultProps = defaultProps;
 

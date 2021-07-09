@@ -1,13 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router';
 import { SignInBlockProps, defaultProps } from './SignInBlock';
-import { isEmptyString, isEmail } from '../../../lib/utils';
-import { SignInPayload, AccountTokenResponse } from '../../../modules/types';
-import { defaultProps as defaultTextFieldProps, TextFieldStateType, TextFieldTypeType } from '../../molecules/TextField/TextField';
-import { defaultProps as defaultToastProps, ToastProps, ToastStyleType, ToastTypeType } from '../../atoms/Toast/Toast';
+import { isEmptyString } from '../../../lib/utils';
+import { defaultProps as defaultTextFieldProps } from '../../molecules/TextField/TextField';
+import {
+  defaultProps as defaultToastProps,
+} from '../../atoms/Toast/Toast';
 import { HTMLInputType } from '../../atoms/TextInput/TextInput';
-import { routes } from '../../pages/AuthPage/AuthPage'
+import { SignInPayload } from '../../../modules/account/types';
 
 export type SignInBlockPresenterProps = SignInBlockProps & {
   handleSignIn?: (payload: SignInPayload) => void;
@@ -29,13 +30,13 @@ const withPresenter = (
     const [password, setPassword] = useState<string>('');
     const [passwordVisibility, setPasswordVisibility] = useState<HTMLInputType>('password');
     const [toastMessage, setToastMessage] = useState<string>('');
-    const formInvalid = (isEmptyString(email) || isEmptyString(password))
+    const formInvalid = (isEmptyString(email) || isEmptyString(password));
 
     useEffect(() => {
-      if(state && message){
-        setToastMessage(message)
+      if (state && message) {
+        setToastMessage(message);
       }
-    },[state, message])
+    }, [state, message]);
 
     const handleEmail = ({ target: { value } }) => {
       setEmail(value);
@@ -54,19 +55,19 @@ const withPresenter = (
     };
 
     const togglePasswordVisibility = () => {
-      if(passwordVisibility === 'password'){
+      if (passwordVisibility === 'password') {
         setPasswordVisibility('text');
-      }else{
+      } else {
         setPasswordVisibility('password');
       }
-    }
+    };
 
     const handleForgetPassword = () => {
-      history.push({ pathname: routes.forgotPassword });
+      history.push('/account/forgotPassword');
     };
 
     const handleSignUp = () => {
-      history.push({ pathname: routes.signUp });
+      history.push('/account/signUp');
     };
 
     const signInProps: SignInBlockProps = {
@@ -87,7 +88,7 @@ const withPresenter = (
         },
         textInput: {
           textValue: email,
-          onTextChanged: handleEmail
+          onTextChanged: handleEmail,
         },
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
@@ -106,9 +107,9 @@ const withPresenter = (
           onTextChanged: handlePassword,
           icon: {
             ...defaultTextFieldProps.textInput.icon,
-            onIconClicked: togglePasswordVisibility
+            onIconClicked: togglePasswordVisibility,
           },
-          inputType: passwordVisibility
+          inputType: passwordVisibility,
         },
       },
       nextButton: {
@@ -118,7 +119,7 @@ const withPresenter = (
           value: t('button_text.next'),
         },
         onButtonClicked: handleNext,
-        disabled: formInvalid
+        disabled: formInvalid,
       },
       forgotPasswordButton: {
         ...defaultProps.forgotPasswordButton,
@@ -140,21 +141,22 @@ const withPresenter = (
         },
         onButtonClicked: handleSignUp,
       },
-      toastMessage: toastMessage,
+      toastMessage,
       toastProps: {
         ...defaultToastProps,
         type: 'NoCloseButton',
         text: {
           ...defaultToastProps.text,
           style: 'Basic400',
-          value: toastMessage
+          value: toastMessage,
         },
         style: 'Dark',
-      }
+      },
     };
 
     return (
             <View
+            {...props}
             {...signInProps}
             />
     );

@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express';
 import { ApplicationControllerContract } from './types';
 import { BadRequestError } from '../../lib/errors';
 import { errorWrapper } from '../../lib/utils';
-import { validateCreateApplication } from './utils';
+import { validateCreateApplication } from '../../lib/salesforce/utils';
 
 export function createApplicationRouter(controllers: {
   applicationController: ApplicationControllerContract;
