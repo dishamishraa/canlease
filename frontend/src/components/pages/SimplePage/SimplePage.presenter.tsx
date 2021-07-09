@@ -71,7 +71,7 @@ const withPresenter = (
           expiryDate.setTime(expiryDate.getTime() + Number(MAX_AGE));
           setCookie(INSTANT_QUOTE_COOKIE, { userType, equipmentLeaseInfo, contactInfo }, { expires: expiryDate });
           const { quoteId } = data;
-          history.push(`/instaQuote/${quoteId}`);
+          history.push(`/instaQuote/${quoteId}`, {userType})
         }
       }
     };
