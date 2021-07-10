@@ -94,7 +94,7 @@ const withPresenter = (
                     value: t('customer_dashboard.view_button'),
                   },
                   onButtonClicked: () => {
-                    history.push(`/portal/quotes/quote/${quoteId}`)
+                    history.push(`/portal/quote/${quoteId}`)
                   }
                 }
             }
@@ -117,7 +117,7 @@ const withPresenter = (
                   value: t('customer_dashboard.create_quote'),
                 },
                 onButtonClicked: () => {
-                  //TODO create quote from dashboard
+                  // TODO create quote from dashboard
                 }
             }
         }
@@ -167,7 +167,7 @@ const withPresenter = (
                     value: t('customer_dashboard.view_button'),
                   },
                   onButtonClicked: () => {
-                    //TODO view application
+                    // TODO view application
                   }
                 }
             }
@@ -190,7 +190,7 @@ const withPresenter = (
                   value: t('customer_dashboard.apply_finance'),
                 },
                 onButtonClicked: () => {
-                  //TODO apply for finance from dashboard
+                  // TODO apply for finance from dashboard
                 }
             }
         }

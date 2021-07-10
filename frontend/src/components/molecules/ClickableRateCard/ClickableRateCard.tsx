@@ -19,12 +19,14 @@ export type ClickableRateCardProps = {
   state?: ClickableRateCardStateType;
   rateDetailItemList?: RateDetailItemListProps;
   className?: string;
+  onRateCardClicked?: (event?: React.MouseEvent<HTMLDivElement>) => void;
 };
 
 const ClickableRateCard: React.FC<ClickableRateCardProps> = ({
   state,
   rateDetailItemList,
   className,
+  onRateCardClicked,
 }) => {
   const currentStyle = styles[`clickableRateCard${state}`];
 
@@ -41,7 +43,8 @@ const ClickableRateCard: React.FC<ClickableRateCardProps> = ({
   }
 
   return (
-    <div className={cx(currentStyle, className)}>
+    <div className={cx(currentStyle, className)}
+      onClick={onRateCardClicked} >
       {rateDetailItemListView}
     </div>
   );

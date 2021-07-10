@@ -13,11 +13,11 @@ export const defaultProps = {
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
-  radioButtonItem: {
+  radioButtonItems:[ {
     state: 'Unselected',
-    icon: {
+    unselectedIcon: {
       asset: 'RadioButtonOff',
-      style: 'Basic800',
+      style: 'Brand500',
     },
     text: {
       style: 'Basic800',
@@ -25,32 +25,34 @@ export const defaultProps = {
       size: 'Large',
       type: 'Paragraph1',
     },
-  } as RadioButtonItemProps,
+  }] as RadioButtonItemProps[],
 };
 
 export type RadioFieldProps = {
   label?: TextProps;
-  radioButtonItem?: RadioButtonItemProps;
+  radioButtonItems?: RadioButtonItemProps[];
   className?: string;
 };
 
 const RadioField: React.FC<RadioFieldProps> = ({
   label,
-  radioButtonItem,
+  radioButtonItems,
   className,
-}) => (
-    <div className={cx(styles.radioField, className)}>
+}) => {
+  const radioButtonItemsArray = radioButtonItems?.map((radioButtonItem) => (
+    <RadioButtonItem
+      className={styles.radioButtonItem}
+      {...radioButtonItem} />
+  ));
+    return(
+      <div className={cx(styles.radioField, className)}>
       <Text
         className={styles.label}
         {...label} />
-      <RadioButtonItem
-        className={styles.radioButtonItem}
-        {...radioButtonItem} />
-      <RadioButtonItem
-        className={styles.radioButtonItem}
-        {...radioButtonItem} />
+      {radioButtonItemsArray}
     </div>
-);
+    )
+};
 
 RadioField.defaultProps = defaultProps;
 

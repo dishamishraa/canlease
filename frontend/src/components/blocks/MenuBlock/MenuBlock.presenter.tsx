@@ -32,7 +32,7 @@ const withPresenter = (
             },
             text: {
                 ...defaultMainMenutItemProps.text,
-                value: 'Dashboard', //TODO localize
+                value: 'Dashboard', // TODO localize
             },
             onMainMenuItemClicked: () => {
                 history.push('/portal/dashboard');
@@ -47,7 +47,7 @@ const withPresenter = (
             },
             text: {
                 ...defaultMainMenutItemProps.text,
-                value: 'Quotes', //TODO localize
+                value: 'Quotes', // TODO localize
             },
             onMainMenuItemClicked: () => {
                 history.push('/portal/quotes');
@@ -62,7 +62,7 @@ const withPresenter = (
             },
             text: {
                 ...defaultMainMenutItemProps.text,
-                value: 'Applications', //TODO localize
+                value: 'Applications', // TODO localize
             },
             onMainMenuItemClicked: () => {
                 history.push('/portal/applications');

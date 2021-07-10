@@ -10,8 +10,12 @@ export type RadioButtonItemStateType = 'Unselected' | 'Selected';
 
 export const defaultProps = {
   state: 'Selected' as RadioButtonItemStateType,
-  icon: {
+  selectedIcon: {
     asset: 'RadioButtonOn',
+    style: 'Brand500',
+  } as IconProps,
+  unselectedIcon: {
+    asset: 'RadioButtonOff',
     style: 'Brand500',
   } as IconProps,
   text: {
@@ -22,26 +26,24 @@ export const defaultProps = {
   } as TextProps,
 };
 
-export type RadioButtonItemProps = {
+export type  RadioButtonItemProps = {
   state?: RadioButtonItemStateType;
-  icon?: IconProps;
+  selectedIcon?: IconProps;
+  unselectedIcon?: IconProps;
   text?: TextProps;
   className?: string;
 };
 
 const RadioButtonItem: React.FC<RadioButtonItemProps> = ({
   state,
-  icon,
+  selectedIcon,
+  unselectedIcon,
   text,
   className,
 }) => {
   const currentStyle = styles[`radioButtonItem${state}`];
 
-  const iconView = (
-    <Icon
-      className={styles.icon}
-      {...icon} />
-  );
+  let iconView;
   const textView = (
     <Text
       className={styles.text}
@@ -49,8 +51,18 @@ const RadioButtonItem: React.FC<RadioButtonItemProps> = ({
   );
   switch (state) {
     case 'Unselected':
+      iconView = (
+        <Icon
+          className={styles.icon}
+          {...unselectedIcon} />
+      );
       break;
     case 'Selected':
+      iconView = (
+        <Icon
+          className={styles.icon}
+          {...selectedIcon} />
+      );
       break;
   }
 

@@ -65,12 +65,12 @@ const withPresenter = (
         ...defaultRadioButtonItemProps,
         state: 'Selected',
         text: {
-          ...defaultRadioButtonItemProps.text,
-          value: t('personal_information.radio_text.supplier'),
+        ...defaultRadioButtonItemProps.text,
+          value: t('personal_information.radio_text.supplier')
         },
-        icon: {
-          ...defaultRadioButtonItemProps.icon,
-          onIconClicked: handleRadioSelectionVendor,
+        unselectedIcon: {
+          ...defaultRadioButtonItemProps.unselectedIcon,
+          onIconClicked: handleRadioSelectionVendor
         },
       },
       {
@@ -80,11 +80,11 @@ const withPresenter = (
           ...defaultRadioButtonItemProps.text,
           value: t('personal_information.radio_text.own_use'),
         },
-        icon: {
-          ...defaultRadioButtonItemProps.icon,
-          onIconClicked: handleRadioSelectionCustomer,
-        },
-      },
+        unselectedIcon: {
+          ...defaultRadioButtonItemProps.unselectedIcon,
+          onIconClicked: handleRadioSelectionCustomer
+        }
+      }
     ];
 
     const personalInformationBlockProps: PersonalInformationBlockProps = {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { QuoteRateSectionProps } from '../../organisms/QuoteRateSection';
 import { QuoteBlockProps, defaultProps } from './QuoteBlock';
 import { addLinksAndBreaks } from '../../../lib/reactUtils';
@@ -11,6 +11,7 @@ import EmailIcon from '../../../resources/icons/Email.svg';
 
 import { defaultProps as defaultRateDetailItemProps } from '../../molecules/RateDetailItem/RateDetailItem';
 import { Quote } from '../../../modules/quote/types';
+import { TermDisplay } from '../../../modules/types';
 
 export type QuoteBlockPresenterProps = QuoteBlockProps & {
   quoteDetails: Quote | null;
@@ -27,11 +28,12 @@ const withPresenter = (
       error,
       quoteDetails,
     } = props;
-
+    const history = useHistory();
     const { t } = useTranslation();
     const location = useLocation<({userType: string})>();
     const { state } = location;
     const applyForFinanceButtonClicked = () => {
+      history.push('/account/signin', {fromEmail: true})
     };
 
     const [showModal, setShowModal] = useState(false);
@@ -92,14 +94,7 @@ const withPresenter = (
     const rateCardsArray: RateCardProps[] = [];
     let quoteRateSectionProps: QuoteRateSectionProps = {};
     const termDetailItemArray: QuoteDetailItemProps[] = [];
-    const termDisplay = {
-      '12M': 12,
-      '24M': 24,
-      '36M': 36,
-      '48M': 48,
-      '60M': 60,
-      '72M': 72,
-    };
+
     if (quoteDetails) {
       // check if quote has expired
       const today = new Date();
@@ -188,7 +183,7 @@ const withPresenter = (
                 },
                 numberText: {
                   ...defaultRateDetailItemProps.numberText,
-                  value: termDisplay[term],
+                  value: TermDisplay[term],
                 },
               },
               {

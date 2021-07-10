@@ -12,6 +12,7 @@ import ApplicationPage from '../../pages/ApplicationPage';
 import ContentPage from '../../pages/ContentPage';
 import SimplePage from '../../pages/SimplePage/SimplePage';
 import MenuBlock from '../../blocks/MenuBlock';
+import QuotePage from '../../pages/QuotePage';
 
 export const defaultProps = {
   header: {
@@ -51,7 +52,9 @@ export type PortalLayoutProps = {
 export const routes = {
   dashboard: '/portal/dashboard',
   applications: '/portal/applications',
+  application: '/portal/application',
   quotes: '/portal/quotes',
+  quote: '/portal/quote',
   leasingQuote: '/portal/viewquote/:quoteId',
   invalid: '/',
 };
@@ -78,6 +81,14 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
             </Route>
             <Route path={[routes.quotes, routes.applications]}>
               <ContentPage
+                className={styles.page} />
+            </Route>
+            <Route path={routes.quote}>
+              <QuotePage
+                className={styles.page} />
+            </Route>
+            <Route path={routes.application}>
+              <ApplicationPage
                 className={styles.page} />
             </Route>
             <Route path={routes.leasingQuote}>

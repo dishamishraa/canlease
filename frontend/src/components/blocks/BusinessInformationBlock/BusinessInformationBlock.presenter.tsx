@@ -8,6 +8,7 @@ import { AuthPageLocationState, BusinessInformation } from '../../../modules/typ
 
 export type BusinessInformationBlockPresenterProps = BusinessInformationBlockProps & {
   setBusinessInfo?: React.Dispatch<React.SetStateAction<BusinessInformation>>;
+  accessedFromEmail?: boolean;
 };
 
 const withPresenter = (
@@ -16,6 +17,8 @@ const withPresenter = (
   const Presenter: React.FC<BusinessInformationBlockPresenterProps> = (props) => {
     const {
       setBusinessInfo,
+      accessedFromEmail,
+      className,
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
@@ -180,8 +183,8 @@ const withPresenter = (
       },
     };
     return <View
-      {...props}
       {...businessInformationBlockProps}
+      className={className}
       />;
   };
   return Presenter;

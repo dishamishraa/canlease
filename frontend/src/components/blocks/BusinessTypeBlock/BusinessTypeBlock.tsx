@@ -8,6 +8,7 @@ import Text, { TextProps } from '../../atoms/Text';
 import RadioField, { RadioFieldProps } from '../../molecules/RadioField';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
+import { BusinessType } from '../../../modules/types';
 
 export const defaultProps = {
   stepper: {
@@ -31,7 +32,7 @@ export const defaultProps = {
       size: 'Medium',
       type: 'Paragraph2',
     },
-    radioButtonItem: {
+    radioButtonItem: [ {
       state: 'Unselected',
       icon: {
         asset: 'RadioButtonOff',
@@ -43,9 +44,9 @@ export const defaultProps = {
         size: 'Large',
         type: 'Paragraph1',
       },
-    },
+    }],
   } as RadioFieldProps,
-  businessPhoneField: {
+  sinField: {
     state: 'Default',
     type: 'Text',
     label: {
@@ -58,7 +59,7 @@ export const defaultProps = {
       type: 'Text',
     },
   } as TextFieldProps,
-  operatingSinceTextField: {
+  dateOfBirthField: {
     state: 'Default',
     type: 'Text',
     label: {
@@ -129,27 +130,57 @@ export type BusinessTypeBlockProps = {
   stepper?: StepperProps;
   blockHeading?: TextProps;
   businessTypeRadioField?: RadioFieldProps;
-  businessPhoneField?: TextFieldProps;
-  operatingSinceTextField?: TextFieldProps;
+  sinField?: TextFieldProps;
+  dateOfBirthField?: TextFieldProps;
   bankruptcyRadioField?: RadioFieldProps;
   detailsTextArea?: TextFieldProps;
   disclaimerText?: TextProps;
   nextButton?: ButtonProps;
   className?: string;
+  setBusinessTypeInfo?: React.Dispatch<React.SetStateAction<BusinessType>>;
+  showAdditionalFormFields?: boolean;
+  businessTypeInfomation?: BusinessType;
+  stepperCurrentValue?: number,
+  setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
+  stepperTotalValue?: number,
 };
 
 const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
   stepper,
   blockHeading,
   businessTypeRadioField,
-  businessPhoneField,
-  operatingSinceTextField,
+  sinField,
+  dateOfBirthField,
   bankruptcyRadioField,
   detailsTextArea,
   disclaimerText,
   nextButton,
   className,
-}) => (
+  showAdditionalFormFields,
+}) => {
+  let additionalFormFields;
+  if(showAdditionalFormFields) {
+    additionalFormFields = (
+      <div className={styles.form}>
+         <TextField
+            className={styles.businessPhoneField}
+            {...sinField} />
+          <TextField
+            className={styles.operatingSinceTextField}
+            {...dateOfBirthField} />
+          <RadioField
+            className={styles.bankruptcyRadioField}
+            {...bankruptcyRadioField} />
+          <TextField
+            className={styles.detailsTextArea}
+            {...detailsTextArea} />
+          <Text
+            className={styles.disclaimerText}
+            {...disclaimerText} />
+      </div>
+    );
+  }
+ return (
     <div className={cx(styles.businessTypeBlock, className)}>
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
@@ -164,28 +195,15 @@ const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
           <RadioField
             className={styles.businessTypeRadioField}
             {...businessTypeRadioField} />
-          <TextField
-            className={styles.businessPhoneField}
-            {...businessPhoneField} />
-          <TextField
-            className={styles.operatingSinceTextField}
-            {...operatingSinceTextField} />
-          <RadioField
-            className={styles.bankruptcyRadioField}
-            {...bankruptcyRadioField} />
-          <TextField
-            className={styles.detailsTextArea}
-            {...detailsTextArea} />
-          <Text
-            className={styles.disclaimerText}
-            {...disclaimerText} />
+          {additionalFormFields}
           <Button
             className={styles.nextButton}
             {...nextButton} />
         </div>
       </div>
     </div>
-);
+  );
+}
 
 BusinessTypeBlock.defaultProps = defaultProps;
 

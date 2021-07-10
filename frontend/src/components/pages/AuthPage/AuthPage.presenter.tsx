@@ -31,7 +31,6 @@ const withPresenter = (
       createProfile,
       updateName,
     } = props;
-
     const history = useHistory();
     const { state, pathname} = useLocation<({
       personalInfo: PersonalInformation;

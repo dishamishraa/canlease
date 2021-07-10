@@ -4,8 +4,15 @@ import cx from 'classnames';
 import styles from './LeaseDetailsSection.module.scss';
 
 import DetailItemList, { DetailItemListProps } from '../DetailItemList';
+import Text, { TextProps } from '../../atoms/Text';
 
 export const defaultProps = {
+  text: {
+    style: 'Basic800',
+    align: 'Left',
+    size: 'Large',
+    type: 'Heading2',
+  } as TextProps,
   detailItemList: {
     quoteDetailItems: [
     ],
@@ -13,15 +20,20 @@ export const defaultProps = {
 };
 
 export type LeaseDetailsSectionProps = {
+  text?: TextProps;
   detailItemList?: DetailItemListProps;
   className?: string;
 };
 
 const LeaseDetailsSection: React.FC<LeaseDetailsSectionProps> = ({
+  text,
   detailItemList,
   className,
 }) => (
     <div className={cx(styles.leaseDetailsSection, className)}>
+       <Text
+        className={styles.text}
+        {...text} />
       <DetailItemList
         className={styles.detailItemList}
         {...detailItemList} />

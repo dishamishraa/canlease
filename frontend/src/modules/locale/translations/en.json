@@ -73,7 +73,7 @@
         "learn_more_text": "Are you looking for a different kind of lease quote to suit your specific business needs (i.e. three month payment deferral, seasonal payments to match your income, large down payment, etc)? [Learn more](https://canlease.net/faq/)",
         "apply_button_text": "Apply for Finance",
         "save_quote_button_text": "Save Quote",
-        "quote_rate_section_heading_text": "Quote detail",
+        "quote_rate_section_heading_text": "Quote details",
         "quote_detail":{
             "application_amount": {
                 "label": "Based on:",
@@ -91,6 +91,85 @@
         },
         "expiry_toast":{
             "message": "This quote has expired. Please create a new quote."
+        }
+    },
+    "application_form":{
+        "back": "Back",
+        "select_lease":{
+            "heading_text": "Select the lease term",
+            "next_button": "Next"
+        },
+        "asset_information": {
+            "heading_text": "Asset Information",
+            "condition": {
+                "label": "Asset condition",
+                "new": "New",
+                "used": "Used"
+            },
+            "age": "Age of asset (in years)",
+            "expected_date": "Expected date of asset delivery",
+            "date_placeholder": "mm/dd/yy"
+        },
+        "stepper": "STEP {{current}}/{{total}}",
+        "business_type": {
+            "heading_text": "Business type",
+            "business_type": {
+                "label": "Business type",
+                "corporation": "Corporation",
+                "sole_proprietorship": "Sole Proprietorship"
+            },
+            "sin": "Social Insurance Number",
+            "date_of_birth": "Date of birth",
+            "bankruptcy": {
+                "label": "Have you ever filed for bankruptcy?",
+                "no": "No",
+                "yes": "Yes",
+                "details_label": "If yes, please provide details",
+                "disclaimer_text": "We are asking you to provide your Social insurance number and Date of birth as part of the credit application process. Canlease is committed to protecting the privacy and confidenatiality of the personal information that we collect."
+            }
+        },
+        "review_application": {
+            "review_header": "Review information",
+            "edit": "Edit",
+            "quote_details_based_on_value": "${{applicationAmount}} (before tax)",
+            "payment_details":{
+                "heading": "Payment details",
+                "monthly_payment_label": "Monthly Payment:",
+                "monthly_payment_value": "${{monthlyAmount}} (before tax)",
+                "lease_term_label": "Lease term:",
+                "lease_term_value": "{{termValue}} months",
+                "cost_of_finance_label": "Cost of finance:"
+    
+            },
+            "asset_details":{
+                "heading": "Asset details",
+                "condition_label": "Asset condition:",
+                "age_label": "Age of asset (in years):",
+                "age_value": "{{ageOfAsset}} years",
+                "date_of_delivery_label": "Expected date of asset delivery:"
+            },
+            "business_type":{
+                "heading": "Business type",
+                "sin_label": "Social insurance number:",
+                "date_of_birth_label": "Date of birth:",
+                "bankruptcy_label": "Have you ever filed for bankruptcy?"
+            },
+            "asset_header": "Asset information",
+            "profile_header": "Profile information",
+            "profile_description": "<p> We will using your profile information as part of our application process. Please <a href=\"https://canlease.net/contact/\" target=\"_blank\"> contact Canlease </a> to make changes to your profile info. </p>",
+            "personal_information_header": "Personal information",
+            "contact_information_header": "Contact information",
+            "business_information_header": "Business information"
+        },
+        "terms_of_application":{
+            "header": "Terms of application",
+            "terms": "Please review the information below to provide consent for Canlease to perform a credit check.\n By submitting this application, you are confirming that you/the applicant are consenting to: \n • Canlease and/or its funding partners and assignees, for the collection, use, and disclosure of personal and/or business information from credit reporting agencies for the purposes of credit adjudication, in connection with this application to provide leasing/financial services. \n• Electronic communication from Canlease",
+            "checkbox_label": "I have read, and agree to the above statements."
+        },
+        "application_submitted":{
+            "header": "Application submitted",
+            "description": "Your application has been successfully submitted. Our representative may reach out to you if any further information is required. \n Thank you!",
+            "done_button": "Done"
         }
     },
     "sign_up":{
@@ -225,6 +304,12 @@
             "rejected": "Rejected",
             "not_active": "Not active"
         }
+    },
+    "warning_modal": {
+        "title": "Are you sure?",
+        "body": "If you choose to leave the application, all your progress will be lost.",
+        "primary_button": "Leave",
+        "secondary_button": "Cancel"
     },
     "header":{
         "sign_up_button": "SIGN UP",

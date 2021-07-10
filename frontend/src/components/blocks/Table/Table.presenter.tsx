@@ -74,7 +74,7 @@ const getCurrentItems = (
             createdOn: createdOn(quote.quoteExpiryDate).toDateString(),
             asset: quote.asset,
             cost: quote.applicationAmount,
-            link: `/portal/quotes/quote/${quote.quoteId}`,
+            link: `/portal/quote/${quote.quoteId}`,
           }
         });
       }
@@ -89,7 +89,7 @@ const getCurrentItems = (
             createdOn: new Date(application.createdDate).toDateString(),
             asset: application.asset,
             cost: application.applicationAmount,
-            link: `/portal/applications/application/${application.creditAppNumber}`,
+            link: `/portal/application/${application.creditAppNumber}`,
           }
         });
       }

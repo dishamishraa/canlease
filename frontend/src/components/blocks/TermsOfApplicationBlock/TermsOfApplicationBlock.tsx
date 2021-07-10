@@ -66,6 +66,10 @@ export type TermsOfApplicationBlockProps = {
   checkboxItem?: CheckboxItemProps;
   nextButton?: ButtonProps;
   className?: string;
+  setCreditCheckConsent?: React.Dispatch<React.SetStateAction<boolean>>;
+  stepperCurrentValue?: number,
+  setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
+  stepperTotalValue?: number,
 };
 
 const TermsOfApplicationBlock: React.FC<TermsOfApplicationBlockProps> = ({

@@ -112,7 +112,7 @@ const AuthPage: React.FC<AuthPageProps> = ({
         <ProtectedRoute exact path={routes.businessInformation}>
           <BusinessInformationBlock
             className={styles.block}
-            setBusinessInfo={setBusinessInfo} />
+            setBusinessInfo={setBusinessInfo}/>
         </ProtectedRoute>
 
         <Route path={routes.invalid}>

@@ -9,8 +9,8 @@ import {
 import styles from './App.module.scss';
 import InstantQuoteLayout from './components/layout/InstantQuoteLayout';
 import AuthLayout from './components/layout/AuthLayout';
-import { ProtectedRoute } from './modules/auth';
 import PortalLayout from './components/layout/PortalLayout';
+import { ProtectedRoute } from './modules/auth';
 
 export const routes = {
   home: '/',

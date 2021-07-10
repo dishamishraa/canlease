@@ -1,11 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import styles from './ContentPage.module.scss';
 import TopBlock, { TopBlockProps } from '../../blocks/TopBlock';
 import TopActionBlock, { TopActionBlockProps } from '../../blocks/TopActionBlock';
 import Table, { TableProps } from '../../blocks/Table';
-import QuoteBlock, { QuoteBlockProps } from '../../blocks/QuoteBlock';
 import { ContentFilter, ContentTypeTabs } from '../../../modules/types';
 
 export const defaultProps = {
@@ -108,7 +107,6 @@ export const defaultProps = {
 export type ContentPageProps = {
   topBlock?: TopBlockProps;
   topActionBlock?: TopActionBlockProps;
-  quoteBlock?: QuoteBlockProps;
   className?: string;
   table?: TableProps;
   searchQuery?: string;
@@ -121,16 +119,13 @@ export type ContentPageProps = {
 const routes = {
   quotes: '/portal/quotes',
   customerQuotes: '/portal/quotes/customer',
-  quoteDetails: '/portal/quotes/quote/:quoteId',
   applications: '/portal/applications',
   customerApplications: '/portal/applications/customer',
-  applicationDetails: '/portal/applications/application/:applicationId'
 };
 
 const ContentPage: React.FC<ContentPageProps> = ({
   topBlock,
   topActionBlock,
-  quoteBlock,
   className,
   table,
   searchQuery,
@@ -163,13 +158,6 @@ const ContentPage: React.FC<ContentPageProps> = ({
             statusFilter={statusFilter}
             tab={tab}/>
         </Route>
-        <Route path={routes.quoteDetails}>
-          <div className={styles.topContent}>
-            <QuoteBlock
-                className={styles.block}
-                {...quoteBlock} />
-          </div>
-        </Route>
         <Route exact path={[routes.applications, routes.customerApplications]}>
           <TopBlock
             className={styles.topBlock}
@@ -191,11 +179,6 @@ const ContentPage: React.FC<ContentPageProps> = ({
             searchQuery={searchQuery}
             statusFilter={statusFilter}
             tab={tab}/>
-        </Route>
-        <Route path={routes.applicationDetails}>
-          <div className={styles.topContent}>
-            TODO add the app block
-          </div>
         </Route>
       </Switch>
 

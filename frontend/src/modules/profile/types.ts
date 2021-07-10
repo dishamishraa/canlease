@@ -22,6 +22,7 @@ export type Profile = {
   rateCardId: string;
   userType: UserType;
   operationName: string;
+  operatingSinceDate: string;
   businessSector: string;
   businessPhone: string;
 };

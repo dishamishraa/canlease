@@ -10,8 +10,12 @@ export type CheckboxItemStateType = 'Unselected' | 'Selected';
 
 export const defaultProps = {
   state: 'Selected' as CheckboxItemStateType,
-  icon: {
+  checkedIcon: {
     asset: 'CheckboxChecked',
+    style: 'Brand500',
+  } as IconProps,
+  uncheckedIcon: {
+    asset: 'CheckboxUnchecked',
     style: 'Brand500',
   } as IconProps,
   text: {
@@ -24,24 +28,23 @@ export const defaultProps = {
 
 export type CheckboxItemProps = {
   state?: CheckboxItemStateType;
-  icon?: IconProps;
+  checkedIcon?: IconProps;
+  uncheckedIcon?: IconProps;
   text?: TextProps;
   className?: string;
 };
 
 const CheckboxItem: React.FC<CheckboxItemProps> = ({
   state,
-  icon,
+  checkedIcon,
+  uncheckedIcon,
   text,
   className,
 }) => {
   const currentStyle = styles[`checkboxItem${state}`];
 
-  const iconView = (
-    <Icon
-      className={styles.icon}
-      {...icon} />
-  );
+  let iconView 
+ 
   const textView = (
     <Text
       className={styles.text}
@@ -49,8 +52,18 @@ const CheckboxItem: React.FC<CheckboxItemProps> = ({
   );
   switch (state) {
     case 'Unselected':
+      iconView = (
+        <Icon
+          className={styles.icon}
+          {...uncheckedIcon} />
+      );
       break;
     case 'Selected':
+      iconView = (
+        <Icon
+          className={styles.icon}
+          {...checkedIcon} />
+      );
       break;
   }
 

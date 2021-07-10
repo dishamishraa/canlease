@@ -26,6 +26,26 @@ export type ContactInfoVendor = BaseInfo & {
 
 export type ContactInfo = ContactInfoCustomer | ContactInfoVendor;
 
+export type AssetInfo = {
+  assetCondition: string;
+  ageOfAsset: number;
+  expectedDeliveryDate: string;
+}
+
+export type BusinessType = {
+  businessType: string;
+  sin: string;
+  dob: string;
+  bankruptcy: string;
+  bankruptcyDetails: string;
+}
+
+export type DefaultQuoteOption = {
+  monthlyAmount: number;
+  term: string;
+  financeRate: number;
+  purchaseOptionDate: string;
+};
 
 export type PersonalInformation = {
   firstName: string;
@@ -59,6 +79,16 @@ export type AuthPageLocationState = {
   email: string;
   id: string;
 };
+
+export const TermDisplay = {
+  '12M': 12,
+  '24M': 24,
+  '36M': 36,
+  '48M': 48,
+  '60M': 60,
+  '72M': 72,
+};
+
 
 export type ContentType = 'Quote' | 'Application';
 export type ContentTypeTabs = 'Customer' | 'Personal';

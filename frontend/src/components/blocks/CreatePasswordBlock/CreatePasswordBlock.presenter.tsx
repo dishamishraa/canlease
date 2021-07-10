@@ -52,7 +52,7 @@ const withPresenter = (
         setConfirmPasswordError('Error');
       } else {
         await updatePassword({
-          id: -11111111, //TODO update this to grab the update password token
+          id: -11111111, // TODO update this to grab the update password token
           password: createPassword,
         }).then(() => {
           history.push({

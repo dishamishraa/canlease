@@ -27,8 +27,9 @@
     > * {
       margin-top: 1rem;
     }
-    align-self: stretch;
-    flex: 0 0 24.5rem;
+    align-self: flex-start;
+    width: 19rem;
+    flex: 0 0 auto;
   }
 
 }
@@ -66,7 +67,7 @@
       }
       align-self: center;
       width: 33rem;
-      flex: 0 0 26.5rem;
+      flex: 0 0 auto;
     }
   
   }
@@ -105,7 +106,7 @@
       }
       align-self: center;
       width: 37.5rem;
-      flex: 0 0 26.5rem;
+      flex: 0 0 auto;
     }
   
   }
@@ -144,7 +145,7 @@
       }
       align-self: center;
       width: 37.5rem;
-      flex: 0 0 26.5rem;
+      flex: 0 0 auto;
     }
   
   }
@@ -183,7 +184,7 @@
       }
       align-self: center;
       width: 37.5rem;
-      flex: 0 0 26.5rem;
+      flex: 0 0 auto;
     }
   
   }

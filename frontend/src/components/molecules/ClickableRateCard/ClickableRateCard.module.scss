@@ -86,21 +86,21 @@
   background-color: rgb(228, 229, 240);
   border-radius: 4px;
 
-  .rateDetailItemList {
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    > * {
-      margin-top: 0.25rem;
-    }
-    align-self: stretch;
-    flex: 0 0 auto;
-    &:nth-child(1) {
-      margin-top: 0;
-    }
-  }
+  // .rateDetailItemList {
+  //   overflow: hidden;
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: flex-start;
+  //   align-items: flex-start;
+  //   > * {
+  //     margin-top: 0.25rem;
+  //   }
+  //   align-self: stretch;
+  //   flex: 0 0 auto;
+  //   &:nth-child(1) {
+  //     margin-top: 0;
+  //   }
+  // }
 
 }
 .clickableRateCardDefault:pressed {
@@ -264,21 +264,21 @@
   border: 2px solid rgb(26, 35, 126);
   border-radius: 4px;
 
-  .rateDetailItemList {
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    > * {
-      margin-top: 0.25rem;
-    }
-    align-self: stretch;
-    flex: 0 0 auto;
-    &:nth-child(1) {
-      margin-top: 0;
-    }
-  }
+  // .rateDetailItemList {
+  //   overflow: hidden;
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: flex-start;
+  //   align-items: flex-start;
+  //   > * {
+  //     margin-top: 0.25rem;
+  //   }
+  //   align-self: stretch;
+  //   flex: 0 0 auto;
+  //   &:nth-child(1) {
+  //     margin-top: 0;
+  //   }
+  // }
 
 }
 .clickableRateCardSelected:focused {

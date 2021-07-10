@@ -13,6 +13,7 @@ import { SignInPayload } from '../../../modules/account/types';
 export type SignInBlockPresenterProps = SignInBlockProps & {
   handleSignIn?: (payload: SignInPayload) => void;
   setToastMessage?: React.Dispatch<React.SetStateAction<string>>;
+  setAccessedFromEmail?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const withPresenter = (
@@ -21,11 +22,16 @@ const withPresenter = (
   const Presenter: React.FC<SignInBlockPresenterProps> = (props) => {
     const {
       handleSignIn,
+      setAccessedFromEmail,
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
-    const { state } = useLocation<{message: string}>();
+    const { state } = useLocation<{message: string, fromEmail: boolean}>();
     const { message } = state || {};
+    const { fromEmail } = state || {};
+     if (fromEmail === true && setAccessedFromEmail) {
+      setAccessedFromEmail(true);
+    }
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [passwordVisibility, setPasswordVisibility] = useState<HTMLInputType>('password');

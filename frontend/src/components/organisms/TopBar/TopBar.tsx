@@ -24,6 +24,7 @@ export const defaultProps = {
       size: 'Small',
       type: 'ButtonGiant',
     },
+    show: true,
   } as ButtonProps,
 };
 
@@ -31,6 +32,7 @@ export type TopBarProps = {
   showBackButton?: boolean;
   backButton?: ButtonProps;
   className?: string;
+  show?: boolean;
 };
 
 const TopBar: React.FC<TopBarProps> = ({

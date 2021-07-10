@@ -49,6 +49,7 @@
   }
 
   .terms {
+    white-space: pre-line;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -158,6 +159,7 @@
     }
   
     .terms {
+      white-space: pre-line;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -265,6 +267,7 @@
     }
   
     .terms {
+      white-space: pre-line;
       overflow: hidden;
       display: flex;
       flex-direction: column;
