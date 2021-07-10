@@ -10,14 +10,14 @@ import { isEmpty } from '../../../lib/utils';
 import { APIResponse } from '../../../lib/api/types';
 import { CreateQuotePayload, Quote } from '../../../modules/quote/types';
 
-export type SimplePagePropsPresenterProps = SimplePageProps & {
+export type SimplePagePresenterProps = SimplePageProps & {
   createQuote: (payload: CreateQuotePayload) => Promise<APIResponse<Quote>>;
 };
 
 const withPresenter = (
   View: React.FC<SimplePageProps>,
-): React.FC<SimplePagePropsPresenterProps> => {
-  const Presenter: React.FC<SimplePagePropsPresenterProps> = (props) => {
+): React.FC<SimplePagePresenterProps> => {
+  const Presenter: React.FC<SimplePagePresenterProps> = (props) => {
     const {
       createQuote,
     } = props;

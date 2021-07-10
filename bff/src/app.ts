@@ -17,16 +17,15 @@ import {
 import SalesforceApi from './lib/salesforce/SalesforceApi';
 
 export default function App(): Application {
-  const quoteSalesforceApi = new SalesforceApi();
+  const salesforceApi = new SalesforceApi();
   const sendGridApi = new SendGridApi();
-  const quoteService = new QuoteService(quoteSalesforceApi, sendGridApi);
+  const quoteService = new QuoteService(salesforceApi, sendGridApi);
   const quoteController = new QuoteController(quoteService);
 
-  const applicationSalesforceApi = new SalesforceApi();
-  const applicationService = new ApplicationService(applicationSalesforceApi);
+  const applicationService = new ApplicationService(salesforceApi);
   const applicationController = new ApplicationController(applicationService);
 
-  const profileService = new ProfileService(quoteSalesforceApi);
+  const profileService = new ProfileService(salesforceApi);
   const profileController = new ProfileController(profileService);
   const portfolioSalesforceApi = new SalesforceApi();
   const portfolioService = new PortfolioService(portfolioSalesforceApi);

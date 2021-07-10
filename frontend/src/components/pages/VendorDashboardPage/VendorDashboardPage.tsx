@@ -5,6 +5,7 @@ import styles from './VendorDashboardPage.module.scss';
 
 import DataBlock, { DataBlockProps } from '../../blocks/DataBlock';
 import ResourceBlock, { ResourceBlockProps } from '../../blocks/ResourceBlock';
+import { defaultProps as dashBoardCardProps } from '../../molecules/DashboardCard/DashboardCard';
 
 export const defaultProps = {
   dataBlock: {
@@ -67,10 +68,10 @@ const VendorDashboardPage: React.FC<VendorDashboardPageProps> = ({
     <div className={cx(styles.vendorDashboardPage, className)}>
       <DataBlock
         className={styles.dataBlock}
-        {...dataBlock} />
-      <ResourceBlock
+        {...dataBlock}/>
+      {/* <ResourceBlock
         className={styles.resourceBlock}
-        {...resourceBlock} />
+        {...resourceBlock} /> */}
     </div>
 );
 

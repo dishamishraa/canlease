@@ -10,6 +10,7 @@ describe('ProfileController', () => {
     getAllQuotesFromProfile: jest.fn(),
     getAllCustomerQuotesFromProfile: jest.fn(),
   };
+
   const controller = new ProfileController(profileService);
 
   describe('getProfile', () => {

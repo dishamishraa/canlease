@@ -172,6 +172,15 @@
             "done_button": "Done"
         }
     },
+    "vendor_dashboard":{
+        "metrics":{
+            "quotes_active": "Quotes active",
+            "quotes_expiring": "Quotes expiring soon",
+            "applications_under_review": "Applications under review",
+            "view_button": "View",
+            "create_quote": "Create quote"
+        }
+    },
     "sign_up":{
         "heading_text": "Sign up",
         "description": "Create a free Canlease account"

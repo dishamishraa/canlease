@@ -12,10 +12,10 @@ export const isEmpty = (value) => (
 export const isExpiring = (value) => {
   const date = new Date(value);
   const today = new Date();
-  const diffTime = Math.abs(today.getTime() - date.getTime());
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  return diffDays > 25 && diffDays > 29;
-};
+  const diffTime = date.getTime() - today.getTime();
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+  return diffDays < 6 && diffDays > 0;
+}
 
 export const isExpired = (value) => {
   const today = new Date();

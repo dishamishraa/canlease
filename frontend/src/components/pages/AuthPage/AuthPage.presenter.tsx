@@ -96,7 +96,7 @@ const withPresenter = (
           // find the salesforce profile with the identity account id
           const profile = await fetchProfile();
           setProfile(profile);
-          history.push('/portal');
+          history.push('/portal/dashboard');
         } catch {
           // if no related profile found, push setup page
           history.push('/account/personalInformation');

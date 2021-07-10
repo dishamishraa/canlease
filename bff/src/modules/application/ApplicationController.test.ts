@@ -7,7 +7,7 @@ describe('QuoteController', () => {
   };
   const controller = new ApplicationController(createApplicationService);
 
-  describe('createQuote', () => {
+  describe('createApplcation', () => {
     it('should call service with payload to create quote', async () => {
       await controller.createApplication(mockCreateApplication);
 

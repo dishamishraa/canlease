@@ -42,9 +42,11 @@ import DashboardAsset from '../../../resources/icons/Dashboard.svg';
 import QuotesAsset from '../../../resources/icons/Quotes.svg';
 import ApplicationsAsset from '../../../resources/icons/Applications.svg';
 import RateCardsAsset from '../../../resources/icons/RateCards.svg';
+import EmailIcon from '../../../resources/icons/Email.svg';
+import CreateQuote from '../../../resources/icons/CreateQuote.svg';
 import EditAsset from '../../../resources/icons/Edit.svg';
 
-export type IconAssetType = 'Plus' | 'Settings' | 'Close' | 'MoreHorizontal' | 'MoreVertical' | 'ArrowLeft' | 'ArrowRight' | 'ArrowUp' | 'ArrowDown' | 'ChevronUp' | 'ChevronDown' | 'ChevronLeft' | 'ChevronRight' | 'AlertCircle' | 'AlertTriangle' | 'QuestionMarkCircle' | 'Trash' | 'Picture' | 'Film' | 'RadioButtonOn' | 'RadioButtonOff' | 'CheckboxUnchecked' | 'CheckboxChecked' | 'Heart' | 'HeartFilled' | 'Options' | 'CloseCircleFilled' | 'CheckmarkCircleFilled' | 'CheckmarkCircle' | 'Menu' | 'ExternalLink' | 'Share' | 'Share2' | 'Show' | 'Hide' | 'Dashboard' | 'Quotes' | 'Applications' | 'RateCards' | 'Edit';
+export type IconAssetType = 'Plus' | 'Settings' | 'Close' | 'MoreHorizontal' | 'MoreVertical' | 'ArrowLeft' | 'ArrowRight' | 'ArrowUp' | 'ArrowDown' | 'ChevronUp' | 'ChevronDown' | 'ChevronLeft' | 'ChevronRight' | 'AlertCircle' | 'AlertTriangle' | 'QuestionMarkCircle' | 'Trash' | 'Picture' | 'Film' | 'RadioButtonOn' | 'RadioButtonOff' | 'CheckboxUnchecked' | 'CheckboxChecked' | 'Heart' | 'HeartFilled' | 'Options' | 'CloseCircleFilled' | 'CheckmarkCircleFilled' | 'CheckmarkCircle' | 'Menu' | 'ExternalLink' | 'Share' | 'Share2' | 'Show' | 'Hide' | 'Dashboard' | 'Quotes' | 'Applications' | 'RateCards' | 'Edit' | 'EmailIcon' | 'CreateQuote';
 export type IconStyleType = 'Basic800' | 'Brand500' | 'Basic100' | 'Basic400' | 'Red200';
 
 export const defaultProps = {
@@ -188,6 +190,11 @@ const Icon: React.FC<IconProps> = ({
     case 'RateCards':
       content = RateCardsAsset;
       break;
+    case 'EmailIcon':
+      content = EmailIcon;
+      break;
+    case 'CreateQuote':
+      content = CreateQuote;
     case 'Edit':
       content = EditAsset;
       break;

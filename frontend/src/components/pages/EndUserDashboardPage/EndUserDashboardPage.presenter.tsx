@@ -250,7 +250,7 @@ const withPresenter = (
                   value: t('customer_dashboard.see_all_button'),
                 },
                 onButtonClicked: () => {
-                  history.push('/portal/quotes')
+                  history.push('/portal/applications')
                 }
               },
             },

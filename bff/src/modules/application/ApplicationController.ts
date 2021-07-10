@@ -4,13 +4,13 @@ import {
 } from './types';
 
 export default class ApplicationController implements ApplicationControllerContract {
-  private createApplicationService: ApplicationServiceContract;
+  private applicationService: ApplicationServiceContract;
 
-  constructor(createApplicationService: ApplicationServiceContract) {
-    this.createApplicationService = createApplicationService;
+  constructor(applicationService: ApplicationServiceContract) {
+    this.applicationService = applicationService;
   }
 
   createApplication(payload: CreateApplication): Promise<void> {
-    return this.createApplicationService.createApplication(payload);
+    return this.applicationService.createApplication(payload);
   }
 }

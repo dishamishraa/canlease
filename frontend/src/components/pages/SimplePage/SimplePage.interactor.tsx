@@ -1,10 +1,10 @@
 import React from 'react';
 import { useCreateQuote } from '../../../modules/quote';
 import { SimplePageProps } from './SimplePage';
-import { SimplePagePropsPresenterProps } from './SimplePage.presenter';
+import { SimplePagePresenterProps } from './SimplePage.presenter';
 
 const withInteractor = (
-  Presenter: React.FC<SimplePagePropsPresenterProps>,
+  Presenter: React.FC<SimplePagePresenterProps>,
 ): React.FC <SimplePageProps> => {
   const Interactor: React.FC <SimplePageProps> = (props) => {
     const [{ loading }, createQuote] = useCreateQuote();

@@ -48,11 +48,11 @@ const getQuoteStatus = ({ quoteId, quoteExpiryDate }: Quote, portfolio: Portfoli
 
 const getApplicationStatus = ({ applicationStatus }: CreditApplication): ContentFilter => {
   switch (applicationStatus) {
-    case '':
+    case 'financed':
       return 'financed';
-    case '':
+    case 'rejected':
       return 'rejected';
-    case '':
+    case 'not active':
       return 'not_active';
     default:
       return 'under_review';
