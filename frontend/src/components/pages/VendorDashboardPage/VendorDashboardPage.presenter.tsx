@@ -30,8 +30,21 @@ const withPresenter = (
       const history = useHistory();
 
       const handleViewClicked = (status, content) => (event: any) => {
-        // history.push('/portal/content/list/1', {status: status, content: content})
+        history.push('/portal/quotes')
       }
+
+      const getApplicationStatus = (applicationStatus) => {
+        switch (applicationStatus) {
+          case 'financed':
+            return 'financed';
+          case 'rejected':
+            return 'rejected';
+          case 'not active':
+            return 'not active';
+          default:
+            return 'under review';
+        }
+      };
 
       let numOfExpiringQuotes = 0;
       let numOfExpiredQuotes = 0;
@@ -39,8 +52,11 @@ const withPresenter = (
       let numOfApplicationsUnderReview = 0;
       if (userPortfolio) {
         const { createApps: creditApplications } = userPortfolio;
-        numOfApplicationsUnderReview = creditApplications.filter(application => 
-        application.applicationStatus.toLowerCase() === 'under review').length
+        creditApplications.filter(application => {
+          if (getApplicationStatus(application.applicationStatus.toLowerCase()) === "under review"){
+            numOfApplicationsUnderReview += 1;
+          }
+        })
       }
       if (customerQuotes){
         customerQuotes.forEach(quote => {

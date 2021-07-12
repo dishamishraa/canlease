@@ -309,7 +309,7 @@ const withPresenter = (
               {
                 labelText: {
                   ...defaultQuoteDetailItemProps.labelText,
-                  value: t('application_form.review_application.business_type.sin_label'),
+                  value: sin ? t('application_form.review_application.business_type.sin_label') : "",
                 },
                 infoText: {
                   ...defaultQuoteDetailItemProps.infoText,
@@ -319,7 +319,7 @@ const withPresenter = (
               {
                 labelText: {
                   ...defaultQuoteDetailItemProps.labelText,
-                  value: t('application_form.review_application.business_type.date_of_birth_label'),
+                  value: dob? t('application_form.review_application.business_type.date_of_birth_label') : "",
                 },
                 infoText: {
                   ...defaultQuoteDetailItemProps.infoText,
@@ -329,11 +329,11 @@ const withPresenter = (
               {
                 labelText: {
                   ...defaultQuoteDetailItemProps.labelText,
-                  value: t('application_form.review_application.business_type.bankruptcy_label'),
+                  value: bankruptcy ? t('application_form.review_application.business_type.bankruptcy_label') : "",
                 },
                 infoText: {
                   ...defaultQuoteDetailItemProps.infoText,
-                  value: bankruptcyDetails ? "Yes" : "No",
+                  value: bankruptcy,
                 },
               },
             ]

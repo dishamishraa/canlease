@@ -12,7 +12,7 @@ import { ContentFilter, ContentType, ContentTypeTabs } from '../../../modules/ty
 
 type TableItem = {
   company: string;
-  name: string;
+  contactName: string;
   status: ContentFilter;
   createdOn: string;
   asset: string;
@@ -69,7 +69,7 @@ const getCurrentItems = (
         items = quotes.map((quote: Quote): TableItem => {
           return {
             company: 'company',
-            name: 'name',
+            contactName: 'name',
             status: getQuoteStatus(quote, portfolio),
             createdOn: createdOn(quote.quoteExpiryDate).toDateString(),
             asset: quote.asset,
@@ -84,7 +84,7 @@ const getCurrentItems = (
         items = portfolio.createApps.map((application: CreditApplication): TableItem => {
           return {
             company: 'company',
-            name: 'name',
+            contactName: 'name',
             status: getApplicationStatus(application),
             createdOn: new Date(application.createdDate).toDateString(),
             asset: application.asset,
@@ -111,11 +111,13 @@ const filterItems = (
     const search = searchQuery.toLowerCase();
     const itemsMatchSearch = filteredItems.filter((item: TableItem) => {
       const itemCompanyName = item.company.toLowerCase();
-      const itemContactName = item.name.toLowerCase();
+      const itemContactName = item.contactName.toLowerCase();
       const itemAssetName = item.asset.toLowerCase();
       const itemCost = item.cost.toString().toLowerCase();
-      return itemCompanyName?.includes(search) || itemContactName?.includes(search) || 
-        itemAssetName?.includes(search) || itemCost?.includes(search);
+      const itemCreatedOn = item.createdOn.toString().toLowerCase();
+      const itemStatus = item.status.toString().toLowerCase();
+      return itemCompanyName?.includes(search) || itemContactName?.includes(search) || itemAssetName?.includes(search) || 
+          itemCost?.includes(search) || itemCreatedOn?.includes(search) || itemStatus?.includes(search);
     });
     return itemsMatchSearch;
   }
@@ -143,13 +145,17 @@ const withPresenter = (
     const tableItemListProps: TableItemListProps = {
       ...defaultProps.tableItemList,
       tableItems: filteredItems.map(({
-        company, name, status, createdOn, asset, cost, link,
+        company, contactName, status, createdOn, asset, cost, link,
       }: TableItem): TableItemProps => {
         return {
           ...tableItemDefaultProps,
           companyName: {
             ...tableItemDefaultProps.companyName,
             value: company,
+          },
+          contactName: {
+            ...tableItemDefaultProps.contactName,
+            value: tab === 'Customer' ? contactName : "",
           },
           status: {
             ...tableItemDefaultProps.status,
