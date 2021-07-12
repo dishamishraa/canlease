@@ -25,7 +25,7 @@ export type SimplePageProps = {
   contactInfo?: ContactInfo;
   setUserType?: (userType: UserType) => void;
   setEquipmentLeaseInfo?: (equipmentLeaseInfo: EquipmentLeaseInfo) => void;
-  handleCreateQuote?: (contactInfo: ContactInfo) => void;
+  handleCreateQuote?: (contactInfo: ContactInfo) => Promise<void>;
 };
 
 const routes = {

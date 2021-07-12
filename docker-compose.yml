@@ -49,6 +49,7 @@ services:
     environment:
       - PORT=${FRONTEND_PORT}
       - REACT_APP_BFF_URL=http://localhost:${BFF_PORT}
+      - REACT_APP_BFF_DOMAIN=localhost
       - REACT_APP_SESSION_COOKIE_NAME=${IDENTITY_SESSION_COOKIE_NAME}
       - REACT_APP_DOMAIN=${DOMAIN}
       - REACT_APP_FRONTEND_URL=https://localhost:${FRONTEND_PORT}

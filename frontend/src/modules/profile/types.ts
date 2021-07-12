@@ -31,23 +31,23 @@ export type CreateProfilePayload = {
   email: string;
   portalId: string;
 
-  userType?: string;
-  firstName?: string;
-  lastName?: string;
+  userType: UserType;
+  firstName: string;
+  lastName: string;
 
-  companyName?: string;
-  street?: string;
-  province?: string;
-  postalCode?: string;
-  country?: string;
+  companyName: string;
+  street: string;
+  province: string;
+  postalCode: string;
+  country: string;
 
-  phone?: string;
-  title?: string;
-  operatingName?: string;
-  operatingSinceDate?: string;
-  businessSector?: string;
-  businessPhone?: string;
-  website?: string;
+  phone: string;
+  title: string;
+  operatingName: string;
+  operatingSinceDate: string;
+  businessSector: string;
+  businessPhone: string;
+  website: string;
 };
 
 export type UpdateProfilePayload = {

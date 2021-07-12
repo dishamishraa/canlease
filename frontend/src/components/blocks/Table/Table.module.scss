@@ -15,8 +15,8 @@
     > * {
       margin-left: 0.75rem;
     }
-    align-self: flex-start;
-    width: 47.5rem;
+    align-self: stretch;
+    min-width: 47.5rem;
     flex: 0 0 auto;
   }
 
@@ -26,8 +26,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    align-self: flex-start;
-    width: 47.5rem;
+    align-self: stretch;
+    min-width: 47.5rem;
     flex: 0 0 auto;
   }
 

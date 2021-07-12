@@ -31,7 +31,7 @@ export type AuthPageProps = {
   businessInfo?: BusinessInformation;
   setPersonalInfo?: (personalInfo: PersonalInformation) => void;
   setContactInfo?: (contactInfo: ContactInformation) => void;
-  setBusinessInfo?: (businessInfo: BusinessInformation) => void;
+  handleCreateProfile?: (businessInfo: BusinessInformation) => Promise<void>;
   handleToastDisplay?: (toastType: string) => void;
 };
 
@@ -59,7 +59,7 @@ const AuthPage: React.FC<AuthPageProps> = ({
   businessInfo,
   setPersonalInfo,
   setContactInfo,
-  setBusinessInfo,
+  handleCreateProfile,
 }) => (
     <div className={cx(styles.authPage, className)}>
       <TopBar
@@ -120,7 +120,7 @@ const AuthPage: React.FC<AuthPageProps> = ({
           <BusinessInformationBlock
             className={styles.block}
             businessInfo={businessInfo}
-            setBusinessInfo={setBusinessInfo}/>
+            handleCreateProfile={handleCreateProfile}/>
         </ProtectedRoute>
 
         <Route path={routes.invalid}>

@@ -35,9 +35,9 @@ const withPresenter = (
 
     const isFormValid = !isEmptyString(customerName) && !isEmptyString(customerEmail)
     && !isEmptyString(customerCompanyName);
-    const handleClickViewQuote = () => {
+    const handleClickViewQuote = async () => {
       if (customerName && customerEmail && customerCompanyName && handleCreateQuote) {
-        handleCreateQuote({
+        await handleCreateQuote({
           type: 'customer',
           customerName,
           customerEmail,

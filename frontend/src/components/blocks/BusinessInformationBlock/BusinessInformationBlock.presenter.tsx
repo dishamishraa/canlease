@@ -14,7 +14,7 @@ const withPresenter = (
   const Presenter: React.FC<BusinessInformationBlockPresenterProps> = (props) => {
     const {
       businessInfo,
-      setBusinessInfo,
+      handleCreateProfile,
       className,
     } = props;
     const { t } = useTranslation();
@@ -62,20 +62,20 @@ const withPresenter = (
       setWebsite(value);
     };
 
-    const handleNext = () => {
+    const handleNext = async () => {
       if (
-        setBusinessInfo &&
+        handleCreateProfile &&
         operatingName &&
         operatingSince &&
         businessSector &&
         businessPhone &&
         fullLegalName
       ) {
-        setBusinessInfo({
+        await handleCreateProfile({
           operatingName,
           operatingSinceDate: operatingSince,
           businessSector,
-          website,
+          website: website || '',
           businessPhone,
           companyName: fullLegalName,
         });
