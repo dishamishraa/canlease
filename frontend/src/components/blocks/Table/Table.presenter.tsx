@@ -114,10 +114,8 @@ const filterItems = (
       const itemContactName = item.contactName.toLowerCase();
       const itemAssetName = item.asset.toLowerCase();
       const itemCost = item.cost.toString().toLowerCase();
-      const itemCreatedOn = item.createdOn.toString().toLowerCase();
-      const itemStatus = item.status.toString().toLowerCase();
-      return itemCompanyName?.includes(search) || itemContactName?.includes(search) || itemAssetName?.includes(search) || 
-          itemCost?.includes(search) || itemCreatedOn?.includes(search) || itemStatus?.includes(search);
+      return itemCompanyName?.includes(search) || itemContactName?.includes(search) || 
+            itemAssetName?.includes(search) || itemCost?.includes(search);
     });
     return itemsMatchSearch;
   }
