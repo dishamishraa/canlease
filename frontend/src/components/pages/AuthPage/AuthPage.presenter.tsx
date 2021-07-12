@@ -3,7 +3,7 @@ import { useLocation, useHistory, Redirect } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { AuthPageProps } from './AuthPage';
 import { APIResponse } from '../../../lib/api/types';
-import { DOMAIN, SESSION_COOKIE_NAME } from '../../../lib/config';
+import { BFF_DOMAIN, SESSION_COOKIE_NAME } from '../../../lib/config';
 import {
   AccountResponse, SignInPayload, SignUpPayload, UpdateNamePayload,
 } from '../../../modules/account/types';
@@ -11,8 +11,11 @@ import { CreateProfilePayload, Profile } from '../../../modules/profile/types';
 import { PersonalInformation, ContactInformation, BusinessInformation, AuthState } from '../../../modules/types';
 import { useEffect } from 'react';
 import { isEmpty } from '../../../lib/utils';
+import { Account } from '../../../lib/types';
 
 export type AuthPagePresenterProps = AuthPageProps & {
+  account: Account | null;
+  setAccount: (account: Account | null) => void;
   signUp: (payload: SignUpPayload) => Promise<APIResponse<AccountResponse>>;
   signIn: (payload: SignInPayload) => Promise<APIResponse<AccountResponse>>;
   fetchProfile: () => Promise<Profile>;
@@ -26,6 +29,8 @@ const withPresenter = (
 ): React.FC<AuthPagePresenterProps> => {
   const Presenter: React.FC<AuthPagePresenterProps> = (props) => {
     const {
+      account,
+      setAccount,
       signUp,
       signIn,
       fetchProfile,
@@ -74,32 +79,65 @@ const withPresenter = (
       history.push('/account/businessInformation', newState);
     }
 
-    const setBusinessInfo = (businessInfo: BusinessInformation) => {
+    const handleAuthAction = async () => {
+      let handled = false;
+      switch(action) {
+        case 'apply_finance':
+          // TODO
+          break;
+        case 'save_quote':
+          // TODO
+          break;
+        default:
+          break;
+      }
+      if(!handled) {
+        history.push('/portal/dashboard');
+      }
+    }
+
+    const handleCreateProfile = async (businessInfo: BusinessInformation) => {
       const newState = {
         ...state,
         businessInfo,
       }
       setState(newState);
-      history.push('', newState);
+
+      if(account && personalInfo && contactInfo) {
+        const {error: updateError } = await updateName({
+          firstName: personalInfo.firstName,
+          lastName: personalInfo.lastName,
+          id: account.id,
+        });
+        if(updateError) {
+          return;
+        }
+        const { data, error } = await createProfile({
+          ...personalInfo,
+          ...contactInfo,
+          ...businessInfo,
+          email: account.email,
+          portalId: account.uuid,
+          country: 'Canada',
+          title: '',
+        });
+        
+        if(data) {
+          setProfile(data);
+          await handleAuthAction();
+        } else if(error) {
+          // TODO
+        }
+      }
     }
 
     // sign up
     const handleSignUp = async (payload: SignUpPayload) => {
-      const { data: account, error } = await signUp(payload);
+      const { data, error } = await signUp(payload);
       setEmail(payload.email);
 
-      if (account) {
-        const { data: profileData, error: profileError } = await createProfile({
-          email: account.email,
-          portalId: account.uuid,
-          country: 'Canada',
-        });
-
-        if (profileData) {
-          history.push('/account/verifyEmail');
-        } else if (profileError) {
-          // TODO
-        }
+      if (data) {
+        history.push('/account/verifyEmail');
       } else if (error) {
         // TODO
       }
@@ -107,18 +145,20 @@ const withPresenter = (
 
     // sign in
     const handleSignIn = async (payload: SignInPayload) => {
-      const { data: account, error } = await signIn(payload);
+      const { data, error } = await signIn(payload);
       setEmail(payload.email);
 
-      if (account) {
+      if (data) {
+        setAccount(data);
         // store jwt token in cookie
-        setCookie(SESSION_COOKIE_NAME, account.token, { path: '/',  secure: true, sameSite: 'none' });
+        setCookie(SESSION_COOKIE_NAME, data.token, { path: '/',  secure: true, sameSite: 'none' });
+        setCookie(SESSION_COOKIE_NAME, data.token, { domain: BFF_DOMAIN, path: '/',  secure: true, sameSite: 'none' });
 
         try {
           // find the salesforce profile with the identity account id
           const profile = await fetchProfile();
           setProfile(profile);
-          history.push('/portal/dashboard');
+          await handleAuthAction();
         } catch {
           // if no related profile found, push setup page
           history.push('/account/personalInformation');
@@ -127,6 +167,7 @@ const withPresenter = (
         if (error.message === 'User has not confirmed sign up') {
           history.push('/account/verifyEmail');
         }
+        // TODO
       }
     };
 
@@ -165,7 +206,7 @@ const withPresenter = (
           businessInfo={businessInfo}
           setPersonalInfo={setPersonalInfo}
           setContactInfo={setContactInfo}
-          setBusinessInfo={setBusinessInfo}
+          handleCreateProfile={handleCreateProfile}
           />;
   };
   return Presenter;

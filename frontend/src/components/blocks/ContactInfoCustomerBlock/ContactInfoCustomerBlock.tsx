@@ -83,7 +83,7 @@ export type ContactInfoCustomerBlockProps = {
   viewQuoteButton?: ButtonProps;
   className?: string;
   contactInfo?: ContactInfo;
-  handleCreateQuote?: (contactInfo: ContactInfoCustomer) => void;
+  handleCreateQuote?: (contactInfo: ContactInfoCustomer) => Promise<void>;
 };
 
 const ContactInfoCustomerBlock: React.FC<ContactInfoCustomerBlockProps> = ({

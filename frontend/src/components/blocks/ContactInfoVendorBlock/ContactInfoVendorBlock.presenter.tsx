@@ -48,7 +48,7 @@ const withPresenter = (
       && !isEmptyString(companyName) && !isEmptyString(customerName)
       && !isEmptyString(customerEmail) && !isEmptyString(customerCompanyName);
 
-    const handleClickViewQuote = () => {
+    const handleClickViewQuote = async () => {
       if (
         vendorName && 
         businessEmail && 
@@ -58,7 +58,7 @@ const withPresenter = (
         customerCompanyName &&
         handleCreateQuote
       ) {
-        handleCreateQuote({
+        await handleCreateQuote({
           type: 'vendor',
           vendorName,
           businessEmail,

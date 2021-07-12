@@ -21,7 +21,7 @@ export type UpdatePasswordPayload = {
 };
 
 export type UpdateNamePayload = {
-  id: string;
+  id: number;
   firstName: string;
   lastName: string;
 };

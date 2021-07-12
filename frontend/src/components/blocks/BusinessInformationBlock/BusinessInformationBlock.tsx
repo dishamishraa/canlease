@@ -60,7 +60,7 @@ export const defaultProps = {
     },
     select: {
       text: {
-        style: 'Basic400',
+        style: 'Basic800',
         align: 'Left',
         size: 'Large',
         type: 'Paragraph1',
@@ -136,7 +136,7 @@ export type BusinessInformationBlockProps = {
   nextButton?: ButtonProps;
   className?: string;
   businessInfo?: BusinessInformation;
-  setBusinessInfo?: (businessInfo :BusinessInformation) => void;
+  handleCreateProfile?: (businessInfo :BusinessInformation) => Promise<void>;
 };
 
 const BusinessInformationBlock: React.FC<BusinessInformationBlockProps> = ({

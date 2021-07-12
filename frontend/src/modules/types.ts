@@ -91,7 +91,7 @@ export type BusinessInformation = {
   businessSector: string;
   operatingSinceDate: string;
   businessPhone: string;
-  website?: string;
+  website: string;
 };
 
 export const TermDisplay = {

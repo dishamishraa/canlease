@@ -8,9 +8,11 @@ import { extractJwtPayload } from '../../lib/token';
 import { Profile } from '../profile/types';
 import { useProfile } from '../profile';
 import { State } from '../../lib/api/types';
+import { useEffect } from 'react';
 
 export type AuthContextValue = {
   account: Account | null;
+  setAccount: (account: Account | null) => void;
   loading: boolean;
   error: Error | undefined;
   profile: Profile | null;
@@ -33,6 +35,7 @@ export const logout = (): void => {
 
 const initialAuthContext: AuthContextValue = {
   account: null,
+  setAccount: () => {},
   loading: false,
   error: undefined,
   profile: null,
@@ -44,7 +47,9 @@ export const AuthContext = createContext<AuthContextValue>(initialAuthContext);
 
 export const AuthProvider: React.FC<{}> = ({ children }) => {
   const cookie = Cookie.get(SESSION_COOKIE_NAME);
-  const account = cookie ? extractJwtPayload(cookie) : null;
+  const [account, updateAccount] = 
+    useState<Account | null>(cookie ? extractJwtPayload(cookie) : null);
+
   const {
     loading, error, data, refetch: refetchProfile,
   } = useProfile();
@@ -53,6 +58,10 @@ export const AuthProvider: React.FC<{}> = ({ children }) => {
     error,
     data,
   });
+
+  const setAccount = (account: Account | null) => {
+    updateAccount(account);
+  }
 
   const setProfile = (profile: Profile | null) => {
     updateProfile({
@@ -64,6 +73,7 @@ export const AuthProvider: React.FC<{}> = ({ children }) => {
   return (
     <AuthContext.Provider value={{
       account, 
+      setAccount,
       loading: profileState.loading, 
       error: profileState.error, 
       profile: profileState.data, 

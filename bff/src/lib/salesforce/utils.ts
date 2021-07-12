@@ -47,21 +47,21 @@ const CreateProfileSchema = Joi.object({
   email: Joi.string().required(),
   portalId: Joi.string().required(),
 
-  companyName: Joi.string(),
-  street: Joi.string(),
-  province: Joi.string(),
-  postalCode: Joi.string(),
-  country: Joi.string(),
-  firstName: Joi.string(),
-  lastName: Joi.string(),
-  userType: Joi.string().valid(...VALID_USER_TYPES),
-  phone: Joi.string(),
-  title: Joi.string(),
-  operatingName: Joi.string(),
-  operatingSinceDate: Joi.string(),
-  businessSector: Joi.string(),
-  businessPhone: Joi.string(),
-  website: Joi.string(),
+  companyName: Joi.string().required(),
+  street: Joi.string().required(),
+  province: Joi.string().required(),
+  postalCode: Joi.string().required(),
+  country: Joi.string().required(),
+  firstName: Joi.string().required(),
+  lastName: Joi.string().required(),
+  userType: Joi.string().valid(...VALID_USER_TYPES).required(),
+  phone: Joi.string().required(),
+  title: Joi.string().allow(''),
+  operatingName: Joi.string().required(),
+  operatingSinceDate: Joi.string().required(),
+  businessSector: Joi.string().required(),
+  businessPhone: Joi.string().required(),
+  website: Joi.string().allow(''),
 });
 
 const AddQuoteSchema = Joi.object({
@@ -89,6 +89,7 @@ export const validateCreateApplication = (value: unknown): value is CreateApplic
 
 export const validateCreateProfile = (value: unknown): value is CreateProfile => {
   const { error } = CreateProfileSchema.validate(value, { allowUnknown: true });
+  console.error(error)
   return error === undefined;
 };
 
