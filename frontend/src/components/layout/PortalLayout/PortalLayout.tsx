@@ -63,7 +63,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
   header,
   className,
 }) => {
-  let userType = 'vendor';
+  let userType = 'user';
   const DashboardPage = userType === 'vendor' ? VendorDashboardPage : EndUserDashboardPage;
   return (
     <div className={cx(styles.portalLayout, className)}>

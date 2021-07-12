@@ -6,9 +6,10 @@ import { isExpiring, isExpired } from '../../../lib/utils';
 import { defaultProps as dashBoardCardProps } from '../../molecules/DashboardCard/DashboardCard';
 import { defaultProps } from './VendorDashboardPage';
 import CreateQuote from '../../../resources/icons/CreateQuote.svg';
-import { Portfolio } from '../../../modules/portfolio/types';
+import { Portfolio, CreditApplication } from '../../../modules/portfolio/types';
 import { Profile } from '../../../modules/profile/types';
 import { Quote } from '../../../modules/quote/types';
+import { ContentFilter } from '../../../modules/types';
 
 export type VendorDashboardPagePresenterProps = VendorDashboardPageProps & {
   customerQuotes?: Quote[] | null,
@@ -29,9 +30,22 @@ const withPresenter = (
       const { t } = useTranslation();
       const history = useHistory();
 
-      const handleViewClicked = (status, content) => (event: any) => {
-        // history.push('/portal/content/list/1', {status: status, content: content})
+      const handleViewClicked = (content) => (event: any) => {
+        history.push(`/portal/${content}`)
       }
+
+      const getApplicationStatus = ({ applicationStatus }: CreditApplication): ContentFilter => {
+        switch (applicationStatus) {
+          case 'financed':
+            return 'financed';
+          case 'rejected':
+            return 'rejected';
+          case 'not active':
+            return 'not_active';
+          default:
+            return 'under_review';
+        }
+      };
 
       let numOfExpiringQuotes = 0;
       let numOfExpiredQuotes = 0;
@@ -39,8 +53,12 @@ const withPresenter = (
       let numOfApplicationsUnderReview = 0;
       if (userPortfolio) {
         const { createApps: creditApplications } = userPortfolio;
-        numOfApplicationsUnderReview = creditApplications.filter(application => 
-        application.applicationStatus.toLowerCase() === 'under review').length
+        creditApplications.filter((application: CreditApplication) => {
+          console.log(getApplicationStatus(application))
+          if (getApplicationStatus(application) === "under_review"){
+            numOfApplicationsUnderReview += 1;
+          }
+        })
       }
       if (customerQuotes){
         customerQuotes.forEach(quote => {
@@ -88,7 +106,7 @@ const withPresenter = (
                     ...dashBoardCardProps.button.text,
                     value: t('vendor_dashboard.metrics.view_button'),
                   },
-                  onButtonClicked: handleViewClicked("Active", "Quote"),
+                  onButtonClicked: handleViewClicked("quotes"),
                 }
               },
               {
@@ -108,7 +126,7 @@ const withPresenter = (
                     ...dashBoardCardProps.button.text,
                     value: t('vendor_dashboard.metrics.view_button'),
                   },
-                  onButtonClicked: handleViewClicked("Expiring soon", "Quote"),
+                  onButtonClicked: handleViewClicked("quotes"),
                 }
               },
               {
@@ -128,7 +146,7 @@ const withPresenter = (
                     ...dashBoardCardProps.button.text,
                     value: t('vendor_dashboard.metrics.view_button'),
                   },
-                  onButtonClicked: handleViewClicked("Under Review", "Application"),
+                  onButtonClicked: handleViewClicked("applications"),
                 }
               },
               {

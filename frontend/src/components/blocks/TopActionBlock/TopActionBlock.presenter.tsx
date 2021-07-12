@@ -66,7 +66,7 @@ const withPresenter = (
           ...defaultProps.statusSearchField.select,
           text: {
             ...defaultProps.statusSearchField.select?.text,
-            value: statusFilter,
+            value: t(`application_page.status.${statusFilter}`),
           },
         },
         contextualMenu,
