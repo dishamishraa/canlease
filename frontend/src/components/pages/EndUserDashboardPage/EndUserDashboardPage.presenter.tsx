@@ -8,6 +8,7 @@ import CreateQuote from '../../../resources/icons/CreateQuote.svg';
 import { Portfolio } from '../../../modules/portfolio/types';
 import { Profile } from '../../../modules/profile/types';
 import { Quote } from '../../../modules/quote/types';
+import { ContentFilter } from '../../../modules/types';
 
 export type EndUserDashboardPagePresenterProps = EndUserDashboardPageProps & {
     customerQuotes?: Quote[] | null,
@@ -32,7 +33,7 @@ const withPresenter = (
       const applicationArray: DashboardCardProps[] = [];
 
 
-      const checkQuoteStatus = (quoteExpiryDate, quoteId) => {
+      const checkQuoteStatus = ({ quoteExpiryDate, quoteId }: Quote): ContentFilter => {
         let isApplied;
         if (userPortfolio) {
             const { createApps } = userPortfolio
@@ -41,16 +42,16 @@ const withPresenter = (
             })
         }
         if(isApplied){
-            return t('application_page.status.applied')
+          return 'applied';
         }
         else if (isExpired(quoteExpiryDate)) {
-            return  t('application_page.status.expired')
+          return 'expired';
         }
         else if(isExpiring(quoteExpiryDate)){
-            return t('application_page.status.expiring')
-        } else {
-            return t('application_page.status.active')
-        }
+          return 'expiring';
+        } 
+          return 'active';
+        
      }
 
       if (customerQuotes){
@@ -64,12 +65,13 @@ const withPresenter = (
        
         customerQuotes.every((quote, index) => {
             const {applicationAmount, quoteExpiryDate, quoteId, asset} = quote
+            const status: ContentFilter = checkQuoteStatus(quote);
             const quotesBlockProps: DashboardCardProps = {
                 ...dashBoardCardProps,
                 type:"LeaseCard",
                 statusText: {
                     ...dashBoardCardProps.statusText,
-                    value: checkQuoteStatus(quoteExpiryDate, quoteId),
+                    value: t(`application_page.status.${status}`),
                 },
                 assetNameText:{
                   ...dashBoardCardProps.assetNameText,

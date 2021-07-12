@@ -85,18 +85,18 @@ const withPresenter = (
       }
     }
 
-    const defaultQuoteSelected = {
+    const defaultQuoteSelected: DefaultQuoteOption = {
         monthlyAmount: 0,
         term: '',
         financeRate: 0,
         purchaseOptionDate: '',
     }
-    const defaultAssetInfo = {
+    const defaultAssetInfo: AssetInfo = {
         assetCondition: '',
         ageOfAsset: 0,
         expectedDeliveryDate: '',
     }
-    const defaultBusinessType = {
+    const defaultBusinessType: BusinessType = {
         businessType: '',
         sin: '',
         dob: '',
