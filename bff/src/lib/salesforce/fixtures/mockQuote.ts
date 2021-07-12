@@ -30,7 +30,7 @@ const mockQuote: Quote = {
         purchaseOptionDate: '2021-06-14T19:23:28.744Z',
       },
     ],
-    quoteExpiryDate: '2021-06-22T19:23:28.744Z',
+    quoteExpiryDate: '2021-08-22T19:23:28.744Z',
     leaseType: 'stretch',
 }
 export default mockQuote;

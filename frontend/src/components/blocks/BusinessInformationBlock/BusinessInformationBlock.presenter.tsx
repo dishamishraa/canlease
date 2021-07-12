@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useLocation } from 'react-router';
 import { defaultProps, BusinessInformationBlockProps } from './BusinessInformationBlock';
 import { ContextualMenuItemProps, defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 import { isEmptyString } from '../../../lib/utils';
-import { AuthPageLocationState, BusinessInformation } from '../../../modules/types';
+import { useEffect } from 'react';
 
 export type BusinessInformationBlockPresenterProps = BusinessInformationBlockProps & {
-  setBusinessInfo?: React.Dispatch<React.SetStateAction<BusinessInformation>>;
-  accessedFromEmail?: boolean;
 };
 
 const withPresenter = (
@@ -16,19 +13,29 @@ const withPresenter = (
 ): React.FC<BusinessInformationBlockPresenterProps> => {
   const Presenter: React.FC<BusinessInformationBlockPresenterProps> = (props) => {
     const {
+      businessInfo,
       setBusinessInfo,
-      accessedFromEmail,
       className,
     } = props;
     const { t } = useTranslation();
-    const history = useHistory();
-    const { state } = useLocation<AuthPageLocationState>();
-    const [fullLegalName, setFullLegalName] = useState<string>('');
-    const [operatingName, setOperatingName] = useState<string>('');
-    const [operatingSince, setOperatingSince] = useState<string>('');
-    const [businessSector, setBusinessSector] = useState<string>('');
-    const [businessPhone, setBusinessPhone] = useState<string>('');
-    const [website, setWebsite] = useState<string>('');
+    const [fullLegalName, setFullLegalName] = useState<string>();
+    const [operatingName, setOperatingName] = useState<string>();
+    const [operatingSince, setOperatingSince] = useState<string>();
+    const [businessSector, setBusinessSector] = useState<string>();
+    const [businessPhone, setBusinessPhone] = useState<string>();
+    const [website, setWebsite] = useState<string>();
+
+    useEffect(() => {
+      if (businessInfo) {
+        setFullLegalName(businessInfo.companyName);
+        setOperatingName(businessInfo.operatingName);
+        setOperatingSince(businessInfo.operatingSinceDate);
+        setBusinessSector(businessInfo.businessSector);
+        setBusinessPhone(businessInfo.businessPhone);
+        setWebsite(businessInfo.website);
+      }
+    }, [businessInfo]);
+
     const formInvalid = (isEmptyString(fullLegalName)
     || isEmptyString(operatingName)
     || isEmptyString(operatingSince)
@@ -56,7 +63,14 @@ const withPresenter = (
     };
 
     const handleNext = () => {
-      if (setBusinessInfo) {
+      if (
+        setBusinessInfo &&
+        operatingName &&
+        operatingSince &&
+        businessSector &&
+        businessPhone &&
+        fullLegalName
+      ) {
         setBusinessInfo({
           operatingName,
           operatingSinceDate: operatingSince,

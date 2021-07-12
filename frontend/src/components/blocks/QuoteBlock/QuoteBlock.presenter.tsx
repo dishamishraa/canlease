@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { QuoteRateSectionProps } from '../../organisms/QuoteRateSection';
 import { QuoteBlockProps, defaultProps } from './QuoteBlock';
 import { addLinksAndBreaks } from '../../../lib/reactUtils';
 import { QuoteDetailItemProps, defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
-import { RateCardProps } from '../../molecules/RateCard';
+import { RateCardProps, defaultProps as defaultRateCardProps } from '../../molecules/RateCard/RateCard';
 import { ModalProps, defaultProps as modalPropsDefaultProps } from '../../organisms/Modal/Modal';
 import EmailIcon from '../../../resources/icons/Email.svg';
 
 import { defaultProps as defaultRateDetailItemProps } from '../../molecules/RateDetailItem/RateDetailItem';
 import { Quote } from '../../../modules/quote/types';
 import { TermDisplay } from '../../../modules/types';
+import { UserType } from '../../../modules/profile/types';
+import { isExpired } from '../../../lib/utils';
 
 export type QuoteBlockPresenterProps = QuoteBlockProps & {
-  quoteDetails: Quote | null;
+  userType?: UserType; 
+  quote: Quote | null;
   error?: Error;
   loading: boolean;
 };
@@ -26,27 +29,13 @@ const withPresenter = (
     const {
       loading,
       error,
-      quoteDetails,
+      quote,
+      userType,
     } = props;
+
     const history = useHistory();
     const { t } = useTranslation();
-    const location = useLocation<({userType: string})>();
-    const { state } = location;
-    const applyForFinanceButtonClicked = () => {
-      history.push('/account/signin', {fromEmail: true})
-    };
-
     const [showModal, setShowModal] = useState(false);
-
-    useEffect(() => {
-      if (state) {
-        setShowModal(true);
-      }
-    }, [state]);
-
-    const onCloseModal = () => {
-      setShowModal(false);
-    };
 
     if (error) {
       // return error view
@@ -55,6 +44,10 @@ const withPresenter = (
     if (loading) {
       // return loading view
     }
+
+    const onCloseModal = () => {
+      setShowModal(false);
+    };
 
     const modal: ModalProps = {
       ...modalPropsDefaultProps,
@@ -90,79 +83,74 @@ const withPresenter = (
       },
     };
 
-    let disabled = false;
-    const rateCardsArray: RateCardProps[] = [];
-    let quoteRateSectionProps: QuoteRateSectionProps = {};
+    const handleApplyForFinance = () => {
+      history.push('/account/signin', { action: 'apply_finance' });
+    };
+
+    const handleSaveQuote = () => {
+      history.push('/account/signin', { action: 'save_quote' });
+    };
+
+    const handleSendQuote = async () => {
+      // TODO send email
+    };
+
+    const quoteExpired = quote ? isExpired(quote?.quoteExpiryDate) : true;
+   
+    let quoteDetailItems: QuoteDetailItemProps[] = [];
+    let rateCards: RateCardProps[] = [];
     const termDetailItemArray: QuoteDetailItemProps[] = [];
 
-    if (quoteDetails) {
-      // check if quote has expired
-      const today = new Date();
-      const expiryDate = new Date(quoteDetails.quoteExpiryDate);
-      if (today > expiryDate) {
-        disabled = true;
-      }
-
+    if (quote) {
       // quote rate section
       const {
         applicationAmount, asset, quoteId, leaseType,
-      } = quoteDetails;
-      quoteRateSectionProps = {
-        text: {
-          ...defaultProps.quoteRateSection.text,
-          value: t('view_quote.quote_rate_section_heading_text'),
+      } = quote;
+
+      const detailsLineItems: {label: string, value: string }[] = [
+        {
+          label: t('view_quote.quote_detail.application_amount.label'),
+          value: t('view_quote.quote_detail.application_amount.value', {
+            applicationAmount,
+          }),
         },
-        detailItemList: {
-          ...defaultProps.detailItemList,
-          quoteDetailItems: [
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('view_quote.quote_detail.application_amount.label'),
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: t('view_quote.quote_detail.application_amount.value', {
-                  applicationAmount,
-                }),
-              },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('view_quote.quote_detail.equipment_label'),
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: asset,
-              },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('view_quote.quote_detail.quote_id_label'),
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: quoteId,
-              },
-            },
-          ],
+        {
+          label: t('view_quote.quote_detail.equipment_label'),
+          value: asset,
         },
-        rateCardList: {
-          rateCards: rateCardsArray,
+        {
+          label: t('view_quote.quote_detail.quote_id_label'),
+          value: quoteId,
         },
-      };
+      ];
+
+      quoteDetailItems = detailsLineItems.map(({ label, value }): QuoteDetailItemProps => {
+        return {
+          ...defaultQuoteDetailItemProps,
+          labelText: {
+            ...defaultQuoteDetailItemProps.labelText,
+            value: label,
+          },
+          infoText: {
+            ...defaultQuoteDetailItemProps.infoText,
+            value: value,
+          },
+        }
+      });
 
       // generate rate cards props
-      quoteDetails.quoteOptions.forEach((quoteOption) => {
+      rateCards = quote.quoteOptions.map((quoteOption): RateCardProps => {
         const {
           term, monthlyAmount, financeRate, purchaseOptionDate,
         } = quoteOption;
-        const purchaseOptionDuration = ((new Date(purchaseOptionDate)).getTime() - Date.now());
+
+        const purchaseOptionDuration = new Date(purchaseOptionDate).getTime() - Date.now();
         const totalMonths = Math.round(purchaseOptionDuration / (30 * 24 * 60 * 60 * 1000));
-        const rateCardProp: RateCardProps = {
-          rateDetailsItemList: {
+
+        return {
+          ...defaultRateCardProps,
+          rateDetailItemList: {
+            ...defaultRateCardProps.rateDetailItemList,
             rateDetailItems: [
               {
                 type: 'PerMonth',
@@ -208,9 +196,8 @@ const withPresenter = (
               },
             ],
           },
-        };
-        rateCardsArray.push(rateCardProp);
-      });
+        }
+      })
 
       // lease terms
       let totalLines = 0;
@@ -243,6 +230,20 @@ const withPresenter = (
       }
     }
 
+    const quoteRateSectionProps: QuoteRateSectionProps = {
+      text: {
+        ...defaultProps.quoteRateSection.text,
+        value: t('view_quote.quote_rate_section_heading_text'),
+      },
+      detailItemList: {
+        ...defaultProps.detailItemList,
+        quoteDetailItems,
+      },
+      rateCardList: {
+        rateCards,
+      }
+    };
+
     const quoteBlockProps: QuoteBlockProps = {
       ...defaultProps,
       quoteRateSection: quoteRateSectionProps,
@@ -262,16 +263,7 @@ const withPresenter = (
         ...defaultProps.learnMoreText,
         value: addLinksAndBreaks(t('view_quote.learn_more_text')),
       },
-      viewQuoteButton: {
-        ...defaultProps.viewQuoteButton,
-        text: {
-          ...defaultProps.viewQuoteButton.text,
-          value: t('view_quote.apply_button_text'),
-        },
-        onButtonClicked: applyForFinanceButtonClicked,
-        disabled,
-      },
-      quoteExpired: disabled,
+      quoteExpired: quoteExpired,
       expiryToast: {
         ...defaultProps.expiryToast,
         text: {
@@ -284,6 +276,37 @@ const withPresenter = (
         quoteDetailItems: termDetailItemArray,
       },
     };
+
+    if(userType === 'vendor') {
+      quoteBlockProps.sendQuoteButton = {
+        ...defaultProps.sendQuoteButton,
+        text: {
+          ...defaultProps.sendQuoteButton.text,
+          value: t('view_quote.send_quote_button_text'),
+        },
+        onButtonClicked: handleSendQuote,
+        disabled: quoteExpired,
+      }
+    } else {
+      quoteBlockProps.applyButton = {
+        ...defaultProps.applyButton,
+        text: {
+          ...defaultProps.applyButton.text,
+          value: t('view_quote.apply_button_text'),
+        },
+        onButtonClicked: handleApplyForFinance,
+        disabled: quoteExpired,
+      }
+      quoteBlockProps.saveQuoteButton = {
+        ...defaultProps.saveQuoteButton,
+        text: {
+          ...defaultProps.saveQuoteButton.text,
+          value: t('view_quote.save_quote_button_text'),
+        },
+        onButtonClicked: handleSaveQuote,
+        disabled: quoteExpired,
+      }
+    }
 
     return (
             <View

@@ -65,21 +65,14 @@ export type CreateQuoteCustomer = {
   userType: UserType;
   asset: string;
   applicationAmount: number;
-  leaseType: string;
+  leaseType: LeaseType;
   contactName: string;
   contactEmail: string;
   contactBusinessName: string;
   vendorName: string;
   vendorEmail: string;
   vendorBusinessName: string;
-  quoteOptions: [
-    {
-      monthlyAmount: number;
-      term: string;
-      financeRate: number;
-      purchaseOptionDate: string;
-    }
-  ];
+  quoteOptions: QuoteOption[];
 };
 
 export type CreateQuoteVendor = CreateQuoteCustomer & {
@@ -95,13 +88,18 @@ export type QuoteOption = {
   purchaseOptionDate: string;
 };
 
+export const VALID_LEASE_TYPES = [
+  'stretch', '$10',
+] as const;
+export type LeaseType = typeof VALID_LEASE_TYPES[number];
+
 export type Quote = {
   quoteId: string;
   asset: string;
   applicationAmount: number;
   quoteOptions: QuoteOption[];
   quoteExpiryDate: string;
-  leaseType: string;
+  leaseType: LeaseType;
 };
 
 export type Application = {

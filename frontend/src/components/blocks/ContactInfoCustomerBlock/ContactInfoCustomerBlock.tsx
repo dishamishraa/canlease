@@ -6,7 +6,7 @@ import styles from './ContactInfoCustomerBlock.module.scss';
 import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
-import { ContactInfoCustomer } from '../../../modules/types';
+import { ContactInfo, ContactInfoCustomer } from '../../../modules/types';
 
 export const defaultProps = {
   blockHeading: {
@@ -82,6 +82,7 @@ export type ContactInfoCustomerBlockProps = {
   disclaimerText?: TextProps;
   viewQuoteButton?: ButtonProps;
   className?: string;
+  contactInfo?: ContactInfo;
   handleCreateQuote?: (contactInfo: ContactInfoCustomer) => void;
 };
 

@@ -112,7 +112,7 @@ export const defaultProps = {
     },
     select: {
       text: {
-        style: 'Basic400',
+        style: 'Basic800',
         align: 'Left',
         size: 'Large',
         type: 'Paragraph1',
@@ -149,7 +149,8 @@ export type ContactInformationBlockProps = {
   provinceSelectField?: SelectFieldProps;
   nextButton?: ButtonProps;
   className?: string;
-  setContactInfo?: React.Dispatch<React.SetStateAction<ContactInformation>>;
+  contactInfo?: ContactInformation;
+  setContactInfo?: (contactInfo :ContactInformation) => void;
 };
 
 const ContactInformationBlock: React.FC<ContactInformationBlockProps> = ({

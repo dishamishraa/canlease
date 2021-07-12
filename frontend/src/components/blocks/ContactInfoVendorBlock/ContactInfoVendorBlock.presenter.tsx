@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ContactInfoVendorBlockProps, defaultProps } from './ContactInfoVendorBlock';
 import { isEmptyString } from '../../../lib/utils';
-import { ContactInfoVendor } from '../../../modules/types';
 
-export type ContactInfoVendorBlockPresenterProps = {
-  handleCreateQuote?: (contactInfo: ContactInfoVendor) => void;
+export type ContactInfoVendorBlockPresenterProps = ContactInfoVendorBlockProps & {
 };
 
 const withPresenter = (
@@ -13,13 +11,31 @@ const withPresenter = (
 ): React.FC<ContactInfoVendorBlockPresenterProps> => {
   const Presenter: React.FC<ContactInfoVendorBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
-    const { handleCreateQuote } = props;
-    const [vendorName, setVendorName] = useState<string>('');
-    const [businessEmail, setBusinessEmail] = useState<string>('');
-    const [companyName, setCompanyName] = useState<string>('');
-    const [customerName, setCustomerName] = useState<string>('');
-    const [customerEmail, setCustomerEmail] = useState<string>('');
-    const [customerCompanyName, setCustomerCompanyName] = useState<string>('');
+    const { 
+      contactInfo,
+      handleCreateQuote,
+    } = props;
+
+    const [vendorName, setVendorName] = useState<string>();
+    const [businessEmail, setBusinessEmail] = useState<string>();
+    const [companyName, setCompanyName] = useState<string>();
+    const [customerName, setCustomerName] = useState<string>();
+    const [customerEmail, setCustomerEmail] = useState<string>();
+    const [customerCompanyName, setCustomerCompanyName] = useState<string>();
+
+    useEffect(() => {
+      if (contactInfo) {
+        setCustomerName(contactInfo.customerName);
+        setCustomerEmail(contactInfo.customerEmail);
+        setCustomerCompanyName(contactInfo.customerCompanyName);
+
+        if(contactInfo.type === 'vendor') {
+          setVendorName(contactInfo.vendorName);
+          setBusinessEmail(contactInfo.businessEmail);
+          setCompanyName(contactInfo.companyName);
+        }
+      }
+    }, [contactInfo]);
 
     const handleChangeVendorName = ({ target: { value } }) => setVendorName(value);
     const handleChangeBusinessEmail = ({ target: { value } }) => setBusinessEmail(value);
@@ -31,8 +47,17 @@ const withPresenter = (
     const isFormValid = !isEmptyString(vendorName) && !isEmptyString(businessEmail)
       && !isEmptyString(companyName) && !isEmptyString(customerName)
       && !isEmptyString(customerEmail) && !isEmptyString(customerCompanyName);
+
     const handleClickViewQuote = () => {
-      if (isFormValid && handleCreateQuote) {
+      if (
+        vendorName && 
+        businessEmail && 
+        companyName && 
+        customerName &&
+        customerEmail &&
+        customerCompanyName &&
+        handleCreateQuote
+      ) {
         handleCreateQuote({
           type: 'vendor',
           vendorName,

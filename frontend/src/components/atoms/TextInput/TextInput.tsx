@@ -25,6 +25,7 @@ export type TextInputProps = {
   className?: string;
   icon?: IconProps;
   inputType?: HTMLInputType;
+  disabled?: boolean;
 };
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -35,12 +36,16 @@ const TextInput: React.FC<TextInputProps> = ({
   className,
   icon,
   inputType,
+  disabled,
 }) => {
-  const currentStyle = styles[`textInput${type}`];
+  const currentStyle = disabled ? 
+    styles[`textInput${type}Disabled`] : 
+    styles[`textInput${type}`];
 
   const textView = (
     <input
       type={inputType}
+      disabled={disabled}
       placeholder={textPlaceholder}
       value={textValue}
       onChange={onTextChanged}

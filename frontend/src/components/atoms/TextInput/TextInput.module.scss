@@ -97,7 +97,7 @@
   }
 
 }
-.textInputText:disabled {
+.textInputTextDisabled {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -253,7 +253,7 @@
   }
 
 }
-.textInputPassword:disabled {
+.textInputPasswordDisabled {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -390,7 +390,7 @@
   }
 
 }
-.textInputTextArea:disabled {
+.textInputTextAreaDisabled {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

@@ -135,7 +135,8 @@ export type BusinessInformationBlockProps = {
   websiteLinkTextField?: TextFieldProps;
   nextButton?: ButtonProps;
   className?: string;
-  setBusinessInfo?: React.Dispatch<React.SetStateAction<BusinessInformation>>;
+  businessInfo?: BusinessInformation;
+  setBusinessInfo?: (businessInfo :BusinessInformation) => void;
 };
 
 const BusinessInformationBlock: React.FC<BusinessInformationBlockProps> = ({

@@ -1,15 +1,15 @@
-export const isEmptyString = (value) => (value ? value.trim().length === 0 : true);
+export const isEmptyString = (value?: string) => (value ? value.trim().length === 0 : true);
 
-export const isObject = (value) => typeof value === 'object' && !Array.isArray(value) && value !== null;
+export const isObject = (value: any) => typeof value === 'object' && !Array.isArray(value) && value !== null;
 
-export const isEmpty = (value) => (
+export const isEmpty = (value: any) => (
   value === undefined
     || value == null
     || (isObject(value) && Object.keys(value).length === 0)
     || value.length === 0
 );
 
-export const isExpiring = (value) => {
+export const isExpiring = (value: string) => {
   const date = new Date(value);
   const today = new Date();
   const diffTime = date.getTime() - today.getTime();
@@ -17,19 +17,19 @@ export const isExpiring = (value) => {
   return diffDays < 6 && diffDays > 0;
 }
 
-export const isExpired = (value) => {
+export const isExpired = (value: string) => {
   const today = new Date();
   const expiryDate = new Date(value);
   return today > expiryDate;
 };
 
-export const createdOn = (value) => {
+export const createdOn = (value: string) => {
   const date = new Date(value);
   date.setDate(date.getDate() - 30);
   return date;
 };
 
-export const isEmail = (value) => {
+export const isEmail = (value: string) => {
   const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return regexEmail.test(value);
 };

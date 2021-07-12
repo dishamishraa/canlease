@@ -1,65 +1,65 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useLocation } from 'react-router-dom';
-import { TextInputProps } from '../../atoms/TextInput';
 import { GetQuoteBlockProps, defaultProps as defaultGetQuoteBlockProps } from './GetQuoteBlock';
 import { ContextualMenuProps } from '../../molecules/ContextualMenu';
-import { ContextualMenuItemProps } from '../../atoms/ContextualMenuItem';
 import { defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 import { isEmptyString } from '../../../lib/utils';
-import { EquipmentLeaseInfo } from '../../../modules/types';
+import { useEffect } from 'react';
+import { LeaseType } from '../../../modules/quote/types';
 
-export type GetQuoteBlockPresenterProps = {
-  setEquipmentLeaseInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
+export type GetQuoteBlockPresenterProps = GetQuoteBlockProps & {
 };
-
-export type LocationState = {userType?: string; equipmentLeaseInfo?: EquipmentLeaseInfo};
 
 const withPresenter = (
   View: React.FC<GetQuoteBlockProps>,
 ): React.FC<GetQuoteBlockPresenterProps> => {
   const Presenter: React.FC<GetQuoteBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
-    const history = useHistory();
-    const { setEquipmentLeaseInfo } = props;
-    const location = useLocation<(LocationState)>();
-    const { state } = location;
+    const { 
+      equipmentLeaseInfo,
+      setEquipmentLeaseInfo,
+    } = props;
 
-    const [equipmentName, setEquipmentName] = useState<string>('');
-    const [equipmentCost, setEquipmentCost] = useState<string>('');
-    const [equipmentLeaseType, setEquipmentLeaseType] = useState<string>(t('get_quote_block.lease_type.options.stretch'));
+    const [equipmentName, setEquipmentName] = useState<string>();
+    const [equipmentCost, setEquipmentCost] = useState<string>();
+    const [equipmentLeaseType, setEquipmentLeaseType] = useState<LeaseType>('stretch');
+
+    useEffect(() => {
+      if(equipmentLeaseInfo) {
+        setEquipmentName(equipmentLeaseInfo.name);
+        setEquipmentCost(equipmentLeaseInfo.cost);
+        setEquipmentLeaseType(equipmentLeaseInfo.leaseType);
+      }
+    }, [equipmentLeaseInfo]);
 
     const isFormValid = !isEmptyString(equipmentName) && !isEmptyString(equipmentCost);
 
     const handleClickNext = () => {
-      if (isFormValid && setEquipmentLeaseInfo && state) {
-        const { userType } = state;
+      if (equipmentName && equipmentCost && setEquipmentLeaseInfo) {
         const leaseInfo = {
           name: equipmentName,
           cost: equipmentCost,
           leaseType: equipmentLeaseType,
         };
         setEquipmentLeaseInfo(leaseInfo);
-        history.push('/contactInformation', { userType, equipmentLeaseInfo: leaseInfo });
       }
     };
     const handleChangeEquipmentName = ({ target: { value } }) => setEquipmentName(value);
     const handleChangeEquipmentCost = ({ target: { value } }) => setEquipmentCost(value);
-    const handleStretchClick = () => setEquipmentLeaseType(t('get_quote_block.lease_type.options.stretch'));
-    const handleTenClick = () => setEquipmentLeaseType(t('get_quote_block.lease_type.options.ten'));
+    const handleChangeLeaseType = (leaseType: LeaseType) => () =>  setEquipmentLeaseType(leaseType);
 
     const contextualMenu: ContextualMenuProps = {
       contextualMenuItemList: {
         contextualMenuItems: [
           {
-            onContextualMenuItemClicked: handleStretchClick,
+            onContextualMenuItemClicked: handleChangeLeaseType('stretch'),
             text: {
               ...defaultMenuItemProps.text,
               value: t('get_quote_block.lease_type.options.stretch'),
             },
           },
           {
-            onContextualMenuItemClicked: handleTenClick,
+            onContextualMenuItemClicked: handleChangeLeaseType('$10'),
             text: {
               ...defaultMenuItemProps.text,
               value: t('get_quote_block.lease_type.options.ten'),
@@ -111,7 +111,9 @@ const withPresenter = (
           ...defaultGetQuoteBlockProps.leaseTypeSelectField.select,
           text: {
             ...defaultGetQuoteBlockProps.leaseTypeSelectField.select?.text,
-            value: equipmentLeaseType,
+            value: equipmentLeaseType === 'stretch' ? 
+              t('get_quote_block.lease_type.options.stretch') :
+              t('get_quote_block.lease_type.options.ten'),
           },
         },
         contextualMenu,

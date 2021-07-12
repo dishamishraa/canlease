@@ -12,6 +12,7 @@ import ContactInfoVendorBlock from '../../blocks/ContactInfoVendorBlock';
 import QuoteBlock from '../../blocks/QuoteBlock';
 import ActionBlock from '../../blocks/ActionBlock';
 import { ContactInfo, EquipmentLeaseInfo } from '../../../modules/types';
+import { UserType } from '../../../modules/profile/types';
 
 export const defaultProps = {
 };
@@ -19,11 +20,11 @@ export const defaultProps = {
 export type SimplePageProps = {
   className?: string;
   showBackButton?: boolean;
-  setUserType?: React.Dispatch<React.SetStateAction<string>>;
-  userType?: string;
-  setEquipmentLeaseInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
+  userType?: UserType;
   equipmentLeaseInfo?: EquipmentLeaseInfo;
   contactInfo?: ContactInfo;
+  setUserType?: (userType: UserType) => void;
+  setEquipmentLeaseInfo?: (equipmentLeaseInfo: EquipmentLeaseInfo) => void;
   handleCreateQuote?: (contactInfo: ContactInfo) => void;
 };
 
@@ -39,6 +40,8 @@ const SimplePage: React.FC<SimplePageProps> = ({
   showBackButton,
   className,
   userType,
+  equipmentLeaseInfo,
+  contactInfo,
   setUserType,
   setEquipmentLeaseInfo,
   handleCreateQuote,
@@ -48,9 +51,9 @@ const SimplePage: React.FC<SimplePageProps> = ({
   return (
     <div className={cx(styles.simplePage, className)}>
       <div className={styles.topContent}>
-        <TopBar
+        {/* <TopBar
           className={styles.topBar}
-          showBackButton={showBackButton} />
+          showBackButton={showBackButton} /> */}
         <Switch>
           <Route exact path={routes.userSelection}>
             <UserSelectionBlock
@@ -61,12 +64,14 @@ const SimplePage: React.FC<SimplePageProps> = ({
           <Route exact path={routes.getQuote}>
             <GetQuoteBlock
               className={styles.block}
+              equipmentLeaseInfo={equipmentLeaseInfo}
               setEquipmentLeaseInfo={setEquipmentLeaseInfo}
               />
           </Route>
           <Route exact path={routes.contactInformation}>
             <ContactInfoBlock
               className={styles.block}
+              contactInfo={contactInfo}
               handleCreateQuote={handleCreateQuote}
               />
           </Route>

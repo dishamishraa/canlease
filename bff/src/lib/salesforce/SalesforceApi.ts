@@ -32,7 +32,10 @@ export default class SalesforceApi {
       return response.data;
     } catch (error) {
       // throw new Error('');
-      return mockQuote;
+      return {
+        ...mockQuote,
+        leaseType: payload.leaseType,
+      };
     }
   }
 

@@ -77,7 +77,8 @@ export type PersonalInformationBlockProps = {
   radiobuttonList?: RadiobuttonListProps;
   nextButton?: ButtonProps;
   className?: string;
-  setPersonalInfo?: React.Dispatch<React.SetStateAction<PersonalInformation>>;
+  personalInfo?: PersonalInformation;
+  setPersonalInfo?: (personalInfo :PersonalInformation) => void;
 };
 
 const PersonalInformationBlock: React.FC<PersonalInformationBlockProps> = ({

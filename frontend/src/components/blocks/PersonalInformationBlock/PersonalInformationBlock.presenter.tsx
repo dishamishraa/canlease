@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useLocation } from 'react-router';
 import { defaultProps, PersonalInformationBlockProps } from './PersonalInformationBlock';
 import { defaultProps as defaultRadioButtonItemProps, RadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
 import { isEmptyString } from '../../../lib/utils';
 import { UserType } from '../../../modules/profile/types';
-import { PersonalInformation, AuthPageLocationState } from '../../../modules/types';
 
 export type PersonalInformationBlockPresenterProps = PersonalInformationBlockProps & {
-  setPersonalInfo?: React.Dispatch<React.SetStateAction<PersonalInformation>>;
 };
 
 const withPresenter = (
@@ -16,15 +13,21 @@ const withPresenter = (
 ): React.FC<PersonalInformationBlockPresenterProps> => {
   const Presenter: React.FC<PersonalInformationBlockPresenterProps> = (props) => {
     const {
+      personalInfo,
       setPersonalInfo,
     } = props;
     const { t } = useTranslation();
-    const history = useHistory();
-    const { state } = useLocation<AuthPageLocationState>();
-    const { email } = state || {};
-    const [firstName, setFirstName] = useState<string>('');
-    const [lastName, setLastName] = useState<string>('');
+    const [firstName, setFirstName] = useState<string>();
+    const [lastName, setLastName] = useState<string>();
     const [userType, setUserType] = useState<UserType>('vendor');
+
+    useEffect(() => {
+      if (personalInfo) {
+        setFirstName(personalInfo.firstName);
+        setLastName(personalInfo.lastName);
+        setUserType(personalInfo.userType);
+      }
+    }, [personalInfo]);
 
     const formInvalid = (isEmptyString(firstName) || isEmptyString(lastName));
 
@@ -37,52 +40,40 @@ const withPresenter = (
     };
 
     const handleNext = () => {
-      if (setPersonalInfo && state) {
+      if (setPersonalInfo && firstName && lastName && userType) {
         setPersonalInfo({
           firstName,
           lastName,
           userType,
         });
-        history.push({
-          pathname: '/account/contactInformation',
-          state: {
-            email,
-          },
-        });
       }
     };
 
-    const handleRadioSelectionVendor = () => {
-      setUserType('vendor');
-    };
-
-    const handleRadioSelectionCustomer = () => {
-      setUserType('customer');
-    };
+    const handleRadioSelection = (userType: UserType) => () => setUserType(userType);
 
     const radiobuttonPropsList: RadioButtonItemProps[] = [
       {
         ...defaultRadioButtonItemProps,
-        state: 'Selected',
+        state: userType === 'vendor' ? 'Selected' : 'Unselected',
         text: {
         ...defaultRadioButtonItemProps.text,
           value: t('personal_information.radio_text.supplier')
         },
         unselectedIcon: {
           ...defaultRadioButtonItemProps.unselectedIcon,
-          onIconClicked: handleRadioSelectionVendor
+          onIconClicked: handleRadioSelection('vendor'),
         },
       },
       {
         ...defaultRadioButtonItemProps,
-        state: 'Unselected',
+        state: userType === 'customer' ? 'Selected' : 'Unselected',
         text: {
           ...defaultRadioButtonItemProps.text,
           value: t('personal_information.radio_text.own_use'),
         },
         unselectedIcon: {
           ...defaultRadioButtonItemProps.unselectedIcon,
-          onIconClicked: handleRadioSelectionCustomer
+          onIconClicked: handleRadioSelection('customer'),
         }
       }
     ];

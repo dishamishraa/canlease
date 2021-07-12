@@ -48,7 +48,18 @@
   }
 
   .table {
-    display: none;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 1023px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
   }
 
 }
@@ -250,7 +261,7 @@
     }
   
     .table {
-      overflow: hidden;
+      overflow: auto;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -325,7 +336,7 @@
     }
   
     .table {
-      overflow: hidden;
+      overflow: auto;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;

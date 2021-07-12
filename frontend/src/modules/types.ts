@@ -1,9 +1,31 @@
 import { UserType } from "./profile/types";
+import { LeaseType, Quote } from "./quote/types";
+
+export type CreateQuoteState = {
+  userType?: UserType;
+  equipmentLeaseInfo?: EquipmentLeaseInfo;
+  contactInfo?: ContactInfo;
+}
+
+export type AfterAuthAction = 'apply_finance' | 'save_quote';
+
+export type AuthState = {
+  action?: AfterAuthAction;
+  email?: string;
+  personalInfo?: PersonalInformation;
+  contactInfo?: ContactInformation;
+  businessInfo?: BusinessInformation;
+}
+
+export type ViewQuoteType = {
+  userType?: UserType;
+  quote?: Quote;
+}
 
 export type EquipmentLeaseInfo = {
   name: string;
   cost: string;
-  leaseType: string;
+  leaseType: LeaseType;
 };
 
 type BaseInfo = {
@@ -70,14 +92,6 @@ export type BusinessInformation = {
   operatingSinceDate: string;
   businessPhone: string;
   website?: string;
-};
-
-export type AuthPageLocationState = {
-  personalInfo: PersonalInformation;
-  contactInfo: ContactInformation;
-  businessInfo: PersonalInformation;
-  email: string;
-  id: string;
 };
 
 export const TermDisplay = {

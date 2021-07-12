@@ -83,7 +83,8 @@ export type GetQuoteBlockProps = {
   leaseTypeSelectField?: SelectFieldProps;
   nextButton?: ButtonProps;
   className?: string;
-  setEquipmentLeaseInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
+  equipmentLeaseInfo?: EquipmentLeaseInfo;
+  setEquipmentLeaseInfo?: (equipmentLeaseInfo: EquipmentLeaseInfo) => void;
 };
 
 const GetQuoteBlock: React.FC<GetQuoteBlockProps> = ({

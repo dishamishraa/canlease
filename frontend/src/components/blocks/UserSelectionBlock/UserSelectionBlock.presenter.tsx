@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Cookies from 'js-cookie';
 import { UserSelectionBlockProps, defaultProps as UserSelectionBlockDefaultProps } from './UserSelectionBlock';
@@ -11,6 +10,7 @@ import ClientImage from '../../../resources/images/Client.png';
 import EndUserImage from '../../../resources/images/EndUser.png';
 import LimitReachedIcon from '../../../resources/icons/LimitReached.svg';
 import { INSTANT_QUOTE_COOKIE } from '../../../lib/config';
+import { UserType } from '../../../modules/profile/types';
 
 export type UserSelectionBlockPresenterProps = UserSelectionBlockProps & {
 };
@@ -20,7 +20,6 @@ const withPresenter = (
 ): React.FC<UserSelectionBlockPresenterProps> => {
   const Presenter: React.FC<UserSelectionBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
-    const history = useHistory();
     const [showModal, setShowModal] = useState(false);
     const {
       className,
@@ -29,22 +28,17 @@ const withPresenter = (
     const onCloseModal = () => {
       setShowModal(false);
     };
-    const onUserTypeSelected = (userType: 'vendor' | 'customer') => {
-      if ((hasInstantQuote) && (setUserType)) {
+
+    const onUserTypeSelected = (userType: UserType) => {
+      const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
+
+      if (!quoteCookie && setUserType) {
         setUserType(userType);
-        history.push('/getQuote', { userType });
       } else {
         setShowModal(true);
       }
     };
-
-    let hasInstantQuote = true;
-
-    const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
-    if (quoteCookie) {
-      hasInstantQuote = false;
-    }
-
+    
     const modal: ModalProps = {
       ...modalPropsDefaultProps,
       closeIcon: {
@@ -84,45 +78,44 @@ const withPresenter = (
     };
 
     const cardList: CardListProps = {
-      userSelectionCards:
-            [
-              {
-                image: {
-                  image: EndUserImage,
-                },
-                text: {
-                  ...userSelectionCardDefaultProps.text,
-                  value: t('user_type_selection.end_user'),
-                },
-                button: {
-                  ...userSelectionCardDefaultProps.button,
-                  type: 'TextIconButton',
-                  onButtonClicked: () => onUserTypeSelected('customer'),
-                  text: {
-                    ...userSelectionCardDefaultProps.button.text,
-                    value: t('user_type_selection.button'),
-                  },
-                },
-              },
-              {
-                image: {
-                  image: ClientImage,
-                },
-                text: {
-                  ...userSelectionCardDefaultProps.text,
-                  value: t('user_type_selection.vendor'),
-                },
-                button: {
-                  ...userSelectionCardDefaultProps.button,
-                  type: 'TextIconButton',
-                  onButtonClicked: () => onUserTypeSelected('vendor'),
-                  text: {
-                    ...userSelectionCardDefaultProps.button.text,
-                    value: t('user_type_selection.button'),
-                  },
-                },
-              },
-            ],
+      userSelectionCards:[
+        {
+          image: {
+            image: EndUserImage,
+          },
+          text: {
+            ...userSelectionCardDefaultProps.text,
+            value: t('user_type_selection.end_user'),
+          },
+          button: {
+            ...userSelectionCardDefaultProps.button,
+            type: 'TextIconButton',
+            onButtonClicked: () => onUserTypeSelected('customer'),
+            text: {
+              ...userSelectionCardDefaultProps.button.text,
+              value: t('user_type_selection.button'),
+            },
+          },
+        },
+        {
+          image: {
+            image: ClientImage,
+          },
+          text: {
+            ...userSelectionCardDefaultProps.text,
+            value: t('user_type_selection.vendor'),
+          },
+          button: {
+            ...userSelectionCardDefaultProps.button,
+            type: 'TextIconButton',
+            onButtonClicked: () => onUserTypeSelected('vendor'),
+            text: {
+              ...userSelectionCardDefaultProps.button.text,
+              value: t('user_type_selection.button'),
+            },
+          },
+        },
+      ],
     };
 
     return <View

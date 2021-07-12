@@ -26,10 +26,12 @@ export type AuthPageProps = {
   email?: string;
   handleSignUp?: (payload: SignUpPayload) => void;
   handleSignIn?: (payload: SignInPayload) => void;
-  handleGetProfile?: (id: string | number) => void;
-  setPersonalInfo?: React.Dispatch<React.SetStateAction<PersonalInformation>>;
-  setContactInfo?: React.Dispatch<React.SetStateAction<ContactInformation>>;
-  setBusinessInfo?: React.Dispatch<React.SetStateAction<BusinessInformation>>;
+  personalInfo?: PersonalInformation;
+  contactInfo?: ContactInformation;
+  businessInfo?: BusinessInformation;
+  setPersonalInfo?: (personalInfo: PersonalInformation) => void;
+  setContactInfo?: (contactInfo: ContactInformation) => void;
+  setBusinessInfo?: (businessInfo: BusinessInformation) => void;
   handleToastDisplay?: (toastType: string) => void;
 };
 
@@ -52,6 +54,9 @@ const AuthPage: React.FC<AuthPageProps> = ({
   email,
   handleSignUp,
   handleSignIn,
+  personalInfo,
+  contactInfo,
+  businessInfo,
   setPersonalInfo,
   setContactInfo,
   setBusinessInfo,
@@ -101,17 +106,20 @@ const AuthPage: React.FC<AuthPageProps> = ({
         <ProtectedRoute exact path={routes.personalInformation}>
           <PersonalInformationBlock
             className={styles.block}
+            personalInfo={personalInfo}
             setPersonalInfo={setPersonalInfo}
             />
         </ProtectedRoute>
         <ProtectedRoute exact path={routes.contactInformation}>
           <ContactInformationBlock
             className={styles.block}
+            contactInfo={contactInfo}
             setContactInfo={setContactInfo} />
         </ProtectedRoute>
         <ProtectedRoute exact path={routes.businessInformation}>
           <BusinessInformationBlock
             className={styles.block}
+            businessInfo={businessInfo}
             setBusinessInfo={setBusinessInfo}/>
         </ProtectedRoute>
 

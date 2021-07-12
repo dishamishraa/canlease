@@ -73,6 +73,7 @@
         "learn_more_text": "Are you looking for a different kind of lease quote to suit your specific business needs (i.e. three month payment deferral, seasonal payments to match your income, large down payment, etc)? [Learn more](https://canlease.net/faq/)",
         "apply_button_text": "Apply for Finance",
         "save_quote_button_text": "Save Quote",
+        "send_quote_button_text": "Send Quote",
         "quote_rate_section_heading_text": "Quote details",
         "quote_detail":{
             "application_amount": {

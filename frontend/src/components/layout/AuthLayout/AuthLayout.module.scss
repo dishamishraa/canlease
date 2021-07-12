@@ -12,9 +12,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    > * {
-      margin-top: 0.75rem;
-    }
     align-self: stretch;
     flex: 0 0 auto;
   }
@@ -67,9 +64,6 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      > * {
-        margin-top: 0.75rem;
-      }
       align-self: stretch;
       flex: 0 0 auto;
     }
@@ -123,9 +117,6 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      > * {
-        margin-top: 1.25rem;
-      }
       align-self: stretch;
       flex: 0 0 auto;
     }
@@ -179,9 +170,6 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      > * {
-        margin-top: 1.25rem;
-      }
       align-self: stretch;
       flex: 0 0 auto;
     }
@@ -235,9 +223,6 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      > * {
-        margin-top: 1.25rem;
-      }
       align-self: stretch;
       flex: 0 0 auto;
     }

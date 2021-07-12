@@ -29,11 +29,6 @@
       }
     }
   }
-
-  .rateDetailsItemList {
-    display: none;
-  }
-
 }
 
 @media (min-width: 768px) {
@@ -51,7 +46,7 @@
     border: 1px solid rgb(210, 211, 223);
     border-radius: 4px;
   
-    .rateDetailsItemList {
+    .rateDetailItemList {
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -66,10 +61,5 @@
         margin-top: 0;
       }
     }
-  
-    .rateDetailItemList {
-      display: none;
-    }
-  
   }
 }

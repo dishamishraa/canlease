@@ -82,7 +82,7 @@ const withPresenter = (
       isFormValid = () => {
         if (assetCondition === 'New' && !isEmptyString(expectedDate)) {
             return true;
-        } else if (assetCondition === 'Used' && !isEmptyString(expectedDate) && !isEmptyString(assetAge)){
+        } else if (assetCondition === 'Used' && !isEmptyString(expectedDate) && assetAge > 0){
             return true;
         } else {
             return false;

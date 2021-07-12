@@ -4,11 +4,12 @@ import { useCookies } from 'react-cookie';
 import { INSTANT_QUOTE_COOKIE, MAX_AGE } from '../../../lib/config';
 import { SimplePageProps } from './SimplePage';
 import {
-  EquipmentLeaseInfo, ContactInfo,
+  EquipmentLeaseInfo, ContactInfo, CreateQuoteState,
 } from '../../../modules/types';
 import { isEmpty } from '../../../lib/utils';
 import { APIResponse } from '../../../lib/api/types';
 import { CreateQuotePayload, Quote } from '../../../modules/quote/types';
+import { UserType } from '../../../modules/profile/types';
 
 export type SimplePagePresenterProps = SimplePageProps & {
   createQuote: (payload: CreateQuotePayload) => Promise<APIResponse<Quote>>;
@@ -22,34 +23,52 @@ const withPresenter = (
       createQuote,
     } = props;
 
-    const [cookies, setCookie] = useCookies();
-
-    const { state, pathname } = useLocation<({
-      userType: string;
-      equipmentLeaseInfo: EquipmentLeaseInfo;
-    })>();
+    const [, setCookie] = useCookies();
 
     const history = useHistory();
-    const defaultEquipmentLeaseInfo = {
-      name: '',
-      cost: '',
-      leaseType: '',
-    };
-    const [userType, setUserType] = useState('');
-    const [
-      equipmentLeaseInfo,
-      setEquipmentLeaseInfo,
-    ] = useState<EquipmentLeaseInfo>(defaultEquipmentLeaseInfo);
+    const { state: locationState, pathname } = useLocation<CreateQuoteState | undefined>();
+    const [state, setState] = useState<CreateQuoteState>({});
+    const [quote, setQuote] = useState<Quote>();
 
     useEffect(() => {
-      if (state) {
-        setUserType(state.userType);
-        setEquipmentLeaseInfo(state.equipmentLeaseInfo);
+      if(locationState) {
+        setState({
+          ...state,
+          ...locationState,
+        });
       }
-    }, [state, userType]);
+    }, [locationState]);
+
+    const { userType, equipmentLeaseInfo, contactInfo } = state;
+
+    const setUserType = (userType: UserType) => {
+      const newState = {
+        userType,
+      };
+      setState(newState);
+      history.push('/getQuote', newState);
+    }
+
+    const setEquipmentLeaseInfo = (equipmentLeaseInfo: EquipmentLeaseInfo) => {
+      const newState = {
+        ...state,
+        equipmentLeaseInfo,
+      };
+      setState(newState);
+      history.push('/contactInformation', newState);
+    }
 
     const handleCreateQuote = async (contactInfo: ContactInfo) => {
-      if (equipmentLeaseInfo) {
+      const newState = {
+        ...state,
+        contactInfo,
+      };
+      setState(newState);
+
+      if(quote) {
+        const { quoteId } = quote;
+        history.push(`/instaQuote/${quoteId}`, { userType, quote });
+      } else if (userType && equipmentLeaseInfo) {
         const { name: equipmentName, cost: equipmentCost, leaseType } = equipmentLeaseInfo;
         const { customerName, customerEmail, customerCompanyName } = contactInfo;
 
@@ -61,7 +80,7 @@ const withPresenter = (
           contactName: customerName,
           contactEmail: customerEmail,
           contactBusinessName: customerCompanyName,
-        } as CreateQuotePayload;
+        };
 
         if (contactInfo.type === 'vendor') {
           const { vendorName, businessEmail, companyName } = contactInfo;
@@ -78,42 +97,36 @@ const withPresenter = (
           const expiryDate = new Date();
           expiryDate.setTime(expiryDate.getTime() + Number(MAX_AGE));
 
-          setCookie(INSTANT_QUOTE_COOKIE,
-            {
-              userType, equipmentLeaseInfo, contactInfo,
-            },
-            {
-              expires: expiryDate,
-            });
-
           const { quoteId } = data;
-          history.push(`/instaQuote/${quoteId}`, {userType})
+          setCookie(INSTANT_QUOTE_COOKIE, quoteId, { expires: expiryDate });
+          setQuote(data);
+          history.push(`/instaQuote/${quoteId}`, { userType, quote: data });
         }
       }
     };
 
-    if (pathname.toLowerCase() === '/getquote' && isEmpty(state)) {
-      return <Redirect
-          to={{
-            pathname: '/',
-          }}
-        />;
-    }
-    if (pathname.toLowerCase() === '/contactinformation' && isEmpty(state)) {
-      return <Redirect
-          to={{
-            pathname: '/',
-          }}
-        />;
+    const pathnameNormalized = pathname.toLowerCase();
+    switch (pathnameNormalized) {
+      case '/getquote':
+        if (!userType) {
+          return <Redirect to='/' />;
+        }
+        break;
+      case '/contactinformation':
+        if (isEmpty(equipmentLeaseInfo)) {
+          return <Redirect to='/' />;
+        }
+        break;
     }
 
     return <View
           {...props}
-          showBackButton={pathname !== '/'}
+          showBackButton={pathnameNormalized !== '/'}
+          userType={userType}
+          equipmentLeaseInfo={equipmentLeaseInfo}
+          contactInfo={contactInfo}
           setUserType={setUserType}
           setEquipmentLeaseInfo={setEquipmentLeaseInfo}
-          equipmentLeaseInfo={equipmentLeaseInfo}
-          userType={userType}
           handleCreateQuote={handleCreateQuote}/>;
   };
   return Presenter;

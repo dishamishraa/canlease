@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useLocation } from 'react-router';
 import { defaultProps, ContactInformationBlockProps } from './ContactInformationBlock';
 import { isEmptyString } from '../../../lib/utils';
 import { ContextualMenuItemProps, defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
-import { AuthPageLocationState, ContactInformation } from '../../../modules/types';
 
 export type ContactInformationBlockPresenterProps = ContactInformationBlockProps & {
-  setContactInfo?: React.Dispatch<React.SetStateAction<ContactInformation>>;
+  email?: string;
 };
 
 const withPresenter = (
@@ -15,19 +13,29 @@ const withPresenter = (
 ): React.FC<ContactInformationBlockPresenterProps> => {
   const Presenter: React.FC<ContactInformationBlockPresenterProps> = (props) => {
     const {
+      email,
+      contactInfo,
       setContactInfo,
     } = props;
     const { t } = useTranslation();
-    const history = useHistory();
-    const { state } = useLocation<AuthPageLocationState>();
-    const { email } = state || {};
-    const [phoneNumber, setPhoneNumber] = useState<string>('');
-    const [unitNumber, setUnitNumber] = useState<string>('');
-    const [streetAddress, setStreetAddress] = useState<string>('');
-    const [city, setCity] = useState<string>('');
-    const [postalCode, setPostalCode] = useState<string>('');
-    const [province, setProvince] = useState<string>('');
+    const [phoneNumber, setPhoneNumber] = useState<string>();
+    const [unitNumber, setUnitNumber] = useState<string>();
+    const [streetAddress, setStreetAddress] = useState<string>();
+    const [city, setCity] = useState<string>();
+    const [postalCode, setPostalCode] = useState<string>();
+    const [province, setProvince] = useState<string>();
 
+    useEffect(() => {
+      if (contactInfo) {
+        setPhoneNumber(contactInfo.phone);
+        setUnitNumber(contactInfo.unitNumber);
+        setStreetAddress(contactInfo.street);
+        setCity(contactInfo.city);
+        setPostalCode(contactInfo.postalCode);
+        setProvince(contactInfo.province);
+      }
+    }, [contactInfo]);
+    
     const formInvalid = (isEmptyString(phoneNumber)
     || isEmptyString(streetAddress)
     || isEmptyString(city)
@@ -55,17 +63,24 @@ const withPresenter = (
     };
 
     const handleNext = () => {
-      if (setContactInfo && state && email) {
+      if (
+        setContactInfo && 
+        email && 
+        phoneNumber && 
+        streetAddress && 
+        city && 
+        postalCode &&
+        province
+      ) {
         setContactInfo({
           email,
           phone: phoneNumber,
-          unitNumber,
+          unitNumber: unitNumber || '',
           street: streetAddress,
           city,
           postalCode,
           province,
         });
-        history.push('/account/businessInformation');
       }
     };
 
@@ -103,7 +118,9 @@ const withPresenter = (
           value: t('text_field_label.email'),
         },
         textInput: {
+          ...defaultProps.emailTextField.textInput,
           textValue: email,
+          disabled: true,
         },
       },
       phoneNumberTextField: {

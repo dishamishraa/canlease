@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
-import { IS_DEV } from '../../lib/config';
 import ErrorHandler from '../error/ErrorHandler';
 import { AuthContext } from './AuthContext';
 
@@ -25,10 +24,6 @@ const CheckUserAccess: React.FC<RouteProps> = (props) => {
 };
 
 const ProtectedRoute: React.FC<RouteProps> = (props) => {
-  // for local development we don't check admin user session.
-  if (IS_DEV) {
-    return <Route {...props} />;
-  }
   return <CheckUserAccess {...props} />;
 };
 

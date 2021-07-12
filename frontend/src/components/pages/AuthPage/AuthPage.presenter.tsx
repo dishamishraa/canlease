@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory, Redirect } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { AuthPageProps } from './AuthPage';
 import { APIResponse } from '../../../lib/api/types';
@@ -8,7 +8,9 @@ import {
   AccountResponse, SignInPayload, SignUpPayload, UpdateNamePayload,
 } from '../../../modules/account/types';
 import { CreateProfilePayload, Profile } from '../../../modules/profile/types';
-import { PersonalInformation, ContactInformation, BusinessInformation } from '../../../modules/types';
+import { PersonalInformation, ContactInformation, BusinessInformation, AuthState } from '../../../modules/types';
+import { useEffect } from 'react';
+import { isEmpty } from '../../../lib/utils';
 
 export type AuthPagePresenterProps = AuthPageProps & {
   signUp: (payload: SignUpPayload) => Promise<APIResponse<AccountResponse>>;
@@ -31,35 +33,55 @@ const withPresenter = (
       createProfile,
       updateName,
     } = props;
+
+    const [, setCookie] = useCookies();
     const history = useHistory();
-    const { state, pathname} = useLocation<({
-      personalInfo: PersonalInformation;
-      contactInfo: ContactInformation;
-      businessInfo: BusinessInformation;
-    })>();
-    const [cookies, setCookie] = useCookies();
-    const [personalInfo, setPersonalInfo] = useState<PersonalInformation>({
-      firstName: '',
-      lastName: '',
-      userType: 'vendor',
-    });
-    const [contactInfo, setContactInfo] = useState<ContactInformation>({
-      email: '',
-      phone: '',
-      unitNumber: '',
-      street: '',
-      city: '',
-      postalCode: '',
-      province: '',
-    });
-    const [businessInfo, setBusinessInfo] = useState<BusinessInformation>({
-      companyName: '',
-      operatingName: '',
-      businessSector: '',
-      operatingSinceDate: '',
-      businessPhone: '',
-    });
-    const [email, setEmail] = useState<string>('');
+    const { state: locationState, pathname} = useLocation<AuthState>();
+    const [state, setState] = useState<AuthState>({});
+    
+    useEffect(() => {
+      if (locationState) {
+        setState(locationState);
+      }
+    }, [locationState]);
+
+    const {
+      action, email, personalInfo, contactInfo, businessInfo,
+    } = state;
+
+    const setEmail = (email: string) => {
+      setState({
+        ...state,
+        email,
+      });
+    }
+
+    const setPersonalInfo = (personalInfo: PersonalInformation) => {
+      const newState = {
+        ...state,
+        personalInfo,
+      }
+      setState(newState);
+      history.push('/account/contactInformation', newState);
+    }
+
+    const setContactInfo = (contactInfo: ContactInformation) => {
+      const newState = {
+        ...state,
+        contactInfo,
+      }
+      setState(newState);
+      history.push('/account/businessInformation', newState);
+    }
+
+    const setBusinessInfo = (businessInfo: BusinessInformation) => {
+      const newState = {
+        ...state,
+        businessInfo,
+      }
+      setState(newState);
+      history.push('', newState);
+    }
 
     // sign up
     const handleSignUp = async (payload: SignUpPayload) => {
@@ -108,7 +130,7 @@ const withPresenter = (
       }
     };
 
-    let showBackButton: boolean;
+    let showBackButton: boolean = true;
     switch (pathname.toLowerCase()) {
       case '/account/signin':
       case '/account/signup':
@@ -118,8 +140,18 @@ const withPresenter = (
       case '/account/verifyemail':
         showBackButton = false;
         break;
+      case '/account/contactinformation':
+        if (isEmpty(personalInfo)) {
+          return <Redirect to='/account/personalInformation' />;
+        }
+        break;
+      case '/account/businessinformation':
+        if (isEmpty(contactInfo)) {
+          return <Redirect to='/account/contactInformation' />;
+        }
+        break;
       default:
-        showBackButton = true;
+        break;
     }
 
     return <View
@@ -128,6 +160,9 @@ const withPresenter = (
           email = {email}
           handleSignUp={handleSignUp}
           handleSignIn={handleSignIn}
+          personalInfo={personalInfo}
+          contactInfo={contactInfo}
+          businessInfo={businessInfo}
           setPersonalInfo={setPersonalInfo}
           setContactInfo={setContactInfo}
           setBusinessInfo={setBusinessInfo}

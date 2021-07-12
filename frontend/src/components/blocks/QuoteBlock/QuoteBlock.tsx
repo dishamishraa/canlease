@@ -1,7 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
 
-import { Link } from 'react-router-dom';
 import styles from './QuoteBlock.module.scss';
 
 import Text, { TextProps } from '../../atoms/Text';
@@ -58,13 +57,37 @@ export const defaultProps = {
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
-  viewQuoteButton: {
+  sendQuoteButton: {
     type: 'Button',
     size: 'Large',
     fill: 'Colour',
     colour: 'Brand',
     text: {
       style: 'Basic100',
+      align: 'Center',
+      size: 'Small',
+      type: 'ButtonGiant',
+    },
+  } as ButtonProps,
+  applyButton: {
+    type: 'Button',
+    size: 'Large',
+    fill: 'Colour',
+    colour: 'Brand',
+    text: {
+      style: 'Basic100',
+      align: 'Center',
+      size: 'Small',
+      type: 'ButtonGiant',
+    },
+  } as ButtonProps,
+  saveQuoteButton: {
+    type: 'Button',
+    size: 'Large',
+    fill: 'Basic',
+    colour: 'Basic',
+    text: {
+      style: 'Brand500',
       align: 'Center',
       size: 'Small',
       type: 'ButtonGiant',
@@ -97,7 +120,9 @@ export type QuoteBlockProps = {
   validText?: TextProps;
   detailItemList?: DetailItemListProps;
   learnMoreText?: TextProps;
-  viewQuoteButton?: ButtonProps;
+  sendQuoteButton?: ButtonProps;
+  applyButton?: ButtonProps;
+  saveQuoteButton?: ButtonProps;
   className?: string;
   quoteExpired?: boolean;
   expiryToast?: ToastProps;
@@ -112,7 +137,9 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
   validText,
   detailItemList,
   learnMoreText,
-  viewQuoteButton,
+  sendQuoteButton,
+  applyButton,
+  saveQuoteButton,
   className,
   quoteExpired,
   expiryToast,
@@ -151,9 +178,21 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
       <Text
           className={styles.learnMoreText}
           {...learnMoreText} />
-      <Button
-          className={styles.viewQuoteButton}
-          {...viewQuoteButton} />
+      { sendQuoteButton?.text?.value && 
+        <Button
+          className={styles.sendQuoteButton}
+          {...sendQuoteButton} />
+      }
+      { applyButton?.text?.value && 
+        <Button
+          className={styles.sendQuoteButton}
+          {...applyButton} />
+      }
+      { saveQuoteButton?.text?.value && 
+        <Button
+          className={styles.sendQuoteButton}
+          {...saveQuoteButton} />
+      }
       {modalDisplay}
     </div>
   );

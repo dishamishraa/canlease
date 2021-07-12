@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ContactInfoCustomer } from '../../../modules/types';
 import { ContactInfoCustomerBlockProps, defaultProps } from './ContactInfoCustomerBlock';
 import { isEmptyString } from '../../../lib/utils';
+import { useEffect } from 'react';
 
-export type ContactInfoCustomerBlockPresenterProps = {
-  handleCreateQuote?: (contactInfo: ContactInfoCustomer) => void;
+export type ContactInfoCustomerBlockPresenterProps = ContactInfoCustomerBlockProps & {
 };
 
 const withPresenter = (
@@ -13,10 +12,22 @@ const withPresenter = (
 ): React.FC<ContactInfoCustomerBlockPresenterProps> => {
   const Presenter: React.FC<ContactInfoCustomerBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
-    const { handleCreateQuote } = props;
-    const [customerName, setCustomerName] = useState<string>('');
-    const [customerEmail, setCustomerEmail] = useState<string>('');
-    const [customerCompanyName, setCustomerCompanyName] = useState<string>('');
+    const { 
+      contactInfo,
+      handleCreateQuote,
+    } = props;
+
+    const [customerName, setCustomerName] = useState<string>();
+    const [customerEmail, setCustomerEmail] = useState<string>();
+    const [customerCompanyName, setCustomerCompanyName] = useState<string>();
+
+    useEffect(() => {
+      if (contactInfo) {
+        setCustomerName(contactInfo.customerName);
+        setCustomerEmail(contactInfo.customerEmail);
+        setCustomerCompanyName(contactInfo.customerCompanyName);
+      }
+    }, [contactInfo]);
 
     const handleChangeCustomerName = ({ target: { value } }) => setCustomerName(value);
     const handleChangeCustomerEmail = ({ target: { value } }) => setCustomerEmail(value);
@@ -25,7 +36,7 @@ const withPresenter = (
     const isFormValid = !isEmptyString(customerName) && !isEmptyString(customerEmail)
     && !isEmptyString(customerCompanyName);
     const handleClickViewQuote = () => {
-      if (isFormValid && handleCreateQuote) {
+      if (customerName && customerEmail && customerCompanyName && handleCreateQuote) {
         handleCreateQuote({
           type: 'customer',
           customerName,

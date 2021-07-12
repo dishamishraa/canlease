@@ -53,11 +53,12 @@ const SelectField: React.FC<SelectFieldProps> = ({
         {...label} />
     <Dropdown.Toggle>
       <Select
-        className={cx(styles.select, className)} {...select}/>
+        className={styles.select} 
+        {...select}/>
     </Dropdown.Toggle>
     <Dropdown.Menu align='right' style={{ width: ref.current?.clientWidth }}>
       <ContextualMenu
-        className={cx(styles.dropdownMenu, className)}
+        className={styles.dropdownMenu}
         {...contextualMenu} />
     </Dropdown.Menu>
   </Dropdown>

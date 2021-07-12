@@ -8,6 +8,7 @@ import {
   CreateProfile,
   AddQuote,
   CreateQuote,
+  VALID_LEASE_TYPES,
 } from './types';
 
 const CreateApplicationSchema = Joi.object({
@@ -72,7 +73,7 @@ const CreateQuoteSchema = Joi.object({
   userType: Joi.string().valid(...VALID_USER_TYPES).required(),
   asset: Joi.string().required(),
   applicationAmount: Joi.number().required(),
-  leaseType: Joi.string().required(),
+  leaseType: Joi.string().valid(...VALID_LEASE_TYPES).required(),
   contactName: Joi.string().required(),
   contactEmail: Joi.string().required(),
   contactBusinessName: Joi.string().required(),

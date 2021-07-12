@@ -6,6 +6,7 @@ import styles from './ContactInfoVendorBlock.module.scss';
 import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
+import { ContactInfo, ContactInfoVendor } from '../../../modules/types';
 
 export const defaultProps = {
   blockHeading: {
@@ -130,6 +131,8 @@ export type ContactInfoVendorBlockProps = {
   disclaimerText?: TextProps;
   viewQuoteButton?: ButtonProps;
   className?: string;
+  contactInfo?: ContactInfo;
+  handleCreateQuote?: (contactInfo: ContactInfoVendor) => void;
 };
 
 const ContactInfoVendorBlock: React.FC<ContactInfoVendorBlockProps> = ({

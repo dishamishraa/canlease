@@ -6,6 +6,7 @@ import styles from './UserSelectionBlock.module.scss';
 import Text, { TextProps } from '../../atoms/Text';
 import CardList, { CardListProps } from '../../organisms/CardList';
 import Modal, { ModalProps } from '../../organisms/Modal';
+import { UserType } from '../../../modules/profile/types';
 
 export const defaultProps = {
   blockHeading: {
@@ -32,7 +33,7 @@ export type UserSelectionBlockProps = {
   blockHeading?: TextProps;
   cardList?: CardListProps;
   className?: string;
-  setUserType?: React.Dispatch<React.SetStateAction<string>>;
+  setUserType?: (userType: UserType) => void;
   modal?: ModalProps;
   showModal?: boolean;
 };

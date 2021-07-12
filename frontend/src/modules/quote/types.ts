@@ -1,10 +1,14 @@
+import { UserType } from "../profile/types";
+
+export type LeaseType = 'stretch' | '$10';
+
 export type Quote = {
   quoteId: string;
   asset: string;
   applicationAmount: number;
   quoteOptions: QuoteOption[];
   quoteExpiryDate: string;
-  leaseType: string;
+  leaseType: LeaseType;
 };
 
 export type QuoteOption = {
@@ -15,10 +19,10 @@ export type QuoteOption = {
 };
 
 export type CreateCustomerQuotePayload = {
-  userType: string;
+  userType: UserType;
   asset: string;
   applicationAmount: number;
-  leaseType: string;
+  leaseType: LeaseType;
   contactName: string;
   contactEmail: string;
   contactBusinessName: string;
