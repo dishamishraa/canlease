@@ -3,7 +3,7 @@ import { useLocation, useHistory, Redirect } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { AuthPageProps } from './AuthPage';
 import { APIResponse } from '../../../lib/api/types';
-import { BFF_DOMAIN, SESSION_COOKIE_NAME } from '../../../lib/config';
+import { SESSION_COOKIE_NAME } from '../../../lib/config';
 import {
   AccountResponse, SignInPayload, SignUpPayload, UpdateNamePayload,
 } from '../../../modules/account/types';
@@ -151,8 +151,7 @@ const withPresenter = (
       if (data) {
         setAccount(data);
         // store jwt token in cookie
-        setCookie(SESSION_COOKIE_NAME, data.token, { path: '/',  secure: true, sameSite: 'none' });
-        setCookie(SESSION_COOKIE_NAME, data.token, { domain: BFF_DOMAIN, path: '/',  secure: true, sameSite: 'none' });
+        setCookie(SESSION_COOKIE_NAME, data.token);
 
         try {
           // find the salesforce profile with the identity account id
