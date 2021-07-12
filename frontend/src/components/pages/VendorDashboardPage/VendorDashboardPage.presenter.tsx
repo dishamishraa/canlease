@@ -30,7 +30,7 @@ const withPresenter = (
       const history = useHistory();
 
       const handleViewClicked = (status, content) => (event: any) => {
-        history.push('/portal/quotes')
+        history.push(`/portal/${content}`)
       }
 
       const getApplicationStatus = (applicationStatus) => {
@@ -104,7 +104,7 @@ const withPresenter = (
                     ...dashBoardCardProps.button.text,
                     value: t('vendor_dashboard.metrics.view_button'),
                   },
-                  onButtonClicked: handleViewClicked("Active", "Quote"),
+                  onButtonClicked: handleViewClicked("Active", "quotes"),
                 }
               },
               {
@@ -124,7 +124,7 @@ const withPresenter = (
                     ...dashBoardCardProps.button.text,
                     value: t('vendor_dashboard.metrics.view_button'),
                   },
-                  onButtonClicked: handleViewClicked("Expiring soon", "Quote"),
+                  onButtonClicked: handleViewClicked("Expiring soon", "quotes"),
                 }
               },
               {
@@ -144,7 +144,7 @@ const withPresenter = (
                     ...dashBoardCardProps.button.text,
                     value: t('vendor_dashboard.metrics.view_button'),
                   },
-                  onButtonClicked: handleViewClicked("Under Review", "Application"),
+                  onButtonClicked: handleViewClicked("Under Review", "applications"),
                 }
               },
               {
