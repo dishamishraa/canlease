@@ -95,7 +95,7 @@ const withPresenter = (
     };
 
     const handleSaveQuote = () => {
-      history.push('/account/signin', { action: 'save_quote' });
+      history.push('/account/signin', { action: 'save_quote', quoteId: quote?.quoteId });
     };
 
     const handleSendQuote = async () => {

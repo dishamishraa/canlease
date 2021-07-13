@@ -8,6 +8,7 @@ import { QuoteSelectionBlockProps , defaultProps} from './QuoteSelectionBlock';
 import { defaultProps as defaultRateDetailItemProps } from '../../molecules/RateDetailItem/RateDetailItem';
 import { Quote } from '../../../modules/quote/types';
 import { DefaultQuoteOption, TermDisplay } from '../../../modules/types';
+import { QuoteFlowType } from '../../../modules/types';
 
 export type QuoteSelectionBlockPresenterProps = QuoteSelectionBlockProps & {
     quoteDetails: Quote | null;
@@ -36,9 +37,9 @@ const withPresenter = (
 
     const { t } = useTranslation();
     const history = useHistory();
-    const { state } = useLocation<{accessedFromEmail: boolean}>();
-    const { accessedFromEmail } = state || {};
-    if (accessedFromEmail === true && setStepperCurrentValue && setStepperTotalValue) {
+    const { state } = useLocation<{flowType: QuoteFlowType}>();
+    const { flowType } = state || {};
+    if (flowType === 'instaQuote' && setStepperCurrentValue && setStepperTotalValue) {
       setStepperCurrentValue(1);
       setStepperTotalValue(5);
     }

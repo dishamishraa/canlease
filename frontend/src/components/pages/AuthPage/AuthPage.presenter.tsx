@@ -22,6 +22,7 @@ export type AuthPagePresenterProps = AuthPageProps & {
   setProfile: (profile: Profile | null) => void;
   createProfile: (payload: CreateProfilePayload) => Promise<APIResponse<Profile>>;
   updateName: (payload: UpdateNamePayload) => Promise<APIResponse<void>>;
+  addQuoteToProfile: (quoteId: string) => Promise<APIResponse<void>>;
 };
 
 const withPresenter = (
@@ -37,6 +38,7 @@ const withPresenter = (
       setProfile,
       createProfile,
       updateName,
+      addQuoteToProfile,
     } = props;
 
     const [, setCookie] = useCookies();
@@ -51,7 +53,7 @@ const withPresenter = (
     }, [locationState]);
 
     const {
-      action, email, personalInfo, contactInfo, businessInfo,
+      action, email, personalInfo, contactInfo, businessInfo, quoteId,
     } = state;
 
     const setEmail = (email: string) => {
@@ -80,19 +82,26 @@ const withPresenter = (
     }
 
     const handleAuthAction = async () => {
-      let handled = false;
       switch(action) {
         case 'apply_finance':
-          // TODO
+          history.push('/portal/application/quoteSelection', { flowType: 'instaQuote' });
           break;
         case 'save_quote':
-          // TODO
+          if (quoteId) {
+            handleAddQuoteToProfile(quoteId)
+          }
+          history.push('/portal/quotes');
           break;
         default:
+          history.push('/portal/dashboard');
           break;
       }
-      if(!handled) {
-        history.push('/portal/dashboard');
+    }
+
+    const handleAddQuoteToProfile = async (quoteId: string) => {
+      const { error } = await addQuoteToProfile(quoteId);
+      if(error) {
+        return;
       }
     }
 
