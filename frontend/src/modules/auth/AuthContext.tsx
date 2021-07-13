@@ -59,6 +59,17 @@ export const AuthProvider: React.FC<{}> = ({ children }) => {
     data,
   });
 
+  useEffect(() => {
+    updateProfile({
+      loading,
+      error,
+      data: data ? {
+        ...data,
+        userType: 'vendor',
+      } : null,
+    });
+  }, [loading, error, data]);
+
   const setAccount = (account: Account | null) => {
     updateAccount(account);
   }

@@ -1,6 +1,6 @@
 import SalesforceApi from '../../lib/salesforce/SalesforceApi';
 import {
-  Profile, CreateProfile, AddQuote, Quote,
+  Profile, CreateProfile, Quote,
 } from '../../lib/salesforce/types';
 import {
   ProfileServiceContract,
@@ -21,8 +21,10 @@ export default class ProfileService implements ProfileServiceContract {
     return this.salesforceApi.createProfile(payload);
   }
 
-  addQuoteToProfile(portalId: string, payload: AddQuote): Promise<void> {
-    return this.salesforceApi.addQuoteToProfile(portalId, payload);
+  addQuoteToProfile(portalId: string, quoteId: string): Promise<void> {
+    return this.salesforceApi.addQuoteToProfile(portalId, {
+      portalId, quoteId,
+    });
   }
 
   getAllQuotesFromProfile(portalId: string): Promise<Quote[]> {

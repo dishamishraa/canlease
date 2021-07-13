@@ -42,7 +42,8 @@ export function createProfileRouter(controllers: {
     if (!validateId(id) || !validateAddQuote(req.body)) {
       throw BadRequestError();
     }
-    await profileController.addQuoteToProfile(id, req.body);
+    const { quoteId } = req.body;
+    await profileController.addQuoteToProfile(id, quoteId);
     res.status(204);
   }));
 

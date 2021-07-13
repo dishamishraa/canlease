@@ -4,7 +4,6 @@ export type SendQuote = {
   email: string;
   quoteId: string;
 };
-
 export interface QuoteControllerContract {
   createQuote(payload: CreateQuote): Promise<Quote>;
   getQuote(quoteId: string): Promise<Quote>;

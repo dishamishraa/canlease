@@ -13,8 +13,10 @@ const withPresenter = (
   const Presenter: React.FC<ContactInfoCustomerBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
     const { 
+      flowType,
+      quoteUserType,
       contactInfo,
-      handleCreateQuote,
+      setContactInfo,
     } = props;
 
     const [customerName, setCustomerName] = useState<string>();
@@ -36,8 +38,8 @@ const withPresenter = (
     const isFormValid = !isEmptyString(customerName) && !isEmptyString(customerEmail)
     && !isEmptyString(customerCompanyName);
     const handleClickViewQuote = async () => {
-      if (customerName && customerEmail && customerCompanyName && handleCreateQuote) {
-        await handleCreateQuote({
+      if (customerName && customerEmail && customerCompanyName && setContactInfo) {
+        await setContactInfo({
           type: 'customer',
           customerName,
           customerEmail,
@@ -46,18 +48,19 @@ const withPresenter = (
       }
     };
 
+    const showAsCustomer = flowType === 'createQuote' && quoteUserType === 'vendor';
     const blockProps: ContactInfoCustomerBlockProps = {
       ...defaultProps,
       ...props,
       blockHeading: {
         ...defaultProps.blockHeading,
-        value: t('contact_info.header_your'),
+        value: showAsCustomer ? t('contact_info.header_customer') : t('contact_info.header_your'),
       },
       nameTextField: {
         ...defaultProps.nameTextField,
         label: {
           ...defaultProps.nameTextField?.label,
-          value: t('contact_info.name'),
+          value: showAsCustomer ? t('contact_info.customer_name') : t('contact_info.name'),
         },
         textInput: {
           onTextChanged: handleChangeCustomerName,
@@ -68,7 +71,7 @@ const withPresenter = (
         ...defaultProps.businessEmailTextField,
         label: {
           ...defaultProps.businessEmailTextField?.label,
-          value: t('contact_info.business_email'),
+          value: showAsCustomer ? t('contact_info.customer_email') : t('contact_info.business_email'),
         },
         textInput: {
           onTextChanged: handleChangeCustomerEmail,
@@ -79,7 +82,7 @@ const withPresenter = (
         ...defaultProps.companyNameField,
         label: {
           ...defaultProps.companyNameField?.label,
-          value: t('contact_info.company_name'),
+          value: showAsCustomer ? t('contact_info.customer_company_name') : t('contact_info.company_name'),
         },
         textInput: {
           onTextChanged: handleChangeCustomerCompanyName,

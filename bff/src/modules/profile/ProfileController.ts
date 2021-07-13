@@ -1,5 +1,5 @@
 import {
-  Profile, CreateProfile, AddQuote, Quote,
+  Profile, CreateProfile, Quote,
 } from '../../lib/salesforce/types';
 import {
   ProfileControllerContract, ProfileServiceContract,
@@ -20,8 +20,8 @@ export default class ProfileController implements ProfileControllerContract {
     return this.service.createProfile(payload);
   }
 
-  addQuoteToProfile(portalId: string, payload: AddQuote): Promise<void> {
-    return this.service.addQuoteToProfile(portalId, payload);
+  addQuoteToProfile(portalId: string, quoteId: string): Promise<void> {
+    return this.service.addQuoteToProfile(portalId, quoteId);
   }
 
   getAllQuotesFromProfile(portalId: string): Promise<Quote[]> {

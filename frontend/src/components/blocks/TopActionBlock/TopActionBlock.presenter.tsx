@@ -77,7 +77,7 @@ const withPresenter = (
           if(contentType === 'Application') {
             // TODO
           } else {
-            // TODO
+            history.push('/portal/quote');
           }
         },
         text: {

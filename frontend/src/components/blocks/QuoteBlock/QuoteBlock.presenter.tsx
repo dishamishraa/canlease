@@ -10,16 +10,17 @@ import { ModalProps, defaultProps as modalPropsDefaultProps } from '../../organi
 import EmailIcon from '../../../resources/icons/Email.svg';
 
 import { defaultProps as defaultRateDetailItemProps } from '../../molecules/RateDetailItem/RateDetailItem';
-import { Quote } from '../../../modules/quote/types';
+import { Quote, SendQuote } from '../../../modules/quote/types';
 import { TermDisplay } from '../../../modules/types';
-import { UserType } from '../../../modules/profile/types';
 import { isExpired } from '../../../lib/utils';
+import { APIResponse } from '../../../lib/api/types';
+import { sendQuote } from '../../../modules/quote/api';
 
 export type QuoteBlockPresenterProps = QuoteBlockProps & {
-  userType?: UserType; 
   quote: Quote | null;
   error?: Error;
   loading: boolean;
+  sendQuote?: (payload: SendQuote) => Promise<APIResponse<void>>;
 };
 
 const withPresenter = (
@@ -30,7 +31,8 @@ const withPresenter = (
       loading,
       error,
       quote,
-      userType,
+      flowType,
+      quoteUserType,
     } = props;
 
     const history = useHistory();
@@ -84,7 +86,12 @@ const withPresenter = (
     };
 
     const handleApplyForFinance = () => {
-      history.push('/account/signin', { action: 'apply_finance' });
+      if(flowType === 'instaQuote') {
+        history.push('/account/signin', { action: 'apply_finance' });
+      } else {
+        // TODO
+        history.push('/portal/applications');
+      }
     };
 
     const handleSaveQuote = () => {
@@ -92,7 +99,13 @@ const withPresenter = (
     };
 
     const handleSendQuote = async () => {
-      // TODO send email
+      if(quote) {
+        await sendQuote({
+          email: '', // TODO
+          quoteId: quote?.quoteId,
+        });
+        setShowModal(true);
+      }
     };
 
     const quoteExpired = quote ? isExpired(quote?.quoteExpiryDate) : true;
@@ -277,7 +290,7 @@ const withPresenter = (
       },
     };
 
-    if(userType === 'vendor') {
+    if(quoteUserType === 'vendor') {
       quoteBlockProps.sendQuoteButton = {
         ...defaultProps.sendQuoteButton,
         text: {
@@ -297,14 +310,17 @@ const withPresenter = (
         onButtonClicked: handleApplyForFinance,
         disabled: quoteExpired,
       }
-      quoteBlockProps.saveQuoteButton = {
-        ...defaultProps.saveQuoteButton,
-        text: {
-          ...defaultProps.saveQuoteButton.text,
-          value: t('view_quote.save_quote_button_text'),
-        },
-        onButtonClicked: handleSaveQuote,
-        disabled: quoteExpired,
+
+      if (flowType === 'instaQuote') {
+        quoteBlockProps.saveQuoteButton = {
+          ...defaultProps.saveQuoteButton,
+          text: {
+            ...defaultProps.saveQuoteButton.text,
+            value: t('view_quote.save_quote_button_text'),
+          },
+          onButtonClicked: handleSaveQuote,
+          disabled: quoteExpired,
+        }
       }
     }
 

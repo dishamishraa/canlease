@@ -34,14 +34,14 @@ const withPresenter = (
 
     const isFormValid = !isEmptyString(equipmentName) && !isEmptyString(equipmentCost);
 
-    const handleClickNext = () => {
+    const handleClickNext = async () => {
       if (equipmentName && equipmentCost && setEquipmentLeaseInfo) {
         const leaseInfo = {
           name: equipmentName,
           cost: equipmentCost,
           leaseType: equipmentLeaseType,
         };
-        setEquipmentLeaseInfo(leaseInfo);
+        await setEquipmentLeaseInfo(leaseInfo);
       }
     };
     const handleChangeEquipmentName = ({ target: { value } }) => setEquipmentName(value);

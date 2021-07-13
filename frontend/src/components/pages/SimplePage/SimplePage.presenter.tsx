@@ -21,6 +21,8 @@ const withPresenter = (
   const Presenter: React.FC<SimplePagePresenterProps> = (props) => {
     const {
       createQuote,
+      profile,
+      flowType,
     } = props;
 
     const [, setCookie] = useCookies();
@@ -39,41 +41,103 @@ const withPresenter = (
       }
     }, [locationState]);
 
-    const { userType, equipmentLeaseInfo, contactInfo } = state;
+    const { quoteUserType, equipmentLeaseInfo, contactInfo } = state;
 
-    const setUserType = (userType: UserType) => {
+    const setQuoteUserType = (quoteUserType: UserType) => {
       const newState = {
-        userType,
+        quoteUserType,
       };
       setState(newState);
-      history.push('/getQuote', newState);
+      if (flowType === 'instaQuote') {
+        history.push('/getQuote', newState);
+      } else {
+        history.push('/portal/quote/getQuote', newState);
+      }
     }
 
-    const setEquipmentLeaseInfo = (equipmentLeaseInfo: EquipmentLeaseInfo) => {
+    const handleCreateQuote = async (createPayload: CreateQuotePayload) => {
+      const { data } = await createQuote(createPayload);
+      if (data) {
+        const expiryDate = new Date();
+        expiryDate.setTime(expiryDate.getTime() + Number(MAX_AGE));
+
+        const { quoteId } = data;
+        if (flowType === 'instaQuote') {
+          setCookie(INSTANT_QUOTE_COOKIE, quoteId, { expires: expiryDate });
+          setQuote(data);
+          history.push(`/instaQuote/${quoteId}`, { quote: data });
+        } else {
+          history.push(`/portal/quote/${quoteId}`, { quote: data });
+        }
+      }
+    }
+    
+    const setEquipmentLeaseInfo = async (equipmentLeaseInfo: EquipmentLeaseInfo) => {
       const newState = {
         ...state,
         equipmentLeaseInfo,
       };
       setState(newState);
-      history.push('/contactInformation', newState);
+      if (flowType === 'instaQuote') {
+        history.push('/contactInformation', newState);
+      } else {
+        if (quoteUserType === 'vendor') {
+          history.push('/portal/quote/customerInformation', newState);
+        } else {
+          if(profile) {
+            const { name: equipmentName, cost: equipmentCost, leaseType } = equipmentLeaseInfo;
+            const createPayload: CreateQuotePayload = {
+              userType: 'customer',
+              asset: equipmentName,
+              applicationAmount: parseInt(equipmentCost),
+              leaseType,
+              contactName: profile.name,
+              contactEmail: profile.email,
+              contactBusinessName: profile.companyName,
+            };
+            await handleCreateQuote(createPayload);
+          }
+        }
+      }
     }
 
-    const handleCreateQuote = async (contactInfo: ContactInfo) => {
-      const newState = {
-        ...state,
-        contactInfo,
-      };
-      setState(newState);
+    const setContactInfo = async (contactInfo: ContactInfo) => {
+      let completeContactInfo = contactInfo;
+      if(flowType === 'instaQuote') {
+        const newState = {
+          ...state,
+          completeContactInfo,
+        };
+        setState(newState);
 
-      if(quote) {
-        const { quoteId } = quote;
-        history.push(`/instaQuote/${quoteId}`, { userType, quote });
-      } else if (userType && equipmentLeaseInfo) {
+        if(quote) {
+          const { quoteId } = quote;
+          history.push(`/instaQuote/${quoteId}`, { quote });
+          return;
+        } 
+      } else {
+        if (quoteUserType === 'vendor' && profile) {
+          completeContactInfo = {
+            ...completeContactInfo,
+            type: 'vendor',
+            vendorName: profile.name,
+            businessEmail: profile.email,
+            companyName: profile.companyName,
+          }
+        }
+        const newState = {
+          ...state,
+          completeContactInfo,
+        };
+        setState(newState);
+      }
+      
+      if (quoteUserType && equipmentLeaseInfo) {
         const { name: equipmentName, cost: equipmentCost, leaseType } = equipmentLeaseInfo;
-        const { customerName, customerEmail, customerCompanyName } = contactInfo;
+        const { customerName, customerEmail, customerCompanyName } = completeContactInfo;
 
         let createPayload: CreateQuotePayload = {
-          userType,
+          userType: quoteUserType,
           asset: equipmentName,
           applicationAmount: parseInt(equipmentCost),
           leaseType,
@@ -82,8 +146,8 @@ const withPresenter = (
           contactBusinessName: customerCompanyName,
         };
 
-        if (contactInfo.type === 'vendor') {
-          const { vendorName, businessEmail, companyName } = contactInfo;
+        if (completeContactInfo.type === 'vendor') {
+          const { vendorName, businessEmail, companyName } = completeContactInfo;
           createPayload = {
             ...createPayload,
             vendorName,
@@ -92,23 +156,14 @@ const withPresenter = (
           };
         }
 
-        const { data } = await createQuote(createPayload);
-        if (data) {
-          const expiryDate = new Date();
-          expiryDate.setTime(expiryDate.getTime() + Number(MAX_AGE));
-
-          const { quoteId } = data;
-          setCookie(INSTANT_QUOTE_COOKIE, quoteId, { expires: expiryDate });
-          setQuote(data);
-          history.push(`/instaQuote/${quoteId}`, { userType, quote: data });
-        }
+        await handleCreateQuote(createPayload);
       }
     };
 
     const pathnameNormalized = pathname.toLowerCase();
     switch (pathnameNormalized) {
       case '/getquote':
-        if (!userType) {
+        if (!quoteUserType) {
           return <Redirect to='/' />;
         }
         break;
@@ -117,17 +172,26 @@ const withPresenter = (
           return <Redirect to='/' />;
         }
         break;
+      case '/portal/quote/getquote':
+        if (profile?.userType === 'vendor' && !quoteUserType) {
+          return <Redirect to='/portal/quote' />;
+        }
+        break;
+      case '/portal/quote/customerinformation':
+        if (isEmpty(equipmentLeaseInfo)) {
+          return <Redirect to='/portal/quote' />;
+        }
+        break;
     }
 
     return <View
           {...props}
-          showBackButton={pathnameNormalized !== '/'}
-          userType={userType}
+          quoteUserType={quoteUserType}
           equipmentLeaseInfo={equipmentLeaseInfo}
           contactInfo={contactInfo}
-          setUserType={setUserType}
+          setQuoteUserType={setQuoteUserType}
           setEquipmentLeaseInfo={setEquipmentLeaseInfo}
-          handleCreateQuote={handleCreateQuote}/>;
+          setContactInfo={setContactInfo}/>;
   };
   return Presenter;
 };

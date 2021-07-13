@@ -7,6 +7,7 @@ import Text, { TextProps } from '../../atoms/Text';
 import CardList, { CardListProps } from '../../organisms/CardList';
 import Modal, { ModalProps } from '../../organisms/Modal';
 import { UserType } from '../../../modules/profile/types';
+import { QuoteFlowType } from '../../../modules/types';
 
 export const defaultProps = {
   blockHeading: {
@@ -33,9 +34,10 @@ export type UserSelectionBlockProps = {
   blockHeading?: TextProps;
   cardList?: CardListProps;
   className?: string;
-  setUserType?: (userType: UserType) => void;
+  setQuoteUserType?: (userType: UserType) => void;
   modal?: ModalProps;
   showModal?: boolean;
+  flowType?: QuoteFlowType;
 };
 
 const UserSelectionBlock: React.FC<UserSelectionBlockProps> = ({

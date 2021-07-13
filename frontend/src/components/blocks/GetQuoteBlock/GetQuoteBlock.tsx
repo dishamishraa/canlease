@@ -84,7 +84,7 @@ export type GetQuoteBlockProps = {
   nextButton?: ButtonProps;
   className?: string;
   equipmentLeaseInfo?: EquipmentLeaseInfo;
-  setEquipmentLeaseInfo?: (equipmentLeaseInfo: EquipmentLeaseInfo) => void;
+  setEquipmentLeaseInfo?: (equipmentLeaseInfo: EquipmentLeaseInfo) => Promise<void>;
 };
 
 const GetQuoteBlock: React.FC<GetQuoteBlockProps> = ({

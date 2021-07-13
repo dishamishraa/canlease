@@ -11,76 +11,129 @@ import ContactInfoCustomerBlock from '../../blocks/ContactInfoCustomerBlock';
 import ContactInfoVendorBlock from '../../blocks/ContactInfoVendorBlock';
 import QuoteBlock from '../../blocks/QuoteBlock';
 import ActionBlock from '../../blocks/ActionBlock';
-import { ContactInfo, EquipmentLeaseInfo } from '../../../modules/types';
-import { UserType } from '../../../modules/profile/types';
+import { ContactInfo, EquipmentLeaseInfo, QuoteFlowType } from '../../../modules/types';
+import { Profile, UserType } from '../../../modules/profile/types';
 
 export const defaultProps = {
 };
 
 export type SimplePageProps = {
   className?: string;
-  showBackButton?: boolean;
-  userType?: UserType;
+  quoteUserType?: UserType;
   equipmentLeaseInfo?: EquipmentLeaseInfo;
   contactInfo?: ContactInfo;
-  setUserType?: (userType: UserType) => void;
-  setEquipmentLeaseInfo?: (equipmentLeaseInfo: EquipmentLeaseInfo) => void;
-  handleCreateQuote?: (contactInfo: ContactInfo) => Promise<void>;
+  setQuoteUserType?: (userType: UserType) => void;
+  setEquipmentLeaseInfo?: (equipmentLeaseInfo: EquipmentLeaseInfo) => Promise<void>;
+  setContactInfo?: (contactInfo: ContactInfo) => Promise<void>;
+  flowType?: QuoteFlowType;
+  profile?: Profile;
 };
 
 const routes = {
-  userSelection: '/',
-  getQuote: '/getQuote',
-  contactInformation: '/contactInformation',
-  instaQuote: '/instaQuote/:quoteId',
-  invalid: '/',
+  instaQuote: {
+    userSelection: '/',
+    getQuote: '/getQuote',
+    contactInformation: '/contactInformation',
+    instaQuote: '/instaQuote/:quoteId',
+    invalid: '/',
+  },
+  createQuote: {
+    typeSelection: '/portal/quote/selectType',
+    getQuote: '/portal/quote/getQuote',
+    customerInformation: '/portal/quote/customerInformation',
+    quoteDetails: '/portal/quote/:quoteId',
+    invalid: '/',
+  },
 };
 
 const SimplePage: React.FC<SimplePageProps> = ({
-  showBackButton,
   className,
-  userType,
+  quoteUserType,
   equipmentLeaseInfo,
   contactInfo,
-  setUserType,
+  setQuoteUserType,
   setEquipmentLeaseInfo,
-  handleCreateQuote,
+  setContactInfo,
+  flowType,
+  profile,
 }) => {
-  const ContactInfoBlock = userType === 'vendor' ? ContactInfoVendorBlock : ContactInfoCustomerBlock;
+  const ContactInfoBlock = quoteUserType === 'vendor' && flowType === 'instaQuote' ? 
+    ContactInfoVendorBlock : 
+    ContactInfoCustomerBlock;
+
+  // get correct routes based on the flow
+  const currentFlow = flowType || 'instaQuote';
+
+  let topBar;
+  let defaultPath = routes.instaQuote.userSelection;
+  if(currentFlow === 'createQuote') {
+    topBar = (<TopBar
+      className={styles.topBar}
+      showBackButton={true} />);
+    
+    if(profile?.userType === 'customer') {
+      defaultPath = routes.createQuote.getQuote;
+    } else {
+      defaultPath = routes.createQuote.typeSelection;
+    }
+  }
 
   return (
     <div className={cx(styles.simplePage, className)}>
       <div className={styles.topContent}>
-        {/* <TopBar
-          className={styles.topBar}
-          showBackButton={showBackButton} /> */}
+        {topBar}
         <Switch>
-          <Route exact path={routes.userSelection}>
+          <Route exact 
+            path={[
+              routes.instaQuote.userSelection,
+              routes.createQuote.typeSelection,
+            ]}>
             <UserSelectionBlock
               className={styles.block}
-              setUserType={setUserType}
+              setQuoteUserType={setQuoteUserType}
+              flowType={flowType}
               />
           </Route>
-          <Route exact path={routes.getQuote}>
+          <Route exact 
+            path={[
+              routes.instaQuote.getQuote,
+              routes.createQuote.getQuote,
+            ]}>
             <GetQuoteBlock
               className={styles.block}
               equipmentLeaseInfo={equipmentLeaseInfo}
               setEquipmentLeaseInfo={setEquipmentLeaseInfo}
               />
           </Route>
-          <Route exact path={routes.contactInformation}>
+          <Route exact 
+            path={[
+              routes.instaQuote.contactInformation,
+              routes.createQuote.customerInformation,
+            ]}>
             <ContactInfoBlock
               className={styles.block}
               contactInfo={contactInfo}
-              handleCreateQuote={handleCreateQuote}
+              setContactInfo={setContactInfo}
+              quoteUserType={quoteUserType}
+              flowType={flowType}
               />
           </Route>
-          <Route exact path={routes.instaQuote}>
+          <Route exact 
+            path={[
+              routes.instaQuote.instaQuote, 
+              routes.createQuote.quoteDetails,
+            ]}>
             <QuoteBlock
-              className={styles.block} />
+              className={styles.block}
+              quoteUserType={quoteUserType}
+              flowType={flowType} />
           </Route>
-          <Route path={routes.invalid}>
-            <Redirect to={routes.userSelection}/>
+          <Route 
+            path={[
+              routes.instaQuote.invalid,
+              routes.createQuote.invalid,
+            ]}>
+            <Redirect to={defaultPath}/>
           </Route>
         </Switch>
       </div>

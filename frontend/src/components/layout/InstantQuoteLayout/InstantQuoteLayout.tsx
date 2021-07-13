@@ -171,6 +171,7 @@ const InstantQuoteLayout: React.FC<InstantQuoteLayoutProps> = ({
         <div className={styles.bodyContent}>
           <SimplePage
             className={styles.simplePage}
+            flowType='instaQuote'
             {...simplePage} />
         </div>
       </div>

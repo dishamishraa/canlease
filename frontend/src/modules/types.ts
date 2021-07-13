@@ -2,7 +2,7 @@ import { UserType } from "./profile/types";
 import { LeaseType, Quote } from "./quote/types";
 
 export type CreateQuoteState = {
-  userType?: UserType;
+  quoteUserType?: UserType;
   equipmentLeaseInfo?: EquipmentLeaseInfo;
   contactInfo?: ContactInfo;
 }
@@ -16,6 +16,8 @@ export type AuthState = {
   contactInfo?: ContactInformation;
   businessInfo?: BusinessInformation;
 }
+
+export type QuoteFlowType = 'instaQuote' | 'createQuote';
 
 export type ViewQuoteType = {
   userType?: UserType;

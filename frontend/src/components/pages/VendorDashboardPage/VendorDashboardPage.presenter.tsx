@@ -161,6 +161,9 @@ const withPresenter = (
                     ...dashBoardCardProps.button.text,
                     value: t('vendor_dashboard.metrics.create_quote'),
                   },
+                  onButtonClicked: () => {
+                    history.push('/portal/quote');
+                  },
                 }
               },
             ]

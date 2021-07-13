@@ -40,7 +40,7 @@ const withPresenter = (
         },
         {
             ...defaultMainMenutItemProps,
-            type: normalizedPathname.startsWith('/portal/quotes') ? 'Selected' : 'Default',
+            type: normalizedPathname.startsWith('/portal/quote') ? 'Selected' : 'Default',
             icon: {
                 ...defaultMainMenutItemProps.icon,
                 asset: 'Quotes',

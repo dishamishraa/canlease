@@ -5,6 +5,7 @@ import { QuoteBlockPresenterProps } from './QuoteBlock.presenter';
 import useQuoteDetails from '../../../modules/quote/useQuoteDetails';
 import { isEmpty } from '../../../lib/utils';
 import { ViewQuoteType } from '../../../modules/types';
+import { useSendQuote } from '../../../modules/quote';
 
 type InteractorRenderProps = {
   quoteId: string;
@@ -26,8 +27,9 @@ const withInteractor = (
   const Interactor: React.FC<QuoteBlockProps> = (props) => {
     const { quoteId } = useParams<{quoteId: string}>();
     const { state } = useLocation<ViewQuoteType | undefined>();
+    const [, sendQuote] = useSendQuote();
     
-    const { userType, quote } = state || {};
+    const { quote } = state || {};
 
     if(isEmpty(quote)) {
       return <GetQuoteInteractor quoteId={quoteId}>
@@ -35,7 +37,7 @@ const withInteractor = (
           <Presenter 
             {...props}
             {...valueProps}
-            userType={userType}
+            sendQuote={sendQuote}
             />
         }
       </GetQuoteInteractor>
@@ -46,7 +48,7 @@ const withInteractor = (
             quote={quote || null}
             loading={false}
             error={undefined}
-            userType={userType}
+            sendQuote={sendQuote}
         />;
   };
 

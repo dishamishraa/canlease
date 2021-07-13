@@ -10,9 +10,10 @@ import EndUserDashboardPage from '../../pages/EndUserDashboardPage';
 import VendorDashboardPage from '../../pages/VendorDashboardPage';
 import ApplicationPage from '../../pages/ApplicationPage';
 import ContentPage from '../../pages/ContentPage';
-import SimplePage from '../../pages/SimplePage/SimplePage';
+import SimplePage from '../../pages/SimplePage';
 import MenuBlock from '../../blocks/MenuBlock';
-import QuotePage from '../../pages/QuotePage';
+import { useContext } from 'react';
+import { AuthContext } from '../../../modules/auth';
 
 export const defaultProps = {
   header: {
@@ -55,7 +56,6 @@ export const routes = {
   application: '/portal/application',
   quotes: '/portal/quotes',
   quote: '/portal/quote',
-  leasingQuote: '/portal/viewquote/:quoteId',
   invalid: '/',
 };
 
@@ -63,7 +63,8 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
   header,
   className,
 }) => {
-  let userType = 'user';
+  const { profile } = useContext(AuthContext);
+  const userType = profile?.userType || 'customer';
   const DashboardPage = userType === 'vendor' ? VendorDashboardPage : EndUserDashboardPage;
   return (
     <div className={cx(styles.portalLayout, className)}>
@@ -84,15 +85,13 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
                 className={styles.page} />
             </Route>
             <Route path={routes.quote}>
-              <QuotePage
+              <SimplePage
+                flowType='createQuote'
+                profile={profile || undefined}
                 className={styles.page} />
             </Route>
             <Route path={routes.application}>
               <ApplicationPage
-                className={styles.page} />
-            </Route>
-            <Route path={routes.leasingQuote}>
-              <SimplePage
                 className={styles.page} />
             </Route>
             <Route path={routes.invalid}>

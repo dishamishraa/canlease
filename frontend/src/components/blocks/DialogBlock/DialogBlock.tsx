@@ -56,6 +56,7 @@ export type DialogBlockProps = {
   resolutionText?: TextProps;
   doneButton?: ButtonProps;
   className?: string;
+  handleDone?: () => void;
 };
 
 const DialogBlock: React.FC<DialogBlockProps> = ({

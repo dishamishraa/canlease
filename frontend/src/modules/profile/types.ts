@@ -69,3 +69,7 @@ export type UpdateProfilePayload = {
   businessPhone?: string;
   website?: string;
 };
+
+export type AddQuotePaylod = {
+  quoteId: string;
+}

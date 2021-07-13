@@ -13,7 +13,7 @@ const withPresenter = (
     const { t } = useTranslation();
     const { 
       contactInfo,
-      handleCreateQuote,
+      setContactInfo,
     } = props;
 
     const [vendorName, setVendorName] = useState<string>();
@@ -56,9 +56,9 @@ const withPresenter = (
         customerName &&
         customerEmail &&
         customerCompanyName &&
-        handleCreateQuote
+        setContactInfo
       ) {
-        await handleCreateQuote({
+        await setContactInfo({
           type: 'vendor',
           vendorName,
           businessEmail,

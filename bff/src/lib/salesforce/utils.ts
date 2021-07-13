@@ -66,7 +66,6 @@ const CreateProfileSchema = Joi.object({
 
 const AddQuoteSchema = Joi.object({
   quoteId: Joi.string().required(),
-  portalId: Joi.string().required(),
 });
 
 const CreateQuoteSchema = Joi.object({

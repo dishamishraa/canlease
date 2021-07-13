@@ -119,7 +119,7 @@ const withPresenter = (
                   value: t('customer_dashboard.create_quote'),
                 },
                 onButtonClicked: () => {
-                  // TODO create quote from dashboard
+                  history.push('/portal/quote');
                 }
             }
         }
@@ -192,7 +192,7 @@ const withPresenter = (
                   value: t('customer_dashboard.apply_finance'),
                 },
                 onButtonClicked: () => {
-                  // TODO apply for finance from dashboard
+                  // TODO
                 }
             }
         }

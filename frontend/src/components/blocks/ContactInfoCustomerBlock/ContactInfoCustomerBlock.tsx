@@ -6,7 +6,8 @@ import styles from './ContactInfoCustomerBlock.module.scss';
 import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
-import { ContactInfo, ContactInfoCustomer } from '../../../modules/types';
+import { ContactInfo, ContactInfoCustomer, QuoteFlowType } from '../../../modules/types';
+import { UserType } from '../../../modules/profile/types';
 
 export const defaultProps = {
   blockHeading: {
@@ -83,7 +84,9 @@ export type ContactInfoCustomerBlockProps = {
   viewQuoteButton?: ButtonProps;
   className?: string;
   contactInfo?: ContactInfo;
-  handleCreateQuote?: (contactInfo: ContactInfoCustomer) => Promise<void>;
+  setContactInfo?: (contactInfo: ContactInfoCustomer) => Promise<void>;
+  quoteUserType?: UserType;
+  flowType?: QuoteFlowType;
 };
 
 const ContactInfoCustomerBlock: React.FC<ContactInfoCustomerBlockProps> = ({

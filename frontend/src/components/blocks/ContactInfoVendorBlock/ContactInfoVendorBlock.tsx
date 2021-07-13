@@ -132,7 +132,7 @@ export type ContactInfoVendorBlockProps = {
   viewQuoteButton?: ButtonProps;
   className?: string;
   contactInfo?: ContactInfo;
-  handleCreateQuote?: (contactInfo: ContactInfoVendor) => Promise<void>;
+  setContactInfo?: (contactInfo: ContactInfoVendor) => Promise<void>;
 };
 
 const ContactInfoVendorBlock: React.FC<ContactInfoVendorBlockProps> = ({

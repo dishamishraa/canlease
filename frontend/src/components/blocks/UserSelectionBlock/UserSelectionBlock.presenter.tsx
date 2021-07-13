@@ -22,8 +22,9 @@ const withPresenter = (
     const { t } = useTranslation();
     const [showModal, setShowModal] = useState(false);
     const {
+      flowType,
       className,
-      setUserType,
+      setQuoteUserType,
     } = props;
     const onCloseModal = () => {
       setShowModal(false);
@@ -32,8 +33,8 @@ const withPresenter = (
     const onUserTypeSelected = (userType: UserType) => {
       const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
 
-      if (!quoteCookie && setUserType) {
-        setUserType(userType);
+      if ((flowType === 'createQuote' || !quoteCookie) && setQuoteUserType) {
+        setQuoteUserType(userType);
       } else {
         setShowModal(true);
       }

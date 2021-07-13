@@ -1,5 +1,5 @@
 import {
-  Profile, CreateProfile, AddQuote, Quote,
+  Profile, CreateProfile, Quote,
 } from '../../lib/salesforce/types';
 
 export type IdentityTokenPayload = {
@@ -14,7 +14,7 @@ export type IdentityTokenPayload = {
 export interface ProfileControllerContract {
   getProfile(portalId: string): Promise<Profile>;
   createProfile(payload: CreateProfile): Promise<Profile>;
-  addQuoteToProfile(portalId: string, payload: AddQuote): Promise<void>;
+  addQuoteToProfile(portalId: string, quoteId: string): Promise<void>;
   getAllQuotesFromProfile(portalId: string): Promise<Quote[]>;
   getAllCustomerQuotesFromProfile(portalId: string): Promise<Quote[]>;
 }
@@ -22,7 +22,7 @@ export interface ProfileControllerContract {
 export interface ProfileServiceContract {
   getProfile(portalId: string): Promise<Profile>;
   createProfile(payload: CreateProfile): Promise<Profile>;
-  addQuoteToProfile(portalId: string, payload: AddQuote): Promise<void>;
+  addQuoteToProfile(portalId: string, quoteId: string): Promise<void>;
   getAllQuotesFromProfile(portalId: string): Promise<Quote[]>;
   getAllCustomerQuotesFromProfile(portalId: string): Promise<Quote[]>;
 }

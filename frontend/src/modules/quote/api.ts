@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ApiError } from '../../lib/api/types';
 import { BFF_URL } from '../../lib/config';
-import { Quote, CreateQuotePayload } from './types';
+import { Quote, CreateQuotePayload, SendQuote } from './types';
 
 export const createQuote = async (payload: CreateQuotePayload): Promise<Quote> => {
   try {
@@ -31,6 +31,22 @@ export const getQuote = async (quoteId: string): Promise<Quote> => {
         type: error.response.statusText,
         message: error.message,
       });
+    }
+    throw error;
+  }
+};
+
+// For send quote
+export const sendQuote = async (payload: SendQuote): Promise<void> => {
+  try {
+    await axios.post(
+      `${BFF_URL}/quote/send`, 
+      payload, 
+      { withCredentials: true },
+    );
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      throw error;
     }
     throw error;
   }

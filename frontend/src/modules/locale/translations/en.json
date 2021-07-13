@@ -92,7 +92,13 @@
         },
         "expiry_toast":{
             "message": "This quote has expired. Please create a new quote."
-        }
+        },
+        "send_quote": "Send quote"
+    },
+    "quote_confirmation": {
+        "header": "Quote Sent!",
+        "description": "The quote has been sent to your customer. You can view the quote and track its progress on the Quotes page.",
+        "button": "Done"
     },
     "application_form":{
         "back": "Back",
