@@ -160,7 +160,7 @@ const withPresenter = (
       if (data) {
         setAccount(data);
         // store jwt token in cookie
-        setCookie(SESSION_COOKIE_NAME, data.token);
+        setCookie(SESSION_COOKIE_NAME, data.token, { path: '/',  secure: true, sameSite: 'none' });
 
         try {
           // find the salesforce profile with the identity account id
