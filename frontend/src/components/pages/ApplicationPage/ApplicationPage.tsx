@@ -12,7 +12,10 @@ import BusinessTypeBlock, { BusinessTypeBlockProps } from '../../blocks/Business
 import QuoteSelectionBlock, { QuoteSelectionBlockProps } from '../../blocks/QuoteSelectionBlock';
 import ReviewApplicationInformationBlock, { ReviewApplicationInformationBlockProps } from '../../blocks/ReviewApplicationInformationBlock';
 import TermsOfApplicationBlock, { TermsOfApplicationBlockProps } from '../../blocks/TermsOfApplicationBlock';
-import { DefaultQuoteOption, AssetInfo, BusinessType } from '../../../modules/types';
+import { DefaultQuoteOption, AssetInfo, BusinessType, EquipmentLeaseInfo } from '../../../modules/types';
+import UserSelectionBlock from '../../blocks/UserSelectionBlock';
+import { UserType } from '../../../modules/profile/types';
+import DialogBlock from '../../blocks/DialogBlock';
 
 export const defaultProps = {
   topBar: {
@@ -119,10 +122,12 @@ export type ApplicationPageProps = {
   quoteSelectionBlock?: QuoteSelectionBlockProps;
   reviewApplicationInformationBlock?: ReviewApplicationInformationBlockProps;
   termsOfApplicationBlock?: TermsOfApplicationBlockProps;
+  setEquipInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
   setQuoteSelected?: React.Dispatch<React.SetStateAction<DefaultQuoteOption>>;
   setAssetInfo?: React.Dispatch<React.SetStateAction<AssetInfo>>;
   setBusinessTypeInfo?: React.Dispatch<React.SetStateAction<BusinessType>>;
   setCreditCheckConsent?: React.Dispatch<React.SetStateAction<boolean>>;
+  equipInfo?: EquipmentLeaseInfo;
   quoteSelected?: DefaultQuoteOption;
   assetInfo?: AssetInfo
   businessTypeInfo?: BusinessType
@@ -131,10 +136,13 @@ export type ApplicationPageProps = {
   setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
   stepperTotalValue?: number,
   setStepperTotalValue?: React.Dispatch<React.SetStateAction<number>>;
+  setQuoteUserType?: (userType: UserType) => void;
+  handleCreateQuote?: () => void;
 };
 
 export const routes = {
   applicationDetails: '/portal/application/:applicationDetails',
+  userSelection: '/portal/application/userSelection',
   startApplication: '/portal/application/startApplication',
   assetInformation: '/portal/application/assetInfo',
   termsOfApplication: '/portal/application/termsOfApplication',
@@ -142,6 +150,7 @@ export const routes = {
   reviewApplicationInformation: '/portal/application/reviewApplicationInfo',
   businessInformation: '/portal/application/businessInfo',
   businessType: '/portal/application/businessType',
+  applicationSubmitted: '/portal/application/submitted',
   invalid: '/',
 };
 
@@ -155,10 +164,12 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
   quoteSelectionBlock,
   termsOfApplicationBlock,
   reviewApplicationInformationBlock,
+  setEquipInfo,
   setQuoteSelected,
   setAssetInfo,
   setBusinessTypeInfo,
   setCreditCheckConsent,
+  equipInfo,
   quoteSelected,
   assetInfo,
   businessTypeInfo,
@@ -167,6 +178,8 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
   setStepperCurrentValue,
   stepperTotalValue,
   setStepperTotalValue,
+  setQuoteUserType,
+  handleCreateQuote
 }) => {
 
   return (
@@ -175,10 +188,23 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
         className={styles.topBar}
         {...topBar} />
       <Switch>
+        <Route exact path={routes.userSelection}>
+            <UserSelectionBlock
+              className={styles.block}
+              setQuoteUserType={setQuoteUserType}
+               />
+          </Route>
         <Route exact path={routes.startApplication}>
             <StartApplicationBlock
               className={styles.block}
               {...startApplicationBlock}
+              equipInfo={equipInfo}
+              setEquipInfo={setEquipInfo}
+              stepperCurrentValue={stepperCurrentValue}
+              setStepperCurrentValue={setStepperCurrentValue}
+              stepperTotalValue={stepperTotalValue}
+              setStepperTotalValue={setStepperTotalValue}
+              handleCreateQuote={handleCreateQuote}
                />
           </Route>
         <Route exact path={routes.quoteSelection}>
@@ -240,6 +266,14 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
             stepperCurrentValue={stepperCurrentValue}
             setStepperCurrentValue={setStepperCurrentValue}
             stepperTotalValue={stepperTotalValue}
+            handleCreateApplication={handleCreateApplication}
+            />
+        </Route>
+        <Route exact path={routes.applicationSubmitted}>
+          <DialogBlock
+            className={styles.block}
+            contentType='ApplicationSubmitted'
+            email={''}
             />
         </Route>
         <Route path={routes.applicationDetails}>

@@ -70,6 +70,7 @@ export type TermsOfApplicationBlockProps = {
   stepperCurrentValue?: number,
   setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
   stepperTotalValue?: number,
+  handleCreateApplication?: () => void;
 };
 
 const TermsOfApplicationBlock: React.FC<TermsOfApplicationBlockProps> = ({

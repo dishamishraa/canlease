@@ -9,8 +9,10 @@ import { defaultProps as userSelectionCardDefaultProps } from '../../molecules/U
 import ClientImage from '../../../resources/images/Client.png';
 import EndUserImage from '../../../resources/images/EndUser.png';
 import LimitReachedIcon from '../../../resources/icons/LimitReached.svg';
-import { INSTANT_QUOTE_COOKIE } from '../../../lib/config';
+import { INSTANT_QUOTE_COOKIE, SESSION_COOKIE_NAME } from '../../../lib/config';
 import { UserType } from '../../../modules/profile/types';
+import { AuthContext } from '../../../modules/auth';
+import { useContext } from 'react';
 
 export type UserSelectionBlockPresenterProps = UserSelectionBlockProps & {
 };
@@ -29,10 +31,10 @@ const withPresenter = (
     const onCloseModal = () => {
       setShowModal(false);
     };
-
+    const authContext = useContext(AuthContext);
+    const { profile } = authContext;
     const onUserTypeSelected = (userType: UserType) => {
       const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
-
       if ((flowType === 'createQuote' || !quoteCookie) && setQuoteUserType) {
         setQuoteUserType(userType);
       } else {
