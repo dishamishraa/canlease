@@ -2,7 +2,9 @@ import { Account } from './types';
 /**
  * Extracts payload from a jwt
  */
-export function extractJwtPayload(jwt: string): Account {
+export function extractJwtPayload(jwt: string): Account & {
+  exp: number;
+} {
   const payload = window.atob(jwt.split('.')[1]);
   return JSON.parse(payload);
 }

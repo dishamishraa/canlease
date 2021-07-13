@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { isAxiosError } from '../../lib/api/axios';
 import { ApiError } from '../../lib/api/types';
 import { BFF_URL } from '../../lib/config';
 import { Quote } from '../quote/types';
@@ -9,7 +9,7 @@ export const createProfile = async (payload: CreateProfilePayload): Promise<Prof
     const { data } = await axios.post<Profile>(`${BFF_URL}/profile`, payload, { withCredentials: true });
     return data;
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
+    if (isAxiosError(error) && error.response) {
       throw new ApiError({
         code: error.response.status,
         type: error.response.statusText,
@@ -25,7 +25,7 @@ export const getProfile = async (): Promise<Profile> => {
     const { data } = await axios.get<Profile>(`${BFF_URL}/profile/me`, { withCredentials: true });
     return data;
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
+    if (isAxiosError(error) && error.response) {
       throw new ApiError({
         code: error.response.status,
         type: error.response.statusText,
@@ -41,7 +41,7 @@ export const getQuotes = async (portalId: string): Promise<Quote[]> => {
     const { data } = await axios.get<Quote[]>(`${BFF_URL}/profile/${portalId}/quote`);
     return data;
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
+    if (isAxiosError(error) && error.response) {
       throw new ApiError({
         code: error.response.status,
         type: error.response.statusText,
@@ -57,7 +57,7 @@ export const getCustomerQuotes = async (portalId: string): Promise<Quote[]> => {
     const { data } = await axios.get<Quote[]>(`${BFF_URL}/profile/${portalId}/customer_quote`);
     return data;
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
+    if (isAxiosError(error) && error.response) {
       throw new ApiError({
         code: error.response.status,
         type: error.response.statusText,
@@ -76,7 +76,7 @@ export const addQuoteToProfile = async (portalId: string, payload: AddQuotePaylo
       { withCredentials: true },
     );
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
+    if (isAxiosError(error) && error.response) {
       throw new ApiError({
         code: error.response.status,
         type: error.response.statusText,

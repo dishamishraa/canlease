@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { isAxiosError } from '../../lib/api/axios';
 import { ApiError } from '../../lib/api/types';
 import { BFF_URL } from '../../lib/config';
 import {
@@ -10,7 +10,7 @@ export const signUp = async (payload: SignUpPayload): Promise<AccountResponse> =
     const { data } = await axios.post<AccountResponse>(`${BFF_URL}/accounts`, payload);
     return data;
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
+    if (isAxiosError(error) && error.response) {
       throw new ApiError({
         code: error.response.status,
         type: error.response.statusText,
@@ -29,7 +29,7 @@ export const resendVerifyAccount = async (email: string): Promise<void> => {
       },
     });
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
+    if (isAxiosError(error) && error.response) {
       throw new ApiError({
         code: error.response.status,
         type: error.response.statusText,
@@ -45,7 +45,7 @@ export const signIn = async (payload: SignInPayload): Promise<AccountResponse> =
     const { data } = await axios.post<AccountResponse>(`${BFF_URL}/token`, payload);
     return data;
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
+    if (isAxiosError(error) && error.response) {
       throw new ApiError({
         code: error.response.status,
         type: error.response.statusText,
@@ -64,7 +64,7 @@ export const forgotPassword = async (email: string): Promise<void> => {
       },
     });
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
+    if (isAxiosError(error) && error.response) {
       throw new ApiError({
         code: error.response.status,
         type: error.response.statusText,
@@ -83,7 +83,7 @@ export const updatePassword = async (payload: UpdatePasswordPayload): Promise<vo
     },
     { withCredentials: true });
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
+    if (isAxiosError(error) && error.response) {
       throw new ApiError({
         code: error.response.status,
         type: error.response.statusText,
@@ -103,7 +103,7 @@ export const updateName = async (payload: UpdateNamePayload): Promise<void> => {
     },
     { withCredentials: true });
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
+    if (isAxiosError(error) && error.response) {
       throw new ApiError({
         code: error.response.status,
         type: error.response.statusText,
