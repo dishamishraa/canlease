@@ -32,7 +32,7 @@ describe('ProfileController', () => {
     it('should call service with portal id and payload to create profile', async () => {
       await controller.addQuoteToProfile('1', mockAddQuote.quoteId);
 
-      expect(profileService.addQuoteToProfile).toHaveBeenCalledWith('1', mockAddQuote);
+      expect(profileService.addQuoteToProfile).toHaveBeenCalledWith('1', mockAddQuote.quoteId);
     });
   });
 
