@@ -88,7 +88,6 @@ export const validateCreateApplication = (value: unknown): value is CreateApplic
 
 export const validateCreateProfile = (value: unknown): value is CreateProfile => {
   const { error } = CreateProfileSchema.validate(value, { allowUnknown: true });
-  console.error(error)
   return error === undefined;
 };
 

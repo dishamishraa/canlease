@@ -38,7 +38,7 @@ describe('QuoteService', () => {
 
   describe('addQuoteToProfile', () => {
     it('should call api with portal id and payload', async () => {
-      await service.addQuoteToProfile('1', mockAddQuote);
+      await service.addQuoteToProfile('1', mockAddQuote.quoteId);
 
       expect(salesforceApi.addQuoteToProfile)
         .toHaveBeenCalledWith('1', mockAddQuote);
