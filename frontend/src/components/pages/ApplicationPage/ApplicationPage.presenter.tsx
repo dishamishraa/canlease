@@ -31,7 +31,7 @@ const withPresenter = (
     const { t } = useTranslation();
     const [stepperCurrentValue, setStepperCurrentValue] = useState(1);
     const [stepperTotalValue, setStepperTotalValue] = useState(5);
-    const [state, setState] = useState<CreateQuoteState>({});
+    const [createQuoteState, setCreateQuoteState] = useState<CreateQuoteState>({});
     const [quote, setQuote] = useState<Quote>();
 
     window.onbeforeunload = (event) => {
@@ -51,10 +51,10 @@ const withPresenter = (
     }
     const setQuoteUserType = (userType: UserType) => {
       const newState = {
-        ...state,
+        ...createQuoteState,
         userType,
       }
-      setState(newState);
+      setCreateQuoteState(newState);
       history.push('/portal/application/startApplication');
     }
     
@@ -132,7 +132,7 @@ const withPresenter = (
     const [creditCheckConsent, setCreditCheckConsent] = useState<boolean>(false);
 
     const handleCreateQuote = async () => {
-      const { quoteUserType, equipmentLeaseInfo, contactInfo} = state;
+      const { quoteUserType, equipmentLeaseInfo, contactInfo} = createQuoteState;
       if(quoteUserType && equipmentLeaseInfo && profile){
         const { name: asset, cost, leaseType } = equipmentLeaseInfo;
         const { name: applicantName, email, companyName } = profile;
