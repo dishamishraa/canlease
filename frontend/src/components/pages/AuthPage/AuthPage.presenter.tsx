@@ -14,6 +14,7 @@ import { isEmpty } from '../../../lib/utils';
 import { Account } from '../../../lib/types';
 import Cookies from 'js-cookie';
 import { INSTANT_QUOTE_COOKIE } from '../../../lib/config';
+import { extractJwtPayload } from '../../../lib/token';
 
 export type AuthPagePresenterProps = AuthPageProps & {
   account: Account | null;
@@ -171,8 +172,17 @@ const withPresenter = (
 
       if (data) {
         setAccount(data);
+        const { exp } = extractJwtPayload(data.token);
         // store jwt token in cookie
-        setCookie(SESSION_COOKIE_NAME, data.token, { path: '/',  secure: true, sameSite: 'none' });
+        setCookie(SESSION_COOKIE_NAME, 
+          data.token, 
+          { 
+            path: '/',  
+            secure: true, 
+            sameSite: 'none',
+            expires: new Date(exp * 1000),
+          },
+        );
 
         try {
           // find the salesforce profile with the identity account id

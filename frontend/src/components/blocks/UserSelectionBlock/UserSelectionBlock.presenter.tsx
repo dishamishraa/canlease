@@ -29,10 +29,8 @@ const withPresenter = (
     const onCloseModal = () => {
       setShowModal(false);
     };
-
     const onUserTypeSelected = (userType: UserType) => {
       const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
-
       if ((flowType === 'createQuote' || !quoteCookie) && setQuoteUserType) {
         setQuoteUserType(userType);
       } else {

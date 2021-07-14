@@ -8,6 +8,7 @@ export type TermsOfApplicationBlockPresenterProps = TermsOfApplicationBlockProps
     stepperCurrentValue?: number,
     setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
     stepperTotalValue?: number,
+    handleCreateApplication?: () => void;
 };
 
 const withPresenter = (
@@ -20,6 +21,7 @@ const withPresenter = (
       stepperCurrentValue,
       setStepperCurrentValue,
       stepperTotalValue,
+      handleCreateApplication
     } = props;
 
     const { t } = useTranslation();
@@ -33,8 +35,9 @@ const withPresenter = (
     }
 
     const handleClickNext = () => {
-        if (isFormValid() && setCreditCheckConsent) {
+        if (isFormValid() && setCreditCheckConsent && handleCreateApplication) {
             setCreditCheckConsent(true);
+            handleCreateApplication();
         }
     };
     const termsOfApplicationBlockProps : TermsOfApplicationBlockProps = {

@@ -8,6 +8,7 @@ import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import SelectField, { SelectFieldProps } from '../../molecules/SelectField';
 import Button, { ButtonProps } from '../../atoms/Button';
+import { EquipmentLeaseInfo } from '../../../modules/types';
 
 export const defaultProps = {
   stepper: {
@@ -92,6 +93,13 @@ export type StartApplicationBlockProps = {
   leaseTypeSelectField?: SelectFieldProps;
   nextButton?: ButtonProps;
   className?: string;
+  equipInfo?: EquipmentLeaseInfo;
+  setEquipInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
+  stepperCurrentValue?: number,
+  setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
+  stepperTotalValue?: number,
+  setStepperTotalValue?: React.Dispatch<React.SetStateAction<number>>;
+  handleCreateQuote?: () => void;
 };
 
 const StartApplicationBlock: React.FC<StartApplicationBlockProps> = ({

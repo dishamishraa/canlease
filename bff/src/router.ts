@@ -1,13 +1,12 @@
 import {
   Router, Request, Response,
 } from 'express';
-import axios from 'axios';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { ClientRequest } from 'http';
 import { InternalServerError, NotFoundError } from './lib/errors';
-import { IDENTITY_SESSION_COOKIE_NAME, IDENTITY_URL, PROXY_TIMEOUT } from './lib/config';
+import { IDENTITY_URL, PROXY_TIMEOUT } from './lib/config';
 
 import { QuoteControllerContract, QuoteRouter } from './modules/quote';
 import { ApplicationControllerContract, ApplicationRouter } from './modules/application';
@@ -15,8 +14,6 @@ import {
   PortfolioControllerContract, PortfolioRouter,
 } from './modules/portfolio';
 import { ProfileControllerContract, ProfileRouter } from './modules/profile';
-import { errorWrapper, setCookie } from './lib/utils';
-import { Account } from './lib/types';
 
 const swaggerSpecConfig = {
   swaggerDefinition: {
@@ -71,11 +68,7 @@ export const createRouter = (controllers: {
   router.get('/api-docs', swaggerUi.setup(swaggerSpec));
 
   router.get('/', (req: Request, res: Response) => res.json({ running: true }));
-  router.post('/token', errorWrapper(async (req: Request, res: Response) => {
-    const { data: account } = await axios.post<Account>(`${IDENTITY_URL}/token`, req.body);
-    setCookie(res, IDENTITY_SESSION_COOKIE_NAME, account.token);
-    res.status(200).json(account);
-  }));
+  router.post('/token', proxy);
   router.use('/accounts', proxy);
 
   router.use('/quote', QuoteRouter(controllers));
