@@ -62,17 +62,27 @@ const withPresenter = (
             ...defaultMenuItemProp,
             text: {
                 ...defaultMenuItemProp.text,
-                value: 'View Profile',
+                value: 'My Profile', // TODO localize
             },
             onContextualMenuItemClicked: () => {
                 
             },
         },
         {
+          ...defaultMenuItemProp,
+          text: {
+              ...defaultMenuItemProp.text,
+              value: 'Contact Canlease', // TODO localize
+          },
+          onContextualMenuItemClicked: () => {
+            window.open('https://canlease.net/contact/', '_blank');
+          },
+      },
+        {
             ...defaultMenuItemProp,
             text: {
                 ...defaultMenuItemProp.text,
-                value: 'Logout', 
+                value: 'Logout', // TODO localize
             },
             onContextualMenuItemClicked: () => {
 

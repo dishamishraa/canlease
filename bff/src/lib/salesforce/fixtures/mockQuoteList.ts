@@ -5,6 +5,8 @@ const mockQuoteList: Quote[] = [
     quoteId: 'id3',
     asset: 'fourthAsset',
     applicationAmount: 100,
+    name: 'name here',
+    companyName: 'cool company',
     quoteOptions: [
       {
         monthlyAmount: 0,
@@ -20,6 +22,8 @@ const mockQuoteList: Quote[] = [
     quoteId: 'string',
     asset: 'firstAsset',
     applicationAmount: 200,
+    name: 'name here',
+    companyName: 'cool company',
     quoteOptions: [
       {
         monthlyAmount: 0,
@@ -35,6 +39,8 @@ const mockQuoteList: Quote[] = [
     quoteId: 'id',
     asset: 'secondAsset',
     applicationAmount: 100,
+    name: 'name here',
+    companyName: 'cool company',
     quoteOptions: [
       {
         monthlyAmount: 0,
@@ -50,6 +56,8 @@ const mockQuoteList: Quote[] = [
     quoteId: 'id2',
     asset: 'thirdAsset',
     applicationAmount: 100,
+    name: 'name here',
+    companyName: 'cool company',
     quoteOptions: [
       {
         monthlyAmount: 0,

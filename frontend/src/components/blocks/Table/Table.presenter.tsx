@@ -68,8 +68,8 @@ const getCurrentItems = (
       if (quotes) {
         items = quotes.map((quote: Quote): TableItem => {
           return {
-            company: 'company',
-            contactName: 'name',
+            company: quote.companyName,
+            contactName: quote.name,
             status: getQuoteStatus(quote, portfolio),
             createdOn: createdOn(quote.quoteExpiryDate).toDateString(),
             asset: quote.asset,
@@ -83,8 +83,8 @@ const getCurrentItems = (
       if (portfolio && portfolio.createApps) {
         items = portfolio.createApps.map((application: CreditApplication): TableItem => {
           return {
-            company: 'company',
-            contactName: 'name',
+            company: application.companyName,
+            contactName: application.name,
             status: getApplicationStatus(application),
             createdOn: new Date(application.createdDate).toDateString(),
             asset: application.asset,
