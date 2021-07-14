@@ -18,7 +18,7 @@ import { sendQuote } from '../../../modules/quote/api';
 import { INSTANT_QUOTE_COOKIE } from '../../../lib/config';
 import { useCookies } from 'react-cookie';
 import Cookies from 'js-cookie';
-import { UpdateInstaQuoteCookie } from '../../../lib/utils';
+import { updateInstaQuoteCookie } from '../../../lib/utils';
 
 export type QuoteBlockPresenterProps = QuoteBlockProps & {
   quote: Quote | null;
@@ -92,7 +92,7 @@ const withPresenter = (
 
     const handleApplyForFinance = () => {
       if(flowType === 'instaQuote') {
-       UpdateInstaQuoteCookie('apply_finance', setCookie, removeCookie);
+       updateInstaQuoteCookie('apply_finance', setCookie, removeCookie);
         history.push('/account/signin');
       } else {
         // TODO
@@ -101,7 +101,7 @@ const withPresenter = (
     };
 
     const handleSaveQuote = () => {
-      UpdateInstaQuoteCookie('apply_finance', setCookie, removeCookie);
+      updateInstaQuoteCookie('apply_finance', setCookie, removeCookie);
       history.push('/account/signin');
     };
 

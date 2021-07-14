@@ -38,7 +38,7 @@ export const isEmail = (value: string) => {
   return regexEmail.test(value);
 };
 
-export const UpdateInstaQuoteCookie = (action: AfterAuthAction, setCookie, removeCookie) => {
+export const updateInstaQuoteCookie = (action: AfterAuthAction, setCookie, removeCookie) => {
   const quoteCookieObj = getQuoteCookie();
   removeCookie(INSTANT_QUOTE_COOKIE);
   setCookie(INSTANT_QUOTE_COOKIE, {...quoteCookieObj, action: action}, 
