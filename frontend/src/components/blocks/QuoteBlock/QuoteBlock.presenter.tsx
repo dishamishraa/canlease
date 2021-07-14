@@ -101,7 +101,7 @@ const withPresenter = (
     };
 
     const handleSaveQuote = () => {
-      updateInstaQuoteCookie('apply_finance', setCookie, removeCookie);
+      updateInstaQuoteCookie('save_quote', setCookie, removeCookie);
       history.push('/account/signin');
     };
 
