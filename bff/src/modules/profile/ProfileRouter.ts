@@ -25,12 +25,12 @@ export function createProfileRouter(controllers: {
   router.get('/me', errorWrapper(async (req: Request, res: Response) => {
     const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
     if (!identityToken) {
-      throw UnauthorizedError("identityToken empty");
+      throw UnauthorizedError('identityToken empty');
     }
 
     const identityTokenPayload = decodeIdentityToken(identityToken);
     if (!identityTokenPayload) {
-      throw UnauthorizedError("identityTokenPayload empty");
+      throw UnauthorizedError('identityTokenPayload empty');
     }
 
     const data = await profileController.getProfile(`${identityTokenPayload.id}`);

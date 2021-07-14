@@ -19,9 +19,9 @@ describe('QuoteController', () => {
   });
   describe('getQuote', () => {
     it('should call service with id', async () => {
-      await controller.getQuote("abc");
+      await controller.getQuote('abc');
 
-      expect(createQuoteService.getQuote).toHaveBeenCalledWith("abc");
+      expect(createQuoteService.getQuote).toHaveBeenCalledWith('abc');
     });
   });
   describe('sendQuote', () => {
