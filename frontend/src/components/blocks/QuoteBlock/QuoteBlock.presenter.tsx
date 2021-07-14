@@ -15,6 +15,9 @@ import { TermDisplay } from '../../../modules/types';
 import { isExpired } from '../../../lib/utils';
 import { APIResponse } from '../../../lib/api/types';
 import { sendQuote } from '../../../modules/quote/api';
+import { INSTANT_QUOTE_COOKIE } from '../../../lib/config';
+import { useCookies } from 'react-cookie';
+import Cookies from 'js-cookie';
 
 export type QuoteBlockPresenterProps = QuoteBlockProps & {
   quote: Quote | null;
@@ -38,6 +41,7 @@ const withPresenter = (
     const history = useHistory();
     const { t } = useTranslation();
     const [showModal, setShowModal] = useState(false);
+    const [, setCookie, removeCookie] = useCookies();
 
     if (error) {
       // return error view
@@ -87,7 +91,14 @@ const withPresenter = (
 
     const handleApplyForFinance = () => {
       if(flowType === 'instaQuote') {
-        history.push('/account/signin', { action: 'apply_finance' });
+        const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
+        let quoteCookieObj;
+        if (quoteCookie){
+          quoteCookieObj = JSON.parse(quoteCookie)
+        }
+        removeCookie(INSTANT_QUOTE_COOKIE);
+        setCookie(INSTANT_QUOTE_COOKIE, {...quoteCookieObj, "action": "apply_finance"}, { expires: new Date(quoteCookieObj.expires) });
+        history.push('/account/signin');
       } else {
         // TODO
         history.push('/portal/applications');
@@ -95,7 +106,14 @@ const withPresenter = (
     };
 
     const handleSaveQuote = () => {
-      history.push('/account/signin', { action: 'save_quote', quoteId: quote?.quoteId });
+      const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
+      let quoteCookieObj;
+      if (quoteCookie){
+        quoteCookieObj = JSON.parse(quoteCookie)
+      }
+      removeCookie(INSTANT_QUOTE_COOKIE);
+      setCookie(INSTANT_QUOTE_COOKIE, {...quoteCookieObj, "action": "save_quote"}, { expires: new Date(quoteCookieObj.expires) });
+      history.push('/account/signin');
     };
 
     const handleSendQuote = async () => {

@@ -28,7 +28,7 @@ const withPresenter = (
     const location = useLocation();
     const { t } = useTranslation();
     const [stepperCurrentValue, setStepperCurrentValue] = useState(1);
-    const [stepperTotalValue, setStepperTotalValue] = useState(5);
+    const [stepperTotalValue, setStepperTotalValue] = useState(6);
 
     window.onbeforeunload = (event) => {
         const e = event || window.event;

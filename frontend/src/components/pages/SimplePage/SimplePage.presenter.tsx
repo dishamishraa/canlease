@@ -63,7 +63,7 @@ const withPresenter = (
 
         const { quoteId } = data;
         if (flowType === 'instaQuote') {
-          setCookie(INSTANT_QUOTE_COOKIE, quoteId, { expires: expiryDate });
+          setCookie(INSTANT_QUOTE_COOKIE, { "quoteId": quoteId, "expires": expiryDate }, { expires: expiryDate });
           setQuote(data);
           history.push(`/instaQuote/${quoteId}`, { quote: data });
         } else {

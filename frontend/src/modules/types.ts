@@ -15,7 +15,6 @@ export type AuthState = {
   personalInfo?: PersonalInformation;
   contactInfo?: ContactInformation;
   businessInfo?: BusinessInformation;
-  quoteId?: string;
 }
 
 export type QuoteFlowType = 'instaQuote' | 'createQuote';

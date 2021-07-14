@@ -12,6 +12,8 @@ import { PersonalInformation, ContactInformation, BusinessInformation, AuthState
 import { useEffect } from 'react';
 import { isEmpty } from '../../../lib/utils';
 import { Account } from '../../../lib/types';
+import Cookies from 'js-cookie';
+import { INSTANT_QUOTE_COOKIE } from '../../../lib/config';
 
 export type AuthPagePresenterProps = AuthPageProps & {
   account: Account | null;
@@ -41,7 +43,7 @@ const withPresenter = (
       addQuoteToProfile,
     } = props;
 
-    const [, setCookie] = useCookies();
+    const [, setCookie, removeCookie] = useCookies();
     const history = useHistory();
     const { state: locationState, pathname} = useLocation<AuthState>();
     const [state, setState] = useState<AuthState>({});
@@ -53,7 +55,7 @@ const withPresenter = (
     }, [locationState]);
 
     const {
-      action, email, personalInfo, contactInfo, businessInfo, quoteId,
+      action, email, personalInfo, contactInfo, businessInfo
     } = state;
 
     const setEmail = (email: string) => {
@@ -81,15 +83,25 @@ const withPresenter = (
       history.push('/account/businessInformation', newState);
     }
 
-    const handleAuthAction = async () => {
-      switch(action) {
+    const handleAuthAction = () => {
+      const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
+      let quoteCookieObj;
+      if (quoteCookie){
+        quoteCookieObj = JSON.parse(quoteCookie)
+      }
+      if (quoteCookieObj?.action === 'apply_finance') {
+        history.push('/portal/application/quoteSelection');
+      }
+      switch(quoteCookieObj?.action) {
         case 'apply_finance':
-          history.push('/portal/application/quoteSelection', { flowType: 'instaQuote' });
+          history.push('/portal/application/quoteSelection');
           break;
         case 'save_quote':
-          if (quoteId) {
-            handleAddQuoteToProfile(quoteId)
+          if (quoteCookieObj.quoteId) {
+            handleAddQuoteToProfile(quoteCookieObj.quoteId);
           }
+          removeCookie(INSTANT_QUOTE_COOKIE);
+          setCookie(INSTANT_QUOTE_COOKIE, {"quoteId": quoteCookieObj.quoteId, "expires": quoteCookieObj.expires}, { expires: new Date(quoteCookieObj.expires) });
           history.push('/portal/quotes');
           break;
         default:

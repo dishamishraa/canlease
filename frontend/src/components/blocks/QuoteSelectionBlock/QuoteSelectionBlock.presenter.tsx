@@ -9,6 +9,9 @@ import { defaultProps as defaultRateDetailItemProps } from '../../molecules/Rate
 import { Quote } from '../../../modules/quote/types';
 import { DefaultQuoteOption, TermDisplay } from '../../../modules/types';
 import { QuoteFlowType } from '../../../modules/types';
+import Cookies from 'js-cookie';
+import { INSTANT_QUOTE_COOKIE } from '../../../lib/config';
+import { useCookies } from 'react-cookie';
 
 export type QuoteSelectionBlockPresenterProps = QuoteSelectionBlockProps & {
     quoteDetails: Quote | null;
@@ -37,12 +40,19 @@ const withPresenter = (
 
     const { t } = useTranslation();
     const history = useHistory();
-    const { state } = useLocation<{flowType: QuoteFlowType}>();
-    const { flowType } = state || {};
-    if (flowType === 'instaQuote' && setStepperCurrentValue && setStepperTotalValue) {
+    const [, setCookie, removeCookie] = useCookies();
+
+    const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
+    let quoteCookieObj;
+    if (quoteCookie){
+      quoteCookieObj = JSON.parse(quoteCookie)
+    }
+    if (quoteCookieObj?.action === 'apply_finance' && setStepperCurrentValue && setStepperTotalValue){
       setStepperCurrentValue(1);
       setStepperTotalValue(5);
-    }
+      removeCookie(INSTANT_QUOTE_COOKIE);
+      setCookie(INSTANT_QUOTE_COOKIE, {"quoteId": quoteCookieObj.quoteId, "expires": quoteCookieObj.expires}, { expires: new Date(quoteCookieObj.expires) });
+    } 
 
     const clickableRateCardsArray: ClickableRateCardProps[] = [];
   
