@@ -31,8 +31,6 @@ const withPresenter = (
     const onCloseModal = () => {
       setShowModal(false);
     };
-    const authContext = useContext(AuthContext);
-    const { profile } = authContext;
     const onUserTypeSelected = (userType: UserType) => {
       const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
       if ((flowType === 'createQuote' || !quoteCookie) && setQuoteUserType) {
