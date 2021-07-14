@@ -9,6 +9,8 @@ import UserIcon, { UserIconProps } from '../../atoms/UserIcon';
 import Icon, { IconProps } from '../../atoms/Icon';
 import Button, { ButtonProps } from '../../atoms/Button';
 import Text, { TextProps } from '../../atoms/Text';
+import { Dropdown } from 'react-bootstrap';
+import ContextualMenu, { ContextualMenuProps } from '../ContextualMenu';
 
 export type UserProfileStyleType = 'Light';
 export type UserProfileStateType = 'SignedIn' | 'None' | 'SignedOut';
@@ -65,6 +67,7 @@ export type UserProfileProps = {
   primary?: ButtonProps;
   secondary?: ButtonProps;
   text?: TextProps;
+  contextualMenu?: ContextualMenuProps;
 };
 
 const UserProfile: React.FC<UserProfileProps> = ({
@@ -76,42 +79,16 @@ const UserProfile: React.FC<UserProfileProps> = ({
   primary,
   secondary,
   text,
+  contextualMenu,
 }) => {
   const currentStyle = styles[`userProfile${style}${state}`];
 
   let userIconView;
   let primaryView;
   let iconView;
+  let textView;
   let secondaryView;
-
-  const { t } = useTranslation();
-  const history = useHistory();
-
-  const handleSignIn = () => {
-    history.push('/account/signIn');
-  };
-
-  const handleSignUp = () => {
-    history.push('/account/signUp');
-  };
-
-  const primaryProps = {
-    ...primary,
-    text: {
-      ...primary?.text,
-      value: t('button_text.sign_in'),
-    },
-    onButtonClicked: handleSignIn,
-  };
-
-  const secondaryProps = {
-    ...secondary,
-    text: {
-      ...secondary?.text,
-      value: t('button_text.sign_up'),
-    },
-    onButtonClicked: handleSignUp,
-  };
+  let userProfileView;
 
   switch (state) {
     case 'SignedIn':
@@ -120,35 +97,62 @@ const UserProfile: React.FC<UserProfileProps> = ({
           className={styles.userIcon}
           {...userIcon} />
       );
+      textView = (
+        <Text
+          className={styles.text}
+          {...text} />
+      )
       iconView = (
         <Icon
           className={styles.icon}
           {...icon} />
       );
-      break;
-    case 'None':
+      userProfileView = (
+        <Dropdown 
+          className={styles.dropdown}>
+          <Dropdown.Toggle as='div'>
+            <div className={cx(currentStyle, className)}>
+              {userIconView}
+              {textView}
+              {iconView}
+            </div>
+          </Dropdown.Toggle>
+          <Dropdown.Menu align='right'>
+            <ContextualMenu {...contextualMenu} />
+          </Dropdown.Menu>
+        </Dropdown>
+      );
       break;
     case 'SignedOut':
       primaryView = (
         <Button
           className={styles.primary}
-          {...primaryProps} />
+          {...primary} />
       );
       secondaryView = (
         <Button
           className={styles.secondary}
-          {...secondaryProps} />
+          {...secondary} />
       );
+      userProfileView = (
+        <div className={cx(currentStyle, className)}>
+          {primaryView}
+          {secondaryView}
+        </div>
+      )
+      
+      break;
+    default:
+      userProfileView = (
+        <div className={cx(currentStyle, className)}/>
+      )
       break;
   }
 
   return (
-    <div className={cx(currentStyle, className)}>
-      {userIconView}
-      {primaryView}
-      {iconView}
-      {secondaryView}
-    </div>
+    <>
+      {userProfileView}
+    </>
   );
 };
 
