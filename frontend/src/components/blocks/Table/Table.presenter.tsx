@@ -60,7 +60,7 @@ const getApplicationStatus = ({ applicationStatus }: CreditApplication): Content
 };
 
 const getCurrentItems = (
-  contentType: ContentType | undefined, quotes: Quote[] | null, portfolio: Portfolio | null,
+  contentType: ContentType | undefined, quotes: Quote[] | null, portfolio: Portfolio | null, tab: ContentTypeTabs | undefined
 ): TableItem[] => {
   let items: TableItem[] = [];
   switch(contentType) {
@@ -80,11 +80,21 @@ const getCurrentItems = (
       }
       break;
     case 'Application':
-      if (portfolio && portfolio.createApps) {
+      if (portfolio && portfolio.createApps && portfolio.leases) {
         items = portfolio.createApps.map((application: CreditApplication): TableItem => {
+          let companyName: string = 'companyName';
+          let contactName: string = 'name';
+          if( tab === 'Customer'){
+            // TODO: don't access access to the correct info
+            // Name of the company receiving the lease
+            // Name of the contact
+          } else if (tab === 'Personal') {
+            // Company giving the lease
+            companyName = portfolio.leases.find(lease => lease.quoteId === application.quoteId)?.vendorName ?? 'Unkown';
+          }
           return {
-            company: 'company',
-            contactName: 'name',
+            company: companyName,
+            contactName: contactName,
             status: getApplicationStatus(application),
             createdOn: new Date(application.createdDate).toDateString(),
             asset: application.asset,
@@ -112,10 +122,12 @@ const filterItems = (
     const itemsMatchSearch = filteredItems.filter((item: TableItem) => {
       const itemCompanyName = item.company.toLowerCase();
       const itemContactName = item.contactName.toLowerCase();
+      const createdOn = item.createdOn.toLowerCase();
       const itemAssetName = item.asset.toLowerCase();
       const itemCost = item.cost.toString().toLowerCase();
-      return itemCompanyName?.includes(search) || itemContactName?.includes(search) || 
-            itemAssetName?.includes(search) || itemCost?.includes(search);
+      return itemCompanyName?.includes(search) || itemContactName?.includes(search) ||
+        createdOn?.includes(search) || itemAssetName?.includes(search) ||
+        itemCost?.includes(search);
     });
     return itemsMatchSearch;
   }
@@ -137,7 +149,7 @@ const withPresenter = (
     const { t } = useTranslation();
     const history = useHistory();
 
-    const currentItems =  getCurrentItems(contentType, quotes, portfolio);
+    const currentItems =  getCurrentItems(contentType, quotes, portfolio, tab);
     const filteredItems = filterItems(currentItems, searchQuery, statusFilter);
 
     const tableItemListProps: TableItemListProps = {
