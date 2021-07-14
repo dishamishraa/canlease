@@ -10,9 +10,8 @@ import {
 import { CreateProfilePayload, Profile } from '../../../modules/profile/types';
 import { PersonalInformation, ContactInformation, BusinessInformation, AuthState } from '../../../modules/types';
 import { useEffect } from 'react';
-import { isEmpty } from '../../../lib/utils';
+import { isEmpty, getQuoteCookie} from '../../../lib/utils';
 import { Account } from '../../../lib/types';
-import Cookies from 'js-cookie';
 import { INSTANT_QUOTE_COOKIE } from '../../../lib/config';
 import { extractJwtPayload } from '../../../lib/token';
 
@@ -56,7 +55,7 @@ const withPresenter = (
     }, [locationState]);
 
     const {
-      action, email, personalInfo, contactInfo, businessInfo
+      action, email, personalInfo, contactInfo, businessInfo,
     } = state;
 
     const setEmail = (email: string) => {
@@ -84,37 +83,24 @@ const withPresenter = (
       history.push('/account/businessInformation', newState);
     }
 
-    const handleAuthAction = () => {
-      const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
-      let quoteCookieObj;
-      if (quoteCookie){
-        quoteCookieObj = JSON.parse(quoteCookie)
-      }
-      if (quoteCookieObj?.action === 'apply_finance') {
-        history.push('/portal/application/quoteSelection');
-      }
+    const handleAuthAction = async() => {
+      const quoteCookieObj = getQuoteCookie();
       switch(quoteCookieObj?.action) {
         case 'apply_finance':
           history.push('/portal/application/quoteSelection');
           break;
         case 'save_quote':
           if (quoteCookieObj.quoteId) {
-            handleAddQuoteToProfile(quoteCookieObj.quoteId);
+            await addQuoteToProfile(quoteCookieObj.quoteId);
           }
           removeCookie(INSTANT_QUOTE_COOKIE);
-          setCookie(INSTANT_QUOTE_COOKIE, {"quoteId": quoteCookieObj.quoteId, "expires": quoteCookieObj.expires}, { expires: new Date(quoteCookieObj.expires) });
+          setCookie(INSTANT_QUOTE_COOKIE, {quoteId: quoteCookieObj.quoteId, expires: quoteCookieObj.expires},
+                { expires: new Date(quoteCookieObj.expires) });
           history.push('/portal/quotes');
           break;
         default:
           history.push('/portal/dashboard');
           break;
-      }
-    }
-
-    const handleAddQuoteToProfile = async (quoteId: string) => {
-      const { error } = await addQuoteToProfile(quoteId);
-      if(error) {
-        return;
       }
     }
 

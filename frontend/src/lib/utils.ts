@@ -1,3 +1,7 @@
+import Cookies from 'js-cookie';
+import { INSTANT_QUOTE_COOKIE } from '../lib/config';
+import { AfterAuthAction } from '../modules/types';
+
 export const isEmptyString = (value?: string) => (value ? value.trim().length === 0 : true);
 
 export const isObject = (value: any) => typeof value === 'object' && !Array.isArray(value) && value !== null;
@@ -33,3 +37,19 @@ export const isEmail = (value: string) => {
   const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return regexEmail.test(value);
 };
+
+export const UpdateInstaQuoteCookie = (action: AfterAuthAction, setCookie, removeCookie) => {
+  const quoteCookieObj = getQuoteCookie();
+  removeCookie(INSTANT_QUOTE_COOKIE);
+  setCookie(INSTANT_QUOTE_COOKIE, {...quoteCookieObj, action: action}, 
+          { expires: new Date(quoteCookieObj.expires) });
+}
+
+export const getQuoteCookie = () => {
+  const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
+  let quoteCookieObj;
+  if (quoteCookie){
+     quoteCookieObj = JSON.parse(quoteCookie)
+  }
+  return quoteCookieObj;
+}
