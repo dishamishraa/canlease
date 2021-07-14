@@ -65,7 +65,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
 }) => {
   const { profile } = useContext(AuthContext);
   const userType = profile?.userType || 'customer';
-  const DashboardPage = userType === 'vendor' ? VendorDashboardPage : EndUserDashboardPage;
+  const DashboardPage = userType === 'vendor' || userType === 'rep' ? VendorDashboardPage : EndUserDashboardPage;
   return (
     <div className={cx(styles.portalLayout, className)}>
       <Header
