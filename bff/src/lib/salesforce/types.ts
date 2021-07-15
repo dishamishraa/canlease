@@ -81,6 +81,14 @@ export type CreateQuoteVendor = CreateQuoteCustomer & {
   vendorBusinessName: string;
 };
 
+export const isCreateQuoteCustomer = (payload: CreateQuote): payload is CreateQuoteCustomer => {
+  return !payload.vendorName ? true : false;
+}
+
+export const isCreateQuoteVendor = (payload: CreateQuote): payload is CreateQuoteVendor => {
+  return payload.vendorName ? true : false;
+}
+
 export type QuoteOption = {
   monthlyAmount: number;
   term: string;

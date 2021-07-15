@@ -11,7 +11,7 @@ import EmailIcon from '../../../resources/icons/Email.svg';
 
 import { defaultProps as defaultRateDetailItemProps } from '../../molecules/RateDetailItem/RateDetailItem';
 import { Quote, SendQuote } from '../../../modules/quote/types';
-import { TermDisplay } from '../../../modules/types';
+import { ContactInfo, TermDisplay } from '../../../modules/types';
 import { isExpired } from '../../../lib/utils';
 import { APIResponse } from '../../../lib/api/types';
 import { sendQuote } from '../../../modules/quote/api';
@@ -30,6 +30,7 @@ const withPresenter = (
     const {
       loading,
       error,
+      contactInfo,
       quote,
       flowType,
       quoteUserType,
@@ -98,10 +99,19 @@ const withPresenter = (
       history.push('/account/signin', { action: 'save_quote' });
     };
 
+    const getSubmittedBy = (info: ContactInfo) => {
+      if (info.type === 'vendor') {
+        return `${info.vendorName} (${info.businessEmail})`;
+      } 
+      return `${info.customerName} (${info.customerEmail}`;
+    }
+
     const handleSendQuote = async () => {
-      if(quote) {
+      if(quote && contactInfo) {
         await sendQuote({
-          email: '', // TODO
+          companyName: contactInfo.customerCompanyName,
+          submittedBy: getSubmittedBy(contactInfo),
+          email: contactInfo.customerEmail,
           quoteId: quote?.quoteId,
         });
         setShowModal(true);

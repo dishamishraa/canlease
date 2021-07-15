@@ -1,10 +1,6 @@
-import axios from 'axios';
-import { mocked } from 'ts-jest/utils';
 import { send } from '@sendgrid/mail';
 import createError from 'http-errors';
 import {
-  SENDGRID_API_URL,
-  SENDGRID_API_KEY,
   SENDGRID_FROM_EMAIL,
   SENDGRID_QUOTE_TEMPLATE_ID,
 } from '../../lib/config';
@@ -30,6 +26,9 @@ describe('SendGridAPI', () => {
         from: SENDGRID_FROM_EMAIL,
         dynamicTemplateData: {
           action_url: '/instaQuote/abc',
+          company_name: 'potato company',
+          sign_up_link: '/account/signUp}',
+          submitted_by: 'some guy (guy@potato.ca)',
         },
         templateId: SENDGRID_QUOTE_TEMPLATE_ID,
       });
