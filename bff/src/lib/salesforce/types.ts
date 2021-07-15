@@ -97,6 +97,8 @@ export type Quote = {
   quoteId: string;
   asset: string;
   applicationAmount: number;
+  name: string;
+  companyName: string;
   quoteOptions: QuoteOption[];
   quoteExpiryDate: string;
   leaseType: LeaseType;
@@ -111,6 +113,8 @@ export type Application = {
   applicationStatus: string;
   quoteId: string;
   asset: string;
+  name: string;
+  companyName: string;
 };
 
 export type Lease = {

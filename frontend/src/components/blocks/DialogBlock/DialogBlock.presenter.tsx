@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { defaultProps, DialogBlockProps } from './DialogBlock';
 import EmailImage from '../../../resources/images/email_verification.png';
+import DefaultImage from '../../../resources/images/Image.png';
 import { APIResponse } from '../../../lib/api/types';
 
 export type DialogBlockPresenterProps = DialogBlockProps & {
@@ -32,7 +33,7 @@ const withPresenter = (
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
-
+    let imageDisplay = DefaultImage;
     const defaultDisplay: DialogBlockTextDisplay = {
       header: '',
       description: '',
@@ -43,12 +44,21 @@ const withPresenter = (
     }
     switch (contentType) {
       case 'VerifyEmail':
+        imageDisplay = EmailImage;
         defaultDisplay.header = t('email_verification.header.default');
         defaultDisplay.description = t('email_verification.description.default');
         break;
       case 'ResetLink':
+        imageDisplay = EmailImage;
         defaultDisplay.header = t('email_verification.header.reset');
         defaultDisplay.description = t('email_verification.description.reset');
+        break;
+      case 'ApplicationSubmitted':
+        defaultDisplay.header = t('application_form.application_submitted.header');
+        defaultDisplay.description = t('application_form.application_submitted.description');
+        defaultDisplay.questionText = '';
+        defaultDisplay.resolutionText = '';
+        defaultDisplay.url = '/portal/applications';
         break;
     }
 
@@ -80,7 +90,7 @@ const withPresenter = (
     const dialogBlockProps: DialogBlockProps = {
       ...defaultProps,
       image: {
-        image: EmailImage,
+        image: imageDisplay,
       },
       blockHeading: {
         ...defaultProps.blockHeading,

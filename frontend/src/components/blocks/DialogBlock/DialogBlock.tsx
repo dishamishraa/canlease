@@ -48,7 +48,7 @@ export const defaultProps = {
 
 export type DialogBlockProps = {
   email?: string;
-  contentType?: 'VerifyEmail' | 'ResetLink';
+  contentType?: 'VerifyEmail' | 'ResetLink' | 'ApplicationSubmitted';
   image?: ImageProps;
   blockHeading?: TextProps;
   description?: TextProps;

@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ApplicationPageProps, routes } from './ApplicationPage';
-import { DefaultQuoteOption, BusinessType, AssetInfo } from '../../../modules/types';
+import { DefaultQuoteOption, BusinessType, AssetInfo, CreateQuoteState, EquipmentLeaseInfo } from '../../../modules/types';
 import { useLocation, useHistory } from 'react-router-dom';
 import { APIResponse } from '../../../lib/api/types';
 import { TopBarProps, defaultProps } from '../../organisms/TopBar/TopBar';
-import { Profile } from '../../../modules/profile/types';
-import { Quote } from '../../../modules/quote/types';
+import { Profile, UserType } from '../../../modules/profile/types';
+import { CreateQuotePayload, LeaseType, Quote } from '../../../modules/quote/types';
 import { CreateApplicationPayload, Term } from '../../../modules/application/types';
 
 export type ApplicationPagePresenterProps = ApplicationPageProps & {
   createApplication: (payload: CreateApplicationPayload) => Promise<APIResponse<void>>;
+  createQuote: (payload: CreateQuotePayload) => Promise<APIResponse<Quote>>;
   quoteDetails: Quote | null;
   profile: Profile | null;
 };
@@ -21,6 +22,7 @@ const withPresenter = (
     const Presenter: React.FC<ApplicationPagePresenterProps> = (props) => {
       const {
         createApplication,
+        createQuote,
         quoteDetails,
         profile,
       } = props;
@@ -29,6 +31,8 @@ const withPresenter = (
     const { t } = useTranslation();
     const [stepperCurrentValue, setStepperCurrentValue] = useState(1);
     const [stepperTotalValue, setStepperTotalValue] = useState(5);
+    const [createQuoteState, setCreateQuoteState] = useState<CreateQuoteState>({});
+    const [quote, setQuote] = useState<Quote>();
 
     window.onbeforeunload = (event) => {
         const e = event || window.event;
@@ -40,29 +44,41 @@ const withPresenter = (
     };
     window.onload = function(){
       if (stepperTotalValue === 5) {
-        history.push(routes.quoteSelection)
+        history.push('/portal/application/quoteSelection');
       } else {
-        history.push(routes.startApplication)
+        history.push('/portal/application/userSelection');
       }
     }
-
+    const setQuoteUserType = (userType: UserType) => {
+      const newState = {
+        ...createQuoteState,
+        userType,
+      }
+      setCreateQuoteState(newState);
+      history.push('/portal/application/startApplication');
+    }
+    
     const handleBackButtonClicked = () => {
       setStepperCurrentValue(stepperCurrentValue - 1);
       switch (location.pathname){
+        case (routes.startApplication):
+          history.push(routes.userSelection);
+        case (routes.quoteSelection):
+          history.push(routes.startApplication);
         case (routes.assetInformation):
-          history.push(routes.quoteSelection)
+          history.push(routes.quoteSelection);
           break;
         case (routes.businessType):
-          history.push(routes.assetInformation)
+          history.push(routes.assetInformation);
           break;
         case (routes.reviewApplicationInformation):
-          history.push(routes.businessType)
+          history.push(routes.businessType);
           break;
         case (routes.termsOfApplication):
-          history.push(routes.reviewApplicationInformation)
+          history.push(routes.reviewApplicationInformation);
           break;
         default:
-          history.push(routes.invalid)
+          history.push(routes.invalid);
           break;
       }
     }
@@ -84,7 +100,12 @@ const withPresenter = (
         show: true,
       }
     }
-
+    const defaultLeasyType: LeaseType = 'stretch';
+    const defaultEquipInfo: EquipmentLeaseInfo = {
+      name: '',
+      cost: '',
+      leaseType: defaultLeasyType
+    }
     const defaultQuoteSelected: DefaultQuoteOption = {
         monthlyAmount: 0,
         term: '',
@@ -104,10 +125,46 @@ const withPresenter = (
         bankruptcyDetails: '',
     }
 
+    const [equipInfo, setEquipInfo] = useState<EquipmentLeaseInfo>(defaultEquipInfo);
     const [quoteSelected, setQuoteSelected] = useState<DefaultQuoteOption>(defaultQuoteSelected);
     const [assetInfo, setAssetInfo] = useState<AssetInfo>(defaultAssetInfo);
     const [businessTypeInfo, setBusinessTypeInfo] = useState<BusinessType>(defaultBusinessType);
     const [creditCheckConsent, setCreditCheckConsent] = useState<boolean>(false);
+
+    const handleCreateQuote = async () => {
+      const { quoteUserType, equipmentLeaseInfo, contactInfo} = createQuoteState;
+      if(quoteUserType && equipmentLeaseInfo && profile){
+        const { name: asset, cost, leaseType } = equipmentLeaseInfo;
+        const { name: applicantName, email, companyName } = profile;
+        let payload: CreateQuotePayload = {
+          userType: quoteUserType,
+          asset: asset,
+          applicationAmount: +cost,
+          leaseType: leaseType,
+          contactName: applicantName,
+          contactEmail: email,
+          contactBusinessName: companyName
+        }
+        if(quoteUserType === 'vendor' && contactInfo){
+          const { customerName, customerEmail, customerCompanyName} = contactInfo;
+          payload = {
+            ...payload,
+            contactName: customerName,
+            contactEmail: customerEmail,
+            contactBusinessName: customerCompanyName,
+            vendorName: applicantName,
+            vendorEmail: email,
+            vendorBusinessName: companyName
+          }
+        }
+        const { data } = await createQuote(payload);
+        if(data){
+          const { quoteId } = data;
+          setQuote(data);
+          history.push(`/portal/quote/${quoteId}`, { quote: data });
+        }
+      }
+    }
    
     const handleCreateApplication = async () => {
       if (quoteSelected && assetInfo && businessTypeInfo && creditCheckConsent && quoteDetails && profile){
@@ -176,6 +233,7 @@ const withPresenter = (
         <View
         {...props}
         topBar={topBar}
+        setEquipInfo={setEquipInfo}
         setQuoteSelected={setQuoteSelected}
         setAssetInfo={setAssetInfo}
         setBusinessTypeInfo={setBusinessTypeInfo}
@@ -188,6 +246,8 @@ const withPresenter = (
         setStepperCurrentValue={setStepperCurrentValue}
         stepperTotalValue={stepperTotalValue}
         setStepperTotalValue={setStepperTotalValue}
+        setQuoteUserType={setQuoteUserType}
+        handleCreateQuote={handleCreateQuote}
         />
       </>
     );

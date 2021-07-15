@@ -102,6 +102,24 @@
     },
     "application_form":{
         "back": "Back",
+        "start_application": {
+            "heading_text": "Start application",
+            "equip_name": {
+                "label": "Equipment name",
+                "placeholder": "e.g. Macbook Pro 13 inch"
+            },
+            "equip_cost": {
+                "label": "Equipment cost (before tax)",
+                "placeholder": "CAD"
+            },
+            "lease_type": {
+                "label": "Lease type",
+                "options": {
+                    "stretch": "Stretch",
+                    "ten": "$10 end"
+                }
+            }
+        },
         "select_lease":{
             "heading_text": "Select the lease term",
             "next_button": "Next"

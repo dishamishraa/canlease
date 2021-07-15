@@ -75,7 +75,7 @@ const withPresenter = (
         ...defaultProps.button,
         onButtonClicked: () => {
           if(contentType === 'Application') {
-            // TODO
+            history.push('/portal/application/userSelection')
           } else {
             history.push('/portal/quote');
           }

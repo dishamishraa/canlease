@@ -12,6 +12,8 @@ export type CreditApplication = {
   applicationStatus: 'under review' | 'financed' | 'rejected' | 'not active';
   quoteId: string;
   asset: string;
+  name: string;
+  companyName: string;
 };
 
 export type Lease = {

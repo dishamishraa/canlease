@@ -11,6 +11,8 @@ const mockPortfolio: Portfolio = {
       applicationStatus: 'string',
       quoteId: 'string',
       asset: 'string',
+      name: 'name here',
+      companyName: 'cool company',
     },
   ],
   leases: [
