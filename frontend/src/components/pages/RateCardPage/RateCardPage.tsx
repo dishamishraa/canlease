@@ -4,6 +4,7 @@ import cx from 'classnames';
 import styles from './RateCardPage.module.scss';
 
 import DashboardRateCardBlock, { DashboardRateCardBlockProps } from '../../blocks/DashboardRateCardBlock';
+import ConfirmationModal, { ConfirmationModalProps } from '../../organisms/ConfirmationModal';
 
 export const defaultProps = {
   dashboardRateCardBlock: {
@@ -27,18 +28,29 @@ export const defaultProps = {
 export type RateCardPageProps = {
   dashboardRateCardBlock?: DashboardRateCardBlockProps;
   className?: string;
+  confirmationModal?: ConfirmationModalProps;
+  confirmationModalOpen?: boolean;
 };
 
 const RateCardPage: React.FC<RateCardPageProps> = ({
   dashboardRateCardBlock,
   className,
-}) => (
-    <div className={cx(styles.rateCardPage, className)}>
-      <DashboardRateCardBlock
-        className={styles.dashboardRateCardBlock}
-        {...dashboardRateCardBlock} />
-    </div>
-);
+  confirmationModal,
+  confirmationModalOpen,
+}) => {
+  let confirmationModalDisplay;
+  if (confirmationModalOpen) {
+    confirmationModalDisplay = ( <ConfirmationModal {...confirmationModal} />)
+  }
+  return (
+      <div className={cx(styles.rateCardPage, className)}>
+        <DashboardRateCardBlock
+          className={styles.dashboardRateCardBlock}
+          {...dashboardRateCardBlock} />
+        {confirmationModalDisplay}
+      </div>
+  );
+}
 
 RateCardPage.defaultProps = defaultProps;
 
