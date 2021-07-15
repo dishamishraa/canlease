@@ -374,6 +374,11 @@
         "see_all_button": "SEE ALL",
         "create_quote": "CREATE QUOTE",
         "apply_finance": "APPLY FOR FINANCE"
+    },
+    "user_profile": {
+        "logout": "Logout",
+        "my_profile": "My Profile",
+        "contact_canlease": "Contact Canlease"
     }
 }
   

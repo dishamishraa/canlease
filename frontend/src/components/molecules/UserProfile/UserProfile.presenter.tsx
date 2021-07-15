@@ -9,6 +9,7 @@ import { ButtonProps } from '../../atoms/Button';
 import { Account } from '../../../lib/types';
 import { defaultProps as defaultMenuItemProp } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 import exp from 'constants';
+import useLogout from '../../../modules/auth/useLogout';
 
 export type UserProfilePresenterProps = UserProfileProps & { 
   account: Account | null;
@@ -54,7 +55,7 @@ const withPresenter = (
     const { account, state } = props;
     const { t } = useTranslation();
     const history = useHistory();
-
+    const logout = useLogout();
     const contextualMenu: ContextualMenuProps = {
       contextualMenuItemList: {
         contextualMenuItems: [
@@ -62,7 +63,7 @@ const withPresenter = (
             ...defaultMenuItemProp,
             text: {
                 ...defaultMenuItemProp.text,
-                value: 'My Profile', // TODO localize
+                value: t('user_profile.my_profile'), // TODO localize
             },
             onContextualMenuItemClicked: () => {
                 
@@ -72,7 +73,7 @@ const withPresenter = (
           ...defaultMenuItemProp,
           text: {
               ...defaultMenuItemProp.text,
-              value: 'Contact Canlease', // TODO localize
+              value: t('user_profile.contact_canlease'), // TODO localize
           },
           onContextualMenuItemClicked: () => {
             window.open('https://canlease.net/contact/', '_blank');
@@ -82,11 +83,9 @@ const withPresenter = (
             ...defaultMenuItemProp,
             text: {
                 ...defaultMenuItemProp.text,
-                value: 'Logout', // TODO localize
+                value: t('user_profile.logout'), // TODO localize
             },
-            onContextualMenuItemClicked: () => {
-
-            },
+            onContextualMenuItemClicked: logout
         },
       ]}
     };
