@@ -63,7 +63,7 @@ const withPresenter = (
             ...defaultMenuItemProp,
             text: {
                 ...defaultMenuItemProp.text,
-                value: t('user_profile.my_profile'), // TODO localize
+                value: t('user_profile.my_profile'),
             },
             onContextualMenuItemClicked: () => {
               history.push('/portal/profile');
@@ -73,7 +73,7 @@ const withPresenter = (
           ...defaultMenuItemProp,
           text: {
               ...defaultMenuItemProp.text,
-              value: t('user_profile.contact_canlease'), // TODO localize
+              value: t('user_profile.contact_canlease'),
           },
           onContextualMenuItemClicked: () => {
             window.open('https://canlease.net/contact/', '_blank');
@@ -83,7 +83,7 @@ const withPresenter = (
             ...defaultMenuItemProp,
             text: {
                 ...defaultMenuItemProp.text,
-                value: t('user_profile.logout'), // TODO localize
+                value: t('user_profile.logout'),
             },
             onContextualMenuItemClicked: logout
         },
