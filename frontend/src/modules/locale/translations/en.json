@@ -374,6 +374,12 @@
         "see_all_button": "SEE ALL",
         "create_quote": "CREATE QUOTE",
         "apply_finance": "APPLY FOR FINANCE"
+    },
+    "main_menu_items": {
+        "dashboard": "Dashboard",
+        "quotes": "Quotes",
+        "applications": "Applications",
+        "rate_cards": "Rate cards"
     }
 }
   

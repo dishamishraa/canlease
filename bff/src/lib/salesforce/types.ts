@@ -2,6 +2,7 @@ export const VALID_USER_TYPES = [
   'customer',
   'vendor',
   'rep',
+  'admin',
 ] as const;
 export type UserType = typeof VALID_USER_TYPES[number];
 
