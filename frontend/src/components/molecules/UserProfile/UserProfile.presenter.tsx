@@ -66,7 +66,7 @@ const withPresenter = (
                 value: t('user_profile.my_profile'), // TODO localize
             },
             onContextualMenuItemClicked: () => {
-                
+              history.push('/portal/profile');
             },
         },
         {

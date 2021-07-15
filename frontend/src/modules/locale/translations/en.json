@@ -379,6 +379,39 @@
         "logout": "Logout",
         "my_profile": "My Profile",
         "contact_canlease": "Contact Canlease"
+    },
+    "profile_page": {
+        "header": "Profile information",
+        "description": "We will use your profile information as part application process. Please contact Canlease to make changes to your profile info.",
+        "personal_info": {
+            "header": "Personal information",
+            "label": {
+                "first_name": "First name:",
+                "last_name": "Last name:"
+            }
+        },
+        "contact_info": {
+            "header": "Contact information",
+            "label": {
+                "email": "Email:",
+                "phone_number": "Phone number:",
+                "street_address": "Street address:",
+                "city": "City:",
+                "province": "Province:",
+                "postal_code": "Postal code:"
+            }
+        },
+        "business_info": {
+            "header": "Business information",
+            "label": {
+                "legal_name": "Full legal name:",
+                "operating_name": "Operating name:",
+                "business_sector": "Business sector:",
+                "operating_since": "Operating since:",
+                "business_phone": "Business phone:",
+                "website_link": "Website link:"
+            }
+        }
     }
 }
   

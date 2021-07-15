@@ -5,6 +5,7 @@ import styles from './ProfilePage.module.scss';
 
 import TopBar, { TopBarProps } from '../../organisms/TopBar';
 import ProfileBlock, { ProfileBlockProps } from '../../blocks/ProfileBlock';
+import { Profile } from '../../../modules/profile/types';
 
 export const defaultProps = {
   topBar: {
@@ -84,12 +85,14 @@ export type ProfilePageProps = {
   topBar?: TopBarProps;
   block?: ProfileBlockProps;
   className?: string;
+  profile?: Profile;
 };
 
 const ProfilePage: React.FC<ProfilePageProps> = ({
   topBar,
   block,
   className,
+  profile
 }) => (
     <div className={cx(styles.profilePage, className)}>
       <TopBar
@@ -97,6 +100,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
         {...topBar} />
       <ProfileBlock
         className={styles.block}
+        profile={profile}
         {...block} />
     </div>
 );

@@ -78,8 +78,8 @@ const withPresenter = (
 
     if(profile){
       const {
-        firstname: firstName, 
-        lastname: lastName, 
+        firstName, 
+        lastName, 
         email, 
         phone, 
         address, 
@@ -87,7 +87,7 @@ const withPresenter = (
         province, 
         postalCode, 
         companyName, 
-        operationName: operatingName, 
+        operatingName, 
         businessSector, 
         operatingSinceDate, 
         businessPhone, 
