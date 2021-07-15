@@ -27,7 +27,7 @@ describe('SendGridAPI', () => {
         dynamicTemplateData: {
           action_url: '/instaQuote/abc',
           company_name: 'potato company',
-          sign_up_link: '/account/signUp}',
+          sign_up_link: '/account/signUp',
           submitted_by: 'some guy (guy@potato.ca)',
         },
         templateId: SENDGRID_QUOTE_TEMPLATE_ID,
