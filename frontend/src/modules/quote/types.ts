@@ -39,6 +39,8 @@ export type CreateVendorQuotePayload = CreateCustomerQuotePayload & {
 export type CreateQuotePayload = CreateVendorQuotePayload | CreateCustomerQuotePayload;
 
 export type SendQuote = {
+  companyName: string;
+  submittedBy: string;
   email: string;
   quoteId: string;
 };

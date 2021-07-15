@@ -386,6 +386,12 @@
         "body": "Are you sure you want to delete this rate card? This action cannot be undone.",
         "delete_button": "Delete",
         "cancel_button": "Cancel"
+    },
+    "main_menu_items": {
+        "dashboard": "Dashboard",
+        "quotes": "Quotes",
+        "applications": "Applications",
+        "rate_cards": "Rate card"
     }
 }
   

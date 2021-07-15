@@ -11,7 +11,7 @@ import Toast, { ToastProps } from '../../atoms/Toast';
 import { ToastTypeType, ToastStyleType } from '../../atoms/Toast/Toast';
 import { IconProps } from '../../atoms/Icon';
 import Modal, { ModalProps } from '../../organisms/Modal';
-import { QuoteFlowType } from '../../../modules/types';
+import { ContactInfo, QuoteFlowType } from '../../../modules/types';
 import { UserType } from '../../../modules/profile/types';
 
 export const defaultProps = {
@@ -131,6 +131,7 @@ export type QuoteBlockProps = {
   modal?: ModalProps;
   showModal?: boolean;
   flowType?: QuoteFlowType;
+  contactInfo?: ContactInfo;
   quoteUserType?: UserType;
 };
 
