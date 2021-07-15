@@ -23,7 +23,7 @@ export default class SendGridApi {
           company_name: companyName,
           submitted_by: submittedBy,
           action_url: `${FRONTEND_URL}/instaQuote/${quoteId}`,
-          sign_up_link:  `${FRONTEND_URL}/account/signUp}`,
+          sign_up_link:  `${FRONTEND_URL}/account/signUp`,
         },
         templateId: SENDGRID_QUOTE_TEMPLATE_ID,
       };
