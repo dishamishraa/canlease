@@ -54,6 +54,7 @@ export const getQuotes = async (portalId: string): Promise<Quote[]> => {
 
 export const getCustomerQuotes = async (portalId: string): Promise<Quote[]> => {
   try {
+    console.log(`${BFF_URL}/profile/${portalId}/customer_quote`) 
     const { data } = await axios.get<Quote[]>(`${BFF_URL}/profile/${portalId}/customer_quote`);
     return data;
   } catch (error) {

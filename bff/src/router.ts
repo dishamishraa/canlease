@@ -6,7 +6,7 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { ClientRequest } from 'http';
 import { InternalServerError, NotFoundError } from './lib/errors';
-import { IDENTITY_URL, PROXY_TIMEOUT } from './lib/config';
+import { IDENTITY_URL, PROXY_TIMEOUT, DATA_URL } from './lib/config';
 
 import { QuoteControllerContract, QuoteRouter } from './modules/quote';
 import { ApplicationControllerContract, ApplicationRouter } from './modules/application';
@@ -41,8 +41,24 @@ const restream = (proxyReq: ClientRequest, req: Request): void => {
   }
 };
 
+console.log(IDENTITY_URL);
+
 const proxy = createProxyMiddleware({
   target: IDENTITY_URL,
+  changeOrigin: true,
+  onError: (err: NodeJS.ErrnoException, req: Request, res: Response): void => {
+    if (err.code === 'ENOTFOUND') {
+      res.status(404).send(NotFoundError());
+    } else {
+      res.status(500).send(InternalServerError());
+    }
+  },
+  proxyTimeout: Number(PROXY_TIMEOUT),
+  onProxyReq: restream,
+});
+
+const dataProxy = createProxyMiddleware({
+  target: DATA_URL,
   changeOrigin: true,
   onError: (err: NodeJS.ErrnoException, req: Request, res: Response): void => {
     if (err.code === 'ENOTFOUND') {
@@ -70,6 +86,7 @@ export const createRouter = (controllers: {
   router.get('/', (req: Request, res: Response) => res.json({ running: true }));
   router.post('/token', proxy);
   router.use('/accounts', proxy);
+  router.use('/data', dataProxy)
 
   router.use('/quote', QuoteRouter(controllers));
   router.use('/credit_apps', ApplicationRouter(controllers));

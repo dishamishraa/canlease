@@ -6,6 +6,7 @@ import { defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenu
 import { isEmptyString } from '../../../lib/utils';
 import { useEffect } from 'react';
 import { LeaseType } from '../../../modules/quote/types';
+import { UserType } from '../../../modules/profile/types';
 
 export type GetQuoteBlockPresenterProps = GetQuoteBlockProps & {
 };
@@ -18,11 +19,20 @@ const withPresenter = (
     const { 
       equipmentLeaseInfo,
       setEquipmentLeaseInfo,
+      profile
     } = props;
 
     const [equipmentName, setEquipmentName] = useState<string>();
     const [equipmentCost, setEquipmentCost] = useState<string>();
     const [equipmentLeaseType, setEquipmentLeaseType] = useState<LeaseType>('stretch');
+    const [userType, setUserType] = useState<UserType>();
+
+    useEffect(() => {
+      if(profile) {
+        const { userType } = profile;
+        setUserType(userType);
+      }
+    }, [])
 
     useEffect(() => {
       if(equipmentLeaseInfo) {

@@ -8,6 +8,7 @@ import TextField, { TextFieldProps } from '../../molecules/TextField';
 import SelectField, { SelectFieldProps } from '../../molecules/SelectField';
 import Button, { ButtonProps } from '../../atoms/Button';
 import { EquipmentLeaseInfo } from '../../../modules/types';
+import { Profile } from '../../../modules/profile/types';
 
 export const defaultProps = {
   blockHeading: {
@@ -85,6 +86,7 @@ export type GetQuoteBlockProps = {
   className?: string;
   equipmentLeaseInfo?: EquipmentLeaseInfo;
   setEquipmentLeaseInfo?: (equipmentLeaseInfo: EquipmentLeaseInfo) => Promise<void>;
+  profile?: Profile;
 };
 
 const GetQuoteBlock: React.FC<GetQuoteBlockProps> = ({

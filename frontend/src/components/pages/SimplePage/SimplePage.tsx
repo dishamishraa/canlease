@@ -103,6 +103,7 @@ const SimplePage: React.FC<SimplePageProps> = ({
               className={styles.block}
               equipmentLeaseInfo={equipmentLeaseInfo}
               setEquipmentLeaseInfo={setEquipmentLeaseInfo}
+              profile={profile}
               />
           </Route>
           <Route exact 

@@ -191,7 +191,8 @@ const withPresenter = (
           contactInfo={contactInfo}
           setQuoteUserType={setQuoteUserType}
           setEquipmentLeaseInfo={setEquipmentLeaseInfo}
-          setContactInfo={setContactInfo}/>;
+          setContactInfo={setContactInfo}
+          profile={profile}/>;
   };
   return Presenter;
 };

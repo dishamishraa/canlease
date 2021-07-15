@@ -7,7 +7,9 @@ import {
 
 export const signUp = async (payload: SignUpPayload): Promise<AccountResponse> => {
   try {
+    console.log(`${BFF_URL}/accounts`);
     const { data } = await axios.post<AccountResponse>(`${BFF_URL}/accounts`, payload);
+    console.log({data});
     return data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
