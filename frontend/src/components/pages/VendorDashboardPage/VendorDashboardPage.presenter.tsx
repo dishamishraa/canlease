@@ -54,7 +54,6 @@ const withPresenter = (
       if (userPortfolio) {
         const { createApps: creditApplications } = userPortfolio;
         creditApplications.filter((application: CreditApplication) => {
-          console.log(getApplicationStatus(application))
           if (getApplicationStatus(application) === "under_review"){
             numOfApplicationsUnderReview += 1;
           }

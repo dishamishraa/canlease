@@ -374,6 +374,21 @@
         "see_all_button": "SEE ALL",
         "create_quote": "CREATE QUOTE",
         "apply_finance": "APPLY FOR FINANCE"
+    },
+    "lease_info_block": {
+        "customer_company_name": "Customer:",
+        "customer_contact_name": "Contact name:",
+        "leased_asset": "Leased asset:",
+        "vendor_name": "Vendor name:",
+        "lease_number": "Lease number:",
+        "lease_term": "Lease term:",
+        "monthly_payment": "Monthly payment (before tax):",
+        "total_amount": "Total amount (before tax):",
+        "lease_start_date": "Lease start date:",
+        "purchase_option_month": "Purchase option month:",
+        "purchase_option_date": "Purchase option date:",
+        "purchase_option_amount": "Purchase option amount:",
+        "quote_id": "Quote ID:"
     }
 }
   

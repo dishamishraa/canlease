@@ -16,6 +16,7 @@ import { DefaultQuoteOption, AssetInfo, BusinessType, EquipmentLeaseInfo } from 
 import UserSelectionBlock from '../../blocks/UserSelectionBlock';
 import { UserType } from '../../../modules/profile/types';
 import DialogBlock from '../../blocks/DialogBlock';
+import LeaseInfoBlock, { LeaseInfoBlockProps } from '../../blocks/LeaseInfoBlock';
 
 export const defaultProps = {
   topBar: {
@@ -122,6 +123,7 @@ export type ApplicationPageProps = {
   quoteSelectionBlock?: QuoteSelectionBlockProps;
   reviewApplicationInformationBlock?: ReviewApplicationInformationBlockProps;
   termsOfApplicationBlock?: TermsOfApplicationBlockProps;
+  leaseInfoBlock?: LeaseInfoBlockProps;
   setEquipInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
   setQuoteSelected?: React.Dispatch<React.SetStateAction<DefaultQuoteOption>>;
   setAssetInfo?: React.Dispatch<React.SetStateAction<AssetInfo>>;
@@ -164,6 +166,7 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
   quoteSelectionBlock,
   termsOfApplicationBlock,
   reviewApplicationInformationBlock,
+  leaseInfoBlock,
   setEquipInfo,
   setQuoteSelected,
   setAssetInfo,
@@ -181,7 +184,6 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
   setQuoteUserType,
   handleCreateQuote
 }) => {
-
   return (
     <div className={cx(styles.applicationPage, className)}>
       <TopBar
@@ -278,6 +280,9 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
         </Route>
         <Route path={routes.applicationDetails}>
           <div>TODO add application details block</div>
+          <LeaseInfoBlock
+            {...leaseInfoBlock}
+            />
         </Route>
         <Route path={routes.invalid}>
           <Redirect to={routes.startApplication}/>

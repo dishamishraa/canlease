@@ -276,7 +276,7 @@ const withPresenter = (
         applicationAmount, asset, quoteId, leaseType,
       } = quoteIdDetails;
     
-      if (businessTypeInfo) {
+    if (businessTypeInfo) {
         const {
           bankruptcy, bankruptcyDetails, businessType, dob, sin,
         } = businessTypeInfo;

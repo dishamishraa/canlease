@@ -7,6 +7,7 @@ import useQuoteDetails from '../../../modules/quote/useQuoteDetails';
 import { useContext } from 'react';
 import { AuthContext } from '../../../modules/auth';
 import { useCreateQuote } from '../../../modules/quote';
+import { useCustomerPortfolio } from '../../../modules/portfolio';
 
 const withInteractor = (
   Presenter: React.FC<ApplicationPagePresenterProps>,
@@ -18,6 +19,7 @@ const withInteractor = (
     const [{}, createQuote] = useCreateQuote();
     const { quoteId } = useParams<{quoteId: string}>();
     const { data: quoteDetails } = useQuoteDetails(quoteId);
+    const { data: customerPortfolio } = useCustomerPortfolio(profile?.portalId ?? '');
     return (
       <Presenter
         {...props}
@@ -25,6 +27,7 @@ const withInteractor = (
         createQuote={createQuote}
         quoteDetails={quoteDetails}
         profile={profile}
+        customerPortfolio={customerPortfolio}
       />
     );
   }

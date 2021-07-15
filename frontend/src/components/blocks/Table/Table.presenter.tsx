@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { generatePath, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TableProps, defaultProps } from './Table';
 import { TableItemListProps } from '../../organisms/TableItemList';
@@ -82,24 +82,25 @@ const getCurrentItems = (
     case 'Application':
       if (portfolio && portfolio.createApps && portfolio.leases) {
         items = portfolio.createApps.map((application: CreditApplication): TableItem => {
-          let companyName: string = 'companyName';
-          let contactName: string = 'name';
+          let companyName: string | undefined;
+          let contactName: string | undefined;
           if( tab === 'Customer'){
-            // TODO: don't access access to the correct info
             // Name of the company receiving the lease
+            companyName = application.companyName;
+            contactName = application.name;
             // Name of the contact
           } else if (tab === 'Personal') {
             // Company giving the lease
             companyName = portfolio.leases.find(lease => lease.quoteId === application.quoteId)?.vendorName ?? 'Unkown';
           }
           return {
-            company: application.companyName,
-            contactName: application.name,
+            company: companyName ?? application.companyName,
+            contactName: contactName ?? application.name,
             status: getApplicationStatus(application),
             createdOn: new Date(application.createdDate).toDateString(),
             asset: application.asset,
             cost: application.applicationAmount,
-            link: `/portal/application/${application.creditAppNumber}`,
+            link: generatePath("/portal/application/:applicationDetails", {applicationDetails: application.creditAppNumber}),
           }
         });
       }
