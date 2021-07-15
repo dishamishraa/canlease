@@ -38,11 +38,25 @@ export const isEmail = (value: string) => {
   return regexEmail.test(value);
 };
 
-export const updateInstaQuoteCookie = (action: AfterAuthAction, setCookie, removeCookie) => {
-  const quoteCookieObj = getQuoteCookie();
+export const updateInstaQuoteCookie = (
+  update: { 
+    action?: AfterAuthAction;
+  },
+  setCookie, 
+  removeCookie, 
+) => {
+  const { quoteId, expires } = getQuoteCookie();
   removeCookie(INSTANT_QUOTE_COOKIE);
-  setCookie(INSTANT_QUOTE_COOKIE, {...quoteCookieObj, action: action}, 
-          { expires: new Date(quoteCookieObj.expires) });
+  setCookie(INSTANT_QUOTE_COOKIE, 
+    {
+      ...update,
+      quoteId,
+      expires,
+    }, 
+    { 
+      expires: new Date(expires), 
+    },
+  );
 }
 
 export const getQuoteCookie = () => {

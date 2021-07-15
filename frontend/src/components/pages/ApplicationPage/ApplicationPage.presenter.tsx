@@ -9,8 +9,8 @@ import { Profile, UserType } from '../../../modules/profile/types';
 import { CreateQuotePayload, LeaseType, Quote } from '../../../modules/quote/types';
 import { CreateApplicationPayload, Term } from '../../../modules/application/types';
 import { getQuoteCookie} from '../../../lib/utils';
-import { INSTANT_QUOTE_COOKIE } from '../../../lib/config';
 import { useCookies } from 'react-cookie';
+import { updateInstaQuoteCookie } from '../../../lib/utils';
 
 export type ApplicationPagePresenterProps = ApplicationPageProps & {
   createApplication: (payload: CreateApplicationPayload) => Promise<APIResponse<void>>;
@@ -43,11 +43,9 @@ const withPresenter = (
       if(quoteCookieObj?.action === 'apply_finance'){
         setStepperCurrentValue(1);
         setStepperTotalValue(5);
-        removeCookie(INSTANT_QUOTE_COOKIE);
-        setCookie(INSTANT_QUOTE_COOKIE, {"quoteId": quoteCookieObj.quoteId, "expires": quoteCookieObj.expires},
-              { expires: new Date(quoteCookieObj.expires) });
+        updateInstaQuoteCookie({}, setCookie, removeCookie);
       }
-    }, [quoteCookieObj?.action]) 
+    }, [quoteCookieObj]) 
 
     window.onbeforeunload = (event) => {
         const e = event || window.event;

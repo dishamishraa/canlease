@@ -14,6 +14,7 @@ import { isEmpty, getQuoteCookie} from '../../../lib/utils';
 import { Account } from '../../../lib/types';
 import { INSTANT_QUOTE_COOKIE } from '../../../lib/config';
 import { extractJwtPayload } from '../../../lib/token';
+import { updateInstaQuoteCookie } from '../../../lib/utils';
 
 export type AuthPagePresenterProps = AuthPageProps & {
   account: Account | null;
@@ -93,9 +94,7 @@ const withPresenter = (
           if (quoteCookieObj.quoteId) {
             await addQuoteToProfile(quoteCookieObj.quoteId);
           }
-          removeCookie(INSTANT_QUOTE_COOKIE);
-          setCookie(INSTANT_QUOTE_COOKIE, {quoteId: quoteCookieObj.quoteId, expires: quoteCookieObj.expires},
-                { expires: new Date(quoteCookieObj.expires) });
+          updateInstaQuoteCookie({}, setCookie, removeCookie);
           history.push('/portal/quotes');
           break;
         default:
