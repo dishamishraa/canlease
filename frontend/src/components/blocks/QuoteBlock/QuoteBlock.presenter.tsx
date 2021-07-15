@@ -15,6 +15,8 @@ import { ContactInfo, TermDisplay } from '../../../modules/types';
 import { isExpired } from '../../../lib/utils';
 import { APIResponse } from '../../../lib/api/types';
 import { sendQuote } from '../../../modules/quote/api';
+import { useCookies } from 'react-cookie';
+import { updateInstaQuoteCookie } from '../../../lib/utils';
 
 export type QuoteBlockPresenterProps = QuoteBlockProps & {
   quote: Quote | null;
@@ -39,6 +41,7 @@ const withPresenter = (
     const history = useHistory();
     const { t } = useTranslation();
     const [showModal, setShowModal] = useState(false);
+    const [, setCookie, removeCookie] = useCookies();
 
     if (error) {
       // return error view
@@ -88,7 +91,8 @@ const withPresenter = (
 
     const handleApplyForFinance = () => {
       if(flowType === 'instaQuote') {
-        history.push('/account/signin', { action: 'apply_finance' });
+       updateInstaQuoteCookie({ action: 'apply_finance'}, setCookie, removeCookie);
+        history.push('/account/signin');
       } else {
         // TODO
         history.push('/portal/applications');
@@ -96,7 +100,8 @@ const withPresenter = (
     };
 
     const handleSaveQuote = () => {
-      history.push('/account/signin', { action: 'save_quote' });
+      updateInstaQuoteCookie({ action: 'save_quote'}, setCookie, removeCookie);
+      history.push('/account/signin');
     };
 
     const getSubmittedBy = (info: ContactInfo) => {
