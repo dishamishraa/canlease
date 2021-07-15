@@ -74,23 +74,22 @@ const withPresenter = (
             },
         },
     ];
-
-    const rateCardMenuItem: MainMenuItemProps = {
-        ...defaultMainMenutItemProps,
-        type: normalizedPathname.startsWith('portal/ratecard') ? 'Selected' : 'Default',
-        icon: {
-            ...defaultMainMenutItemProps.icon,
-            asset: 'RateCards',
-        },
-        text: {
-            ...defaultMainMenutItemProps.text,
-            value: t('main_menu_items.rate_cards'),
-        },
-        onMainMenuItemClicked: () => {
-            history.push('/portal/ratecard');
+    if (profile?.userType === 'admin') { 
+        const rateCardMenuItem: MainMenuItemProps = {
+            ...defaultMainMenutItemProps,
+            type: normalizedPathname.startsWith('/portal/ratecard') ? 'Selected' : 'Default',
+            icon: {
+                ...defaultMainMenutItemProps.icon,
+                asset: 'RateCards',
+            },
+            text: {
+                ...defaultMainMenutItemProps.text,
+                value: t('main_menu_items.rate_cards'),
+            },
+            onMainMenuItemClicked: () => {
+                history.push('/portal/ratecard');
+            }
         }
-    }
-    if (profile?.userType === 'admin') {
         menuItems.push(rateCardMenuItem);
     }
     const menuItemList: MenuItemListProps = {

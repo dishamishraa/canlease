@@ -56,7 +56,7 @@ export const routes = {
   application: '/portal/application',
   quotes: '/portal/quotes',
   quote: '/portal/quote',
-  ratecard: 'portal/ratecard',
+  ratecard: '/portal/ratecard',
   invalid: '/',
 };
 
