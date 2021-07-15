@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { QuoteDetailItemProps, defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { ProfileBlockProps, defaultProps } from './ProfileBlock';
@@ -36,8 +35,8 @@ const withPresenter = (
         businessPhone,
         website
       } = profile;
-      console.log(operatingName)
-      //TODO: clean this up
+      const contactInfo = [email, phone, street, city, province, postalCode];
+      const businessInfo = [companyName, operatingName, businessSector, operatingSinceDate, businessPhone, website];
       personalDetails = [
         {
           ...defaultQuoteDetailItemProps,
@@ -62,144 +61,34 @@ const withPresenter = (
           }
         },
       ];
-
-      contactDetails = [
-        {
-          ...defaultQuoteDetailItemProps,
-          labelText: {
-            ...defaultQuoteDetailItemProps.labelText,
-            value: t('profile_page.contact_info.label.email')
-          },
-          infoText: {
-            ...defaultQuoteDetailItemProps.infoText,
-            value: email
+      for(let i =0; i < contactInfo.length; i++){
+        contactDetails.push(
+          {
+            ...defaultQuoteDetailItemProps,
+            labelText: {
+              ...defaultQuoteDetailItemProps.labelText,
+              value: t(`profile_page.contact_info.label.${i}`)
+            },
+            infoText: {
+              ...defaultQuoteDetailItemProps.infoText,
+              value: contactInfo[i]
+            }
           }
-        },
-        {
-          ...defaultQuoteDetailItemProps,
-          labelText: {
-            ...defaultQuoteDetailItemProps.labelText,
-            value: t('profile_page.contact_info.label.phone_number')
-          },
-          infoText: {
-            ...defaultQuoteDetailItemProps.infoText,
-            value: phone
+        )
+        businessDetails.push(
+          {
+            ...defaultQuoteDetailItemProps,
+            labelText: {
+              ...defaultQuoteDetailItemProps.labelText,
+              value: t(`profile_page.business_info.label.${i}`)
+            },
+            infoText: {
+              ...defaultQuoteDetailItemProps.infoText,
+              value: businessInfo[i]
+            }
           }
-        },
-        {
-          ...defaultQuoteDetailItemProps,
-          labelText: {
-            ...defaultQuoteDetailItemProps.labelText,
-            value: t('profile_page.contact_info.label.street_address')
-          },
-          infoText: {
-            ...defaultQuoteDetailItemProps.infoText,
-            value: street
-          }
-        },
-        {
-          ...defaultQuoteDetailItemProps,
-          labelText: {
-            ...defaultQuoteDetailItemProps.labelText,
-            value: t('profile_page.contact_info.label.city')
-          },
-          infoText: {
-            ...defaultQuoteDetailItemProps.infoText,
-            value: city
-          }
-        },
-        {
-          ...defaultQuoteDetailItemProps,
-          labelText: {
-            ...defaultQuoteDetailItemProps.labelText,
-            value: t('profile_page.contact_info.label.province')
-          },
-          infoText: {
-            ...defaultQuoteDetailItemProps.infoText,
-            value: province
-          }
-        },
-        {
-          ...defaultQuoteDetailItemProps,
-          labelText: {
-            ...defaultQuoteDetailItemProps.labelText,
-            value: t('profile_page.contact_info.label.postal_code')
-          },
-          infoText: {
-            ...defaultQuoteDetailItemProps.infoText,
-            value: postalCode
-          }
-        },
-      ]
-
-      businessDetails = [
-        {
-          ...defaultQuoteDetailItemProps,
-          labelText: {
-            ...defaultQuoteDetailItemProps.labelText,
-            value: t('profile_page.business_info.label.legal_name')
-          },
-          infoText: {
-            ...defaultQuoteDetailItemProps.infoText,
-            value: companyName
-          }
-        },
-        {
-          ...defaultQuoteDetailItemProps,
-          labelText: {
-            ...defaultQuoteDetailItemProps.labelText,
-            value: t('profile_page.business_info.label.operating_name')
-          },
-          infoText: {
-            ...defaultQuoteDetailItemProps.infoText,
-            value: operatingName
-          }
-        },
-        {
-          ...defaultQuoteDetailItemProps,
-          labelText: {
-            ...defaultQuoteDetailItemProps.labelText,
-            value: t('profile_page.business_info.label.business_sector')
-          },
-          infoText: {
-            ...defaultQuoteDetailItemProps.infoText,
-            value: businessSector
-          }
-        },
-        {
-          ...defaultQuoteDetailItemProps,
-          labelText: {
-            ...defaultQuoteDetailItemProps.labelText,
-            value: t('profile_page.business_info.label.operating_since')
-          },
-          infoText: {
-            ...defaultQuoteDetailItemProps.infoText,
-            value: operatingSinceDate
-          }
-        },
-        {
-          ...defaultQuoteDetailItemProps,
-          labelText: {
-            ...defaultQuoteDetailItemProps.labelText,
-            value: t('profile_page.business_info.label.business_phone')
-          },
-          infoText: {
-            ...defaultQuoteDetailItemProps.infoText,
-            value: businessPhone
-          }
-        },
-        {
-          ...defaultQuoteDetailItemProps,
-          labelText: {
-            ...defaultQuoteDetailItemProps.labelText,
-            value: t('profile_page.business_info.label.website_link')
-          },
-          infoText: {
-            ...defaultQuoteDetailItemProps.infoText,
-            value: website
-          }
-        },
-      ]
+        )
+      };
     }
 
     const profileBlockProps: ProfileBlockProps = {

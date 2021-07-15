@@ -393,23 +393,23 @@
         "contact_info": {
             "header": "Contact information",
             "label": {
-                "email": "Email:",
-                "phone_number": "Phone number:",
-                "street_address": "Street address:",
-                "city": "City:",
-                "province": "Province:",
-                "postal_code": "Postal code:"
+                "0": "Email:",
+                "1": "Phone number:",
+                "2": "Street address:",
+                "3": "City:",
+                "4": "Province:",
+                "5": "Postal code:"
             }
         },
         "business_info": {
             "header": "Business information",
             "label": {
-                "legal_name": "Full legal name:",
-                "operating_name": "Operating name:",
-                "business_sector": "Business sector:",
-                "operating_since": "Operating since:",
-                "business_phone": "Business phone:",
-                "website_link": "Website link:"
+                "0": "Full legal name:",
+                "1": "Operating name:",
+                "2": "Business sector:",
+                "3": "Operating since:",
+                "4": "Business phone:",
+                "5": "Website link:"
             }
         }
     }
