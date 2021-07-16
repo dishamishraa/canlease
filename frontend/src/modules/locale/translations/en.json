@@ -375,6 +375,44 @@
         "create_quote": "CREATE QUOTE",
         "apply_finance": "APPLY FOR FINANCE"
     },
+    "user_profile": {
+        "logout": "Logout",
+        "my_profile": "My Profile",
+        "contact_canlease": "Contact Canlease"
+    },
+    "profile_page": {
+        "header": "Profile information",
+        "description": "We will use your profile information as part application process. Please contact Canlease to make changes to your profile info.",
+        "personal_info": {
+            "header": "Personal information",
+            "label": {
+                "0": "First name:",
+                "1": "Last name:"
+            }
+        },
+        "contact_info": {
+            "header": "Contact information",
+            "label": {
+                "0": "Email:",
+                "1": "Phone number:",
+                "2": "Street address:",
+                "3": "City:",
+                "4": "Province:",
+                "5": "Postal code:"
+            }
+        },
+        "business_info": {
+            "header": "Business information",
+            "label": {
+                "0": "Full legal name:",
+                "1": "Operating name:",
+                "2": "Business sector:",
+                "3": "Operating since:",
+                "4": "Business phone:",
+                "5": "Website link:"
+            }
+        }
+    },
     "main_menu_items": {
         "dashboard": "Dashboard",
         "quotes": "Quotes",

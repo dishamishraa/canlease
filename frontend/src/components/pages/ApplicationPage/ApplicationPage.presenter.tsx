@@ -183,7 +183,7 @@ const withPresenter = (
       if (quoteSelected && assetInfo && businessTypeInfo && creditCheckConsent && quoteDetails && profile){
         const { 
           portalId, 
-          operationName: operatingName, 
+          operatingName, 
           name, 
           street, 
           city, 
