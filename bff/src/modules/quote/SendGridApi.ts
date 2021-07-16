@@ -14,7 +14,9 @@ export default class SendGridApi {
   }
 
   async sendQuote(payload: SendQuote): Promise<void> {
-    const { email, quoteId, companyName, submittedBy } = payload;
+    const {
+      email, quoteId, companyName, submittedBy,
+    } = payload;
     try {
       const data: MailDataRequired = {
         to: email,
@@ -23,7 +25,7 @@ export default class SendGridApi {
           company_name: companyName,
           submitted_by: submittedBy,
           action_url: `${FRONTEND_URL}/instaQuote/${quoteId}`,
-          sign_up_link:  `${FRONTEND_URL}/account/signUp`,
+          sign_up_link: `${FRONTEND_URL}/account/signUp`,
         },
         templateId: SENDGRID_QUOTE_TEMPLATE_ID,
       };
