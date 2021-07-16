@@ -5,7 +5,6 @@ import styles from './ProfileBlock.module.scss';
 
 import Text, { TextProps } from '../../atoms/Text';
 import DetailsSection, { DetailsSectionProps } from '../../organisms/DetailsSection';
-import { Profile } from '../../../modules/profile/types';
 
 export const defaultProps = {
   blockHeading: {
@@ -68,7 +67,6 @@ export type ProfileBlockProps = {
   contactDetailsSection?: DetailsSectionProps;
   businessDetailsSection?: DetailsSectionProps;
   className?: string;
-  profile?: Profile;
 };
 
 const ProfileBlock: React.FC<ProfileBlockProps> = ({

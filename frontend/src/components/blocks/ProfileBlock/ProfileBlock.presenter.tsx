@@ -1,9 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { QuoteDetailItemProps, defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
+import { Profile } from '../../../modules/profile/types';
+import QuoteDetailItem, { QuoteDetailItemProps, defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { ProfileBlockProps, defaultProps } from './ProfileBlock';
 
 export type ProfileBlockPresenterProps = ProfileBlockProps & {
+  profile: Profile | null;
 };
 
 const withPresenter = (
@@ -35,60 +37,48 @@ const withPresenter = (
         businessPhone,
         website
       } = profile;
+      const personalInfo = [firstName, lastName];
+      personalDetails = personalInfo.map((item, index)=> {
+        return {
+          ...defaultQuoteDetailItemProps,
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t(`profile_page.personal_info.label.${index}`)
+              },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: item
+              }
+        }
+      })
       const contactInfo = [email, phone, street, city, province, postalCode];
+      contactDetails = contactInfo.map((item, index) => {
+        return {
+          ...defaultQuoteDetailItemProps,
+          labelText: {
+            ...defaultQuoteDetailItemProps.labelText,
+            value: t(`profile_page.contact_info.label.${index}`)
+          },
+          infoText: {
+            ...defaultQuoteDetailItemProps.infoText,
+            value: item
+          }
+        }
+      })
       const businessInfo = [companyName, operatingName, businessSector, operatingSinceDate, businessPhone, website];
-      personalDetails = [
-        {
+      businessDetails = businessInfo.map((item, index) => {
+        return {
           ...defaultQuoteDetailItemProps,
-          labelText: {
-            ...defaultQuoteDetailItemProps.labelText,
-            value: t('profile_page.personal_info.label.first_name')
-          },
-          infoText: {
-            ...defaultQuoteDetailItemProps.infoText,
-            value: firstName
-          }
-        },
-        {
-          ...defaultQuoteDetailItemProps,
-          labelText: {
-            ...defaultQuoteDetailItemProps.labelText,
-            value: t('profile_page.personal_info.label.last_name')
-          },
-          infoText: {
-            ...defaultQuoteDetailItemProps.infoText,
-            value: lastName
-          }
-        },
-      ];
-      for(let i =0; i < contactInfo.length; i++){
-        contactDetails.push(
-          {
-            ...defaultQuoteDetailItemProps,
             labelText: {
               ...defaultQuoteDetailItemProps.labelText,
-              value: t(`profile_page.contact_info.label.${i}`)
+              value: t(`profile_page.business_info.label.${index}`)
             },
             infoText: {
               ...defaultQuoteDetailItemProps.infoText,
-              value: contactInfo[i]
+              value: item
             }
-          }
-        )
-        businessDetails.push(
-          {
-            ...defaultQuoteDetailItemProps,
-            labelText: {
-              ...defaultQuoteDetailItemProps.labelText,
-              value: t(`profile_page.business_info.label.${i}`)
-            },
-            infoText: {
-              ...defaultQuoteDetailItemProps.infoText,
-              value: businessInfo[i]
-            }
-          }
-        )
-      };
+        }
+      })
     }
 
     const profileBlockProps: ProfileBlockProps = {

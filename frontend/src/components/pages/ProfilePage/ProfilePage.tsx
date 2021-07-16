@@ -100,7 +100,6 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
         {...topBar} />
       <ProfileBlock
         className={styles.block}
-        profile={profile}
         {...block} />
     </div>
 );

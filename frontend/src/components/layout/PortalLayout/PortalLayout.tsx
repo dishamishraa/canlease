@@ -98,7 +98,6 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
             </Route>
             <Route path={routes.profile}>
               <ProfilePage
-                profile={profile || undefined}
                 className={styles.page} />
             </Route>
             <Route path={routes.invalid}>

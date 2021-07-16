@@ -8,7 +8,7 @@ const LOGOUT_ERROR = i18next.t('error.logout');
 export const logout = (): void => {
   try {
     const returnUrl = window.location.origin;
-    window.location.assign(`${returnUrl}/account`);
+    window.location.assign(`${returnUrl}/account/signIn`);
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new ApiError({
