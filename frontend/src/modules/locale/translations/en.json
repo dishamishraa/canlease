@@ -376,6 +376,7 @@
         "apply_finance": "APPLY FOR FINANCE"
     },
     "lease_info_block": {
+        "header": "Lease Information",
         "customer_company_name": "Customer:",
         "customer_contact_name": "Contact name:",
         "leased_asset": "Leased asset:",

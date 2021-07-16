@@ -27,7 +27,7 @@ const withPresenter = (
 
     const blockHeading = {
       ...defaultProps.blockHeading,
-      value: 'Test lease info block heading'
+      value: t('lease_info_block.header'),
     };
 
     const dateFormatOptions: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: '2-digit'};
@@ -41,7 +41,7 @@ const withPresenter = (
           {
             labelText: {
               ...defaultQuoteDetailItemProps.labelText,
-              value: t('lease_info_block.customer_company_name')
+              value: t('lease_info_block.customer_company_name'),
             },
             infoText: {
               ...defaultQuoteDetailItemProps.infoText,
@@ -51,7 +51,7 @@ const withPresenter = (
           {
             labelText: {
               ...defaultQuoteDetailItemProps.labelText,
-              value: t('lease_info_block.customer_contact_name')
+              value: t('lease_info_block.customer_contact_name'),
             },
             infoText: {
               ...defaultQuoteDetailItemProps.infoText,
@@ -61,7 +61,7 @@ const withPresenter = (
           {
             labelText: {
               ...defaultQuoteDetailItemProps.labelText,
-              value: t('lease_info_block.leased_asset')
+              value: t('lease_info_block.leased_asset'),
             },
             infoText: {
               ...defaultQuoteDetailItemProps.infoText,
@@ -71,7 +71,7 @@ const withPresenter = (
           {
             labelText: {
               ...defaultQuoteDetailItemProps.labelText,
-              value: t('lease_info_block.vendor_name')
+              value: t('lease_info_block.vendor_name'),
             },
             infoText: {
               ...defaultQuoteDetailItemProps.infoText,
@@ -81,7 +81,7 @@ const withPresenter = (
           {
             labelText: {
               ...defaultQuoteDetailItemProps.labelText,
-              value: t('lease_info_block.lease_number')
+              value: t('lease_info_block.lease_number'),
             },
             infoText: {
               ...defaultQuoteDetailItemProps.infoText,
@@ -91,7 +91,7 @@ const withPresenter = (
           {
             labelText: {
               ...defaultQuoteDetailItemProps.labelText,
-              value: t('lease_info_block.lease_term')
+              value: t('lease_info_block.lease_term'),
             },
             infoText: {
               ...defaultQuoteDetailItemProps.infoText,
@@ -101,7 +101,7 @@ const withPresenter = (
           {
             labelText: {
               ...defaultQuoteDetailItemProps.labelText,
-              value: t('lease_info_block.monthly_payment')
+              value: t('lease_info_block.monthly_payment'),
             },
             infoText: {
               ...defaultQuoteDetailItemProps.infoText,
@@ -111,7 +111,7 @@ const withPresenter = (
           {
             labelText: {
               ...defaultQuoteDetailItemProps.labelText,
-              value: t('lease_info_block.total_amount')
+              value: t('lease_info_block.total_amount'),
             },
             infoText: {
               ...defaultQuoteDetailItemProps.infoText,
@@ -121,7 +121,7 @@ const withPresenter = (
           {
             labelText: {
               ...defaultQuoteDetailItemProps.labelText,
-              value: t('lease_info_block.lease_start_date')
+              value: t('lease_info_block.lease_start_date'),
             },
             infoText: {
               ...defaultQuoteDetailItemProps.infoText,
@@ -131,41 +131,41 @@ const withPresenter = (
           {
             labelText: {
               ...defaultQuoteDetailItemProps.labelText,
-              value: t('lease_info_block.purchase_option_month')
+              value: t('lease_info_block.purchase_option_month'),
             },
             infoText: {
               ...defaultQuoteDetailItemProps.infoText,
-              value: leaseOptionMonth
+              value: leaseOptionMonth,
             }
           },
           {
             labelText: {
               ...defaultQuoteDetailItemProps.labelText,
-              value: t('lease_info_block.purchase_option_date')
+              value: t('lease_info_block.purchase_option_date'),
             },
             infoText: {
               ...defaultQuoteDetailItemProps.infoText,
-              value: leaseOptionDate
+              value: leaseOptionDate,
             }
           },
           {
             labelText: {
               ...defaultQuoteDetailItemProps.labelText,
-              value: t('lease_info_block.purchase_option_amount')
+              value: t('lease_info_block.purchase_option_amount'),
             },
             infoText: {
               ...defaultQuoteDetailItemProps.infoText,
-              value: lease?.optionAmount
+              value: lease?.optionAmount,
             }
           },
           {
             labelText: {
               ...defaultQuoteDetailItemProps.labelText,
-              value: t('lease_info_block.quote_id')
+              value: t('lease_info_block.quote_id'),
             },
             infoText: {
               ...defaultQuoteDetailItemProps.infoText,
-              value: lease?.quoteId
+              value: lease?.quoteId,
             }
           },
         ]
