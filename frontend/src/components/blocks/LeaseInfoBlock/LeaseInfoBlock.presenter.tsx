@@ -4,6 +4,7 @@ import { LeaseInfo } from "../../../modules/types";
 import { LeaseInfoBlockProps, defaultProps } from './LeaseInfoBlock';
 import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { useTranslation } from "react-i18next";
+import { TextProps } from "../../atoms/Text";
 
 export type LeaseInfoBlockPresenterProps = LeaseInfoBlockProps & {};
 
@@ -35,136 +36,142 @@ const withPresenter = (
     const leaseOptionMonth =  new Date(lease?.purchaseOptionDate ?? '').toLocaleString('default', { month: 'long' });
     const leaseOptionDate = new Date(lease?.purchaseOptionDate ?? '').toLocaleDateString('en-CA', dateFormatOptions);
 
+    const defaultLabelTextProps: TextProps = {...defaultQuoteDetailItemProps.labelText, type: 'Paragraph2'};
+    const defaultInfoTextProps: TextProps = {...defaultQuoteDetailItemProps.infoText, type: 'Paragraph3'};
+
     const leaseDetailsSection = {
       detailItemList: {
         quoteDetailItems: [
           {
             labelText: {
-              ...defaultQuoteDetailItemProps.labelText,
+              ...defaultLabelTextProps,
               value: t('lease_info_block.customer_company_name'),
             },
             infoText: {
-              ...defaultQuoteDetailItemProps.infoText,
+              ...defaultInfoTextProps,
               value: company,
             }
           },
           {
             labelText: {
-              ...defaultQuoteDetailItemProps.labelText,
+              ...defaultLabelTextProps,
               value: t('lease_info_block.customer_contact_name'),
             },
             infoText: {
-              ...defaultQuoteDetailItemProps.infoText,
+              ...defaultInfoTextProps,
               value: contactName,
             }
           },
           {
             labelText: {
-              ...defaultQuoteDetailItemProps.labelText,
+              ...defaultLabelTextProps,
               value: t('lease_info_block.leased_asset'),
             },
             infoText: {
-              ...defaultQuoteDetailItemProps.infoText,
+              ...defaultInfoTextProps,
               value: asset,
             }
           },
           {
             labelText: {
-              ...defaultQuoteDetailItemProps.labelText,
+              ...defaultLabelTextProps,
               value: t('lease_info_block.vendor_name'),
             },
             infoText: {
-              ...defaultQuoteDetailItemProps.infoText,
+              ...defaultInfoTextProps,
               value: vendor,
             }
           },
+          {},
           {
             labelText: {
-              ...defaultQuoteDetailItemProps.labelText,
+              ...defaultLabelTextProps,
               value: t('lease_info_block.lease_number'),
             },
             infoText: {
-              ...defaultQuoteDetailItemProps.infoText,
+              ...defaultInfoTextProps,
               value: lease?.leaseNumber,
             }
           },
           {
             labelText: {
-              ...defaultQuoteDetailItemProps.labelText,
+              ...defaultLabelTextProps,
               value: t('lease_info_block.lease_term'),
             },
             infoText: {
-              ...defaultQuoteDetailItemProps.infoText,
-              value: lease?.fullTerm,
+              ...defaultInfoTextProps,
+              value: `${lease?.fullTerm} Months`,
             }
           },
           {
             labelText: {
-              ...defaultQuoteDetailItemProps.labelText,
+              ...defaultLabelTextProps,
               value: t('lease_info_block.monthly_payment'),
             },
             infoText: {
-              ...defaultQuoteDetailItemProps.infoText,
-              value: lease?.paymentBeforeTax
+              ...defaultInfoTextProps,
+              value: `$${lease?.paymentBeforeTax}`
             }
           },
           {
             labelText: {
-              ...defaultQuoteDetailItemProps.labelText,
+              ...defaultLabelTextProps,
               value: t('lease_info_block.total_amount'),
             },
             infoText: {
-              ...defaultQuoteDetailItemProps.infoText,
-              value: lease?.fullTerm,
+              ...defaultInfoTextProps,
+              value: `$${lease?.fullTerm}`,
             }
           },
+          {},
           {
             labelText: {
-              ...defaultQuoteDetailItemProps.labelText,
+              ...defaultLabelTextProps,
               value: t('lease_info_block.lease_start_date'),
             },
             infoText: {
-              ...defaultQuoteDetailItemProps.infoText,
+              ...defaultInfoTextProps,
               value: leaseStartDate,
             }
           },
           {
             labelText: {
-              ...defaultQuoteDetailItemProps.labelText,
+              ...defaultLabelTextProps,
               value: t('lease_info_block.purchase_option_month'),
             },
             infoText: {
-              ...defaultQuoteDetailItemProps.infoText,
+              ...defaultInfoTextProps,
               value: leaseOptionMonth,
             }
           },
           {
             labelText: {
-              ...defaultQuoteDetailItemProps.labelText,
+              ...defaultLabelTextProps,
               value: t('lease_info_block.purchase_option_date'),
             },
             infoText: {
-              ...defaultQuoteDetailItemProps.infoText,
+              ...defaultInfoTextProps,
               value: leaseOptionDate,
             }
           },
           {
             labelText: {
-              ...defaultQuoteDetailItemProps.labelText,
+              ...defaultLabelTextProps,
               value: t('lease_info_block.purchase_option_amount'),
             },
             infoText: {
-              ...defaultQuoteDetailItemProps.infoText,
-              value: lease?.optionAmount,
+              ...defaultInfoTextProps,
+              value: `$${lease?.optionAmount}`,
             }
           },
+          {},
           {
             labelText: {
-              ...defaultQuoteDetailItemProps.labelText,
+              ...defaultLabelTextProps,
               value: t('lease_info_block.quote_id'),
             },
             infoText: {
-              ...defaultQuoteDetailItemProps.infoText,
+              ...defaultInfoTextProps,
               value: lease?.quoteId,
             }
           },
