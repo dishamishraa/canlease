@@ -14,6 +14,7 @@ import SimplePage from '../../pages/SimplePage';
 import MenuBlock from '../../blocks/MenuBlock';
 import { useContext } from 'react';
 import { AuthContext } from '../../../modules/auth';
+import ProfilePage from '../../pages/ProfilePage';
 
 export const defaultProps = {
   header: {
@@ -56,6 +57,8 @@ export const routes = {
   application: '/portal/application',
   quotes: '/portal/quotes',
   quote: '/portal/quote',
+  profile: '/portal/profile',
+  ratecard: '/portal/ratecard',
   invalid: '/',
 };
 
@@ -65,7 +68,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
 }) => {
   const { profile } = useContext(AuthContext);
   const userType = profile?.userType || 'customer';
-  const DashboardPage = userType === 'vendor' || userType === 'rep' ? VendorDashboardPage : EndUserDashboardPage;
+  const DashboardPage = userType === 'customer' ? EndUserDashboardPage : VendorDashboardPage;
   return (
     <div className={cx(styles.portalLayout, className)}>
       <Header
@@ -78,7 +81,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
           <Switch>
             <Route path={routes.dashboard}>
               <DashboardPage
-                className={styles.page}/>;
+                className={styles.page}/>
             </Route>
             <Route path={[routes.quotes, routes.applications]}>
               <ContentPage
@@ -92,6 +95,10 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
             </Route>
             <Route path={routes.application}>
               <ApplicationPage
+                className={styles.page} />
+            </Route>
+            <Route path={routes.profile}>
+              <ProfilePage
                 className={styles.page} />
             </Route>
             <Route path={routes.invalid}>

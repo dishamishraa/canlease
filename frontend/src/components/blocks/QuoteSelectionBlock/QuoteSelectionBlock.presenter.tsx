@@ -36,12 +36,6 @@ const withPresenter = (
 
     const { t } = useTranslation();
     const history = useHistory();
-    const { state } = useLocation<{accessedFromEmail: boolean}>();
-    const { accessedFromEmail } = state || {};
-    if (accessedFromEmail === true && setStepperCurrentValue && setStepperTotalValue) {
-      setStepperCurrentValue(1);
-      setStepperTotalValue(5);
-    }
 
     const clickableRateCardsArray: ClickableRateCardProps[] = [];
   

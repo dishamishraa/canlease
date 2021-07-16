@@ -8,14 +8,19 @@ import {
 } from '../../atoms/MainMenuItem/MainMenuItem';
 import { MenuItemListProps } from '../../organisms/MenuItemList';
 import { defaultProps, MenuBlockProps } from './MenuBlock';
+import { Profile } from '../../../modules/profile/types';
 
 export type MenuBlockPresenterProps = MenuBlockProps & {
+    profile: Profile | null;
 };
 
 const withPresenter = (
   View: React.FC<MenuBlockProps>,
 ): React.FC<MenuBlockPresenterProps> => {
   const Presenter: React.FC<MenuBlockPresenterProps> = (props) => {
+    const {
+        profile,
+    } = props
     const { t } = useTranslation();
     const history = useHistory();
     const { pathname } = useLocation();
@@ -32,7 +37,7 @@ const withPresenter = (
             },
             text: {
                 ...defaultMainMenutItemProps.text,
-                value: 'Dashboard', // TODO localize
+                value:  t('main_menu_items.dashboard'),
             },
             onMainMenuItemClicked: () => {
                 history.push('/portal/dashboard');
@@ -47,7 +52,7 @@ const withPresenter = (
             },
             text: {
                 ...defaultMainMenutItemProps.text,
-                value: 'Quotes', // TODO localize
+                value:  t('main_menu_items.quotes'),
             },
             onMainMenuItemClicked: () => {
                 history.push('/portal/quotes');
@@ -62,13 +67,31 @@ const withPresenter = (
             },
             text: {
                 ...defaultMainMenutItemProps.text,
-                value: 'Applications', // TODO localize
+                value: t('main_menu_items.applications'),
             },
             onMainMenuItemClicked: () => {
                 history.push('/portal/applications');
             },
         },
     ];
+    if (profile?.userType === 'admin') { 
+        const rateCardMenuItem: MainMenuItemProps = {
+            ...defaultMainMenutItemProps,
+            type: normalizedPathname.startsWith('/portal/ratecard') ? 'Selected' : 'Default',
+            icon: {
+                ...defaultMainMenutItemProps.icon,
+                asset: 'RateCards',
+            },
+            text: {
+                ...defaultMainMenutItemProps.text,
+                value: t('main_menu_items.rate_cards'),
+            },
+            onMainMenuItemClicked: () => {
+                history.push('/portal/ratecard');
+            }
+        }
+        menuItems.push(rateCardMenuItem);
+    }
     const menuItemList: MenuItemListProps = {
         ...defaultProps.menuItemList,
         mainMenuItems: menuItems,

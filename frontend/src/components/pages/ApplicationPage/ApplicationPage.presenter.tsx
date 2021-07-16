@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ApplicationPageProps, routes } from './ApplicationPage';
 import { DefaultQuoteOption, BusinessType, AssetInfo, CreateQuoteState, EquipmentLeaseInfo } from '../../../modules/types';
@@ -8,14 +8,15 @@ import { TopBarProps, defaultProps } from '../../organisms/TopBar/TopBar';
 import { Profile, UserType } from '../../../modules/profile/types';
 import { CreateQuotePayload, LeaseType, Quote } from '../../../modules/quote/types';
 import { CreateApplicationPayload, Term } from '../../../modules/application/types';
-import { Portfolio } from '../../../modules/portfolio/types';
+import { getQuoteCookie} from '../../../lib/utils';
+import { useCookies } from 'react-cookie';
+import { updateInstaQuoteCookie } from '../../../lib/utils';
 
 export type ApplicationPagePresenterProps = ApplicationPageProps & {
   createApplication: (payload: CreateApplicationPayload) => Promise<APIResponse<void>>;
   createQuote: (payload: CreateQuotePayload) => Promise<APIResponse<Quote>>;
   quoteDetails: Quote | null;
   profile: Profile | null;
-  customerPortfolio: Portfolio | null;
 };
 
 const withPresenter = (
@@ -27,15 +28,24 @@ const withPresenter = (
         createQuote,
         quoteDetails,
         profile,
-        customerPortfolio,
       } = props;
     const history = useHistory();
     const location = useLocation();
     const { t } = useTranslation();
     const [stepperCurrentValue, setStepperCurrentValue] = useState(1);
-    const [stepperTotalValue, setStepperTotalValue] = useState(5);
+    const [stepperTotalValue, setStepperTotalValue] = useState(6);
     const [createQuoteState, setCreateQuoteState] = useState<CreateQuoteState>({});
     const [quote, setQuote] = useState<Quote>();
+    const [, setCookie, removeCookie] = useCookies();
+
+    const quoteCookieObj = getQuoteCookie();
+    useEffect(() => {
+      if(quoteCookieObj?.action === 'apply_finance'){
+        setStepperCurrentValue(1);
+        setStepperTotalValue(5);
+        updateInstaQuoteCookie({}, setCookie, removeCookie);
+      }
+    }, [quoteCookieObj]) 
 
     window.onbeforeunload = (event) => {
         const e = event || window.event;
@@ -174,7 +184,7 @@ const withPresenter = (
       if (quoteSelected && assetInfo && businessTypeInfo && creditCheckConsent && quoteDetails && profile){
         const { 
           portalId, 
-          operationName: operatingName, 
+          operatingName, 
           name, 
           street, 
           city, 

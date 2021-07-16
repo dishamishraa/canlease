@@ -125,6 +125,7 @@ const SimplePage: React.FC<SimplePageProps> = ({
             ]}>
             <QuoteBlock
               className={styles.block}
+              contactInfo={contactInfo}
               quoteUserType={quoteUserType}
               flowType={flowType} />
           </Route>

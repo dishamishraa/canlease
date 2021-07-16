@@ -1,9 +1,9 @@
-export type UserType = 'customer' | 'vendor' | 'rep';
+export type UserType = 'customer' | 'vendor' | 'rep' | 'admin';
 
 export type Profile = {
   name: string;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   companyName: string;
   phone: string;
   email: string;
@@ -21,7 +21,7 @@ export type Profile = {
   portalId: string;
   rateCardId: string;
   userType: UserType;
-  operationName: string;
+  operatingName: string;
   operatingSinceDate: string;
   businessSector: string;
   businessPhone: string;

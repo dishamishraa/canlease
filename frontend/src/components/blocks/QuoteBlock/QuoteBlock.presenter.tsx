@@ -11,10 +11,12 @@ import EmailIcon from '../../../resources/icons/Email.svg';
 
 import { defaultProps as defaultRateDetailItemProps } from '../../molecules/RateDetailItem/RateDetailItem';
 import { Quote, SendQuote } from '../../../modules/quote/types';
-import { TermDisplay } from '../../../modules/types';
+import { ContactInfo, TermDisplay } from '../../../modules/types';
 import { isExpired } from '../../../lib/utils';
 import { APIResponse } from '../../../lib/api/types';
 import { sendQuote } from '../../../modules/quote/api';
+import { useCookies } from 'react-cookie';
+import { updateInstaQuoteCookie } from '../../../lib/utils';
 
 export type QuoteBlockPresenterProps = QuoteBlockProps & {
   quote: Quote | null;
@@ -30,6 +32,7 @@ const withPresenter = (
     const {
       loading,
       error,
+      contactInfo,
       quote,
       flowType,
       quoteUserType,
@@ -38,6 +41,7 @@ const withPresenter = (
     const history = useHistory();
     const { t } = useTranslation();
     const [showModal, setShowModal] = useState(false);
+    const [, setCookie, removeCookie] = useCookies();
 
     if (error) {
       // return error view
@@ -87,7 +91,8 @@ const withPresenter = (
 
     const handleApplyForFinance = () => {
       if(flowType === 'instaQuote') {
-        history.push('/account/signin', { action: 'apply_finance' });
+       updateInstaQuoteCookie({ action: 'apply_finance'}, setCookie, removeCookie);
+        history.push('/account/signin');
       } else {
         // TODO
         history.push('/portal/applications');
@@ -95,13 +100,23 @@ const withPresenter = (
     };
 
     const handleSaveQuote = () => {
-      history.push('/account/signin', { action: 'save_quote' });
+      updateInstaQuoteCookie({ action: 'save_quote'}, setCookie, removeCookie);
+      history.push('/account/signin');
     };
 
+    const getSubmittedBy = (info: ContactInfo) => {
+      if (info.type === 'vendor') {
+        return `${info.vendorName} (${info.businessEmail})`;
+      } 
+      return `${info.customerName} (${info.customerEmail}`;
+    }
+
     const handleSendQuote = async () => {
-      if(quote) {
+      if(quote && contactInfo) {
         await sendQuote({
-          email: '', // TODO
+          companyName: contactInfo.customerCompanyName,
+          submittedBy: getSubmittedBy(contactInfo),
+          email: contactInfo.customerEmail,
           quoteId: quote?.quoteId,
         });
         setShowModal(true);

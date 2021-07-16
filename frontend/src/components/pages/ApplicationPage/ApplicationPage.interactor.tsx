@@ -19,7 +19,6 @@ const withInteractor = (
     const [{}, createQuote] = useCreateQuote();
     const { quoteId } = useParams<{quoteId: string}>();
     const { data: quoteDetails } = useQuoteDetails(quoteId);
-    const { data: customerPortfolio } = useCustomerPortfolio(profile?.portalId ?? '');
     return (
       <Presenter
         {...props}
@@ -27,7 +26,6 @@ const withInteractor = (
         createQuote={createQuote}
         quoteDetails={quoteDetails}
         profile={profile}
-        customerPortfolio={customerPortfolio}
       />
     );
   }
