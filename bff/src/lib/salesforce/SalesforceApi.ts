@@ -73,7 +73,10 @@ export default class SalesforceApi {
     try {
       await axios.post<void>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/add_quote`, payload);
     } catch (error) {
-      // throw new Error('');
+      const message = axios.isAxiosError(error)
+        ? error.response?.data?.errorMessage
+        : error.message;
+      throw new Error(message);
     }
   }
 

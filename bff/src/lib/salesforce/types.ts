@@ -2,6 +2,7 @@ export const VALID_USER_TYPES = [
   'customer',
   'vendor',
   'rep',
+  'admin',
 ] as const;
 export type UserType = typeof VALID_USER_TYPES[number];
 
@@ -80,6 +81,14 @@ export type CreateQuoteVendor = CreateQuoteCustomer & {
   vendorEmail: string;
   vendorBusinessName: string;
 };
+
+export const isCreateQuoteCustomer = (payload: CreateQuote): payload is CreateQuoteCustomer => {
+  return !payload.vendorName ? true : false;
+}
+
+export const isCreateQuoteVendor = (payload: CreateQuote): payload is CreateQuoteVendor => {
+  return payload.vendorName ? true : false;
+}
 
 export type QuoteOption = {
   monthlyAmount: number;

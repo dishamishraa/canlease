@@ -2,6 +2,8 @@ import Joi from 'joi';
 import { SendQuote } from './types';
 
 const SendQuoteSchema = Joi.object({
+  companyName: Joi.string().required(),
+  submittedBy: Joi.string().required(),
   email: Joi.string().required(),
   quoteId: Joi.string().required(),
 });

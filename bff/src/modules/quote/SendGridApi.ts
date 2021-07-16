@@ -14,14 +14,16 @@ export default class SendGridApi {
   }
 
   async sendQuote(payload: SendQuote): Promise<void> {
-    const { email, quoteId } = payload;
-    // TODO implement sendgrid, no api and key
+    const { email, quoteId, companyName, submittedBy } = payload;
     try {
       const data: MailDataRequired = {
         to: email,
         from: SENDGRID_FROM_EMAIL,
         dynamicTemplateData: {
+          company_name: companyName,
+          submitted_by: submittedBy,
           action_url: `${FRONTEND_URL}/instaQuote/${quoteId}`,
+          sign_up_link:  `${FRONTEND_URL}/account/signUp`,
         },
         templateId: SENDGRID_QUOTE_TEMPLATE_ID,
       };

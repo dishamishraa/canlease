@@ -1,4 +1,4 @@
-export type UserType = 'customer' | 'vendor' | 'rep';
+export type UserType = 'customer' | 'vendor' | 'rep' | 'admin';
 
 export type Profile = {
   name: string;

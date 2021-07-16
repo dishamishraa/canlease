@@ -412,6 +412,12 @@
                 "5": "Website link:"
             }
         }
+    },
+    "main_menu_items": {
+        "dashboard": "Dashboard",
+        "quotes": "Quotes",
+        "applications": "Applications",
+        "rate_cards": "Rate cards"
     }
 }
   

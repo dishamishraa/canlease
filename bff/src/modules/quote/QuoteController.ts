@@ -1,5 +1,4 @@
-import { FRONTEND_URL } from '../../lib/config';
-import { CreateQuote, Quote } from '../../lib/salesforce/types';
+import { CreateQuote, isCreateQuoteCustomer, isCreateQuoteVendor, Quote } from '../../lib/salesforce/types';
 import {
   QuoteControllerContract, QuoteServiceContract, SendQuote,
 } from './types';
@@ -11,8 +10,25 @@ export default class QuoteController implements QuoteControllerContract {
     this.createQuoteService = createQuoteService;
   }
 
-  createQuote(payload: CreateQuote): Promise<Quote> {
-    return this.createQuoteService.createQuote(payload);
+  async createQuote(payload: CreateQuote): Promise<Quote> {
+    const quote = await this.createQuoteService.createQuote(payload);
+    if(isCreateQuoteCustomer(payload)) {
+      await this.sendQuote({
+        companyName: payload.contactBusinessName,
+        submittedBy: `${payload.contactName} (${payload.contactEmail}`,
+        email: payload.contactEmail,
+        quoteId: quote.quoteId,
+      });
+    }  
+    if(isCreateQuoteVendor(payload)) {
+      await this.sendQuote({
+        companyName: payload.contactBusinessName,
+        submittedBy: `${payload.vendorName} (${payload.vendorEmail}`,
+        email: payload.vendorEmail,
+        quoteId: quote.quoteId,
+      });
+    }
+    return quote;
   }
 
   getQuote(quoteId: string): Promise<Quote> {

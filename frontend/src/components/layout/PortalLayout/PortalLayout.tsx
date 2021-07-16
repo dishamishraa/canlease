@@ -58,6 +58,7 @@ export const routes = {
   quotes: '/portal/quotes',
   quote: '/portal/quote',
   profile: '/portal/profile',
+  ratecard: '/portal/ratecard',
   invalid: '/',
 };
 
@@ -67,7 +68,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
 }) => {
   const { profile } = useContext(AuthContext);
   const userType = profile?.userType || 'customer';
-  const DashboardPage = userType === 'vendor' || userType === 'rep' ? VendorDashboardPage : EndUserDashboardPage;
+  const DashboardPage = userType === 'customer' ? EndUserDashboardPage : VendorDashboardPage;
   return (
     <div className={cx(styles.portalLayout, className)}>
       <Header
@@ -80,7 +81,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
           <Switch>
             <Route path={routes.dashboard}>
               <DashboardPage
-                className={styles.page}/>;
+                className={styles.page}/>
             </Route>
             <Route path={[routes.quotes, routes.applications]}>
               <ContentPage

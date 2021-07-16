@@ -105,7 +105,6 @@ export type SignInBlockProps = {
   nextButton?: ButtonProps;
   forgotPasswordButton?: ButtonProps;
   className?: string;
-  setAccessedFromEmail?: React.Dispatch<React.SetStateAction<boolean>>;
   bottomContent?: TextProps;
   signUpButton?: ButtonProps;
   handleSignIn?: (payload: SignInPayload) => void;

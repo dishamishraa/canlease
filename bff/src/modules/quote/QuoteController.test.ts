@@ -1,4 +1,5 @@
 import mockCreateQuote from '../../lib/salesforce/fixtures/mockCreateQuote';
+import mockQuote from '../../lib/salesforce/fixtures/mockQuote';
 import mockSendQuote from './fixtures/mockSendQuote';
 import QuoteController from './QuoteController';
 
@@ -12,6 +13,7 @@ describe('QuoteController', () => {
 
   describe('createQuote', () => {
     it('should call service with payload to create quote', async () => {
+      createQuoteService.createQuote.mockReturnValue(mockQuote);
       await controller.createQuote(mockCreateQuote);
 
       expect(createQuoteService.createQuote).toHaveBeenCalledWith(mockCreateQuote);

@@ -85,14 +85,12 @@ export type ProfilePageProps = {
   topBar?: TopBarProps;
   block?: ProfileBlockProps;
   className?: string;
-  profile?: Profile;
 };
 
 const ProfilePage: React.FC<ProfilePageProps> = ({
   topBar,
   block,
   className,
-  profile
 }) => (
     <div className={cx(styles.profilePage, className)}>
       <TopBar
