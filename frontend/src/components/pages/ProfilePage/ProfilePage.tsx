@@ -5,7 +5,6 @@ import styles from './ProfilePage.module.scss';
 
 import TopBar, { TopBarProps } from '../../organisms/TopBar';
 import ProfileBlock, { ProfileBlockProps } from '../../blocks/ProfileBlock';
-import { Profile } from '../../../modules/profile/types';
 
 export const defaultProps = {
   topBar: {
