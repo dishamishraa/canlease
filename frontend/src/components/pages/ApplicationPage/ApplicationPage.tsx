@@ -166,7 +166,6 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
   quoteSelectionBlock,
   termsOfApplicationBlock,
   reviewApplicationInformationBlock,
-  leaseInfoBlock,
   setEquipInfo,
   setQuoteSelected,
   setAssetInfo,
@@ -191,11 +190,11 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
         {...topBar} />
       <Switch>
         <Route exact path={routes.userSelection}>
-            <UserSelectionBlock
-              className={styles.block}
-              setQuoteUserType={setQuoteUserType}
-               />
-          </Route>
+          <UserSelectionBlock
+            className={styles.block}
+            setQuoteUserType={setQuoteUserType}
+              />
+        </Route>
         <Route exact path={routes.startApplication}>
             <StartApplicationBlock
               className={styles.block}
@@ -279,9 +278,9 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
             />
         </Route>
         <Route path={routes.applicationDetails}>
-          <div>TODO add application details block</div>
           <LeaseInfoBlock
-            {...leaseInfoBlock}
+            className={styles.block}
+            setStepperTotalValue={setStepperTotalValue}
             />
         </Route>
         <Route path={routes.invalid}>

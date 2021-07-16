@@ -1,3 +1,4 @@
+import { Lease } from "./portfolio/types";
 import { UserType } from "./profile/types";
 import { LeaseType, Quote } from "./quote/types";
 
@@ -96,6 +97,14 @@ export type BusinessInformation = {
   website: string;
 };
 
+export type LeaseInfo = {
+  company: string;
+  contactName: string;
+  asset: string;
+  vendor: string;
+  lease: Lease;
+}
+
 export const TermDisplay = {
   '12M': 12,
   '24M': 24,
@@ -104,7 +113,6 @@ export const TermDisplay = {
   '60M': 60,
   '72M': 72,
 };
-
 
 export type ContentType = 'Quote' | 'Application';
 export type ContentTypeTabs = 'Customer' | 'Personal';

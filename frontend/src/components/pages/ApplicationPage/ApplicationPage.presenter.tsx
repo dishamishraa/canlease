@@ -8,8 +8,6 @@ import { TopBarProps, defaultProps } from '../../organisms/TopBar/TopBar';
 import { Profile, UserType } from '../../../modules/profile/types';
 import { CreateQuotePayload, LeaseType, Quote } from '../../../modules/quote/types';
 import { CreateApplicationPayload, Term } from '../../../modules/application/types';
-import { LeaseInfoBlockProps, defaultProps as defaultLeaseInfoBlockProps } from '../../blocks/LeaseInfoBlock/LeaseInfoBlock';
-import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { Portfolio } from '../../../modules/portfolio/types';
 
 export type ApplicationPagePresenterProps = ApplicationPageProps & {
@@ -48,7 +46,8 @@ const withPresenter = (
         return '';
     };
     window.onload = function(){
-      if (stepperTotalValue === 5) {
+      if (stepperTotalValue === 0) {
+      } else if (stepperTotalValue === 5) {
         history.push('/portal/application/quoteSelection');
       } else {
         history.push('/portal/application/userSelection');
@@ -231,177 +230,27 @@ const withPresenter = (
         });
       }
     }
-  
-    const leaseForQuote = customerPortfolio?.leases.find(app => app.quoteId === quoteDetails?.quoteId);
-
-    const leaseInfoBlock: LeaseInfoBlockProps = {
-      ...defaultLeaseInfoBlockProps,
-      blockHeading: {
-        ...defaultLeaseInfoBlockProps.blockHeading,
-        value: 'Test block heading'
-      },
-      leaseDetailsSection: {
-        detailItemList: {
-          quoteDetailItems: [
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('lease_info_block.customer_company_name')
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: quoteDetails?.companyName
-              }
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('lease_info_block.customer_contact_name')
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: quoteDetails?.name
-              }
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('lease_info_block.leased_asset')
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: quoteDetails?.asset
-              }
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('lease_info_block.vendor_name')
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: leaseForQuote?.vendorName,
-              }
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('lease_info_block.lease_number')
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: leaseForQuote?.leaseNumber,
-              }
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('lease_info_block.lease_term')
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: leaseForQuote?.fullTerm,
-              }
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('lease_info_block.monthly_payment')
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: leaseForQuote?.paymentBeforeTax
-              }
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('lease_info_block.total_amount')
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: leaseForQuote?.fullTerm,
-              }
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('lease_info_block.lease_start_date')
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: leaseForQuote?.leaseStartDate,
-              }
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('lease_info_block.purchase_option_month')
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: leaseForQuote?.purchaseOptionDate
-              }
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('lease_info_block.purchase_option_date')
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: leaseForQuote?.purchaseOptionDate
-              }
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('lease_info_block.purchase_option_amount')
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: leaseForQuote?.optionAmount
-              }
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('lease_info_block.quote_id')
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: quoteDetails?.quoteId
-              }
-            },
-          ]
-        }
-      }
-    }
-
 
     return (
-      <>
-        <View
-        {...props}
-        topBar={topBar}
-        leaseInfoBlock={leaseInfoBlock}
-        setEquipInfo={setEquipInfo}
-        setQuoteSelected={setQuoteSelected}
-        setAssetInfo={setAssetInfo}
-        setBusinessTypeInfo={setBusinessTypeInfo}
-        setCreditCheckConsent={setCreditCheckConsent}
-        quoteSelected={quoteSelected}
-        assetInfo={assetInfo}
-        businessTypeInfo={businessTypeInfo}
-        handleCreateApplication={handleCreateApplication}
-        stepperCurrentValue={stepperCurrentValue}
-        setStepperCurrentValue={setStepperCurrentValue}
-        stepperTotalValue={stepperTotalValue}
-        setStepperTotalValue={setStepperTotalValue}
-        setQuoteUserType={setQuoteUserType}
-        handleCreateQuote={handleCreateQuote}
-        />
-      </>
+      <View
+      {...props}
+      topBar={topBar}
+      setEquipInfo={setEquipInfo}
+      setQuoteSelected={setQuoteSelected}
+      setAssetInfo={setAssetInfo}
+      setBusinessTypeInfo={setBusinessTypeInfo}
+      setCreditCheckConsent={setCreditCheckConsent}
+      quoteSelected={quoteSelected}
+      assetInfo={assetInfo}
+      businessTypeInfo={businessTypeInfo}
+      handleCreateApplication={handleCreateApplication}
+      stepperCurrentValue={stepperCurrentValue}
+      setStepperCurrentValue={setStepperCurrentValue}
+      stepperTotalValue={stepperTotalValue}
+      setStepperTotalValue={setStepperTotalValue}
+      setQuoteUserType={setQuoteUserType}
+      handleCreateQuote={handleCreateQuote}
+      />
     );
 
   };

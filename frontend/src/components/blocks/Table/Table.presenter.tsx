@@ -6,18 +6,20 @@ import { TableItemListProps } from '../../organisms/TableItemList';
 import { TableItemProps } from '../../molecules/TableItem';
 import { defaultProps as tableItemDefaultProps } from '../../molecules/TableItem/TableItem';
 import { isExpiring, isExpired, createdOn } from '../../../lib/utils';
-import { CreditApplication, Portfolio } from '../../../modules/portfolio/types';
+import { CreditApplication, Lease, Portfolio } from '../../../modules/portfolio/types';
 import { Quote } from '../../../modules/quote/types';
-import { ContentFilter, ContentType, ContentTypeTabs } from '../../../modules/types';
+import { ContentFilter, ContentType, ContentTypeTabs, LeaseInfo } from '../../../modules/types';
 
 type TableItem = {
   company: string;
+  vendor?: string;
   contactName: string;
   status: ContentFilter;
   createdOn: string;
   asset: string;
   cost: number;
   link: string;
+  linkState?: object;
 }
 
 export type TablePresenterValueProps = {
@@ -82,25 +84,20 @@ const getCurrentItems = (
     case 'Application':
       if (portfolio && portfolio.createApps && portfolio.leases) {
         items = portfolio.createApps.map((application: CreditApplication): TableItem => {
-          let companyName: string | undefined;
-          let contactName: string | undefined;
-          if( tab === 'Customer'){
-            // Name of the company receiving the lease
-            companyName = application.companyName;
-            contactName = application.name;
-            // Name of the contact
-          } else if (tab === 'Personal') {
-            // Company giving the lease
-            companyName = portfolio.leases.find(lease => lease.quoteId === application.quoteId)?.vendorName ?? 'Unkown';
-          }
+          const companyName = application.companyName;
+          const contactName = application.name;
+          const lease = portfolio.leases.find(lease => lease.quoteId === application.quoteId)
+          const vendorName = lease?.vendorName ?? 'Unkown';
           return {
-            company: companyName ?? application.companyName,
+            company: companyName,
+            vendor: vendorName,
             contactName: contactName ?? application.name,
             status: getApplicationStatus(application),
             createdOn: new Date(application.createdDate).toDateString(),
             asset: application.asset,
             cost: application.applicationAmount,
-            link: generatePath("/portal/application/:applicationDetails", {applicationDetails: application.creditAppNumber}),
+            link: generatePath("/portal/application/:applicationDetails", { applicationDetails: application.creditAppNumber }),
+            linkState: { company: companyName, contactName, asset: application.asset, vendor: vendorName, lease }
           }
         });
       }
@@ -156,13 +153,13 @@ const withPresenter = (
     const tableItemListProps: TableItemListProps = {
       ...defaultProps.tableItemList,
       tableItems: filteredItems.map(({
-        company, contactName, status, createdOn, asset, cost, link,
+        company, contactName, status, createdOn, asset, cost, link, vendor, linkState
       }: TableItem): TableItemProps => {
         return {
           ...tableItemDefaultProps,
           companyName: {
             ...tableItemDefaultProps.companyName,
-            value: company,
+            value: tab === 'Customer' ? vendor : company,
           },
           contactName: {
             ...tableItemDefaultProps.contactName,
@@ -185,7 +182,7 @@ const withPresenter = (
             value: cost,
           },
           onTableItemClicked: () => {
-            history.push(link);
+            history.push(link, linkState);
           },
         }
       }),
