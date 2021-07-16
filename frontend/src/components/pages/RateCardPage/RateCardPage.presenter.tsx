@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { RateCardPageProps, defaultProps } from './RateCardPage';
 import { defaultProps as DashboardRateCardDefaultProps, DashboardRateCardProps} from '../../molecules/DashboardRateCard/DashboardRateCard';
 import { defaultProps as defaultConfirmationModalProps } from '../../organisms/ConfirmationModal/ConfirmationModal';
+import { defaultProps as defaultRateCardModalProps } from '../../organisms/NewRateCardModal/NewRateCardModal';
 
 export type RateCardPagePresenterProps = RateCardPageProps & {
 };
@@ -27,14 +28,25 @@ const withPresenter = (
     ]
     const { t } = useTranslation();
     const [confirmationModalOpen, setConfirmationModalOpen] = useState(false);
-    const handleOpenModal = (): void => {
+    const [rateCardModalOpen, setRateCardModalOpen] = useState(false);
+
+    const handleOpenDeleteModal = (): void => {
         setConfirmationModalOpen(true);
     };
-    const handleCloseModal = (): void => {
+    const handleCloseDeleteModal = (): void => {
         setConfirmationModalOpen(false);
     }
-    const handleDeleteRateCard = () => {
-
+    const handleOpenRateCardModal = (): void => {
+        setRateCardModalOpen(true);
+    };
+    const handleCloseRateCardModal = (): void => {
+        setRateCardModalOpen(false);
+    }
+    const handleDeleteRateCard = (): void => {
+        //TODO
+    }
+    const handleCreateRateCard = (): void => {
+        //TODO
     }
 
     const rateCardArray: DashboardRateCardProps[] = [];
@@ -61,7 +73,7 @@ const withPresenter = (
                     ...DashboardRateCardDefaultProps.deleteButton.text,
                     value: t('rate_cards.delete_button'),
                 },
-                onButtonClicked: handleOpenModal,
+                onButtonClicked: handleOpenDeleteModal,
             }
         }
         rateCardArray.push(rateCardProps);
@@ -76,6 +88,7 @@ const withPresenter = (
                 ...DashboardRateCardDefaultProps.button.text,
                 value: t('rate_cards.add_rate_card_button'),
             },
+            onButtonClicked: handleOpenRateCardModal,
         },
     }
     rateCardArray.push(addRateCard);
@@ -99,7 +112,7 @@ const withPresenter = (
             ...defaultConfirmationModalProps,
             icon: {
                 ...defaultConfirmationModalProps.icon,
-                onIconClicked: handleCloseModal,
+                onIconClicked: handleCloseDeleteModal,
             },
             title: {
                 ...defaultConfirmationModalProps.title,
@@ -114,7 +127,8 @@ const withPresenter = (
                 text: {
                     ...defaultConfirmationModalProps.primary.text,
                     value: t('delete_rate_card.delete_button'),
-                }
+                },
+                onButtonClicked: handleDeleteRateCard,
             },
             secondary: {
                 ...defaultConfirmationModalProps.secondary,
@@ -122,15 +136,53 @@ const withPresenter = (
                     ...defaultConfirmationModalProps.secondary.text,
                     value: t('delete_rate_card.cancel_button'),
                 },
-                onButtonClicked: handleCloseModal,
+                onButtonClicked: handleCloseDeleteModal,
             }
         },
+        rateCardModal: {
+            ...defaultRateCardModalProps,
+            icon: {
+                ...defaultRateCardModalProps.icon,
+                onIconClicked: handleCloseRateCardModal,
+            },
+            title: {
+                ...defaultRateCardModalProps.title,
+                value: t('add_rate_card.heading'),
+            },
+            textField: {
+                ...defaultRateCardModalProps.textField,
+                label: {
+                    ...defaultRateCardModalProps.textField.label,
+                    value: t('add_rate_card.label'),
+                },
+                textInput: {
+                    ...defaultRateCardModalProps.textField.textInput,
+                },
+              },
+            primary: {
+                ...defaultRateCardModalProps.primary,
+                text: {
+                    ...defaultRateCardModalProps.primary.text,
+                    value: t('add_rate_card.save_button'),
+                },
+                onButtonClicked: handleCreateRateCard,
+            },
+            secondary: {
+                ...defaultRateCardModalProps.secondary,
+                text: {
+                    ...defaultRateCardModalProps.secondary.text,
+                    value: t('add_rate_card.cancel_button'),
+                },
+                onButtonClicked: handleCloseRateCardModal,
+            }
+        }
     }
 
     return <View
         {...rateCardPageProps}
         confirmationModalOpen={confirmationModalOpen}
         className={className}
+        rateCardModalOpen={rateCardModalOpen}
     />;
 };
 return Presenter;

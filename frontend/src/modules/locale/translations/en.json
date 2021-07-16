@@ -387,6 +387,12 @@
         "delete_button": "Delete",
         "cancel_button": "Cancel"
     },
+    "add_rate_card": {
+        "heading": "Rate card name",
+        "label": "Name",
+        "save_button": "Save",
+        "cancel_button": "Cancel"
+    },
     "main_menu_items": {
         "dashboard": "Dashboard",
         "quotes": "Quotes",
