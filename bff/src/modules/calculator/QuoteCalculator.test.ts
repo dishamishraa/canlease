@@ -56,7 +56,7 @@ describe('QuoteCalculator', () => {
                 48: 16.75,
                 60: 15.75
             };
-            const expectedPayments = {
+            const expectedPayments: Record<number, number> = {
                 24: 201.49,
                 36: 137.81,
                 48: 109.22,
@@ -84,7 +84,7 @@ describe('QuoteCalculator', () => {
                 48: 22,
                 60: 21
             };
-            const expectedPayments = {
+            const expectedPayments: Record<number, number> = {
                 24: 274.76,
                 36: 192.13,
                 48: 154.54,
@@ -114,7 +114,7 @@ describe('QuoteCalculator', () => {
                 48: 18.75,
                 60: 17.75
             };
-            const expectedPayments = {
+            const expectedPayments: Record<number, number> = {
                 24: 66.85,
                 36: 45.54,
                 48: 35.2,

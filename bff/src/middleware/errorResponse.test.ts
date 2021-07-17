@@ -20,12 +20,12 @@ describe('errorResponse', () => {
     app.use(errorResponse);
     const { status, body } = await request(app).get('/');
 
-    // expect(status).toEqual(409);
-    // expect(body).toEqual({
-    //   code: 409,
-    //   type: 'ConflictError',
-    //   message: errorMessage,
-    // });
+    expect(status).toEqual(409);
+    expect(body).toEqual({
+      code: 409,
+      type: 'ConflictError',
+      message: errorMessage,
+    });
   });
 
   it('should respond with 500 status code if generic error caught', async () => {
@@ -34,11 +34,11 @@ describe('errorResponse', () => {
 
     const { status, body } = await request(app).get('/');
 
-    // expect(status).toEqual(500);
-    // expect(body).toEqual({
-    //   code: 500,
-    //   type: 'InternalServerError',
-    //   message: 'Something went wrong',
-    // });
+    expect(status).toEqual(500);
+    expect(body).toEqual({
+      code: 500,
+      type: 'InternalServerError',
+      message: 'Something went wrong',
+    });
   });
 });
