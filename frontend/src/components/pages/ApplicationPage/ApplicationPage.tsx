@@ -12,10 +12,11 @@ import BusinessTypeBlock, { BusinessTypeBlockProps } from '../../blocks/Business
 import QuoteSelectionBlock, { QuoteSelectionBlockProps } from '../../blocks/QuoteSelectionBlock';
 import ReviewApplicationInformationBlock, { ReviewApplicationInformationBlockProps } from '../../blocks/ReviewApplicationInformationBlock';
 import TermsOfApplicationBlock, { TermsOfApplicationBlockProps } from '../../blocks/TermsOfApplicationBlock';
-import { DefaultQuoteOption, AssetInfo, BusinessType, EquipmentLeaseInfo } from '../../../modules/types';
+import { AssetInfo, BusinessType, EquipmentLeaseInfo } from '../../../modules/types';
 import UserSelectionBlock from '../../blocks/UserSelectionBlock';
 import { UserType } from '../../../modules/profile/types';
 import DialogBlock from '../../blocks/DialogBlock';
+import { QuoteOption } from '../../../modules/quote/types';
 
 export const defaultProps = {
   topBar: {
@@ -123,12 +124,12 @@ export type ApplicationPageProps = {
   reviewApplicationInformationBlock?: ReviewApplicationInformationBlockProps;
   termsOfApplicationBlock?: TermsOfApplicationBlockProps;
   setEquipInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
-  setQuoteSelected?: React.Dispatch<React.SetStateAction<DefaultQuoteOption>>;
+  setQuoteSelected?: React.Dispatch<React.SetStateAction<QuoteOption>>;
   setAssetInfo?: React.Dispatch<React.SetStateAction<AssetInfo>>;
   setBusinessTypeInfo?: React.Dispatch<React.SetStateAction<BusinessType>>;
   setCreditCheckConsent?: React.Dispatch<React.SetStateAction<boolean>>;
   equipInfo?: EquipmentLeaseInfo;
-  quoteSelected?: DefaultQuoteOption;
+  quoteSelected?: QuoteOption;
   assetInfo?: AssetInfo
   businessTypeInfo?: BusinessType
   handleCreateApplication?: () => void;

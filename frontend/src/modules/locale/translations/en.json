@@ -87,7 +87,7 @@
             "rate_suffix": "per month",
             "months_suffix": "months",
             "cost_suffix": "cost of finance",
-            "stretch_purchase_term": "Own at 10% for {{purchaseOptionDate}} months",
+            "stretch_purchase_term": "Own for 10% of original price at {{purchaseOptionMonths}} months",
             "ten_dollar_purchase_term": "Own for $10 at end of term"
         },
         "expiry_toast":{

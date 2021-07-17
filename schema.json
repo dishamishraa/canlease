@@ -1,0 +1,44 @@
+{
+    "entities": [
+      {
+        "name": "rate_cards",
+        "fields": [
+          {
+            "name": "cardType",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "rates",
+        "fields": [
+          {
+            "name": "term",
+            "type": "float"
+          },
+          {
+            "name": "minMonthlyReturn",
+            "type": "float"
+          },
+          {
+            "name": "maxMonthlyReturn",
+            "type": "float"
+          },
+          {
+            "name": "regularIR",
+            "type": "float"
+          },
+          {
+            "name": "tenAtEndIR",
+            "type": "float"
+          },
+          {
+            "name": "rateCardId",
+            "type": "entity",
+            "entity": "rate_cards"
+          }
+        ]
+      }
+    ],
+    "enums": []
+  }

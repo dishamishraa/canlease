@@ -64,13 +64,6 @@ export type BusinessType = {
   bankruptcyDetails: string;
 }
 
-export type DefaultQuoteOption = {
-  monthlyAmount: number;
-  term: string;
-  financeRate: number;
-  purchaseOptionDate: string;
-};
-
 export type PersonalInformation = {
   firstName: string;
   lastName: string;
@@ -94,15 +87,6 @@ export type BusinessInformation = {
   operatingSinceDate: string;
   businessPhone: string;
   website: string;
-};
-
-export const TermDisplay = {
-  '12M': 12,
-  '24M': 24,
-  '36M': 36,
-  '48M': 48,
-  '60M': 60,
-  '72M': 72,
 };
 
 

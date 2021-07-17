@@ -34,6 +34,7 @@ services:
       - FRONTEND_URL=https://localhost:${FRONTEND_PORT}
       - FRONTEND_DOMAIN=${DOMAIN}
       - IDENTITY_URL=http://identity:${IDENTITY_PORT}
+      - DATA_URL=http://data:${DATA_PORT}
 
     ports:
       - "${BFF_PORT}:${BFF_PORT}"
@@ -99,3 +100,29 @@ services:
       - RESET_PASSWORD_TOKEN_EXPIRY
 
       - STATE_TOKEN_EXPIRY=360000
+
+  data: 
+    depends_on:
+      - db
+    # DEV
+    # build: "${DATA_PATH}/."
+    # image: spindl-data:latest
+    # volumes:
+    #   - "${DATA_PATH}:/usr/src/app"
+    # command: "npm run start:dev"
+
+    # PROD
+    image: registry.spindl.dev/spindl-data:latest
+    command: "npm run start"
+
+    ports: 
+      - "${DATA_PORT}:${DATA_PORT}"
+    environment:
+      - SERVICE_BASE_PATH=/data
+      - BACKEND_PORT=${DATA_PORT}
+
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=${DB_PORT}
+      - POSTGRES_DB=${DB_IDENTITY_NAME}
+      - POSTGRES_USER=${DB_IDENTITY_USER}
+      - POSTGRES_PASSWORD=password

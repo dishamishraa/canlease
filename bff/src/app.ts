@@ -15,20 +15,25 @@ import {
 } from './modules/profile';
 
 import SalesforceApi from './lib/salesforce/SalesforceApi';
+import { RateCardController, RateCardService } from './modules/rateCard';
 
 export default function App(): Application {
   const salesforceApi = new SalesforceApi();
   const sendGridApi = new SendGridApi();
+
+  const rateCardService = new RateCardService();
+  const rateCardController = new RateCardController(rateCardService);
+
   const quoteService = new QuoteService(salesforceApi, sendGridApi);
-  const quoteController = new QuoteController(quoteService);
+  const quoteController = new QuoteController(quoteService, rateCardService);
 
   const applicationService = new ApplicationService(salesforceApi);
   const applicationController = new ApplicationController(applicationService);
 
   const profileService = new ProfileService(salesforceApi);
   const profileController = new ProfileController(profileService);
-  const portfolioSalesforceApi = new SalesforceApi();
-  const portfolioService = new PortfolioService(portfolioSalesforceApi);
+
+  const portfolioService = new PortfolioService(salesforceApi);
   const portfolioController = new PortfolioController(portfolioService);
 
   return createApp(createRouter({
@@ -36,5 +41,6 @@ export default function App(): Application {
     applicationController,
     portfolioController,
     profileController,
+    rateCardController,
   }));
 }
