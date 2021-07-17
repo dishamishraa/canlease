@@ -51,12 +51,11 @@ export default class QuoteController implements QuoteControllerContract {
     const { applicationAmount, leaseType } = payload;
 
     const fee = 0;
-    const terms: number[] = [];
+    const terms: number[] = [24, 36, 48, 60];
     const interestRates: Record<number, number> = {};
 
     const rates = await this.getRates(this.getCardType(payload), applicationAmount);
     rates.forEach(({term, regularir, tenatendir}) => {
-      terms.push(term);
       interestRates[term] = leaseType === 'stretch' ? regularir : tenatendir;
     });
 
