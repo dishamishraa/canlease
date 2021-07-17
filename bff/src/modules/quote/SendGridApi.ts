@@ -31,7 +31,7 @@ export default class SendGridApi {
       };
       await sendgridMail.send(data);
     } catch {
-      // throw InternalServerError('Unable to send quote email');
+      throw InternalServerError('Unable to send quote email');
     }
   }
 }
