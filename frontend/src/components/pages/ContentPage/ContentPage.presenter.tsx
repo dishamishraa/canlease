@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { ContentFilter, ContentTypeTabs } from '../../../modules/types';
 import { ContentPageProps } from './ContentPage';
@@ -12,7 +12,14 @@ const withPresenter = (
   const Presenter: React.FC<ContentPagePresenterProps> = (props) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [statusFilter, setStatusFilter] = useState<ContentFilter>('all');
-    const { pathname } = useLocation();
+    const { state, pathname } = useLocation<{statusFilter: ContentFilter}>();
+
+    useEffect(() => {
+      if(state) {
+        const { statusFilter } = state;
+        setStatusFilter(statusFilter);
+      }
+    }, [state]);
 
     let tab: ContentTypeTabs = 'Personal';
     if(pathname.toLowerCase().includes('/customer')) {
