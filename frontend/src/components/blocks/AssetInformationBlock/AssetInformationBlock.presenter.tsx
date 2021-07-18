@@ -213,9 +213,7 @@ const withPresenter = (
             ...defaultProps.blockHeading,
             value: t('application_form.asset_information.heading_text'),
         },
-
         assetConditionRadioField,
-          
         ageOfAssetTextField: {
             ...defaultProps.ageOfAssetTextField,
             label: {

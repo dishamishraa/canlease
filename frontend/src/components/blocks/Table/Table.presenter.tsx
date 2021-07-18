@@ -8,7 +8,7 @@ import { defaultProps as tableItemDefaultProps } from '../../molecules/TableItem
 import { isExpiring, isExpired, createdOn } from '../../../lib/utils';
 import { CreditApplication, Portfolio } from '../../../modules/portfolio/types';
 import { Quote } from '../../../modules/quote/types';
-import { ContentFilter, ContentType, ContentTypeTabs } from '../../../modules/types';
+import { ContentFilter, ContentType } from '../../../modules/types';
 
 type TableItem = {
   company: string;
@@ -80,7 +80,7 @@ const getCurrentItems = (
       }
       break;
     case 'Application':
-      if (portfolio && portfolio.createApps) {
+      if (portfolio && portfolio.createApps && portfolio.leases) {
         items = portfolio.createApps.map((application: CreditApplication): TableItem => {
           return {
             company: application.companyName,
@@ -112,10 +112,12 @@ const filterItems = (
     const itemsMatchSearch = filteredItems.filter((item: TableItem) => {
       const itemCompanyName = item.company.toLowerCase();
       const itemContactName = item.contactName.toLowerCase();
+      const createdOn = item.createdOn.toLowerCase();
       const itemAssetName = item.asset.toLowerCase();
       const itemCost = item.cost.toString().toLowerCase();
-      return itemCompanyName?.includes(search) || itemContactName?.includes(search) || 
-            itemAssetName?.includes(search) || itemCost?.includes(search);
+      return itemCompanyName?.includes(search) || itemContactName?.includes(search) ||
+        createdOn?.includes(search) || itemAssetName?.includes(search) ||
+        itemCost?.includes(search);
     });
     return itemsMatchSearch;
   }

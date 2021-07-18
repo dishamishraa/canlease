@@ -6,16 +6,17 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import TopBar, { TopBarProps } from '../../organisms/TopBar';
 import StartApplicationBlock, { StartApplicationBlockProps } from '../../blocks/StartApplicationBlock';
-import AssetInformationBlock, { AssetInformationBlockProps } from '../../blocks/AssetInformationBlock';
-import BusinessInformationBlock, { BusinessInformationBlockProps } from '../../blocks/BusinessInformationBlock';
-import BusinessTypeBlock, { BusinessTypeBlockProps } from '../../blocks/BusinessTypeBlock';
-import QuoteSelectionBlock, { QuoteSelectionBlockProps } from '../../blocks/QuoteSelectionBlock';
-import ReviewApplicationInformationBlock, { ReviewApplicationInformationBlockProps } from '../../blocks/ReviewApplicationInformationBlock';
-import TermsOfApplicationBlock, { TermsOfApplicationBlockProps } from '../../blocks/TermsOfApplicationBlock';
+import AssetInformationBlock from '../../blocks/AssetInformationBlock';
+import BusinessInformationBlock from '../../blocks/BusinessInformationBlock';
+import BusinessTypeBlock from '../../blocks/BusinessTypeBlock';
+import QuoteSelectionBlock from '../../blocks/QuoteSelectionBlock';
+import ReviewApplicationInformationBlock from '../../blocks/ReviewApplicationInformationBlock';
+import TermsOfApplicationBlock from '../../blocks/TermsOfApplicationBlock';
 import { AssetInfo, BusinessType, EquipmentLeaseInfo } from '../../../modules/types';
 import UserSelectionBlock from '../../blocks/UserSelectionBlock';
 import { UserType } from '../../../modules/profile/types';
 import DialogBlock from '../../blocks/DialogBlock';
+import LeaseInfoBlock from '../../blocks/LeaseInfoBlock';
 import { QuoteOption } from '../../../modules/quote/types';
 
 export const defaultProps = {
@@ -115,14 +116,7 @@ export const defaultProps = {
 
 export type ApplicationPageProps = {
   topBar?: TopBarProps;
-  startApplicationBlock?: StartApplicationBlockProps;
   className?: string;
-  assetInformationBlock?: AssetInformationBlockProps;
-  businessInformationBlock?: BusinessInformationBlockProps;
-  businessTypeBlock?: BusinessTypeBlockProps;
-  quoteSelectionBlock?: QuoteSelectionBlockProps;
-  reviewApplicationInformationBlock?: ReviewApplicationInformationBlockProps;
-  termsOfApplicationBlock?: TermsOfApplicationBlockProps;
   setEquipInfo?: React.Dispatch<React.SetStateAction<EquipmentLeaseInfo>>;
   setQuoteSelected?: React.Dispatch<React.SetStateAction<QuoteOption>>;
   setAssetInfo?: React.Dispatch<React.SetStateAction<AssetInfo>>;
@@ -157,14 +151,7 @@ export const routes = {
 
 const ApplicationPage: React.FC<ApplicationPageProps> = ({
   topBar,
-  startApplicationBlock,
   className,
-  assetInformationBlock,
-  businessInformationBlock,
-  businessTypeBlock,
-  quoteSelectionBlock,
-  termsOfApplicationBlock,
-  reviewApplicationInformationBlock,
   setEquipInfo,
   setQuoteSelected,
   setAssetInfo,
@@ -182,7 +169,6 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
   setQuoteUserType,
   handleCreateQuote
 }) => {
-
   return (
     <div className={cx(styles.applicationPage, className)}>
       <TopBar
@@ -190,15 +176,14 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
         {...topBar} />
       <Switch>
         <Route exact path={routes.userSelection}>
-            <UserSelectionBlock
-              className={styles.block}
-              setQuoteUserType={setQuoteUserType}
-               />
-          </Route>
+          <UserSelectionBlock
+            className={styles.block}
+            setQuoteUserType={setQuoteUserType}
+              />
+        </Route>
         <Route exact path={routes.startApplication}>
             <StartApplicationBlock
               className={styles.block}
-              {...startApplicationBlock}
               equipInfo={equipInfo}
               setEquipInfo={setEquipInfo}
               stepperCurrentValue={stepperCurrentValue}
@@ -211,7 +196,6 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
         <Route exact path={routes.quoteSelection}>
           <QuoteSelectionBlock
             className={styles.block}
-            {...quoteSelectionBlock}
             setQuoteSelected={setQuoteSelected}
             quoteSelected={quoteSelected}
             stepperCurrentValue={stepperCurrentValue}
@@ -223,7 +207,6 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
         <Route exact path={routes.assetInformation}>
           <AssetInformationBlock
             className={styles.block}
-            {...assetInformationBlock}
             setAssetInfo={setAssetInfo}
             assetInfo={assetInfo}
             stepperCurrentValue={stepperCurrentValue}
@@ -234,13 +217,11 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
         <Route exact path={routes.businessInformation}>
           <BusinessInformationBlock
             className={styles.block}
-            {...businessInformationBlock}
             />
         </Route>
         <Route exact path={routes.businessType}>
           <BusinessTypeBlock
             className={styles.block}
-            {...businessTypeBlock}
             setBusinessTypeInfo={setBusinessTypeInfo}
             businessTypeInfomation={businessTypeInfo}
             stepperCurrentValue={stepperCurrentValue}
@@ -251,7 +232,6 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
         <Route exact path={routes.reviewApplicationInformation}>
           <ReviewApplicationInformationBlock
             className={styles.block}
-            {...reviewApplicationInformationBlock}
             quoteSelected={quoteSelected}
             assetInfo={assetInfo}
             businessTypeInfo={businessTypeInfo}
@@ -262,7 +242,6 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
         <Route exact path={routes.termsOfApplication}>
           <TermsOfApplicationBlock
             className={styles.block}
-            {...termsOfApplicationBlock}
             setCreditCheckConsent={setCreditCheckConsent}
             stepperCurrentValue={stepperCurrentValue}
             setStepperCurrentValue={setStepperCurrentValue}
@@ -278,7 +257,10 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
             />
         </Route>
         <Route path={routes.applicationDetails}>
-          <div>TODO add application details block</div>
+          <LeaseInfoBlock
+            className={styles.block}
+            setStepperTotalValue={setStepperTotalValue}
+            />
         </Route>
         <Route path={routes.invalid}>
           <Redirect to={routes.startApplication}/>

@@ -56,7 +56,8 @@ const withPresenter = (
         return '';
     };
     window.onload = function(){
-      if (stepperTotalValue === 5) {
+      if (stepperTotalValue === 0) {
+      } else if (stepperTotalValue === 5) {
         history.push('/portal/application/quoteSelection');
       } else {
         history.push('/portal/application/userSelection');
@@ -239,29 +240,26 @@ const withPresenter = (
       }
     }
 
-
     return (
-      <>
-        <View
-        {...props}
-        topBar={topBar}
-        setEquipInfo={setEquipInfo}
-        setQuoteSelected={setQuoteSelected}
-        setAssetInfo={setAssetInfo}
-        setBusinessTypeInfo={setBusinessTypeInfo}
-        setCreditCheckConsent={setCreditCheckConsent}
-        quoteSelected={quoteSelected}
-        assetInfo={assetInfo}
-        businessTypeInfo={businessTypeInfo}
-        handleCreateApplication={handleCreateApplication}
-        stepperCurrentValue={stepperCurrentValue}
-        setStepperCurrentValue={setStepperCurrentValue}
-        stepperTotalValue={stepperTotalValue}
-        setStepperTotalValue={setStepperTotalValue}
-        setQuoteUserType={setQuoteUserType}
-        handleCreateQuote={handleCreateQuote}
-        />
-      </>
+      <View
+      {...props}
+      topBar={topBar}
+      setEquipInfo={setEquipInfo}
+      setQuoteSelected={setQuoteSelected}
+      setAssetInfo={setAssetInfo}
+      setBusinessTypeInfo={setBusinessTypeInfo}
+      setCreditCheckConsent={setCreditCheckConsent}
+      quoteSelected={quoteSelected}
+      assetInfo={assetInfo}
+      businessTypeInfo={businessTypeInfo}
+      handleCreateApplication={handleCreateApplication}
+      stepperCurrentValue={stepperCurrentValue}
+      setStepperCurrentValue={setStepperCurrentValue}
+      stepperTotalValue={stepperTotalValue}
+      setStepperTotalValue={setStepperTotalValue}
+      setQuoteUserType={setQuoteUserType}
+      handleCreateQuote={handleCreateQuote}
+      />
     );
 
   };
