@@ -25,6 +25,7 @@ export type LeaseInfoBlockProps = {
   blockHeading?: TextProps;
   leaseDetailsSection?: LeaseDetailsSectionProps;
   className?: string;
+  setStepperTotalValue?: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const LeaseInfoBlock: React.FC<LeaseInfoBlockProps> = ({

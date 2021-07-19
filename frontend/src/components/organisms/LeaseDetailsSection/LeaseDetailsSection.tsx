@@ -31,9 +31,6 @@ const LeaseDetailsSection: React.FC<LeaseDetailsSectionProps> = ({
   className,
 }) => (
     <div className={cx(styles.leaseDetailsSection, className)}>
-       <Text
-        className={styles.text}
-        {...text} />
       <DetailItemList
         className={styles.detailItemList}
         {...detailItemList} />

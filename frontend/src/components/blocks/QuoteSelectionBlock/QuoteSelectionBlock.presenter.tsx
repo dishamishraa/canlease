@@ -6,13 +6,13 @@ import { ClickableRateCardProps } from '../../molecules/ClickableRateCard';
 import { DetailsSectionProps } from '../../organisms/DetailsSection';
 import { QuoteSelectionBlockProps , defaultProps} from './QuoteSelectionBlock';
 import { defaultProps as defaultRateDetailItemProps } from '../../molecules/RateDetailItem/RateDetailItem';
-import { Quote } from '../../../modules/quote/types';
-import { DefaultQuoteOption, TermDisplay } from '../../../modules/types';
+import { Quote, QuoteOption } from '../../../modules/quote/types';
+import { convertMonth, getStretchMonth } from '../../../lib/utils';
 
 export type QuoteSelectionBlockPresenterProps = QuoteSelectionBlockProps & {
     quoteDetails: Quote | null;
-    setQuoteSelected?: React.Dispatch<React.SetStateAction<DefaultQuoteOption>>;
-    quoteSelected?: DefaultQuoteOption;
+    setQuoteSelected?: React.Dispatch<React.SetStateAction<QuoteOption>>;
+    quoteSelected?: QuoteOption;
     stepperCurrentValue?: number,
     setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
     stepperTotalValue?: number,
@@ -71,8 +71,8 @@ const withPresenter = (
 
     const isFormValid = () => {
       if (quoteSelected){
-        const {financeRate, monthlyAmount, purchaseOptionDate, term } = quoteSelected
-        if (financeRate && monthlyAmount && purchaseOptionDate && term) {
+        const {financeRate, monthlyAmount, term } = quoteSelected
+        if (financeRate && monthlyAmount && term) {
           return true;
         }
         return false;
@@ -130,10 +130,10 @@ const withPresenter = (
 
       quoteDetails.quoteOptions.forEach((quoteOption) => {
         const {
-          term, monthlyAmount, financeRate, purchaseOptionDate,
+          term: termString, monthlyAmount, financeRate,
         } = quoteOption;
-        const purchaseOptionDuration = ((new Date(purchaseOptionDate)).getTime() - Date.now());
-        const totalMonths = Math.round(purchaseOptionDuration / (30 * 24 * 60 * 60 * 1000));
+        const term = convertMonth(termString);
+
         const clickableRateCardProps: ClickableRateCardProps = {
           onRateCardClicked: handleClick(quoteOption),
           state: handleState(quoteOption),
@@ -158,7 +158,9 @@ const withPresenter = (
                 },
                 numberText: {
                   ...defaultRateDetailItemProps.numberText,
-                  value: TermDisplay[term],
+                  value: (leaseType === 'stretch') 
+                    ? getStretchMonth(term)
+                    : term,
                 },
               },
               {
@@ -177,7 +179,7 @@ const withPresenter = (
                 suffixText: {
                   ...defaultRateDetailItemProps.suffixText,
                   value: (leaseType === 'stretch')
-                    ? t('view_quote.rate_card.stretch_purchase_term', { purchaseOptionDate: totalMonths })
+                    ? t('view_quote.rate_card.stretch_purchase_term', { purchaseOptionMonths: term })
                     : t('view_quote.rate_card.ten_dollar_purchase_term'),
                 },
               },

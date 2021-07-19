@@ -6,7 +6,7 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { ClientRequest } from 'http';
 import { InternalServerError, NotFoundError } from './lib/errors';
-import { IDENTITY_URL, PROXY_TIMEOUT } from './lib/config';
+import { IDENTITY_URL, DATA_URL, PROXY_TIMEOUT } from './lib/config';
 
 import { QuoteControllerContract, QuoteRouter } from './modules/quote';
 import { ApplicationControllerContract, ApplicationRouter } from './modules/application';
@@ -14,6 +14,7 @@ import {
   PortfolioControllerContract, PortfolioRouter,
 } from './modules/portfolio';
 import { ProfileControllerContract, ProfileRouter } from './modules/profile';
+import { RateCardControllerContract, RateCardRouter } from './modules/rateCard';
 
 const swaggerSpecConfig = {
   swaggerDefinition: {
@@ -60,6 +61,7 @@ export const createRouter = (controllers: {
   applicationController: ApplicationControllerContract;
   portfolioController: PortfolioControllerContract;
   profileController: ProfileControllerContract;
+  rateCardController: RateCardControllerContract;
 }): Router => {
   const swaggerSpec = swaggerJsdoc(swaggerSpecConfig);
   const router = Router();
@@ -75,6 +77,8 @@ export const createRouter = (controllers: {
   router.use('/credit_apps', ApplicationRouter(controllers));
   router.use('/portfolio', PortfolioRouter(controllers));
   router.use('/profile', ProfileRouter(controllers));
+
+  router.use(RateCardRouter(controllers))
 
   return router;
 };

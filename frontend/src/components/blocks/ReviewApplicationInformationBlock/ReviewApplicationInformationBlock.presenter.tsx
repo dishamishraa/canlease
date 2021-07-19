@@ -4,13 +4,14 @@ import { useHistory } from 'react-router-dom';
 import { ReviewApplicationInformationBlockProps, defaultProps } from './ReviewApplicationInformationBlock';
 import { DetailsSectionProps } from '../../organisms/DetailsSection';
 import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
-import { AssetInfo, DefaultQuoteOption, BusinessType, TermDisplay} from '../../../modules/types';
+import { AssetInfo, BusinessType } from '../../../modules/types';
 import { Profile } from '../../../modules/profile/types';
-import { Quote } from '../../../modules/quote/types';
+import { Quote, QuoteOption } from '../../../modules/quote/types';
+import { convertMonth, getStretchMonth } from '../../../lib/utils';
 
 export type ReviewApplicationInformationBlockPresenterProps = ReviewApplicationInformationBlockProps & {
     quoteIdDetails: Quote | null;
-    quoteSelected?: DefaultQuoteOption;
+    quoteSelected?: QuoteOption;
     assetInfo?: AssetInfo;
     businessTypeInfo?: BusinessType;
     profile: Profile | null;
@@ -78,8 +79,8 @@ const withPresenter = (
 
     if(profile){
       const {
-        firstname: firstName, 
-        lastname: lastName, 
+        firstName, 
+        lastName, 
         email, 
         phone, 
         address, 
@@ -87,7 +88,7 @@ const withPresenter = (
         province, 
         postalCode, 
         companyName, 
-        operationName: operatingName, 
+        operatingName, 
         businessSector, 
         operatingSinceDate, 
         businessPhone, 
@@ -276,7 +277,7 @@ const withPresenter = (
         applicationAmount, asset, quoteId, leaseType,
       } = quoteIdDetails;
     
-      if (businessTypeInfo) {
+    if (businessTypeInfo) {
         const {
           bankruptcy, bankruptcyDetails, businessType, dob, sin,
         } = businessTypeInfo;
@@ -399,11 +400,10 @@ const withPresenter = (
     }
     if (quoteSelected) {
       const {
-        financeRate, monthlyAmount, term, purchaseOptionDate
+        term: termString, monthlyAmount, financeRate,
       } = quoteSelected;
-      const purchaseOptionDuration = ((new Date(purchaseOptionDate)).getTime() - Date.now());
-      const totalMonths = Math.round(purchaseOptionDuration / (30 * 24 * 60 * 60 * 1000));
-      const termValue = TermDisplay[term];
+      const term = convertMonth(termString);
+
       paymentDetails = {
         text: {
           ...defaultProps.paymentDetails.text,
@@ -440,7 +440,9 @@ const withPresenter = (
               infoText: {
                 ...defaultQuoteDetailItemProps.infoText,
                 value: t('application_form.review_application.payment_details.lease_term_value', {
-                  termValue,
+                  termValue: (leaseType === 'stretch') 
+                  ? getStretchMonth(term)
+                  : term,
                 }),
               },
             },
@@ -458,7 +460,7 @@ const withPresenter = (
               labelText: {
                 ...defaultQuoteDetailItemProps.infoText,
                 value: (leaseType === 'stretch')
-                ? t('view_quote.rate_card.stretch_purchase_term', { purchaseOptionDate: totalMonths })
+                ? t('view_quote.rate_card.stretch_purchase_term', { purchaseOptionMonths: term })
                 : t('view_quote.rate_card.ten_dollar_purchase_term'),
               },
             },

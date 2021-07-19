@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useLocation, useParams } from 'react-router';
 import { QuoteBlockProps } from './QuoteBlock';
 import { QuoteBlockPresenterProps } from './QuoteBlock.presenter';

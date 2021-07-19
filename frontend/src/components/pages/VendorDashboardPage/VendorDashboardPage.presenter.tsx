@@ -30,8 +30,8 @@ const withPresenter = (
       const { t } = useTranslation();
       const history = useHistory();
 
-      const handleViewClicked = (content) => (event: any) => {
-        history.push(`/portal/${content}`)
+      const handleViewClicked = (content: string, statusFilter: ContentFilter) => (event: any) => {
+        history.push(`/portal/${content}/customer`, {statusFilter})
       }
 
       const getApplicationStatus = ({ applicationStatus }: CreditApplication): ContentFilter => {
@@ -54,7 +54,6 @@ const withPresenter = (
       if (userPortfolio) {
         const { createApps: creditApplications } = userPortfolio;
         creditApplications.filter((application: CreditApplication) => {
-          console.log(getApplicationStatus(application))
           if (getApplicationStatus(application) === "under_review"){
             numOfApplicationsUnderReview += 1;
           }
@@ -106,7 +105,7 @@ const withPresenter = (
                     ...dashBoardCardProps.button.text,
                     value: t('vendor_dashboard.metrics.view_button'),
                   },
-                  onButtonClicked: handleViewClicked("quotes"),
+                  onButtonClicked: handleViewClicked("quotes", "active"),
                 }
               },
               {
@@ -126,7 +125,7 @@ const withPresenter = (
                     ...dashBoardCardProps.button.text,
                     value: t('vendor_dashboard.metrics.view_button'),
                   },
-                  onButtonClicked: handleViewClicked("quotes"),
+                  onButtonClicked: handleViewClicked("quotes", "expiring"),
                 }
               },
               {
@@ -146,7 +145,7 @@ const withPresenter = (
                     ...dashBoardCardProps.button.text,
                     value: t('vendor_dashboard.metrics.view_button'),
                   },
-                  onButtonClicked: handleViewClicked("applications"),
+                  onButtonClicked: handleViewClicked("applications", "under_review"),
                 }
               },
               {
