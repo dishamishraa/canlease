@@ -4,10 +4,12 @@ import { RateCardPageProps, defaultProps } from './RateCardPage';
 import { defaultProps as DashboardRateCardDefaultProps, DashboardRateCardProps} from '../../molecules/DashboardRateCard/DashboardRateCard';
 import { defaultProps as defaultConfirmationModalProps } from '../../organisms/ConfirmationModal/ConfirmationModal';
 import { defaultProps as defaultRateCardModalProps } from '../../organisms/NewRateCardModal/NewRateCardModal';
-import { RateCard } from '../../../modules/ratecard/types';
+import { RateCard, CreateRateCard } from '../../../modules/rateCard/types';
+import { APIResponse } from '../../../lib/api/types';
 
 export type RateCardPagePresenterProps = RateCardPageProps & {
-    rateCardData: RateCard[] | null;
+    rateCards: RateCard[] | null;
+    createRateCard: (payload: CreateRateCard) => Promise<APIResponse<RateCard>>;
 };
 
 const withPresenter = (
@@ -16,27 +18,18 @@ const withPresenter = (
   const Presenter: React.FC<RateCardPagePresenterProps> = (props) => {
     const {
         className,
-        rateCardData,
+        rateCards,
+        createRateCard,
     } = props;
-    console.log(rateCardData)
-    if (rateCardData) {
-        console.log(rateCardData)
-    }
     
-    const rateCards = [
-        {
-            name: "test1"
-        },
-        {
-            name: "test2"
-        },
-        {
-            name: "test3"
-        },
-    ]
     const { t } = useTranslation();
     const [confirmationModalOpen, setConfirmationModalOpen] = useState(false);
     const [rateCardModalOpen, setRateCardModalOpen] = useState(false);
+    const [textValue, setTextValue] = useState("");
+
+    const handleTextChange = ({ target: { value }}) => {
+        setTextValue(value);
+    }
 
     const handleOpenDeleteModal = (): void => {
         setConfirmationModalOpen(true);
@@ -53,14 +46,17 @@ const withPresenter = (
     const handleDeleteRateCard = (): void => {
         //TODO
     }
-    const handleCreateRateCard = (): void => {
-        //TODO
+    const handleCreateRateCard = async () => {
+        const { data } = await createRateCard({cardtype: textValue});
+        if (data) {
+            console.log(data)
+        }
     }
-
+ 
     const rateCardArray: DashboardRateCardProps[] = [];
 
-    rateCards.forEach((rateCard) => {
-        const { name } = rateCard;
+    rateCards?.forEach((rateCard) => {
+        const { cardtype: name } = rateCard;
         const rateCardProps: DashboardRateCardProps =  {
             ...DashboardRateCardDefaultProps,
             type: 'RateCard',
@@ -165,6 +161,8 @@ const withPresenter = (
                 },
                 textInput: {
                     ...defaultRateCardModalProps.textField.textInput,
+                    textValue,
+                    onTextChanged: handleTextChange,
                 },
               },
             primary: {
@@ -173,7 +171,7 @@ const withPresenter = (
                     ...defaultRateCardModalProps.primary.text,
                     value: t('add_rate_card.save_button'),
                 },
-                onButtonClicked: handleCreateRateCard,
+                onButtonClicked: handleCreateRateCard
             },
             secondary: {
                 ...defaultRateCardModalProps.secondary,
