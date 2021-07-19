@@ -7,7 +7,7 @@ import {
 
 export const getRateCards = async (portalId: string): Promise<RateCard[]> => {
   try {
-    const { data } = await axios.get<RateCard[]>(`${BFF_URL}/data/${portalId}/ratecard`);
+    const { data } = await axios.get<RateCard[]>(`${BFF_URL}/rate_cards/${portalId}`);
     return data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {

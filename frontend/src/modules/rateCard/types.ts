@@ -1,15 +1,25 @@
-import { RateCardListProps } from "../../components/organisms/RateCardList";
+export type RateCardPayload = {
+  uuid: string;
+  cardtype: string;
+};
 
 export type RateCard = {
-  rateCardId: string;
-  name: string;
-  rates: Rate[];
+  id: number;
+  uuid: string;
+  cardtype: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type Rate = {
+  id: number;
+  uuid: string;
   term: number;
-  minReturn: number;
-  maxReturn: number;
-  interestRate: number;
-  tenAtEndIR: string;
-}
+  minmonthlyreturn: number;
+  maxmonthlyreturn: number;
+  regularir: number;
+  tenatendir: number;
+  ratecardid: number;
+  createdAt: string;
+  updatedAt: string;
+};
