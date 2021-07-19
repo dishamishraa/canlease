@@ -61,7 +61,7 @@ export const defaultProps = {
     },
     select: {
       text: {
-        style: 'Basic400',
+        style: 'Basic800',
         align: 'Left',
         size: 'Large',
         type: 'Paragraph1',

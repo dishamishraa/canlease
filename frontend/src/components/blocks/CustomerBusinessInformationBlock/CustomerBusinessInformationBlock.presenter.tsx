@@ -97,8 +97,7 @@ const withPresenter = (
             operatingName && 
             operatingSince && 
             businessSector && 
-            businessPhone && 
-            website
+            businessPhone
         ) {
             setBusinessInfo({
                 type: 'vendor',
@@ -112,7 +111,7 @@ const withPresenter = (
                 operatingSinceDate: operatingSince,
                 businessSector: businessSector,
                 businessPhone: businessPhone,
-                website,
+                website: website || '',
             });
         }
     }
