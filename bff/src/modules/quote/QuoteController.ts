@@ -1,4 +1,4 @@
-import { 
+import {
   CreateQuote, isCreateQuoteCustomer, isCreateQuoteVendor, Quote, QuoteOption,
 } from '../../lib/salesforce/types';
 import {
@@ -26,11 +26,7 @@ export default class QuoteController implements QuoteControllerContract {
       throw NotFoundError('no matching rate card');
     }
     const rateCardRates = await this.rateCardService.getRates(rateCard.id);
-    return rateCardRates.filter(({ minmonthlyreturn, maxmonthlyreturn }) => {
-      return applicationAmount >= minmonthlyreturn && applicationAmount < maxmonthlyreturn;
-    }).sort((rate1, rate2) => {
-      return rate1.term - rate2.term;
-    });
+    return rateCardRates.filter(({ minmonthlyreturn, maxmonthlyreturn }) => applicationAmount >= minmonthlyreturn && applicationAmount < maxmonthlyreturn).sort((rate1, rate2) => rate1.term - rate2.term);
   }
 
   getCardType(payload: CreateQuote): string {
@@ -38,10 +34,10 @@ export default class QuoteController implements QuoteControllerContract {
     // the specified card for Canlease Reps
     // e card for everyone else
 
-    if(payload.rateCardType) {
+    if (payload.rateCardType) {
       return payload.rateCardType;
     }
-    if(isCreateQuoteVendor(payload)) {
+    if (isCreateQuoteVendor(payload)) {
       return 'v card';
     }
     return 'e card';
@@ -55,33 +51,31 @@ export default class QuoteController implements QuoteControllerContract {
     const interestRates: Record<number, number> = {};
 
     const rates = await this.getRates(this.getCardType(payload), applicationAmount);
-    rates.forEach(({term, regularir, tenatendir}) => {
+    rates.forEach(({ term, regularir, tenatendir }) => {
       interestRates[term] = leaseType === 'stretch' ? regularir : tenatendir;
     });
 
     const payments = calculator.calculateMonthlyPayments(
-      applicationAmount, 
-      fee, 
-      leaseType, 
-      interestRates, 
+      applicationAmount,
+      fee,
+      leaseType,
+      interestRates,
       terms,
     );
 
     const quoteOptions: QuoteOption[] = payments
-      .map(({ amount, costOfFinanceRate, term }): QuoteOption => {
-        return {
-          monthlyAmount: amount,
-          financeRate: parseFloat((costOfFinanceRate * 100).toFixed(4)),
-          term: `${term}M`,
-          purchaseOptionDate: '',
-        }
-      });
+      .map(({ amount, costOfFinanceRate, term }): QuoteOption => ({
+        monthlyAmount: amount,
+        financeRate: parseFloat((costOfFinanceRate * 100).toFixed(4)),
+        term: `${term}M`,
+        purchaseOptionDate: '',
+      }));
     const quote = await this.createQuoteService.createQuote({
       ...payload,
       quoteOptions,
     });
 
-    if(isCreateQuoteCustomer(payload)) {
+    if (isCreateQuoteCustomer(payload)) {
       await this.sendQuote({
         companyName: payload.contactBusinessName,
         submittedBy: `${payload.contactName} (${payload.contactEmail}`,
