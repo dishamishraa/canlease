@@ -66,7 +66,7 @@ export type TermsOfApplicationBlockProps = {
   checkboxItem?: CheckboxItemProps;
   nextButton?: ButtonProps;
   className?: string;
-  setCreditCheckConsent?: (consent: boolean) => void;
+  setCreditCheckConsent?: (consent: boolean) => Promise<void>;
   creditCheckConsent?: boolean;
   stepperCurrentValue?: number;
   stepperTotalValue?: number;

@@ -160,7 +160,7 @@ const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
   let businessFormFields;
   if(showBusinessQuestions) {
     businessFormFields = (
-      <div className={styles.form}>
+      <>
          <TextField
             className={styles.businessPhoneField}
             {...sinField} />
@@ -176,7 +176,7 @@ const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
           <Text
             className={styles.disclaimerText}
             {...disclaimerText} />
-      </div>
+      </>
     );
   }
  return (

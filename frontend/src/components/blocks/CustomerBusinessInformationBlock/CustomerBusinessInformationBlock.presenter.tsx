@@ -1,19 +1,19 @@
 import React, { useState, useEffect} from 'react';
 import { useTranslation } from 'react-i18next';
-import { BusinessTypeBlockProps, defaultProps } from './BusinessTypeBlock';
+import { CustomerBusinessInformationBlockProps, defaultProps } from './CustomerBusinessInformationBlock';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
 import { isEmptyString } from '../../../lib/utils';
 import { Profile } from '../../../modules/profile/types';
-import { ApplicationBusinessInfo } from '../../../modules/types';
+import { ContextualMenuItemProps,  defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 
-export type BusinessTypeBlockPresenterProps = BusinessTypeBlockProps & {
+export type CustomerBusinessInformationBlockPresenterProps = CustomerBusinessInformationBlockProps & {
     profile: Profile | null;
 };
 
 const withPresenter = (
-  View: React.FC<BusinessTypeBlockProps>,
-): React.FC<BusinessTypeBlockPresenterProps> => {
-  const Presenter: React.FC<BusinessTypeBlockPresenterProps> = (props) => {
+  View: React.FC<CustomerBusinessInformationBlockProps>,
+): React.FC<CustomerBusinessInformationBlockPresenterProps> => {
+  const Presenter: React.FC<CustomerBusinessInformationBlockPresenterProps> = (props) => {
     const {
         className,
         profile,
@@ -24,6 +24,12 @@ const withPresenter = (
     } = props;
     const { t } = useTranslation();
 
+    const [fullLegalName, setFullLegalName] = useState<string>();
+    const [operatingName, setOperatingName] = useState<string>();
+    const [operatingSince, setOperatingSince] = useState<string>();
+    const [businessSector, setBusinessSector] = useState<string>();
+    const [businessPhone, setBusinessPhone] = useState<string>();
+    const [website, setWebsite] = useState<string>();
     const [businessType, setBusinessType] = useState<'Proprietorship' | 'Incorporated'>();
     const [showBusinessQuestions, setShowBusinessQuestions] = useState<boolean>(false);
     const [sin, setSin] = useState<string>();
@@ -32,11 +38,11 @@ const withPresenter = (
     const [bankruptcyDetails, setBankruptcyDetails] = useState<string>();
 
     const checkShowConditionalQuestions = () => {
-        if(!profile) {
+        if(!operatingSince) {
             return false;
         }
 
-        const date = new Date(profile.operatingSinceDate); 
+        const date = new Date(operatingSince); 
         const diffTime = Date.now() - date.getTime();
         const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365); 
         if (diffYears < 3) {
@@ -52,18 +58,61 @@ const withPresenter = (
             setDob(businessInfo.dob);
             setBankruptcy(businessInfo.bankruptcy);
             setBankruptcyDetails(businessInfo.bankruptcyDetails);
+
+            if(businessInfo.type === 'vendor') {
+                setFullLegalName(businessInfo.companyName);
+                setOperatingName(businessInfo.operatingName);
+                setOperatingSince(businessInfo.operatingSinceDate);
+                setBusinessSector(businessInfo.businessSector);
+                setBusinessPhone(businessInfo.businessPhone);
+                setWebsite(businessInfo.website);
+            }
         }
     }, [businessInfo]);
 
+    const handleFullLegalName = ({ target: { value } }) => {
+        setFullLegalName(value);
+      };
+  
+      const handleOperatingName = ({ target: { value } }) => {
+        setOperatingName(value);
+      };
+  
+      const handleOperatingSince = ({ target: { value } }) => {
+        setOperatingSince(value);
+      };
+  
+      const handleBusinessPhone = ({ target: { value } }) => {
+        setBusinessPhone(value);
+      };
+  
+      const handleWebsite = ({ target: { value } }) => {
+        setWebsite(value);
+      };
+
     const handleClickNext = () => {
-        if(setBusinessInfo && businessType) {
+        if(setBusinessInfo && 
+            businessType && 
+            fullLegalName && 
+            operatingName && 
+            operatingSince && 
+            businessSector && 
+            businessPhone && 
+            website
+        ) {
             setBusinessInfo({
-                type: 'customer',
+                type: 'vendor',
                 businessType,
                 sin: sin || '',
                 dob: dob || '',
                 bankruptcy: bankruptcy || false,
                 bankruptcyDetails: bankruptcyDetails || '',
+                companyName: fullLegalName,
+                operatingName,
+                operatingSinceDate: operatingSince,
+                businessSector: businessSector,
+                businessPhone: businessPhone,
+                website,
             });
         }
     }
@@ -108,8 +157,19 @@ const withPresenter = (
         }
         return false;
     }
+
+    const contextualMenuItems: ContextualMenuItemProps[] = [];
+    for (let i = 0; i < 7; i++) {
+      contextualMenuItems.push({
+        text: {
+          ...defaultMenuItemProps.text,
+          value: t(`business_information.business_sector_options.${i}`),
+        },
+        onContextualMenuItemClicked: () => setBusinessSector(t(`business_information.business_sector_options.${i}`)),
+      });
+    }
    
-    const businessTypeBlockProps: BusinessTypeBlockProps = {
+    const businessTypeBlockProps: CustomerBusinessInformationBlockProps = {
         ...defaultProps,
         stepper: {
             text: {
@@ -122,8 +182,85 @@ const withPresenter = (
         },
         blockHeading: {
             ...defaultProps.blockHeading,
-            value: t(`application_form.business_type.heading_text`)
+            value: t(`business_information.header`)
         },
+        fullLegalNameTextField: {
+            ...defaultProps.fullLegalNameTextField,
+            label: {
+              ...defaultProps.fullLegalNameTextField.label,
+              value: t('text_field_label.full_legal_name'),
+            },
+            textInput: {
+              textValue: fullLegalName,
+              onTextChanged: handleFullLegalName,
+            },
+          },
+          operatingNameTextField: {
+            ...defaultProps.operatingNameTextField,
+            label: {
+              ...defaultProps.operatingNameTextField.label,
+              value: t('text_field_label.operating_name'),
+            },
+            textInput: {
+              textValue: operatingName,
+              onTextChanged: handleOperatingName,
+            },
+          },
+          businessSectorSelectField: {
+            ...defaultProps.businessSectorSelectField,
+            label: {
+              ...defaultProps.businessSectorSelectField.label,
+              value: t('text_field_label.business_sector'),
+            },
+            select: {
+              ...defaultProps.businessSectorSelectField.select,
+              text: {
+                ...defaultProps.businessSectorSelectField.select?.text,
+                value: businessSector,
+              },
+            },
+            contextualMenu: {
+              contextualMenuItemList: {
+                contextualMenuItems,
+              },
+            },
+            selectId: t('text_field_label.business_sector'),
+          },
+          operatingSinceTextField: {
+            ...defaultProps.operatingSinceTextField,
+            label: {
+              ...defaultProps.operatingSinceTextField.label,
+              value: t('text_field_label.operating_since'),
+            },
+            textInput: {
+              ...defaultProps.operatingSinceTextField.textInput,
+              textValue: operatingSince,
+              onTextChanged: handleOperatingSince,
+              textPlaceholder: t('business_information.operating_since_placeholder'),
+            },
+          },
+          businessPhoneField: {
+            ...defaultProps.businessPhoneField,
+            label: {
+              ...defaultProps.businessPhoneField.label,
+              value: t('text_field_label.business_phone'),
+            },
+            textInput: {
+              textValue: businessPhone,
+              onTextChanged: handleBusinessPhone,
+            },
+          },
+          websiteLinkTextField: {
+            ...defaultProps.websiteLinkTextField,
+            label: {
+              ...defaultProps.websiteLinkTextField.label,
+              value: t('text_field_label.website_link'),
+            },
+            textInput: {
+              textValue: website,
+              onTextChanged: handleWebsite,
+            },
+          },
         businessTypeRadioField: {
             ...defaultProps.businessTypeRadioField,
             label: {

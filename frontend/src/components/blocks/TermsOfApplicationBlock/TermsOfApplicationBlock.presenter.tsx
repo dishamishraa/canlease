@@ -27,9 +27,9 @@ const withPresenter = (
         return false;
     }
 
-    const handleClickNext = () => {
+    const handleClickNext = async () => {
         if (isFormValid() && setCreditCheckConsent) {
-            setCreditCheckConsent(true);
+            await setCreditCheckConsent(true);
         }
     };
     const termsOfApplicationBlockProps : TermsOfApplicationBlockProps = {

@@ -49,7 +49,7 @@ export type ApplicationPageProps = {
   setPersonalInfo?: (personalInfo: ApplicationPersonalInfo) => void;
   setBusinessInfo?: (businessType: ApplicationBusinessInfo) => void;
   setAssetInfo?: (assetInfo: AssetInfo) => void;
-  setCreditCheckConsent?: (consent: boolean) => void;
+  setCreditCheckConsent?: (consent: boolean) => Promise<void>;
   quoteDetails?: Quote;
   quoteSelected?: QuoteOption;
   personalInfo?: ApplicationPersonalInfo;
@@ -88,7 +88,7 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
   creditCheckConsent,
 
 }) => {
-  const BusinessInfoBlock = true ? BusinessTypeBlock : CustomerBusinessInformationBlock;
+  const BusinessInfoBlock = true ? CustomerBusinessInformationBlock : BusinessTypeBlock;
   return (
     <div className={cx(styles.applicationPage, className)}>
       <TopBar

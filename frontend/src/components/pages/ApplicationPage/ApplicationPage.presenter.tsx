@@ -118,64 +118,17 @@ const withPresenter = (
       history.push('/portal/application/reviewApplicationInfo', newState);
     }
 
-    const setCreditCheckConsent = (creditCheckConsent: boolean) => {
+    const setCreditCheckConsent = async (creditCheckConsent: boolean) => {
       const newState = {
         ...state,
         creditCheckConsent,
       }
       setState(newState);
-      history.push('/portal/application/termsOfApplication', newState);
+      await handleCreateApplication(creditCheckConsent);
+      history.push('/portal/application/submitted', newState);
     }
 
-    // window.onbeforeunload = (event) => {
-    //     const e = event || window.event;
-    //     e.preventDefault();
-    //     if (e) {
-    //       e.returnValue = ''
-    //     }
-    //     return '';
-    // };
-    
-    const handleBackButtonClicked = () => {
-      // setStepperCurrentValue(stepperCurrentValue - 1);
-      // switch (location.pathname){
-      //   case (routes.assetInformation):
-      //     history.push(routes.quoteSelection);
-      //     break;
-      //   case (routes.businessType):
-      //     history.push(routes.assetInformation);
-      //     break;
-      //   case (routes.reviewApplicationInformation):
-      //     history.push(routes.businessType);
-      //     break;
-      //   case (routes.termsOfApplication):
-      //     history.push(routes.reviewApplicationInformation);
-      //     break;
-      //   default:
-      //     history.push(routes.invalid);
-      //     break;
-      // }
-    }
-
-    let topBar: TopBarProps = {};
-    // if (location.pathname !== 'routes.quoteSelection' || totalSteps < 5){
-    //   topBar = {
-    //     backButton: {
-    //       ...defaultProps.backButton,
-    //       icon: {
-    //         ...defaultProps.backButton.icon,
-    //         onIconClicked: handleBackButtonClicked,
-    //       },
-    //       text:{
-    //         ...defaultProps.backButton.text,
-    //         value: t('application_form.back'),
-    //       }
-    //     },
-    //     show: true,
-    //   }
-    // }
-
-    const handleCreateApplication = async () => {
+    const handleCreateApplication = async (creditCheckConsent: boolean) => {
       if (quoteSelected && assetInfo && businessInfo && creditCheckConsent && quoteDetails && profile){
         const { 
           portalId, 
@@ -191,7 +144,7 @@ const withPresenter = (
           province, 
           postalCode,
         } = profile;
-        const { term } = quoteSelected
+        const { term } = quoteSelected;
         const {assetCondition, ageOfAsset, expectedDeliveryDate} = assetInfo;
         const { businessType, sin, dob, bankruptcy, bankruptcyDetails} = businessInfo;
         const { applicationAmount, asset, quoteId } = quoteDetails;
@@ -202,11 +155,12 @@ const withPresenter = (
           const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365); 
           return diffYears;
         }
+
         await createApplication({
           leasePortalId: portalId,
           operatingName: operatingName,
           businessName: companyName,
-          businessType: businessType === "Incorporated" ? "Incorporated" : "Proprietorship",
+          businessType: businessType,
           yearsInBusiness: checkYearsInBusiness(),
           contactName: name,
           contactEmail: email,
@@ -219,7 +173,7 @@ const withPresenter = (
           term: term as Term,
           applicationAmount: applicationAmount,
           asset: asset,
-          condition: assetCondition === 'New' ? 'New' : 'Used',
+          condition: assetCondition,
           ageOfAsset: ageOfAsset,
           businessOwnerName: operatingName,
           businessOwnerStreet: '',
@@ -238,22 +192,21 @@ const withPresenter = (
 
     return (
       <View
-      {...props}
-      topBar={topBar}
-      stepperCurrentValue={currentStep}
-      stepperTotalValue={totalSteps}
-      setQuoteSelected={setQuoteSelected}
-      setPersonalInfo={setPersonalInfo}
-      setBusinessInfo={setBusinessInfo}
-      setAssetInfo={setAssetInfo}
-      setCreditCheckConsent={setCreditCheckConsent}
-      quoteDetails={quoteDetails}
-      quoteSelected={quoteSelected}
-      personalInfo={personalInfo}
-      businessInfo={businessInfo}
-      assetInfo={assetInfo}
-      creditCheckConsent={creditCheckConsent}
-      />
+        {...props}
+        stepperCurrentValue={currentStep}
+        stepperTotalValue={totalSteps}
+        setQuoteSelected={setQuoteSelected}
+        setPersonalInfo={setPersonalInfo}
+        setBusinessInfo={setBusinessInfo}
+        setAssetInfo={setAssetInfo}
+        setCreditCheckConsent={setCreditCheckConsent}
+        quoteDetails={quoteDetails}
+        quoteSelected={quoteSelected}
+        personalInfo={personalInfo}
+        businessInfo={businessInfo}
+        assetInfo={assetInfo}
+        creditCheckConsent={creditCheckConsent}
+        />
     );
   };
   return Presenter;
