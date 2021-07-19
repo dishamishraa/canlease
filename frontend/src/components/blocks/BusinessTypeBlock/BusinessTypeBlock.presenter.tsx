@@ -1,19 +1,13 @@
 import React, { useState, useEffect} from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
 import { BusinessTypeBlockProps, defaultProps } from './BusinessTypeBlock';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
 import { isEmptyString } from '../../../lib/utils';
 import { Profile } from '../../../modules/profile/types';
-import { BusinessType } from '../../../modules/types';
+import { ApplicationBusinessInfo } from '../../../modules/types';
 
 export type BusinessTypeBlockPresenterProps = BusinessTypeBlockProps & {
-    setBusinessTypeInfo?: React.Dispatch<React.SetStateAction<BusinessType>>;
-    businessTypeInfomation?: BusinessType;
     profile: Profile | null;
-    stepperCurrentValue?: number,
-    setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
-    stepperTotalValue?: number,
 };
 
 const withPresenter = (
@@ -21,19 +15,15 @@ const withPresenter = (
 ): React.FC<BusinessTypeBlockPresenterProps> => {
   const Presenter: React.FC<BusinessTypeBlockPresenterProps> = (props) => {
     const {
-        setBusinessTypeInfo,
         className,
-        businessTypeInfomation,
         profile,
+        businessInfo,
+        setBusinessInfo,
         stepperCurrentValue,
-        setStepperCurrentValue,
         stepperTotalValue,
     } = props;
-
-    const [showAdditionalFormFields, setShowAdditionalFormFields] = useState(false);
-    
-    const history = useHistory();
     const { t } = useTranslation();
+    const [] = useState<ApplicationBusinessInfo | undefined>(businessInfo);
 
     const checkShowConditionalQuestions = () => {
         if (profile){
@@ -49,9 +39,8 @@ const withPresenter = (
     }
 
     const handleClickNext = () => {
-        if(isFormValid() && setStepperCurrentValue && stepperCurrentValue){
-            setStepperCurrentValue(stepperCurrentValue + 1);
-            history.push('/portal/application/reviewApplicationInfo')
+        if(setBusinessInfo) {
+
         }
     }
 
@@ -295,7 +284,6 @@ const withPresenter = (
         <View
         className={className}
           {...businessTypeBlockProps}
-          showAdditionalFormFields={showAdditionalFormFields}
         />
       );
     };

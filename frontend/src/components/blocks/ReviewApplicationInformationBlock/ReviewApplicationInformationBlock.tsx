@@ -7,8 +7,8 @@ import Stepper, { StepperProps } from '../../atoms/Stepper';
 import Text, { TextProps } from '../../atoms/Text';
 import DetailsSection, { DetailsSectionProps } from '../../organisms/DetailsSection';
 import Button, { ButtonProps } from '../../atoms/Button';
-import { AssetInfo, BusinessType} from '../../../modules/types';
-import { QuoteOption } from '../../../modules/quote/types';
+import { AssetInfo, ApplicationBusinessInfo, ApplicationPersonalInfo} from '../../../modules/types';
+import { Quote, QuoteOption } from '../../../modules/quote/types';
 
 export const defaultProps = {
   stepper: {
@@ -211,12 +211,13 @@ export type ReviewApplicationInformationBlockProps = {
   profileBusinessDetails?: DetailsSectionProps;
   nextButton?: ButtonProps;
   className?: string;
+  quoteDetailsSelected?: Quote;
   quoteSelected?: QuoteOption;
-  assetInfo?: AssetInfo
-  businessTypeInfo?: BusinessType
-  stepperCurrentValue?: number,
-  setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
-  stepperTotalValue?: number,
+  personalInfo?: ApplicationPersonalInfo;
+  businessInfo?: ApplicationBusinessInfo;
+  assetInfo?: AssetInfo;
+  stepperCurrentValue?: number;
+  stepperTotalValue?: number;
 };
 
 const ReviewApplicationInformationBlock: React.FC<ReviewApplicationInformationBlockProps> = ({

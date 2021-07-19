@@ -9,6 +9,7 @@ import TextField, { TextFieldProps } from '../../molecules/TextField';
 import SelectField, { SelectFieldProps } from '../../molecules/SelectField';
 import RadioField, { RadioFieldProps } from '../../molecules/RadioField';
 import Button, { ButtonProps } from '../../atoms/Button';
+import { ApplicationBusinessInfo } from '../../../modules/types';
 
 export const defaultProps = {
   stepper: {
@@ -200,6 +201,10 @@ export type CustomerBusinessInformationBlockProps = {
   disclaimerText?: TextProps;
   nextButton?: ButtonProps;
   className?: string;
+  setBusinessInfo?: (businessInfo: ApplicationBusinessInfo) => void;
+  businessInfo?: ApplicationBusinessInfo;
+  stepperCurrentValue?: number,
+  stepperTotalValue?: number,
 };
 
 const CustomerBusinessInformationBlock: React.FC<CustomerBusinessInformationBlockProps> = ({

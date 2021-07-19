@@ -74,15 +74,11 @@ const withPresenter = (
       button: {
         ...defaultProps.button,
         onButtonClicked: () => {
-          if(contentType === 'Application') {
-            history.push('/portal/application/userSelection')
-          } else {
-            history.push('/portal/quote');
-          }
+          history.push('/portal/quote');
         },
         text: {
           ...defaultProps.button.text,
-          value: contentType === 'Application' ? t('view_quote.apply_button_text') : 'Create Quote', // TODO localize
+          value: 'Create Quote', // TODO localize
         },
 
       },

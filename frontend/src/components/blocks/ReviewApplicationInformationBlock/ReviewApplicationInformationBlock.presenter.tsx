@@ -1,23 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
 import { ReviewApplicationInformationBlockProps, defaultProps } from './ReviewApplicationInformationBlock';
 import { DetailsSectionProps } from '../../organisms/DetailsSection';
 import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
-import { AssetInfo, BusinessType } from '../../../modules/types';
 import { Profile } from '../../../modules/profile/types';
-import { Quote, QuoteOption } from '../../../modules/quote/types';
 import { convertMonth, getStretchMonth } from '../../../lib/utils';
 
 export type ReviewApplicationInformationBlockPresenterProps = ReviewApplicationInformationBlockProps & {
-    quoteIdDetails: Quote | null;
-    quoteSelected?: QuoteOption;
-    assetInfo?: AssetInfo;
-    businessTypeInfo?: BusinessType;
     profile: Profile | null;
-    stepperCurrentValue?: number,
-    setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
-    stepperTotalValue?: number,
 };
 
 const withPresenter = (
@@ -25,19 +15,17 @@ const withPresenter = (
   ): React.FC<ReviewApplicationInformationBlockPresenterProps> => {
     const Presenter: React.FC<ReviewApplicationInformationBlockPresenterProps> = (props) => {
     const {
-      quoteIdDetails,
+      quoteDetailsSelected,
       className,
       quoteSelected,
       assetInfo,
-      businessTypeInfo,
+      businessInfo,
       profile,
       stepperCurrentValue,
-      setStepperCurrentValue,
       stepperTotalValue,
     } = props;
 
     const { t } = useTranslation();
-    const history = useHistory();
 
     let quoteDetails: DetailsSectionProps = {};
     let paymentDetails: DetailsSectionProps = {};
@@ -67,7 +55,7 @@ const withPresenter = (
             break;
           case "paymentDetails":
             setStepperCurrentValue(stepperCurrentValue-3)
-            history.push('/portal/application/quoteSelection')
+            history.push('/portal/application/applyQuote')
             break;
           case "quoteDetails":
             break;
@@ -272,15 +260,15 @@ const withPresenter = (
         }
       }
     }
-    if (quoteIdDetails) {
+    if (quoteDetailsSelected) {
       const {
         applicationAmount, asset, quoteId, leaseType,
-      } = quoteIdDetails;
+      } = quoteDetailsSelected;
     
-    if (businessTypeInfo) {
+    if (businessInfo) {
         const {
           bankruptcy, bankruptcyDetails, businessType, dob, sin,
-        } = businessTypeInfo;
+        } = businessInfo;
         businessTypeDetails = {
           text: {
             ...defaultProps.businessTypeDetails.text,

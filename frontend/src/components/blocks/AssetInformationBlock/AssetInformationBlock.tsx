@@ -135,11 +135,10 @@ export type AssetInformationBlockProps = {
   expectedDeliveryDateTextField?: TextFieldProps;
   nextButton?: ButtonProps;
   className?: string;
-  setAssetInfo?: React.Dispatch<React.SetStateAction<AssetInfo>>;
-  showAgeOfAssetField?: boolean;
+  setAssetInfo?: (assetInfo: AssetInfo) => void;
+  showAssetAgeField?: boolean;
   assetInfo?: AssetInfo;
   stepperCurrentValue?: number,
-  setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
   stepperTotalValue?: number,
 };
 
@@ -152,10 +151,10 @@ const AssetInformationBlock: React.FC<AssetInformationBlockProps> = ({
   expectedDeliveryDateTextField,
   nextButton,
   className,
-  showAgeOfAssetField
+  showAssetAgeField,
 }) => {
   let displayAgeOfAssetField;
-  if (showAgeOfAssetField){
+  if (showAssetAgeField){
     displayAgeOfAssetField = (
       <TextField
       className={styles.ageOfAssetTextField}

@@ -8,6 +8,7 @@ import Text, { TextProps } from '../../atoms/Text';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import SelectField, { SelectFieldProps } from '../../molecules/SelectField';
 import Button, { ButtonProps } from '../../atoms/Button';
+import { ApplicationPersonalInfo } from '../../../modules/types';
 
 export const defaultProps = {
   stepper: {
@@ -169,6 +170,10 @@ export type CustomerPersonalInformationBlockProps = {
   provinceSelectField?: SelectFieldProps;
   nextButton?: ButtonProps;
   className?: string;
+  setPersonalInfo?: (personalInfo: ApplicationPersonalInfo) => void;
+  personalInfo?: ApplicationPersonalInfo;
+  stepperCurrentValue?: number,
+  stepperTotalValue?: number,
 };
 
 const CustomerPersonalInformationBlock: React.FC<CustomerPersonalInformationBlockProps> = ({

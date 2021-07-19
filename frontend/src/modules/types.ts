@@ -1,6 +1,9 @@
 import { Lease } from "./portfolio/types";
 import { UserType } from "./profile/types";
-import { LeaseType, Quote } from "./quote/types";
+import { LeaseType, Quote, QuoteOption } from "./quote/types";
+
+// CREATE QUOTE types
+export type QuoteFlowType = 'instaQuote' | 'createQuote';
 
 export type CreateQuoteState = {
   quoteUserType?: UserType;
@@ -8,28 +11,12 @@ export type CreateQuoteState = {
   contactInfo?: ContactInfo;
 }
 
-export type AfterAuthAction = 'apply_finance' | 'save_quote';
-
-export type AuthState = {
-  action?: AfterAuthAction;
-  email?: string;
-  personalInfo?: PersonalInformation;
-  contactInfo?: ContactInformation;
-  businessInfo?: BusinessInformation;
-}
-
-export type QuoteFlowType = 'instaQuote' | 'createQuote';
-
-export type ViewQuoteType = {
-  userType?: UserType;
-  quote?: Quote;
-}
-
 export type EquipmentLeaseInfo = {
   name: string;
   cost: string;
   leaseType: LeaseType;
 };
+
 
 type BaseInfo = {
   type: 'customer' | 'vendor';
@@ -51,18 +38,20 @@ export type ContactInfoVendor = BaseInfo & {
 
 export type ContactInfo = ContactInfoCustomer | ContactInfoVendor;
 
-export type AssetInfo = {
-  assetCondition: string;
-  ageOfAsset: number;
-  expectedDeliveryDate: string;
+export type ViewQuoteType = {
+  userType?: UserType;
+  quote?: Quote;
 }
 
-export type BusinessType = {
-  businessType: string;
-  sin: string;
-  dob: string;
-  bankruptcy: string;
-  bankruptcyDetails: string;
+// AUTH types
+export type AfterAuthAction = 'apply_finance' | 'save_quote';
+
+export type AuthState = {
+  action?: AfterAuthAction;
+  email?: string;
+  personalInfo?: PersonalInformation;
+  contactInfo?: ContactInformation;
+  businessInfo?: BusinessInformation;
 }
 
 export type PersonalInformation = {
@@ -90,6 +79,61 @@ export type BusinessInformation = {
   website: string;
 };
 
+// CREATE APPLICATION types
+export type CreateApplicationState = {
+  currentStep: number;
+  totalSteps: number;
+  quoteDetails?: Quote;
+  quoteSelected?: QuoteOption;
+  personalInfo?: ApplicationPersonalInfo;
+  businessInfo?: ApplicationBusinessInfo;
+  assetInfo?: AssetInfo;
+  creditCheckConsent?: boolean;
+}
+
+export type ApplicationPersonalInfo = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  address: string;
+  city: string;
+  postalCode: string;
+  province: string;
+}
+
+type BaseApplicationBusinessInfo = {
+  type: 'customer' | 'vendor';
+  businessType: string;
+  sin: string;
+  dob: string;
+  bankruptcy: boolean;
+  bankruptcyDetails: string;
+}
+
+export type ApplicationBusinessInfoCustomer = BaseApplicationBusinessInfo & {
+  type: 'customer';
+}
+
+export type ApplicationBusinessInfoVendor = BaseApplicationBusinessInfo & {
+  type: 'vendor';
+  companyName: string;
+  operatingName: string;
+  businessSector: string;
+  operatingSinceDate: string;
+  businessPhone: string;
+  website: string;
+}
+
+export type ApplicationBusinessInfo = ApplicationBusinessInfoCustomer | ApplicationBusinessInfoVendor;
+
+export type AssetInfo = {
+  assetCondition: 'New' | "Used";
+  ageOfAsset: number;
+  expectedDeliveryDate: string;
+}
+
+
 export type LeaseInfo = {
   company: string;
   contactName: string;
@@ -97,6 +141,8 @@ export type LeaseInfo = {
   vendor: string;
   lease: Lease;
 }
+
+// CONTENT TABLE types
 export type ContentType = 'Quote' | 'Application';
 export type ContentTypeTabs = 'Customer' | 'Personal';
 export type ContentFilter = 'all' | 'active' | 'applied' | 'expiring' | 'expired' | 'under_review' | 'financed' | 'rejected' | 'not_active';

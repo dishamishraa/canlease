@@ -88,7 +88,8 @@ const withPresenter = (
       const quoteCookieObj = getQuoteCookie();
       switch(quoteCookieObj?.action) {
         case 'apply_finance':
-          history.push('/portal/application/quoteSelection');
+          updateInstaQuoteCookie({}, setCookie, removeCookie);
+          history.push(`/portal/application/applyQuote/${quoteCookieObj.quoteId}`);
           break;
         case 'save_quote':
           if (quoteCookieObj.quoteId) {

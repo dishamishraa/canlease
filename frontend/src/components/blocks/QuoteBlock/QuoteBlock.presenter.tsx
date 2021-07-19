@@ -90,12 +90,16 @@ const withPresenter = (
     };
 
     const handleApplyForFinance = () => {
-      if(flowType === 'instaQuote') {
-       updateInstaQuoteCookie({ action: 'apply_finance'}, setCookie, removeCookie);
-        history.push('/account/signin');
-      } else {
-        // TODO
-        history.push('/portal/applications');
+      switch(flowType) {
+        case 'instaQuote':
+          updateInstaQuoteCookie({ action: 'apply_finance'}, setCookie, removeCookie);
+          history.push('/account/signin');
+          break;
+        case 'createQuote':
+          if(quote) {
+            history.push(`/portal/application/applyQuote/${quote.quoteId}`);
+          }
+          break;
       }
     };
 

@@ -8,7 +8,7 @@ import Text, { TextProps } from '../../atoms/Text';
 import RadioField, { RadioFieldProps } from '../../molecules/RadioField';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
-import { BusinessType } from '../../../modules/types';
+import { ApplicationBusinessInfo } from '../../../modules/types';
 
 export const defaultProps = {
   stepper: {
@@ -137,11 +137,9 @@ export type BusinessTypeBlockProps = {
   disclaimerText?: TextProps;
   nextButton?: ButtonProps;
   className?: string;
-  setBusinessTypeInfo?: React.Dispatch<React.SetStateAction<BusinessType>>;
-  showAdditionalFormFields?: boolean;
-  businessTypeInfomation?: BusinessType;
+  setBusinessInfo?: (businessInfo: ApplicationBusinessInfo) => void;
+  businessInfo?: ApplicationBusinessInfo;
   stepperCurrentValue?: number,
-  setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
   stepperTotalValue?: number,
 };
 
@@ -156,10 +154,9 @@ const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
   disclaimerText,
   nextButton,
   className,
-  showAdditionalFormFields,
 }) => {
   let additionalFormFields;
-  if(showAdditionalFormFields) {
+  if(false) {
     additionalFormFields = (
       <div className={styles.form}>
          <TextField
