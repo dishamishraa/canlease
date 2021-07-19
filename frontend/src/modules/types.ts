@@ -104,7 +104,7 @@ export type ApplicationPersonalInfo = {
 
 type BaseApplicationBusinessInfo = {
   type: 'customer' | 'vendor';
-  businessType: string;
+  businessType: 'Proprietorship' | 'Incorporated';
   sin: string;
   dob: string;
   bankruptcy: boolean;

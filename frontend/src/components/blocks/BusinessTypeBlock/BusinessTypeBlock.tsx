@@ -139,8 +139,9 @@ export type BusinessTypeBlockProps = {
   className?: string;
   setBusinessInfo?: (businessInfo: ApplicationBusinessInfo) => void;
   businessInfo?: ApplicationBusinessInfo;
-  stepperCurrentValue?: number,
-  stepperTotalValue?: number,
+  stepperCurrentValue?: number;
+  stepperTotalValue?: number;
+  showBusinessQuestions?: boolean;
 };
 
 const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
@@ -154,10 +155,11 @@ const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
   disclaimerText,
   nextButton,
   className,
+  showBusinessQuestions,
 }) => {
-  let additionalFormFields;
-  if(false) {
-    additionalFormFields = (
+  let businessFormFields;
+  if(showBusinessQuestions) {
+    businessFormFields = (
       <div className={styles.form}>
          <TextField
             className={styles.businessPhoneField}
@@ -192,7 +194,7 @@ const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
           <RadioField
             className={styles.businessTypeRadioField}
             {...businessTypeRadioField} />
-          {additionalFormFields}
+          {businessFormFields}
           <Button
             className={styles.nextButton}
             {...nextButton} />

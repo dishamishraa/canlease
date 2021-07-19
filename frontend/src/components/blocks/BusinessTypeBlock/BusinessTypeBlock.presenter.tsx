@@ -23,117 +23,105 @@ const withPresenter = (
         stepperTotalValue,
     } = props;
     const { t } = useTranslation();
-    const [] = useState<ApplicationBusinessInfo | undefined>(businessInfo);
+
+    const [legalName, setLegalName] = useState<string>();
+    const [operatingName, setOperatingName] = useState<string>();
+    const [sector, setSector] = useState<string>();
+    const [operatingSince, setOperatingSince] = useState<string>();
+    const [phone, setPhone] = useState<string>();
+    const [website, setWebsite] = useState<string>();
+    const [businessType, setBusinessType] = useState<'Proprietorship' | 'Incorporated'>();
+    const [showBusinessQuestions, setShowBusinessQuestions] = useState<boolean>(false);
+    const [sin, setSin] = useState<string>();
+    const [dob, setDob] = useState<string>();
+    const [bankruptcy, setBankruptcy] = useState<boolean>();
+    const [bankruptcyDetails, setBankruptcyDetails] = useState<string>();
 
     const checkShowConditionalQuestions = () => {
-        if (profile){
-            const date = new Date(profile.operatingSinceDate); 
-            const diffTime = Date.now() - date.getTime();
-            const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365); 
-            if (diffYears < 3) {
-                return true;
-            }
+        if(!operatingSince) {
             return false;
+        }
+
+        const date = new Date(operatingSince); 
+        const diffTime = Date.now() - date.getTime();
+        const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365); 
+        if (diffYears < 3) {
+            return true;
         }
         return false;
     }
 
-    const handleClickNext = () => {
-        if(setBusinessInfo) {
+    useEffect(() => {
+        if(businessInfo) {
+            setBusinessType(businessInfo.businessType);
+            setSin(businessInfo.sin);
+            setDob(businessInfo.dob);
+            setBankruptcy(businessInfo.bankruptcy);
+            setBankruptcyDetails(businessInfo.bankruptcyDetails);
 
+            if(businessInfo.type === 'vendor') {
+                setLegalName(businessInfo.companyName);
+                setOperatingName(businessInfo.operatingName);
+                setOperatingSince(businessInfo.operatingSinceDate);
+                setSector(businessInfo.businessSector);
+                setPhone(businessInfo.businessPhone);
+                setWebsite(businessInfo.website);
+            }
+        }
+    }, [businessInfo]);
+
+    const handleClickNext = () => {
+        if(setBusinessInfo && businessType) {
+            setBusinessInfo({
+                type: 'customer',
+                businessType,
+                sin: sin || '',
+                dob: dob || '',
+                bankruptcy: bankruptcy || false,
+                bankruptcyDetails: bankruptcyDetails || '',
+            });
         }
     }
 
     const handleChangeSocialInsuranceNumber = ({ target: { value }}) => {
-        if (setBusinessTypeInfo){
-            setBusinessTypeInfo(businessTypeInfomation => ({...businessTypeInfomation, sin: value}))
-        }
+        setSin(value);
     }
 
     const handleChangeDateOfBirth = ({ target: { value }}) => {
-        if (setBusinessTypeInfo){
-            setBusinessTypeInfo(businessTypeInfomation => ({...businessTypeInfomation, dob: value}))
-        }
+        setDob(value);
     };
 
-    const handleChangeDetails = ({ target: { value }}) => {
-        if (setBusinessTypeInfo){
-            setBusinessTypeInfo(businessTypeInfomation => ({...businessTypeInfomation, bankruptcyDetails: value}))
-        }
-    };
-    const handleBusinessTypeClick = (option) => (event: any) => {
-        if ((checkShowConditionalQuestions() || option === "Proprietorship") && setBusinessTypeInfo){
-            setBusinessTypeInfo(businessTypeInfomation => ({...businessTypeInfomation, businessType: option}))
-            setShowAdditionalFormFields(true);
+    const handleBusinessTypeClick = (option: 'Proprietorship' | 'Incorporated') => () => {
+        if ((checkShowConditionalQuestions() || option === "Proprietorship")){
+            setShowBusinessQuestions(true);
         } else{
-            if (setBusinessTypeInfo){
-                setBusinessTypeInfo(businessTypeInfomation => 
-                    ({...businessTypeInfomation, bankruptcy: "", bankruptcyDetails: "", sin: "", dob: "", businessType: option}))
-            }
-            setShowAdditionalFormFields(false);
+            setShowBusinessQuestions(false);
         }
+        setBusinessType(option);
     }
-    const handleBankruptcyClick = (option) => (event: any) => {
-        if (setBusinessTypeInfo){
-            setBusinessTypeInfo(businessTypeInfomation => ({...businessTypeInfomation, bankruptcy: option}))
-        }
+    const handleBankruptcyClick = (option: boolean) => (event: any) => {
+        setBankruptcy(option);
     }
 
-    useEffect(() => {
-        if (businessTypeInfomation) {
-            const { businessType } = businessTypeInfomation;
-            if (businessType === 'Proprietorship' || checkShowConditionalQuestions()) {
-                setShowAdditionalFormFields(true);
-            } else {
-                setShowAdditionalFormFields(false);
-            }
-        }
-    }, [checkShowConditionalQuestions()])
+    const handleChangeBankruptcyDetails = ({ target: { value }}) => {
+        setBankruptcyDetails(value);
+    };
 
-    let handleBusinessTypeState;
-    let handleBankruptcyState;
-    let getBankruptcyDetails;
-    let getSocialInsuranceNumber;
-    let getDateOfBirth;
-    let isFormValid;
-
-    if (businessTypeInfomation) {
-        const { businessType, bankruptcy, bankruptcyDetails, sin: socialInsuranceNumber, dob: dateOfBirth } = businessTypeInfomation
-        isFormValid = () => {
-            if (!checkShowConditionalQuestions() && businessType === "Incorporated"){
-                return true;
-            }
-            else if (!isEmptyString(businessType) && !isEmptyString(socialInsuranceNumber) && !isEmptyString(dateOfBirth) && !isEmptyString(bankruptcy)){
-                if(bankruptcy === 'No' || !isEmptyString(bankruptcyDetails)){
-                    return true
-                }
-                return false;
+    const isFormValid = () => {
+        if (!checkShowConditionalQuestions() && 
+            businessType === "Incorporated") {
+            return true;
+        } else if (!isEmptyString(businessType) && 
+            !isEmptyString(sin) && 
+            !isEmptyString(dob) && 
+            !bankruptcy) {
+            if(bankruptcy === false || 
+                !isEmptyString(bankruptcyDetails)){
+                return true
             }
             return false;
         }
-
-        handleBusinessTypeState = (type) => {
-            if (businessType === type) {
-             return 'Selected';
-            }
-            return 'Unselected';
-        }
-        handleBankruptcyState = (type) => {
-            if (bankruptcy === type) {
-             return 'Selected';
-            }
-            return 'Unselected';
-        }
-        getBankruptcyDetails = () => {
-            return bankruptcyDetails ? bankruptcyDetails : "";
-        }
-        getSocialInsuranceNumber = () => {
-            return socialInsuranceNumber ? socialInsuranceNumber : "";
-        }
-        getDateOfBirth = () => {
-            return dateOfBirth ? dateOfBirth : "";
-        }
-
+        return false;
     }
    
     const businessTypeBlockProps: BusinessTypeBlockProps = {
@@ -160,7 +148,7 @@ const withPresenter = (
             radioButtonItems: [
                 {
                   ...defaultRadioButtonItemProps,
-                      state: handleBusinessTypeState('Incorporated'),
+                      state: businessType === 'Incorporated' ? 'Selected' : 'Unselected',
                       selectedIcon: {
                           ...defaultRadioButtonItemProps.selectedIcon,
                       },
@@ -175,7 +163,7 @@ const withPresenter = (
               },
               {
                 ...defaultRadioButtonItemProps,
-                    state: handleBusinessTypeState('Proprietorship'),
+                    state: businessType === 'Proprietorship' ? 'Selected' : 'Unselected',
                     selectedIcon: {
                         ...defaultRadioButtonItemProps.selectedIcon,
                     },
@@ -198,7 +186,7 @@ const withPresenter = (
             },
             textInput: {
                 ...defaultProps.sinField.textInput,
-                textValue: getSocialInsuranceNumber(),
+                textValue: sin,
                 onTextChanged: handleChangeSocialInsuranceNumber,
             },
         },
@@ -211,7 +199,7 @@ const withPresenter = (
             textInput: {
                 ...defaultProps.dateOfBirthField?.textInput,
                 textPlaceholder: t('application_form.asset_information.date_placeholder'),
-                textValue: getDateOfBirth(),
+                textValue: dob,
                 onTextChanged: handleChangeDateOfBirth,
             },
         },
@@ -224,13 +212,13 @@ const withPresenter = (
             radioButtonItems: [
                 {
                   ...defaultRadioButtonItemProps,
-                      state: handleBankruptcyState('No'),
+                      state: bankruptcy === false ? 'Selected' : 'Unselected',
                       selectedIcon: {
                           ...defaultRadioButtonItemProps.selectedIcon,
                       },
                       unselectedIcon: {
                         ...defaultRadioButtonItemProps.unselectedIcon,
-                        onIconClicked: handleBankruptcyClick('No'),
+                        onIconClicked: handleBankruptcyClick(false),
                     },
                       text: {
                           ...defaultRadioButtonItemProps.text,
@@ -239,13 +227,13 @@ const withPresenter = (
               },
               {
                 ...defaultRadioButtonItemProps,
-                    state: handleBankruptcyState('Yes'),
+                    state: bankruptcy === true ? 'Selected' : 'Unselected',
                     selectedIcon: {
                         ...defaultRadioButtonItemProps.selectedIcon,
                     },
                     unselectedIcon: {
                       ...defaultRadioButtonItemProps.unselectedIcon,
-                      onIconClicked: handleBankruptcyClick('Yes'),
+                      onIconClicked: handleBankruptcyClick(true),
                   },
                     text: {
                         ...defaultRadioButtonItemProps.text,
@@ -262,8 +250,8 @@ const withPresenter = (
             },
             textInput: {
                 ...defaultProps.detailsTextArea.textInput,
-                textValue: getBankruptcyDetails(),
-                onTextChanged: handleChangeDetails,
+                textValue: bankruptcyDetails,
+                onTextChanged: handleChangeBankruptcyDetails,
             },
         },
         nextButton: {
@@ -284,6 +272,7 @@ const withPresenter = (
         <View
         className={className}
           {...businessTypeBlockProps}
+          showBusinessQuestions={showBusinessQuestions}
         />
       );
     };

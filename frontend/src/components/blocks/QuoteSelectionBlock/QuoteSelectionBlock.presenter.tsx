@@ -39,8 +39,8 @@ const withPresenter = (
     };
 
     const isFormValid = () => {
-      if (quoteSelected){
-        const {financeRate, monthlyAmount, term } = quoteSelected
+      if (quoteOption){
+        const {financeRate, monthlyAmount, term } = quoteOption;
         if (financeRate && monthlyAmount && term) {
           return true;
         }
@@ -110,15 +110,15 @@ const withPresenter = (
         },
       }
 
-      quoteDetails.quoteOptions.forEach((quoteOption) => {
+      quoteDetails.quoteOptions.forEach((option) => {
         const {
           term: termString, monthlyAmount, financeRate,
-        } = quoteOption;
+        } = option;
         const term = convertMonth(termString);
 
         const clickableRateCardProps: ClickableRateCardProps = {
-          onRateCardClicked: handleQuoteOptionClick(quoteOption),
-          state: isEqual(quoteSelected, quoteOption) ? 'Selected' : 'Default',
+          onRateCardClicked: handleQuoteOptionClick(option),
+          state: quoteOption && isEqual(quoteOption, option) ? 'Selected' : 'Default',
           rateDetailItemList:{
             rateDetailItems: [
               {

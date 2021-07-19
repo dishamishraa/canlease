@@ -65,9 +65,9 @@ const withPresenter = (
     }
 
     const handleClickNext = () => {
-      if(setAssetInfo && assetAge && assetCondition && expectedDeilivery) {
+      if(setAssetInfo && assetCondition && expectedDeilivery) {
         setAssetInfo({
-          ageOfAsset: assetAge,
+          ageOfAsset: assetAge || 0,
           assetCondition: assetCondition,
           expectedDeliveryDate: expectedDeilivery,
         })

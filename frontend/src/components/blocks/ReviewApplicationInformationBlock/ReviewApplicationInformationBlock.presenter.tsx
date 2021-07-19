@@ -5,6 +5,7 @@ import { DetailsSectionProps } from '../../organisms/DetailsSection';
 import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { Profile } from '../../../modules/profile/types';
 import { convertMonth, getStretchMonth } from '../../../lib/utils';
+import { useHistory } from 'react-router';
 
 export type ReviewApplicationInformationBlockPresenterProps = ReviewApplicationInformationBlockProps & {
     profile: Profile | null;
@@ -26,6 +27,7 @@ const withPresenter = (
     } = props;
 
     const { t } = useTranslation();
+    const history = useHistory();
 
     let quoteDetails: DetailsSectionProps = {};
     let paymentDetails: DetailsSectionProps = {};
@@ -36,32 +38,24 @@ const withPresenter = (
     let profileBusinessDetails: DetailsSectionProps = {};
 
     const nextClicked = () => {
-      if(setStepperCurrentValue && stepperCurrentValue){
-        setStepperCurrentValue(stepperCurrentValue + 1);
-        history.push('/portal/application/termsOfApplication')
-      }
+      history.push('/portal/application/termsOfApplication');
     };
     
-    const handleEditClicked = (page) => (event: any) => {
-      if (setStepperCurrentValue && stepperCurrentValue){
-        switch (page) {
-          case "assetInfo":
-            setStepperCurrentValue(stepperCurrentValue-2)
-            history.push('/portal/application/assetInfo')
-            break;
-          case "businessType":
-            setStepperCurrentValue(stepperCurrentValue-1)
-            history.push('/portal/application/businessType')
-            break;
-          case "paymentDetails":
-            setStepperCurrentValue(stepperCurrentValue-3)
-            history.push('/portal/application/applyQuote')
-            break;
-          case "quoteDetails":
-            break;
-          default:
-            break;
-        }
+    const handleEditClicked = (page) => () => {
+      switch (page) {
+        case "assetInfo":
+          history.push('/portal/application/assetInfo')
+          break;
+        case "businessInfo":
+          history.push('/portal/application/businessInfo')
+          break;
+        case "paymentDetails":
+          history.push(`/portal/application/applyQuote/${quoteDetailsSelected?.quoteId}`)
+          break;
+        case "quoteDetails":
+          break;
+        default:
+          break;
       }
     }
 
@@ -280,7 +274,7 @@ const withPresenter = (
               ...defaultProps.businessTypeDetails.button?.text,
               value: t('application_form.review_application.edit'),
             },
-            onButtonClicked: handleEditClicked("businessType"),
+            onButtonClicked: handleEditClicked("businessInfo"),
           },
           detailItemList: {
             ...defaultProps.businessTypeDetails.detailItemList,

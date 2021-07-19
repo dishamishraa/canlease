@@ -14,6 +14,21 @@ export type ApplicationPagePresenterProps = ApplicationPageProps & {
   profile: Profile | null;
 };
 
+const customerStepsMap: Record<string, number> = {
+  '/portal/application/personalinfo': 2,
+  '/portal/application/businessinfo': 3,
+  '/portal/application/assetinfo': 4,
+  '/portal/application/reviewapplicationinfo': 5,
+  '/portal/application/termsofapplication': 6,
+};
+
+const vendorStepsMap: Record<string, number> = {
+  '/portal/application/businessinfo': 2,
+  '/portal/application/assetinfo': 3,
+  '/portal/application/reviewapplicationinfo': 4,
+  '/portal/application/termsofapplication': 5,
+};
+
 const withPresenter = (
     View: React.FC<ApplicationPageProps>,
   ): React.FC<ApplicationPagePresenterProps> => {
@@ -27,9 +42,11 @@ const withPresenter = (
     const history = useHistory();
     const { state: locationState, pathname } = useLocation<CreateApplicationState | undefined>();
 
+    const stepsMap = vendorStepsMap;
+
     const [state, setState] = useState<CreateApplicationState>({
       currentStep: 1,
-      totalSteps: 6,
+      totalSteps: Object.keys(stepsMap).length + 1, // stepsMap doesn't include the first step
     });
 
     useEffect(() => {
@@ -40,6 +57,15 @@ const withPresenter = (
         });
       }
     }, [locationState]);
+
+    useEffect(() => {
+      const pathnameNormalized = pathname.toLowerCase();
+      const step = stepsMap[pathnameNormalized] || 1;
+      setState({
+        ...state,
+        currentStep: step,
+      })
+    }, [pathname]);
 
     const {
       currentStep,
@@ -54,8 +80,8 @@ const withPresenter = (
 
     const setQuoteSelected = (quoteDetails: Quote, quoteSelected: QuoteOption) => {
       const newState = {
-        currentStep: 1,
-        totalSteps: 5,
+        currentStep,
+        totalSteps,
         quoteDetails,
         quoteSelected,
       }
@@ -68,7 +94,6 @@ const withPresenter = (
     const setPersonalInfo = (personalInfo: ApplicationPersonalInfo) => {
       const newState = {
         ...state,
-        currentStep: currentStep + 1,
         personalInfo,
       }
       setState(newState);
@@ -78,7 +103,6 @@ const withPresenter = (
     const setBusinessInfo = (businessInfo: ApplicationBusinessInfo) => {
       const newState = {
         ...state,
-        currentStep: currentStep + 1,
         businessInfo,
       }
       setState(newState);
@@ -88,7 +112,6 @@ const withPresenter = (
     const setAssetInfo = (assetInfo: AssetInfo) => {
       const newState = {
         ...state,
-        currentStep: currentStep + 1,
         assetInfo,
       }
       setState(newState);
@@ -98,7 +121,6 @@ const withPresenter = (
     const setCreditCheckConsent = (creditCheckConsent: boolean) => {
       const newState = {
         ...state,
-        currentStep: currentStep + 1,
         creditCheckConsent,
       }
       setState(newState);
@@ -136,22 +158,22 @@ const withPresenter = (
     }
 
     let topBar: TopBarProps = {};
-    if (location.pathname !== 'routes.quoteSelection' || totalSteps < 5){
-      topBar = {
-        backButton: {
-          ...defaultProps.backButton,
-          icon: {
-            ...defaultProps.backButton.icon,
-            onIconClicked: handleBackButtonClicked,
-          },
-          text:{
-            ...defaultProps.backButton.text,
-            value: t('application_form.back'),
-          }
-        },
-        show: true,
-      }
-    }
+    // if (location.pathname !== 'routes.quoteSelection' || totalSteps < 5){
+    //   topBar = {
+    //     backButton: {
+    //       ...defaultProps.backButton,
+    //       icon: {
+    //         ...defaultProps.backButton.icon,
+    //         onIconClicked: handleBackButtonClicked,
+    //       },
+    //       text:{
+    //         ...defaultProps.backButton.text,
+    //         value: t('application_form.back'),
+    //       }
+    //     },
+    //     show: true,
+    //   }
+    // }
 
     const handleCreateApplication = async () => {
       if (quoteSelected && assetInfo && businessInfo && creditCheckConsent && quoteDetails && profile){
