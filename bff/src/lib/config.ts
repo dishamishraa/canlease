@@ -16,8 +16,6 @@ export const {
   IDENTITY_URL = '',
   DATA_URL = '',
 
-  DATA_URL = '',
-
   /**
    * Proxy Timeout Duration
    */
