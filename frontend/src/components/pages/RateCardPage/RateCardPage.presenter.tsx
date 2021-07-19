@@ -4,8 +4,10 @@ import { RateCardPageProps, defaultProps } from './RateCardPage';
 import { defaultProps as DashboardRateCardDefaultProps, DashboardRateCardProps} from '../../molecules/DashboardRateCard/DashboardRateCard';
 import { defaultProps as defaultConfirmationModalProps } from '../../organisms/ConfirmationModal/ConfirmationModal';
 import { defaultProps as defaultRateCardModalProps } from '../../organisms/NewRateCardModal/NewRateCardModal';
+import { RateCard } from '../../../modules/ratecard/types';
 
 export type RateCardPagePresenterProps = RateCardPageProps & {
+    rateCardData: RateCard[] | null;
 };
 
 const withPresenter = (
@@ -14,7 +16,13 @@ const withPresenter = (
   const Presenter: React.FC<RateCardPagePresenterProps> = (props) => {
     const {
         className,
+        rateCardData,
     } = props;
+    console.log(rateCardData)
+    if (rateCardData) {
+        console.log(rateCardData)
+    }
+    
     const rateCards = [
         {
             name: "test1"
