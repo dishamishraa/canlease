@@ -131,7 +131,7 @@ export const defaultProps = {
     },
     select: {
       text: {
-        style: 'Basic400',
+        style: 'Basic800',
         align: 'Left',
         size: 'Large',
         type: 'Paragraph1',
@@ -172,8 +172,8 @@ export type CustomerPersonalInformationBlockProps = {
   className?: string;
   setPersonalInfo?: (personalInfo: ApplicationPersonalInfo) => void;
   personalInfo?: ApplicationPersonalInfo;
-  stepperCurrentValue?: number,
-  stepperTotalValue?: number,
+  stepperCurrentValue?: number;
+  stepperTotalValue?: number;
 };
 
 const CustomerPersonalInformationBlock: React.FC<CustomerPersonalInformationBlockProps> = ({

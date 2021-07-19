@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import { ApplicationPageProps } from './ApplicationPage';
 import { AssetInfo, CreateApplicationState, ApplicationPersonalInfo, ApplicationBusinessInfo } from '../../../modules/types';
 import { useLocation, useHistory } from 'react-router-dom';
 import { APIResponse } from '../../../lib/api/types';
-import { TopBarProps, defaultProps } from '../../organisms/TopBar/TopBar';
 import { Profile } from '../../../modules/profile/types';
 import { Quote, QuoteOption } from '../../../modules/quote/types';
 import { CreateApplicationPayload, Term } from '../../../modules/application/types';
@@ -38,7 +36,6 @@ const withPresenter = (
       profile,
     } = props;
 
-    const { t } = useTranslation();
     const history = useHistory();
     const { state: locationState, pathname } = useLocation<CreateApplicationState | undefined>();
 
@@ -87,8 +84,8 @@ const withPresenter = (
       }
       setState(newState);
       // TODO
-      history.push('/portal/application/businessInfo', newState);
-      // history.push('/portal/application/personalInfo', newState);
+      // history.push('/portal/application/businessInfo', newState);
+      history.push('/portal/application/personalInfo', newState);
     }
 
     const setPersonalInfo = (personalInfo: ApplicationPersonalInfo) => {
