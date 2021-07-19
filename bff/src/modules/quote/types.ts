@@ -1,6 +1,8 @@
 import { CreateQuote, Quote } from '../../lib/salesforce/types';
 
 export type SendQuote = {
+  companyName: string;
+  submittedBy: string;
   email: string;
   quoteId: string;
 };

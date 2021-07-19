@@ -6,6 +6,8 @@ export type Quote = {
   quoteId: string;
   asset: string;
   applicationAmount: number;
+  name: string;
+  companyName: string;
   quoteOptions: QuoteOption[];
   quoteExpiryDate: string;
   leaseType: LeaseType;
@@ -13,9 +15,8 @@ export type Quote = {
 
 export type QuoteOption = {
   monthlyAmount: number;
-  term: '12M' | '24M' | '36M' | '48M' | '60M' | '72M';
+  term: string;
   financeRate: number;
-  purchaseOptionDate: string;
 };
 
 export type CreateCustomerQuotePayload = {
@@ -26,6 +27,7 @@ export type CreateCustomerQuotePayload = {
   contactName: string;
   contactEmail: string;
   contactBusinessName: string;
+  rateCardType?: string;
 };
 
 export type CreateVendorQuotePayload = CreateCustomerQuotePayload & {
@@ -37,6 +39,8 @@ export type CreateVendorQuotePayload = CreateCustomerQuotePayload & {
 export type CreateQuotePayload = CreateVendorQuotePayload | CreateCustomerQuotePayload;
 
 export type SendQuote = {
+  companyName: string;
+  submittedBy: string;
   email: string;
   quoteId: string;
 };

@@ -46,7 +46,6 @@ const CreateApplicationSchema = Joi.object({
 const CreateProfileSchema = Joi.object({
   email: Joi.string().required(),
   portalId: Joi.string().required(),
-
   companyName: Joi.string().required(),
   street: Joi.string().required(),
   province: Joi.string().required(),

@@ -4,6 +4,8 @@ const mockQuote: Quote = {
   quoteId: 'abc',
   asset: 'Cool Asset',
   applicationAmount: 100,
+  name: 'name here',
+  companyName: 'cool company',
   quoteOptions: [
     {
       monthlyAmount: 30,

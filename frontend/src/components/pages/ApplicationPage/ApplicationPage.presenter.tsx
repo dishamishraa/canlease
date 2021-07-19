@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ApplicationPageProps, routes } from './ApplicationPage';
-import { DefaultQuoteOption, BusinessType, AssetInfo, CreateQuoteState, EquipmentLeaseInfo } from '../../../modules/types';
+import { BusinessType, AssetInfo, CreateQuoteState, EquipmentLeaseInfo } from '../../../modules/types';
 import { useLocation, useHistory } from 'react-router-dom';
 import { APIResponse } from '../../../lib/api/types';
 import { TopBarProps, defaultProps } from '../../organisms/TopBar/TopBar';
 import { Profile, UserType } from '../../../modules/profile/types';
-import { CreateQuotePayload, LeaseType, Quote } from '../../../modules/quote/types';
+import { CreateQuotePayload, LeaseType, Quote, QuoteOption } from '../../../modules/quote/types';
 import { CreateApplicationPayload, Term } from '../../../modules/application/types';
+import { getQuoteCookie} from '../../../lib/utils';
+import { useCookies } from 'react-cookie';
+import { updateInstaQuoteCookie } from '../../../lib/utils';
 
 export type ApplicationPagePresenterProps = ApplicationPageProps & {
   createApplication: (payload: CreateApplicationPayload) => Promise<APIResponse<void>>;
@@ -30,9 +33,19 @@ const withPresenter = (
     const location = useLocation();
     const { t } = useTranslation();
     const [stepperCurrentValue, setStepperCurrentValue] = useState(1);
-    const [stepperTotalValue, setStepperTotalValue] = useState(5);
+    const [stepperTotalValue, setStepperTotalValue] = useState(6);
     const [createQuoteState, setCreateQuoteState] = useState<CreateQuoteState>({});
     const [quote, setQuote] = useState<Quote>();
+    const [, setCookie, removeCookie] = useCookies();
+
+    const quoteCookieObj = getQuoteCookie();
+    useEffect(() => {
+      if(quoteCookieObj?.action === 'apply_finance'){
+        setStepperCurrentValue(1);
+        setStepperTotalValue(5);
+        updateInstaQuoteCookie({}, setCookie, removeCookie);
+      }
+    }, [quoteCookieObj]) 
 
     window.onbeforeunload = (event) => {
         const e = event || window.event;
@@ -43,7 +56,8 @@ const withPresenter = (
         return '';
     };
     window.onload = function(){
-      if (stepperTotalValue === 5) {
+      if (stepperTotalValue === 0) {
+      } else if (stepperTotalValue === 5) {
         history.push('/portal/application/quoteSelection');
       } else {
         history.push('/portal/application/userSelection');
@@ -106,11 +120,10 @@ const withPresenter = (
       cost: '',
       leaseType: defaultLeasyType
     }
-    const defaultQuoteSelected: DefaultQuoteOption = {
+    const defaultQuoteSelected: QuoteOption = {
         monthlyAmount: 0,
         term: '',
         financeRate: 0,
-        purchaseOptionDate: '',
     }
     const defaultAssetInfo: AssetInfo = {
         assetCondition: '',
@@ -126,7 +139,7 @@ const withPresenter = (
     }
 
     const [equipInfo, setEquipInfo] = useState<EquipmentLeaseInfo>(defaultEquipInfo);
-    const [quoteSelected, setQuoteSelected] = useState<DefaultQuoteOption>(defaultQuoteSelected);
+    const [quoteSelected, setQuoteSelected] = useState<QuoteOption>(defaultQuoteSelected);
     const [assetInfo, setAssetInfo] = useState<AssetInfo>(defaultAssetInfo);
     const [businessTypeInfo, setBusinessTypeInfo] = useState<BusinessType>(defaultBusinessType);
     const [creditCheckConsent, setCreditCheckConsent] = useState<boolean>(false);
@@ -170,7 +183,7 @@ const withPresenter = (
       if (quoteSelected && assetInfo && businessTypeInfo && creditCheckConsent && quoteDetails && profile){
         const { 
           portalId, 
-          operationName: operatingName, 
+          operatingName, 
           name, 
           street, 
           city, 
@@ -227,29 +240,26 @@ const withPresenter = (
       }
     }
 
-
     return (
-      <>
-        <View
-        {...props}
-        topBar={topBar}
-        setEquipInfo={setEquipInfo}
-        setQuoteSelected={setQuoteSelected}
-        setAssetInfo={setAssetInfo}
-        setBusinessTypeInfo={setBusinessTypeInfo}
-        setCreditCheckConsent={setCreditCheckConsent}
-        quoteSelected={quoteSelected}
-        assetInfo={assetInfo}
-        businessTypeInfo={businessTypeInfo}
-        handleCreateApplication={handleCreateApplication}
-        stepperCurrentValue={stepperCurrentValue}
-        setStepperCurrentValue={setStepperCurrentValue}
-        stepperTotalValue={stepperTotalValue}
-        setStepperTotalValue={setStepperTotalValue}
-        setQuoteUserType={setQuoteUserType}
-        handleCreateQuote={handleCreateQuote}
-        />
-      </>
+      <View
+      {...props}
+      topBar={topBar}
+      setEquipInfo={setEquipInfo}
+      setQuoteSelected={setQuoteSelected}
+      setAssetInfo={setAssetInfo}
+      setBusinessTypeInfo={setBusinessTypeInfo}
+      setCreditCheckConsent={setCreditCheckConsent}
+      quoteSelected={quoteSelected}
+      assetInfo={assetInfo}
+      businessTypeInfo={businessTypeInfo}
+      handleCreateApplication={handleCreateApplication}
+      stepperCurrentValue={stepperCurrentValue}
+      setStepperCurrentValue={setStepperCurrentValue}
+      stepperTotalValue={stepperTotalValue}
+      setStepperTotalValue={setStepperTotalValue}
+      setQuoteUserType={setQuoteUserType}
+      handleCreateQuote={handleCreateQuote}
+      />
     );
 
   };

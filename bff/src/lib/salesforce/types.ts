@@ -2,6 +2,7 @@ export const VALID_USER_TYPES = [
   'customer',
   'vendor',
   'rep',
+  'admin',
 ] as const;
 export type UserType = typeof VALID_USER_TYPES[number];
 
@@ -73,6 +74,7 @@ export type CreateQuoteCustomer = {
   vendorEmail: string;
   vendorBusinessName: string;
   quoteOptions: QuoteOption[];
+  rateCardType?: string;
 };
 
 export type CreateQuoteVendor = CreateQuoteCustomer & {
@@ -80,6 +82,12 @@ export type CreateQuoteVendor = CreateQuoteCustomer & {
   vendorEmail: string;
   vendorBusinessName: string;
 };
+
+export const isCreateQuoteCustomer = (payload: CreateQuote):
+  payload is CreateQuoteCustomer => (!payload.vendorName);
+
+export const isCreateQuoteVendor = (payload: CreateQuote):
+  payload is CreateQuoteVendor => (!!payload.vendorName);
 
 export type QuoteOption = {
   monthlyAmount: number;
@@ -97,6 +105,8 @@ export type Quote = {
   quoteId: string;
   asset: string;
   applicationAmount: number;
+  name: string;
+  companyName: string;
   quoteOptions: QuoteOption[];
   quoteExpiryDate: string;
   leaseType: LeaseType;
@@ -111,6 +121,8 @@ export type Application = {
   applicationStatus: string;
   quoteId: string;
   asset: string;
+  name: string;
+  companyName: string;
 };
 
 export type Lease = {

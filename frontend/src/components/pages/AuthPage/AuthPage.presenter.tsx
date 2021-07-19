@@ -10,9 +10,11 @@ import {
 import { CreateProfilePayload, Profile } from '../../../modules/profile/types';
 import { PersonalInformation, ContactInformation, BusinessInformation, AuthState } from '../../../modules/types';
 import { useEffect } from 'react';
-import { isEmpty } from '../../../lib/utils';
+import { isEmpty, getQuoteCookie} from '../../../lib/utils';
 import { Account } from '../../../lib/types';
+import { INSTANT_QUOTE_COOKIE } from '../../../lib/config';
 import { extractJwtPayload } from '../../../lib/token';
+import { updateInstaQuoteCookie } from '../../../lib/utils';
 
 export type AuthPagePresenterProps = AuthPageProps & {
   account: Account | null;
@@ -23,6 +25,7 @@ export type AuthPagePresenterProps = AuthPageProps & {
   setProfile: (profile: Profile | null) => void;
   createProfile: (payload: CreateProfilePayload) => Promise<APIResponse<Profile>>;
   updateName: (payload: UpdateNamePayload) => Promise<APIResponse<void>>;
+  addQuoteToProfile: (quoteId: string) => Promise<APIResponse<void>>;
 };
 
 const withPresenter = (
@@ -38,9 +41,10 @@ const withPresenter = (
       setProfile,
       createProfile,
       updateName,
+      addQuoteToProfile,
     } = props;
 
-    const [, setCookie] = useCookies();
+    const [, setCookie, removeCookie] = useCookies();
     const history = useHistory();
     const { state: locationState, pathname} = useLocation<AuthState>();
     const [state, setState] = useState<AuthState>({});
@@ -80,20 +84,22 @@ const withPresenter = (
       history.push('/account/businessInformation', newState);
     }
 
-    const handleAuthAction = async () => {
-      let handled = false;
-      switch(action) {
+    const handleAuthAction = async() => {
+      const quoteCookieObj = getQuoteCookie();
+      switch(quoteCookieObj?.action) {
         case 'apply_finance':
-          // TODO
+          history.push('/portal/application/quoteSelection');
           break;
         case 'save_quote':
-          // TODO
+          if (quoteCookieObj.quoteId) {
+            await addQuoteToProfile(quoteCookieObj.quoteId);
+          }
+          updateInstaQuoteCookie({}, setCookie, removeCookie);
+          history.push('/portal/quotes');
           break;
         default:
+          history.push('/portal/dashboard');
           break;
-      }
-      if(!handled) {
-        history.push('/portal/dashboard');
       }
     }
 

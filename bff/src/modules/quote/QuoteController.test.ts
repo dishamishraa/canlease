@@ -1,4 +1,5 @@
 import mockCreateQuote from '../../lib/salesforce/fixtures/mockCreateQuote';
+import mockQuote from '../../lib/salesforce/fixtures/mockQuote';
 import mockSendQuote from './fixtures/mockSendQuote';
 import QuoteController from './QuoteController';
 
@@ -8,15 +9,36 @@ describe('QuoteController', () => {
     getQuote: jest.fn(),
     sendQuote: jest.fn(),
   };
-  const controller = new QuoteController(createQuoteService);
+  const rateCardService = {
+    createRateCard: jest.fn(),
+    getRateCard: jest.fn(),
+    getRateCards: jest.fn(),
+    updateRateCard: jest.fn(),
+    deleteRateCard: jest.fn(),
 
-  describe('createQuote', () => {
-    it('should call service with payload to create quote', async () => {
-      await controller.createQuote(mockCreateQuote);
+    createRate: jest.fn(),
+    getRates: jest.fn(),
+    updateRate: jest.fn(),
+    deleteRate: jest.fn(),
+  };
+  const controller = new QuoteController(createQuoteService, rateCardService);
 
-      expect(createQuoteService.createQuote).toHaveBeenCalledWith(mockCreateQuote);
-    });
-  });
+  // describe('createQuote', () => {
+  //   it('should call service with payload to create quote', async () => {
+  //     rateCardService.getRateCards.mockReturnValue([{ cardtype: 'e card' }, { cardtype: 'v card' }]);
+  //     rateCardService.getRates.mockReturnValue([{ 
+  //       term: 12,
+  //       minmonthlyreturn: 0,
+  //       maxmonthlyreturn: 999999,
+  //       regularir: 12,
+  //       tenatendir: 12,
+  //     }]);
+  //     createQuoteService.createQuote.mockReturnValue(mockQuote);
+  //     await controller.createQuote(mockCreateQuote);
+
+  //     expect(createQuoteService.createQuote).toHaveBeenCalledWith(mockCreateQuote);
+  //   });
+  // });
   describe('getQuote', () => {
     it('should call service with id', async () => {
       await controller.getQuote('abc');

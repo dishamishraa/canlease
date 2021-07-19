@@ -14,6 +14,7 @@ export const {
   FRONTEND_DOMAIN = '',
 
   IDENTITY_URL = '',
+  DATA_URL = '',
 
   DATA_URL = '',
 
