@@ -15,6 +15,8 @@ import MenuBlock from '../../blocks/MenuBlock';
 import { useContext } from 'react';
 import { AuthContext } from '../../../modules/auth';
 import ProfilePage from '../../pages/ProfilePage';
+import RateCardPage from '../../pages/RateCardPage';
+import RateCardDetailsPage from '../../pages/RateCardDetailsPage';
 
 export const defaultProps = {
   header: {
@@ -60,6 +62,8 @@ export const routes = {
   profile: '/portal/profile',
   ratecard: '/portal/ratecard',
   invalid: '/',
+  // temporary route for validation purpose
+  detail: '/portal/ratecardDetail/:rateId'
 };
 
 const PortalLayout: React.FC<PortalLayoutProps> = ({
@@ -99,6 +103,14 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
             </Route>
             <Route path={routes.profile}>
               <ProfilePage
+                className={styles.page} />
+            </Route>
+            <Route path={routes.ratecard}>
+              <RateCardPage
+                className={styles.page} />
+            </Route>
+            <Route path={routes.detail}>
+              <RateCardDetailsPage
                 className={styles.page} />
             </Route>
             <Route path={routes.invalid}>
