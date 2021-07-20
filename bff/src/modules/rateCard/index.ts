@@ -5,10 +5,10 @@ import RateCardService from './RateCardService';
 import { RateCardControllerContract, RateCardServiceContract } from './types';
 
 export {
-    RateCardControllerContract,
-    RateCardServiceContract,
-    RateCardController,
-    RateCardService,
+  RateCardControllerContract,
+  RateCardServiceContract,
+  RateCardController,
+  RateCardService,
 };
 
 export const RateCardRouter = (controllers: {

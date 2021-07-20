@@ -176,7 +176,6 @@ const withPresenter = (
           term: termString, monthlyAmount, financeRate,
         } = quoteOption;
         const term = convertMonth(termString);
-
         return {
           ...defaultRateCardProps,
           rateDetailItemList: {

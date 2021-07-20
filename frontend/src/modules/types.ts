@@ -16,6 +16,8 @@ export type EquipmentLeaseInfo = {
   name: string;
   cost: string;
   leaseType: LeaseType;
+  rateCardType?: string;
+  fee?: number;
 };
 
 

@@ -1,5 +1,5 @@
 export type MonthlyPayment = {
-    amount: number;
-    costOfFinanceRate: number;
-    term: number;
-}
+  amount: number;
+  costOfFinanceRate: number;
+  term: number;
+};

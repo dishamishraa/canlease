@@ -76,6 +76,7 @@ export type CreateQuoteCustomer = {
   quoteOptions: QuoteOption[];
   sendEmail?: boolean;
   rateCardType?: string;
+  fee?: number;
 };
 
 export type CreateQuoteVendor = CreateQuoteCustomer & {
