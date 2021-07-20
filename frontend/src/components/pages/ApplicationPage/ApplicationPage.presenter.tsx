@@ -38,8 +38,8 @@ const withPresenter = (
 
     const history = useHistory();
     const { state: locationState, pathname } = useLocation<CreateApplicationState | undefined>();
-
-    const stepsMap = vendorStepsMap;
+    const { fromTab } = locationState || {};
+    const stepsMap = fromTab === 'Customer' ? customerStepsMap : vendorStepsMap;
 
     const [state, setState] = useState<CreateApplicationState>({
       currentStep: 1,
@@ -77,15 +77,19 @@ const withPresenter = (
 
     const setQuoteSelected = (quoteDetails: Quote, quoteSelected: QuoteOption) => {
       const newState = {
+        fromTab,
         currentStep,
         totalSteps,
         quoteDetails,
         quoteSelected,
       }
       setState(newState);
-      // TODO
-      // history.push('/portal/application/businessInfo', newState);
-      history.push('/portal/application/personalInfo', newState);
+      
+      if(fromTab === 'Customer') {
+        history.push('/portal/application/personalInfo', newState);
+      } else {
+        history.push('/portal/application/businessInfo', newState);
+      }
     }
 
     const setPersonalInfo = (personalInfo: ApplicationPersonalInfo) => {

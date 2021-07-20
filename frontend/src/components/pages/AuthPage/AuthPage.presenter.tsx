@@ -8,7 +8,7 @@ import {
   AccountResponse, SignInPayload, SignUpPayload, UpdateNamePayload,
 } from '../../../modules/account/types';
 import { CreateProfilePayload, Profile } from '../../../modules/profile/types';
-import { PersonalInformation, ContactInformation, BusinessInformation, AuthState } from '../../../modules/types';
+import { PersonalInformation, ContactInformation, BusinessInformation, AuthState, ContentTypeTabs } from '../../../modules/types';
 import { useEffect } from 'react';
 import { isEmpty, getQuoteCookie} from '../../../lib/utils';
 import { Account } from '../../../lib/types';
@@ -87,9 +87,12 @@ const withPresenter = (
     const handleAuthAction = async() => {
       const quoteCookieObj = getQuoteCookie();
       switch(quoteCookieObj?.action) {
-        case 'apply_finance':
+        case 'apply_finance_personal':
+        case 'apply_finance_customer':
           updateInstaQuoteCookie({}, setCookie, removeCookie);
-          history.push(`/portal/application/applyQuote/${quoteCookieObj.quoteId}`);
+          const tab: ContentTypeTabs = quoteCookieObj?.action === 'apply_finance_personal' ? 
+            'Personal' : 'Customer';
+          history.push(`/portal/application/applyQuote/${quoteCookieObj.quoteId}`, { fromTab: tab });
           break;
         case 'save_quote':
           if (quoteCookieObj.quoteId) {

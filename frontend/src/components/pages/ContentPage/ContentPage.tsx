@@ -149,7 +149,8 @@ const ContentPage: React.FC<ContentPageProps> = ({
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
             statusFilter={statusFilter}
-            setStatusFilter={setStatusFilter}/>
+            setStatusFilter={setStatusFilter}
+            tab={tab} />
           <Table
             className={styles.table}
             {...table}
@@ -171,7 +172,8 @@ const ContentPage: React.FC<ContentPageProps> = ({
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
             statusFilter={statusFilter}
-            setStatusFilter={setStatusFilter}/>
+            setStatusFilter={setStatusFilter}
+            tab={tab}/>
           <Table
             className={styles.table}
             {...table}

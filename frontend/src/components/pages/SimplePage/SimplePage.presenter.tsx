@@ -34,14 +34,22 @@ const withPresenter = (
 
     useEffect(() => {
       if(locationState) {
+        const { fromTab } = locationState;
+        let quoteUserType = locationState.quoteUserType;
+        if(!quoteUserType && fromTab) {
+          quoteUserType = fromTab === 'Customer' ? 'vendor' : 'customer';
+        }
+
         setState({
           ...state,
           ...locationState,
+          quoteUserType,
         });
       }
     }, [locationState]);
 
-    const { quoteUserType, equipmentLeaseInfo, contactInfo } = state;
+    const pathnameNormalized = pathname.toLowerCase();
+    const { fromTab, quoteUserType, equipmentLeaseInfo, contactInfo } = state;
 
     const setQuoteUserType = (quoteUserType: UserType) => {
       const newState = {
@@ -73,7 +81,7 @@ const withPresenter = (
             history.push(`/instaQuote/${quoteId}`, { quote: data });
             break;
           case 'createQuote':
-            history.push(`/portal/quote/${quoteId}`, { quote: data });
+            history.push(`/portal/quote/${quoteId}`, { quote: data, fromTab, quoteUserType });
             break;
         }
       }
@@ -174,7 +182,6 @@ const withPresenter = (
       }
     };
 
-    const pathnameNormalized = pathname.toLowerCase();
     switch (pathnameNormalized) {
       case '/getquote':
         if (!quoteUserType) {
@@ -186,16 +193,16 @@ const withPresenter = (
           return <Redirect to='/' />;
         }
         break;
-      case '/portal/quote/getquote':
-        if (profile?.userType === 'vendor' && !quoteUserType) {
-          return <Redirect to='/portal/quote' />;
-        }
-        break;
-      case '/portal/quote/customerinformation':
-        if (isEmpty(equipmentLeaseInfo)) {
-          return <Redirect to='/portal/quote' />;
-        }
-        break;
+      // case '/portal/quote/getquote':
+      //   if (profile?.userType === 'vendor' && !quoteUserType) {
+      //     return <Redirect to='/portal/quote/selectType' />;
+      //   }
+      //   break;
+      // case '/portal/quote/customerinformation':
+      //   if (isEmpty(equipmentLeaseInfo)) {
+      //     return <Redirect to='/portal/quote/selectType' />;
+      //   }
+      //   break;
     }
 
     return <View

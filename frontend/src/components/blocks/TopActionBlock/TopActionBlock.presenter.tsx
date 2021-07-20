@@ -20,6 +20,7 @@ const withPresenter = (
       setSearchQuery,
       statusFilter,
       setStatusFilter,
+      tab,
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
@@ -74,7 +75,7 @@ const withPresenter = (
       button: {
         ...defaultProps.button,
         onButtonClicked: () => {
-          history.push('/portal/quote');
+          history.push('/portal/quote/getQuote', { fromTab: tab });
         },
         text: {
           ...defaultProps.button.text,

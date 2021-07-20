@@ -6,6 +6,7 @@ import { LeaseType, Quote, QuoteOption } from "./quote/types";
 export type QuoteFlowType = 'instaQuote' | 'createQuote';
 
 export type CreateQuoteState = {
+  fromTab?: ContentTypeTabs;
   quoteUserType?: UserType;
   equipmentLeaseInfo?: EquipmentLeaseInfo;
   contactInfo?: ContactInfo;
@@ -44,7 +45,7 @@ export type ViewQuoteType = {
 }
 
 // AUTH types
-export type AfterAuthAction = 'apply_finance' | 'save_quote';
+export type AfterAuthAction = 'apply_finance_personal' | 'apply_finance_customer' | 'save_quote';
 
 export type AuthState = {
   action?: AfterAuthAction;
@@ -81,6 +82,7 @@ export type BusinessInformation = {
 
 // CREATE APPLICATION types
 export type CreateApplicationState = {
+  fromTab?: ContentTypeTabs;
   currentStep: number;
   totalSteps: number;
   quoteDetails?: Quote;
