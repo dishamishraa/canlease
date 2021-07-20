@@ -4,12 +4,14 @@ import { RateCardPageProps, defaultProps } from './RateCardPage';
 import { defaultProps as DashboardRateCardDefaultProps, DashboardRateCardProps} from '../../molecules/DashboardRateCard/DashboardRateCard';
 import { defaultProps as defaultConfirmationModalProps } from '../../organisms/ConfirmationModal/ConfirmationModal';
 import { defaultProps as defaultRateCardModalProps } from '../../organisms/NewRateCardModal/NewRateCardModal';
-import { RateCard, CreateRateCard } from '../../../modules/rateCard/types';
+import { RateCard, CreateRateCard } from '../../../modules/ratecard/types';
 import { APIResponse } from '../../../lib/api/types';
 
 export type RateCardPagePresenterProps = RateCardPageProps & {
     rateCards: RateCard[] | null;
     createRateCard: (payload: CreateRateCard) => Promise<APIResponse<RateCard>>;
+    deleteRateCard: (id: number) => Promise<APIResponse<void>>;
+    refetch: () => void;
 };
 
 const withPresenter = (
@@ -20,20 +22,24 @@ const withPresenter = (
         className,
         rateCards,
         createRateCard,
+        deleteRateCard,
+        refetch,
     } = props;
     
     const { t } = useTranslation();
     const [confirmationModalOpen, setConfirmationModalOpen] = useState(false);
     const [rateCardModalOpen, setRateCardModalOpen] = useState(false);
     const [textValue, setTextValue] = useState("");
+    const [idValue, setIdValue] = useState<number>();
+    const rateCardArray: DashboardRateCardProps[] = [];
 
     const handleTextChange = ({ target: { value }}) => {
         setTextValue(value);
     }
-
-    const handleOpenDeleteModal = (): void => {
+    const handleOpenDeleteModal = (id: number) => (event: any) => {
         setConfirmationModalOpen(true);
-    };
+        setIdValue(id);
+    }
     const handleCloseDeleteModal = (): void => {
         setConfirmationModalOpen(false);
     }
@@ -43,20 +49,22 @@ const withPresenter = (
     const handleCloseRateCardModal = (): void => {
         setRateCardModalOpen(false);
     }
-    const handleDeleteRateCard = (): void => {
-        //TODO
+    const handleDeleteRateCard = async (): Promise<void> => {
+        if (idValue){
+            await deleteRateCard(idValue);
+        }
+        setConfirmationModalOpen(false);
+        refetch();
     }
+
     const handleCreateRateCard = async () => {
         const { data } = await createRateCard({cardtype: textValue});
-        if (data) {
-            console.log(data)
-        }
+        setRateCardModalOpen(false);
+        refetch();
     }
- 
-    const rateCardArray: DashboardRateCardProps[] = [];
 
     rateCards?.forEach((rateCard) => {
-        const { cardtype: name } = rateCard;
+        const { cardtype: name, id } = rateCard;
         const rateCardProps: DashboardRateCardProps =  {
             ...DashboardRateCardDefaultProps,
             type: 'RateCard',
@@ -77,12 +85,11 @@ const withPresenter = (
                     ...DashboardRateCardDefaultProps.deleteButton.text,
                     value: t('rate_cards.delete_button'),
                 },
-                onButtonClicked: handleOpenDeleteModal,
+                onButtonClicked: handleOpenDeleteModal(id),
             }
         }
         rateCardArray.push(rateCardProps);
     })
-
     const addRateCard: DashboardRateCardProps = {
         ...DashboardRateCardDefaultProps,
         type: 'AddRateCard',
