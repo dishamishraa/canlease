@@ -1,7 +1,7 @@
 import React from 'react';
 import { RateCardPageProps } from './RateCardPage';
 import { RateCardPagePresenterProps } from './RateCardPage.presenter';
-import { useCreateRateCard, useGetRateCards, UseDeleteRateCard } from '../../../modules/ratecard';
+import { useCreateRateCard, useGetRateCards, useDeleteRateCard } from '../../../modules/ratecard';
 
 const withInteractor = (
   Presenter: React.FC<RateCardPagePresenterProps>,
@@ -10,7 +10,7 @@ const withInteractor = (
 
     const { refetch, data: rateCards} = useGetRateCards();
     const [{}, createRateCard] = useCreateRateCard();
-    const [, deleteRateCard] = UseDeleteRateCard();
+    const [, deleteRateCard] = useDeleteRateCard();
 
     return (
       <Presenter
