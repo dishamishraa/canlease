@@ -28,7 +28,7 @@ const withPresenter = (
     const [equipmentCost, setEquipmentCost] = useState<string>();
     const [equipmentFees, setEquipmentFees] = useState<string>('0');
     const [equipmentLeaseType, setEquipmentLeaseType] = useState<LeaseType>('stretch');
-    const [equipmentRatecard, setEquipmentRatecard] = useState<string>('');
+    const [equipmentRatecard, setEquipmentRatecard] = useState<string>();
     const [userType, setUserType] = useState<UserType>();
 
     useEffect(() => {
@@ -36,7 +36,7 @@ const withPresenter = (
         const { userType } = profile;
         setUserType(userType);
       }
-    }, [])
+    }, [profile])
 
     useEffect(() => {
       if(equipmentLeaseInfo) {
@@ -60,7 +60,7 @@ const withPresenter = (
           leaseInfo = {
             ...leaseInfo,
             rateCardType: equipmentRatecard,
-            fee: parseInt(equipmentFees),
+            fee: parseFloat(equipmentFees),
           }
         }
         await setEquipmentLeaseInfo(leaseInfo);
