@@ -97,7 +97,6 @@ describe('QuoteCalculator', () => {
         annualInterestRates,
         terms,
       );
-      console.log(payments);
       payments.forEach((payment) => {
         expect(payment.costOfFinanceRate).toBeTruthy();
         expect(payment.term).toBeTruthy();

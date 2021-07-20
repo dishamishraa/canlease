@@ -5,9 +5,9 @@ import {
   RateCard
 } from './types';
 
-export const getRateCards = async (portalId: string): Promise<RateCard[]> => {
+export const getRateCards = async (): Promise<RateCard[]> => {
   try {
-    const { data } = await axios.get<RateCard[]>(`${BFF_URL}/rate_cards/${portalId}`);
+    const { data } = await axios.get<RateCard[]>(`${BFF_URL}/rate_cards/`);
     return data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {

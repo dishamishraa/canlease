@@ -33,7 +33,7 @@ export default class QuoteController implements QuoteControllerContract {
     // It uses the v card for vendors
     // the specified card for Canlease Reps
     // e card for everyone else
-
+    
     if (payload.rateCardType) {
       return payload.rateCardType;
     }
@@ -44,17 +44,13 @@ export default class QuoteController implements QuoteControllerContract {
   }
 
   async createQuote(payload: CreateQuote): Promise<Quote> {
-    const { applicationAmount, leaseType } = payload;
-
-    const fee = 0;
+    const { applicationAmount, leaseType, fee = 0 } = payload;
     const terms: number[] = [24, 36, 48, 60];
     const interestRates: Record<number, number> = {};
-
     const rates = await this.getRates(this.getCardType(payload), applicationAmount);
     rates.forEach(({ term, regularir, tenatendir }) => {
       interestRates[term] = leaseType === 'stretch' ? regularir : tenatendir;
     });
-
     const payments = calculator.calculateMonthlyPayments(
       applicationAmount,
       fee,
