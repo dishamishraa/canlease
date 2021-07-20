@@ -46,7 +46,6 @@ export function createRateCardRouter(controllers: {
     res.sendStatus(204);
   }));
 
-
   router.post('/rates', errorWrapper(async (req: Request, res: Response) => {
     const data = await rateCardController.createRate(req.body);
     res.status(200).send(data);

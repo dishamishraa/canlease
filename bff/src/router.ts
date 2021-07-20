@@ -78,7 +78,7 @@ export const createRouter = (controllers: {
   router.use('/portfolio', PortfolioRouter(controllers));
   router.use('/profile', ProfileRouter(controllers));
 
-  router.use(RateCardRouter(controllers))
+  router.use(RateCardRouter(controllers));
 
   return router;
 };

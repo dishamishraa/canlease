@@ -28,6 +28,7 @@ export type CreateCustomerQuotePayload = {
   contactEmail: string;
   contactBusinessName: string;
   rateCardType?: string;
+  fee?: number;
 };
 
 export type CreateVendorQuotePayload = CreateCustomerQuotePayload & {
