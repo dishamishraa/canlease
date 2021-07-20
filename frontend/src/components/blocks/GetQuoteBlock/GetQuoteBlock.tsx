@@ -137,32 +137,17 @@ const GetQuoteBlock: React.FC<GetQuoteBlockProps> = ({
   feesTextField,
   ratecardSelectField
 }) => {
+  let additionalFields;
   if(profile?.userType === 'rep'){
-    return (
-      <div className={cx(styles.getQuoteBlock, className)}>
-        <Text
-          className={styles.blockHeading}
-          {...blockHeading} />
-        <TextField
-          className={styles.nameTextField}
-          {...nameTextField} />
-        <TextField
-          className={styles.costTextField}
-          {...costTextField} />
-        <SelectField
-          className={styles.leaseTypeSelectField}
-          {...leaseTypeSelectField} />
-        <TextField
-          className={styles.feesTextField}
-          {...feesTextField} />
-        <SelectField
-          className={styles.ratecardSelectField}
-          {...ratecardSelectField} />
-        <Button
-          className={styles.nextButton}
-          {...nextButton} />
-      </div>
-    )
+   additionalFields = 
+    <React.Fragment>
+      <TextField
+        className={styles.feesTextField}
+        {...feesTextField} />
+      <SelectField
+        className={styles.ratecardSelectField}
+        {...ratecardSelectField} />
+    </React.Fragment>
   }
   return (
     <div className={cx(styles.getQuoteBlock, className)}>
@@ -178,6 +163,7 @@ const GetQuoteBlock: React.FC<GetQuoteBlockProps> = ({
       <SelectField
         className={styles.leaseTypeSelectField}
         {...leaseTypeSelectField} />
+      {additionalFields}
       <Button
         className={styles.nextButton}
         {...nextButton} />

@@ -21,12 +21,12 @@ const withPresenter = (
       equipmentLeaseInfo,
       setEquipmentLeaseInfo,
       profile,
-      rateCards = []
+      rateCards
     } = props;
 
     const [equipmentName, setEquipmentName] = useState<string>();
     const [equipmentCost, setEquipmentCost] = useState<string>();
-    const [equipmentFees, setEquipmentFees] = useState<string>('0');
+    const [equipmentFees, setEquipmentFees] = useState<string>();
     const [equipmentLeaseType, setEquipmentLeaseType] = useState<LeaseType>('stretch');
     const [equipmentRatecard, setEquipmentRatecard] = useState<string>();
     const [userType, setUserType] = useState<UserType>();
