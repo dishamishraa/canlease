@@ -56,7 +56,7 @@ const withPresenter = (
           cost: equipmentCost,
           leaseType: equipmentLeaseType,
         } as EquipmentLeaseInfo;
-        if (profile?.userType === 'rep'){
+        if (profile?.userType === 'rep' && equipmentRatecard && equipmentFees){
           leaseInfo = {
             ...leaseInfo,
             rateCardType: equipmentRatecard,

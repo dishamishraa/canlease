@@ -140,14 +140,14 @@ const GetQuoteBlock: React.FC<GetQuoteBlockProps> = ({
   let additionalFields;
   if(profile?.userType === 'rep'){
    additionalFields = 
-    <React.Fragment>
+    <>
       <TextField
         className={styles.feesTextField}
         {...feesTextField} />
       <SelectField
         className={styles.ratecardSelectField}
         {...ratecardSelectField} />
-    </React.Fragment>
+    </>
   }
   return (
     <div className={cx(styles.getQuoteBlock, className)}>
