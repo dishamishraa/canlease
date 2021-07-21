@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ApplicationPageProps } from './ApplicationPage';
-import { AssetInfo, CreateApplicationState, ApplicationPersonalInfo, ApplicationBusinessInfo } from '../../../modules/types';
+import { AssetInfo, CreateApplicationState, ApplicationPersonalInfo, ApplicationBusinessInfo, ApplicationBusinessInfoVendor} from '../../../modules/types';
 import { useLocation, useHistory } from 'react-router-dom';
 import { APIResponse } from '../../../lib/api/types';
 import { Profile } from '../../../modules/profile/types';
@@ -40,7 +40,6 @@ const withPresenter = (
     const { state: locationState, pathname } = useLocation<CreateApplicationState | undefined>();
     const { fromTab } = locationState || {};
     const stepsMap = fromTab === 'Customer' ? customerStepsMap : vendorStepsMap;
-
     const [state, setState] = useState<CreateApplicationState>({
       currentStep: 1,
       totalSteps: Object.keys(stepsMap).length + 1, // stepsMap doesn't include the first step
@@ -75,8 +74,33 @@ const withPresenter = (
       creditCheckConsent,
     } = state;
 
+    const handleEditClicked = (page: string) => {
+      switch (page) {
+        case "assetInfo":
+          history.push('/portal/application/assetInfo', state)
+          break;
+        case "businessInfo":
+          history.push('/portal/application/businessInfo', state)
+          break;
+        case "paymentDetails":
+          history.push(`/portal/application/applyQuote/${quoteDetails?.quoteId}`, state)
+          break;
+        case "quoteDetails":
+          break;
+        case "customerBusinessInfo":
+          history.push('/portal/application/businessInfo', state)
+          break;
+        case "customerPersonalInfo":
+          history.push('/portal/application/personalInfo', state)
+          break;
+        default:
+          break;
+      }
+    }
+
     const setQuoteSelected = (quoteDetails: Quote, quoteSelected: QuoteOption) => {
       const newState = {
+        ...state,
         fromTab,
         currentStep,
         totalSteps,
@@ -147,22 +171,21 @@ const withPresenter = (
         } = profile;
         const { term } = quoteSelected;
         const {assetCondition, ageOfAsset, expectedDeliveryDate} = assetInfo;
-        const { businessType, sin, dob, bankruptcy, bankruptcyDetails} = businessInfo;
+        const { businessType, sin, dob, bankruptcy, bankruptcyDetails,  } = businessInfo;
         const { applicationAmount, asset, quoteId } = quoteDetails;
        
-        const checkYearsInBusiness = () => {
+        const checkYearsInBusiness = (operatingSinceDate) => {
           const date = new Date(operatingSinceDate); 
           const diffTime = Date.now() - date.getTime();
           const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365); 
           return diffYears;
         }
-
-        await createApplication({
+        let applicationPayload = {
           leasePortalId: portalId,
           operatingName: operatingName,
           businessName: companyName,
           businessType: businessType,
-          yearsInBusiness: checkYearsInBusiness(),
+          yearsInBusiness: checkYearsInBusiness(operatingSinceDate),
           contactName: name,
           contactEmail: email,
           contactPhone: phone,
@@ -187,7 +210,33 @@ const withPresenter = (
           quoteId: quoteId,
           expectedDeliveryDate: expectedDeliveryDate,
           bankruptcyDetails: bankruptcyDetails,
-        });
+        }
+        if (fromTab === "Customer" && personalInfo) {
+          const { bankruptcy, bankruptcyDetails, businessType, companyName, dob,
+            operatingName, operatingSinceDate, sin, website } = businessInfo as ApplicationBusinessInfoVendor
+          const { address, city, email, firstName, phone, postalCode, province} = personalInfo
+          applicationPayload = {
+            ...applicationPayload,
+            operatingName: operatingName,
+            businessName: companyName,
+            businessType: businessType,
+            yearsInBusiness: checkYearsInBusiness(operatingSinceDate),
+            contactName: firstName,
+            contactEmail: email,
+            contactPhone: phone,
+            contactWebsite: website,
+            street: address,
+            city: city,
+            province: province,
+            postalCode: postalCode,
+            businessOwnerName: operatingName,
+            bankruptcy: bankruptcy,
+            sin: sin,
+            dob: dob,
+            bankruptcyDetails: bankruptcyDetails,
+          }
+        }
+        await createApplication(applicationPayload);
       }
     }
 
@@ -207,6 +256,8 @@ const withPresenter = (
         businessInfo={businessInfo}
         assetInfo={assetInfo}
         creditCheckConsent={creditCheckConsent}
+        handleEditClicked={handleEditClicked}
+        fromTab={fromTab}
         />
     );
   };

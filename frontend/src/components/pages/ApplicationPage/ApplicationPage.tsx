@@ -56,6 +56,8 @@ export type ApplicationPageProps = {
   businessInfo?: ApplicationBusinessInfo;
   assetInfo?: AssetInfo;
   creditCheckConsent?: boolean;
+  handleEditClicked?: (page: string) => void;
+  fromTab?: string;
 };
 
 export const routes = {
@@ -86,9 +88,11 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
   businessInfo,
   assetInfo,
   creditCheckConsent,
+  handleEditClicked,
+  fromTab,
 
 }) => {
-  const BusinessInfoBlock = true ? CustomerBusinessInformationBlock : BusinessTypeBlock;
+  const BusinessInfoBlock = fromTab === 'Customer' ? CustomerBusinessInformationBlock : BusinessTypeBlock;
   return (
     <div className={cx(styles.applicationPage, className)}>
       <TopBar
@@ -140,7 +144,8 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
             businessInfo={businessInfo}
             assetInfo={assetInfo}
             stepperCurrentValue={stepperCurrentValue}
-            stepperTotalValue={stepperTotalValue}/>
+            stepperTotalValue={stepperTotalValue}
+            handleEditClicked={handleEditClicked}/>
         </Route>
         <Route exact path={routes.termsOfApplication}>
           <TermsOfApplicationBlock

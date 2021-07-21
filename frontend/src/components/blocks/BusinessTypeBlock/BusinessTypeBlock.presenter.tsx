@@ -98,8 +98,7 @@ const withPresenter = (
             return true;
         } else if (!isEmptyString(businessType) && 
             !isEmptyString(sin) && 
-            !isEmptyString(dob) && 
-            !bankruptcy) {
+            !isEmptyString(dob)) {
             if(bankruptcy === false || 
                 !isEmptyString(bankruptcyDetails)){
                 return true

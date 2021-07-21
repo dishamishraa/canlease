@@ -7,7 +7,7 @@ import Stepper, { StepperProps } from '../../atoms/Stepper';
 import Text, { TextProps } from '../../atoms/Text';
 import DetailsSection, { DetailsSectionProps } from '../../organisms/DetailsSection';
 import Button, { ButtonProps } from '../../atoms/Button';
-import { AssetInfo, ApplicationBusinessInfo, ApplicationPersonalInfo} from '../../../modules/types';
+import { AssetInfo, ApplicationBusinessInfo, ApplicationPersonalInfo } from '../../../modules/types';
 import { Quote, QuoteOption } from '../../../modules/quote/types';
 
 export const defaultProps = {
@@ -218,6 +218,9 @@ export type ReviewApplicationInformationBlockProps = {
   assetInfo?: AssetInfo;
   stepperCurrentValue?: number;
   stepperTotalValue?: number;
+  customerPersonalInformation?: DetailsSectionProps;
+  customerBusinessInformation?: DetailsSectionProps;
+  handleEditClicked?: (page: string) => void;
 };
 
 const ReviewApplicationInformationBlock: React.FC<ReviewApplicationInformationBlockProps> = ({
@@ -235,51 +238,77 @@ const ReviewApplicationInformationBlock: React.FC<ReviewApplicationInformationBl
   profileBusinessDetails,
   nextButton,
   className,
-}) => (
-    <div className={cx(styles.reviewApplicationInformationBlock, className)}>
-      <div className={styles.topContent}>
-        <Stepper
-          className={styles.stepper}
-          {...stepper} />
+  customerPersonalInformation,
+  customerBusinessInformation,
+  stepperCurrentValue,
+}) => {
+  let additionalCustomerFields;
+  let additionalPersonalFields;
+  if (stepperCurrentValue === 4) {
+    additionalPersonalFields = 
+    <>
+        <DetailsSection
+          className={styles.businessTypeDetails}
+          {...businessTypeDetails} />
         <Text
-          className={styles.blockHeading}
-          {...blockHeading} />
-      </div>
-      <Text
-        className={styles.sectionHeadingOne}
-        {...sectionHeadingOne} />
-      <DetailsSection
-        className={styles.quoteDetails}
-        {...quoteDetails} />
-      <DetailsSection
-        className={styles.paymentDetails}
-        {...paymentDetails} />
-      <DetailsSection
-        className={styles.assetDetails}
-        {...assetDetails} />
+          className={styles.sectionHeadingTwo}
+          {...sectionHeadingTwo} />
+        <Text
+          className={styles.text}
+          {...text} />
+        <DetailsSection
+          className={styles.personalDetails}
+          {...personalDetails} />
+        <DetailsSection
+          className={styles.contactDetails}
+          {...contactDetails} />
+        <DetailsSection
+          className={styles.profileBusinessDetails}
+          {...profileBusinessDetails} />
+    </>
+  } 
+  else if (stepperCurrentValue === 5) {
+    additionalCustomerFields = 
+    <>
       <DetailsSection
         className={styles.businessTypeDetails}
-        {...businessTypeDetails} />
-      <Text
-        className={styles.sectionHeadingTwo}
-        {...sectionHeadingTwo} />
-      <Text
-        className={styles.text}
-        {...text} />
+        {...customerPersonalInformation} />
       <DetailsSection
-        className={styles.personalDetails}
-        {...personalDetails} />
-      <DetailsSection
-        className={styles.contactDetails}
-        {...contactDetails} />
-      <DetailsSection
-        className={styles.profileBusinessDetails}
-        {...profileBusinessDetails} />
-      <Button
-        className={styles.nextButton}
-        {...nextButton} />
-    </div>
-);
+        className={styles.businessTypeDetails}
+        {...customerBusinessInformation} />
+    </>
+  }
+
+  return (
+      <div className={cx(styles.reviewApplicationInformationBlock, className)}>
+        <div className={styles.topContent}>
+          <Stepper
+            className={styles.stepper}
+            {...stepper} />
+          <Text
+            className={styles.blockHeading}
+            {...blockHeading} />
+        </div>
+        {stepperCurrentValue === 4 && <Text
+          className={styles.sectionHeadingOne}
+          {...sectionHeadingOne} />}
+        <DetailsSection
+          className={styles.quoteDetails}
+          {...quoteDetails} />
+        <DetailsSection
+          className={styles.paymentDetails}
+          {...paymentDetails} />
+        {additionalCustomerFields}
+        <DetailsSection
+          className={styles.assetDetails}
+          {...assetDetails} />
+        {additionalPersonalFields}
+        <Button
+          className={styles.nextButton}
+          {...nextButton} />
+      </div>
+  );
+}
 
 ReviewApplicationInformationBlock.defaultProps = defaultProps;
 
