@@ -1,6 +1,8 @@
 import { Router, Request, Response } from 'express';
 import { BadRequestError } from '../../lib/errors';
 import { errorWrapper, validateId } from '../../lib/utils';
+import { mockRateCard } from './fixtures/mockRateCard';
+import { mockRates } from './fixtures/mockRates';
 import { RateCardControllerContract } from './types';
 
 export function createRateCardRouter(controllers: {
@@ -19,7 +21,9 @@ export function createRateCardRouter(controllers: {
     if (!validateId(id)) {
       throw BadRequestError();
     }
-    const data = await rateCardController.getRateCard(Number(id));
+    // const data = await rateCardController.getRateCard(Number(id));
+    // TODO: remove
+    const data = mockRateCard;
     res.status(200).send(data);
   }));
 
@@ -56,7 +60,9 @@ export function createRateCardRouter(controllers: {
     if (!validateId(rateCardId)) {
       throw BadRequestError();
     }
-    const data = await rateCardController.getRates(Number(rateCardId));
+    // const data = await rateCardController.getRates(Number(rateCardId));
+    // TODO: remove
+    const data = mockRates;
     res.status(200).send(data);
   }));
 

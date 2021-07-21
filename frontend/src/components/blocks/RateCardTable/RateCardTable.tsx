@@ -8,37 +8,37 @@ import RateCardTableItemList, { RateCardTableItemListProps } from '../../organis
 
 export const defaultProps = {
   rateCardTableHeader: {
-    companyName: {
+    term: {
       style: 'Basic800',
       align: 'Left',
       size: 'Medium',
       type: 'Paragraph3',
     },
-    contactName: {
+    minMonthlyReturn: {
       style: 'Basic800',
       align: 'Left',
       size: 'Medium',
       type: 'Paragraph3',
     },
-    status: {
+    maxMonthlyReturn: {
       style: 'Basic800',
       align: 'Left',
       size: 'Medium',
       type: 'Paragraph3',
     },
-    createOn: {
+    interestRate: {
       style: 'Basic800',
       align: 'Left',
       size: 'Medium',
       type: 'Paragraph3',
     },
-    assetName: {
+    tenAtEndOfInterestRate: {
       style: 'Basic800',
       align: 'Left',
       size: 'Medium',
       type: 'Paragraph3',
     },
-    cost: {
+    action: {
       style: 'Basic800',
       align: 'Left',
       size: 'Medium',

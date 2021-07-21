@@ -19,6 +19,22 @@ export const getRateCards = async (): Promise<RateCard[]> => {
   }
 };
 
+export const getRateCard = async (rateCardId: string): Promise<RateCard> => {
+  try {
+    const { data } = await axios.get<RateCard>(`${BFF_URL}/rate_cards/${rateCardId}`);
+    return data;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new ApiError({
+        code: error.response.status,
+        type: error.response.statusText,
+        message: error.message,
+      });
+    }
+    throw error;
+  }
+};
+
 export const getRates = async (rateCardId: string): Promise<Rate[]> => {
   try {
     const { data } = await axios.get<Rate[]>(`${BFF_URL}/rate_cards/${rateCardId}/rates`);

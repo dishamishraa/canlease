@@ -436,6 +436,21 @@
         "quotes": "Quotes",
         "applications": "Applications",
         "rate_cards": "Rate cards"
+    },
+    "rate_card_table": {
+        "headers": {
+            "term": "Term",
+            "min_monthly_return": "Min monthly return",
+            "max_monthly_return": "Max monthly return",
+            "interest_rate": "IR (Interest rate)",
+            "ten_end_interest_rate": "$10 @ end IR",
+            "action": "Action"
+        }
+    },
+    "rate_card_details_page": {
+        "header": {
+            "button_text": "EDIT"
+        }
     }
 }
   
