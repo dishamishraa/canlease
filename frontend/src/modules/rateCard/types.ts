@@ -4,11 +4,11 @@ export type RateCardPayload = {
 };
 
 export type RateCard = {
-  id: number;
-  uuid: string;
-  cardtype: string;
-  createdAt: string;
-  updatedAt: string;
+    id: number;
+    uuid: string;
+    cardtype: string;
+    createdAt: string;
+    updatedAt: string;
 };
 
 export type Rate = {
@@ -23,3 +23,6 @@ export type Rate = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type CreateRateCard = Pick<RateCard, 'cardtype'>;
+

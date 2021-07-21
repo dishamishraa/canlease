@@ -4,6 +4,8 @@ import cx from 'classnames';
 import styles from './RateCardPage.module.scss';
 
 import DashboardRateCardBlock, { DashboardRateCardBlockProps } from '../../blocks/DashboardRateCardBlock';
+import ConfirmationModal, { ConfirmationModalProps } from '../../organisms/ConfirmationModal';
+import NewRateCardModal, { NewRateCardModalProps } from '../../organisms/NewRateCardModal';
 
 export const defaultProps = {
   dashboardRateCardBlock: {
@@ -27,18 +29,38 @@ export const defaultProps = {
 export type RateCardPageProps = {
   dashboardRateCardBlock?: DashboardRateCardBlockProps;
   className?: string;
+  confirmationModal?: ConfirmationModalProps;
+  deleteModalOpen?: boolean;
+  rateCardModal?: NewRateCardModalProps;
+  rateCardModalOpen?: boolean;
 };
 
 const RateCardPage: React.FC<RateCardPageProps> = ({
   dashboardRateCardBlock,
   className,
-}) => (
-    <div className={cx(styles.rateCardPage, className)}>
-      <DashboardRateCardBlock
-        className={styles.dashboardRateCardBlock}
-        {...dashboardRateCardBlock} />
-    </div>
-);
+  confirmationModal,
+  deleteModalOpen,
+  rateCardModal,
+  rateCardModalOpen,
+}) => {
+  let deleteModalDisplay;
+  let rateCardModalDisplay;
+  if (deleteModalOpen) {
+    deleteModalDisplay = ( <ConfirmationModal {...confirmationModal} />)
+  } 
+  else if (rateCardModalOpen) {
+    rateCardModalDisplay = ( <NewRateCardModal {...rateCardModal} />)
+  }
+  return (
+      <div className={cx(styles.rateCardPage, className)}>
+        <DashboardRateCardBlock
+          className={styles.dashboardRateCardBlock}
+          {...dashboardRateCardBlock} />
+          {deleteModalDisplay}
+          {rateCardModalDisplay}
+      </div>
+  );
+}
 
 RateCardPage.defaultProps = defaultProps;
 
