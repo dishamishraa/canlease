@@ -87,7 +87,7 @@ const getCurrentItems = (
           const companyName = application.companyName;
           const contactName = application.name;
           const lease = portfolio.leases.find(lease => lease.quoteId === application.quoteId)
-          const vendorName = lease?.vendorName ?? 'Unkown';
+          const vendorName = lease?.vendorName ?? 'Unknown';
           return {
             company: companyName,
             vendor: vendorName,
