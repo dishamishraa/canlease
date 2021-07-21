@@ -5,6 +5,12 @@ export type RateCard = {
     createdAt: string;
     updatedAt: string;
 }
+
+export type RateCardPayload = {
+  uuid: string;
+  cardtype: string;
+};
+
 export type CreateRateCard = Pick<RateCard, 'cardtype'>;
 export type UpdateRateCard = Partial<CreateRateCard>;
 
@@ -20,6 +26,7 @@ export type Rate = {
     createdAt: string;
     updatedAt: string;
 }
+
 export type CreateRate = Pick<Rate, 
     'term' | 
     'minmonthlyreturn' | 

@@ -10,6 +10,8 @@
             "label": "Equipment Cost (before tax)",
             "placeholder": "CAD"
         },
+        "fees": "Fees",
+        "rate_card": "Rate card",
         "lease_type": {
             "label": "Lease type",
             "options": {

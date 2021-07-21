@@ -157,6 +157,16 @@ const withPresenter = (
           };
         }
 
+        if (profile?.userType === 'rep') {
+          const { rateCardType, fee } = equipmentLeaseInfo;
+          createPayload = {
+            ...createPayload,
+            rateCardType,
+            fee, 
+          }
+        }
+
+
         await handleCreateQuote(createPayload);
       }
     };
@@ -192,7 +202,8 @@ const withPresenter = (
           contactInfo={contactInfo}
           setQuoteUserType={setQuoteUserType}
           setEquipmentLeaseInfo={setEquipmentLeaseInfo}
-          setContactInfo={setContactInfo}/>;
+          setContactInfo={setContactInfo}
+          profile={profile}/>;
   };
   return Presenter;
 };
