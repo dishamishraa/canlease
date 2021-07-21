@@ -30,7 +30,7 @@ export type RateCardPageProps = {
   dashboardRateCardBlock?: DashboardRateCardBlockProps;
   className?: string;
   confirmationModal?: ConfirmationModalProps;
-  confirmationModalOpen?: boolean;
+  deleteModalOpen?: boolean;
   rateCardModal?: NewRateCardModalProps;
   rateCardModalOpen?: boolean;
 };
@@ -39,14 +39,14 @@ const RateCardPage: React.FC<RateCardPageProps> = ({
   dashboardRateCardBlock,
   className,
   confirmationModal,
-  confirmationModalOpen,
+  deleteModalOpen,
   rateCardModal,
   rateCardModalOpen,
 }) => {
-  let confirmationModalDisplay;
+  let deleteModalDisplay;
   let rateCardModalDisplay;
-  if (confirmationModalOpen) {
-    confirmationModalDisplay = ( <ConfirmationModal {...confirmationModal} />)
+  if (deleteModalOpen) {
+    deleteModalDisplay = ( <ConfirmationModal {...confirmationModal} />)
   } 
   else if (rateCardModalOpen) {
     rateCardModalDisplay = ( <NewRateCardModal {...rateCardModal} />)
@@ -56,7 +56,7 @@ const RateCardPage: React.FC<RateCardPageProps> = ({
         <DashboardRateCardBlock
           className={styles.dashboardRateCardBlock}
           {...dashboardRateCardBlock} />
-          {confirmationModalDisplay}
+          {deleteModalDisplay}
           {rateCardModalDisplay}
       </div>
   );

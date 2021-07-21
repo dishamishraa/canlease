@@ -1,9 +1,9 @@
 import useCreateRateCard from './useCreateRateCard';
-import useGetRateCards from './useGetRateCards';
+import useRateCards from './useRateCards';
 import useDeleteRateCard from './useDeleteRateCard';
 
 export {
   useCreateRateCard,
-  useGetRateCards,
+  useRateCards,
   useDeleteRateCard
 };

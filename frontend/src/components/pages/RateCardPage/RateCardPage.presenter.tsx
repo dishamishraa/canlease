@@ -4,7 +4,7 @@ import { RateCardPageProps, defaultProps } from './RateCardPage';
 import { defaultProps as DashboardRateCardDefaultProps, DashboardRateCardProps} from '../../molecules/DashboardRateCard/DashboardRateCard';
 import { defaultProps as defaultConfirmationModalProps } from '../../organisms/ConfirmationModal/ConfirmationModal';
 import { defaultProps as defaultRateCardModalProps } from '../../organisms/NewRateCardModal/NewRateCardModal';
-import { RateCard, CreateRateCard } from '../../../modules/ratecard/types';
+import { RateCard, CreateRateCard } from '../../../modules/rateCard/types';
 import { APIResponse } from '../../../lib/api/types';
 
 export type RateCardPagePresenterProps = RateCardPageProps & {
@@ -27,40 +27,42 @@ const withPresenter = (
     } = props;
     
     const { t } = useTranslation();
-    const [confirmationModalOpen, setConfirmationModalOpen] = useState(false);
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [rateCardModalOpen, setRateCardModalOpen] = useState(false);
-    const [textValue, setTextValue] = useState("");
+    const [rateCardName, setRateCardName] = useState("");
     const [idValue, setIdValue] = useState<number>();
     const rateCardArray: DashboardRateCardProps[] = [];
 
     const handleTextChange = ({ target: { value }}) => {
-        setTextValue(value);
+        setRateCardName(value);
     }
     const handleOpenDeleteModal = (id: number) => (event: any) => {
-        setConfirmationModalOpen(true);
+        setDeleteModalOpen(true);
         setIdValue(id);
     }
     const handleCloseDeleteModal = (): void => {
-        setConfirmationModalOpen(false);
+        setDeleteModalOpen(false);
     }
     const handleOpenRateCardModal = (): void => {
         setRateCardModalOpen(true);
     };
     const handleCloseRateCardModal = (): void => {
         setRateCardModalOpen(false);
+        setRateCardName("");
     }
     const handleDeleteRateCard = async (): Promise<void> => {
         if (idValue){
             await deleteRateCard(idValue);
         }
-        setConfirmationModalOpen(false);
+        setDeleteModalOpen(false);
         refetch();
     }
 
     const handleCreateRateCard = async () => {
-        const { data } = await createRateCard({cardtype: textValue});
+        const { data } = await createRateCard({cardtype: rateCardName});
         setRateCardModalOpen(false);
         refetch();
+        setRateCardName("");
     }
 
     rateCards?.forEach((rateCard) => {
@@ -168,7 +170,7 @@ const withPresenter = (
                 },
                 textInput: {
                     ...defaultRateCardModalProps.textField.textInput,
-                    textValue,
+                    textValue: rateCardName,
                     onTextChanged: handleTextChange,
                 },
               },
@@ -193,7 +195,7 @@ const withPresenter = (
 
     return <View
         {...rateCardPageProps}
-        confirmationModalOpen={confirmationModalOpen}
+        deleteModalOpen={deleteModalOpen}
         className={className}
         rateCardModalOpen={rateCardModalOpen}
     />;
