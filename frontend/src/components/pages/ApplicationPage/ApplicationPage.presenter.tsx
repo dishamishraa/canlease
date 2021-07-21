@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ApplicationPageProps, routes } from './ApplicationPage';
-import { DefaultQuoteOption, BusinessType, AssetInfo, CreateQuoteState, EquipmentLeaseInfo } from '../../../modules/types';
+import { BusinessType, AssetInfo, CreateQuoteState, EquipmentLeaseInfo } from '../../../modules/types';
 import { useLocation, useHistory } from 'react-router-dom';
 import { APIResponse } from '../../../lib/api/types';
 import { TopBarProps, defaultProps } from '../../organisms/TopBar/TopBar';
 import { Profile, UserType } from '../../../modules/profile/types';
-import { CreateQuotePayload, LeaseType, Quote } from '../../../modules/quote/types';
+import { CreateQuotePayload, LeaseType, Quote, QuoteOption } from '../../../modules/quote/types';
 import { CreateApplicationPayload, Term } from '../../../modules/application/types';
 import { getQuoteCookie} from '../../../lib/utils';
 import { useCookies } from 'react-cookie';
@@ -120,11 +120,10 @@ const withPresenter = (
       cost: '',
       leaseType: defaultLeasyType
     }
-    const defaultQuoteSelected: DefaultQuoteOption = {
+    const defaultQuoteSelected: QuoteOption = {
         monthlyAmount: 0,
         term: '',
         financeRate: 0,
-        purchaseOptionDate: '',
     }
     const defaultAssetInfo: AssetInfo = {
         assetCondition: '',
@@ -140,7 +139,7 @@ const withPresenter = (
     }
 
     const [equipInfo, setEquipInfo] = useState<EquipmentLeaseInfo>(defaultEquipInfo);
-    const [quoteSelected, setQuoteSelected] = useState<DefaultQuoteOption>(defaultQuoteSelected);
+    const [quoteSelected, setQuoteSelected] = useState<QuoteOption>(defaultQuoteSelected);
     const [assetInfo, setAssetInfo] = useState<AssetInfo>(defaultAssetInfo);
     const [businessTypeInfo, setBusinessTypeInfo] = useState<BusinessType>(defaultBusinessType);
     const [creditCheckConsent, setCreditCheckConsent] = useState<boolean>(false);

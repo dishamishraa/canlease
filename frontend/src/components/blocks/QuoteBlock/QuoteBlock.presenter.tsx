@@ -11,8 +11,8 @@ import EmailIcon from '../../../resources/icons/Email.svg';
 
 import { defaultProps as defaultRateDetailItemProps } from '../../molecules/RateDetailItem/RateDetailItem';
 import { Quote, SendQuote } from '../../../modules/quote/types';
-import { ContactInfo, TermDisplay } from '../../../modules/types';
-import { isExpired } from '../../../lib/utils';
+import { ContactInfo } from '../../../modules/types';
+import { convertMonth, getStretchMonth, isExpired } from '../../../lib/utils';
 import { APIResponse } from '../../../lib/api/types';
 import { sendQuote } from '../../../modules/quote/api';
 import { useCookies } from 'react-cookie';
@@ -169,12 +169,9 @@ const withPresenter = (
       // generate rate cards props
       rateCards = quote.quoteOptions.map((quoteOption): RateCardProps => {
         const {
-          term, monthlyAmount, financeRate, purchaseOptionDate,
+          term: termString, monthlyAmount, financeRate,
         } = quoteOption;
-
-        const purchaseOptionDuration = new Date(purchaseOptionDate).getTime() - Date.now();
-        const totalMonths = Math.round(purchaseOptionDuration / (30 * 24 * 60 * 60 * 1000));
-
+        const term = convertMonth(termString);
         return {
           ...defaultRateCardProps,
           rateDetailItemList: {
@@ -199,7 +196,9 @@ const withPresenter = (
                 },
                 numberText: {
                   ...defaultRateDetailItemProps.numberText,
-                  value: TermDisplay[term],
+                  value: (leaseType === 'stretch') 
+                    ? getStretchMonth(term)
+                    : term,
                 },
               },
               {
@@ -218,7 +217,7 @@ const withPresenter = (
                 suffixText: {
                   ...defaultRateDetailItemProps.suffixText,
                   value: (leaseType === 'stretch')
-                    ? t('view_quote.rate_card.stretch_purchase_term', { purchaseOptionDate: totalMonths })
+                    ? t('view_quote.rate_card.stretch_purchase_term', { purchaseOptionMonths: term })
                     : t('view_quote.rate_card.ten_dollar_purchase_term'),
                 },
               },

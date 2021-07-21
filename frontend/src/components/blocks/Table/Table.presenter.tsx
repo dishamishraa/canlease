@@ -6,9 +6,9 @@ import { TableItemListProps } from '../../organisms/TableItemList';
 import { TableItemProps } from '../../molecules/TableItem';
 import { defaultProps as tableItemDefaultProps } from '../../molecules/TableItem/TableItem';
 import { isExpiring, isExpired, createdOn } from '../../../lib/utils';
-import { CreditApplication, Lease, Portfolio } from '../../../modules/portfolio/types';
+import { CreditApplication, Portfolio } from '../../../modules/portfolio/types';
 import { Quote } from '../../../modules/quote/types';
-import { ContentFilter, ContentType, ContentTypeTabs, LeaseInfo } from '../../../modules/types';
+import { ContentFilter, ContentType, ContentTypeTabs } from '../../../modules/types';
 
 type TableItem = {
   company: string;

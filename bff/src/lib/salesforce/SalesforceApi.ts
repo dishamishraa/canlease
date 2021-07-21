@@ -34,7 +34,7 @@ export default class SalesforceApi {
       // throw new Error('');
       return {
         ...mockQuote,
-        leaseType: payload.leaseType,
+        ...payload,
       };
     }
   }

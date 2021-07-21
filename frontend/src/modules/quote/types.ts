@@ -15,9 +15,8 @@ export type Quote = {
 
 export type QuoteOption = {
   monthlyAmount: number;
-  term: '12M' | '24M' | '36M' | '48M' | '60M' | '72M';
+  term: string;
   financeRate: number;
-  purchaseOptionDate: string;
 };
 
 export type CreateCustomerQuotePayload = {
@@ -28,6 +27,8 @@ export type CreateCustomerQuotePayload = {
   contactName: string;
   contactEmail: string;
   contactBusinessName: string;
+  rateCardType?: string;
+  fee?: number;
 };
 
 export type CreateVendorQuotePayload = CreateCustomerQuotePayload & {

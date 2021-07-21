@@ -29,6 +29,8 @@ export type EquipmentLeaseInfo = {
   name: string;
   cost: string;
   leaseType: LeaseType;
+  rateCardType?: string;
+  fee?: number;
 };
 
 type BaseInfo = {
@@ -65,13 +67,6 @@ export type BusinessType = {
   bankruptcyDetails: string;
 }
 
-export type DefaultQuoteOption = {
-  monthlyAmount: number;
-  term: string;
-  financeRate: number;
-  purchaseOptionDate: string;
-};
-
 export type PersonalInformation = {
   firstName: string;
   lastName: string;
@@ -104,16 +99,6 @@ export type LeaseInfo = {
   vendor: string;
   lease: Lease;
 }
-
-export const TermDisplay = {
-  '12M': 12,
-  '24M': 24,
-  '36M': 36,
-  '48M': 48,
-  '60M': 60,
-  '72M': 72,
-};
-
 export type ContentType = 'Quote' | 'Application';
 export type ContentTypeTabs = 'Customer' | 'Personal';
 export type ContentFilter = 'all' | 'active' | 'applied' | 'expiring' | 'expired' | 'under_review' | 'financed' | 'rejected' | 'not_active';
