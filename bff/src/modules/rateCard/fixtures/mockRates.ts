@@ -1,4 +1,4 @@
-import { Rate } from "../types";
+import { Rate } from '../types';
 
 export const mockRates: Rate[] = [
   {
@@ -24,5 +24,5 @@ export const mockRates: Rate[] = [
     ratecardid: 1,
     createdAt: 'test',
     updatedAt: 'test',
-  }
+  },
 ];
