@@ -1,36 +1,39 @@
 import { MonthlyPayment } from './types';
 
 export default class QuoteCalculator {
-  calculatePayment(rate: number, period: number, pv: number, fv: number, type = 1) {
+  calculatePayment(rate: number, period: number, pv: number, fv: number, type = 1): number {
     // divide annual interest rate by 12 to get monthly rate and 100 to get
     // decimal repesentation
     const monthlyRate = (rate / 12) / 100;
 
-    const payment = (pv - fv / Math.pow(1 + monthlyRate, period))
-            / ((1 - 1 / Math.pow(1 + monthlyRate, period - type)) / monthlyRate
-                + type);
+    const payment = (pv - fv / (1 + monthlyRate) ** period) / (
+      (1 - (1 / ((1 + monthlyRate) ** (period - type)))) / monthlyRate + type);
     // TODO: implement better rounding(1.005 > 1.00 instead of 1.01 with below method)
     return Math.round(payment * 100) / 100;
   }
 
-  calculateFutureValue(po: PurchaseOptionType, pv: number, pvPlusFee: number) {
+  calculateFutureValue(po: PurchaseOptionType, pv: number, pvPlusFee: number): number {
     switch (po) {
-      case FMV:
+      case 'FMV':
         return pvPlusFee * 0.05;
-      case $10:
+      case '$10':
         return 0;
-      case STRETCH:
+      case 'stretch':
         return pv * 0.1;
+      default:
+        return 0;
     }
   }
 
-  calculateCostOfFinanceFutureValue(po: PurchaseOptionType, pv: number) {
+  calculateCostOfFinanceFutureValue(po: PurchaseOptionType, pv: number): number {
     switch (po) {
-      case FMV:
+      case 'FMV':
         return 0;
-      case STRETCH:
+      case 'stretch':
         return pv * 0.1;
-      case $10:
+      case '$10':
+        return 10;
+      default:
         return 10;
     }
   }
@@ -42,7 +45,7 @@ export default class QuoteCalculator {
     annualInterestRates: { [key: number]: number},
     terms: number[],
   ): MonthlyPayment[] {
-    const amountWithFee = amount + (amount * fee / 100);
+    const amountWithFee = amount + ((amount * fee) / 100);
     const fv = this.calculateFutureValue(
       purchaseOption,
       amount,
@@ -72,11 +75,18 @@ export default class QuoteCalculator {
     return payments;
   }
 
-  calculateCostOfFinanceRate(amount: number, monthlyPayment: number, po: PurchaseOptionType, period: number) {
-    // Here is the formula to derive the Cost of Finance on the lease quote. It will be different for each term chosen:
-    // Assume $10,500 deal over a 36/40M term with a $1,050 purchase option at 36M and monthly lease payments of $330.70
-    // 1. Determine ALL the payments that will be made on the lease for its full life, including the purchase option
-    // $330.70 X 36 = $11,905.20 plus PO of $1,050 = $12,955.20
+  calculateCostOfFinanceRate(
+    amount: number,
+    monthlyPayment: number,
+    po: PurchaseOptionType,
+    period: number,
+  ): number {
+    // Here is the formula to derive the Cost of Finance on the lease quote.
+    // It will be different for each term chosen:
+    // Assume $10,500 deal over a 36/40M term with a $1,050 purchase option
+    // at 36M and monthly lease payments of $330.70
+    // 1. Determine ALL the payments that will be made on the lease for its full life,
+    // including the purchase option $330.70 X 36 = $11,905.20 plus PO of $1,050 = $12,955.20
 
     const totalCostToCustomer = monthlyPayment * period
             + this.calculateCostOfFinanceFutureValue(po, amount);
