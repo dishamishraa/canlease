@@ -109,10 +109,6 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
               <ProfilePage
                 className={styles.page} />
             </Route>
-            <Route path={routes.ratecard}>
-              <RateCardPage
-                className={styles.page} />
-            </Route>
             <Route path={routes.detail}>
               <RateCardDetailsPage
                 className={styles.page} />
