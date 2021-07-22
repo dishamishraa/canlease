@@ -5,8 +5,8 @@ import { DetailsSectionProps } from '../../organisms/DetailsSection';
 import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { Profile } from '../../../modules/profile/types';
 import { convertMonth, getStretchMonth } from '../../../lib/utils';
-import { useHistory } from 'react-router';
-import { ApplicationBusinessInfoVendor } from '../../../modules/types';
+import { useHistory, useLocation } from 'react-router';
+import { ApplicationBusinessInfoVendor, CreateApplicationState } from '../../../modules/types';
 
 export type ReviewApplicationInformationBlockPresenterProps = ReviewApplicationInformationBlockProps & {
     profile: Profile | null;
@@ -31,6 +31,7 @@ const withPresenter = (
 
     const { t } = useTranslation();
     const history = useHistory();
+    const { state } = useLocation<CreateApplicationState | undefined>();
 
     let quoteDetails: DetailsSectionProps = {};
     let paymentDetails: DetailsSectionProps = {};
@@ -753,7 +754,7 @@ const withPresenter = (
         onButtonClicked: nextClicked,
       },
     }
-    if (stepperCurrentValue === 4) {
+    if (state?.fromTab === "Personal") {
       reviewApplicationInformationBlockProps = {
         ...reviewApplicationInformationBlockProps,
         sectionHeadingOne:{
@@ -774,7 +775,7 @@ const withPresenter = (
         profileBusinessDetails,
       }
     }
-    else if (stepperCurrentValue === 5) {
+    else if (state?.fromTab === "Customer") {
       reviewApplicationInformationBlockProps = {
         ...reviewApplicationInformationBlockProps,
         customerPersonalInformation,
@@ -788,6 +789,7 @@ const withPresenter = (
         {...reviewApplicationInformationBlockProps}
         stepperCurrentValue={stepperCurrentValue}
         handleEditClicked={handleEditClicked}
+        state={state}
         />
       );
   };

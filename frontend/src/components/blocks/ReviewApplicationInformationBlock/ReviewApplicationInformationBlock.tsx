@@ -7,7 +7,7 @@ import Stepper, { StepperProps } from '../../atoms/Stepper';
 import Text, { TextProps } from '../../atoms/Text';
 import DetailsSection, { DetailsSectionProps } from '../../organisms/DetailsSection';
 import Button, { ButtonProps } from '../../atoms/Button';
-import { AssetInfo, ApplicationBusinessInfo, ApplicationPersonalInfo } from '../../../modules/types';
+import { AssetInfo, ApplicationBusinessInfo, ApplicationPersonalInfo, CreateApplicationState } from '../../../modules/types';
 import { Quote, QuoteOption } from '../../../modules/quote/types';
 
 export const defaultProps = {
@@ -221,6 +221,7 @@ export type ReviewApplicationInformationBlockProps = {
   customerPersonalInformation?: DetailsSectionProps;
   customerBusinessInformation?: DetailsSectionProps;
   handleEditClicked?: (page: string) => void;
+  state?: CreateApplicationState | undefined;
 };
 
 const ReviewApplicationInformationBlock: React.FC<ReviewApplicationInformationBlockProps> = ({
@@ -241,10 +242,11 @@ const ReviewApplicationInformationBlock: React.FC<ReviewApplicationInformationBl
   customerPersonalInformation,
   customerBusinessInformation,
   stepperCurrentValue,
+  state,
 }) => {
   let additionalCustomerFields;
   let additionalPersonalFields;
-  if (stepperCurrentValue === 4) {
+  if (state?.fromTab === "Personal") {
     additionalPersonalFields = 
     <>
         <DetailsSection
@@ -267,7 +269,7 @@ const ReviewApplicationInformationBlock: React.FC<ReviewApplicationInformationBl
           {...profileBusinessDetails} />
     </>
   } 
-  else if (stepperCurrentValue === 5) {
+  else if (state?.fromTab === "Customer") {
     additionalCustomerFields = 
     <>
       <DetailsSection
