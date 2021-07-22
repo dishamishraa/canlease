@@ -11,9 +11,7 @@
     margin-top: 0;
   }
   background-color: rgb(255, 255, 255);
-
   .text {
-    overflow: hidden;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -21,7 +19,6 @@
     align-self: flex-start;
     flex: 1 1 auto;
   }
-
 }
 .contextualMenuItem:hover {
   overflow: hidden;
@@ -36,9 +33,7 @@
     margin-top: 0;
   }
   background-color: rgb(248, 248, 248);
-
   .text {
-    overflow: hidden;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -46,7 +41,6 @@
     align-self: flex-start;
     flex: 1 1 auto;
   }
-
 }
 .contextualMenuItem:pressed {
   overflow: hidden;
@@ -61,9 +55,7 @@
     margin-top: 0;
   }
   background-color: rgb(240, 241, 247);
-
   .text {
-    overflow: hidden;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -71,7 +63,6 @@
     align-self: flex-start;
     flex: 1 1 auto;
   }
-
 }
 .contextualMenuItem:focused {
   overflow: hidden;
@@ -87,9 +78,7 @@
   }
   background-color: rgb(248, 248, 248);
   border: 2px solid rgb(26, 35, 126);
-
   .text {
-    overflow: hidden;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -97,7 +86,6 @@
     align-self: flex-start;
     flex: 1 1 auto;
   }
-
 }
 .contextualMenuItem:disabled {
   overflow: hidden;
@@ -112,9 +100,7 @@
     margin-top: 0;
   }
   background-color: rgb(255, 255, 255);
-
   .text {
-    overflow: hidden;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -122,5 +108,4 @@
     align-self: flex-start;
     flex: 1 1 auto;
   }
-
 }
