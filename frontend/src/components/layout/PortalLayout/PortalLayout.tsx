@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cx from 'classnames';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
@@ -70,15 +70,29 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
   const { profile } = useContext(AuthContext);
   const userType = profile?.userType || 'customer';
   const DashboardPage = userType === 'customer' ? EndUserDashboardPage : VendorDashboardPage;
+
+  const [showMenu, SetShowMenu] = useState(false);
+
+  let menuBlockDisplay; 
+  if (showMenu === true) {
+    menuBlockDisplay= <MenuBlock
+      className={styles.showMenuBlock} />
+  } else {
+    menuBlockDisplay= <MenuBlock
+      className={styles.menuBlock} />
+  }
+
   return (
     <div className={cx(styles.portalLayout, className)}>
       <Header
         className={styles.header}
-        {...header} />
+        {...header} 
+        SetShowMenu={SetShowMenu}
+        showMenu={showMenu}
+        />
       <div className={styles.body}>
         <div className={styles.content}>
-          <MenuBlock
-            className={styles.menuBlock} />
+          {menuBlockDisplay}
           <Switch>
             <Route path={routes.dashboard}>
               <DashboardPage
@@ -119,3 +133,5 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
 PortalLayout.defaultProps = defaultProps;
 
 export default PortalLayout;
+
+

@@ -418,7 +418,7 @@
     },
     "profile_page": {
         "header": "Profile information",
-        "description": "We will use your profile information as part application process. Please contact Canlease to make changes to your profile info.",
+        "description": "<p> We will using your profile information as part of our application process. Please <a href=\"https://canlease.net/contact/\" target=\"_blank\"> contact Canlease </a> to make changes to your profile info. </p>",
         "personal_info": {
             "header": "Personal information",
             "label": {
