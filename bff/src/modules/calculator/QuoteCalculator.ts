@@ -1,5 +1,4 @@
 /* eslint-disable no-restricted-properties, max-len */
-import { exception } from 'console';
 import { MonthlyPayment } from './types';
 
 export const $10 = '$10';
@@ -14,7 +13,7 @@ const VALID_PURCHASE_OPTION_TYPES = [
 export type PurchaseOptionType = typeof VALID_PURCHASE_OPTION_TYPES[number];
 
 export default class QuoteCalculator {
-  calculatePayment(rate: number, period: number, pv: number, fv: number, type = 1) {
+  calculatePayment(rate: number, period: number, pv: number, fv: number, type = 1): number {
     // divide annual interest rate by 12 to get monthly rate and 100 to get
     // decimal repesentation
     const monthlyRate = (rate / 12) / 100;
@@ -26,7 +25,7 @@ export default class QuoteCalculator {
     return Math.round(payment * 100) / 100;
   }
 
-  calculateFutureValue(po: PurchaseOptionType, pv: number, pvPlusFee: number) {
+  calculateFutureValue(po: PurchaseOptionType, pv: number, pvPlusFee: number): number {
     switch (po) {
       case FMV:
         return pvPlusFee * 0.05;
@@ -39,7 +38,7 @@ export default class QuoteCalculator {
     }
   }
 
-  calculateCostOfFinanceFutureValue(po: PurchaseOptionType, pv: number) {
+  calculateCostOfFinanceFutureValue(po: PurchaseOptionType, pv: number): number {
     switch (po) {
       case FMV:
         return 0;
@@ -89,7 +88,7 @@ export default class QuoteCalculator {
     return payments;
   }
 
-  calculateCostOfFinanceRate(amount: number, monthlyPayment: number, po: PurchaseOptionType, period: number) {
+  calculateCostOfFinanceRate(amount: number, monthlyPayment: number, po: PurchaseOptionType, period: number): number {
     // Here is the formula to derive the Cost of Finance on the lease quote. It will be different for each term chosen:
     // Assume $10,500 deal over a 36/40M term with a $1,050 purchase option at 36M and monthly lease payments of $330.70
     // 1. Determine ALL the payments that will be made on the lease for its full life, including the purchase option
