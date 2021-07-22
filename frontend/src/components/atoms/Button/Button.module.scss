@@ -1104,6 +1104,56 @@
   }
 
 }
+.buttonIconTextButtonLargeNoneBasic {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  > * {
+    margin-left: 0.5rem;
+  }
+  border-radius: 4px;
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: center;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .text {
+    color: rgb(72, 79, 152);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: center;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .icon {
+    align-self: center;
+    height: 1rem;
+    flex: 0 0 1rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+}
 .buttonIconMediumBasicBasic {
   display: flex;
   flex-direction: row;

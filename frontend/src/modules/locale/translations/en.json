@@ -445,7 +445,8 @@
             "interest_rate": "IR (Interest rate)",
             "ten_end_interest_rate": "$10 @ end IR",
             "action": "Action"
-        }
+        },
+        "addButton": "Add Rate"
     },
     "rate_card_details_page": {
         "header": {

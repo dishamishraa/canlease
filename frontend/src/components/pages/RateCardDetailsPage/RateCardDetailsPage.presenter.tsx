@@ -2,7 +2,10 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Rate } from '../../../modules/rateCard/types';
 import { defaultProps as defaultRateCardTableProps, RateCardTableProps } from '../../blocks/RateCardTable/RateCardTable';
+import { RateCardTableItemListProps } from '../../organisms/RateCardTableItemList';
 import { RateCardDetailsPageProps, defaultProps } from './RateCardDetailsPage';
+import { ButtonProps, defaultProps as defaultButtonProps } from '../../atoms/Button/Button';
+
 
 export type RateCardDetailsPagePresenterProps = RateCardDetailsPageProps & {
     rates: Rate[] | null;
@@ -62,9 +65,36 @@ const withPresenter = (
             },
         };
 
+        const addButton = {
+            ...defaultButtonProps,
+            type: 'IconTextButton',
+            text: {
+                ...defaultButtonProps.text,
+                style: 'Brand500',
+                value: t('rate_card_table.addButton')
+            },
+            icon: {
+                ...defaultButtonProps.icon,
+                style: 'Brand500'
+            },
+            fill: 'None',
+            colour: 'Basic',
+        } as ButtonProps;
+
+        const rateCardTableItemList = {
+            ...defaultRateCardTableProps.rateCardTableItemList,
+            rateCardTableItems: [
+                {
+                    type: 'Empty',
+                    button: addButton,
+                }
+            ]
+        } as RateCardTableItemListProps;
+
         const rateCardTable = {
             ...defaultRateCardTableProps,
             rateCardTableHeader: rateCardTableHeader,
+            rateCardTableItemList: rateCardTableItemList,
         } as RateCardTableProps;
 
         const rateCardDetailsPageProps: RateCardDetailsPageProps = {
