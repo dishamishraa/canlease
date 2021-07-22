@@ -1,40 +1,54 @@
+/* eslint-disable no-restricted-properties, max-len */
+import { exception } from 'console';
 import { MonthlyPayment } from './types';
 
+export const $10 = '$10';
+export const FMV = 'FMV';
+export const STRETCH = 'stretch';
+
+const VALID_PURCHASE_OPTION_TYPES = [
+  STRETCH,
+  FMV,
+  $10,
+] as const;
+export type PurchaseOptionType = typeof VALID_PURCHASE_OPTION_TYPES[number];
+
 export default class QuoteCalculator {
-  calculatePayment(rate: number, period: number, pv: number, fv: number, type = 1): number {
+  calculatePayment(rate: number, period: number, pv: number, fv: number, type = 1) {
     // divide annual interest rate by 12 to get monthly rate and 100 to get
     // decimal repesentation
     const monthlyRate = (rate / 12) / 100;
 
-    const payment = (pv - fv / (1 + monthlyRate) ** period) / (
-      (1 - (1 / ((1 + monthlyRate) ** (period - type)))) / monthlyRate + type);
+    const payment = (pv - fv / Math.pow(1 + monthlyRate, period))
+            / ((1 - 1 / Math.pow(1 + monthlyRate, period - type)) / monthlyRate
+                + type);
     // TODO: implement better rounding(1.005 > 1.00 instead of 1.01 with below method)
     return Math.round(payment * 100) / 100;
   }
 
-  calculateFutureValue(po: PurchaseOptionType, pv: number, pvPlusFee: number): number {
+  calculateFutureValue(po: PurchaseOptionType, pv: number, pvPlusFee: number) {
     switch (po) {
-      case 'FMV':
+      case FMV:
         return pvPlusFee * 0.05;
-      case '$10':
+      case $10:
         return 0;
-      case 'stretch':
+      case STRETCH:
         return pv * 0.1;
       default:
-        return 0;
+        throw new Error('type not valid');
     }
   }
 
-  calculateCostOfFinanceFutureValue(po: PurchaseOptionType, pv: number): number {
+  calculateCostOfFinanceFutureValue(po: PurchaseOptionType, pv: number) {
     switch (po) {
-      case 'FMV':
+      case FMV:
         return 0;
-      case 'stretch':
+      case STRETCH:
         return pv * 0.1;
-      case '$10':
+      case $10:
         return 10;
       default:
-        return 10;
+        throw new Error('type not valid');
     }
   }
 
@@ -75,18 +89,11 @@ export default class QuoteCalculator {
     return payments;
   }
 
-  calculateCostOfFinanceRate(
-    amount: number,
-    monthlyPayment: number,
-    po: PurchaseOptionType,
-    period: number,
-  ): number {
-    // Here is the formula to derive the Cost of Finance on the lease quote.
-    // It will be different for each term chosen:
-    // Assume $10,500 deal over a 36/40M term with a $1,050 purchase option
-    // at 36M and monthly lease payments of $330.70
-    // 1. Determine ALL the payments that will be made on the lease for its full life,
-    // including the purchase option $330.70 X 36 = $11,905.20 plus PO of $1,050 = $12,955.20
+  calculateCostOfFinanceRate(amount: number, monthlyPayment: number, po: PurchaseOptionType, period: number) {
+    // Here is the formula to derive the Cost of Finance on the lease quote. It will be different for each term chosen:
+    // Assume $10,500 deal over a 36/40M term with a $1,050 purchase option at 36M and monthly lease payments of $330.70
+    // 1. Determine ALL the payments that will be made on the lease for its full life, including the purchase option
+    // $330.70 X 36 = $11,905.20 plus PO of $1,050 = $12,955.20
 
     const totalCostToCustomer = monthlyPayment * period
             + this.calculateCostOfFinanceFutureValue(po, amount);
@@ -107,14 +114,3 @@ export default class QuoteCalculator {
     return parseFloat(annualCostOfFinanceRate.toFixed(4));
   }
 }
-
-export const $10 = '$10';
-export const FMV = 'FMV';
-export const STRETCH = 'stretch';
-
-const VALID_PURCHASE_OPTION_TYPES = [
-  STRETCH,
-  FMV,
-  $10,
-] as const;
-export type PurchaseOptionType = typeof VALID_PURCHASE_OPTION_TYPES[number];
