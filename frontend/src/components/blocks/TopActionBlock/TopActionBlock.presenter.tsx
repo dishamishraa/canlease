@@ -21,6 +21,7 @@ const withPresenter = (
       statusFilter,
       setStatusFilter,
       tab,
+      profile
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
@@ -49,6 +50,28 @@ const withPresenter = (
       },
     };
 
+    const getButtonText = () => {
+      if(contentType === "Application"){
+        switch(tab) {
+          case "Customer":
+            return t('top_action_block.button.customer_application');
+          case "Personal":
+            return t('top_action_block.button.personal_application');
+        }
+      } else {
+        switch(tab) {
+          case "Customer":
+            return t('top_action_block.button.customer_quote');;
+          case "Personal":
+            if(profile?.userType === "customer"){
+              return t('top_action_block.button.personal_quote.customer');;
+            } else {
+              return t('top_action_block.button.personal_quote.vendor');;
+            }
+        }
+      }
+    }
+    
     const topActionBlockProps: TopActionBlockProps = {
       ...defaultProps,
       textInput: {
@@ -79,7 +102,7 @@ const withPresenter = (
         },
         text: {
           ...defaultProps.button.text,
-          value: 'Create Quote', // TODO localize
+          value: getButtonText(),
         },
 
       },

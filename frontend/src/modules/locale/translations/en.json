@@ -102,6 +102,17 @@
         "description": "The quote has been sent to your customer. You can view the quote and track its progress on the Quotes page.",
         "button": "Done"
     },
+    "top_action_block": {
+        "button": {
+            "customer_application":  "Apply For Customer",
+            "personal_application": "Apply For Finance",
+            "customer_quote": "Create Customer Quote",
+            "personal_quote": {
+                "customer": "Create Quote",
+                "vendor": "Create Personal Quote"
+            }
+        }
+    },
     "application_form":{
         "back": "Back",
         "start_application": {
