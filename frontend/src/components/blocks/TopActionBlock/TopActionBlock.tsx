@@ -7,7 +7,8 @@ import TextInput, { TextInputProps } from '../../atoms/TextInput';
 import Select, { SelectProps } from '../../atoms/Select';
 import SelectField, { SelectFieldProps } from '../../molecules/SelectField';
 import Button, { ButtonProps } from '../../atoms/Button';
-import { ContentFilter, ContentType } from '../../../modules/types';
+import { ContentFilter, ContentType, ContentTypeTabs } from '../../../modules/types';
+import { Profile } from '../../../modules/profile/types';
 
 export const defaultProps = {
   textInput: {
@@ -50,7 +51,9 @@ export type TopActionBlockProps = {
   setSearchQuery?: React.Dispatch<React.SetStateAction<string>>;
   statusSearchField?: SelectFieldProps;
   statusFilter?: ContentFilter;
+  tab?: ContentTypeTabs;
   setStatusFilter?: React.Dispatch<React.SetStateAction<ContentFilter>>;
+  profile?: Profile | null;
 };
 
 const TopActionBlock: React.FC<TopActionBlockProps> = ({

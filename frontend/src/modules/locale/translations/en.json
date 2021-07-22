@@ -102,6 +102,17 @@
         "description": "The quote has been sent to your customer. You can view the quote and track its progress on the Quotes page.",
         "button": "Done"
     },
+    "top_action_block": {
+        "button": {
+            "customer_application":  "Apply For Customer",
+            "personal_application": "Apply For Finance",
+            "customer_quote": "Create Customer Quote",
+            "personal_quote": {
+                "customer": "Create Quote",
+                "vendor": "Create Personal Quote"
+            }
+        }
+    },
     "application_form":{
         "back": "Back",
         "start_application": {
@@ -186,7 +197,9 @@
             "profile_description": "<p> We will using your profile information as part of our application process. Please <a href=\"https://canlease.net/contact/\" target=\"_blank\"> contact Canlease </a> to make changes to your profile info. </p>",
             "personal_information_header": "Personal information",
             "contact_information_header": "Contact information",
-            "business_information_header": "Business information"
+            "business_information_header": "Business information",
+            "customer_personal_info_header": "Customer’s personal information",
+            "customer_business_info_header": "Customer’s business information"
         },
         "terms_of_application":{
             "header": "Terms of application",
@@ -254,7 +267,7 @@
             "7": "Nunavut (NU)",
             "8": "Ontario (ON)",
             "9": "Prince Edward Island (PE)",
-            "10": "Quebec (OC)",
+            "10": "Quebec (QC)",
             "11": "Saskatchewan (SK)",
             "12": "Yukon (YT)"
         }

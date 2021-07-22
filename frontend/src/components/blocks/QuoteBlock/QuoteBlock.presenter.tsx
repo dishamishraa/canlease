@@ -11,7 +11,7 @@ import EmailIcon from '../../../resources/icons/Email.svg';
 
 import { defaultProps as defaultRateDetailItemProps } from '../../molecules/RateDetailItem/RateDetailItem';
 import { Quote, SendQuote } from '../../../modules/quote/types';
-import { ContactInfo } from '../../../modules/types';
+import { ContactInfo, ContentTypeTabs } from '../../../modules/types';
 import { convertMonth, getStretchMonth, isExpired } from '../../../lib/utils';
 import { APIResponse } from '../../../lib/api/types';
 import { sendQuote } from '../../../modules/quote/api';
@@ -89,13 +89,17 @@ const withPresenter = (
       },
     };
 
-    const handleApplyForFinance = () => {
-      if(flowType === 'instaQuote') {
-       updateInstaQuoteCookie({ action: 'apply_finance'}, setCookie, removeCookie);
-        history.push('/account/signin');
-      } else {
-        // TODO
-        history.push('/portal/applications');
+    const handleApplyForFinance = (tab: ContentTypeTabs) => () => {
+      switch(flowType) {
+        case 'instaQuote':
+          updateInstaQuoteCookie({ action: 'apply_finance_personal'}, setCookie, removeCookie);
+          history.push('/account/signin');
+          break;
+        case 'createQuote':
+          if(quote) {
+            history.push(`/portal/application/applyQuote/${quote.quoteId}`, { fromTab: tab });
+          }
+          break;
       }
     };
 
@@ -314,6 +318,15 @@ const withPresenter = (
         onButtonClicked: handleSendQuote,
         disabled: quoteExpired,
       }
+      quoteBlockProps.applyButton = {
+        ...defaultProps.saveQuoteButton,
+        text: {
+          ...defaultProps.saveQuoteButton.text,
+          value: 'Apply on Customer’s behalf', // TODO localize 
+        },
+        onButtonClicked: handleApplyForFinance('Customer'),
+        disabled: quoteExpired,
+      }
     } else {
       quoteBlockProps.applyButton = {
         ...defaultProps.applyButton,
@@ -321,7 +334,7 @@ const withPresenter = (
           ...defaultProps.applyButton.text,
           value: t('view_quote.apply_button_text'),
         },
-        onButtonClicked: handleApplyForFinance,
+        onButtonClicked: handleApplyForFinance('Personal'),
         disabled: quoteExpired,
       }
 

@@ -13,6 +13,7 @@ const withInteractor = (
     return (
       <Presenter
         {...props}
+        profile={profile}
         rateCards={rateCards}
       />
   )};

@@ -9,6 +9,7 @@ import TextField, { TextFieldProps } from '../../molecules/TextField';
 import SelectField, { SelectFieldProps } from '../../molecules/SelectField';
 import RadioField, { RadioFieldProps } from '../../molecules/RadioField';
 import Button, { ButtonProps } from '../../atoms/Button';
+import { ApplicationBusinessInfo } from '../../../modules/types';
 
 export const defaultProps = {
   stepper: {
@@ -60,7 +61,7 @@ export const defaultProps = {
     },
     select: {
       text: {
-        style: 'Basic400',
+        style: 'Basic800',
         align: 'Left',
         size: 'Large',
         type: 'Paragraph1',
@@ -131,6 +132,32 @@ export const defaultProps = {
       },
     },
   } as RadioFieldProps,
+  sinField: {
+    state: 'Default',
+    type: 'Text',
+    label: {
+      style: 'Basic800',
+      align: 'Left',
+      size: 'Medium',
+      type: 'Paragraph2',
+    },
+    textInput: {
+      type: 'Text',
+    },
+  } as TextFieldProps,
+  dateOfBirthField: {
+    state: 'Default',
+    type: 'Text',
+    label: {
+      style: 'Basic800',
+      align: 'Left',
+      size: 'Medium',
+      type: 'Paragraph2',
+    },
+    textInput: {
+      type: 'Text',
+    },
+  } as TextFieldProps,
   bankruptcyRadioField: {
     label: {
       style: 'Basic800',
@@ -195,11 +222,18 @@ export type CustomerBusinessInformationBlockProps = {
   businessPhoneField?: TextFieldProps;
   websiteLinkTextField?: TextFieldProps;
   businessTypeRadioField?: RadioFieldProps;
+  sinField?: TextFieldProps;
+  dateOfBirthField?: TextFieldProps;
   bankruptcyRadioField?: RadioFieldProps;
   detailsTextArea?: TextFieldProps;
   disclaimerText?: TextProps;
   nextButton?: ButtonProps;
   className?: string;
+  setBusinessInfo?: (businessInfo: ApplicationBusinessInfo) => void;
+  businessInfo?: ApplicationBusinessInfo;
+  stepperCurrentValue?: number;
+  stepperTotalValue?: number;
+  showBusinessQuestions?: boolean;
 };
 
 const CustomerBusinessInformationBlock: React.FC<CustomerBusinessInformationBlockProps> = ({
@@ -212,12 +246,38 @@ const CustomerBusinessInformationBlock: React.FC<CustomerBusinessInformationBloc
   businessPhoneField,
   websiteLinkTextField,
   businessTypeRadioField,
+  sinField,
+  dateOfBirthField,
   bankruptcyRadioField,
   detailsTextArea,
   disclaimerText,
   nextButton,
   className,
-}) => (
+  showBusinessQuestions,
+}) => { 
+  let businessFormFields;
+  if(showBusinessQuestions) {
+    businessFormFields = (
+      <>
+         <TextField
+            className={styles.businessPhoneField}
+            {...sinField} />
+          <TextField
+            className={styles.operatingSinceTextField}
+            {...dateOfBirthField} />
+          <RadioField
+            className={styles.bankruptcyRadioField}
+            {...bankruptcyRadioField} />
+          <TextField
+            className={styles.detailsTextArea}
+            {...detailsTextArea} />
+          <Text
+            className={styles.disclaimerText}
+            {...disclaimerText} />
+      </>
+    );
+  }
+  return (
     <div className={cx(styles.customerBusinessInformationBlock, className)}>
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
@@ -250,28 +310,15 @@ const CustomerBusinessInformationBlock: React.FC<CustomerBusinessInformationBloc
           <RadioField
             className={styles.businessTypeRadioField}
             {...businessTypeRadioField} />
-          <TextField
-            className={styles.businessPhoneField}
-            {...businessPhoneField} />
-          <TextField
-            className={styles.operatingSinceTextField}
-            {...operatingSinceTextField} />
-          <RadioField
-            className={styles.bankruptcyRadioField}
-            {...bankruptcyRadioField} />
-          <TextField
-            className={styles.detailsTextArea}
-            {...detailsTextArea} />
-          <Text
-            className={styles.disclaimerText}
-            {...disclaimerText} />
+          {businessFormFields}
           <Button
             className={styles.nextButton}
             {...nextButton} />
         </div>
       </div>
     </div>
-);
+  );
+}
 
 CustomerBusinessInformationBlock.defaultProps = defaultProps;
 

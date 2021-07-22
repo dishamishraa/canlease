@@ -31,10 +31,12 @@ const withPresenter = (
     };
     const onUserTypeSelected = (userType: UserType) => {
       const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
-      if ((flowType === 'createQuote' || !quoteCookie) && setQuoteUserType) {
-        setQuoteUserType(userType);
-      } else {
+      if (flowType === 'instaQuote' && quoteCookie) {
         setShowModal(true);
+      } else {
+        if(setQuoteUserType) {
+          setQuoteUserType(userType)
+        }
       }
     };
     

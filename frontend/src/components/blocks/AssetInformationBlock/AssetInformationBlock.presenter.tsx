@@ -8,15 +8,9 @@ import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioBu
 import { RadioFieldProps } from '../../molecules/RadioField';
 import { DetailsSectionProps } from '../../organisms/DetailsSection';
 import { Quote } from '../../../modules/quote/types';
-import { AssetInfo } from '../../../modules/types';
 
 export type AssetInformationBlockPresenterProps = AssetInformationBlockProps & {
     quoteDetails: Quote | null;
-    setAssetInfo?: React.Dispatch<React.SetStateAction<AssetInfo>>;
-    assetInfo?: AssetInfo;
-    stepperCurrentValue?: number,
-    setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
-    stepperTotalValue?: number,
 };
 
 const withPresenter = (
@@ -29,81 +23,56 @@ const withPresenter = (
         assetInfo,
         className,
         stepperCurrentValue,
-        setStepperCurrentValue,
         stepperTotalValue,
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
-    const [showAgeOfAssetField, setShowAgeOfAssetField] = useState(false);
+    const [assetCondition, setAssetCondition] = useState<'New' | 'Used'>();
+    const [showAssetAgeField, setShowAssetAgeField] = useState(false);
+    const [assetAge, setAssetAge] = useState<number>()
+    const [expectedDeilivery, setExpectedDelivery] = useState<string>();
 
-    
-    const handleChangeAssetAge = ({ target: { value }}) => {
-      if (setAssetInfo){
-        setAssetInfo(assetInfo => ({...assetInfo, ageOfAsset: value}))
-      }
-    }
-    const handleChangeExpectedDate  = ({ target: { value }}) => {
-      if (setAssetInfo){
-        setAssetInfo(assetInfo => ({...assetInfo, expectedDeliveryDate: value}))
-      }
-    }
-    const handleConditionClicked = (condition) => (event: any) => {
-      if (condition === 'Used' && setAssetInfo) {
-        setAssetInfo(assetInfo => ({...assetInfo, assetCondition: condition}))
-        setShowAgeOfAssetField(true);
-      }
-      else if (condition === 'New'  && setAssetInfo) {
-        setAssetInfo(assetInfo => ({...assetInfo, ageOfAsset: 0, assetCondition: condition}))
-        setShowAgeOfAssetField(false);
-      }
-    }
+
     useEffect(() => {
       if(assetInfo){
-        if (assetInfo.assetCondition === 'Used') {
-          setShowAgeOfAssetField(true);
-        }
+        setAssetCondition(assetInfo.assetCondition);
+        setShowAssetAgeField(assetInfo.assetCondition === 'Used');
+        setAssetAge(assetInfo.ageOfAsset);
+        setExpectedDelivery(assetInfo.expectedDeliveryDate);
       }
-    }, [])
-
-    let handleState;
-    let isFormValid;
-    let handleClickNext;
-    let getAssetAge;
-    let getDeliveryDate;
-
-    if (assetInfo) {
-    const { assetCondition, expectedDeliveryDate: expectedDate, ageOfAsset: assetAge} = assetInfo
-      handleState = (type) => {
-        if (assetCondition === type) {
-         return 'Selected';
-        }
-        return 'Unselected';
-      }
-      isFormValid = () => {
-        if (assetCondition === 'New' && !isEmptyString(expectedDate)) {
-            return true;
-        } else if (assetCondition === 'Used' && !isEmptyString(expectedDate) && assetAge > 0){
-            return true;
-        } else {
-            return false;
-        }
+    }, [assetInfo])
+    
+    const handleConditionClicked = (condition: 'New' | 'Used') => () => {
+      setAssetCondition(condition);
+      setShowAssetAgeField(condition === 'Used');
     }
 
-      getAssetAge =  () => {
-        return assetAge ? assetAge : "";
-      }
-      
-      getDeliveryDate =  () => {
-        return expectedDate ? expectedDate : "";
-      }
-
-      handleClickNext = () => {
-        if(isFormValid() && setStepperCurrentValue && stepperCurrentValue){
-          setStepperCurrentValue(stepperCurrentValue + 1);
-          history.push('/portal/application/businessType')
-        }
-      };
+    const handleChangeAssetAge = ({ target: { value }}) => {
+      setAssetAge(value);
     }
+    const handleChangeExpectedDate  = ({ target: { value }}) => {
+      setExpectedDelivery(value);
+    }
+    
+    const isFormValid = () => {
+      if (assetCondition === 'New' && !isEmptyString(expectedDeilivery)) {
+        return true;
+      } else if (assetCondition === 'Used' && !isEmptyString(expectedDeilivery) && assetAge){
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    const handleClickNext = () => {
+      if(setAssetInfo && assetCondition && expectedDeilivery) {
+        setAssetInfo({
+          ageOfAsset: assetAge || 0,
+          assetCondition: assetCondition,
+          expectedDeliveryDate: expectedDeilivery,
+        })
+      }
+    };
     
     const assetConditionRadioField: RadioFieldProps = {
         ...defaultProps.assetConditionRadioField,
@@ -114,7 +83,7 @@ const withPresenter = (
         radioButtonItems: [
           {
             ...defaultRadioButtonItemProps,
-                state: handleState('New'),
+                state: assetCondition === 'New' ? 'Selected' : 'Unselected',
                 selectedIcon: {
                     ...defaultRadioButtonItemProps.selectedIcon,
                 },
@@ -129,7 +98,7 @@ const withPresenter = (
         },
         {
           ...defaultRadioButtonItemProps,
-              state: handleState('Used'),
+              state: assetCondition === 'Used' ? 'Selected' : 'Unselected',
               selectedIcon: {
                   ...defaultRadioButtonItemProps.selectedIcon,
               },
@@ -222,7 +191,7 @@ const withPresenter = (
             },
             textInput: {
                 ...defaultProps.ageOfAssetTextField.textInput,
-                textValue: getAssetAge(),
+                textValue: assetAge !== undefined ? `${assetAge}` : undefined,
                 onTextChanged: handleChangeAssetAge,
             },
         },
@@ -235,7 +204,7 @@ const withPresenter = (
             textInput: {
                 ...defaultProps.expectedDeliveryDateTextField?.textInput,
                 textPlaceholder: t('application_form.asset_information.date_placeholder'),
-                textValue: getDeliveryDate(),
+                textValue: expectedDeilivery,
                 onTextChanged: handleChangeExpectedDate,
             },
         },
@@ -253,7 +222,7 @@ const withPresenter = (
         <View
         className={className}
           {...assetInformationBlockProps}
-          showAgeOfAssetField={showAgeOfAssetField}
+          showAssetAgeField={showAssetAgeField}
         />
       );
     };

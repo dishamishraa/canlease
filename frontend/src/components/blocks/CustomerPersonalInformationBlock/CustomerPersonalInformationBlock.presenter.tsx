@@ -1,40 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { defaultProps, ContactInformationBlockProps } from './ContactInformationBlock';
+import { defaultProps, CustomerPersonalInformationBlockProps } from './CustomerPersonalInformationBlock';
 import { isEmptyString } from '../../../lib/utils';
 import { ContextualMenuItemProps, defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 
-export type ContactInformationBlockPresenterProps = ContactInformationBlockProps & {
-  email?: string;
+export type CustomerPersonalInformationBlockPresenterProps = CustomerPersonalInformationBlockProps & {
 };
 
 const withPresenter = (
-  View: React.FC<ContactInformationBlockProps>,
-): React.FC<ContactInformationBlockPresenterProps> => {
-  const Presenter: React.FC<ContactInformationBlockPresenterProps> = (props) => {
+  View: React.FC<CustomerPersonalInformationBlockProps>,
+): React.FC<CustomerPersonalInformationBlockPresenterProps> => {
+  const Presenter: React.FC<CustomerPersonalInformationBlockPresenterProps> = (props) => {
     const {
-      email,
-      contactInfo,
-      setContactInfo,
+      setPersonalInfo,
+      personalInfo,
+      stepperCurrentValue,
+      stepperTotalValue,
     } = props;
     const { t } = useTranslation();
+    const [firstName, setFirstName] = useState<string>();
+    const [lastName, setLastName] = useState<string>();
+    const [email, setEmail] = useState<string>();
     const [phoneNumber, setPhoneNumber] = useState<string>();
-    const [unitNumber, setUnitNumber] = useState<string>();
     const [streetAddress, setStreetAddress] = useState<string>();
     const [city, setCity] = useState<string>();
     const [postalCode, setPostalCode] = useState<string>();
     const [province, setProvince] = useState<string>();
 
     useEffect(() => {
-      if (contactInfo) {
-        setPhoneNumber(contactInfo.phone);
-        setUnitNumber(contactInfo.unitNumber);
-        setStreetAddress(contactInfo.street);
-        setCity(contactInfo.city);
-        setPostalCode(contactInfo.postalCode);
-        setProvince(contactInfo.province);
+      if (personalInfo) {
+        setFirstName(personalInfo.firstName);
+        setLastName(personalInfo.lastName);
+        setEmail(personalInfo.email);
+        setPhoneNumber(personalInfo.phone);
+        setStreetAddress(personalInfo.address);
+        setCity(personalInfo.city);
+        setPostalCode(personalInfo.postalCode);
+        setProvince(personalInfo.province);
       }
-    }, [contactInfo]);
+    }, [personalInfo]);
     
     const formInvalid = (isEmptyString(phoneNumber)
     || isEmptyString(streetAddress)
@@ -42,12 +46,18 @@ const withPresenter = (
     || isEmptyString(postalCode)
     || isEmptyString(province));
 
-    const handlePhoneNumber = ({ target: { value } }) => {
-      setPhoneNumber(value);
+    const handleFirstName = ({ target: { value } }) => {
+      setFirstName(value);
+    };
+    const handleLastName = ({ target: { value } }) => {
+      setLastName(value);
+    };
+    const handleEmail = ({ target: { value } }) => {
+      setEmail(value);
     };
 
-    const handleUnitNumber = ({ target: { value } }) => {
-      setUnitNumber(value);
+    const handlePhoneNumber = ({ target: { value } }) => {
+      setPhoneNumber(value);
     };
 
     const handleStreetAddress = ({ target: { value } }) => {
@@ -64,7 +74,9 @@ const withPresenter = (
 
     const handleNext = () => {
       if (
-        setContactInfo && 
+        setPersonalInfo && 
+        firstName &&
+        lastName &&
         email && 
         phoneNumber && 
         streetAddress && 
@@ -72,11 +84,12 @@ const withPresenter = (
         postalCode &&
         province
       ) {
-        setContactInfo({
+        setPersonalInfo({
+          firstName,
+          lastName,
           email,
           phone: phoneNumber,
-          unitNumber: unitNumber || '',
-          street: streetAddress,
+          address: streetAddress,
           city,
           postalCode,
           province,
@@ -95,21 +108,45 @@ const withPresenter = (
       });
     }
 
-    const contactInformationBlockProps: ContactInformationBlockProps = {
+    const contactInformationBlockProps: CustomerPersonalInformationBlockProps = {
       ...defaultProps,
       stepper: {
         ...defaultProps.stepper,
         text: {
           ...defaultProps.stepper.text,
-          value: t('stepper', {
-            current: '2',
-            total: '3',
+          value: t(`application_form.stepper`, {
+            current: stepperCurrentValue,
+            total: stepperTotalValue,
           }),
         },
       },
       blockHeading: {
         ...defaultProps.blockHeading,
         value: t('contact_information.header'),
+      },
+      firstNameTextField: {
+        ...defaultProps.firstNameTextField,
+        label: {
+          ...defaultProps.firstNameTextField.label,
+          value: 'First name', // TODO localize
+        },
+        textInput: {
+          ...defaultProps.firstNameTextField.textInput,
+          textValue: email,
+          onTextChanged: handleFirstName,
+        },
+      },
+      lastNameTextField: {
+        ...defaultProps.lastNameTextField,
+        label: {
+          ...defaultProps.lastNameTextField.label,
+          value: 'Last name', // TODO localize
+        },
+        textInput: {
+          ...defaultProps.lastNameTextField.textInput,
+          textValue: email,
+          onTextChanged: handleLastName,
+        },
       },
       emailTextField: {
         ...defaultProps.emailTextField,
@@ -120,7 +157,7 @@ const withPresenter = (
         textInput: {
           ...defaultProps.emailTextField.textInput,
           textValue: email,
-          disabled: true,
+          onTextChanged: handleEmail,
         },
       },
       phoneNumberTextField: {
@@ -132,17 +169,6 @@ const withPresenter = (
         textInput: {
           textValue: phoneNumber,
           onTextChanged: handlePhoneNumber,
-        },
-      },
-      unitNumberTextField: {
-        ...defaultProps.unitNumberTextField,
-        label: {
-          ...defaultProps.unitNumberTextField.label,
-          value: t('text_field_label.unit_number'),
-        },
-        textInput: {
-          textValue: unitNumber,
-          onTextChanged: handleUnitNumber,
         },
       },
       streetAddressTextField: {

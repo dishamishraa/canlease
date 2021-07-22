@@ -60,7 +60,7 @@ const withPresenter = (
         },
         {
             ...defaultMainMenutItemProps,
-            type: normalizedPathname.startsWith('/portal/applications') ? 'Selected' : 'Default',
+            type: normalizedPathname.startsWith('/portal/application') ? 'Selected' : 'Default',
             icon: {
                 ...defaultMainMenutItemProps.icon,
                 asset: 'Applications',

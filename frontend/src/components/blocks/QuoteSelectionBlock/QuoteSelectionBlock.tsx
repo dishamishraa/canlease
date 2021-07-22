@@ -9,7 +9,7 @@ import DetailsSection, { DetailsSectionProps } from '../../organisms/DetailsSect
 import ClickabledRateCardList, { ClickabledRateCardListProps } from '../../organisms/ClickabledRateCardList';
 import Button, { ButtonProps } from '../../atoms/Button';
 import ClickableRateCardList, { ClickableRateCardListProps } from '../../organisms/ClickableRateCardList';
-import { QuoteOption } from '../../../modules/quote/types';
+import { Quote, QuoteOption } from '../../../modules/quote/types';
 
 export const defaultProps = {
   stepper: {
@@ -76,12 +76,10 @@ export type QuoteSelectionBlockProps = {
   viewQuoteButton?: ButtonProps;
   className?: string;
   clickableRateCardList?: ClickableRateCardListProps;
-  setQuoteSelected?: React.Dispatch<React.SetStateAction<QuoteOption>>;
+  setQuoteSelected?: (quoteDetails: Quote, quoteSelected: QuoteOption)  => void;
   quoteSelected?: QuoteOption;
   stepperCurrentValue?: number,
-  setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
   stepperTotalValue?: number,
-  setStepperTotalValue?: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const QuoteSelectionBlock: React.FC<QuoteSelectionBlockProps> = ({

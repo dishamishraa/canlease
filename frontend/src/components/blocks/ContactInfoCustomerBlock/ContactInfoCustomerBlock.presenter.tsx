@@ -48,7 +48,7 @@ const withPresenter = (
       }
     };
 
-    const showAsCustomer = flowType === 'createQuote' && quoteUserType === 'vendor';
+    const showAsCustomer = flowType !== 'instaQuote' && quoteUserType === 'vendor';
     const blockProps: ContactInfoCustomerBlockProps = {
       ...defaultProps,
       ...props,

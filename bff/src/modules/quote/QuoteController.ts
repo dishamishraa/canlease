@@ -76,21 +76,23 @@ export default class QuoteController implements QuoteControllerContract {
       quoteOptions,
     });
 
-    if (isCreateQuoteCustomer(payload)) {
-      await this.sendQuote({
-        companyName: payload.contactBusinessName,
-        submittedBy: `${payload.contactName} (${payload.contactEmail}`,
-        email: payload.contactEmail,
-        quoteId: quote.quoteId,
-      });
-    }
-    if (isCreateQuoteVendor(payload)) {
-      await this.sendQuote({
-        companyName: payload.contactBusinessName,
-        submittedBy: `${payload.vendorName} (${payload.vendorEmail}`,
-        email: payload.vendorEmail,
-        quoteId: quote.quoteId,
-      });
+    if (payload.sendEmail) {
+      if (isCreateQuoteCustomer(payload)) {
+        await this.sendQuote({
+          companyName: payload.contactBusinessName,
+          submittedBy: `${payload.contactName} (${payload.contactEmail}`,
+          email: payload.contactEmail,
+          quoteId: quote.quoteId,
+        });
+      }
+      if (isCreateQuoteVendor(payload)) {
+        await this.sendQuote({
+          companyName: payload.contactBusinessName,
+          submittedBy: `${payload.vendorName} (${payload.vendorEmail}`,
+          email: payload.vendorEmail,
+          quoteId: quote.quoteId,
+        });
+      }
     }
     return quote;
   }

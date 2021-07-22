@@ -55,7 +55,6 @@ const SimplePage: React.FC<SimplePageProps> = ({
   setEquipmentLeaseInfo,
   setContactInfo,
   flowType,
-  profile,
 }) => {
   const ContactInfoBlock = quoteUserType === 'vendor' && flowType === 'instaQuote' ? 
     ContactInfoVendorBlock : 
@@ -65,17 +64,10 @@ const SimplePage: React.FC<SimplePageProps> = ({
   const currentFlow = flowType || 'instaQuote';
 
   let topBar;
-  let defaultPath = routes.instaQuote.userSelection;
   if(currentFlow === 'createQuote') {
     topBar = (<TopBar
       className={styles.topBar}
       showBackButton={true} />);
-    
-    if(profile?.userType === 'customer') {
-      defaultPath = routes.createQuote.getQuote;
-    } else {
-      defaultPath = routes.createQuote.typeSelection;
-    }
   }
 
   return (
@@ -103,7 +95,6 @@ const SimplePage: React.FC<SimplePageProps> = ({
               className={styles.block}
               equipmentLeaseInfo={equipmentLeaseInfo}
               setEquipmentLeaseInfo={setEquipmentLeaseInfo}
-              profile={profile}
               />
           </Route>
           <Route exact 
@@ -135,7 +126,7 @@ const SimplePage: React.FC<SimplePageProps> = ({
               routes.instaQuote.invalid,
               routes.createQuote.invalid,
             ]}>
-            <Redirect to={defaultPath}/>
+            <Redirect to={'/'}/>
           </Route>
         </Switch>
       </div>

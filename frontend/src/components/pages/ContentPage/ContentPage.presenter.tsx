@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
+import { Profile } from '../../../modules/profile/types';
 import { ContentFilter, ContentTypeTabs } from '../../../modules/types';
 import { ContentPageProps } from './ContentPage';
 
 export type ContentPagePresenterProps = ContentPageProps & {
+  profile?: Profile | null;
 };
 
 const withPresenter = (
@@ -13,6 +15,7 @@ const withPresenter = (
     const [searchQuery, setSearchQuery] = useState('');
     const [statusFilter, setStatusFilter] = useState<ContentFilter>('all');
     const { state, pathname } = useLocation<{statusFilter: ContentFilter}>();
+    const { profile } = props;
 
     useEffect(() => {
       if(state) {
@@ -33,6 +36,7 @@ const withPresenter = (
           statusFilter={statusFilter}
           setStatusFilter={setStatusFilter}
           tab={tab}
+          profile={profile}
           />;
   };
   return Presenter;

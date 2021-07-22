@@ -8,7 +8,7 @@ import Text, { TextProps } from '../../atoms/Text';
 import RadioField, { RadioFieldProps } from '../../molecules/RadioField';
 import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
-import { BusinessType } from '../../../modules/types';
+import { ApplicationBusinessInfo } from '../../../modules/types';
 
 export const defaultProps = {
   stepper: {
@@ -137,12 +137,11 @@ export type BusinessTypeBlockProps = {
   disclaimerText?: TextProps;
   nextButton?: ButtonProps;
   className?: string;
-  setBusinessTypeInfo?: React.Dispatch<React.SetStateAction<BusinessType>>;
-  showAdditionalFormFields?: boolean;
-  businessTypeInfomation?: BusinessType;
-  stepperCurrentValue?: number,
-  setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
-  stepperTotalValue?: number,
+  setBusinessInfo?: (businessInfo: ApplicationBusinessInfo) => void;
+  businessInfo?: ApplicationBusinessInfo;
+  stepperCurrentValue?: number;
+  stepperTotalValue?: number;
+  showBusinessQuestions?: boolean;
 };
 
 const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
@@ -156,12 +155,12 @@ const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
   disclaimerText,
   nextButton,
   className,
-  showAdditionalFormFields,
+  showBusinessQuestions,
 }) => {
-  let additionalFormFields;
-  if(showAdditionalFormFields) {
-    additionalFormFields = (
-      <div className={styles.form}>
+  let businessFormFields;
+  if(showBusinessQuestions) {
+    businessFormFields = (
+      <>
          <TextField
             className={styles.businessPhoneField}
             {...sinField} />
@@ -177,7 +176,7 @@ const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
           <Text
             className={styles.disclaimerText}
             {...disclaimerText} />
-      </div>
+      </>
     );
   }
  return (
@@ -195,7 +194,7 @@ const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
           <RadioField
             className={styles.businessTypeRadioField}
             {...businessTypeRadioField} />
-          {additionalFormFields}
+          {businessFormFields}
           <Button
             className={styles.nextButton}
             {...nextButton} />
