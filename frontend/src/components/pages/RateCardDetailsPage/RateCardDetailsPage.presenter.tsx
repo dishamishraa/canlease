@@ -4,7 +4,7 @@ import { Rate } from '../../../modules/rateCard/types';
 import { defaultProps as defaultRateCardTableProps, RateCardTableProps } from '../../blocks/RateCardTable/RateCardTable';
 import { RateCardTableItemListProps } from '../../organisms/RateCardTableItemList';
 import { RateCardDetailsPageProps, defaultProps } from './RateCardDetailsPage';
-import { ButtonProps, defaultProps as defaultButtonProps } from '../../atoms/Button/Button';
+import { RateCardTableItemProps, defaultProps as defaultRteCardTableItemProps } from '../../molecules/RateCardTableItem/RateCardTableItem';
 
 
 export type RateCardDetailsPagePresenterProps = RateCardDetailsPageProps & {
@@ -65,28 +65,62 @@ const withPresenter = (
             },
         };
 
-        const addButton = {
-            ...defaultButtonProps,
-            type: 'IconTextButton',
-            text: {
-                ...defaultButtonProps.text,
-                style: 'Brand500',
-                value: t('rate_card_table.addButton')
-            },
-            icon: {
-                ...defaultButtonProps.icon,
-                style: 'Brand500'
-            },
-            fill: 'None',
-            colour: 'Basic',
-        } as ButtonProps;
+        const rateCardTableItems: RateCardTableItemProps[] = [];
+
+        rates?.forEach((rate) => {
+            const { term, minmonthlyreturn, maxmonthlyreturn, regularir, tenatendir } = rate;
+            const rateCardTableItem: RateCardTableItemProps = {
+                ...defaultRteCardTableItemProps,
+                type: 'Default',
+                term: {
+                    ...defaultRteCardTableItemProps.term,
+                    value: term,
+                },
+                minMonthlyReturn: {
+                    ...defaultRteCardTableItemProps.minMonthlyReturn,
+                    value: minmonthlyreturn,
+                },
+                maxMonthlyReturn: {
+                    ...defaultRteCardTableItemProps.maxMonthlyReturn,
+                    value: maxmonthlyreturn,
+                },
+                interestRate: {
+                    ...defaultRteCardTableItemProps.interestRate,
+                    value: regularir,
+                },
+                tenAtEndOfInterestRate: {
+                    ...defaultRteCardTableItemProps.tenAtEndOfInterestRate,
+                    value: tenatendir,
+                },
+                editButton: {
+                    ...defaultRteCardTableItemProps.editButton,
+                    onButtonClicked: () => {
+                        console.log('edit');
+                    },
+                },
+                deleteButton: {
+                    ...defaultRteCardTableItemProps.deleteButton,
+                    onButtonClicked: () => {
+                        console.log('delete');
+                    },
+                },
+            };
+            rateCardTableItems.push(rateCardTableItem);
+        })
 
         const rateCardTableItemList = {
             ...defaultRateCardTableProps.rateCardTableItemList,
             rateCardTableItems: [
+                ...rateCardTableItems,
                 {
                     type: 'Empty',
-                    button: addButton,
+                    button: {
+                        ...defaultRteCardTableItemProps.button,
+                        text: {
+                            ...defaultRteCardTableItemProps.button.text,
+                            value: t('rate_card_table.addButton')
+                        },
+                    },
                 }
             ]
         } as RateCardTableItemListProps;

@@ -9,32 +9,32 @@ import Button, { ButtonProps } from '../../atoms/Button';
 export type RateCardTableItemTypeType = 'Default' | 'Empty';
 
 export const defaultProps = {
-  type: 'Empty' as RateCardTableItemTypeType,
-  companyName: {
+  type: 'Default' as RateCardTableItemTypeType,
+  term: {
     style: 'Basic600',
     align: 'Right',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
-  contactName: {
+  minMonthlyReturn: {
     style: 'Basic600',
     align: 'Right',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
-  status: {
+  maxMonthlyReturn: {
     style: 'Basic600',
     align: 'Right',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
-  createOn: {
+  interestRate: {
     style: 'Basic600',
     align: 'Right',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
-  assetName: {
+  tenAtEndOfInterestRate: {
     style: 'Basic600',
     align: 'Right',
     size: 'Medium',
@@ -62,7 +62,7 @@ export const defaultProps = {
   } as ButtonProps,
   button: {
     type: 'IconTextButton',
-    size: 'Small',
+    size: 'Medium',
     fill: 'None',
     colour: 'Basic',
     icon: {
@@ -80,11 +80,11 @@ export const defaultProps = {
 
 export type RateCardTableItemProps = {
   type?: RateCardTableItemTypeType;
-  companyName?: TextProps;
-  contactName?: TextProps;
-  status?: TextProps;
-  createOn?: TextProps;
-  assetName?: TextProps;
+  term?: TextProps;
+  minMonthlyReturn?: TextProps;
+  maxMonthlyReturn?: TextProps;
+  interestRate?: TextProps;
+  tenAtEndOfInterestRate?: TextProps;
   editButton?: ButtonProps;
   deleteButton?: ButtonProps;
   className?: string;
@@ -93,11 +93,11 @@ export type RateCardTableItemProps = {
 
 const RateCardTableItem: React.FC<RateCardTableItemProps> = ({
   type,
-  companyName,
-  contactName,
-  status,
-  createOn,
-  assetName,
+  term,
+  minMonthlyReturn,
+  maxMonthlyReturn,
+  interestRate,
+  tenAtEndOfInterestRate,
   editButton,
   deleteButton,
   className,
@@ -105,40 +105,40 @@ const RateCardTableItem: React.FC<RateCardTableItemProps> = ({
 }) => {
   const currentStyle = styles[`rateCardTableItem${type}`];
 
-  let companyNameView;
-  let buttonView;
-  let contactNameView;
-  let statusView;
-  let createOnView;
-  let assetNameView;
+  let termView;
+  let minMonthlyReturnView;
+  let maxMonthlyReturnView;
+  let interestRateView;
+  let tenAtEndOfInterestRateView;
   let buttonGroupView;
+  let buttonView;
 
   switch (type) {
     case 'Default':
-      companyNameView = (
+      termView = (
         <Text
-          className={styles.companyName}
-          {...companyName} />
+          className={styles.term}
+          {...term} />
       );
-      contactNameView = (
+      minMonthlyReturnView = (
         <Text
-          className={styles.contactName}
-          {...contactName} />
+          className={styles.minMonthlyReturn}
+          {...minMonthlyReturn} />
       );
-      statusView = (
+      maxMonthlyReturnView = (
         <Text
-          className={styles.status}
-          {...status} />
+          className={styles.maxMonthlyReturn}
+          {...maxMonthlyReturn} />
       );
-      createOnView = (
+      interestRateView = (
         <Text
-          className={styles.createOn}
-          {...createOn} />
+          className={styles.interestRate}
+          {...interestRate} />
       );
-      assetNameView = (
+      tenAtEndOfInterestRateView = (
         <Text
-          className={styles.assetName}
-          {...assetName} />
+          className={styles.tenAtEndOfInterestRate}
+          {...tenAtEndOfInterestRate} />
       );
       buttonGroupView = (
         <div className={styles.buttonGroup}>
@@ -162,12 +162,12 @@ const RateCardTableItem: React.FC<RateCardTableItemProps> = ({
 
   return (
     <div className={cx(currentStyle, className)}>
-      {companyNameView}
+      {termView}
       {buttonView}
-      {contactNameView}
-      {statusView}
-      {createOnView}
-      {assetNameView}
+      {minMonthlyReturnView}
+      {maxMonthlyReturnView}
+      {interestRateView}
+      {tenAtEndOfInterestRateView}
       {buttonGroupView}
     </div>
   );

@@ -16,7 +16,7 @@
   }
   background-color: rgb(255, 255, 255);
 
-  .companyName {
+  .term {
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -29,7 +29,7 @@
     }
   }
 
-  .contactName {
+  .minMonthlyReturn {
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -42,7 +42,7 @@
     }
   }
 
-  .status {
+  .maxMonthlyReturn {
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -55,7 +55,7 @@
     }
   }
 
-  .createOn {
+  .interestRate {
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -68,7 +68,7 @@
     }
   }
 
-  .assetName {
+  .tenAtEndOfInterestRate {
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -82,7 +82,8 @@
   }
 
   .buttonGroup {
-    overflow: hidden;
+    margin-left: 1.5rem;
+    overflow: visible;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
