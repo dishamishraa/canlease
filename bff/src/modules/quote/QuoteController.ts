@@ -76,8 +76,8 @@ export default class QuoteController implements QuoteControllerContract {
       quoteOptions,
     });
 
-    if(payload.sendEmail) {
-      if(isCreateQuoteCustomer(payload)) {
+    if (payload.sendEmail) {
+      if (isCreateQuoteCustomer(payload)) {
         await this.sendQuote({
           companyName: payload.contactBusinessName,
           submittedBy: `${payload.contactName} (${payload.contactEmail}`,
