@@ -98,7 +98,7 @@ const withPresenter = (
     };
 
     const contextualMenuItems: ContextualMenuItemProps[] = [];
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i <= 12; i++) {
       contextualMenuItems.push({
         text: {
           ...defaultMenuItemProps.text,
