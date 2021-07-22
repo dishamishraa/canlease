@@ -25,7 +25,10 @@ describe('QuoteController', () => {
 
   // describe('createQuote', () => {
   //   it('should call service with payload to create quote', async () => {
-  //     rateCardService.getRateCards.mockReturnValue([{ cardtype: 'e card' }, { cardtype: 'v card' }]);
+  // rateCardService.getRateCards.mockReturnValue([
+  //   { cardtype: 'e card' },
+  //   { cardtype: 'v card' }
+  // ]);
   //     rateCardService.getRates.mockReturnValue([{
   //       term: 12,
   //       minmonthlyreturn: 0,

@@ -26,9 +26,12 @@ export default class QuoteController implements QuoteControllerContract {
       throw NotFoundError('no matching rate card');
     }
     const rateCardRates = await this.rateCardService.getRates(rateCard.id);
-    return rateCardRates.filter(({ minmonthlyreturn, maxmonthlyreturn }) => {
-      return applicationAmount >= minmonthlyreturn && applicationAmount < maxmonthlyreturn 
-    }).sort((rate1, rate2) => rate1.term - rate2.term);
+    return rateCardRates.filter(
+      (
+        { minmonthlyreturn, maxmonthlyreturn },
+      ) => applicationAmount >= minmonthlyreturn && applicationAmount < maxmonthlyreturn,
+    )
+      .sort((rate1, rate2) => rate1.term - rate2.term);
   }
 
   getCardType(payload: CreateQuote): string {
