@@ -14,8 +14,8 @@ import SimplePage from '../../pages/SimplePage';
 import MenuBlock from '../../blocks/MenuBlock';
 import { useContext } from 'react';
 import { AuthContext } from '../../../modules/auth';
-import ProfilePage from '../../pages/ProfilePage';
 import RateCardPage from '../../pages/RateCardPage';
+import ProfilePage from '../../pages/ProfilePage';
 import RateCardDetailsPage from '../../pages/RateCardDetailsPage';
 
 export const defaultProps = {
@@ -99,6 +99,10 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
             </Route>
             <Route path={routes.application}>
               <ApplicationPage
+                className={styles.page} />
+            </Route>
+            <Route path={routes.ratecard}>
+              <RateCardPage
                 className={styles.page} />
             </Route>
             <Route path={routes.profile}>
