@@ -183,7 +183,7 @@
             },
             "asset_header": "Asset information",
             "profile_header": "Profile information",
-            "profile_description": "<p> We will using your profile information as part of our application process. Please <a href=\"https://canlease.net/contact/\" target=\"_blank\"> contact Canlease </a> to make changes to your profile info. </p>",
+            "profile_description": "<p> We will be using your profile information as part of our application process. Please <a href=\"https://canlease.net/contact/\" target=\"_blank\"> contact Canlease </a> to make changes to your profile info. </p>",
             "personal_information_header": "Personal information",
             "contact_information_header": "Contact information",
             "business_information_header": "Business information"
@@ -418,7 +418,7 @@
     },
     "profile_page": {
         "header": "Profile information",
-        "description": "<p> We will using your profile information as part of our application process. Please <a href=\"https://canlease.net/contact/\" target=\"_blank\"> contact Canlease </a> to make changes to your profile info. </p>",
+        "description": "<p> We will be using your profile information as part of our application process. Please <a href=\"https://canlease.net/contact/\" target=\"_blank\"> contact Canlease </a> to make changes to your profile info. </p>",
         "personal_info": {
             "header": "Personal information",
             "label": {

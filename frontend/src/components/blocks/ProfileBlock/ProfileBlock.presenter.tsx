@@ -14,7 +14,8 @@ const withPresenter = (
   const Presenter: React.FC<ProfileBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
     const {
-      profile
+      profile,
+      className,
     } = props;
     let personalDetails: QuoteDetailItemProps[] = [];
     let contactDetails: QuoteDetailItemProps[] = [];
@@ -126,6 +127,7 @@ const withPresenter = (
     return (
         <View
           {...profileBlockProps}
+          className={className}
         />);
     }
 

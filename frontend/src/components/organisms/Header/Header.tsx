@@ -49,7 +49,7 @@ export type HeaderProps = {
   userProfile?: UserProfileProps;
   divider?: DividerProps;
   className?: string;
-  SetShowMenu?: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowMenu?: React.Dispatch<React.SetStateAction<boolean>>;
   showMenu?: boolean;
 };
 
@@ -60,7 +60,7 @@ const Header: React.FC<HeaderProps> = ({
   userProfile,
   divider,
   className,
-  SetShowMenu,
+  setShowMenu,
   showMenu,
 }) => {
   const currentStyle = styles[`header${type}`];
@@ -78,11 +78,11 @@ const Header: React.FC<HeaderProps> = ({
       const menuIcon: IconProps = {
         ...defaultProps.icon,
         onIconClicked: () => {
-          if (SetShowMenu) {
+          if (setShowMenu) {
             if(!showMenu){
-              SetShowMenu(true)
+              setShowMenu(true)
             } else {
-              SetShowMenu(false)
+              setShowMenu(false)
             }
           }
         }

@@ -71,7 +71,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
   const userType = profile?.userType || 'customer';
   const DashboardPage = userType === 'customer' ? EndUserDashboardPage : VendorDashboardPage;
 
-  const [showMenu, SetShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   let menuBlockDisplay; 
   if (showMenu === true) {
@@ -87,7 +87,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
       <Header
         className={styles.header}
         {...header} 
-        SetShowMenu={SetShowMenu}
+        setShowMenu={setShowMenu}
         showMenu={showMenu}
         />
       <div className={styles.body}>
