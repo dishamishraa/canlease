@@ -83,7 +83,7 @@ const withPresenter = (
                 },
                 vendorNameText:{
                     ...dashBoardCardProps.vendorNameText,
-                    value: "vendor name"
+                    value: t('customer_dashboard.vendor_name'),
                 },
                 numberText: {
                     ...dashBoardCardProps.numberText,
@@ -156,7 +156,7 @@ const withPresenter = (
                 },
                 vendorNameText:{
                     ...dashBoardCardProps.vendorNameText,
-                    value: "vendor name"
+                    value: t('customer_dashboard.vendor_name'),
                 },
                 numberText: {
                     ...dashBoardCardProps.numberText,

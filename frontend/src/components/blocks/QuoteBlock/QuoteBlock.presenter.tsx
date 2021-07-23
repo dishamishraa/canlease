@@ -322,7 +322,7 @@ const withPresenter = (
         ...defaultProps.saveQuoteButton,
         text: {
           ...defaultProps.saveQuoteButton.text,
-          value: 'Apply on Customer’s behalf', // TODO localize 
+          value: t('view_quote.apply_for_customer_button_text'),
         },
         onButtonClicked: handleApplyForFinance('Customer'),
         disabled: quoteExpired,

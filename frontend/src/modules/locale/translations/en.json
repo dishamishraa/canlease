@@ -76,6 +76,7 @@
         "apply_button_text": "Apply for Finance",
         "save_quote_button_text": "Save Quote",
         "send_quote_button_text": "Send Quote",
+        "apply_for_customer_button_text": "Apply for Customer",
         "quote_rate_section_heading_text": "Quote details",
         "quote_detail":{
             "application_amount": {
@@ -256,6 +257,8 @@
     },
     "contact_information":{
         "header": "Contact information",
+        "first_name": "First name",
+        "last_name": "Last name",
         "province": {
             "0": "Alberta (AB)",
             "1": "British Columbia (BC)",
@@ -388,7 +391,8 @@
         "view_button": "VIEW",
         "see_all_button": "SEE ALL",
         "create_quote": "CREATE QUOTE",
-        "apply_finance": "APPLY FOR FINANCE"
+        "apply_finance": "APPLY FOR FINANCE",
+        "vendor_name": "vendor name"
     },
     "rate_cards": {
         "heading": "Rate card",
