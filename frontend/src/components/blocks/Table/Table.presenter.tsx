@@ -62,7 +62,7 @@ const getApplicationStatus = ({ applicationStatus }: CreditApplication): Content
 };
 
 const getCurrentItems = (
-  contentType: ContentType | undefined, quotes: Quote[] | null, portfolio: Portfolio | null, tab: ContentTypeTabs | undefined
+  contentType: ContentType | undefined, quotes: Quote[] | null, portfolio: Portfolio | null
 ): TableItem[] => {
   let items: TableItem[] = [];
   switch(contentType) {
@@ -147,7 +147,7 @@ const withPresenter = (
     const { t } = useTranslation();
     const history = useHistory();
 
-    const currentItems =  getCurrentItems(contentType, quotes, portfolio, tab);
+    const currentItems =  getCurrentItems(contentType, quotes, portfolio);
     const filteredItems = filterItems(currentItems, searchQuery, statusFilter);
 
     const tableItemListProps: TableItemListProps = {
