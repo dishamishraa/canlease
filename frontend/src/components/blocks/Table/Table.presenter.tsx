@@ -182,7 +182,7 @@ const withPresenter = (
             value: cost,
           },
           onTableItemClicked: () => {
-            history.push(link, linkState);
+            history.push(link, { fromTab: tab,  ...linkState });
           },
         }
       }),
