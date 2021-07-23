@@ -61,9 +61,8 @@ export const routes = {
   quote: '/portal/quote',
   profile: '/portal/profile',
   ratecard: '/portal/ratecard',
+  ratecardDetail: '/portal/ratecard/:rateId',
   invalid: '/',
-  // temporary route for validation purpose
-  detail: '/portal/ratecardDetail/:rateId'
 };
 
 const PortalLayout: React.FC<PortalLayoutProps> = ({
@@ -105,12 +104,12 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
               <RateCardPage
                 className={styles.page} />
             </Route>
-            <Route path={routes.profile}>
-              <ProfilePage
+            <Route path={routes.ratecardDetail}>
+              <RateCardDetailsPage
                 className={styles.page} />
             </Route>
-            <Route path={routes.detail}>
-              <RateCardDetailsPage
+            <Route path={routes.profile}>
+              <ProfilePage
                 className={styles.page} />
             </Route>
             <Route path={routes.invalid}>

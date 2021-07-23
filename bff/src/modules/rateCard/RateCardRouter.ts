@@ -21,9 +21,7 @@ export function createRateCardRouter(controllers: {
     if (!validateId(id)) {
       throw BadRequestError();
     }
-    // const data = await rateCardController.getRateCard(Number(id));
-    // TODO: remove
-    const data = mockRateCard;
+    const data = await rateCardController.getRateCard(Number(id));
     res.status(200).send(data);
   }));
 
@@ -60,9 +58,7 @@ export function createRateCardRouter(controllers: {
     if (!validateId(rateCardId)) {
       throw BadRequestError();
     }
-    // const data = await rateCardController.getRates(Number(rateCardId));
-    // TODO: remove
-    const data = mockRates;
+    const data = await rateCardController.getRates(Number(rateCardId));
     res.status(200).send(data);
   }));
 
