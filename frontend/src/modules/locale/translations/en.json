@@ -257,6 +257,8 @@
     },
     "contact_information":{
         "header": "Contact information",
+        "first_name": "First name",
+        "last_name": "Last name",
         "province": {
             "0": "Alberta (AB)",
             "1": "British Columbia (BC)",
