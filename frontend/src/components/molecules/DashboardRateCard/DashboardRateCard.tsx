@@ -29,6 +29,26 @@ export const defaultProps = {
       type: 'ButtonGiant',
     },
   } as ButtonProps,
+  viewButton: {
+    type: 'Button',
+    size: 'Small',
+    text: {
+      style: 'Brand500',
+      align: 'Center',
+      size: 'Small',
+      type: 'ButtonGiant',
+    },
+  } as ButtonProps,
+  deleteButton: {
+    type: 'Button',
+    size: 'Small',
+    text: {
+      style: 'Red200',
+      align: 'Center',
+      size: 'Small',
+      type: 'ButtonGiant',
+    },
+  } as ButtonProps,
 };
 
 export type DashboardRateCardProps = {
@@ -37,6 +57,8 @@ export type DashboardRateCardProps = {
   button?: ButtonProps;
   className?: string;
   image?: ImageProps;
+  deleteButton?: ButtonProps;
+  viewButton?: ButtonProps;
 };
 
 const DashboardRateCard: React.FC<DashboardRateCardProps> = ({
@@ -45,6 +67,8 @@ const DashboardRateCard: React.FC<DashboardRateCardProps> = ({
   button,
   className,
   image,
+  deleteButton,
+  viewButton,
 }) => {
   const currentStyle = styles[`dashboardRateCard${type}`];
 
@@ -64,10 +88,10 @@ const DashboardRateCard: React.FC<DashboardRateCardProps> = ({
         <div className={styles.bottamContent}>
           <Button
             className={styles.button}
-            {...button} />
+            {...viewButton} />
           <Button
             className={styles.button}
-            {...button} />
+            {...deleteButton} />
         </div>
       );
       break;

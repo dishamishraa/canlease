@@ -18,14 +18,6 @@ const withPresenter = (
     
     const { t } = useTranslation();
 
-    const { setStepperTotalValue } = props
-
-    useEffect(() => {
-      if (setStepperTotalValue){
-        setStepperTotalValue(0);
-      }
-    }, [setStepperTotalValue])
-
     const blockHeading = {
       ...defaultProps.blockHeading,
       value: t('lease_info_block.header'),

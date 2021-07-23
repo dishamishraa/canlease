@@ -51,11 +51,11 @@ const withPresenter = (
 
     const handleClickNext = async () => {
       if (equipmentName && equipmentCost && setEquipmentLeaseInfo) {
-        let leaseInfo = {
+        let leaseInfo: EquipmentLeaseInfo = {
           name: equipmentName,
           cost: equipmentCost,
           leaseType: equipmentLeaseType,
-        } as EquipmentLeaseInfo;
+        };
         if (profile?.userType === 'rep' && equipmentRatecard && equipmentFees){
           leaseInfo = {
             ...leaseInfo,

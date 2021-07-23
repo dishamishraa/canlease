@@ -20,6 +20,8 @@ const withPresenter = (
       setSearchQuery,
       statusFilter,
       setStatusFilter,
+      tab,
+      profile
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
@@ -48,6 +50,28 @@ const withPresenter = (
       },
     };
 
+    const getButtonText = () => {
+      if(contentType === "Application"){
+        switch(tab) {
+          case "Customer":
+            return t('top_action_block.button.customer_application');
+          case "Personal":
+            return t('top_action_block.button.personal_application');
+        }
+      } else {
+        switch(tab) {
+          case "Customer":
+            return t('top_action_block.button.customer_quote');;
+          case "Personal":
+            if(profile?.userType === "customer"){
+              return t('top_action_block.button.personal_quote.customer');;
+            } else {
+              return t('top_action_block.button.personal_quote.vendor');;
+            }
+        }
+      }
+    }
+    
     const topActionBlockProps: TopActionBlockProps = {
       ...defaultProps,
       textInput: {
@@ -74,15 +98,11 @@ const withPresenter = (
       button: {
         ...defaultProps.button,
         onButtonClicked: () => {
-          if(contentType === 'Application') {
-            history.push('/portal/application/userSelection')
-          } else {
-            history.push('/portal/quote');
-          }
+          history.push('/portal/quote/getQuote', { fromTab: tab });
         },
         text: {
           ...defaultProps.button.text,
-          value: contentType === 'Application' ? t('view_quote.apply_button_text') : 'Create Quote', // TODO localize
+          value: getButtonText(),
         },
 
       },

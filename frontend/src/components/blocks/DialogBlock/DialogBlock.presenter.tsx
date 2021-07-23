@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { defaultProps, DialogBlockProps } from './DialogBlock';
 import EmailImage from '../../../resources/images/email_verification.png';
 import DefaultImage from '../../../resources/images/Image.png';
 import { APIResponse } from '../../../lib/api/types';
+import { CreateApplicationState } from '../../../modules/types';
 
 export type DialogBlockPresenterProps = DialogBlockProps & {
   resendVerifyAccount: (email: string) => Promise<APIResponse<void>>;
@@ -33,6 +34,8 @@ const withPresenter = (
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
+    const { state: locationState } = useLocation<CreateApplicationState | undefined>();
+    const { fromTab } = locationState || {};
     let imageDisplay = DefaultImage;
     const defaultDisplay: DialogBlockTextDisplay = {
       header: '',
@@ -58,7 +61,12 @@ const withPresenter = (
         defaultDisplay.description = t('application_form.application_submitted.description');
         defaultDisplay.questionText = '';
         defaultDisplay.resolutionText = '';
-        defaultDisplay.url = '/portal/applications';
+        if (fromTab === 'Customer'){
+          defaultDisplay.url = '/portal/applications/customer';
+        }
+        else {
+          defaultDisplay.url = '/portal/applications';
+        }
         break;
     }
 

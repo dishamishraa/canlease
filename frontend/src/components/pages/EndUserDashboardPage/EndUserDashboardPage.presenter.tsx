@@ -96,7 +96,7 @@ const withPresenter = (
                     value: t('customer_dashboard.view_button'),
                   },
                   onButtonClicked: () => {
-                    history.push(`/portal/quote/${quoteId}`)
+                    history.push(`/portal/quote/${quoteId}`);
                   }
                 }
             }
@@ -119,7 +119,7 @@ const withPresenter = (
                   value: t('customer_dashboard.create_quote'),
                 },
                 onButtonClicked: () => {
-                  history.push('/portal/quote');
+                  history.push('/portal/quote/getQuote');
                 }
             }
         }
@@ -169,7 +169,7 @@ const withPresenter = (
                     value: t('customer_dashboard.view_button'),
                   },
                   onButtonClicked: () => {
-                    // TODO view application
+                    history.push(`/portal/application/${creditAppNumber}`);
                   }
                 }
             }
@@ -183,18 +183,18 @@ const withPresenter = (
             ...dashBoardCardProps,
             type:"CreateQuoteCard",
             image:{
-                image: ""
+                image: CreateQuote,
             },
             button: {
-                ...dashBoardCardProps.button,
-                text: {
-                  ...dashBoardCardProps.button.text,
-                  value: t('customer_dashboard.apply_finance'),
-                },
-                onButtonClicked: () => {
-                  // TODO
-                }
-            }
+              ...dashBoardCardProps.button,
+              text: {
+                ...dashBoardCardProps.button.text,
+                value: t('customer_dashboard.create_quote'),
+              },
+              onButtonClicked: () => {
+                history.push('/portal/quote/getQuote');
+              }
+          }
         }
         applicationArray.push(applyForFinance);
       }

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useLocation } from 'react-router-dom';
 import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { ClickableRateCardProps } from '../../molecules/ClickableRateCard';
 import { DetailsSectionProps } from '../../organisms/DetailsSection';
@@ -8,15 +7,10 @@ import { QuoteSelectionBlockProps , defaultProps} from './QuoteSelectionBlock';
 import { defaultProps as defaultRateDetailItemProps } from '../../molecules/RateDetailItem/RateDetailItem';
 import { Quote, QuoteOption } from '../../../modules/quote/types';
 import { convertMonth, getStretchMonth } from '../../../lib/utils';
+import { useState } from 'react';
 
 export type QuoteSelectionBlockPresenterProps = QuoteSelectionBlockProps & {
     quoteDetails: Quote | null;
-    setQuoteSelected?: React.Dispatch<React.SetStateAction<QuoteOption>>;
-    quoteSelected?: QuoteOption;
-    stepperCurrentValue?: number,
-    setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
-    stepperTotalValue?: number,
-    setStepperTotalValue?: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const withPresenter = (
@@ -29,24 +23,33 @@ const withPresenter = (
       setQuoteSelected,
       quoteSelected,
       stepperCurrentValue,
-      setStepperCurrentValue,
       stepperTotalValue,
-      setStepperTotalValue,
     } = props;
-
     const { t } = useTranslation();
-    const history = useHistory();
-
-    const clickableRateCardsArray: ClickableRateCardProps[] = [];
+    const [quoteOption, setQuoteOption] = useState<QuoteOption | undefined>(quoteSelected);
   
-    let detailsSectionProps: DetailsSectionProps = {};
-    const handleClick = (quoteOption) => (event: any) => {
-      if (setQuoteSelected){
-        setQuoteSelected(quoteOption);
+    const handleQuoteOptionClick = (quoteOption: QuoteOption) => () => {
+     setQuoteOption(quoteOption);
+    }
+
+    const nextClicked = () => {
+      if(quoteDetails && quoteOption && setQuoteSelected) {
+        setQuoteSelected(quoteDetails, quoteOption);
+      }
+    };
+
+    const isFormValid = () => {
+      if (quoteOption){
+        const {financeRate, monthlyAmount, term } = quoteOption;
+        if (financeRate && monthlyAmount && term) {
+          return true;
+        }
+        return false;
       }
     }
-    const isEqual = (firstObject, secondObject) => {
-     for(let key in firstObject) {
+
+    const isEqual = (firstObject: any, secondObject: any) => {
+      for(let key in firstObject) {
         let firstValue = firstObject[key];
         let secondValue = secondObject[key];
         if (firstValue != secondValue){
@@ -55,30 +58,9 @@ const withPresenter = (
       }
       return true;
     }
-    
-    const handleState = (quoteOption) => {
-      if (isEqual(quoteSelected, quoteOption)){
-        return 'Selected';
-      }
-      return 'Default';
-    }
-    const nextClicked = () => {
-      if (isFormValid() && setStepperCurrentValue && stepperCurrentValue) {
-        setStepperCurrentValue(stepperCurrentValue + 1);
-        history.push('/portal/application/assetInfo');
-      }
-    };
 
-    const isFormValid = () => {
-      if (quoteSelected){
-        const {financeRate, monthlyAmount, term } = quoteSelected
-        if (financeRate && monthlyAmount && term) {
-          return true;
-        }
-        return false;
-      }
-    }
-
+    let detailsSectionProps: DetailsSectionProps = {};
+    const clickableRateCardsArray: ClickableRateCardProps[] = [];
     if (quoteDetails) {
       const {
         applicationAmount, asset, quoteId, leaseType,
@@ -128,15 +110,15 @@ const withPresenter = (
         },
       }
 
-      quoteDetails.quoteOptions.forEach((quoteOption) => {
+      quoteDetails.quoteOptions.forEach((option) => {
         const {
           term: termString, monthlyAmount, financeRate,
-        } = quoteOption;
+        } = option;
         const term = convertMonth(termString);
 
         const clickableRateCardProps: ClickableRateCardProps = {
-          onRateCardClicked: handleClick(quoteOption),
-          state: handleState(quoteOption),
+          onRateCardClicked: handleQuoteOptionClick(option),
+          state: quoteOption && isEqual(quoteOption, option) ? 'Selected' : 'Default',
           rateDetailItemList:{
             rateDetailItems: [
               {
@@ -188,8 +170,6 @@ const withPresenter = (
         };
         clickableRateCardsArray.push(clickableRateCardProps);
       });
-
-
     }
 
     const quoteSelectionBlockProps: QuoteSelectionBlockProps = {

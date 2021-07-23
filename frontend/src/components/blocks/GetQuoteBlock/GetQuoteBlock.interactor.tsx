@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../../modules/auth';
-import useRateCards from '../../../modules/rateCard/useRateCards';
+import React from 'react';
+import { useGetRateCards } from '../../../modules/rateCard/index';
 import { GetQuoteBlockProps } from './GetQuoteBlock';
 import { GetQuoteBlockPresenterProps } from './GetQuoteBlock.presenter';
 
@@ -9,10 +8,11 @@ const withInteractor = (
 ): React.FC<GetQuoteBlockProps> => {
   const Interactor: React.FC<GetQuoteBlockProps> = (props) => {
     const { profile } = props;
-    const { data: rateCards } = useRateCards();
+    const { data: rateCards } = useGetRateCards();
     return (
       <Presenter
         {...props}
+        profile={profile}
         rateCards={rateCards}
       />
   )};

@@ -6,6 +6,7 @@ import TopBlock, { TopBlockProps } from '../../blocks/TopBlock';
 import TopActionBlock, { TopActionBlockProps } from '../../blocks/TopActionBlock';
 import Table, { TableProps } from '../../blocks/Table';
 import { ContentFilter, ContentTypeTabs } from '../../../modules/types';
+import { Profile } from '../../../modules/profile/types';
 
 export const defaultProps = {
   topBlock: {
@@ -114,6 +115,7 @@ export type ContentPageProps = {
   statusFilter?: ContentFilter;
   setStatusFilter?: React.Dispatch<React.SetStateAction<ContentFilter>>;
   tab?: ContentTypeTabs;
+  profile?: Profile | null;
 };
 
 const routes = {
@@ -133,6 +135,7 @@ const ContentPage: React.FC<ContentPageProps> = ({
   statusFilter,
   setStatusFilter,
   tab,
+  profile
 }) => (
     <div className={cx(styles.contentPage, className)}>
       <Switch>
@@ -149,7 +152,9 @@ const ContentPage: React.FC<ContentPageProps> = ({
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
             statusFilter={statusFilter}
-            setStatusFilter={setStatusFilter}/>
+            setStatusFilter={setStatusFilter}
+            tab={tab} 
+            profile={profile} />
           <Table
             className={styles.table}
             {...table}
@@ -163,7 +168,8 @@ const ContentPage: React.FC<ContentPageProps> = ({
             className={styles.topBlock}
             {...topBlock}
             contentType='Application'
-            tab={tab}/>
+            tab={tab}
+            />
           <TopActionBlock
             className={styles.topActionBlock}
             {...topActionBlock}
@@ -171,7 +177,9 @@ const ContentPage: React.FC<ContentPageProps> = ({
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
             statusFilter={statusFilter}
-            setStatusFilter={setStatusFilter}/>
+            setStatusFilter={setStatusFilter}
+            tab={tab}
+            profile={profile}/>
           <Table
             className={styles.table}
             {...table}

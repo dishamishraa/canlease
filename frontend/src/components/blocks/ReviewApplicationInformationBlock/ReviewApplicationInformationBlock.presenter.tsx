@@ -1,23 +1,15 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
 import { ReviewApplicationInformationBlockProps, defaultProps } from './ReviewApplicationInformationBlock';
 import { DetailsSectionProps } from '../../organisms/DetailsSection';
 import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
-import { AssetInfo, BusinessType } from '../../../modules/types';
 import { Profile } from '../../../modules/profile/types';
-import { Quote, QuoteOption } from '../../../modules/quote/types';
 import { convertMonth, getStretchMonth } from '../../../lib/utils';
+import { useHistory, useLocation } from 'react-router';
+import { ApplicationBusinessInfoVendor, CreateApplicationState } from '../../../modules/types';
 
 export type ReviewApplicationInformationBlockPresenterProps = ReviewApplicationInformationBlockProps & {
-    quoteIdDetails: Quote | null;
-    quoteSelected?: QuoteOption;
-    assetInfo?: AssetInfo;
-    businessTypeInfo?: BusinessType;
     profile: Profile | null;
-    stepperCurrentValue?: number,
-    setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
-    stepperTotalValue?: number,
 };
 
 const withPresenter = (
@@ -25,19 +17,21 @@ const withPresenter = (
   ): React.FC<ReviewApplicationInformationBlockPresenterProps> => {
     const Presenter: React.FC<ReviewApplicationInformationBlockPresenterProps> = (props) => {
     const {
-      quoteIdDetails,
+      quoteDetailsSelected,
       className,
       quoteSelected,
       assetInfo,
-      businessTypeInfo,
+      businessInfo,
       profile,
       stepperCurrentValue,
-      setStepperCurrentValue,
       stepperTotalValue,
+      personalInfo,
+      handleEditClicked,
     } = props;
 
     const { t } = useTranslation();
     const history = useHistory();
+    const { state } = useLocation<CreateApplicationState | undefined>();
 
     let quoteDetails: DetailsSectionProps = {};
     let paymentDetails: DetailsSectionProps = {};
@@ -46,36 +40,248 @@ const withPresenter = (
     let personalDetails: DetailsSectionProps = {};
     let contactDetails: DetailsSectionProps = {};
     let profileBusinessDetails: DetailsSectionProps = {};
+    let customerPersonalInformation: DetailsSectionProps = {};
+    let customerBusinessInformation: DetailsSectionProps = {};
+
+    const handleClickEdit = (page: string) => () => {
+      if (handleEditClicked) {
+        handleEditClicked(page);
+      }
+    }
 
     const nextClicked = () => {
-      if(setStepperCurrentValue && stepperCurrentValue){
-        setStepperCurrentValue(stepperCurrentValue + 1);
-        history.push('/portal/application/termsOfApplication')
-      }
+      history.push('/portal/application/termsOfApplication');
     };
     
-    const handleEditClicked = (page) => (event: any) => {
-      if (setStepperCurrentValue && stepperCurrentValue){
-        switch (page) {
-          case "assetInfo":
-            setStepperCurrentValue(stepperCurrentValue-2)
-            history.push('/portal/application/assetInfo')
-            break;
-          case "businessType":
-            setStepperCurrentValue(stepperCurrentValue-1)
-            history.push('/portal/application/businessType')
-            break;
-          case "paymentDetails":
-            setStepperCurrentValue(stepperCurrentValue-3)
-            history.push('/portal/application/quoteSelection')
-            break;
-          case "quoteDetails":
-            break;
-          default:
-            break;
+    if (personalInfo) {
+      const { address, city, email, firstName, lastName, phone, postalCode, province} = personalInfo
+      customerPersonalInformation = {
+        text: {
+          ...defaultProps.businessTypeDetails.text,
+          value: t('application_form.review_application.customer_personal_info_header'),
+        },
+        button: {
+          ...defaultProps.businessTypeDetails.button,
+          text: {
+            ...defaultProps.businessTypeDetails.button?.text,
+            value: t('application_form.review_application.edit'),
+          },
+          onButtonClicked: handleClickEdit("customerPersonalInfo"),
+        },
+        detailItemList: {
+          ...defaultProps.businessTypeDetails.detailItemList,
+          quoteDetailItems: [
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('text_field_label.first_name'),
+              },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: firstName,
+              },
+            },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('text_field_label.last_name'),
+              },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: lastName,
+              },
+            },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('text_field_label.email'),
+              },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: email,
+              },
+            },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('text_field_label.phone_number'),
+              },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: phone,
+              },
+            },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('text_field_label.street_address'),
+              },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: address,
+              },
+            },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('text_field_label.city'),
+              },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: city,
+              },
+            },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('text_field_label.province'),
+              },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: province,
+              },
+            },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('text_field_label.postal_code'),
+              },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: postalCode,
+              },
+            }
+          ]
         }
       }
     }
+    if (businessInfo) {
+      const { bankruptcy, bankruptcyDetails, businessPhone, businessSector, businessType, companyName, dob,
+        operatingName, operatingSinceDate, sin, type, website }
+      = businessInfo as ApplicationBusinessInfoVendor;
+        customerBusinessInformation = {
+          text: {
+            ...defaultProps.businessTypeDetails.text,
+            value: t('application_form.review_application.customer_business_info_header'),
+          },
+          button: {
+            ...defaultProps.businessTypeDetails.button,
+            text: {
+              ...defaultProps.businessTypeDetails.button?.text,
+              value: t('application_form.review_application.edit'),
+            },
+            onButtonClicked: handleClickEdit("customerBusinessInfo"),
+          },
+          detailItemList: {
+            ...defaultProps.businessTypeDetails.detailItemList,
+            quoteDetailItems: [
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('text_field_label.full_legal_name'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: companyName,
+                },
+              },
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('text_field_label.operating_name'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: operatingName,
+                },
+              },
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('text_field_label.business_sector'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: businessSector,
+                },
+              },
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('text_field_label.operating_since'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: operatingSinceDate,
+                },
+              },
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('text_field_label.business_phone'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: businessPhone,
+                },
+              },
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('text_field_label.website_link'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: website,
+                },
+              },
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('application_form.review_application.business_type.heading'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: businessType === "Incorporated" ? "Corporation" : "Sole Proprietorship",
+                },
+              },
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: sin ? t('application_form.review_application.business_type.sin_label') : "",
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: sin,
+                },
+              },
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: dob? t('application_form.review_application.business_type.date_of_birth_label') : "",
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: dob,
+                },
+              },
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: bankruptcy ? t('application_form.review_application.business_type.bankruptcy_label') : "",
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: bankruptcy,
+                },
+              },
+            ]
+          }
+
+        }
+    }
+
+
 
     if(profile){
       const {
@@ -272,15 +478,15 @@ const withPresenter = (
         }
       }
     }
-    if (quoteIdDetails) {
+    if (quoteDetailsSelected) {
       const {
         applicationAmount, asset, quoteId, leaseType,
-      } = quoteIdDetails;
+      } = quoteDetailsSelected;
     
-    if (businessTypeInfo) {
+    if (businessInfo) {
         const {
           bankruptcy, bankruptcyDetails, businessType, dob, sin,
-        } = businessTypeInfo;
+        } = businessInfo;
         businessTypeDetails = {
           text: {
             ...defaultProps.businessTypeDetails.text,
@@ -292,7 +498,7 @@ const withPresenter = (
               ...defaultProps.businessTypeDetails.button?.text,
               value: t('application_form.review_application.edit'),
             },
-            onButtonClicked: handleEditClicked("businessType"),
+            onButtonClicked: handleClickEdit("businessInfo"),
           },
           detailItemList: {
             ...defaultProps.businessTypeDetails.detailItemList,
@@ -357,7 +563,7 @@ const withPresenter = (
             ...defaultProps.assetDetails.button?.text,
             value: t('application_form.review_application.edit'),
           },
-          onButtonClicked: handleEditClicked("assetInfo"),
+          onButtonClicked: handleClickEdit("assetInfo"),
         },
         detailItemList: {
           ...defaultProps.assetDetails.detailItemList,
@@ -415,7 +621,7 @@ const withPresenter = (
             ...defaultProps.paymentDetails.button?.text,
             value: t('application_form.review_application.edit'),
           },
-          onButtonClicked: handleEditClicked("paymentDetails"),
+          onButtonClicked: handleClickEdit("paymentDetails"),
         },
         detailItemList: {
           ...defaultProps.paymentDetails.detailItemList,
@@ -479,7 +685,7 @@ const withPresenter = (
           text: {
             ...defaultProps.quoteDetails.button?.text,
           },
-          onButtonClicked: handleEditClicked("quoteDetails"),
+          onButtonClicked: handleClickEdit("quoteDetails"),
         },
         detailItemList: {
           ...defaultProps.quoteDetails.detailItemList,
@@ -520,8 +726,7 @@ const withPresenter = (
         },
       }
     }
-   
-    const reviewApplicationInformationBlockProps: ReviewApplicationInformationBlockProps = {
+    let reviewApplicationInformationBlockProps: ReviewApplicationInformationBlockProps = {
       ...defaultProps,
       stepper: {
         text: {
@@ -536,25 +741,10 @@ const withPresenter = (
         ...defaultProps.blockHeading,
         value:t('application_form.review_application.review_header'),
       },
-      sectionHeadingOne:{
-        ...defaultProps.sectionHeadingOne,
-        value:t('application_form.review_application.asset_header'),
-      },
-      sectionHeadingTwo:{
-        ...defaultProps.sectionHeadingOne,
-        value:t('application_form.review_application.profile_header'),
-      },
-      text: {
-        ...defaultProps.text,
-        value: <div dangerouslySetInnerHTML={{ __html:  t('application_form.review_application.profile_description') }} />
-      },
       quoteDetails,
       paymentDetails,
       assetDetails,
-      businessTypeDetails,
-      personalDetails,
-      contactDetails,
-      profileBusinessDetails,
+
       nextButton:{
         ...defaultProps.nextButton,
         text: {
@@ -564,11 +754,42 @@ const withPresenter = (
         onButtonClicked: nextClicked,
       },
     }
+    if (state?.fromTab === "Personal") {
+      reviewApplicationInformationBlockProps = {
+        ...reviewApplicationInformationBlockProps,
+        sectionHeadingOne:{
+          ...defaultProps.sectionHeadingOne,
+          value:t('application_form.review_application.asset_header'),
+        },
+        sectionHeadingTwo:{
+          ...defaultProps.sectionHeadingOne,
+          value:t('application_form.review_application.profile_header'),
+        },
+        text: {
+          ...defaultProps.text,
+          value: <div dangerouslySetInnerHTML={{ __html:  t('application_form.review_application.profile_description') }} />
+        },
+        businessTypeDetails,
+        personalDetails,
+        contactDetails,
+        profileBusinessDetails,
+      }
+    }
+    else if (state?.fromTab === "Customer") {
+      reviewApplicationInformationBlockProps = {
+        ...reviewApplicationInformationBlockProps,
+        customerPersonalInformation,
+        customerBusinessInformation,
+      }
+    }
 
     return (
         <View
         className={className}
         {...reviewApplicationInformationBlockProps}
+        stepperCurrentValue={stepperCurrentValue}
+        handleEditClicked={handleEditClicked}
+        state={state}
         />
       );
   };

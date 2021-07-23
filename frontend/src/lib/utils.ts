@@ -73,16 +73,21 @@ export const updateInstaQuoteCookie = (
       expires,
     }, 
     { 
-      expires: new Date(expires), 
+      expires: new Date(expires!), 
     },
   );
 }
 
-export const getQuoteCookie = () => {
+type InstantCookie = {
+  quoteId?: string;
+  expires?: string;
+  action?: AfterAuthAction;
+}
+
+export const getQuoteCookie = (): InstantCookie => {
   const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
-  let quoteCookieObj;
   if (quoteCookie){
-     quoteCookieObj = JSON.parse(quoteCookie)
+     return JSON.parse(quoteCookie);
   }
-  return quoteCookieObj;
+  return {};
 }

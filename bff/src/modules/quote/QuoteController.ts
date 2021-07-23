@@ -26,9 +26,12 @@ export default class QuoteController implements QuoteControllerContract {
       throw NotFoundError('no matching rate card');
     }
     const rateCardRates = await this.rateCardService.getRates(rateCard.id);
-    return rateCardRates.filter(({ minmonthlyreturn, maxmonthlyreturn }) => {
-      return applicationAmount >= minmonthlyreturn && applicationAmount < maxmonthlyreturn 
-    }).sort((rate1, rate2) => rate1.term - rate2.term);
+    return rateCardRates.filter(
+      (
+        { minmonthlyreturn, maxmonthlyreturn },
+      ) => applicationAmount >= minmonthlyreturn && applicationAmount < maxmonthlyreturn,
+    )
+      .sort((rate1, rate2) => rate1.term - rate2.term);
   }
 
   getCardType(payload: CreateQuote): string {
@@ -73,21 +76,23 @@ export default class QuoteController implements QuoteControllerContract {
       quoteOptions,
     });
 
-    if (isCreateQuoteCustomer(payload)) {
-      await this.sendQuote({
-        companyName: payload.contactBusinessName,
-        submittedBy: `${payload.contactName} (${payload.contactEmail}`,
-        email: payload.contactEmail,
-        quoteId: quote.quoteId,
-      });
-    }
-    if (isCreateQuoteVendor(payload)) {
-      await this.sendQuote({
-        companyName: payload.contactBusinessName,
-        submittedBy: `${payload.vendorName} (${payload.vendorEmail}`,
-        email: payload.vendorEmail,
-        quoteId: quote.quoteId,
-      });
+    if (payload.sendEmail) {
+      if (isCreateQuoteCustomer(payload)) {
+        await this.sendQuote({
+          companyName: payload.contactBusinessName,
+          submittedBy: `${payload.contactName} (${payload.contactEmail}`,
+          email: payload.contactEmail,
+          quoteId: quote.quoteId,
+        });
+      }
+      if (isCreateQuoteVendor(payload)) {
+        await this.sendQuote({
+          companyName: payload.contactBusinessName,
+          submittedBy: `${payload.vendorName} (${payload.vendorEmail}`,
+          email: payload.vendorEmail,
+          quoteId: quote.quoteId,
+        });
+      }
     }
     return quote;
   }

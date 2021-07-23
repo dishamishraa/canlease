@@ -16,6 +16,7 @@
   background-color: rgb(255, 255, 255);
 
   .companyName {
+    width: 5rem;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -29,6 +30,7 @@
   }
 
   .contactName {
+    width: 5rem;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -42,6 +44,7 @@
   }
 
   .status {
+    width: 5rem;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -55,6 +58,7 @@
   }
 
   .createOn {
+    width: 5rem;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -68,6 +72,7 @@
   }
 
   .assetName {
+    width: 5rem;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -81,6 +86,7 @@
   }
 
   .cost {
+    width: 5rem;
     overflow: hidden;
     display: flex;
     flex-direction: row;

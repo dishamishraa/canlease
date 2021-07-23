@@ -102,6 +102,17 @@
         "description": "The quote has been sent to your customer. You can view the quote and track its progress on the Quotes page.",
         "button": "Done"
     },
+    "top_action_block": {
+        "button": {
+            "customer_application":  "Apply For Customer",
+            "personal_application": "Apply For Finance",
+            "customer_quote": "Create Customer Quote",
+            "personal_quote": {
+                "customer": "Create Quote",
+                "vendor": "Create Personal Quote"
+            }
+        }
+    },
     "application_form":{
         "back": "Back",
         "start_application": {
@@ -186,7 +197,9 @@
             "profile_description": "<p> We will using your profile information as part of our application process. Please <a href=\"https://canlease.net/contact/\" target=\"_blank\"> contact Canlease </a> to make changes to your profile info. </p>",
             "personal_information_header": "Personal information",
             "contact_information_header": "Contact information",
-            "business_information_header": "Business information"
+            "business_information_header": "Business information",
+            "customer_personal_info_header": "Customer’s personal information",
+            "customer_business_info_header": "Customer’s business information"
         },
         "terms_of_application":{
             "header": "Terms of application",
@@ -254,7 +267,7 @@
             "7": "Nunavut (NU)",
             "8": "Ontario (ON)",
             "9": "Prince Edward Island (PE)",
-            "10": "Quebec (OC)",
+            "10": "Quebec (QC)",
             "11": "Saskatchewan (SK)",
             "12": "Yukon (YT)"
         }
@@ -377,6 +390,24 @@
         "create_quote": "CREATE QUOTE",
         "apply_finance": "APPLY FOR FINANCE"
     },
+    "rate_cards": {
+        "heading": "Rate card",
+        "view_button": "View",
+        "delete_button": "Delete",
+        "add_rate_card_button": "Add Rate Card"
+    }, 
+    "delete_rate_card": {
+        "heading": "Are you sure?",
+        "body": "Are you sure you want to delete this rate card? This action cannot be undone.",
+        "delete_button": "Delete",
+        "cancel_button": "Cancel"
+    },
+    "add_rate_card": {
+        "heading": "Rate card name",
+        "label": "Name",
+        "save_button": "Save",
+        "cancel_button": "Cancel"
+    },
     "lease_info_block": {
         "header": "Lease Information",
         "customer_company_name": "Customer:",
@@ -436,6 +467,22 @@
         "quotes": "Quotes",
         "applications": "Applications",
         "rate_cards": "Rate cards"
+    },
+    "rate_card_table": {
+        "headers": {
+            "term": "Term",
+            "min_monthly_return": "Min monthly return",
+            "max_monthly_return": "Max monthly return",
+            "interest_rate": "IR (Interest rate)",
+            "ten_end_interest_rate": "$10 @ end IR",
+            "action": "Action"
+        },
+        "addButton": "Add Rate"
+    },
+    "rate_card_details_page": {
+        "header": {
+            "button_text": "EDIT"
+        }
     }
 }
   

@@ -7,8 +7,8 @@ import Stepper, { StepperProps } from '../../atoms/Stepper';
 import Text, { TextProps } from '../../atoms/Text';
 import DetailsSection, { DetailsSectionProps } from '../../organisms/DetailsSection';
 import Button, { ButtonProps } from '../../atoms/Button';
-import { AssetInfo, BusinessType} from '../../../modules/types';
-import { QuoteOption } from '../../../modules/quote/types';
+import { AssetInfo, ApplicationBusinessInfo, ApplicationPersonalInfo, CreateApplicationState } from '../../../modules/types';
+import { Quote, QuoteOption } from '../../../modules/quote/types';
 
 export const defaultProps = {
   stepper: {
@@ -211,12 +211,17 @@ export type ReviewApplicationInformationBlockProps = {
   profileBusinessDetails?: DetailsSectionProps;
   nextButton?: ButtonProps;
   className?: string;
+  quoteDetailsSelected?: Quote;
   quoteSelected?: QuoteOption;
-  assetInfo?: AssetInfo
-  businessTypeInfo?: BusinessType
-  stepperCurrentValue?: number,
-  setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
-  stepperTotalValue?: number,
+  personalInfo?: ApplicationPersonalInfo;
+  businessInfo?: ApplicationBusinessInfo;
+  assetInfo?: AssetInfo;
+  stepperCurrentValue?: number;
+  stepperTotalValue?: number;
+  customerPersonalInformation?: DetailsSectionProps;
+  customerBusinessInformation?: DetailsSectionProps;
+  handleEditClicked?: (page: string) => void;
+  state?: CreateApplicationState | undefined;
 };
 
 const ReviewApplicationInformationBlock: React.FC<ReviewApplicationInformationBlockProps> = ({
@@ -234,51 +239,78 @@ const ReviewApplicationInformationBlock: React.FC<ReviewApplicationInformationBl
   profileBusinessDetails,
   nextButton,
   className,
-}) => (
-    <div className={cx(styles.reviewApplicationInformationBlock, className)}>
-      <div className={styles.topContent}>
-        <Stepper
-          className={styles.stepper}
-          {...stepper} />
+  customerPersonalInformation,
+  customerBusinessInformation,
+  stepperCurrentValue,
+  state,
+}) => {
+  let additionalCustomerFields;
+  let additionalPersonalFields;
+  if (state?.fromTab === "Personal") {
+    additionalPersonalFields = 
+    <>
+        <DetailsSection
+          className={styles.businessTypeDetails}
+          {...businessTypeDetails} />
         <Text
-          className={styles.blockHeading}
-          {...blockHeading} />
-      </div>
-      <Text
-        className={styles.sectionHeadingOne}
-        {...sectionHeadingOne} />
-      <DetailsSection
-        className={styles.quoteDetails}
-        {...quoteDetails} />
-      <DetailsSection
-        className={styles.paymentDetails}
-        {...paymentDetails} />
-      <DetailsSection
-        className={styles.assetDetails}
-        {...assetDetails} />
+          className={styles.sectionHeadingTwo}
+          {...sectionHeadingTwo} />
+        <Text
+          className={styles.text}
+          {...text} />
+        <DetailsSection
+          className={styles.personalDetails}
+          {...personalDetails} />
+        <DetailsSection
+          className={styles.contactDetails}
+          {...contactDetails} />
+        <DetailsSection
+          className={styles.profileBusinessDetails}
+          {...profileBusinessDetails} />
+    </>
+  } 
+  else if (state?.fromTab === "Customer") {
+    additionalCustomerFields = 
+    <>
       <DetailsSection
         className={styles.businessTypeDetails}
-        {...businessTypeDetails} />
-      <Text
-        className={styles.sectionHeadingTwo}
-        {...sectionHeadingTwo} />
-      <Text
-        className={styles.text}
-        {...text} />
+        {...customerPersonalInformation} />
       <DetailsSection
-        className={styles.personalDetails}
-        {...personalDetails} />
-      <DetailsSection
-        className={styles.contactDetails}
-        {...contactDetails} />
-      <DetailsSection
-        className={styles.profileBusinessDetails}
-        {...profileBusinessDetails} />
-      <Button
-        className={styles.nextButton}
-        {...nextButton} />
-    </div>
-);
+        className={styles.businessTypeDetails}
+        {...customerBusinessInformation} />
+    </>
+  }
+
+  return (
+      <div className={cx(styles.reviewApplicationInformationBlock, className)}>
+        <div className={styles.topContent}>
+          <Stepper
+            className={styles.stepper}
+            {...stepper} />
+          <Text
+            className={styles.blockHeading}
+            {...blockHeading} />
+        </div>
+        {stepperCurrentValue === 4 && <Text
+          className={styles.sectionHeadingOne}
+          {...sectionHeadingOne} />}
+        <DetailsSection
+          className={styles.quoteDetails}
+          {...quoteDetails} />
+        <DetailsSection
+          className={styles.paymentDetails}
+          {...paymentDetails} />
+        {additionalCustomerFields}
+        <DetailsSection
+          className={styles.assetDetails}
+          {...assetDetails} />
+        {additionalPersonalFields}
+        <Button
+          className={styles.nextButton}
+          {...nextButton} />
+      </div>
+  );
+}
 
 ReviewApplicationInformationBlock.defaultProps = defaultProps;
 

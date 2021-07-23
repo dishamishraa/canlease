@@ -6,37 +6,37 @@ import styles from './RateCardTableHeader.module.scss';
 import Text, { TextProps } from '../../atoms/Text';
 
 export const defaultProps = {
-  companyName: {
+  term: {
     style: 'Basic800',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph3',
   } as TextProps,
-  contactName: {
+  minMonthlyReturn: {
     style: 'Basic800',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph3',
   } as TextProps,
-  status: {
+  maxMonthlyReturn: {
     style: 'Basic800',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph3',
   } as TextProps,
-  createOn: {
+  interestRate: {
     style: 'Basic800',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph3',
   } as TextProps,
-  assetName: {
+  tenAtEndOfInterestRate: {
     style: 'Basic800',
     align: 'Left',
     size: 'Medium',
     type: 'Paragraph3',
   } as TextProps,
-  cost: {
+  action: {
     style: 'Basic800',
     align: 'Left',
     size: 'Medium',
@@ -45,43 +45,43 @@ export const defaultProps = {
 };
 
 export type RateCardTableHeaderProps = {
-  companyName?: TextProps;
-  contactName?: TextProps;
-  status?: TextProps;
-  createOn?: TextProps;
-  assetName?: TextProps;
-  cost?: TextProps;
+  term?: TextProps;
+  minMonthlyReturn?: TextProps;
+  maxMonthlyReturn?: TextProps;
+  interestRate?: TextProps;
+  tenAtEndOfInterestRate?: TextProps;
+  action?: TextProps;
   className?: string;
 };
 
 const RateCardTableHeader: React.FC<RateCardTableHeaderProps> = ({
-  companyName,
-  contactName,
-  status,
-  createOn,
-  assetName,
-  cost,
+  term,
+  minMonthlyReturn,
+  maxMonthlyReturn,
+  interestRate,
+  tenAtEndOfInterestRate,
+  action,
   className,
 }) => (
     <div className={cx(styles.rateCardTableHeader, className)}>
       <Text
-        className={styles.companyName}
-        {...companyName} />
+        className={styles.term}
+        {...term} />
       <Text
-        className={styles.contactName}
-        {...contactName} />
+        className={styles.minMonthlyReturn}
+        {...minMonthlyReturn} />
       <Text
-        className={styles.status}
-        {...status} />
+        className={styles.maxMonthlyReturn}
+        {...maxMonthlyReturn} />
       <Text
-        className={styles.createOn}
-        {...createOn} />
+        className={styles.interestRate}
+        {...interestRate} />
       <Text
-        className={styles.assetName}
-        {...assetName} />
+        className={styles.tenAtEndOfInterestRate}
+        {...tenAtEndOfInterestRate} />
       <Text
-        className={styles.cost}
-        {...cost} />
+        className={styles.action}
+        {...action} />
     </div>
 );
 

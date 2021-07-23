@@ -30,8 +30,8 @@ const withPresenter = (
       const { t } = useTranslation();
       const history = useHistory();
 
-      const handleViewClicked = (content: string, statusFilter: ContentFilter) => (event: any) => {
-        history.push(`/portal/${content}/customer`, {statusFilter})
+      const handleViewClicked = (content: string, statusFilter: ContentFilter) => () => {
+        history.push(`/portal/${content}/customer`, { statusFilter });
       }
 
       const getApplicationStatus = ({ applicationStatus }: CreditApplication): ContentFilter => {
@@ -161,7 +161,7 @@ const withPresenter = (
                     value: t('vendor_dashboard.metrics.create_quote'),
                   },
                   onButtonClicked: () => {
-                    history.push('/portal/quote');
+                    history.push('/portal/quote/selectType');
                   },
                 }
               },

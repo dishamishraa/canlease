@@ -4,11 +4,6 @@ import { TermsOfApplicationBlockProps, defaultProps } from './TermsOfApplication
 
 import { CheckboxItemProps, defaultProps as defaultCheckboxItemProps } from '../../atoms/CheckboxItem/CheckboxItem';
 export type TermsOfApplicationBlockPresenterProps = TermsOfApplicationBlockProps & {
-    setCreditCheckConsent?: React.Dispatch<React.SetStateAction<boolean>>;
-    stepperCurrentValue?: number,
-    setStepperCurrentValue?: React.Dispatch<React.SetStateAction<number>>;
-    stepperTotalValue?: number,
-    handleCreateApplication?: () => void;
 };
 
 const withPresenter = (
@@ -19,9 +14,7 @@ const withPresenter = (
       className,
       setCreditCheckConsent,
       stepperCurrentValue,
-      setStepperCurrentValue,
       stepperTotalValue,
-      handleCreateApplication
     } = props;
 
     const { t } = useTranslation();
@@ -34,10 +27,9 @@ const withPresenter = (
         return false;
     }
 
-    const handleClickNext = () => {
-        if (isFormValid() && setCreditCheckConsent && handleCreateApplication) {
-            setCreditCheckConsent(true);
-            handleCreateApplication();
+    const handleClickNext = async () => {
+        if (isFormValid() && setCreditCheckConsent) {
+            await setCreditCheckConsent(true);
         }
     };
     const termsOfApplicationBlockProps : TermsOfApplicationBlockProps = {
