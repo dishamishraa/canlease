@@ -16,6 +16,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../../modules/auth';
 import RateCardPage from '../../pages/RateCardPage';
 import ProfilePage from '../../pages/ProfilePage';
+import RateCardDetailsPage from '../../pages/RateCardDetailsPage';
 
 export const defaultProps = {
   header: {
@@ -60,6 +61,7 @@ export const routes = {
   quote: '/portal/quote',
   profile: '/portal/profile',
   ratecard: '/portal/ratecard',
+  ratecardDetail: '/portal/ratecard/:rateId',
   invalid: '/',
 };
 
@@ -100,6 +102,10 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
             </Route>
             <Route path={routes.ratecard}>
               <RateCardPage
+                className={styles.page} />
+            </Route>
+            <Route path={routes.ratecardDetail}>
+              <RateCardDetailsPage
                 className={styles.page} />
             </Route>
             <Route path={routes.profile}>

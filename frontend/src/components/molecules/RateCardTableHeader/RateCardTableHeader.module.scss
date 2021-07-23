@@ -10,7 +10,7 @@
   }
   background-color: rgb(240, 241, 247);
 
-  .companyName {
+  .term {
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -23,7 +23,7 @@
     }
   }
 
-  .contactName {
+  .minMonthlyReturn {
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -36,7 +36,7 @@
     }
   }
 
-  .status {
+  .maxMonthlyReturn {
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -49,20 +49,20 @@
     }
   }
 
-  .createOn {
+  .interestRate {
     overflow: hidden;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
     align-self: flex-start;
-    flex: 0 0 6.375rem;
+    flex: 0 0 6.5rem;
     &:nth-child(1) {
       margin-left: 0;
     }
   }
 
-  .assetName {
+  .tenAtEndOfInterestRate {
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -75,7 +75,7 @@
     }
   }
 
-  .cost {
+  .action {
     overflow: hidden;
     display: flex;
     flex-direction: row;

@@ -1,6 +1,8 @@
 import { Router, Request, Response } from 'express';
 import { BadRequestError } from '../../lib/errors';
 import { errorWrapper, validateId } from '../../lib/utils';
+import { mockRateCard } from './fixtures/mockRateCard';
+import { mockRates } from './fixtures/mockRates';
 import { RateCardControllerContract } from './types';
 
 export function createRateCardRouter(controllers: {
