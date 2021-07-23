@@ -487,6 +487,12 @@
         "header": {
             "button_text": "EDIT"
         }
+    },
+    "delete_rate_entry": {
+        "heading": "Are you sure?",
+        "body": "Are you sure you want to delete this entry? This action cannot be undone.",
+        "delete_button": "Delete",
+        "cancel_button": "Cancel"
     }
 }
   

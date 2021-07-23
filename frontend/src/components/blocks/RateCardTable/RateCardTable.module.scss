@@ -16,7 +16,8 @@
       margin-left: 2.5rem;
     }
     align-self: flex-start;
-    width: 48.5625rem;
+    // width: 48.5625rem;
+    width: 100%;
     flex: 0 0 auto;
   }
 
@@ -28,6 +29,7 @@
     align-items: flex-start;
     align-self: flex-start;
     flex: 0 0 auto;
+    width: 100%;
   }
 
 }
