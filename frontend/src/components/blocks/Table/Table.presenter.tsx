@@ -8,7 +8,7 @@ import { defaultProps as tableItemDefaultProps } from '../../molecules/TableItem
 import { isExpiring, isExpired, createdOn } from '../../../lib/utils';
 import { CreditApplication, Portfolio } from '../../../modules/portfolio/types';
 import { Quote } from '../../../modules/quote/types';
-import { ContentFilter, ContentType, ContentTypeTabs } from '../../../modules/types';
+import { ContentFilter, ContentType, ContentTypeTabs, LeaseInfo } from '../../../modules/types';
 
 type TableItem = {
   company: string;
@@ -19,7 +19,7 @@ type TableItem = {
   asset: string;
   cost: number;
   link: string;
-  linkState?: object;
+  linkState?: LeaseInfo;
 }
 
 export type TablePresenterValueProps = {
@@ -87,7 +87,7 @@ const getCurrentItems = (
           const companyName = application.companyName;
           const contactName = application.name;
           const lease = portfolio.leases.find(lease => lease.quoteId === application.quoteId)
-          const vendorName = lease?.vendorName ?? 'Unknown';
+          const vendorName = lease?.vendorName ?? ' - ';
           return {
             company: companyName,
             vendor: vendorName,
@@ -97,7 +97,7 @@ const getCurrentItems = (
             asset: application.asset,
             cost: application.applicationAmount,
             link: generatePath("/portal/application/:applicationDetails", { applicationDetails: application.creditAppNumber }),
-            linkState: { company: companyName, contactName, asset: application.asset, vendor: vendorName, lease }
+            linkState: { application, lease }
           }
         });
       }

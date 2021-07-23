@@ -1,4 +1,4 @@
-import { Lease } from "./portfolio/types";
+import { CreditApplication, Lease } from "./portfolio/types";
 import { UserType } from "./profile/types";
 import { LeaseType, Quote } from "./quote/types";
 
@@ -93,11 +93,8 @@ export type BusinessInformation = {
 };
 
 export type LeaseInfo = {
-  company: string;
-  contactName: string;
-  asset: string;
-  vendor: string;
-  lease: Lease;
+  application: CreditApplication;
+  lease?: Lease;
 }
 export type ContentType = 'Quote' | 'Application';
 export type ContentTypeTabs = 'Customer' | 'Personal';

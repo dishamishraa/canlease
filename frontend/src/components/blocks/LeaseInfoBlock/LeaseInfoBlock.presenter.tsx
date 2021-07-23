@@ -14,7 +14,7 @@ const withPresenter = (
   const Presenter: React.FC<LeaseInfoBlockPresenterProps> = (props) => {
 
     const { state } = useLocation<LeaseInfo | undefined>();
-    const { company, contactName, asset, vendor, lease } = state || {};
+    const { application, lease } = state || {};
     
     const { t } = useTranslation();
 
@@ -31,10 +31,18 @@ const withPresenter = (
       value: t('lease_info_block.header'),
     };
 
-    const dateFormatOptions: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: '2-digit'};
-    const leaseStartDate = new Date(lease?.leaseStartDate ?? '').toLocaleDateString('en-CA', dateFormatOptions);
-    const leaseOptionMonth =  new Date(lease?.purchaseOptionDate ?? '').toLocaleString('default', { month: 'long' });
-    const leaseOptionDate = new Date(lease?.purchaseOptionDate ?? '').toLocaleDateString('en-CA', dateFormatOptions);
+    let leaseStartDate;
+    let leaseOptionMonth;
+    let leaseOptionDate;
+
+    const emptyLease: String | undefined = lease ? undefined : ' - '; 
+
+    if (lease){
+      const dateFormatOptions: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: '2-digit'};
+      leaseStartDate = new Date(lease?.leaseStartDate ?? '').toLocaleDateString('en-CA', dateFormatOptions);
+      leaseOptionMonth =  new Date(lease?.purchaseOptionDate ?? '').toLocaleString('default', { month: 'long' });
+      leaseOptionDate = new Date(lease?.purchaseOptionDate ?? '').toLocaleDateString('en-CA', dateFormatOptions);
+    }
 
     const defaultLabelTextProps: TextProps = {...defaultQuoteDetailItemProps.labelText, type: 'Paragraph2'};
     const defaultInfoTextProps: TextProps = {...defaultQuoteDetailItemProps.infoText, type: 'Paragraph3'};
@@ -49,7 +57,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: company,
+              value: application?.companyName,
             }
           },
           {
@@ -59,7 +67,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: contactName,
+              value: application?.name,
             }
           },
           {
@@ -69,7 +77,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: asset,
+              value: application?.asset,
             }
           },
           {
@@ -79,7 +87,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: vendor,
+              value: emptyLease ?? lease?.vendorName,
             }
           },
           {},
@@ -90,7 +98,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: lease?.leaseNumber,
+              value: emptyLease ?? lease?.leaseNumber,
             }
           },
           {
@@ -100,7 +108,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: `${lease?.fullTerm} Months`,
+              value: emptyLease ?? `${lease?.fullTerm} Months` ,
             }
           },
           {
@@ -110,7 +118,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: `$${lease?.paymentBeforeTax}`
+              value: emptyLease ?? `$${lease?.paymentBeforeTax}`
             }
           },
           {
@@ -120,7 +128,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: `$${lease?.fullTerm}`,
+              value: `$${application?.applicationAmount}`,
             }
           },
           {},
@@ -131,7 +139,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: leaseStartDate,
+              value: emptyLease ?? leaseStartDate,
             }
           },
           {
@@ -141,7 +149,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: leaseOptionMonth,
+              value: emptyLease ?? leaseOptionMonth,
             }
           },
           {
@@ -151,7 +159,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: leaseOptionDate,
+              value: emptyLease ?? leaseOptionDate,
             }
           },
           {
@@ -161,7 +169,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: `$${lease?.optionAmount}`,
+              value: emptyLease ?? `$${lease?.optionAmount}`,
             }
           },
           {},
@@ -172,7 +180,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: lease?.quoteId,
+              value: application?.quoteId,
             }
           },
         ]
