@@ -76,6 +76,7 @@
         "apply_button_text": "Apply for Finance",
         "save_quote_button_text": "Save Quote",
         "send_quote_button_text": "Send Quote",
+        "apply_for_customer_button_text": "Apply for Customer",
         "quote_rate_section_heading_text": "Quote details",
         "quote_detail":{
             "application_amount": {
