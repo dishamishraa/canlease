@@ -70,6 +70,10 @@ const withPresenter = (
             history.push(`/portal/ratecard/${data.id}`);
         }
     }
+    
+    const handleViewRateCard = (id: number) => () => {
+        history.push(`/portal/ratecard/${id}`)
+    }
 
     rateCards?.forEach((rateCard) => {
         const { cardtype: name, id } = rateCard;
@@ -86,6 +90,7 @@ const withPresenter = (
                     ...DashboardRateCardDefaultProps.viewButton.text,
                     value: t('rate_cards.view_button'),
                 },
+                onButtonClicked: handleViewRateCard(id),
             },
             deleteButton: {
                 ...DashboardRateCardDefaultProps.deleteButton,
@@ -94,7 +99,8 @@ const withPresenter = (
                     value: t('rate_cards.delete_button'),
                 },
                 onButtonClicked: handleOpenDeleteModal(id),
-            }
+            },
+            id: id.toString(),
         }
         rateCardArray.push(rateCardProps);
     })
@@ -112,6 +118,7 @@ const withPresenter = (
             },
             onButtonClicked: handleOpenRateCardModal,
         },
+        id: "add_rate_card"
     }
     rateCardArray.push(addRateCard);
 

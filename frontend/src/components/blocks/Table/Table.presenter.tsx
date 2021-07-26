@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { generatePath, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TableProps, defaultProps } from './Table';
 import { TableItemListProps } from '../../organisms/TableItemList';
@@ -8,16 +8,19 @@ import { defaultProps as tableItemDefaultProps } from '../../molecules/TableItem
 import { isExpiring, isExpired, createdOn } from '../../../lib/utils';
 import { CreditApplication, Portfolio } from '../../../modules/portfolio/types';
 import { Quote } from '../../../modules/quote/types';
-import { ContentFilter, ContentType } from '../../../modules/types';
+import { ContentFilter, ContentType, ContentTypeTabs, LeaseInfo } from '../../../modules/types';
 
 type TableItem = {
   company: string;
+  vendor?: string;
   contactName: string;
   status: ContentFilter;
   createdOn: string;
   asset: string;
   cost: number;
   link: string;
+  linkState?: LeaseInfo;
+  id: string;
 }
 
 export type TablePresenterValueProps = {
@@ -60,7 +63,7 @@ const getApplicationStatus = ({ applicationStatus }: CreditApplication): Content
 };
 
 const getCurrentItems = (
-  contentType: ContentType | undefined, quotes: Quote[] | null, portfolio: Portfolio | null,
+  contentType: ContentType | undefined, quotes: Quote[] | null, portfolio: Portfolio | null
 ): TableItem[] => {
   let items: TableItem[] = [];
   switch(contentType) {
@@ -75,6 +78,7 @@ const getCurrentItems = (
             asset: quote.asset,
             cost: quote.applicationAmount,
             link: `/portal/quote/${quote.quoteId}`,
+            id: quote.quoteId,
           }
         });
       }
@@ -82,14 +86,21 @@ const getCurrentItems = (
     case 'Application':
       if (portfolio && portfolio.createApps && portfolio.leases) {
         items = portfolio.createApps.map((application: CreditApplication): TableItem => {
+          const companyName = application.companyName;
+          const contactName = application.name;
+          const lease = portfolio.leases.find(lease => lease.quoteId === application.quoteId)
+          const vendorName = lease?.vendorName ?? ' - ';
           return {
-            company: application.companyName,
-            contactName: application.name,
+            company: companyName,
+            vendor: vendorName,
+            contactName: contactName ?? application.name,
             status: getApplicationStatus(application),
             createdOn: new Date(application.createdDate).toDateString(),
             asset: application.asset,
             cost: application.applicationAmount,
-            link: `/portal/application/${application.creditAppNumber}`,
+            link: generatePath("/portal/application/:applicationDetails", { applicationDetails: application.creditAppNumber }),
+            linkState: { application, lease },
+            id: application.quoteId,
           }
         });
       }
@@ -145,13 +156,13 @@ const withPresenter = (
     const tableItemListProps: TableItemListProps = {
       ...defaultProps.tableItemList,
       tableItems: filteredItems.map(({
-        company, contactName, status, createdOn, asset, cost, link,
+        company, contactName, status, createdOn, asset, cost, link, vendor, linkState, id
       }: TableItem): TableItemProps => {
         return {
           ...tableItemDefaultProps,
           companyName: {
             ...tableItemDefaultProps.companyName,
-            value: company,
+            value: tab === 'Customer' ? vendor : company,
           },
           contactName: {
             ...tableItemDefaultProps.contactName,
@@ -174,8 +185,9 @@ const withPresenter = (
             value: cost,
           },
           onTableItemClicked: () => {
-            history.push(link, { fromTab: tab });
+            history.push(link, { fromTab: tab,  ...linkState });
           },
+          id,
         }
       }),
     };

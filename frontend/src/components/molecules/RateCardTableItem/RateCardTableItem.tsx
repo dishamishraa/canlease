@@ -12,31 +12,31 @@ export const defaultProps = {
   type: 'Default' as RateCardTableItemTypeType,
   term: {
     style: 'Basic600',
-    align: 'Right',
+    align: 'Left',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
   minMonthlyReturn: {
     style: 'Basic600',
-    align: 'Right',
+    align: 'Left',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
   maxMonthlyReturn: {
     style: 'Basic600',
-    align: 'Right',
+    align: 'Left',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
   interestRate: {
     style: 'Basic600',
-    align: 'Right',
+    align: 'Left',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
   tenAtEndOfInterestRate: {
     style: 'Basic600',
-    align: 'Right',
+    align: 'Left',
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
@@ -89,6 +89,7 @@ export type RateCardTableItemProps = {
   deleteButton?: ButtonProps;
   className?: string;
   button?: ButtonProps;
+  id?: string;
 };
 
 const RateCardTableItem: React.FC<RateCardTableItemProps> = ({

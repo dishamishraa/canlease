@@ -53,6 +53,7 @@ export type TableItemProps = {
   cost?: TextProps;
   className?: string;
   onTableItemClicked?: (event?: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  id?: string;
 };
 
 const TableItem: React.FC<TableItemProps> = ({

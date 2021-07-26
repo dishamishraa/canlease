@@ -6,6 +6,7 @@ import useCreateRate from './useCreateRate';
 import useGetRatesDetails from './useGetRatesDetails';
 import useUpdateRate from './useUpdateRate';
 import useDeleteRate from './useDeleteRate';
+import useUpdateRateCard from './useUpdateRateCard';
 
 export { 
   useCreateRateCard,
@@ -15,5 +16,6 @@ export {
   useCreateRate,
   useGetRatesDetails,
   useUpdateRate,
-  useDeleteRate
+  useDeleteRate,
+  useUpdateRateCard,
 };

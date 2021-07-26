@@ -19,8 +19,9 @@ const RadiobuttonList: React.FC<RadiobuttonListProps> = ({
   radioButtonItems,
   className,
 }) => {
-  const radioButtonItemArray = radioButtonItems?.map((radioButtonItem) => (
+  const radioButtonItemArray = radioButtonItems?.map((radioButtonItem, index) => (
     <RadioButtonItem
+      key={index}
       className={styles.radioButtonItem}
       {...radioButtonItem} />
   ));
