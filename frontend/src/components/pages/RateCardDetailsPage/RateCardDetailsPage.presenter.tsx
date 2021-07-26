@@ -47,12 +47,12 @@ const withPresenter = (
 
         const { t } = useTranslation();
         const [showRateModal, setShowRateModal] = useState(false);
-        const [term, setTerm] = useState<number|null>();
-        const [currRate, setCurrRate] = useState<Rate|null>();
-        const [minMonthlyReturn, setMinMonthlyReturn] = useState<number|null>();
-        const [maxMonthlyReturn, setMaxMonthlyReturn] = useState<number|null>();
-        const [interestRate, setInterestRate] = useState<number|null>();
-        const [tenAtEndIR, setTenAtEndIR] = useState<number|null>()
+        const [term, setTerm] = useState<number | null>();
+        const [currRate, setCurrRate] = useState<Rate | null>();
+        const [minMonthlyReturn, setMinMonthlyReturn] = useState<number | null>();
+        const [maxMonthlyReturn, setMaxMonthlyReturn] = useState<number | null>();
+        const [interestRate, setInterestRate] = useState<number | null>();
+        const [tenAtEndIR, setTenAtEndIR] = useState<number | null>()
 
         const [deleteModalOpen, setDeleteModalOpen] = useState(false);
         const [deleteRateId, setDeleteRateId] = useState<number>();
