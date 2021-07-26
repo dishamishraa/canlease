@@ -6,6 +6,8 @@ import styles from './RateCardDetailsPage.module.scss';
 import TopBar, { TopBarProps } from '../../organisms/TopBar';
 import BlockHeader, { BlockHeaderProps } from '../../molecules/BlockHeader';
 import RateCardTable, { RateCardTableProps } from '../../blocks/RateCardTable';
+import ConfirmationModal, { ConfirmationModalProps } from '../../organisms/ConfirmationModal';
+import NewRateCardModal, { NewRateCardModalProps } from '../../organisms/NewRateCardModal';
 
 export const defaultProps = {
   topBar: {
@@ -99,6 +101,10 @@ export type RateCardDetailsPageProps = {
   blockHeader?: BlockHeaderProps;
   className?: string;
   rateCardTable?: RateCardTableProps;
+  confirmationModal?: ConfirmationModalProps;
+  deleteModalOpen?: boolean;
+  rateCardModal?: NewRateCardModalProps;
+  rateCardModalOpen?: boolean;
 };
 
 const RateCardDetailsPage: React.FC<RateCardDetailsPageProps> = ({
@@ -106,19 +112,33 @@ const RateCardDetailsPage: React.FC<RateCardDetailsPageProps> = ({
   blockHeader,
   className,
   rateCardTable,
-}) => (
-    <div className={cx(styles.rateCardDetailsPage, className)}>
-      <TopBar
-        className={styles.topBar}
-        {...topBar} />
-      <BlockHeader
-        className={styles.blockHeader}
-        {...blockHeader} />
-      <RateCardTable
-        className={styles.rateCardTable}
-        {...rateCardTable} />
-    </div>
-);
+  confirmationModal,
+  deleteModalOpen,
+  rateCardModal,
+  rateCardModalOpen,
+}) => {
+  let modalDisplay;
+  if (deleteModalOpen) {
+    modalDisplay = ( <ConfirmationModal {...confirmationModal} />)
+  } 
+  else if (rateCardModalOpen){
+    modalDisplay = ( <NewRateCardModal {...rateCardModal} />)
+  }
+  return (
+      <div className={cx(styles.rateCardDetailsPage, className)}>
+        <TopBar
+          className={styles.topBar}
+          {...topBar} />
+        <BlockHeader
+          className={styles.blockHeader}
+          {...blockHeader} />
+        <RateCardTable
+          className={styles.rateCardTable}
+          {...rateCardTable} />
+        {modalDisplay}
+      </div>
+  );
+}
 
 RateCardDetailsPage.defaultProps = defaultProps;
 
