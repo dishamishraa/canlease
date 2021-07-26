@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router';
 import Cookies from 'js-cookie';
 import { UserSelectionBlockProps, defaultProps as UserSelectionBlockDefaultProps } from './UserSelectionBlock';
 import { TextProps } from '../../atoms/Text';
@@ -20,6 +21,7 @@ const withPresenter = (
 ): React.FC<UserSelectionBlockPresenterProps> => {
   const Presenter: React.FC<UserSelectionBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
+    const history = useHistory();
     const [showModal, setShowModal] = useState(false);
     const {
       flowType,
@@ -39,6 +41,13 @@ const withPresenter = (
         }
       }
     };
+    const handleSignUp = () => {
+      history.push('/account/signUp');
+    }
+
+    const handleSignIn = () => {
+      history.push('/account/signIn');
+    }
     
     const modal: ModalProps = {
       ...modalPropsDefaultProps,
@@ -63,6 +72,7 @@ const withPresenter = (
           ...modalPropsDefaultProps.primaryButton.text,
           value: t('instant_quote_limit.primary_button'),
         },
+        onButtonClicked: handleSignUp,
       },
       secondaryButton: {
         ...modalPropsDefaultProps.secondaryButton,
@@ -70,6 +80,7 @@ const withPresenter = (
           ...modalPropsDefaultProps.secondaryButton.text,
           value: t('instant_quote_limit.secondary_button'),
         },
+        onButtonClicked: handleSignIn,
       },
     };
 
