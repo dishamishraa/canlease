@@ -100,7 +100,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: emptyLease ?? `${lease?.fullTerm} Months` ,
+              value: emptyLease ?? t('lease_info_block.term_in_months', { months: lease?.fullTerm } ),
             }
           },
           {
