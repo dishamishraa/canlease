@@ -65,7 +65,7 @@ export const AuthProvider: React.FC<{}> = ({ children }) => {
       error,
       data: data ? {
         ...data,
-        userType: 'vendor',
+        userType: 'admin',
       } : null,
     });
   }, [loading, error, data]);

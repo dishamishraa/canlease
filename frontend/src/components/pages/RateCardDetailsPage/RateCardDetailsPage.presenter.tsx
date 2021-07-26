@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CreateRate, Rate, RateCard, UpdateRate } from '../../../modules/rateCard/types';
+import { CreateRate, Rate, RateCard, UpdateRate, UpdateRateCard } from '../../../modules/rateCard/types';
 import { defaultProps as defaultRateCardTableProps, RateCardTableProps } from '../../blocks/RateCardTable/RateCardTable';
 import { RateCardTableItemListProps } from '../../organisms/RateCardTableItemList';
 import { RateCardDetailsPageProps, defaultProps } from './RateCardDetailsPage';
@@ -10,6 +10,8 @@ import { NewRateModalProps, defaultProps as newRateModalDefaultProps } from '../
 import { defaultProps as defaultTextFieldProps } from '../../molecules/TextField/TextField';
 import { isEmpty } from '../../../lib/utils';
 
+import { defaultProps as defaultConfirmationModalProps } from '../../organisms/ConfirmationModal/ConfirmationModal';
+import { defaultProps as defaultRateCardModalProps } from '../../organisms/NewRateCardModal/NewRateCardModal';
 
 export type RateCardDetailsPagePresenterProps = RateCardDetailsPageProps & {
     rates: Rate[] | null;
@@ -18,14 +20,31 @@ export type RateCardDetailsPagePresenterProps = RateCardDetailsPageProps & {
     rateCard?: RateCard | undefined;
     createRate?: (payload: CreateRate) => Promise<APIResponse<Rate>>
     updateRate?: (payload: UpdateRate) => Promise<void>
-    refetchRates?: () => void;
+    refetchRates: () => void;
+    rateCardName?: string;
+    deleteRate: (rateId: number) => Promise<APIResponse<void>>;
+    updateRateCard: (payload: UpdateRateCard) => Promise<void>;
+    refetchRateCard: () => void;
+    rateCardId?: number;
 };
 
 const withPresenter = (
     View: React.FC<RateCardDetailsPageProps>
 ) => {
     const Presenter: React.FC<RateCardDetailsPagePresenterProps> = (props) => {
-        const { rateCard, rates, createRate, updateRate, refetchRates} = props;
+        const { 
+            rateCardName, 
+            rateCard, 
+            rates, 
+            createRate, 
+            updateRate, 
+            refetchRates,
+            deleteRate, 
+            updateRateCard,
+            refetchRateCard,
+            className,
+            rateCardId,} = props;
+
         const { t } = useTranslation();
         const [showRateModal, setShowRateModal] = useState(false);
         const [term, setTerm] = useState<number|null>();
@@ -34,6 +53,11 @@ const withPresenter = (
         const [maxMonthlyReturn, setMaxMonthlyReturn] = useState<number|null>();
         const [interestRate, setInterestRate] = useState<number|null>();
         const [tenAtEndIR, setTenAtEndIR] = useState<number|null>()
+
+        const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+        const [deleteRateId, setDeleteRateId] = useState<number>();
+        const [rateCardModalOpen, setRateCardModalOpen] = useState(false);
+        const [newRateCardName, setNewRateCardName] = useState(rateCardName);
 
         const handleChangeTerm = ({ target: { value }}) => {
             setTerm(value);
@@ -70,7 +94,7 @@ const withPresenter = (
             setShowRateModal(true);
         };
 
-        const handleOpenEditRateModal = (rate: Rate) => {
+        const handleOpenEditRateModal = (rate: Rate) => () => {
             const { tenatendir, term, minmonthlyreturn, maxmonthlyreturn, regularir } = rate;
             setTerm(term);
             setMinMonthlyReturn(minmonthlyreturn);
@@ -113,6 +137,39 @@ const withPresenter = (
             }
         }
 
+        const handleDeleteRate = async(): Promise<void>  => {
+            if (deleteRateId){
+                await deleteRate(deleteRateId);
+            }
+            setDeleteModalOpen(false);
+            refetchRates();
+            setDeleteRateId(undefined);
+        }
+        const handleUpdateRateCard = async(): Promise<void>  => {
+            if (rateCardId){
+                await updateRateCard({cardtype: newRateCardName, id: rateCardId});
+            }
+            setRateCardModalOpen(false);
+            refetchRateCard();
+            setNewRateCardName("");
+        }
+        const handleCloseDeleteModal = (): void => {
+            setDeleteModalOpen(false);
+        }
+        const handleOpenDeleteModal = (id: number) => () => {
+            setDeleteRateId(id);
+            setDeleteModalOpen(true);
+        };
+        const handleOpenRateCardModal = (): void => {
+            setRateCardModalOpen(true);
+        };
+        const handleCloseRateCardModal = (): void => {
+            setRateCardModalOpen(false);
+            setNewRateCardName("");
+        }
+        const handleTextChange = ({ target: { value }}) => {
+            setNewRateCardName(value);
+        }
 
         const newRateModal: NewRateModalProps = {
             ...newRateModalDefaultProps,
@@ -225,6 +282,7 @@ const withPresenter = (
                     ...defaultProps.blockHeader.button?.text,
                     value: t('rate_card_details_page.header.button_text'),
                 },
+                onButtonClicked: handleOpenRateCardModal,
             }
         };
 
@@ -260,7 +318,7 @@ const withPresenter = (
 
         const sortedRates = rates?.sort((a, b) => a.id > b.id && 1 || -1);
         sortedRates?.forEach((rate) => {
-            const { term, minmonthlyreturn, maxmonthlyreturn, regularir, tenatendir } = rate;
+            const { term, minmonthlyreturn, maxmonthlyreturn, regularir, tenatendir, id } = rate;
             const rateCardTableItem: RateCardTableItemProps = {
                 ...defaultRteCardTableItemProps,
                 type: 'Default',
@@ -286,13 +344,11 @@ const withPresenter = (
                 },
                 editButton: {
                     ...defaultRteCardTableItemProps.editButton,
-                    onButtonClicked: () => handleOpenEditRateModal(rate),
+                    onButtonClicked: handleOpenEditRateModal(rate),
                 },
                 deleteButton: {
                     ...defaultRteCardTableItemProps.deleteButton,
-                    onButtonClicked: () => {
-                        console.log('delete');
-                    },
+                    onButtonClicked: handleOpenDeleteModal(id),
                 },
             };
             rateCardTableItems.push(rateCardTableItem);
@@ -322,17 +378,93 @@ const withPresenter = (
             rateCardTableItemList: rateCardTableItemList,
         } as RateCardTableProps;
 
+        const confirmationModal = {
+            ...defaultConfirmationModalProps,
+            icon: {
+                ...defaultConfirmationModalProps.icon,
+                onIconClicked: handleCloseDeleteModal,
+            },
+            title: {
+                ...defaultConfirmationModalProps.title,
+                value: t('delete_rate_entry.heading'),
+            },
+            body: {
+                ...defaultConfirmationModalProps.body,
+                value: t('delete_rate_entry.body'),
+            },
+            primary: {
+                ...defaultConfirmationModalProps.primary,
+                text: {
+                    ...defaultConfirmationModalProps.primary.text,
+                    value: t('delete_rate_entry.delete_button'),
+                },
+                onButtonClicked: handleDeleteRate,
+            },
+            secondary: {
+                ...defaultConfirmationModalProps.secondary,
+                text: {
+                    ...defaultConfirmationModalProps.secondary.text,
+                    value: t('delete_rate_entry.cancel_button'),
+                },
+                onButtonClicked: handleCloseDeleteModal,
+            }
+        }
+        const rateCardModal = {
+            ...defaultRateCardModalProps,
+            icon: {
+                ...defaultRateCardModalProps.icon,
+                onIconClicked: handleCloseRateCardModal,
+            },
+            title: {
+                ...defaultRateCardModalProps.title,
+                value: t('add_rate_card.heading'),
+            },
+            textField: {
+                ...defaultRateCardModalProps.textField,
+                label: {
+                    ...defaultRateCardModalProps.textField.label,
+                    value: t('add_rate_card.label'),
+                },
+                textInput: {
+                    ...defaultRateCardModalProps.textField.textInput,
+                    textValue: newRateCardName,
+                    onTextChanged: handleTextChange,
+                },
+              },
+            primary: {
+                ...defaultRateCardModalProps.primary,
+                text: {
+                    ...defaultRateCardModalProps.primary.text,
+                    value: t('add_rate_card.save_button'),
+                },
+                onButtonClicked: handleUpdateRateCard,
+            },
+            secondary: {
+                ...defaultRateCardModalProps.secondary,
+                text: {
+                    ...defaultRateCardModalProps.secondary.text,
+                    value: t('add_rate_card.cancel_button'),
+                },
+                onButtonClicked: handleCloseRateCardModal,
+            }
+        }
+
         const rateCardDetailsPageProps: RateCardDetailsPageProps = {
             ...defaultProps,
             blockHeader: blockHeader,
             rateCardTable: rateCardTable,
+            confirmationModal: confirmationModal,
+            rateCardModal: rateCardModal,
         }
         return <View {
             ...rateCardDetailsPageProps}
             newRateModal={newRateModal}
             showRateModal={showRateModal}
+            deleteModalOpen={deleteModalOpen} 
+            className={className}
+            rateCardModalOpen={rateCardModalOpen}
             />;
-    }
+        }
     return Presenter;
 };
 export default withPresenter;

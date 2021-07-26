@@ -43,21 +43,19 @@ const RateCardPage: React.FC<RateCardPageProps> = ({
   rateCardModal,
   rateCardModalOpen,
 }) => {
-  let deleteModalDisplay;
-  let rateCardModalDisplay;
+  let modalDisplay;
   if (deleteModalOpen) {
-    deleteModalDisplay = ( <ConfirmationModal {...confirmationModal} />)
+    modalDisplay = ( <ConfirmationModal {...confirmationModal} />)
   } 
-  else if (rateCardModalOpen) {
-    rateCardModalDisplay = ( <NewRateCardModal {...rateCardModal} />)
+  else if (rateCardModalOpen){
+    modalDisplay = ( <NewRateCardModal {...rateCardModal} />)
   }
   return (
       <div className={cx(styles.rateCardPage, className)}>
         <DashboardRateCardBlock
           className={styles.dashboardRateCardBlock}
           {...dashboardRateCardBlock} />
-          {deleteModalDisplay}
-          {rateCardModalDisplay}
+          {modalDisplay}
       </div>
   );
 }

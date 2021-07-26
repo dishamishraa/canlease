@@ -12,7 +12,7 @@ export type RateCardPayload = {
 };
 
 export type CreateRateCard = Pick<RateCard, 'cardtype'>;
-export type UpdateRateCard = Partial<CreateRateCard>;
+export type UpdateRateCard = Partial<CreateRateCard> & { id: number };
 
 export type Rate = {
     id: number;

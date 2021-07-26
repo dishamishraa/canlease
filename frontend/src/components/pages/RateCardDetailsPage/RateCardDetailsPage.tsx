@@ -7,6 +7,8 @@ import TopBar, { TopBarProps } from '../../organisms/TopBar';
 import BlockHeader, { BlockHeaderProps } from '../../molecules/BlockHeader';
 import RateCardTable, { RateCardTableProps } from '../../blocks/RateCardTable';
 import NewRateModal, { NewRateModalProps } from '../../organisms/NewRateModal/NewRateModal';
+import ConfirmationModal, { ConfirmationModalProps } from '../../organisms/ConfirmationModal';
+import NewRateCardModal, { NewRateCardModalProps } from '../../organisms/NewRateCardModal';
 
 export const defaultProps = {
   topBar: {
@@ -102,6 +104,10 @@ export type RateCardDetailsPageProps = {
   rateCardTable?: RateCardTableProps;
   newRateModal?: NewRateModalProps;
   showRateModal?: boolean;
+  confirmationModal?: ConfirmationModalProps;
+  deleteModalOpen?: boolean;
+  rateCardModal?: NewRateCardModalProps;
+  rateCardModalOpen?: boolean;
 };
 
 const RateCardDetailsPage: React.FC<RateCardDetailsPageProps> = ({
@@ -110,13 +116,23 @@ const RateCardDetailsPage: React.FC<RateCardDetailsPageProps> = ({
   className,
   rateCardTable,
   showRateModal,
-  newRateModal
+  newRateModal,
+  confirmationModal,
+  deleteModalOpen,
+  rateCardModal,
+  rateCardModalOpen,
 }) => {
   let modalDisplay;
   if (showRateModal) {
     modalDisplay = (
       <NewRateModal className={styles.newRateModal} {...newRateModal}/>
     );
+  }
+  if (deleteModalOpen) {
+    modalDisplay = ( <ConfirmationModal {...confirmationModal} />)
+  } 
+  else if (rateCardModalOpen){
+    modalDisplay = ( <NewRateCardModal {...rateCardModal} />)
   }
   return (
     <div className={cx(styles.rateCardDetailsPage, className)}>

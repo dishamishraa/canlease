@@ -1,7 +1,7 @@
 import axios, { isAxiosError } from '../../lib/api/axios';
 import { ApiError } from '../../lib/api/types';
 import { BFF_URL } from '../../lib/config';
-import { CreateRateCard, RateCard, Rate, CreateRate, UpdateRate } from './types';
+import { CreateRateCard, RateCard, Rate, CreateRate, UpdateRate, UpdateRateCard } from './types';
 
 export const createRateCard = async (payload: CreateRateCard): Promise<RateCard> => {
     try {
@@ -10,9 +10,9 @@ export const createRateCard = async (payload: CreateRateCard): Promise<RateCard>
     } catch (error) {
         if (isAxiosError(error) && error.response) {
             throw new ApiError({
-            code: error.response.status,
-            type: error.response.statusText,
-            message: error.message,
+              code: error.response.status,
+              type: error.response.statusText,
+              message: error.message,
             });
       }
       throw error;
@@ -115,9 +115,25 @@ export const updateRate = async(rateId: number, payload: UpdateRate): Promise<Ra
   }
 }
 
-export const deleteRate = async(rateId: string): Promise<void> => {
+export const deleteRate = async(rateId: number): Promise<void> => {
   try{
     await axios.delete(`${BFF_URL}/rates/${rateId}`, { withCredentials: true });
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new ApiError({
+        code: error.response.status,
+        type: error.response.statusText,
+        message: error.message,
+      });
+    }
+    throw error;
+  }
+}
+
+export const updateRateCard = async(id: number, payload: UpdateRateCard): Promise<RateCard> => {
+  try{
+    const { data } = await axios.patch(`${BFF_URL}/rate_cards/${id}`, payload, { withCredentials: true });
+    return data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new ApiError({

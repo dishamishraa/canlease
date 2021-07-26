@@ -2,8 +2,6 @@ import React from 'react';
 import { useCreateApplication } from '../../../modules/application';
 import { ApplicationPageProps } from './ApplicationPage';
 import { ApplicationPagePresenterProps } from './ApplicationPage.presenter';
-import { useParams } from 'react-router';
-import useQuoteDetails from '../../../modules/quote/useQuoteDetails';
 import { useContext } from 'react';
 import { AuthContext } from '../../../modules/auth';
 

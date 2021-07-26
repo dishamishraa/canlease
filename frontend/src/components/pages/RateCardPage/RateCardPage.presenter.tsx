@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router';
 import { RateCardPageProps, defaultProps } from './RateCardPage';
 import { defaultProps as DashboardRateCardDefaultProps, DashboardRateCardProps} from '../../molecules/DashboardRateCard/DashboardRateCard';
 import { defaultProps as defaultConfirmationModalProps } from '../../organisms/ConfirmationModal/ConfirmationModal';
 import { defaultProps as defaultRateCardModalProps } from '../../organisms/NewRateCardModal/NewRateCardModal';
 import { RateCard, CreateRateCard } from '../../../modules/rateCard/types';
 import { APIResponse } from '../../../lib/api/types';
+import AddCardImage from '../../../resources/images/addCard.svg';
 
 export type RateCardPagePresenterProps = RateCardPageProps & {
     rateCards: RateCard[] | null;
@@ -27,6 +29,7 @@ const withPresenter = (
     } = props;
     
     const { t } = useTranslation();
+    const history = useHistory();
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [rateCardModalOpen, setRateCardModalOpen] = useState(false);
     const [rateCardName, setRateCardName] = useState("");
@@ -60,9 +63,16 @@ const withPresenter = (
 
     const handleCreateRateCard = async () => {
         const { data } = await createRateCard({cardtype: rateCardName});
-        setRateCardModalOpen(false);
-        refetch();
-        setRateCardName("");
+        if (data) {
+            setRateCardModalOpen(false);
+            refetch();
+            setRateCardName("");
+            history.push(`/portal/ratecard/${data.id}`);
+        }
+    }
+    
+    const handleViewRateCard = (id: number) => () => {
+        history.push(`/portal/ratecard/${id}`)
     }
 
     rateCards?.forEach((rateCard) => {
@@ -80,6 +90,7 @@ const withPresenter = (
                     ...DashboardRateCardDefaultProps.viewButton.text,
                     value: t('rate_cards.view_button'),
                 },
+                onButtonClicked: handleViewRateCard(id),
             },
             deleteButton: {
                 ...DashboardRateCardDefaultProps.deleteButton,
@@ -95,6 +106,9 @@ const withPresenter = (
     const addRateCard: DashboardRateCardProps = {
         ...DashboardRateCardDefaultProps,
         type: 'AddRateCard',
+        image: {
+            image: AddCardImage,
+        },
         button: {
             ...DashboardRateCardDefaultProps.button,
             text: {

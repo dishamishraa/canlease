@@ -426,7 +426,8 @@
         "purchase_option_month": "Purchase option month:",
         "purchase_option_date": "Purchase option date:",
         "purchase_option_amount": "Purchase option amount:",
-        "quote_id": "Quote ID:"
+        "quote_id": "Quote ID:",
+        "term_in_months": "{{months}} Months"
     },
     "user_profile": {
         "logout": "Logout",
@@ -497,6 +498,12 @@
         "ten": "$10 @ end IR",
         "primary": "Save",
         "secondary": "Cancel"
+    },
+    "delete_rate_entry": {
+        "heading": "Are you sure?",
+        "body": "Are you sure you want to delete this entry? This action cannot be undone.",
+        "delete_button": "Delete",
+        "cancel_button": "Cancel"
     }
 }
   
