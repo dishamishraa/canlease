@@ -17,7 +17,7 @@ export type RateCardDetailsPagePresenterProps = RateCardDetailsPageProps & {
     rates: Rate[] | null;
     error?: Error;
     loading: boolean;
-    rateCard?: RateCard | undefined;
+    rateCard?: RateCard | null;
     createRate?: (payload: CreateRate) => Promise<APIResponse<Rate>>
     updateRate?: (payload: UpdateRate) => Promise<void>
     refetchRates: () => void;
