@@ -23,13 +23,25 @@ const withPresenter = (
       value: t('lease_info_block.header'),
     };
 
-    let leaseStartDate;
-    let leaseOptionMonth;
-    let leaseOptionDate;
+    const placeholderText = ' - ';
 
-    const emptyLease: String | undefined = lease ? undefined : ' - '; 
+    let leaseStartDate = placeholderText;
+    let leaseOptionMonth = placeholderText;
+    let leaseOptionDate = placeholderText;
+    let vendorName = placeholderText;
+    let leaseNumber = placeholderText;
+    let termInMonths = placeholderText;
+    let paymentBeforeTax = placeholderText;
+    let optionAmount = placeholderText;
 
     if (lease){
+
+      vendorName = lease.vendorName;
+      leaseNumber = lease.leaseNumber;
+      termInMonths = t('lease_info_block.term_in_months', { months: lease?.fullTerm } );
+      paymentBeforeTax = `$${lease?.paymentBeforeTax}`
+      optionAmount = `$${lease?.optionAmount}`;
+
       const dateFormatOptions: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: '2-digit'};
       leaseStartDate = new Date(lease?.leaseStartDate ?? '').toLocaleDateString('en-CA', dateFormatOptions);
       leaseOptionMonth =  new Date(lease?.purchaseOptionDate ?? '').toLocaleString('default', { month: 'long' });
@@ -79,7 +91,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: emptyLease ?? lease?.vendorName,
+              value: vendorName,
             }
           },
           {},
@@ -90,7 +102,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: emptyLease ?? lease?.leaseNumber,
+              value: leaseNumber,
             }
           },
           {
@@ -100,7 +112,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: emptyLease ?? t('lease_info_block.term_in_months', { months: lease?.fullTerm } ),
+              value: termInMonths,
             }
           },
           {
@@ -110,7 +122,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: emptyLease ?? `$${lease?.paymentBeforeTax}`
+              value: paymentBeforeTax,
             }
           },
           {
@@ -131,7 +143,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: emptyLease ?? leaseStartDate,
+              value: leaseStartDate,
             }
           },
           {
@@ -141,7 +153,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: emptyLease ?? leaseOptionMonth,
+              value: leaseOptionMonth,
             }
           },
           {
@@ -151,7 +163,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: emptyLease ?? leaseOptionDate,
+              value: leaseOptionDate,
             }
           },
           {
@@ -161,7 +173,7 @@ const withPresenter = (
             },
             infoText: {
               ...defaultInfoTextProps,
-              value: emptyLease ?? `$${lease?.optionAmount}`,
+              value: optionAmount,
             }
           },
           {},
