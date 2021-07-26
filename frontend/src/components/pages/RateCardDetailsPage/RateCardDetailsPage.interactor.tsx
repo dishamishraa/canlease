@@ -10,7 +10,7 @@ const withInteractor = (
 ): React.FC <RateCardDetailsPageProps> => {
   const Interactor: React.FC <RateCardDetailsPageProps> = (props) => {
     const { rateCardId } = useParams<{rateCardId: string}>();
-    const { refetch, loading, error, data: rates } = useGetRatesDetails(rateCardId);
+    const { refetch: refetchRates, loading, error, data: rates } = useGetRatesDetails(rateCardId);
     const { data: rateCard } = useGetRateCard(rateCardId);
     const [ {}, createRate ] = useCreateRate();
     const [ {}, updateRate ] = useUpdateRate();
@@ -22,7 +22,7 @@ const withInteractor = (
         rates={rates}
         rateCard={rateCard as RateCard}
         createRate={createRate}
-        refetch={refetch}
+        refetchRates={refetchRates}
         updateRate={updateRate}
       />
     );

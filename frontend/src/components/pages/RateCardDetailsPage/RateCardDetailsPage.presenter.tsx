@@ -18,14 +18,14 @@ export type RateCardDetailsPagePresenterProps = RateCardDetailsPageProps & {
     rateCard?: RateCard | undefined;
     createRate?: (payload: CreateRate) => Promise<APIResponse<Rate>>
     updateRate?: (payload: UpdateRate) => Promise<void>
-    refetch?: () => void;
+    refetchRates?: () => void;
 };
 
 const withPresenter = (
     View: React.FC<RateCardDetailsPageProps>
 ) => {
     const Presenter: React.FC<RateCardDetailsPagePresenterProps> = (props) => {
-        const { rateCard, rates, createRate, updateRate, refetch} = props;
+        const { rateCard, rates, createRate, updateRate, refetchRates} = props;
         const { t } = useTranslation();
         const [showRateModal, setShowRateModal] = useState(false);
         const [term, setTerm] = useState<number|null>();
@@ -87,7 +87,7 @@ const withPresenter = (
 
         const handleSaveRate = async () => {
             if(term && minMonthlyReturn && maxMonthlyReturn && 
-                interestRate && tenAtEndIR && rateCard && refetch){
+                interestRate && tenAtEndIR && rateCard && refetchRates){
                 if (!currRate && createRate){
                     await createRate({
                         term: term,
@@ -109,7 +109,7 @@ const withPresenter = (
                     })
                 }
                 onCloseRateModal();
-                refetch();
+                refetchRates();
             }
         }
 
