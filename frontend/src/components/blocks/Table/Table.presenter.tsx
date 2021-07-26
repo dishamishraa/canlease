@@ -8,7 +8,7 @@ import { defaultProps as tableItemDefaultProps } from '../../molecules/TableItem
 import { isExpiring, isExpired, createdOn } from '../../../lib/utils';
 import { CreditApplication, Portfolio } from '../../../modules/portfolio/types';
 import { Quote } from '../../../modules/quote/types';
-import { ContentFilter, ContentType, ContentTypeTabs, LeaseInfo } from '../../../modules/types';
+import { ContentFilter, ContentType, LeaseInfo } from '../../../modules/types';
 
 type TableItem = {
   company: string;
