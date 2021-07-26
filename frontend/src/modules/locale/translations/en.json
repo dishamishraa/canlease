@@ -426,7 +426,8 @@
         "purchase_option_month": "Purchase option month:",
         "purchase_option_date": "Purchase option date:",
         "purchase_option_amount": "Purchase option amount:",
-        "quote_id": "Quote ID:"
+        "quote_id": "Quote ID:",
+        "term_in_months": "{{months}} Months"
     },
     "user_profile": {
         "logout": "Logout",

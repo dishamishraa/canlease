@@ -22,6 +22,9 @@
     }
     align-self: stretch;
     flex: 0 0 auto;
+    :nth-child(5n+5) {
+      height: 1rem;
+    }
     @media (max-width: 575px) {
       &:nth-child(1) {
         margin-top: 0;
@@ -56,6 +59,9 @@
       }
       align-self: stretch;
       flex: 0 0 auto;
+      :nth-child(5n+5) {
+        height: 1rem;
+      }
       &:nth-child(1) {
         margin-top: 0;
       }
