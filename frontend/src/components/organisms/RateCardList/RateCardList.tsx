@@ -19,8 +19,9 @@ const RateCardList: React.FC<RateCardListProps> = ({
   rateCards,
   className,
 }) => {
-  const rateCardArray = rateCards?.map((rateCard) => (
+  const rateCardArray = rateCards?.map((rateCard, index) => (
     <RateCard
+      key={index}
       className={styles.rateCard}
       {...rateCard} />
   ));

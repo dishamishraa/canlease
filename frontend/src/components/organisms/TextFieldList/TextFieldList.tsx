@@ -19,8 +19,9 @@ const TextFieldList: React.FC<TextFieldListProps> = ({
   textFields,
   className,
 }) => {
-  const textFieldItemArray = textFields?.map((textField) => (
+  const textFieldItemArray = textFields?.map((textField, index) => (
     <TextField
+      key={index}
       className={styles.textFieldItem}
       {...textField} />
   ));

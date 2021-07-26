@@ -39,8 +39,9 @@ const RadioField: React.FC<RadioFieldProps> = ({
   radioButtonItems,
   className,
 }) => {
-  const radioButtonItemsArray = radioButtonItems?.map((radioButtonItem) => (
+  const radioButtonItemsArray = radioButtonItems?.map((radioButtonItem, index) => (
     <RadioButtonItem
+      key={index}
       className={styles.radioButtonItem}
       {...radioButtonItem} />
   ));

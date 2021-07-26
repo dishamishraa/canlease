@@ -19,8 +19,9 @@ const DashboardCardList: React.FC<DashboardCardListProps> = ({
   dashboardCards,
   className,
 }) => {
-  const dashboardCardArray = dashboardCards?.map((dashboardCard) => (
+  const dashboardCardArray = dashboardCards?.map((dashboardCard, index) => (
     <DashboardCard
+      key={index}
       className={styles.dashboardCard}
       {...dashboardCard} />
   ));

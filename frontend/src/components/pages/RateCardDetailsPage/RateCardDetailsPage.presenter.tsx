@@ -157,6 +157,7 @@ const withPresenter = (
                     ...defaultRteCardTableItemProps.deleteButton,
                     onButtonClicked: handleOpenDeleteModal(id),
                 },
+                id: id.toString(),
             };
             rateCardTableItems.push(rateCardTableItem);
         })
@@ -174,6 +175,7 @@ const withPresenter = (
                             value: t('rate_card_table.addButton')
                         },
                     },
+                    id: "add_rate"
                 }
             ]
         } as RateCardTableItemListProps;
@@ -262,6 +264,7 @@ const withPresenter = (
             confirmationModal: confirmationModal,
             rateCardModal: rateCardModal,
         }
+
         return <View 
                 {...rateCardDetailsPageProps}
                 deleteModalOpen={deleteModalOpen} 

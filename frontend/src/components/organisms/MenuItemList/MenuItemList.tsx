@@ -19,8 +19,9 @@ const MenuItemList: React.FC<MenuItemListProps> = ({
   mainMenuItems,
   className,
 }) => {
-  const mainMenuItemArray = mainMenuItems?.map((mainMenuItem) => (
+  const mainMenuItemArray = mainMenuItems?.map((mainMenuItem, index) => (
     <MainMenuItem
+      key={index}
       className={styles.mainMenuItem}
       {...mainMenuItem} />
   ));

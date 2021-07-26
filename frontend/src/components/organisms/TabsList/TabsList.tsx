@@ -19,8 +19,9 @@ const TabsList: React.FC<TabsListProps> = ({
   tabItems,
   className,
 }) => {
-  const tabItemArray = tabItems?.map((tabItem) => (
+  const tabItemArray = tabItems?.map((tabItem, index) => (
     <TabItem
+      key={index}
       className={styles.tabItem}
       {...tabItem} />
   ));

@@ -19,8 +19,9 @@ const CardList: React.FC<CardListProps> = ({
   userSelectionCards,
   className,
 }) => {
-  const userSelectionCardArray = userSelectionCards?.map((userSelectionCard) => (
+  const userSelectionCardArray = userSelectionCards?.map((userSelectionCard, index) => (
     <UserSelectionCard
+      key={index}
       className={styles.userSelectionCard}
       {...userSelectionCard} />
   ));

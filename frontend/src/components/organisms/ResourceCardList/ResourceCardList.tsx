@@ -19,8 +19,9 @@ const ResourceCardList: React.FC<ResourceCardListProps> = ({
   resourceCards,
   className,
 }) => {
-  const resourceCardArray = resourceCards?.map((resourceCard) => (
+  const resourceCardArray = resourceCards?.map((resourceCard, index) => (
     <ResourceCard
+      key={index}
       className={styles.resourceCard}
       {...resourceCard} />
   ));

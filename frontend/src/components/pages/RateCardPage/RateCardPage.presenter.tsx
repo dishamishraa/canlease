@@ -99,7 +99,8 @@ const withPresenter = (
                     value: t('rate_cards.delete_button'),
                 },
                 onButtonClicked: handleOpenDeleteModal(id),
-            }
+            },
+            id: id.toString(),
         }
         rateCardArray.push(rateCardProps);
     })
@@ -117,6 +118,7 @@ const withPresenter = (
             },
             onButtonClicked: handleOpenRateCardModal,
         },
+        id: "add_rate_card"
     }
     rateCardArray.push(addRateCard);
 

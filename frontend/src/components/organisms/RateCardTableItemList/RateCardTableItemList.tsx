@@ -21,6 +21,7 @@ const RateCardTableItemList: React.FC<RateCardTableItemListProps> = ({
 }) => {
   const rateCardTableItemArray = rateCardTableItems?.map((rateCardTableItem) => (
     <RateCardTableItem
+      key={rateCardTableItem.id}
       className={styles.rateCardTableItem}
       {...rateCardTableItem} />
   ));
