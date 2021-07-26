@@ -1,39 +1,230 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Rate } from '../../../modules/rateCard/types';
+import { CreateRate, Rate, RateCard, UpdateRate } from '../../../modules/rateCard/types';
 import { defaultProps as defaultRateCardTableProps, RateCardTableProps } from '../../blocks/RateCardTable/RateCardTable';
 import { RateCardTableItemListProps } from '../../organisms/RateCardTableItemList';
 import { RateCardDetailsPageProps, defaultProps } from './RateCardDetailsPage';
 import { RateCardTableItemProps, defaultProps as defaultRteCardTableItemProps } from '../../molecules/RateCardTableItem/RateCardTableItem';
+import { APIResponse } from '../../../lib/api/types';
+import { NewRateModalProps, defaultProps as newRateModalDefaultProps } from '../../organisms/NewRateModal/NewRateModal';
+import { defaultProps as defaultTextFieldProps } from '../../molecules/TextField/TextField';
+import { isEmpty } from '../../../lib/utils';
 
 
 export type RateCardDetailsPagePresenterProps = RateCardDetailsPageProps & {
     rates: Rate[] | null;
     error?: Error;
     loading: boolean;
-    rateCardName?: string;
+    rateCard?: RateCard | undefined;
+    createRate?: (payload: CreateRate) => Promise<APIResponse<Rate>>
+    updateRate?: (payload: UpdateRate) => Promise<void>
+    refetch?: () => void;
 };
 
 const withPresenter = (
     View: React.FC<RateCardDetailsPageProps>
 ) => {
     const Presenter: React.FC<RateCardDetailsPagePresenterProps> = (props) => {
-        const { rateCardName, rates } = props;
-
+        const { rateCard, rates, createRate, updateRate, refetch} = props;
         const { t } = useTranslation();
+        const [showRateModal, setShowRateModal] = useState(false);
+        const [term, setTerm] = useState<number|null>();
+        const [currRate, setCurrRate] = useState<Rate|null>();
+        const [minMonthlyReturn, setMinMonthlyReturn] = useState<number|null>();
+        const [maxMonthlyReturn, setMaxMonthlyReturn] = useState<number|null>();
+        const [interestRate, setInterestRate] = useState<number|null>();
+        const [tenAtEndIR, setTenAtEndIR] = useState<number|null>()
+
+        const handleChangeTerm = ({ target: { value }}) => {
+            setTerm(value);
+        }
+
+        const handleChangeMin = ({ target: { value }}) => {
+            setMinMonthlyReturn(value);
+        }
+
+        const handleChangeMax = ({ target: { value }}) => {
+            setMaxMonthlyReturn(value);
+        }
+
+        const handleChangeInterestRate = ({ target: { value }}) => {
+            setInterestRate(value);
+        }
+
+        const handleChangeTenAtEndIR = ({ target: { value }}) => {
+            setTenAtEndIR(value);
+        }
+        
+        const onCloseRateModal = () => {
+            setShowRateModal(false);
+            setTerm(null);
+            setMinMonthlyReturn(null);
+            setMaxMonthlyReturn(null);
+            setInterestRate(null);
+            setTenAtEndIR(null);
+            setCurrRate(null);
+        };
+
+        const handleOpenAddRateModal = () => {
+            setCurrRate(null);
+            setShowRateModal(true);
+        };
+
+        const handleOpenEditRateModal = (rate: Rate) => {
+            const { tenatendir, term, minmonthlyreturn, maxmonthlyreturn, regularir } = rate;
+            setTerm(term);
+            setMinMonthlyReturn(minmonthlyreturn);
+            setMaxMonthlyReturn(maxmonthlyreturn);
+            setInterestRate(regularir);
+            setTenAtEndIR(tenatendir);
+            setCurrRate(rate);
+            setShowRateModal(true);
+        }
+
+        const isFormValid = !isEmpty(term) && !isEmpty(minMonthlyReturn) && 
+            !isEmpty(maxMonthlyReturn) && !isEmpty(interestRate) &&
+            !isEmpty(tenAtEndIR);
+
+        const handleSaveRate = async () => {
+            if(term && minMonthlyReturn && maxMonthlyReturn && 
+                interestRate && tenAtEndIR && rateCard && refetch){
+                if (!currRate && createRate){
+                    await createRate({
+                        term: term,
+                        minmonthlyreturn: minMonthlyReturn,
+                        maxmonthlyreturn: maxMonthlyReturn,
+                        regularir: interestRate,
+                        tenatendir: tenAtEndIR,
+                        ratecardid: rateCard?.id,
+                    });
+                } else if (currRate && updateRate){
+                    await updateRate({
+                        rateId: currRate.id,
+                        term: term,
+                        minmonthlyreturn: minMonthlyReturn,
+                        maxmonthlyreturn: maxMonthlyReturn,
+                        regularir: interestRate,
+                        tenatendir: tenAtEndIR,
+                        ratecardid: rateCard?.id,
+                    })
+                }
+                onCloseRateModal();
+                refetch();
+            }
+        }
+
+
+        const newRateModal: NewRateModalProps = {
+            ...newRateModalDefaultProps,
+            icon: {
+                ...newRateModalDefaultProps.icon,
+                onIconClicked: onCloseRateModal,
+            },
+            title: {
+                ...newRateModalDefaultProps.title,
+                value: t('new_rate_modal.title'),
+            },
+            textFieldList: {
+                ...newRateModalDefaultProps.textFieldList,
+                textFields:[
+                    {
+                        ...defaultTextFieldProps,
+                        label: {
+                            ...defaultTextFieldProps.label,
+                            value: t('new_rate_modal.term'),
+                        },
+                        textInput: {
+                            ...defaultTextFieldProps.textInput,
+                            inputType: 'number',
+                            textValue: term !== undefined ? `${term}` : undefined,
+                            onTextChanged: handleChangeTerm,
+                        },
+                    },
+                    {
+                        ...defaultTextFieldProps,
+                        label: {
+                            ...defaultTextFieldProps.label,
+                            value: t('new_rate_modal.min'),
+                        },
+                        textInput: {
+                            ...defaultTextFieldProps.textInput,
+                            inputType: 'number',
+                            textValue: minMonthlyReturn !== undefined ? `${minMonthlyReturn}` : undefined,
+                            onTextChanged: handleChangeMin,
+                        },
+                    },
+                    {
+                        ...defaultTextFieldProps,
+                        label: {
+                            ...defaultTextFieldProps.label,
+                            value: t('new_rate_modal.max'),
+                        },
+                        textInput: {
+                            ...defaultTextFieldProps.textInput,
+                            inputType: 'number',
+                            textValue: maxMonthlyReturn !== undefined ? `${maxMonthlyReturn}` : undefined,
+                            onTextChanged: handleChangeMax,
+                        },
+                    },
+                    {
+                        ...defaultTextFieldProps,
+                        label: {
+                            ...defaultTextFieldProps.label,
+                            value: t('new_rate_modal.interest_rate'),
+                        },
+                        textInput: {
+                            ...defaultTextFieldProps.textInput,
+                            inputType: 'number',
+                            textValue: interestRate !== undefined ? `${interestRate}` : undefined,
+                            onTextChanged: handleChangeInterestRate,
+                        },
+                    },
+                    {
+                        ...defaultTextFieldProps,
+                        label: {
+                            ...defaultTextFieldProps.label,
+                            value: t('new_rate_modal.ten'),
+                        },
+                        textInput: {
+                            ...defaultTextFieldProps.textInput,
+                            inputType: 'number',
+                            textValue: tenAtEndIR !== undefined ? `${tenAtEndIR}` : undefined,
+                            onTextChanged: handleChangeTenAtEndIR,
+                        },
+                    },
+                ]
+            },
+            primary: {
+                ...newRateModalDefaultProps.primary,
+                text: {
+                    ...newRateModalDefaultProps.primary.text,
+                    value: t('new_rate_modal.primary'),
+                },
+                disabled: !isFormValid,
+                onButtonClicked: handleSaveRate,
+            },
+            secondary: {
+                ...newRateModalDefaultProps.secondary,
+                text: {
+                    ...newRateModalDefaultProps.secondary.text,
+                    value: t('new_rate_modal.secondary'),
+                },
+                onButtonClicked: onCloseRateModal
+            },
+        };
 
         const blockHeader = {
             ...defaultProps.blockHeader,
             text: {
                 ...defaultProps.blockHeader.text,
-                value: rateCardName,
+                value: rateCard?.cardtype,
             },
             button: {
                 ...defaultProps.blockHeader.button,
                 text: {
                     ...defaultProps.blockHeader.button?.text,
                     value: t('rate_card_details_page.header.button_text'),
-                }
+                },
             }
         };
 
@@ -67,7 +258,8 @@ const withPresenter = (
 
         const rateCardTableItems: RateCardTableItemProps[] = [];
 
-        rates?.forEach((rate) => {
+        const sortedRates = rates?.sort((a, b) => a.id > b.id && 1 || -1);
+        sortedRates?.forEach((rate) => {
             const { term, minmonthlyreturn, maxmonthlyreturn, regularir, tenatendir } = rate;
             const rateCardTableItem: RateCardTableItemProps = {
                 ...defaultRteCardTableItemProps,
@@ -94,9 +286,7 @@ const withPresenter = (
                 },
                 editButton: {
                     ...defaultRteCardTableItemProps.editButton,
-                    onButtonClicked: () => {
-                        console.log('edit');
-                    },
+                    onButtonClicked: () => handleOpenEditRateModal(rate),
                 },
                 deleteButton: {
                     ...defaultRteCardTableItemProps.deleteButton,
@@ -120,6 +310,7 @@ const withPresenter = (
                             ...defaultRteCardTableItemProps.button.text,
                             value: t('rate_card_table.addButton')
                         },
+                        onButtonClicked: handleOpenAddRateModal
                     },
                 }
             ]
@@ -136,7 +327,11 @@ const withPresenter = (
             blockHeader: blockHeader,
             rateCardTable: rateCardTable,
         }
-        return <View {...rateCardDetailsPageProps}/>;
+        return <View {
+            ...rateCardDetailsPageProps}
+            newRateModal={newRateModal}
+            showRateModal={showRateModal}
+            />;
     }
     return Presenter;
 };

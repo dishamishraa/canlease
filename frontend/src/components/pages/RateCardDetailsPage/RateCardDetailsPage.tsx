@@ -6,6 +6,7 @@ import styles from './RateCardDetailsPage.module.scss';
 import TopBar, { TopBarProps } from '../../organisms/TopBar';
 import BlockHeader, { BlockHeaderProps } from '../../molecules/BlockHeader';
 import RateCardTable, { RateCardTableProps } from '../../blocks/RateCardTable';
+import NewRateModal, { NewRateModalProps } from '../../organisms/NewRateModal/NewRateModal';
 
 export const defaultProps = {
   topBar: {
@@ -99,6 +100,8 @@ export type RateCardDetailsPageProps = {
   blockHeader?: BlockHeaderProps;
   className?: string;
   rateCardTable?: RateCardTableProps;
+  newRateModal?: NewRateModalProps;
+  showRateModal?: boolean;
 };
 
 const RateCardDetailsPage: React.FC<RateCardDetailsPageProps> = ({
@@ -106,7 +109,16 @@ const RateCardDetailsPage: React.FC<RateCardDetailsPageProps> = ({
   blockHeader,
   className,
   rateCardTable,
-}) => (
+  showRateModal,
+  newRateModal
+}) => {
+  let modalDisplay;
+  if (showRateModal) {
+    modalDisplay = (
+      <NewRateModal className={styles.newRateModal} {...newRateModal}/>
+    );
+  }
+  return (
     <div className={cx(styles.rateCardDetailsPage, className)}>
       <TopBar
         className={styles.topBar}
@@ -117,8 +129,9 @@ const RateCardDetailsPage: React.FC<RateCardDetailsPageProps> = ({
       <RateCardTable
         className={styles.rateCardTable}
         {...rateCardTable} />
+        {modalDisplay}
     </div>
-);
+)};
 
 RateCardDetailsPage.defaultProps = defaultProps;
 

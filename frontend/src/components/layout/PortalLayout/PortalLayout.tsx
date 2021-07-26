@@ -61,7 +61,7 @@ export const routes = {
   quote: '/portal/quote',
   profile: '/portal/profile',
   ratecard: '/portal/ratecard',
-  ratecardDetail: '/portal/ratecard/:rateId',
+  ratecardDetail: '/portal/ratecard/:rateCardId',
   invalid: '/',
 };
 
@@ -114,7 +114,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
               <ApplicationPage
                 className={styles.page} />
             </Route>
-            <Route path={routes.ratecard}>
+            <Route exact path={routes.ratecard}>
               <RateCardPage
                 className={styles.page} />
             </Route>

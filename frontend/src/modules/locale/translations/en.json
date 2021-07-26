@@ -487,6 +487,16 @@
         "header": {
             "button_text": "EDIT"
         }
+    },
+    "new_rate_modal": {
+        "title": "Rate Information",
+        "term": "term",
+        "min": "Min monthly return",
+        "max": "Max monthly return",
+        "interest_rate": "Interest rate (IR)",
+        "ten": "$10 @ end IR",
+        "primary": "Save",
+        "secondary": "Cancel"
     }
 }
   
