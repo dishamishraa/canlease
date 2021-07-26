@@ -2,7 +2,7 @@ import React from 'react';
 import { VendorDashboardPageProps } from './VendorDashboardPage';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { isExpiring, isExpired } from '../../../lib/utils';
+import { isExpiring } from '../../../lib/utils';
 import { defaultProps as dashBoardCardProps } from '../../molecules/DashboardCard/DashboardCard';
 import { defaultProps } from './VendorDashboardPage';
 import CreateQuote from '../../../resources/icons/CreateQuote.svg';
@@ -48,7 +48,6 @@ const withPresenter = (
       };
 
       let numOfExpiringQuotes = 0;
-      let numOfExpiredQuotes = 0;
       let numOfActiveQuotes = 0;
       let numOfApplicationsUnderReview = 0;
       if (userPortfolio) {
@@ -62,10 +61,7 @@ const withPresenter = (
       if (customerQuotes){
         customerQuotes.forEach(quote => {
           const { quoteExpiryDate } = quote;
-          if (isExpired(quoteExpiryDate)) {
-            numOfExpiredQuotes += 1
-          }
-          else if(isExpiring(quoteExpiryDate)){
+          if(isExpiring(quoteExpiryDate)){
             numOfExpiringQuotes += 1
           } else {
             numOfActiveQuotes += 1

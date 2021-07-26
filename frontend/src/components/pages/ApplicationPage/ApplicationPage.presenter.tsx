@@ -52,7 +52,7 @@ const withPresenter = (
           ...locationState,
         });
       }
-    }, [locationState]);
+    }, [locationState, state]);
 
     useEffect(() => {
       const pathnameNormalized = pathname.toLowerCase();
@@ -61,7 +61,7 @@ const withPresenter = (
         ...state,
         currentStep: step,
       })
-    }, [pathname]);
+    }, [pathname, state, stepsMap]);
 
     const {
       currentStep,

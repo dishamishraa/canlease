@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { CreatePasswordBlockProps } from './CreatePasswordBlock';
 import { CreatePasswordBlockPresenterProps } from './CreatePasswordBlock.presenter';
 import { useUpdatePassword } from '../../../modules/account';

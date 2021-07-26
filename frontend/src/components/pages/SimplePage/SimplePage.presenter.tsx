@@ -46,7 +46,7 @@ const withPresenter = (
           quoteUserType,
         });
       }
-    }, [locationState]);
+    }, [locationState, state]);
 
     const pathnameNormalized = pathname.toLowerCase();
     const { fromTab, quoteUserType, equipmentLeaseInfo, contactInfo } = state;

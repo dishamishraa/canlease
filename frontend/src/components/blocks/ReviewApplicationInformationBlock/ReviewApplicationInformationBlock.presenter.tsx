@@ -156,8 +156,8 @@ const withPresenter = (
       }
     }
     if (businessInfo) {
-      const { bankruptcy, bankruptcyDetails, businessPhone, businessSector, businessType, companyName, dob,
-        operatingName, operatingSinceDate, sin, type, website }
+      const { bankruptcy, businessPhone, businessSector, businessType, companyName, dob,
+        operatingName, operatingSinceDate, sin, website }
       = businessInfo as ApplicationBusinessInfoVendor;
         customerBusinessInformation = {
           text: {
@@ -485,7 +485,7 @@ const withPresenter = (
     
     if (businessInfo) {
         const {
-          bankruptcy, bankruptcyDetails, businessType, dob, sin,
+          bankruptcy, businessType, dob, sin,
         } = businessInfo;
         businessTypeDetails = {
           text: {
@@ -581,11 +581,11 @@ const withPresenter = (
             {
               labelText: {
                 ...defaultQuoteDetailItemProps.labelText,
-                value: (ageOfAsset != 0) ? t('application_form.review_application.asset_details.age_label') : "",
+                value: (ageOfAsset !== 0) ? t('application_form.review_application.asset_details.age_label') : "",
               },
               infoText: {
                 ...defaultQuoteDetailItemProps.infoText,
-                value: (ageOfAsset != 0) ? t('application_form.review_application.asset_details.age_value', {
+                value: (ageOfAsset !== 0) ? t('application_form.review_application.asset_details.age_value', {
                   ageOfAsset,
                 }) : "",
               },

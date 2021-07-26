@@ -8,7 +8,6 @@ import { UserIconStyleType } from '../../atoms/UserIcon/UserIcon';
 import { ButtonProps } from '../../atoms/Button';
 import { Account } from '../../../lib/types';
 import { defaultProps as defaultMenuItemProp } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
-import exp from 'constants';
 import useLogout from '../../../modules/auth/useLogout';
 
 export type UserProfilePresenterProps = UserProfileProps & { 

@@ -7,7 +7,7 @@ const withInteractor = (
   Presenter: React.FC<SimplePagePresenterProps>,
 ): React.FC <SimplePageProps> => {
   const Interactor: React.FC <SimplePageProps> = (props) => {
-    const [{ loading }, createQuote] = useCreateQuote();
+    const [, createQuote] = useCreateQuote();
     return (
       <Presenter
         {...props}

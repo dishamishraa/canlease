@@ -16,7 +16,6 @@ const withPresenter = (
   const Presenter: React.FC<CustomerBusinessInformationBlockPresenterProps> = (props) => {
     const {
         className,
-        profile,
         businessInfo,
         setBusinessInfo,
         stepperCurrentValue,

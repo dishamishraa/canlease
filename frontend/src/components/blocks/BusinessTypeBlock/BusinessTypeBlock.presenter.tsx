@@ -4,7 +4,6 @@ import { BusinessTypeBlockProps, defaultProps } from './BusinessTypeBlock';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
 import { isEmptyString } from '../../../lib/utils';
 import { Profile } from '../../../modules/profile/types';
-import { ApplicationBusinessInfo } from '../../../modules/types';
 
 export type BusinessTypeBlockPresenterProps = BusinessTypeBlockProps & {
     profile: Profile | null;

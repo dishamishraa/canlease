@@ -3,7 +3,6 @@ import cx from 'classnames';
 
 import styles from './TextInput.module.scss';
 
-import Text, { TextProps } from '../Text';
 import Icon, { IconProps } from '../Icon';
 
 export type TextInputTypeType = 'Text' | 'Password' | 'TextArea';

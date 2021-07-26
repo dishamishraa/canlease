@@ -2,8 +2,6 @@ import React from 'react';
 import { useCreateApplication } from '../../../modules/application';
 import { ApplicationPageProps } from './ApplicationPage';
 import { ApplicationPagePresenterProps } from './ApplicationPage.presenter';
-import { useParams } from 'react-router';
-import useQuoteDetails from '../../../modules/quote/useQuoteDetails';
 import { useContext } from 'react';
 import { AuthContext } from '../../../modules/auth';
 
@@ -13,7 +11,7 @@ const withInteractor = (
   
   const Interactor: React.FC <ApplicationPageProps> = (props) => {
     const { profile } = useContext(AuthContext);
-    const [{}, createApplication] = useCreateApplication();
+    const [, createApplication] = useCreateApplication();
     return (
       <Presenter
         {...props}

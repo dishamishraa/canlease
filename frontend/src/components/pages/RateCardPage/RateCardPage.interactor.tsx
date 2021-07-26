@@ -9,7 +9,7 @@ const withInteractor = (
   const Interactor: React.FC <RateCardPageProps> = (props) => {
 
     const { refetch, data: rateCards} = useGetRateCards();
-    const [{}, createRateCard] = useCreateRateCard();
+    const [, createRateCard] = useCreateRateCard();
     const [, deleteRateCard] = useDeleteRateCard();
 
     return (

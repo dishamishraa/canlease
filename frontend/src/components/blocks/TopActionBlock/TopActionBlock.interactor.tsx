@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { TopActionBlockProps } from './TopActionBlock';
 import { TopActionBlockPresenterProps } from './TopActionBlock.presenter';
 

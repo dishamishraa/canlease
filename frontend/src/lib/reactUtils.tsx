@@ -1,5 +1,5 @@
 import React from 'react';
-
+// eslint-disable-next-line
 const LINK_REGEX = /\[([^\]]*)\]\(([^\)]*)\)/g;
 const NEW_LINE_REGEX = /\r\n|\r|\n/g;
 

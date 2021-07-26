@@ -11,10 +11,10 @@ const withInteractor = (
 ): React.FC <AuthPageProps> => {
   const Interactor: React.FC <AuthPageProps> = (props) => {
     const { account, setAccount, setProfile, } = useContext(AuthContext);
-    const [signUpState, signUp] = useSignUp();
-    const [signInState, signIn] = useSignIn();
-    const [createProfileState, createProfile] = useCreateProfile();
-    const [updateNameState, updateName] = useUpdateName();
+    const [, signUp] = useSignUp();
+    const [, signIn] = useSignIn();
+    const [, createProfile] = useCreateProfile();
+    const [, updateName] = useUpdateName();
     const portalId = account?.uuid || '';
     const [, addQuoteToProfile] = useAddQuoteToProfile(portalId);
     

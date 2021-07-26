@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -85,6 +85,7 @@ const withPresenter = (
             break;
           case 'ResetLink':
             await forgotPassword(email);
+            break;
           default:
             break;
         }

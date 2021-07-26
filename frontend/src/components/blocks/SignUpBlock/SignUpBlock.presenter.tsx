@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 import { SignUpBlockProps, defaultProps } from './SignUpBlock';
-import { isEmptyString, isEmail } from '../../../lib/utils';
+import { isEmptyString } from '../../../lib/utils';
 import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField';
 import { HTMLInputType } from '../../atoms/TextInput/TextInput';
 import { SignUpPayload } from '../../../modules/account/types';

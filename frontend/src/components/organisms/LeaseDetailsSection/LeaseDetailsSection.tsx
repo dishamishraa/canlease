@@ -4,7 +4,7 @@ import cx from 'classnames';
 import styles from './LeaseDetailsSection.module.scss';
 
 import DetailItemList, { DetailItemListProps } from '../DetailItemList';
-import Text, { TextProps } from '../../atoms/Text';
+import { TextProps } from '../../atoms/Text';
 
 export const defaultProps = {
   text: {
