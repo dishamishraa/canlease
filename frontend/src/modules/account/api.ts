@@ -24,9 +24,7 @@ export const signUp = async (payload: SignUpPayload): Promise<AccountResponse> =
 export const resendVerifyAccount = async (email: string): Promise<void> => {
   try {
     await axios.post(`${BFF_URL}/accounts/actions/resendVerifyEmail`, {
-      params: {
-        email,
-      },
+      email,
     });
   } catch (error) {
     if (isAxiosError(error) && error.response) {
@@ -59,9 +57,7 @@ export const signIn = async (payload: SignInPayload): Promise<AccountResponse> =
 export const forgotPassword = async (email: string): Promise<void> => {
   try {
     await axios.post(`${BFF_URL}/accounts/actions/forgotPassword`, {
-      params: {
-        email,
-      },
+      email,
     });
   } catch (error) {
     if (isAxiosError(error) && error.response) {
