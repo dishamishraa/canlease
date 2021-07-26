@@ -7,3 +7,14 @@ export const mockRateCard: RateCard = {
   createdAt: 'test',
   updatedAt: 'test',
 };
+
+export const mockRateCards: RateCard[] = [
+  mockRateCard,
+  {
+    id: 2,
+    uuid: '2',
+    cardtype: 'Second Rate Card',
+    createdAt: 'test',
+    updatedAt: 'test'
+  },
+];
