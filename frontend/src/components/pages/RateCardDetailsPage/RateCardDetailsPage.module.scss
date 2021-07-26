@@ -41,7 +41,19 @@
   }
 
   .rateCardTable {
-    display: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    width: 48.5625rem;
+    flex: 0 0 15.5rem;
+    @media (max-width: 1439px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
   }
 
 }

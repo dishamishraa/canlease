@@ -70,6 +70,10 @@ const withPresenter = (
             history.push(`/portal/ratecard/${data.id}`);
         }
     }
+    
+    const handleViewRateCard = (id: number) => () => {
+        history.push(`/portal/ratecard/${id}`)
+    }
 
     rateCards?.forEach((rateCard) => {
         const { cardtype: name, id } = rateCard;
@@ -86,6 +90,7 @@ const withPresenter = (
                     ...DashboardRateCardDefaultProps.viewButton.text,
                     value: t('rate_cards.view_button'),
                 },
+                onButtonClicked: handleViewRateCard(id),
             },
             deleteButton: {
                 ...DashboardRateCardDefaultProps.deleteButton,
