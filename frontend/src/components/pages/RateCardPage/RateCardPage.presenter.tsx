@@ -7,6 +7,7 @@ import { defaultProps as defaultConfirmationModalProps } from '../../organisms/C
 import { defaultProps as defaultRateCardModalProps } from '../../organisms/NewRateCardModal/NewRateCardModal';
 import { RateCard, CreateRateCard } from '../../../modules/rateCard/types';
 import { APIResponse } from '../../../lib/api/types';
+import AddCardImage from '../../../resources/images/addCard.svg';
 
 export type RateCardPagePresenterProps = RateCardPageProps & {
     rateCards: RateCard[] | null;
@@ -62,9 +63,12 @@ const withPresenter = (
 
     const handleCreateRateCard = async () => {
         const { data } = await createRateCard({cardtype: rateCardName});
-        setRateCardModalOpen(false);
-        refetch();
-        setRateCardName("");
+        if (data) {
+            setRateCardModalOpen(false);
+            refetch();
+            setRateCardName("");
+            history.push(`/portal/ratecard/${data.id}`);
+        }
     }
     
     const handleViewRateCard = (id: number) => () => {
@@ -102,6 +106,9 @@ const withPresenter = (
     const addRateCard: DashboardRateCardProps = {
         ...DashboardRateCardDefaultProps,
         type: 'AddRateCard',
+        image: {
+            image: AddCardImage,
+        },
         button: {
             ...DashboardRateCardDefaultProps.button,
             text: {
