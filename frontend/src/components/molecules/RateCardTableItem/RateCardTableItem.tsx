@@ -89,6 +89,7 @@ export type RateCardTableItemProps = {
   deleteButton?: ButtonProps;
   className?: string;
   button?: ButtonProps;
+  id?: string;
 };
 
 const RateCardTableItem: React.FC<RateCardTableItemProps> = ({

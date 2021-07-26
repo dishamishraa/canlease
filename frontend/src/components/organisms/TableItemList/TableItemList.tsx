@@ -21,6 +21,7 @@ const TableItemList: React.FC<TableItemListProps> = ({
 }) => {
   const tableItemArray = tableItems?.map((tableItem) => (
     <TableItem
+      key={tableItem.id}
       className={styles.tableItem}
       {...tableItem} />
   ));

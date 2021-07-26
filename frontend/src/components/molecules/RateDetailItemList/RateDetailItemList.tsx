@@ -19,8 +19,9 @@ const RateDetailItemList: React.FC<RateDetailItemListProps> = ({
   rateDetailItems,
   className,
 }) => {
-  const rateDetailItemArray = rateDetailItems?.map((rateDetailItem) => (
+  const rateDetailItemArray = rateDetailItems?.map((rateDetailItem, index) => (
     <RateDetailItem
+      key={index}
       className={styles.rateDetailItem}
       {...rateDetailItem} />
   ));

@@ -59,6 +59,7 @@ export type DashboardRateCardProps = {
   image?: ImageProps;
   deleteButton?: ButtonProps;
   viewButton?: ButtonProps;
+  id?: string;
 };
 
 const DashboardRateCard: React.FC<DashboardRateCardProps> = ({

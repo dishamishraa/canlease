@@ -48,7 +48,7 @@
     align-items: flex-start;
     align-self: flex-start;
     width: 48.5625rem;
-    flex: 0 0 15.5rem;
+    flex: 0 0 auto;
     @media (max-width: 1439px) {
       &:nth-child(1) {
         margin-top: 0;
@@ -202,7 +202,7 @@
       align-items: flex-start;
       align-self: flex-start;
       width: 48.5625rem;
-      flex: 0 0 15.5rem;
+      flex: 0 0 auto;
       @media (max-width: 1439px) {
         &:nth-child(1) {
           margin-top: 0;
