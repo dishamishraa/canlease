@@ -67,7 +67,7 @@ const withPresenter = (
             setRateCardModalOpen(false);
             refetch();
             setRateCardName("");
-            history.push(`/portal/ratecard/${data?.id}`);
+            history.push(`/portal/ratecard/${data.id}`);
         }
     }
 
