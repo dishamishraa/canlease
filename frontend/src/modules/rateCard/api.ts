@@ -10,9 +10,9 @@ export const createRateCard = async (payload: CreateRateCard): Promise<RateCard>
     } catch (error) {
         if (isAxiosError(error) && error.response) {
             throw new ApiError({
-            code: error.response.status,
-            type: error.response.statusText,
-            message: error.message,
+              code: error.response.status,
+              type: error.response.statusText,
+              message: error.message,
             });
       }
       throw error;
