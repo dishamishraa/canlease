@@ -14,7 +14,8 @@ const withPresenter = (
   const Presenter: React.FC<ProfileBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
     const {
-      profile
+      profile,
+      className,
     } = props;
     let personalDetails: QuoteDetailItemProps[] = [];
     let contactDetails: QuoteDetailItemProps[] = [];
@@ -65,7 +66,8 @@ const withPresenter = (
           }
         }
       })
-      const businessInfo = [companyName, operatingName, businessSector, operatingSinceDate, businessPhone, website];
+      const operatingSince = new Date(operatingSinceDate).toDateString();
+      const businessInfo = [companyName, operatingName, businessSector, operatingSince, businessPhone, website];
       businessDetails = businessInfo.map((item, index) => {
         return {
           ...defaultQuoteDetailItemProps,
@@ -89,7 +91,7 @@ const withPresenter = (
       },
       description: {
         ...defaultProps.description,
-        value: t('profile_page.description')
+        value: <div dangerouslySetInnerHTML={{ __html:  t('profile_page.description') }} />
       },
       personalDetailsSection: {
         ...defaultProps.personalDetailsSection,
@@ -125,6 +127,7 @@ const withPresenter = (
     return (
         <View
           {...profileBlockProps}
+          className={className}
         />);
     }
 

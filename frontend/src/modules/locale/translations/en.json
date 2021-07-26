@@ -76,6 +76,7 @@
         "apply_button_text": "Apply for Finance",
         "save_quote_button_text": "Save Quote",
         "send_quote_button_text": "Send Quote",
+        "apply_for_customer_button_text": "Apply for Customer",
         "quote_rate_section_heading_text": "Quote details",
         "quote_detail":{
             "application_amount": {
@@ -194,7 +195,7 @@
             },
             "asset_header": "Asset information",
             "profile_header": "Profile information",
-            "profile_description": "<p> We will using your profile information as part of our application process. Please <a href=\"https://canlease.net/contact/\" target=\"_blank\"> contact Canlease </a> to make changes to your profile info. </p>",
+            "profile_description": "<p> We will be using your profile information as part of our application process. Please <a href=\"https://canlease.net/contact/\" target=\"_blank\"> contact Canlease </a> to make changes to your profile info. </p>",
             "personal_information_header": "Personal information",
             "contact_information_header": "Contact information",
             "business_information_header": "Business information",
@@ -256,6 +257,8 @@
     },
     "contact_information":{
         "header": "Contact information",
+        "first_name": "First name",
+        "last_name": "Last name",
         "province": {
             "0": "Alberta (AB)",
             "1": "British Columbia (BC)",
@@ -388,7 +391,8 @@
         "view_button": "VIEW",
         "see_all_button": "SEE ALL",
         "create_quote": "CREATE QUOTE",
-        "apply_finance": "APPLY FOR FINANCE"
+        "apply_finance": "APPLY FOR FINANCE",
+        "vendor_name": "vendor name"
     },
     "rate_cards": {
         "heading": "Rate card",
@@ -431,7 +435,7 @@
     },
     "profile_page": {
         "header": "Profile information",
-        "description": "We will use your profile information as part application process. Please contact Canlease to make changes to your profile info.",
+        "description": "<p> We will be using your profile information as part of our application process. Please <a href=\"https://canlease.net/contact/\" target=\"_blank\"> contact Canlease </a> to make changes to your profile info. </p>",
         "personal_info": {
             "header": "Personal information",
             "label": {

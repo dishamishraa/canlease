@@ -267,7 +267,7 @@
 
 }
 
-@media (min-width: 768px) {
+@media (min-width: 576px) {
   .dashboardCardDataCard {
     overflow: hidden;
     display: flex;
@@ -342,7 +342,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 576px) {
   .dashboardCardCreateQuoteCard {
     overflow: hidden;
     display: flex;
@@ -418,7 +418,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 576px) {
   .dashboardCardLeaseCard {
     overflow: hidden;
     display: flex;
@@ -427,12 +427,15 @@
     align-items: center;
     padding: 1.5rem 1.5rem 1.5rem 1.5rem;
     > * {
-      margin-top: 1.5rem;
+      margin-top: 2rem;
     }
-    align-self: stretch;
-    flex: 0 0 auto;
-    &:nth-child(1) {
-      margin-top: 0;
+    align-self: flex-start;
+    width: 45rem;
+    flex: 0 0 8.25rem;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
     }
     background-color: rgb(255, 255, 255);
     border: 2px solid rgb(228, 229, 240);

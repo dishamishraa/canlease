@@ -128,7 +128,7 @@ const withPresenter = (
         ...defaultProps.firstNameTextField,
         label: {
           ...defaultProps.firstNameTextField.label,
-          value: 'First name', // TODO localize
+          value: t('contact_information.first_name'),
         },
         textInput: {
           ...defaultProps.firstNameTextField.textInput,
@@ -140,7 +140,7 @@ const withPresenter = (
         ...defaultProps.lastNameTextField,
         label: {
           ...defaultProps.lastNameTextField.label,
-          value: 'Last name', // TODO localize
+          value: t('contact_information.last_name'),
         },
         textInput: {
           ...defaultProps.lastNameTextField.textInput,
