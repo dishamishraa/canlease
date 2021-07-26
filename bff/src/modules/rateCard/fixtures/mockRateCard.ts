@@ -15,6 +15,6 @@ export const mockRateCards: RateCard[] = [
     uuid: '2',
     cardtype: 'Second Rate Card',
     createdAt: 'test',
-    updatedAt: 'test'
+    updatedAt: 'test',
   },
 ];
