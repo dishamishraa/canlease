@@ -19,8 +19,9 @@ const ClickableRateCardList: React.FC<ClickableRateCardListProps> = ({
   clickableRateCards,
   className,
 }) => {
-  const clickableRateCardArray = clickableRateCards?.map((clickableRateCard) => (
+  const clickableRateCardArray = clickableRateCards?.map((clickableRateCard, index) => (
     <ClickableRateCard
+      key={index}
       className={styles.clickableRateCard}
       {...clickableRateCard} />
   ));

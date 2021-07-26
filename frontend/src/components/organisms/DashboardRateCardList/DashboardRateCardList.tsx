@@ -21,6 +21,7 @@ const DashboardRateCardList: React.FC<DashboardRateCardListProps> = ({
 }) => {
   const dashboardRateCardArray = dashboardRateCards?.map((dashboardRateCard) => (
     <DashboardRateCard
+      key={dashboardRateCard.id}
       className={styles.dashboardRateCard}
       {...dashboardRateCard} />
   ));

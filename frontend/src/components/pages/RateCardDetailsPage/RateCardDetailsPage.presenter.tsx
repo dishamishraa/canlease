@@ -350,6 +350,7 @@ const withPresenter = (
                     ...defaultRteCardTableItemProps.deleteButton,
                     onButtonClicked: handleOpenDeleteModal(id),
                 },
+                id: `${id}`,
             };
             rateCardTableItems.push(rateCardTableItem);
         })
@@ -368,6 +369,7 @@ const withPresenter = (
                         },
                         onButtonClicked: handleOpenAddRateModal
                     },
+                    id: "add_rate"
                 }
             ]
         } as RateCardTableItemListProps;

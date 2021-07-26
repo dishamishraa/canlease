@@ -19,8 +19,9 @@ const DetailItemList: React.FC<DetailItemListProps> = ({
   quoteDetailItems,
   className,
 }) => {
-  const quoteDetailItemArray = quoteDetailItems?.map((quoteDetailItem) => (
+  const quoteDetailItemArray = quoteDetailItems?.map((quoteDetailItem, index) => (
     <QuoteDetailItem
+      key={index}
       className={styles.quoteDetailItem}
       {...quoteDetailItem} />
   ));

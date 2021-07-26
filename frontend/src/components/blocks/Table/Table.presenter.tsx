@@ -20,6 +20,7 @@ type TableItem = {
   cost: number;
   link: string;
   linkState?: LeaseInfo;
+  id: string;
 }
 
 export type TablePresenterValueProps = {
@@ -77,6 +78,7 @@ const getCurrentItems = (
             asset: quote.asset,
             cost: quote.applicationAmount,
             link: `/portal/quote/${quote.quoteId}`,
+            id: quote.quoteId,
           }
         });
       }
@@ -97,7 +99,8 @@ const getCurrentItems = (
             asset: application.asset,
             cost: application.applicationAmount,
             link: generatePath("/portal/application/:applicationDetails", { applicationDetails: application.creditAppNumber }),
-            linkState: { application, lease }
+            linkState: { application, lease },
+            id: application.quoteId,
           }
         });
       }
@@ -153,7 +156,7 @@ const withPresenter = (
     const tableItemListProps: TableItemListProps = {
       ...defaultProps.tableItemList,
       tableItems: filteredItems.map(({
-        company, contactName, status, createdOn, asset, cost, link, vendor, linkState
+        company, contactName, status, createdOn, asset, cost, link, vendor, linkState, id
       }: TableItem): TableItemProps => {
         return {
           ...tableItemDefaultProps,
@@ -184,6 +187,7 @@ const withPresenter = (
           onTableItemClicked: () => {
             history.push(link, { fromTab: tab,  ...linkState });
           },
+          id,
         }
       }),
     };
