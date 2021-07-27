@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import { updateRate } from "./api";
 
 const useUpdateRate = (): UseUpdateResult<Rate, UpdateRate> => {
-    const update = useCallback((payload: UpdateRate): Promise<Rate> => updateRate(payload.rateId, payload), []);
+    const update = useCallback((payload: UpdateRate): Promise<Rate> => updateRate(payload), []);
     return useUpdate(update);
 }
 

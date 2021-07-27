@@ -98,7 +98,7 @@ export const createRate = async(payload: CreateRate): Promise<Rate> => {
   }
 };
 
-export const updateRate = async(rateId: number, payload: UpdateRate): Promise<Rate> => {
+export const updateRate = async(payload: UpdateRate): Promise<Rate> => {
   try{
     const { rateId, ...newPayload } = payload
     const { data } = await axios.patch(`${BFF_URL}/rates/${rateId}`, newPayload, { withCredentials: true });

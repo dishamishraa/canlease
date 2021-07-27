@@ -193,7 +193,7 @@ const withPresenter = (
                         textInput: {
                             ...defaultTextFieldProps.textInput,
                             inputType: 'number',
-                            textValue: term !== undefined ? `${term}` : undefined,
+                            textValue: term ? `${term}` : undefined,
                             onTextChanged: handleChangeTerm,
                         },
                     },
@@ -206,7 +206,7 @@ const withPresenter = (
                         textInput: {
                             ...defaultTextFieldProps.textInput,
                             inputType: 'number',
-                            textValue: minMonthlyReturn !== undefined ? `${minMonthlyReturn}` : undefined,
+                            textValue: minMonthlyReturn ? `${minMonthlyReturn}` : undefined,
                             onTextChanged: handleChangeMin,
                         },
                     },
@@ -219,7 +219,7 @@ const withPresenter = (
                         textInput: {
                             ...defaultTextFieldProps.textInput,
                             inputType: 'number',
-                            textValue: maxMonthlyReturn !== undefined ? `${maxMonthlyReturn}` : undefined,
+                            textValue: maxMonthlyReturn ? `${maxMonthlyReturn}` : undefined,
                             onTextChanged: handleChangeMax,
                         },
                     },
@@ -232,7 +232,7 @@ const withPresenter = (
                         textInput: {
                             ...defaultTextFieldProps.textInput,
                             inputType: 'number',
-                            textValue: interestRate !== undefined ? `${interestRate}` : undefined,
+                            textValue: interestRate ? `${interestRate}` : undefined,
                             onTextChanged: handleChangeInterestRate,
                         },
                     },
@@ -245,7 +245,7 @@ const withPresenter = (
                         textInput: {
                             ...defaultTextFieldProps.textInput,
                             inputType: 'number',
-                            textValue: tenAtEndIR !== undefined ? `${tenAtEndIR}` : undefined,
+                            textValue: tenAtEndIR ? `${tenAtEndIR}` : undefined,
                             onTextChanged: handleChangeTenAtEndIR,
                         },
                     },
