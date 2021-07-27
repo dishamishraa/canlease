@@ -34,5 +34,5 @@ export type CreateRate = Pick<Rate,
     'regularir' | 
     'tenatendir' | 
     'ratecardid'>;
-
-export type UpdateRate = Partial<CreateRate>;
+    
+export type UpdateRate = Partial<CreateRate> & { rateId: number };
