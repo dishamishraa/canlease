@@ -67,6 +67,10 @@ const withPresenter = (
                 setBusinessPhone(businessInfo.businessPhone);
                 setWebsite(businessInfo.website);
             }
+
+            if (businessInfo.businessType=== "Proprietorship" || checkShowConditionalQuestions()){
+              setShowBusinessQuestions(true);
+            }
         }
     }, [businessInfo]);
 

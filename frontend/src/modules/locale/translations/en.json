@@ -189,9 +189,14 @@
             },
             "business_type":{
                 "heading": "Business type",
+                "incorporated": "Corporation",
+                "proprietorship": "Sole Proprietorship",
                 "sin_label": "Social insurance number:",
                 "date_of_birth_label": "Date of birth:",
-                "bankruptcy_label": "Have you ever filed for bankruptcy?"
+                "bankruptcy_label": "Have you ever filed for bankruptcy?",
+                "bankruptcy_true": "Yes",
+                "bankruptcy_false": "No",
+                "bankruptcy_details": "Please provide details:"
             },
             "asset_header": "Asset information",
             "profile_header": "Profile information",
@@ -204,8 +209,9 @@
         },
         "terms_of_application":{
             "header": "Terms of application",
-            "terms": "Please review the information below to provide consent for Canlease to perform a credit check.\n By submitting this application, you are confirming that you/the applicant are consenting to: \n • Canlease and/or its funding partners and assignees, for the collection, use, and disclosure of personal and/or business information from credit reporting agencies for the purposes of credit adjudication, in connection with this application to provide leasing/financial services. \n• Electronic communication from Canlease",
-            "checkbox_label": "I have read, and agree to the above statements."
+            "checkbox_label": "I have read, and agree to the above statements.",
+            "terms": "<p>Please review the information below to provide consent for Canlease to perform a credit check.</p><p> By submitting this application, you are confirming that you/the applicant are consenting to: </p> <ul> <li> • Canlease and/or its funding partners and assignees, for the collection, use, and disclosure of personal and/or business information from credit reporting agencies for the purposes of credit adjudication, in connection with this application to provide leasing/financial services. <li> • Electronic communication from Canlease. </ul>",
+            "submit_button": "Submit application"
         },
         "application_submitted":{
             "header": "Application submitted",
