@@ -68,6 +68,9 @@ const VendorDashboardPage: React.FC<VendorDashboardPageProps> = ({
       <DataBlock
         className={styles.dataBlock}
         {...dataBlock}/>
+      {/* <ResourceBlock
+        className={styles.resourceBlock}
+        {...resourceBlock}/> */}
     </div>
 );
 

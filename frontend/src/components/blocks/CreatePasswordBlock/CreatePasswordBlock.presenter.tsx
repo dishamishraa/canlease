@@ -20,7 +20,6 @@ const withPresenter = (
     const { t } = useTranslation();
     const history = useHistory();
     const [createPassword, setCreatePassword] = useState<string>('');
-    const [createPasswordError] = useState<TextFieldStateType>('Default');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [confirmPasswordError, setConfirmPasswordError] = useState<TextFieldStateType>('Default');
     const [passwordVisibility, setPasswordVisibility] = useState<HTMLInputType>('password');
@@ -103,11 +102,6 @@ const withPresenter = (
             onIconClicked: togglePasswordVisibility,
           },
         },
-        errorMessage: {
-          ...defaultTextFieldProps.errorMessage,
-          value: t('error_message.password_mismatch'),
-        },
-        state: createPasswordError,
       },
       confirmPasswordField: {
         ...defaultProps.confirmPasswordField,

@@ -25,6 +25,7 @@ export type AuthPagePresenterProps = AuthPageProps & {
   createProfile: (payload: CreateProfilePayload) => Promise<APIResponse<Profile>>;
   updateName: (payload: UpdateNamePayload) => Promise<APIResponse<void>>;
   addQuoteToProfile: (quoteId: string) => Promise<APIResponse<void>>;
+  resendVerifyAccount: (email: string) => Promise<APIResponse<void>>;
 };
 
 const withPresenter = (
@@ -41,6 +42,7 @@ const withPresenter = (
       createProfile,
       updateName,
       addQuoteToProfile,
+      resendVerifyAccount
     } = props;
 
     const [, setCookie, removeCookie] = useCookies();
@@ -183,6 +185,7 @@ const withPresenter = (
         }
       } else if (error) {
         if (error.message === 'User has not confirmed sign up') {
+          await resendVerifyAccount(payload.email);
           history.push('/account/verifyEmail');
         }
         // TODO

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useSignIn, useSignUp, useUpdateName } from '../../../modules/account';
+import { useResendVerifyAccount, useSignIn, useSignUp, useUpdateName } from '../../../modules/account';
 import { AuthContext } from '../../../modules/auth';
 import { useCreateProfile, useAddQuoteToProfile } from '../../../modules/profile';
 import { getProfile } from '../../../modules/profile/api';
@@ -17,6 +17,7 @@ const withInteractor = (
     const [, updateName] = useUpdateName();
     const portalId = account?.uuid || '';
     const [, addQuoteToProfile] = useAddQuoteToProfile(portalId);
+    const [, resendVerifyAccount] = useResendVerifyAccount();
     
     return (
       <Presenter
@@ -30,6 +31,7 @@ const withInteractor = (
         createProfile={createProfile}
         updateName={updateName}
         addQuoteToProfile={addQuoteToProfile}
+        resendVerifyAccount={resendVerifyAccount}
       />
     );
   };

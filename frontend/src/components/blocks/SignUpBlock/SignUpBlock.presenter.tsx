@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 import { SignUpBlockProps, defaultProps } from './SignUpBlock';
-import { isEmptyString } from '../../../lib/utils';
+import { isEmptyString, isEmail } from '../../../lib/utils';
 import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField';
 import { HTMLInputType } from '../../atoms/TextInput/TextInput';
 import { SignUpPayload } from '../../../modules/account/types';
@@ -24,6 +24,7 @@ const withPresenter = (
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [emailError, setEmailError] = useState<TextFieldStateType>('Default');
+    const [emailErrorMessage, setEmailErrorMessage] = useState<string>(t('error_message.account_exist'));
     const [passwordError, setPasswordError] = useState<TextFieldStateType>('Default');
     const [confirmPasswordError, setConfirmPasswordError] = useState<TextFieldStateType>('Default');
     const [passwordVisibility, setPasswordVisibility] = useState<HTMLInputType>('password');
@@ -51,7 +52,11 @@ const withPresenter = (
 
     const handleSignUp = () => {
       // verify fields
-      if (!isEmptyString(email) && !isEmptyString(password) && !isEmptyString(confirmPassword)) {
+      if (!FormInvalid) {
+        if(!isEmail(email)){
+          setEmailErrorMessage(t('error_message.invalid_email'));
+          setEmailError('Error');
+        }
         if (password !== confirmPassword) {
           // show error message when passwords don't match
           setConfirmPasswordError('Error');
@@ -111,7 +116,7 @@ const withPresenter = (
         },
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
-          value: t('error_message.account_exist'),
+          value: emailErrorMessage,
         },
         state: emailError,
       },
