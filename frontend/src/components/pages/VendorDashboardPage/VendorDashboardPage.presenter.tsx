@@ -2,7 +2,7 @@ import React from 'react';
 import { VendorDashboardPageProps } from './VendorDashboardPage';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { isExpiring } from '../../../lib/utils';
+import { isExpired, isExpiring } from '../../../lib/utils';
 import { defaultProps as dashBoardCardProps } from '../../molecules/DashboardCard/DashboardCard';
 import { defaultProps } from './VendorDashboardPage';
 import CreateQuote from '../../../resources/icons/CreateQuote.svg';
@@ -61,7 +61,8 @@ const withPresenter = (
       if (customerQuotes){
         customerQuotes.forEach(quote => {
           const { quoteExpiryDate } = quote;
-          if(isExpiring(quoteExpiryDate)){
+          if (isExpired(quoteExpiryDate)) {}
+          else if (isExpiring(quoteExpiryDate)){
             numOfExpiringQuotes += 1
           } else {
             numOfActiveQuotes += 1

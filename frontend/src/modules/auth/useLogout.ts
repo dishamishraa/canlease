@@ -6,7 +6,7 @@ import { logout } from './api';
 type UseLogoutResult = () => void;
 
 const useLogout = (): UseLogoutResult => {
-  const [, removeCookie] = useCookies();
+  const [,, removeCookie] = useCookies();
 
   const handleLogout = useCallback(
     () => {
