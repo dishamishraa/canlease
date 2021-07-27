@@ -40,13 +40,13 @@ const withPresenter = (
           quoteUserType = fromTab === 'Customer' ? 'vendor' : 'customer';
         }
 
-        setState({
-          ...state,
+        setState(previousState => ({
+          ...previousState,
           ...locationState,
           quoteUserType,
-        });
+        }));
       }
-    }, [locationState, state]);
+    }, [locationState]);
 
     const pathnameNormalized = pathname.toLowerCase();
     const { fromTab, quoteUserType, equipmentLeaseInfo, contactInfo } = state;

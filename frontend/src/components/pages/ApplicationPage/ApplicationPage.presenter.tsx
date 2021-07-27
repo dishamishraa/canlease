@@ -47,21 +47,21 @@ const withPresenter = (
 
     useEffect(() => {
       if(locationState) {
-        setState({
-          ...state,
+        setState(previousState => ({
+          ...previousState,
           ...locationState,
-        });
+        }));
       }
-    }, [locationState, state]);
+    }, [locationState]);
 
     useEffect(() => {
       const pathnameNormalized = pathname.toLowerCase();
       const step = stepsMap[pathnameNormalized] || 1;
-      setState({
-        ...state,
+      setState(previousState => ({
+        ...previousState,
         currentStep: step,
-      })
-    }, [pathname, state, stepsMap]);
+      }))
+    }, [pathname, stepsMap]);
 
     const {
       currentStep,
