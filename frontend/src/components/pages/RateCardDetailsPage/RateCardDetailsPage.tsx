@@ -6,6 +6,7 @@ import styles from './RateCardDetailsPage.module.scss';
 import TopBar, { TopBarProps } from '../../organisms/TopBar';
 import BlockHeader, { BlockHeaderProps } from '../../molecules/BlockHeader';
 import RateCardTable, { RateCardTableProps } from '../../blocks/RateCardTable';
+import NewRateModal, { NewRateModalProps } from '../../organisms/NewRateModal/NewRateModal';
 import ConfirmationModal, { ConfirmationModalProps } from '../../organisms/ConfirmationModal';
 import NewRateCardModal, { NewRateCardModalProps } from '../../organisms/NewRateCardModal';
 
@@ -101,6 +102,8 @@ export type RateCardDetailsPageProps = {
   blockHeader?: BlockHeaderProps;
   className?: string;
   rateCardTable?: RateCardTableProps;
+  newRateModal?: NewRateModalProps;
+  showRateModal?: boolean;
   confirmationModal?: ConfirmationModalProps;
   deleteModalOpen?: boolean;
   rateCardModal?: NewRateCardModalProps;
@@ -112,12 +115,19 @@ const RateCardDetailsPage: React.FC<RateCardDetailsPageProps> = ({
   blockHeader,
   className,
   rateCardTable,
+  showRateModal,
+  newRateModal,
   confirmationModal,
   deleteModalOpen,
   rateCardModal,
   rateCardModalOpen,
 }) => {
   let modalDisplay;
+  if (showRateModal) {
+    modalDisplay = (
+      <NewRateModal className={styles.newRateModal} {...newRateModal}/>
+    );
+  }
   if (deleteModalOpen) {
     modalDisplay = ( <ConfirmationModal {...confirmationModal} />)
   } 
@@ -125,20 +135,19 @@ const RateCardDetailsPage: React.FC<RateCardDetailsPageProps> = ({
     modalDisplay = ( <NewRateCardModal {...rateCardModal} />)
   }
   return (
-      <div className={cx(styles.rateCardDetailsPage, className)}>
-        <TopBar
-          className={styles.topBar}
-          {...topBar} />
-        <BlockHeader
-          className={styles.blockHeader}
-          {...blockHeader} />
-        <RateCardTable
-          className={styles.rateCardTable}
-          {...rateCardTable} />
+    <div className={cx(styles.rateCardDetailsPage, className)}>
+      <TopBar
+        className={styles.topBar}
+        {...topBar} />
+      <BlockHeader
+        className={styles.blockHeader}
+        {...blockHeader} />
+      <RateCardTable
+        className={styles.rateCardTable}
+        {...rateCardTable} />
         {modalDisplay}
-      </div>
-  );
-}
+    </div>
+)};
 
 RateCardDetailsPage.defaultProps = defaultProps;
 
