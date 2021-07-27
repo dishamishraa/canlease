@@ -52,7 +52,8 @@ const withPresenter = (
       let numOfApplicationsUnderReview = 0;
       if (userPortfolio) {
         const { createApps: creditApplications } = userPortfolio;
-        creditApplications.filter((application: CreditApplication) => {
+        // eslint-disable-next-line
+        creditApplications.forEach((application: CreditApplication) => {
           if (getApplicationStatus(application) === "under_review"){
             numOfApplicationsUnderReview += 1;
           }
