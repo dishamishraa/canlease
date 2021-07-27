@@ -55,6 +55,7 @@ const SimplePage: React.FC<SimplePageProps> = ({
   setEquipmentLeaseInfo,
   setContactInfo,
   flowType,
+  profile
 }) => {
   const ContactInfoBlock = quoteUserType === 'vendor' && flowType === 'instaQuote' ? 
     ContactInfoVendorBlock : 
@@ -95,6 +96,7 @@ const SimplePage: React.FC<SimplePageProps> = ({
               className={styles.block}
               equipmentLeaseInfo={equipmentLeaseInfo}
               setEquipmentLeaseInfo={setEquipmentLeaseInfo}
+              profile={profile}
               />
           </Route>
           <Route exact 
