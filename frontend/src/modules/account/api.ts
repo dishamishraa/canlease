@@ -73,9 +73,9 @@ export const forgotPassword = async (email: string): Promise<void> => {
 
 export const updatePassword = async (payload: UpdatePasswordPayload): Promise<void> => {
   try {
-    const { id, password } = payload;
+    const { id, password, token } = payload;
     await axios.post(`${BFF_URL}/accounts/${id}/actions/updatePassword`, {
-      password,
+      password, token
     },
     { withCredentials: true });
   } catch (error) {

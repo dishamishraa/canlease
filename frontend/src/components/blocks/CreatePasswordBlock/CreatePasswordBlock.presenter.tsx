@@ -9,6 +9,7 @@ import { isEmptyString } from '../../../lib/utils';
 import { updatePassword } from '../../../modules/account/api';
 import { HTMLInputType } from '../../atoms/TextInput/TextInput';
 import { UpdatePasswordPayload } from '../../../modules/account/types';
+import { extractJwtPayload } from '../../../lib/token';
 
 export type CreatePasswordBlockPresenterProps = CreatePasswordBlockProps & {
   updatePassword?: (payload: UpdatePasswordPayload) => Promise<APIResponse<void>>;
@@ -31,6 +32,10 @@ const withPresenter = (
     const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState<HTMLInputType>('password');
 
     const formInvalid = (isEmptyString(createPassword) || isEmptyString(confirmPassword));
+    
+    const { search } = useLocation();
+    const query = new URLSearchParams(search);
+    const token = query.get('token')
 
     const handleSignIn = () => {
       history.push({ pathname: '/account/signIn' });
@@ -50,18 +55,20 @@ const withPresenter = (
     const handleSavePassword = async () => {
       if (createPassword !== confirmPassword) {
         setConfirmPasswordError('Error');
-      } else {
-        await updatePassword({
-          id: -11111111, // TODO update this to grab the update password token
-          password: createPassword,
-        }).then(() => {
-          history.push({
-            pathname: '/account/signIn',
-            state: {
-              message: t('toast_message.reset_password'),
-            },
+      } else if (token){
+          const { id } = extractJwtPayload(token);
+          await updatePassword({
+            id: id, 
+            password: createPassword,
+            token: token,
+          }).then(() => {
+            history.push({
+              pathname: '/account/signIn',
+              state: {
+                message: t('toast_message.reset_password'),
+              },
+            });
           });
-        });
       }
     };
 

@@ -18,6 +18,7 @@ export type SignInPayload = {
 export type UpdatePasswordPayload = {
   id: number;
   password: string;
+  token: string;
 };
 
 export type UpdateNamePayload = {
