@@ -67,8 +67,8 @@ const TopActionBlock: React.FC<TopActionBlockProps> = ({
           className={styles.textInput}
           {...textInput} />
         <SelectField
-        className={styles.select}
-        {...statusSearchField} />
+          className={styles.select}
+          {...statusSearchField} />
         <Button
           className={styles.button}
           {...button} />
