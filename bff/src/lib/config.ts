@@ -21,6 +21,7 @@ export const {
    */
   PROXY_TIMEOUT = 30000,
   SALESFORCE_API_URL = '',
+  BEARER_TOKEN = '',
 
   SENDGRID_API_URL = '',
   SENDGRID_API_KEY = '',

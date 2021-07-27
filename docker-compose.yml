@@ -35,6 +35,8 @@ services:
       - FRONTEND_DOMAIN=${DOMAIN}
       - IDENTITY_URL=http://identity:${IDENTITY_PORT}
       - DATA_URL=http://data:${DATA_PORT}
+      - BEARER_TOKEN=${BEARER_TOKEN}
+      - SALESFPRCE_API_URL=${SALESFORCE_API_URL}
 
     ports:
       - "${BFF_PORT}:${BFF_PORT}"
