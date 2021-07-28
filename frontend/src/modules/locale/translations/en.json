@@ -196,7 +196,7 @@
                 "bankruptcy_label": "Have you ever filed for bankruptcy?",
                 "bankruptcy_true": "Yes",
                 "bankruptcy_false": "No",
-                "bankruptcy_details": "Please provide details:"
+                "bankruptcy_details_label": "Bankruptcy Details:"
             },
             "asset_header": "Asset information",
             "profile_header": "Profile information",
