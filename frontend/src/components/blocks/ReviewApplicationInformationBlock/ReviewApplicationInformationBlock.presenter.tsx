@@ -156,156 +156,132 @@ const withPresenter = (
       }
     }
     if (businessInfo) {
-      const { 
-        bankruptcy, 
-        bankruptcyDetails, 
-        businessPhone, 
-        businessSector, 
-        businessType, 
-        companyName, 
-        dob,
-        operatingName, 
-        operatingSinceDate, 
-        sin, 
-        website 
-      } = businessInfo as ApplicationBusinessInfoVendor;
-
-      let bankruptcyDetailsItem;
-      
-      if(bankruptcy){
-        bankruptcyDetailsItem = {
-          labelText: {
-            ...defaultQuoteDetailItemProps.labelText,
-            value: bankruptcyDetails ? t('application_form.review_application.business_type.bankruptcy_details_label') : "",
-          },
-          infoText: {
-            ...defaultQuoteDetailItemProps.infoText,
-            value: bankruptcyDetails
-          },
-        };
-      }
-
-      customerBusinessInformation = {
-        text: {
-          ...defaultProps.businessTypeDetails.text,
-          value: t('application_form.review_application.customer_business_info_header'),
-        },
-        button: {
-          ...defaultProps.businessTypeDetails.button,
+      const { bankruptcy, businessPhone, businessSector, businessType, companyName, dob,
+        operatingName, operatingSinceDate, sin, website }
+      = businessInfo as ApplicationBusinessInfoVendor;
+        customerBusinessInformation = {
           text: {
-            ...defaultProps.businessTypeDetails.button?.text,
-            value: t('application_form.review_application.edit'),
+            ...defaultProps.businessTypeDetails.text,
+            value: t('application_form.review_application.customer_business_info_header'),
           },
-          onButtonClicked: handleClickEdit("customerBusinessInfo"),
-        },
-        detailItemList: {
-          ...defaultProps.businessTypeDetails.detailItemList,
-          quoteDetailItems: [
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('text_field_label.full_legal_name'),
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: companyName,
-              },
+          button: {
+            ...defaultProps.businessTypeDetails.button,
+            text: {
+              ...defaultProps.businessTypeDetails.button?.text,
+              value: t('application_form.review_application.edit'),
             },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('text_field_label.operating_name'),
+            onButtonClicked: handleClickEdit("customerBusinessInfo"),
+          },
+          detailItemList: {
+            ...defaultProps.businessTypeDetails.detailItemList,
+            quoteDetailItems: [
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('text_field_label.full_legal_name'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: companyName,
+                },
               },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: operatingName,
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('text_field_label.operating_name'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: operatingName,
+                },
               },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('text_field_label.business_sector'),
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('text_field_label.business_sector'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: businessSector,
+                },
               },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: businessSector,
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('text_field_label.operating_since'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: operatingSinceDate,
+                },
               },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('text_field_label.operating_since'),
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('text_field_label.business_phone'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: businessPhone,
+                },
               },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: operatingSinceDate,
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('text_field_label.website_link'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: website,
+                },
               },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('text_field_label.business_phone'),
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('application_form.review_application.business_type.heading'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: businessType === "Incorporated" ? "Corporation" : "Sole Proprietorship",
+                },
               },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: businessPhone,
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: sin ? t('application_form.review_application.business_type.sin_label') : "",
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: sin,
+                },
               },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('text_field_label.website_link'),
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: dob? t('application_form.review_application.business_type.date_of_birth_label') : "",
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: dob,
+                },
               },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: website,
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: bankruptcy ? t('application_form.review_application.business_type.bankruptcy_label') : "",
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: bankruptcy,
+                },
               },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('application_form.review_application.business_type.heading'),
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: businessType === "Incorporated" ? "Corporation" : "Sole Proprietorship",
-              },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: sin ? t('application_form.review_application.business_type.sin_label') : "",
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: sin,
-              },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: dob? t('application_form.review_application.business_type.date_of_birth_label') : "",
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: dob,
-              },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: bankruptcy ? t('application_form.review_application.business_type.bankruptcy_label') : "",
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: bankruptcy,
-              },
-            },
-            {...bankruptcyDetailsItem},
-          ]
+            ]
+          }
+
         }
-      }
     }
+
+
 
     if(profile){
       const {
@@ -358,6 +334,7 @@ const withPresenter = (
           ]
         }
       }
+
       contactDetails = {
         text: {
           ...defaultProps.businessTypeDetails.text,
@@ -506,26 +483,10 @@ const withPresenter = (
         applicationAmount, asset, quoteId, leaseType,
       } = quoteDetailsSelected;
     
-      if (businessInfo) {
+    if (businessInfo) {
         const {
-          bankruptcy, bankruptcyDetails, businessType, dob, sin,
+          bankruptcy, businessType, dob, sin,
         } = businessInfo;
-
-        let bankruptcyDetailsItem;
-      
-        if(bankruptcy){
-          bankruptcyDetailsItem = {
-            labelText: {
-              ...defaultQuoteDetailItemProps.labelText,
-              value: bankruptcyDetails ? t('application_form.review_application.business_type.bankruptcy_details_label') : "",
-            },
-            infoText: {
-              ...defaultQuoteDetailItemProps.infoText,
-              value: bankruptcyDetails
-            },
-          };
-        }
-
         businessTypeDetails = {
           text: {
             ...defaultProps.businessTypeDetails.text,
@@ -582,7 +543,6 @@ const withPresenter = (
                   value: bankruptcy,
                 },
               },
-              {...bankruptcyDetailsItem},
             ]
           }
         }
