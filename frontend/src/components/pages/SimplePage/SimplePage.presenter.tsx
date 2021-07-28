@@ -178,7 +178,7 @@ const withPresenter = (
           };
         }
 
-        if (profile?.userType === 'rep') {
+        if (profile?.userType === 'rep' || profile?.userType === 'admin') {
           const { rateCardType, fee } = equipmentLeaseInfo;
           createPayload = {
             ...createPayload,
