@@ -56,7 +56,7 @@ const withPresenter = (
           cost: equipmentCost,
           leaseType: equipmentLeaseType,
         };
-        if (profile?.userType === 'rep' && equipmentRatecard && equipmentFees){
+        if ((profile?.userType === 'rep' || profile?.userType === 'admin') && equipmentRatecard && equipmentFees){
           leaseInfo = {
             ...leaseInfo,
             rateCardType: equipmentRatecard,
@@ -193,7 +193,7 @@ const withPresenter = (
           value: t('get_quote_block.submit'),
         },
         onButtonClicked: handleClickNext,
-        disabled: userType === 'rep' ? !isRepFormValid : !isFormValid,
+        disabled: userType === 'rep' || userType === 'admin' ? !isRepFormValid : !isFormValid,
       },
     };
 
