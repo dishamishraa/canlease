@@ -138,7 +138,7 @@ const GetQuoteBlock: React.FC<GetQuoteBlockProps> = ({
   ratecardSelectField
 }) => {
   let additionalFields;
-  if(profile?.userType === 'rep'){
+  if(profile?.userType === 'rep' || profile?.userType === 'admin'){
    additionalFields = 
     <>
       <TextField
