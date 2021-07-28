@@ -13,13 +13,13 @@ describe('SalesforceApi', () => {
   describe('createApplication', () => {
     it('should make request to create application api endpoint', async () => {
       await api.createApplication(mockCreateApplication);
-      expect(mockedAxios.post).toHaveBeenCalledWith(`${SALESFORCE_API_URL}/v2/credit_apps`, mockCreateApplication);
+      expect(mockedAxios.post).toHaveBeenCalledWith(`${SALESFORCE_API_URL}/credit_apps`, mockCreateApplication);
     });
   });
   describe('createQuote', () => {
     it('should make request to check create quote api endpoint', async () => {
       await api.createQuote(mockCreateQuote);
-      expect(mockedAxios.post).toHaveBeenCalledWith(`${SALESFORCE_API_URL}/v2/quotes`, mockCreateQuote);
+      expect(mockedAxios.post).toHaveBeenCalledWith(`${SALESFORCE_API_URL}/quotes`, mockCreateQuote);
     });
   });
 
@@ -28,7 +28,7 @@ describe('SalesforceApi', () => {
       const id = '1';
       await api.getQuote(id);
 
-      expect(mockedAxios.get).toHaveBeenCalledWith(`${SALESFORCE_API_URL}/v2/quotes/${id}`);
+      expect(mockedAxios.get).toHaveBeenCalledWith(`${SALESFORCE_API_URL}/quotes/${id}`);
     });
   });
 });

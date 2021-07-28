@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SALESFORCE_API_URL } from '../config';
+import { SALESFORCE_API_URL, BEARER_TOKEN } from '../config';
 import mockPortfolio from './fixtures/mockPortfolio';
 import mockProfile from './fixtures/mockProfile';
 import mockQuote from './fixtures/mockQuote';
@@ -14,10 +14,12 @@ import {
   AddQuote,
 } from './types';
 
+axios.defaults.headers = { Authorization: `Bearer ${BEARER_TOKEN}` };
+
 export default class SalesforceApi {
   async createApplication(payload: CreateApplication): Promise<void> {
     try {
-      await axios.post<void>(`${SALESFORCE_API_URL}/v2/credit_apps`, payload);
+      await axios.post<void>(`${SALESFORCE_API_URL}/credit_apps`, payload);
     } catch (error) {
       // throw new Error('');
     }
@@ -26,7 +28,7 @@ export default class SalesforceApi {
   async createQuote(payload: CreateQuote): Promise<Quote> {
     try {
       const response = await axios.post<Quote>(
-        `${SALESFORCE_API_URL}/v2/quotes`,
+        `${SALESFORCE_API_URL}/quotes`,
         payload,
       );
       return response.data;
@@ -41,7 +43,7 @@ export default class SalesforceApi {
 
   async getQuote(quoteId: string): Promise<Quote> {
     try {
-      const response = await axios.get<Quote>(`${SALESFORCE_API_URL}/v2/quotes/${quoteId}`);
+      const response = await axios.get<Quote>(`${SALESFORCE_API_URL}/quotes/${quoteId}`);
       return response.data;
     } catch (error) {
       // throw new Error('');
@@ -51,7 +53,7 @@ export default class SalesforceApi {
 
   async getProfile(portalId: string): Promise<Profile> {
     try {
-      const response = await axios.get<Profile>(`${SALESFORCE_API_URL}/v2/profile/${portalId}`);
+      const response = await axios.get<Profile>(`${SALESFORCE_API_URL}/profile/${portalId}`);
       return response.data;
     } catch (error) {
       // throw new Error('');
@@ -61,7 +63,7 @@ export default class SalesforceApi {
 
   async createProfile(payload: CreateProfile): Promise<Profile> {
     try {
-      const response = await axios.post<Profile>(`${SALESFORCE_API_URL}/v2/profile`, payload);
+      const response = await axios.post<Profile>(`${SALESFORCE_API_URL}/profile`, payload);
       return response.data;
     } catch (error) {
       // throw new Error('');
@@ -71,7 +73,7 @@ export default class SalesforceApi {
 
   async addQuoteToProfile(portalId: string, payload: AddQuote): Promise<void> {
     try {
-      await axios.post<void>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/add_quote`, payload);
+      await axios.post<void>(`${SALESFORCE_API_URL}/profile/${portalId}/add_quote`, payload);
     } catch (error) {
       const message = axios.isAxiosError(error)
         ? error.response?.data?.errorMessage
@@ -82,7 +84,7 @@ export default class SalesforceApi {
 
   async getAllQuotesFromProfile(portalId: string): Promise<Quote[]> {
     try {
-      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/quote`);
+      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/profile/${portalId}/quote`);
       return response.data;
     } catch (error) {
       // throw new Error('');
@@ -92,7 +94,7 @@ export default class SalesforceApi {
 
   async getAllCustomerQuotesFromProfile(portalId: string): Promise<Quote[]> {
     try {
-      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/v2/profile/${portalId}/customer_quote`);
+      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/profile/${portalId}/customer_quote`);
       return response.data;
     } catch (error) {
       // throw new Error('');
@@ -102,7 +104,7 @@ export default class SalesforceApi {
 
   async getUserPortfolio(portalId: string): Promise<Portfolio> {
     try {
-      const response = await axios.get<Portfolio>(`${SALESFORCE_API_URL}/v2/portfolio/${portalId}`);
+      const response = await axios.get<Portfolio>(`${SALESFORCE_API_URL}/portfolio/${portalId}`);
       return response.data;
     } catch (error) {
       // throw new Error('');
@@ -112,7 +114,7 @@ export default class SalesforceApi {
 
   async getCustomerPortfolio(portalId: string): Promise<Portfolio> {
     try {
-      const response = await axios.get<Portfolio>(`${SALESFORCE_API_URL}/v2/portfolio/${portalId}/customer_portfolio`);
+      const response = await axios.get<Portfolio>(`${SALESFORCE_API_URL}/portfolio/${portalId}/customer_portfolio`);
       return response.data;
     } catch (error) {
       // throw new Error('');
