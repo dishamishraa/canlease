@@ -242,7 +242,7 @@ const withPresenter = (
                 },
                 infoText: {
                   ...defaultQuoteDetailItemProps.infoText,
-                  value: businessType === "Incorporated" ? "Corporation" : "Sole Proprietorship",
+                  value: t(`application_form.review_application.business_type.${businessType.toLowerCase()}`)
                 },
               },
               {
@@ -258,7 +258,7 @@ const withPresenter = (
               {
                 labelText: {
                   ...defaultQuoteDetailItemProps.labelText,
-                  value: dob? t('application_form.review_application.business_type.date_of_birth_label') : "",
+                  value: dob ? t('application_form.review_application.business_type.date_of_birth_label') : "",
                 },
                 infoText: {
                   ...defaultQuoteDetailItemProps.infoText,
@@ -268,11 +268,21 @@ const withPresenter = (
               {
                 labelText: {
                   ...defaultQuoteDetailItemProps.labelText,
-                  value: bankruptcy ? t('application_form.review_application.business_type.bankruptcy_label') : "",
+                  value: dob ? t('application_form.review_application.business_type.bankruptcy_label') : "",
                 },
                 infoText: {
                   ...defaultQuoteDetailItemProps.infoText,
-                  value: bankruptcy,
+                  value: dob ? t(`application_form.review_application.business_type.bankruptcy_${bankruptcy}`) : "",
+                },
+              },
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: bankruptcyDetails ? t('application_form.review_application.business_type.bankruptcy_details') : "",
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: bankruptcyDetails,
                 },
               },
             ]
@@ -510,7 +520,7 @@ const withPresenter = (
                 },
                 infoText: {
                   ...defaultQuoteDetailItemProps.infoText,
-                  value: businessType === "Incorporated" ? "Corporation" : "Sole Proprietorship",
+                  value: t(`application_form.review_application.business_type.${businessType.toLowerCase()}`)
                 },
               },
               {
@@ -526,7 +536,7 @@ const withPresenter = (
               {
                 labelText: {
                   ...defaultQuoteDetailItemProps.labelText,
-                  value: dob? t('application_form.review_application.business_type.date_of_birth_label') : "",
+                  value: dob ? t('application_form.review_application.business_type.date_of_birth_label') : "",
                 },
                 infoText: {
                   ...defaultQuoteDetailItemProps.infoText,
@@ -536,11 +546,21 @@ const withPresenter = (
               {
                 labelText: {
                   ...defaultQuoteDetailItemProps.labelText,
-                  value: bankruptcy ? t('application_form.review_application.business_type.bankruptcy_label') : "",
+                  value: dob ? t('application_form.review_application.business_type.bankruptcy_label') : "",
                 },
                 infoText: {
                   ...defaultQuoteDetailItemProps.infoText,
-                  value: bankruptcy,
+                  value: dob ? t(`application_form.review_application.business_type.bankruptcy_${bankruptcy}`) : "",
+                },
+              },
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: bankruptcyDetails ? t('application_form.review_application.business_type.bankruptcy_details') : "",
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: bankruptcyDetails,
                 },
               },
             ]

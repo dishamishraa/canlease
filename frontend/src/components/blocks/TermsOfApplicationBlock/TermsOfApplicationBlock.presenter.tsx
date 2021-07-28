@@ -51,7 +51,7 @@ const withPresenter = (
             ...defaultProps.terms,
             text: {
              ...defaultProps.terms.text, 
-             value: t('application_form.terms_of_application.terms'),
+            value: <div dangerouslySetInnerHTML={{ __html:  t('application_form.terms_of_application.terms') }} />
             }  
         },
         checkboxItem:{
@@ -74,7 +74,7 @@ const withPresenter = (
             ...defaultProps.nextButton,
             text: {
               ...defaultProps.nextButton.text,
-              value: t('application_form.select_lease.next_button'),
+              value: t('application_form.terms_of_application.submit_button'),
             },
             onButtonClicked: handleClickNext,
             disabled: !isFormValid(),

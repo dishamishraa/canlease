@@ -51,6 +51,10 @@ const withPresenter = (
             setDob(businessInfo.dob);
             setBankruptcy(businessInfo.bankruptcy);
             setBankruptcyDetails(businessInfo.bankruptcyDetails);
+
+            if (businessInfo.businessType=== "Proprietorship" || checkShowConditionalQuestions()){
+                setShowBusinessQuestions(true);
+            }
         }
     }, [businessInfo]);
 
