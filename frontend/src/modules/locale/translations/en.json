@@ -191,7 +191,8 @@
                 "heading": "Business type",
                 "sin_label": "Social insurance number:",
                 "date_of_birth_label": "Date of birth:",
-                "bankruptcy_label": "Have you ever filed for bankruptcy?"
+                "bankruptcy_label": "Have you ever filed for bankruptcy?",
+                "bankruptcy_details_label": "Details of bankruptcy:"
             },
             "asset_header": "Asset information",
             "profile_header": "Profile information",
