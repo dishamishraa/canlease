@@ -1,7 +1,6 @@
 import { isAxiosError } from '../../lib/api/axios';
 import i18next from 'i18next';
 import { ApiError } from '../../lib/api/types';
-import { BFF_URL } from '../../lib/config';
 
 const LOGOUT_ERROR = i18next.t('error.logout');
 

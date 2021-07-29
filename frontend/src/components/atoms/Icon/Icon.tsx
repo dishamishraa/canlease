@@ -195,6 +195,7 @@ const Icon: React.FC<IconProps> = ({
       break;
     case 'CreateQuote':
       content = CreateQuote;
+      break;
     case 'Edit':
       content = EditAsset;
       break;

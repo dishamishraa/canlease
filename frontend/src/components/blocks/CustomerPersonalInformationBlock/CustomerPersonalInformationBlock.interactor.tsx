@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../../modules/auth';
+import React from 'react';
 import { CustomerPersonalInformationBlockProps } from './CustomerPersonalInformationBlock';
 import { CustomerPersonalInformationBlockPresenterProps } from './CustomerPersonalInformationBlock.presenter';
 

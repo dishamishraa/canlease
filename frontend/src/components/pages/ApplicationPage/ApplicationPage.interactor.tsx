@@ -11,7 +11,7 @@ const withInteractor = (
   
   const Interactor: React.FC <ApplicationPageProps> = (props) => {
     const { profile } = useContext(AuthContext);
-    const [{}, createApplication] = useCreateApplication();
+    const [, createApplication] = useCreateApplication();
     return (
       <Presenter
         {...props}

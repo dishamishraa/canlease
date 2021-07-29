@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useLocation, useParams } from 'react-router';
-import { useCookies } from 'react-cookie';
+import { useHistory } from 'react-router';
 import { defaultProps, CreatePasswordBlockProps } from './CreatePasswordBlock';
 import { APIResponse } from '../../../lib/api/types';
 import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField';
@@ -19,13 +18,9 @@ const withPresenter = (
   View: React.FC<CreatePasswordBlockProps>,
 ): React.FC<CreatePasswordBlockPresenterProps> => {
   const Presenter: React.FC<CreatePasswordBlockPresenterProps> = (props) => {
-    const {
-      loading,
-    } = props;
     const { t } = useTranslation();
     const history = useHistory();
     const [createPassword, setCreatePassword] = useState<string>('');
-    const [createPasswordError, setCreatePasswordError] = useState<TextFieldStateType>('Default');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [confirmPasswordError, setConfirmPasswordError] = useState<TextFieldStateType>('Default');
     const [passwordVisibility, setPasswordVisibility] = useState<HTMLInputType>('password');
@@ -114,11 +109,6 @@ const withPresenter = (
             onIconClicked: togglePasswordVisibility,
           },
         },
-        errorMessage: {
-          ...defaultTextFieldProps.errorMessage,
-          value: t('error_message.password_mismatch'),
-        },
-        state: createPasswordError,
       },
       confirmPasswordField: {
         ...defaultProps.confirmPasswordField,

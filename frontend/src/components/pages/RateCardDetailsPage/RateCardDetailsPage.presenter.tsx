@@ -316,7 +316,7 @@ const withPresenter = (
 
         const rateCardTableItems: RateCardTableItemProps[] = [];
 
-        const sortedRates = rates?.sort((a, b) => a.id > b.id && 1 || -1);
+        const sortedRates = rates?.sort((a, b) => a.id > b.id ? 1 : -1);
         sortedRates?.forEach((rate) => {
             const { term, minmonthlyreturn, maxmonthlyreturn, regularir, tenatendir, id } = rate;
             const rateCardTableItem: RateCardTableItemProps = {

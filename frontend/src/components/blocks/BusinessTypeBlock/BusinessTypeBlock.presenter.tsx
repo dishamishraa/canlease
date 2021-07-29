@@ -1,10 +1,9 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useCallback} from 'react';
 import { useTranslation } from 'react-i18next';
 import { BusinessTypeBlockProps, defaultProps } from './BusinessTypeBlock';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
 import { isEmptyString } from '../../../lib/utils';
 import { Profile } from '../../../modules/profile/types';
-import { ApplicationBusinessInfo } from '../../../modules/types';
 
 export type BusinessTypeBlockPresenterProps = BusinessTypeBlockProps & {
     profile: Profile | null;
@@ -31,7 +30,7 @@ const withPresenter = (
     const [bankruptcy, setBankruptcy] = useState<boolean>();
     const [bankruptcyDetails, setBankruptcyDetails] = useState<string>();
 
-    const checkShowConditionalQuestions = () => {
+    const checkShowConditionalQuestions = useCallback(() => {
         if(!profile) {
             return false;
         }
@@ -43,7 +42,7 @@ const withPresenter = (
             return true;
         }
         return false;
-    }
+    }, [profile]);
 
     useEffect(() => {
         if(businessInfo) {
@@ -53,11 +52,11 @@ const withPresenter = (
             setBankruptcy(businessInfo.bankruptcy);
             setBankruptcyDetails(businessInfo.bankruptcyDetails);
 
-            if (businessInfo.businessType=== "Proprietorship" || checkShowConditionalQuestions()){
+            if (businessInfo.businessType === "Proprietorship" || checkShowConditionalQuestions()){
                 setShowBusinessQuestions(true);
             }
         }
-    }, [businessInfo]);
+    }, [businessInfo, checkShowConditionalQuestions]);
 
     const handleClickNext = () => {
         if(setBusinessInfo && businessType) {

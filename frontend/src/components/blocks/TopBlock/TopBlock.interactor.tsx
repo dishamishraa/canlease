@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { useParams } from 'react-router';
 import { AuthContext } from '../../../modules/auth';
 import { TopBlockProps } from './TopBlock';
 import { TopBlockPresenterProps } from './TopBlock.presenter';

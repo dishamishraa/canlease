@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useCallback} from 'react';
 import { useTranslation } from 'react-i18next';
 import { CustomerBusinessInformationBlockProps, defaultProps } from './CustomerBusinessInformationBlock';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
@@ -16,7 +16,6 @@ const withPresenter = (
   const Presenter: React.FC<CustomerBusinessInformationBlockPresenterProps> = (props) => {
     const {
         className,
-        profile,
         businessInfo,
         setBusinessInfo,
         stepperCurrentValue,
@@ -37,7 +36,7 @@ const withPresenter = (
     const [bankruptcy, setBankruptcy] = useState<boolean>();
     const [bankruptcyDetails, setBankruptcyDetails] = useState<string>();
 
-    const checkShowConditionalQuestions = () => {
+    const checkShowConditionalQuestions = useCallback(() => {
         if(!operatingSince) {
             return false;
         }
@@ -49,7 +48,7 @@ const withPresenter = (
             return true;
         }
         return false;
-    }
+    },[operatingSince]);
 
     useEffect(() => {
         if(businessInfo) {
@@ -72,7 +71,7 @@ const withPresenter = (
               setShowBusinessQuestions(true);
             }
         }
-    }, [businessInfo]);
+    }, [businessInfo, checkShowConditionalQuestions]);
 
     const handleFullLegalName = ({ target: { value } }) => {
         setFullLegalName(value);

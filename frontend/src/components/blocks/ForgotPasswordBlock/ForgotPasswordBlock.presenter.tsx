@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useLocation } from 'react-router';
+import { useHistory } from 'react-router';
 import { ForgotPasswordBlockProps, defaultProps } from './ForgotPasswordBlock';
 import { isEmptyString, isEmail } from '../../../lib/utils';
 import { APIResponse } from '../../../lib/api/types';
@@ -15,8 +15,6 @@ const withPresenter = (
   View: React.FC<ForgotPasswordBlockProps>,
 ): React.FC<ForgotPasswordBlockPresenterProps> => {
   const Presenter: React.FC<ForgotPasswordBlockPresenterProps> = (props) => {
-    const {
-    } = props;
     const { t } = useTranslation();
     const history = useHistory();
     const [email, setEmail] = useState<string>('');

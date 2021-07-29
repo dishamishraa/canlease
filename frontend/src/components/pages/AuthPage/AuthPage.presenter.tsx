@@ -12,7 +12,6 @@ import { PersonalInformation, ContactInformation, BusinessInformation, AuthState
 import { useEffect } from 'react';
 import { isEmpty, getQuoteCookie} from '../../../lib/utils';
 import { Account } from '../../../lib/types';
-import { INSTANT_QUOTE_COOKIE } from '../../../lib/config';
 import { extractJwtPayload } from '../../../lib/token';
 import { updateInstaQuoteCookie } from '../../../lib/utils';
 
@@ -56,7 +55,7 @@ const withPresenter = (
     }, [locationState]);
 
     const {
-      action, email, personalInfo, contactInfo, businessInfo,
+      email, personalInfo, contactInfo, businessInfo,
     } = state;
 
     const setEmail = (email: string) => {

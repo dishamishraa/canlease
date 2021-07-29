@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { AssetInformationBlockProps } from './AssetInformationBlock';
 import { AssetInformationBlockPresenterProps } from './AssetInformationBlock.presenter';
 import { useParams } from 'react-router';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Profile } from '../../../modules/profile/types';
-import QuoteDetailItem, { QuoteDetailItemProps, defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
+import { QuoteDetailItemProps, defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { ProfileBlockProps, defaultProps } from './ProfileBlock';
 
 export type ProfileBlockPresenterProps = ProfileBlockProps & {

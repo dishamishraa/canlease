@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { UserSelectionBlockProps } from './UserSelectionBlock';
 import { UserSelectionBlockPresenterProps } from './UserSelectionBlock.presenter';
 

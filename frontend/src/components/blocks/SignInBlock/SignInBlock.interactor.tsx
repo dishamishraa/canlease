@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { SignInBlockPresenterProps } from './SignInBlock.presenter';
 import { SignInBlockProps } from './SignInBlock';
 

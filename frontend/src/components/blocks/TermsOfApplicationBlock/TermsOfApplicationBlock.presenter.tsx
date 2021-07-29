@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TermsOfApplicationBlockProps, defaultProps } from './TermsOfApplicationBlock';
 
-import { CheckboxItemProps, defaultProps as defaultCheckboxItemProps } from '../../atoms/CheckboxItem/CheckboxItem';
+import { defaultProps as defaultCheckboxItemProps } from '../../atoms/CheckboxItem/CheckboxItem';
 export type TermsOfApplicationBlockPresenterProps = TermsOfApplicationBlockProps & {
 };
 

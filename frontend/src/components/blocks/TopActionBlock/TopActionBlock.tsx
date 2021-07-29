@@ -4,7 +4,6 @@ import cx from 'classnames';
 import styles from './TopActionBlock.module.scss';
 
 import TextInput, { TextInputProps } from '../../atoms/TextInput';
-import Select, { SelectProps } from '../../atoms/Select';
 import SelectField, { SelectFieldProps } from '../../molecules/SelectField';
 import Button, { ButtonProps } from '../../atoms/Button';
 import { ContentFilter, ContentType, ContentTypeTabs } from '../../../modules/types';
@@ -68,8 +67,8 @@ const TopActionBlock: React.FC<TopActionBlockProps> = ({
           className={styles.textInput}
           {...textInput} />
         <SelectField
-        className={styles.select}
-        {...statusSearchField} />
+          className={styles.select}
+          {...statusSearchField} />
         <Button
           className={styles.button}
           {...button} />

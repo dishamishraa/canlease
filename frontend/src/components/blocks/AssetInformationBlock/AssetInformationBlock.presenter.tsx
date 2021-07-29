@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
 import { AssetInformationBlockProps, defaultProps} from './AssetInformationBlock';
 import { isEmptyString } from '../../../lib/utils';
 import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
@@ -26,7 +25,6 @@ const withPresenter = (
         stepperTotalValue,
     } = props;
     const { t } = useTranslation();
-    const history = useHistory();
     const [assetCondition, setAssetCondition] = useState<'New' | 'Used'>();
     const [showAssetAgeField, setShowAssetAgeField] = useState(false);
     const [assetAge, setAssetAge] = useState<number>()
@@ -118,7 +116,7 @@ const withPresenter = (
 
     if (quoteDetails) {
         const {
-          applicationAmount, asset, quoteId, leaseType,
+          applicationAmount, asset, quoteId
         } = quoteDetails;
   
         detailsSectionProps = {

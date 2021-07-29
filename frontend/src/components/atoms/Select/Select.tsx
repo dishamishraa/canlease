@@ -5,6 +5,8 @@ import styles from './Select.module.scss';
 
 import Text, { TextProps } from '../Text';
 import Icon, { IconProps } from '../Icon';
+import { Dropdown } from 'react-bootstrap';
+import { DropdownItemProps } from 'react-bootstrap/esm/DropdownItem';
 
 export type SelectSelectTypeType = 'button' | 'submit' | 'reset';
 
@@ -23,7 +25,7 @@ export const defaultProps = {
 
 export type SelectProps = {
   selectType?: SelectSelectTypeType;
-  onSelectClicked?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
+  onSelectClicked?: (event?: React.MouseEvent<DropdownItemProps>) => void;
   text?: TextProps;
   icon?: IconProps;
   className?: string;
@@ -36,17 +38,17 @@ const Select: React.FC<SelectProps> = ({
   icon,
   className,
 }) => (
-    <button
-      type={selectType}
-      onClick={onSelectClicked}
-      className={cx(styles.select, className)}>
-      <Text
-        className={styles.text}
-        {...text} />
-      <Icon
-        className={styles.icon}
-        {...icon} />
-    </button>
+  <Dropdown.Item
+    type={selectType}
+    onClick={onSelectClicked}
+    className={cx(styles.select, className)}>
+    <Text
+      className={styles.text}
+      {...text} />
+    <Icon
+      className={styles.icon}
+      {...icon} />
+  </Dropdown.Item>
 );
 
 Select.defaultProps = defaultProps;

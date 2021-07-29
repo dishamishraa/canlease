@@ -64,7 +64,7 @@ const withPresenter = (
         });
        
         customerQuotes.every((quote, index) => {
-            const {applicationAmount, quoteExpiryDate, quoteId, asset} = quote
+            const { applicationAmount, quoteId, asset } = quote
             const status: ContentFilter = checkQuoteStatus(quote);
             const quotesBlockProps: DashboardCardProps = {
                 ...dashBoardCardProps,
@@ -101,7 +101,7 @@ const withPresenter = (
                 }
             }
             quotesArray.push(quotesBlockProps);
-            if (index == 2) {
+            if (index === 2) {
               return false 
             }
             return true
@@ -174,7 +174,7 @@ const withPresenter = (
                 }
             }
             applicationArray.push(applicationsBlockProps);
-            if (index == 2) {
+            if (index === 2) {
               return false 
             }
             return true

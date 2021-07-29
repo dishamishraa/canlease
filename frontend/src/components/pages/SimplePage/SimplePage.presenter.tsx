@@ -40,11 +40,11 @@ const withPresenter = (
           quoteUserType = fromTab === 'Customer' ? 'vendor' : 'customer';
         }
 
-        setState({
-          ...state,
+        setState(previousState => ({
+          ...previousState,
           ...locationState,
           quoteUserType,
-        });
+        }));
       }
     }, [locationState]);
 

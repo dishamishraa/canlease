@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { BusinessInformationBlockProps } from './BusinessInformationBlock';
 import { BusinessInformationBlockPresenterProps } from './BusinessInformationBlock.presenter';
 

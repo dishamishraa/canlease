@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import styles from './TopBar.module.scss';
 
 import Button, { ButtonProps } from '../../atoms/Button';
-import { TextProps } from '../../atoms/Text';
 import { useHistory } from 'react-router-dom';
 
 export const defaultProps = {

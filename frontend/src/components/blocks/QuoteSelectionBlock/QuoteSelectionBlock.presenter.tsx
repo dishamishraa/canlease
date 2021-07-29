@@ -52,7 +52,7 @@ const withPresenter = (
       for(let key in firstObject) {
         let firstValue = firstObject[key];
         let secondValue = secondObject[key];
-        if (firstValue != secondValue){
+        if (firstValue !== secondValue){
           return false;
         }
       }

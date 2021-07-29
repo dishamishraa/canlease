@@ -156,142 +156,155 @@ const withPresenter = (
       }
     }
     if (businessInfo) {
-      const { bankruptcy, bankruptcyDetails, businessPhone, businessSector, businessType, companyName, dob,
-        operatingName, operatingSinceDate, sin, type, website }
-      = businessInfo as ApplicationBusinessInfoVendor;
-        customerBusinessInformation = {
+      const { 
+        bankruptcy, 
+        bankruptcyDetails, 
+        businessPhone, 
+        businessSector, 
+        businessType, 
+        companyName, 
+        dob,
+        operatingName, 
+        operatingSinceDate, 
+        sin, 
+        website 
+      } = businessInfo as ApplicationBusinessInfoVendor;
+
+      let bankruptcyDetailsItem;
+        
+      if(bankruptcy){
+        bankruptcyDetailsItem = {
+          labelText: {
+            ...defaultQuoteDetailItemProps.labelText,
+            value: bankruptcyDetails ? t('application_form.review_application.business_type.bankruptcy_details_label') : "",
+          },
+          infoText: {
+            ...defaultQuoteDetailItemProps.infoText,
+            value: bankruptcyDetails
+          },
+        };
+      }
+      customerBusinessInformation = {
+        text: {
+          ...defaultProps.businessTypeDetails.text,
+          value: t('application_form.review_application.customer_business_info_header'),
+        },
+        button: {
+          ...defaultProps.businessTypeDetails.button,
           text: {
-            ...defaultProps.businessTypeDetails.text,
-            value: t('application_form.review_application.customer_business_info_header'),
+            ...defaultProps.businessTypeDetails.button?.text,
+            value: t('application_form.review_application.edit'),
           },
-          button: {
-            ...defaultProps.businessTypeDetails.button,
-            text: {
-              ...defaultProps.businessTypeDetails.button?.text,
-              value: t('application_form.review_application.edit'),
+          onButtonClicked: handleClickEdit("customerBusinessInfo"),
+        },
+        detailItemList: {
+          ...defaultProps.businessTypeDetails.detailItemList,
+          quoteDetailItems: [
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('text_field_label.full_legal_name'),
+              },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: companyName,
+              },
             },
-            onButtonClicked: handleClickEdit("customerBusinessInfo"),
-          },
-          detailItemList: {
-            ...defaultProps.businessTypeDetails.detailItemList,
-            quoteDetailItems: [
-              {
-                labelText: {
-                  ...defaultQuoteDetailItemProps.labelText,
-                  value: t('text_field_label.full_legal_name'),
-                },
-                infoText: {
-                  ...defaultQuoteDetailItemProps.infoText,
-                  value: companyName,
-                },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('text_field_label.operating_name'),
               },
-              {
-                labelText: {
-                  ...defaultQuoteDetailItemProps.labelText,
-                  value: t('text_field_label.operating_name'),
-                },
-                infoText: {
-                  ...defaultQuoteDetailItemProps.infoText,
-                  value: operatingName,
-                },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: operatingName,
               },
-              {
-                labelText: {
-                  ...defaultQuoteDetailItemProps.labelText,
-                  value: t('text_field_label.business_sector'),
-                },
-                infoText: {
-                  ...defaultQuoteDetailItemProps.infoText,
-                  value: businessSector,
-                },
+            },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('text_field_label.business_sector'),
               },
-              {
-                labelText: {
-                  ...defaultQuoteDetailItemProps.labelText,
-                  value: t('text_field_label.operating_since'),
-                },
-                infoText: {
-                  ...defaultQuoteDetailItemProps.infoText,
-                  value: operatingSinceDate,
-                },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: businessSector,
               },
-              {
-                labelText: {
-                  ...defaultQuoteDetailItemProps.labelText,
-                  value: t('text_field_label.business_phone'),
-                },
-                infoText: {
-                  ...defaultQuoteDetailItemProps.infoText,
-                  value: businessPhone,
-                },
+            },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('text_field_label.operating_since'),
               },
-              {
-                labelText: {
-                  ...defaultQuoteDetailItemProps.labelText,
-                  value: t('text_field_label.website_link'),
-                },
-                infoText: {
-                  ...defaultQuoteDetailItemProps.infoText,
-                  value: website,
-                },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: operatingSinceDate,
               },
-              {
-                labelText: {
-                  ...defaultQuoteDetailItemProps.labelText,
-                  value: t('application_form.review_application.business_type.heading'),
-                },
-                infoText: {
-                  ...defaultQuoteDetailItemProps.infoText,
-                  value: t(`application_form.review_application.business_type.${businessType.toLowerCase()}`)
-                },
+            },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('text_field_label.business_phone'),
               },
-              {
-                labelText: {
-                  ...defaultQuoteDetailItemProps.labelText,
-                  value: sin ? t('application_form.review_application.business_type.sin_label') : "",
-                },
-                infoText: {
-                  ...defaultQuoteDetailItemProps.infoText,
-                  value: sin,
-                },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: businessPhone,
               },
-              {
-                labelText: {
-                  ...defaultQuoteDetailItemProps.labelText,
-                  value: dob ? t('application_form.review_application.business_type.date_of_birth_label') : "",
-                },
-                infoText: {
-                  ...defaultQuoteDetailItemProps.infoText,
-                  value: dob,
-                },
+            },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('text_field_label.website_link'),
               },
-              {
-                labelText: {
-                  ...defaultQuoteDetailItemProps.labelText,
-                  value: dob ? t('application_form.review_application.business_type.bankruptcy_label') : "",
-                },
-                infoText: {
-                  ...defaultQuoteDetailItemProps.infoText,
-                  value: dob ? t(`application_form.review_application.business_type.bankruptcy_${bankruptcy}`) : "",
-                },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: website,
               },
-              {
-                labelText: {
-                  ...defaultQuoteDetailItemProps.labelText,
-                  value: bankruptcyDetails ? t('application_form.review_application.business_type.bankruptcy_details') : "",
-                },
-                infoText: {
-                  ...defaultQuoteDetailItemProps.infoText,
-                  value: bankruptcyDetails,
-                },
+            },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('application_form.review_application.business_type.heading'),
               },
-            ]
-          }
-
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: t(`application_form.review_application.business_type.${businessType.toLowerCase()}`)
+              },
+            },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: sin ? t('application_form.review_application.business_type.sin_label') : "",
+              },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: sin,
+              },
+            },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: dob ? t('application_form.review_application.business_type.date_of_birth_label') : "",
+              },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: dob,
+              },
+            },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: dob ? t('application_form.review_application.business_type.bankruptcy_label') : "",
+              },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: dob ? t(`application_form.review_application.business_type.bankruptcy_${bankruptcy}`) : "",
+              },
+            },
+            {...bankruptcyDetailsItem},
+          ]
         }
+      }
     }
-
-
 
     if(profile){
       const {
@@ -493,207 +506,214 @@ const withPresenter = (
         applicationAmount, asset, quoteId, leaseType,
       } = quoteDetailsSelected;
     
-    if (businessInfo) {
+      if (businessInfo) {
+          const {
+            bankruptcy, bankruptcyDetails,businessType, dob, sin,
+          } = businessInfo;
+
+          let bankruptcyDetailsItem;
+        
+          if(bankruptcy){
+            bankruptcyDetailsItem = {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: bankruptcyDetails ? t('application_form.review_application.business_type.bankruptcy_details_label') : "",
+              },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: bankruptcyDetails
+              },
+            };
+          }
+
+          businessTypeDetails = {
+            text: {
+              ...defaultProps.businessTypeDetails.text,
+              value: t('application_form.review_application.business_type.heading'),
+            },
+            button: {
+              ...defaultProps.businessTypeDetails.button,
+              text: {
+                ...defaultProps.businessTypeDetails.button?.text,
+                value: t('application_form.review_application.edit'),
+              },
+              onButtonClicked: handleClickEdit("businessInfo"),
+            },
+            detailItemList: {
+              ...defaultProps.businessTypeDetails.detailItemList,
+              quoteDetailItems: [
+                {
+                  labelText: {
+                    ...defaultQuoteDetailItemProps.labelText,
+                    value: t('application_form.review_application.business_type.heading'),
+                  },
+                  infoText: {
+                    ...defaultQuoteDetailItemProps.infoText,
+                    value: t(`application_form.review_application.business_type.${businessType.toLowerCase()}`)
+                  },
+                },
+                {
+                  labelText: {
+                    ...defaultQuoteDetailItemProps.labelText,
+                    value: sin ? t('application_form.review_application.business_type.sin_label') : "",
+                  },
+                  infoText: {
+                    ...defaultQuoteDetailItemProps.infoText,
+                    value: sin,
+                  },
+                },
+                {
+                  labelText: {
+                    ...defaultQuoteDetailItemProps.labelText,
+                    value: dob ? t('application_form.review_application.business_type.date_of_birth_label') : "",
+                  },
+                  infoText: {
+                    ...defaultQuoteDetailItemProps.infoText,
+                    value: dob,
+                  },
+                },
+                {
+                  labelText: {
+                    ...defaultQuoteDetailItemProps.labelText,
+                    value: dob ? t('application_form.review_application.business_type.bankruptcy_label') : "",
+                  },
+                  infoText: {
+                    ...defaultQuoteDetailItemProps.infoText,
+                    value: dob ? t(`application_form.review_application.business_type.bankruptcy_${bankruptcy}`) : "",
+                  },
+                },
+                {...bankruptcyDetailsItem},
+              ]
+            }
+          }
+      }
+      if (assetInfo) {
         const {
-          bankruptcy, bankruptcyDetails, businessType, dob, sin,
-        } = businessInfo;
-        businessTypeDetails = {
+          ageOfAsset, assetCondition, expectedDeliveryDate,
+        } = assetInfo;
+      
+        assetDetails = {
           text: {
-            ...defaultProps.businessTypeDetails.text,
-            value: t('application_form.review_application.business_type.heading'),
+            ...defaultProps.assetDetails.text,
+            value: t('application_form.review_application.asset_details.heading'),
           },
           button: {
-            ...defaultProps.businessTypeDetails.button,
+            ...defaultProps.assetDetails.button,
             text: {
-              ...defaultProps.businessTypeDetails.button?.text,
+              ...defaultProps.assetDetails.button?.text,
               value: t('application_form.review_application.edit'),
             },
-            onButtonClicked: handleClickEdit("businessInfo"),
+            onButtonClicked: handleClickEdit("assetInfo"),
           },
           detailItemList: {
-            ...defaultProps.businessTypeDetails.detailItemList,
+            ...defaultProps.assetDetails.detailItemList,
             quoteDetailItems: [
               {
                 labelText: {
                   ...defaultQuoteDetailItemProps.labelText,
-                  value: t('application_form.review_application.business_type.heading'),
+                  value: t('application_form.review_application.asset_details.condition_label'),
                 },
                 infoText: {
                   ...defaultQuoteDetailItemProps.infoText,
-                  value: t(`application_form.review_application.business_type.${businessType.toLowerCase()}`)
+                  value: assetCondition,
                 },
               },
               {
                 labelText: {
                   ...defaultQuoteDetailItemProps.labelText,
-                  value: sin ? t('application_form.review_application.business_type.sin_label') : "",
+                  value: (ageOfAsset !== 0) ? t('application_form.review_application.asset_details.age_label') : "",
                 },
                 infoText: {
                   ...defaultQuoteDetailItemProps.infoText,
-                  value: sin,
+                  value: (ageOfAsset !== 0) ? t('application_form.review_application.asset_details.age_value', {
+                    ageOfAsset,
+                  }) : "",
                 },
               },
               {
                 labelText: {
                   ...defaultQuoteDetailItemProps.labelText,
-                  value: dob ? t('application_form.review_application.business_type.date_of_birth_label') : "",
+                  value: t('application_form.review_application.asset_details.date_of_delivery_label'),
                 },
                 infoText: {
                   ...defaultQuoteDetailItemProps.infoText,
-                  value: dob,
+                  value: expectedDeliveryDate
                 },
-              },
-              {
-                labelText: {
-                  ...defaultQuoteDetailItemProps.labelText,
-                  value: dob ? t('application_form.review_application.business_type.bankruptcy_label') : "",
-                },
-                infoText: {
-                  ...defaultQuoteDetailItemProps.infoText,
-                  value: dob ? t(`application_form.review_application.business_type.bankruptcy_${bankruptcy}`) : "",
-                },
-              },
-              {
-                labelText: {
-                  ...defaultQuoteDetailItemProps.labelText,
-                  value: bankruptcyDetails ? t('application_form.review_application.business_type.bankruptcy_details') : "",
-                },
-                infoText: {
-                  ...defaultQuoteDetailItemProps.infoText,
-                  value: bankruptcyDetails,
-                },
-              },
-            ]
+              }
+            ],
           }
         }
-    }
-    if (assetInfo) {
-      const {
-        ageOfAsset, assetCondition, expectedDeliveryDate,
-      } = assetInfo;
-     
-      assetDetails = {
-        text: {
-          ...defaultProps.assetDetails.text,
-          value: t('application_form.review_application.asset_details.heading'),
-        },
-        button: {
-          ...defaultProps.assetDetails.button,
+      }
+      if (quoteSelected) {
+        const {
+          term: termString, monthlyAmount, financeRate,
+        } = quoteSelected;
+        const term = convertMonth(termString);
+
+        paymentDetails = {
           text: {
-            ...defaultProps.assetDetails.button?.text,
-            value: t('application_form.review_application.edit'),
+            ...defaultProps.paymentDetails.text,
+            value: t('application_form.review_application.payment_details.heading'),
           },
-          onButtonClicked: handleClickEdit("assetInfo"),
-        },
-        detailItemList: {
-          ...defaultProps.assetDetails.detailItemList,
-          quoteDetailItems: [
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('application_form.review_application.asset_details.condition_label'),
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: assetCondition,
-              },
+          button: {
+            ...defaultProps.paymentDetails.button,
+            text: {
+              ...defaultProps.paymentDetails.button?.text,
+              value: t('application_form.review_application.edit'),
             },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: (ageOfAsset != 0) ? t('application_form.review_application.asset_details.age_label') : "",
+            onButtonClicked: handleClickEdit("paymentDetails"),
+          },
+          detailItemList: {
+            ...defaultProps.paymentDetails.detailItemList,
+            quoteDetailItems: [
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('application_form.review_application.payment_details.monthly_payment_label'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: t('application_form.review_application.payment_details.monthly_payment_value', {
+                    monthlyAmount,
+                  }),
+                },
               },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: (ageOfAsset != 0) ? t('application_form.review_application.asset_details.age_value', {
-                  ageOfAsset,
-                }) : "",
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('application_form.review_application.payment_details.lease_term_label'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: t('application_form.review_application.payment_details.lease_term_value', {
+                    termValue: (leaseType === 'stretch') 
+                    ? getStretchMonth(term)
+                    : term,
+                  }),
+                },
               },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('application_form.review_application.asset_details.date_of_delivery_label'),
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('application_form.review_application.payment_details.cost_of_finance_label'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: `${financeRate}%`,
+                },
               },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: expectedDeliveryDate
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: (leaseType === 'stretch')
+                  ? t('view_quote.rate_card.stretch_purchase_term', { purchaseOptionMonths: term })
+                  : t('view_quote.rate_card.ten_dollar_purchase_term'),
+                },
               },
-            }
-          ],
+            ],
+          },
         }
       }
-    }
-    if (quoteSelected) {
-      const {
-        term: termString, monthlyAmount, financeRate,
-      } = quoteSelected;
-      const term = convertMonth(termString);
-
-      paymentDetails = {
-        text: {
-          ...defaultProps.paymentDetails.text,
-          value: t('application_form.review_application.payment_details.heading'),
-        },
-        button: {
-          ...defaultProps.paymentDetails.button,
-          text: {
-            ...defaultProps.paymentDetails.button?.text,
-            value: t('application_form.review_application.edit'),
-          },
-          onButtonClicked: handleClickEdit("paymentDetails"),
-        },
-        detailItemList: {
-          ...defaultProps.paymentDetails.detailItemList,
-          quoteDetailItems: [
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('application_form.review_application.payment_details.monthly_payment_label'),
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: t('application_form.review_application.payment_details.monthly_payment_value', {
-                  monthlyAmount,
-                }),
-              },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('application_form.review_application.payment_details.lease_term_label'),
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: t('application_form.review_application.payment_details.lease_term_value', {
-                  termValue: (leaseType === 'stretch') 
-                  ? getStretchMonth(term)
-                  : term,
-                }),
-              },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('application_form.review_application.payment_details.cost_of_finance_label'),
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: `${financeRate}%`,
-              },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: (leaseType === 'stretch')
-                ? t('view_quote.rate_card.stretch_purchase_term', { purchaseOptionMonths: term })
-                : t('view_quote.rate_card.ten_dollar_purchase_term'),
-              },
-            },
-          ],
-        },
-      }
-    }
   
       quoteDetails = {
         text: { 

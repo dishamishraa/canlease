@@ -1,8 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
 
-import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router';
 import styles from './UserProfile.module.scss';
 
 import UserIcon, { UserIconProps } from '../../atoms/UserIcon';
