@@ -1,9 +1,5 @@
 import axios from 'axios';
 import { SALESFORCE_API_URL, BEARER_TOKEN } from '../config';
-import mockPortfolio from './fixtures/mockPortfolio';
-import mockProfile from './fixtures/mockProfile';
-import mockQuote from './fixtures/mockQuote';
-import mockQuoteList from './fixtures/mockQuoteList';
 import {
   CreateApplication,
   CreateQuote,
@@ -21,7 +17,7 @@ export default class SalesforceApi {
     try {
       await axios.post<void>(`${SALESFORCE_API_URL}/credit_apps`, payload);
     } catch (error) {
-      // throw new Error('');
+      throw error;
     }
   }
 
@@ -33,11 +29,7 @@ export default class SalesforceApi {
       );
       return response.data;
     } catch (error) {
-      // throw new Error('');
-      return {
-        ...mockQuote,
-        ...payload,
-      };
+      throw error;
     }
   }
 
@@ -46,79 +38,69 @@ export default class SalesforceApi {
       const response = await axios.get<Quote>(`${SALESFORCE_API_URL}/quotes/${quoteId}`);
       return response.data;
     } catch (error) {
-      // throw new Error('');
-      return mockQuote;
+      throw error;
     }
   }
 
   async getProfile(portalId: string): Promise<Profile> {
     try {
-      const response = await axios.get<Profile>(`${SALESFORCE_API_URL}/profile/${portalId}`);
+      const response = await axios.get<Profile>(`${SALESFORCE_API_URL}/profiles/${portalId}`);
       return response.data;
     } catch (error) {
-      // throw new Error('');
-      return mockProfile;
+      throw error;
     }
   }
 
   async createProfile(payload: CreateProfile): Promise<Profile> {
     try {
-      const response = await axios.post<Profile>(`${SALESFORCE_API_URL}/profile`, payload);
+      const response = await axios.post<Profile>(`${SALESFORCE_API_URL}/profiles`, payload);
       return response.data;
     } catch (error) {
-      // throw new Error('');
-      return mockProfile;
+      throw error;
     }
   }
 
   async addQuoteToProfile(portalId: string, payload: AddQuote): Promise<void> {
     try {
-      await axios.post<void>(`${SALESFORCE_API_URL}/profile/${portalId}/add_quote`, payload);
+      await axios.post<void>(`${SALESFORCE_API_URL}/profiles/${portalId}/add_quote`, payload);
     } catch (error) {
-      const message = axios.isAxiosError(error)
-        ? error.response?.data?.errorMessage
-        : error.message;
-      throw new Error(message);
+      throw error;
     }
   }
 
   async getAllQuotesFromProfile(portalId: string): Promise<Quote[]> {
     try {
-      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/profile/${portalId}/quote`);
+      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/profiles/${portalId}/quote`);
       return response.data;
     } catch (error) {
-      // throw new Error('');
-      return mockQuoteList;
+      throw error;
     }
   }
 
   async getAllCustomerQuotesFromProfile(portalId: string): Promise<Quote[]> {
     try {
-      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/profile/${portalId}/customer_quote`);
+      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/profiles/${portalId}/customer_quote`);
       return response.data;
     } catch (error) {
-      // throw new Error('');
-      return mockQuoteList;
+      throw error;
     }
   }
 
   async getUserPortfolio(portalId: string): Promise<Portfolio> {
     try {
-      const response = await axios.get<Portfolio>(`${SALESFORCE_API_URL}/portfolio/${portalId}`);
+      const response = await axios.get<Portfolio>(`${SALESFORCE_API_URL}/portfolios/${portalId}`);
       return response.data;
     } catch (error) {
-      // throw new Error('');
-      return mockPortfolio;
+      throw error;
     }
   }
 
   async getCustomerPortfolio(portalId: string): Promise<Portfolio> {
     try {
-      const response = await axios.get<Portfolio>(`${SALESFORCE_API_URL}/portfolio/${portalId}/customer_portfolio`);
+      const response = await axios.get<Portfolio>(`${SALESFORCE_API_URL}/portfolios/${portalId}/customer_portfolio`);
       return response.data;
     } catch (error) {
-      // throw new Error('');
-      return mockPortfolio;
+      throw error;
     }
   }
 }

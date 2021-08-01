@@ -51,24 +51,24 @@ export const AuthProvider: React.FC<{}> = ({ children }) => {
     useState<Account | null>(cookie ? extractJwtPayload(cookie) : null);
 
   const {
-    loading, error, data, refetch: refetchProfile,
+    loading, data, refetch: refetchProfile,
   } = useProfile();
   const [profileState, updateProfile] = useState<State<Profile>>({
     loading,
-    error,
+    error: undefined,
     data,
   });
 
   useEffect(() => {
     updateProfile({
       loading,
-      error,
+      error: undefined,
       data: data ? {
         ...data,
         userType: 'admin',
       } : null,
     });
-  }, [loading, error, data]);
+  }, [loading, data]);
 
   const setAccount = (account: Account | null) => {
     updateAccount(account);

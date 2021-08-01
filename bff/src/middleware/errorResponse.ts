@@ -38,7 +38,7 @@ function errorResponse(
   );
   const httpError = isHttpError(err) ? err : defaultError;
 
-  return res.status(httpError.status).json(createErrorResponse(httpError));
+  return res.status(httpError.status).send(err || createErrorResponse(httpError));
 }
 
 export default errorResponse;

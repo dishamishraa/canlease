@@ -33,7 +33,7 @@ export function createProfileRouter(controllers: {
       throw UnauthorizedError('identityTokenPayload empty');
     }
 
-    const data = await profileController.getProfile(`${identityTokenPayload.id}`);
+    const data = await profileController.getProfile(`${identityTokenPayload.uuid}`);
     res.status(200).send(data);
   }));
 
