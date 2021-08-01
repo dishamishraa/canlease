@@ -19,7 +19,7 @@ const withPresenter = (
     } = props;
     const { t } = useTranslation();
     const [phoneNumber, setPhoneNumber] = useState<string>();
-    const [unitNumber, setUnitNumber] = useState<string>();
+    // const [unitNumber, setUnitNumber] = useState<string>();
     const [streetAddress, setStreetAddress] = useState<string>();
     const [city, setCity] = useState<string>();
     const [postalCode, setPostalCode] = useState<string>();
@@ -28,7 +28,7 @@ const withPresenter = (
     useEffect(() => {
       if (contactInfo) {
         setPhoneNumber(contactInfo.phone);
-        setUnitNumber(contactInfo.unitNumber);
+        // setUnitNumber(contactInfo.unitNumber);
         setStreetAddress(contactInfo.street);
         setCity(contactInfo.city);
         setPostalCode(contactInfo.postalCode);
@@ -46,9 +46,9 @@ const withPresenter = (
       setPhoneNumber(value);
     };
 
-    const handleUnitNumber = ({ target: { value } }) => {
-      setUnitNumber(value);
-    };
+    // const handleUnitNumber = ({ target: { value } }) => {
+    //   setUnitNumber(value);
+    // };
 
     const handleStreetAddress = ({ target: { value } }) => {
       setStreetAddress(value);
@@ -75,7 +75,7 @@ const withPresenter = (
         setContactInfo({
           email,
           phone: phoneNumber,
-          unitNumber: unitNumber || '',
+          // unitNumber: unitNumber || '',
           street: streetAddress,
           city,
           postalCode,
@@ -141,8 +141,8 @@ const withPresenter = (
           value: t('text_field_label.unit_number'),
         },
         textInput: {
-          textValue: unitNumber,
-          onTextChanged: handleUnitNumber,
+          // textValue: unitNumber,
+          // onTextChanged: handleUnitNumber,
         },
       },
       streetAddressTextField: {

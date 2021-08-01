@@ -66,7 +66,7 @@ export type PersonalInformation = {
 export type ContactInformation = {
   email: string;
   phone: string;
-  unitNumber: string;
+  // unitNumber: string;
   street: string;
   city: string;
   postalCode: string;
