@@ -34,8 +34,8 @@ const getQuoteStatus = ({ quoteId, quoteExpiryDate }: Quote, portfolio: Portfoli
   if(!portfolio) {
     return 'active';
   }
-  const { createApps } = portfolio;
-  const isApplied: boolean = createApps.some((application) => application.quoteId === quoteId);
+  const { creditApps } = portfolio;
+  const isApplied: boolean = creditApps.some((application) => application.quoteId === quoteId);
 
   if (isApplied) {
     return 'applied';
@@ -84,8 +84,8 @@ const getCurrentItems = (
       }
       break;
     case 'Application':
-      if (portfolio && portfolio.createApps && portfolio.leases) {
-        items = portfolio.createApps.map((application: CreditApplication): TableItem => {
+      if (portfolio && portfolio.creditApps && portfolio.leases) {
+        items = portfolio.creditApps.map((application: CreditApplication): TableItem => {
           const companyName = application.companyName;
           const contactName = application.name;
           const lease = portfolio.leases.find(lease => lease.quoteId === application.quoteId)

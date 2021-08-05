@@ -36,8 +36,8 @@ const withPresenter = (
       const checkQuoteStatus = ({ quoteExpiryDate, quoteId }: Quote): ContentFilter => {
         let isApplied;
         if (userPortfolio) {
-            const { createApps } = userPortfolio
-            isApplied = createApps.some(function(el) {
+            const { creditApps } = userPortfolio
+            isApplied = creditApps.some(function(el) {
                 return el.quoteId === quoteId;
             })
         }
@@ -127,8 +127,8 @@ const withPresenter = (
       }
       
       if (userPortfolio){
-        const { createApps } = userPortfolio
-        createApps.sort(function(a,b) {
+        const { creditApps } = userPortfolio
+        creditApps.sort(function(a,b) {
             const createdDateA = new Date(a.createdDate);
             const createdDateB = new Date(b.createdDate);
             if (createdDateA < createdDateB) return 1;
@@ -136,7 +136,7 @@ const withPresenter = (
             return 0;
         });
 
-        createApps.every((application, index) => {
+        creditApps.every((application, index) => {
             const { asset, applicationAmount, creditAppNumber, creditStatus } = application;
          
             const applicationsBlockProps: DashboardCardProps = {

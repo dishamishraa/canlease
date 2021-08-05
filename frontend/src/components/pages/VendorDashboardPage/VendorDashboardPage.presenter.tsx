@@ -51,7 +51,7 @@ const withPresenter = (
       let numOfActiveQuotes = 0;
       let numOfApplicationsUnderReview = 0;
       if (userPortfolio) {
-        const { createApps: creditApplications } = userPortfolio;
+        const { creditApps: creditApplications } = userPortfolio;
         // eslint-disable-next-line
         creditApplications.forEach((application: CreditApplication) => {
           if (getApplicationStatus(application) === "under_review"){

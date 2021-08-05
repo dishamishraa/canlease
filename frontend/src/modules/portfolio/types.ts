@@ -1,5 +1,5 @@
 export type Portfolio = {
-  createApps: CreditApplication[];
+  creditApps: CreditApplication[];
   leases: Lease[];
 };
 

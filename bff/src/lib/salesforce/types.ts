@@ -142,7 +142,7 @@ export type Lease = {
 };
 
 export type Portfolio = {
-  createApps: Application[];
+  creditApps: Application[];
   leases: Lease[];
 };
 

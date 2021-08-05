@@ -1,7 +1,7 @@
 import { Portfolio } from '../types';
 
 const mockPortfolio: Portfolio = {
-  createApps: [
+  creditApps: [
     {
       creditAppNumber: 'string',
       createdDate: '2021-06-29T15:17:16.896Z',
