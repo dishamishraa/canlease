@@ -63,7 +63,7 @@ export default class SalesforceApi {
 
   async addQuoteToProfile(portalId: string, payload: AddQuote): Promise<void> {
     try {
-      await axios.post<void>(`${SALESFORCE_API_URL}/profiles/${portalId}/add_quote`, wrapPayload(payload));
+      await axios.post<void>(`${SALESFORCE_API_URL}/profile/${portalId}/add_quote`, wrapPayload(payload));
     } catch (error) {
       throw error;
     }
@@ -71,7 +71,7 @@ export default class SalesforceApi {
 
   async getAllQuotesFromProfile(portalId: string): Promise<Quote[]> {
     try {
-      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/profiles/${portalId}/quotes`);
+      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/profile/${portalId}/quote`);
       return response.data;
     } catch (error) {
       throw error;
@@ -80,7 +80,7 @@ export default class SalesforceApi {
 
   async getAllCustomerQuotesFromProfile(portalId: string): Promise<Quote[]> {
     try {
-      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/profiles/${portalId}/customer_quotes`);
+      const response = await axios.get<Quote[]>(`${SALESFORCE_API_URL}/profile/${portalId}/customer_quote`);
       return response.data;
     } catch (error) {
       throw error;
