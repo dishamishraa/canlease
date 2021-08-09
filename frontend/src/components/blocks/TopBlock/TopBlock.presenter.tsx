@@ -22,7 +22,7 @@ const withPresenter = (
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
-    const [hideTabs, setHideTabs] = useState(false);
+    const [hideTabs, setHideTabs] = useState(true);
 
     useEffect(() => {
       if (profile) {
