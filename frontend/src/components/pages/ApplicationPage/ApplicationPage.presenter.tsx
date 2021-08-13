@@ -170,7 +170,7 @@ const withPresenter = (
           postalCode,
         } = profile;
         const { term } = quoteSelected;
-        const {assetCondition, ageOfAsset, expectedDeliveryDate} = assetInfo;
+        const { assetCondition, ageOfAsset, expectedDeliveryDate } = assetInfo;
         const { businessType, sin, dob, bankruptcy, bankruptcyDetails,  } = businessInfo;
         const { applicationAmount, asset, quoteId } = quoteDetails;
        
@@ -181,7 +181,7 @@ const withPresenter = (
           return diffYears;
         }
         let applicationPayload = {
-          leasePortalId: portalId,
+          lesseePortalId: portalId,
           operatingName: operatingName,
           businessName: companyName,
           businessType: businessType,
@@ -206,7 +206,7 @@ const withPresenter = (
           creditCheckConsent: creditCheckConsent,
           sin: sin,
           dob: dob,
-          vendorPortalId: '',
+          vendorPortalId: undefined, //TODO
           quoteId: quoteId,
           expectedDeliveryDate: expectedDeliveryDate,
           bankruptcyDetails: bankruptcyDetails,

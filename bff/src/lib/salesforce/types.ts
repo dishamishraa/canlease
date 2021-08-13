@@ -29,7 +29,7 @@ export const VALID_TERM_TYPES = [
 export type TermType = typeof VALID_TERM_TYPES[number];
 
 export type CreateApplication = {
-  leasePortalId: string;
+  lesseePortalId: string;
   operatingName: string;
   businessName: string;
   businessType: BusinessType;
@@ -54,7 +54,7 @@ export type CreateApplication = {
   creditCheckConsent: boolean;
   sin: string;
   dob: string;
-  vendorPortalId: string;
+  vendorPortalId?: string;
   quoteId: string;
   expectedDeliveryDate: string;
   bankruptcyDetails: string;

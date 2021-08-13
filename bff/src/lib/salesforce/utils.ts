@@ -12,7 +12,7 @@ import {
 } from './types';
 
 const CreateApplicationSchema = Joi.object({
-  leasePortalId: Joi.string().required(),
+  lesseePortalId: Joi.string().required(),
   operatingName: Joi.string().required(),
   businessName: Joi.string().required(),
   businessType: Joi.string().valid(...VALID_BUSINESS_TYPES).required(),
@@ -37,7 +37,7 @@ const CreateApplicationSchema = Joi.object({
   creditCheckConsent: Joi.bool().required(),
   sin: Joi.string().required(),
   dob: Joi.string().required(),
-  vendorPortalId: Joi.string().required(),
+  vendorPortalId: Joi.string().optional(),
   quoteId: Joi.string().required(),
   expectedDeliveryDate: Joi.string().required(),
   bankruptcyDetails: Joi.string().required(),

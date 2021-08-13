@@ -1,5 +1,5 @@
 export type CreateApplicationPayload = {
-    leasePortalId: string;
+    lesseePortalId: string;
     operatingName: string;
     businessName: string;
     businessType: 'Incorporated' | 'Proprietorship';
@@ -24,7 +24,7 @@ export type CreateApplicationPayload = {
     creditCheckConsent: boolean;
     sin: string;
     dob: string;
-    vendorPortalId: string;
+    vendorPortalId?: string;
     quoteId: string;
     expectedDeliveryDate: string;
     bankruptcyDetails: string;

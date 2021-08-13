@@ -1,7 +1,7 @@
 import { CreateApplication } from '../types';
 
 const mockCreateApplication: CreateApplication = {
-  leasePortalId: 'string',
+  lesseePortalId: 'string',
   operatingName: 'string',
   businessName: 'string',
   businessType: 'corporation',
