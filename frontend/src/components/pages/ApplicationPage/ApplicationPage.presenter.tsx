@@ -39,7 +39,8 @@ const withPresenter = (
     const history = useHistory();
     const { state: locationState, pathname } = useLocation<CreateApplicationState | undefined>();
     const { fromTab } = locationState || {};
-    const stepsMap = fromTab === 'Customer' ? customerStepsMap : vendorStepsMap;
+    const useCustomerFlow = fromTab === 'Customer';
+    const stepsMap = useCustomerFlow ? customerStepsMap : vendorStepsMap;
     const [state, setState] = useState<CreateApplicationState>({
       currentStep: 1,
       totalSteps: Object.keys(stepsMap).length + 1, // stepsMap doesn't include the first step
@@ -171,16 +172,16 @@ const withPresenter = (
         } = profile;
         const { term } = quoteSelected;
         const { assetCondition, ageOfAsset, expectedDeliveryDate } = assetInfo;
-        const { businessType, sin, dob, bankruptcy, bankruptcyDetails,  } = businessInfo;
+        const { businessType, sin, dob, bankruptcy, bankruptcyDetails } = businessInfo;
         const { applicationAmount, asset, quoteId } = quoteDetails;
        
-        const checkYearsInBusiness = (operatingSinceDate) => {
+        const checkYearsInBusiness = (operatingSinceDate: string) => {
           const date = new Date(operatingSinceDate); 
           const diffTime = Date.now() - date.getTime();
           const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365); 
           return diffYears;
         }
-        let applicationPayload = {
+        let applicationPayload: CreateApplicationPayload = {
           lesseePortalId: portalId,
           operatingName: operatingName,
           businessName: companyName,
@@ -206,12 +207,12 @@ const withPresenter = (
           creditCheckConsent: creditCheckConsent,
           sin: sin,
           dob: dob,
-          vendorPortalId: undefined, //TODO
+          vendorPortalId: undefined,
           quoteId: quoteId,
           expectedDeliveryDate: expectedDeliveryDate,
           bankruptcyDetails: bankruptcyDetails,
         }
-        if (fromTab === "Customer" && personalInfo) {
+        if (useCustomerFlow && personalInfo) {
           const { bankruptcy, bankruptcyDetails, businessType, companyName, dob,
             operatingName, operatingSinceDate, sin, website } = businessInfo as ApplicationBusinessInfoVendor
           const { address, city, email, firstName, phone, postalCode, province} = personalInfo

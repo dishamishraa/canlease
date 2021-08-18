@@ -29,7 +29,7 @@ export const VALID_TERM_TYPES = [
 export type TermType = typeof VALID_TERM_TYPES[number];
 
 export type CreateApplication = {
-  lesseePortalId: string;
+  lesseePortalId?: string;
   operatingName: string;
   businessName: string;
   businessType: BusinessType;

@@ -1,5 +1,5 @@
 export type CreateApplicationPayload = {
-    lesseePortalId: string;
+    lesseePortalId?: string;
     operatingName: string;
     businessName: string;
     businessType: 'Incorporated' | 'Proprietorship';

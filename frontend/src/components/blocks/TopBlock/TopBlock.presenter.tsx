@@ -27,9 +27,7 @@ const withPresenter = (
     useEffect(() => {
       if (profile) {
         const { userType } = profile;
-        if (userType === 'customer') {
-          setHideTabs(true);
-        }
+        setHideTabs(userType === 'customer');
       }
     }, [profile]);
 
