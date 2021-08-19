@@ -56,7 +56,10 @@ export const AuthProvider: React.FC<{}> = ({ children }) => {
   const [profileState, updateProfile] = useState<State<Profile>>({
     loading,
     error: undefined,
-    data,
+    data: data ? {
+      ...data,
+      userType: 'admin', //TODO remove debug override
+    } : null,
   });
 
   useEffect(() => {
