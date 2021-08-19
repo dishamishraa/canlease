@@ -30,27 +30,27 @@ export type CreateRate = Pick<Rate,
 export type UpdateRate = Partial<CreateRate>;
 
 export interface RateCardControllerContract {
-  createRateCard(payload: CreateRateCard): Promise<RateCard>;
-  getRateCard(id: number): Promise<RateCard>;
-  getRateCards(): Promise<RateCard[]>;
-  updateRateCard(id: number, payload: UpdateRateCard): Promise<RateCard>;
-  deleteRateCard(id: number): Promise<void>;
+  createRateCard(identityToken: string, payload: CreateRateCard): Promise<RateCard>;
+  getRateCard(identityToken: string, id: number): Promise<RateCard>;
+  getRateCards(identityToken: string): Promise<RateCard[]>;
+  updateRateCard(identityToken: string, id: number, payload: UpdateRateCard): Promise<RateCard>;
+  deleteRateCard(identityToken: string, id: number): Promise<void>;
 
-  createRate(payload: CreateRate): Promise<Rate>;
-  getRates(rateCardId: number): Promise<Rate[]>;
-  updateRate(id: number, payload: UpdateRate): Promise<Rate>;
-  deleteRate(id: number): Promise<void>;
+  createRate(identityToken: string, payload: CreateRate): Promise<Rate>;
+  getRates(identityToken: string, rateCardId: number): Promise<Rate[]>;
+  updateRate(identityToken: string, id: number, payload: UpdateRate): Promise<Rate>;
+  deleteRate(identityToken: string, id: number): Promise<void>;
 }
 
 export interface RateCardServiceContract {
-  createRateCard(payload: CreateRateCard): Promise<RateCard>;
-  getRateCard(id: number): Promise<RateCard>;
-  getRateCards(): Promise<RateCard[]>;
-  updateRateCard(id: number, payload: UpdateRateCard): Promise<RateCard>;
-  deleteRateCard(id: number): Promise<void>;
+  createRateCard(identityToken: string, payload: CreateRateCard): Promise<RateCard>;
+  getRateCard(identityToken: string, id: number): Promise<RateCard>;
+  getRateCards(identityToken: string): Promise<RateCard[]>;
+  updateRateCard(identityToken: string, id: number, payload: UpdateRateCard): Promise<RateCard>;
+  deleteRateCard(identityToken: string, id: number): Promise<void>;
 
-  createRate(payload: CreateRate): Promise<Rate>;
-  getRates(rateCardId: number): Promise<Rate[]>;
-  updateRate(id: number, payload: UpdateRate): Promise<Rate>;
-  deleteRate(id: number): Promise<void>;
+  createRate(identityToken: string, payload: CreateRate): Promise<Rate>;
+  getRates(identityToken: string, rateCardId: number): Promise<Rate[]>;
+  updateRate(identityToken: string, id: number, payload: UpdateRate): Promise<Rate>;
+  deleteRate(identityToken: string, id: number): Promise<void>;
 }

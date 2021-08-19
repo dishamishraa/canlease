@@ -9,39 +9,41 @@ export default class RateCardController implements RateCardControllerContract {
     this.service = service;
   }
 
-  createRateCard(payload: CreateRateCard): Promise<RateCard> {
-    return this.service.createRateCard(payload);
+  createRateCard(identityToken: string, payload: CreateRateCard): Promise<RateCard> {
+    return this.service.createRateCard(identityToken, payload);
   }
 
-  getRateCard(id: number): Promise<RateCard> {
-    return this.service.getRateCard(id);
+  getRateCard(identityToken: string, id: number): Promise<RateCard> {
+    return this.service.getRateCard(identityToken, id);
   }
 
-  getRateCards(): Promise<RateCard[]> {
-    return this.service.getRateCards();
+  getRateCards(identityToken: string): Promise<RateCard[]> {
+    return this.service.getRateCards(identityToken);
   }
 
-  updateRateCard(id: number, payload: Partial<CreateRateCard>): Promise<RateCard> {
-    return this.service.updateRateCard(id, payload);
+  updateRateCard(
+    identityToken: string, id: number, payload: Partial<CreateRateCard>,
+  ): Promise<RateCard> {
+    return this.service.updateRateCard(identityToken, id, payload);
   }
 
-  deleteRateCard(id: number): Promise<void> {
-    return this.service.deleteRateCard(id);
+  deleteRateCard(identityToken: string, id: number): Promise<void> {
+    return this.service.deleteRateCard(identityToken, id);
   }
 
-  createRate(payload: CreateRate): Promise<Rate> {
-    return this.service.createRate(payload);
+  createRate(identityToken: string, payload: CreateRate): Promise<Rate> {
+    return this.service.createRate(identityToken, payload);
   }
 
-  getRates(rateCardId: number): Promise<Rate[]> {
-    return this.service.getRates(rateCardId);
+  getRates(identityToken: string, rateCardId: number): Promise<Rate[]> {
+    return this.service.getRates(identityToken, rateCardId);
   }
 
-  updateRate(id: number, payload: Partial<CreateRate>): Promise<Rate> {
-    return this.service.updateRate(id, payload);
+  updateRate(identityToken: string, id: number, payload: Partial<CreateRate>): Promise<Rate> {
+    return this.service.updateRate(identityToken, id, payload);
   }
 
-  deleteRate(id: number): Promise<void> {
-    return this.service.deleteRate(id);
+  deleteRate(identityToken: string, id: number): Promise<void> {
+    return this.service.deleteRate(identityToken, id);
   }
 }

@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
-import { BadRequestError } from '../../lib/errors';
-import { errorWrapper, validateId } from '../../lib/utils';
+import { IDENTITY_SESSION_COOKIE_NAME } from '../../lib/config';
+import { BadRequestError, UnauthorizedError } from '../../lib/errors';
+import { errorWrapper, getCookie, validateId } from '../../lib/utils';
 import { RateCardControllerContract } from './types';
 
 export function createRateCardRouter(controllers: {
@@ -10,71 +11,107 @@ export function createRateCardRouter(controllers: {
   const { rateCardController } = controllers;
 
   router.post('/rate_cards', errorWrapper(async (req: Request, res: Response) => {
-    const data = await rateCardController.createRateCard(req.body);
+    const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
+    if (!identityToken) {
+      throw UnauthorizedError();
+    }
+    const data = await rateCardController.createRateCard(identityToken, req.body);
     res.status(200).send(data);
   }));
 
   router.get('/rate_cards/:id', errorWrapper(async (req: Request, res: Response) => {
+    const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
+    if (!identityToken) {
+      throw UnauthorizedError();
+    }
     const { id } = req.params;
     if (!validateId(id)) {
       throw BadRequestError();
     }
-    const data = await rateCardController.getRateCard(Number(id));
+    const data = await rateCardController.getRateCard(identityToken, Number(id));
     res.status(200).send(data);
   }));
 
   router.get('/rate_cards', errorWrapper(async (req: Request, res: Response) => {
-    const data = await rateCardController.getRateCards();
+    const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
+    if (!identityToken) {
+      throw UnauthorizedError();
+    }
+    const data = await rateCardController.getRateCards(identityToken);
     res.status(200).send(data);
   }));
 
   router.patch('/rate_cards/:id', errorWrapper(async (req: Request, res: Response) => {
+    const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
+    if (!identityToken) {
+      throw UnauthorizedError();
+    }
     const { id } = req.params;
     if (!validateId(id)) {
       throw BadRequestError();
     }
-    const data = await rateCardController.updateRateCard(Number(id), req.body);
+    const data = await rateCardController.updateRateCard(identityToken, Number(id), req.body);
     res.status(200).send(data);
   }));
 
   router.delete('/rate_cards/:id', errorWrapper(async (req: Request, res: Response) => {
+    const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
+    if (!identityToken) {
+      throw UnauthorizedError();
+    }
     const { id } = req.params;
     if (!validateId(id)) {
       throw BadRequestError();
     }
-    await rateCardController.deleteRateCard(Number(id));
+    await rateCardController.deleteRateCard(identityToken, Number(id));
     res.sendStatus(204);
   }));
 
   router.post('/rates', errorWrapper(async (req: Request, res: Response) => {
-    const data = await rateCardController.createRate(req.body);
+    const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
+    if (!identityToken) {
+      throw UnauthorizedError();
+    }
+    const data = await rateCardController.createRate(identityToken, req.body);
     res.status(200).send(data);
   }));
 
   router.get('/rate_cards/:rateCardId/rates', errorWrapper(async (req: Request, res: Response) => {
+    const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
+    if (!identityToken) {
+      throw UnauthorizedError();
+    }
     const { rateCardId } = req.params;
     if (!validateId(rateCardId)) {
       throw BadRequestError();
     }
-    const data = await rateCardController.getRates(Number(rateCardId));
+    const data = await rateCardController.getRates(identityToken, Number(rateCardId));
     res.status(200).send(data);
   }));
 
   router.patch('/rates/:id', errorWrapper(async (req: Request, res: Response) => {
+    const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
+    if (!identityToken) {
+      throw UnauthorizedError();
+    }
     const { id } = req.params;
     if (!validateId(id)) {
       throw BadRequestError();
     }
-    const data = await rateCardController.updateRate(Number(id), req.body);
+    const data = await rateCardController.updateRate(identityToken, Number(id), req.body);
     res.status(200).send(data);
   }));
 
   router.delete('/rates/:id', errorWrapper(async (req: Request, res: Response) => {
+    const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
+    if (!identityToken) {
+      throw UnauthorizedError();
+    }
     const { id } = req.params;
     if (!validateId(id)) {
       throw BadRequestError();
     }
-    await rateCardController.deleteRate(Number(id));
+    await rateCardController.deleteRate(identityToken, Number(id));
     res.sendStatus(204);
   }));
 
