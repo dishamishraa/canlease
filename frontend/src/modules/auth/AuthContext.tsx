@@ -63,10 +63,7 @@ export const AuthProvider: React.FC<{}> = ({ children }) => {
     updateProfile({
       loading,
       error: undefined,
-      data: data ? {
-        ...data,
-        userType: 'admin', //TODO remove debug override
-      } : null,
+      data,
     });
   }, [loading, data]);
 
