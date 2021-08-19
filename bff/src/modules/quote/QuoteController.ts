@@ -8,6 +8,7 @@ import calculator from '../calculator';
 import { RateCardServiceContract } from '../rateCard';
 import { Rate } from '../rateCard/types';
 import { NotFoundError } from '../../lib/errors';
+import { SPINDL_API_TOKEN } from '../../lib/config';
 
 export default class QuoteController implements QuoteControllerContract {
   private createQuoteService: QuoteServiceContract;
@@ -20,12 +21,12 @@ export default class QuoteController implements QuoteControllerContract {
   }
 
   async getRates(cardType: string, applicationAmount: number): Promise<Rate[]> {
-    const rateCards = await this.rateCardService.getRateCards();
+    const rateCards = await this.rateCardService.getRateCards(SPINDL_API_TOKEN);
     const rateCard = rateCards.find((card) => card.cardtype.toLowerCase() === cardType);
     if (!rateCard) {
       throw NotFoundError('no matching rate card');
     }
-    const rateCardRates = await this.rateCardService.getRates(rateCard.id);
+    const rateCardRates = await this.rateCardService.getRates(SPINDL_API_TOKEN, rateCard.id);
     return rateCardRates.filter(
       (
         { minmonthlyreturn, maxmonthlyreturn },
