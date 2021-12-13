@@ -4,18 +4,16 @@ import {
   CreateRate, CreateRateCard, Rate, RateCard, UpdateRate, UpdateRateCard,
 } from './types';
 
-const createAuthHeader = (identityToken: string): { headers: any } => {
-  return {
-    headers: {
-      Cookie: `${IDENTITY_SESSION_COOKIE_NAME}=${identityToken}`,
-    }
-  }
-}
+const createAuthHeader = (identityToken: string): { headers: any } => ({
+  headers: {
+    Cookie: `${IDENTITY_SESSION_COOKIE_NAME}=${identityToken}`,
+  },
+});
 export default class RateCardApi {
   async createRateCard(identityToken: string, payload: CreateRateCard): Promise<RateCard> {
     try {
       const response = await axios.post<RateCard>(
-        `${DATA_URL}/rate_cards`, 
+        `${DATA_URL}/rate_cards`,
         payload,
         createAuthHeader(identityToken),
       );
@@ -52,7 +50,7 @@ export default class RateCardApi {
   async updateRateCard(identityToken: string, id: number, payload: UpdateRateCard): Promise<RateCard> {
     try {
       const response = await axios.patch<RateCard>(
-        `${DATA_URL}/rate_cards/${id}`, 
+        `${DATA_URL}/rate_cards/${id}`,
         payload,
         createAuthHeader(identityToken),
       );
@@ -76,7 +74,7 @@ export default class RateCardApi {
   async createRate(identityToken: string, payload: CreateRate): Promise<Rate> {
     try {
       const response = await axios.post<Rate>(
-        `${DATA_URL}/rates`, 
+        `${DATA_URL}/rates`,
         payload,
         createAuthHeader(identityToken),
       );
@@ -101,7 +99,7 @@ export default class RateCardApi {
   async updateRate(identityToken: string, id: number, payload: UpdateRate): Promise<Rate> {
     try {
       const response = await axios.patch<Rate>(
-        `${DATA_URL}/rates/${id}`, 
+        `${DATA_URL}/rates/${id}`,
         payload,
         createAuthHeader(identityToken),
       );

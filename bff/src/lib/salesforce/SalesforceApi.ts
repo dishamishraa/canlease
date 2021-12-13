@@ -15,7 +15,7 @@ axios.defaults.headers = { Authorization: `Bearer ${BEARER_TOKEN}` };
 const wrapPayload = (payload: any) => ({ data: payload });
 type DataResponse<T> = {
   data: T;
-}
+};
 
 export default class SalesforceApi {
   async createApplication(payload: CreateApplication): Promise<void> {
