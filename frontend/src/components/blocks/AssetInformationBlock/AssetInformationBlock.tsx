@@ -11,6 +11,7 @@ import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
 import { LeaseDetailsSectionProps } from '../../organisms/LeaseDetailsSection';
 import { AssetInfo } from '../../../modules/types';
+import { Quote } from  '../../../modules/quote/types';
 
 export const defaultProps = {
   stepper: {
@@ -140,6 +141,7 @@ export type AssetInformationBlockProps = {
   assetInfo?: AssetInfo;
   stepperCurrentValue?: number,
   stepperTotalValue?: number,
+  quote?: Quote | undefined;
 };
 
 const AssetInformationBlock: React.FC<AssetInformationBlockProps> = ({

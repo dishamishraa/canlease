@@ -133,6 +133,7 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
             assetInfo={assetInfo}
             stepperCurrentValue={stepperCurrentValue}
             stepperTotalValue={stepperTotalValue}
+            quote={quoteDetails}
             />
         </Route>
         <Route exact path={routes.reviewApplicationInformation}>

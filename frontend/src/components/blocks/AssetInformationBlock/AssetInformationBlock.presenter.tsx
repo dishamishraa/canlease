@@ -6,11 +6,8 @@ import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/Quo
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
 import { RadioFieldProps } from '../../molecules/RadioField';
 import { DetailsSectionProps } from '../../organisms/DetailsSection';
-import { Quote } from '../../../modules/quote/types';
 
-export type AssetInformationBlockPresenterProps = AssetInformationBlockProps & {
-    quoteDetails: Quote | null;
-};
+export type AssetInformationBlockPresenterProps = AssetInformationBlockProps;
 
 const withPresenter = (
   View: React.FC<AssetInformationBlockProps>,
@@ -18,7 +15,7 @@ const withPresenter = (
   const Presenter: React.FC<AssetInformationBlockPresenterProps> = (props) => {
     const {
         setAssetInfo,
-        quoteDetails,
+        quote,
         assetInfo,
         className,
         stepperCurrentValue,
@@ -114,10 +111,10 @@ const withPresenter = (
 
     let detailsSectionProps: DetailsSectionProps = {};
 
-    if (quoteDetails) {
+    if (quote) {
         const {
           applicationAmount, asset, quoteId
-        } = quoteDetails;
+        } = quote;
   
         detailsSectionProps = {
           text: {
@@ -167,6 +164,7 @@ const withPresenter = (
     const assetInformationBlockProps: AssetInformationBlockProps = {
         ...defaultProps,
         detailsSection: detailsSectionProps,
+        quote,
         stepper: {
             text: {
                 ...defaultProps.stepper.text,
