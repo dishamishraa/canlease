@@ -1,9 +1,7 @@
 import SalesforceApi from '../../lib/salesforce/SalesforceApi';
 import { CreateQuote, Quote } from '../../lib/salesforce/types';
 import SendGridApi from './SendGridApi';
-import {
-  QuoteServiceContract, SendQuote,
-} from './types';
+import { QuoteServiceContract, SendQuote } from './types';
 
 export default class QuoteService implements QuoteServiceContract {
   private salesforceApi: SalesforceApi;

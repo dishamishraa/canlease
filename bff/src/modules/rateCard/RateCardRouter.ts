@@ -15,6 +15,7 @@ export function createRateCardRouter(controllers: {
     if (!identityToken) {
       throw UnauthorizedError();
     }
+
     const data = await rateCardController.createRateCard(identityToken, req.body);
     res.status(200).send(data);
   }));
@@ -24,10 +25,12 @@ export function createRateCardRouter(controllers: {
     if (!identityToken) {
       throw UnauthorizedError();
     }
+
     const { id } = req.params;
     if (!validateId(id)) {
       throw BadRequestError();
     }
+
     const data = await rateCardController.getRateCard(identityToken, Number(id));
     res.status(200).send(data);
   }));
@@ -37,6 +40,7 @@ export function createRateCardRouter(controllers: {
     if (!identityToken) {
       throw UnauthorizedError();
     }
+
     const data = await rateCardController.getRateCards(identityToken);
     res.status(200).send(data);
   }));
@@ -46,10 +50,12 @@ export function createRateCardRouter(controllers: {
     if (!identityToken) {
       throw UnauthorizedError();
     }
+
     const { id } = req.params;
     if (!validateId(id)) {
       throw BadRequestError();
     }
+
     const data = await rateCardController.updateRateCard(identityToken, Number(id), req.body);
     res.status(200).send(data);
   }));
@@ -59,10 +65,12 @@ export function createRateCardRouter(controllers: {
     if (!identityToken) {
       throw UnauthorizedError();
     }
+
     const { id } = req.params;
     if (!validateId(id)) {
       throw BadRequestError();
     }
+
     await rateCardController.deleteRateCard(identityToken, Number(id));
     res.sendStatus(204);
   }));
@@ -72,6 +80,7 @@ export function createRateCardRouter(controllers: {
     if (!identityToken) {
       throw UnauthorizedError();
     }
+
     const data = await rateCardController.createRate(identityToken, req.body);
     res.status(200).send(data);
   }));
@@ -81,10 +90,12 @@ export function createRateCardRouter(controllers: {
     if (!identityToken) {
       throw UnauthorizedError();
     }
+
     const { rateCardId } = req.params;
     if (!validateId(rateCardId)) {
       throw BadRequestError();
     }
+
     const data = await rateCardController.getRates(identityToken, Number(rateCardId));
     res.status(200).send(data);
   }));
@@ -94,10 +105,12 @@ export function createRateCardRouter(controllers: {
     if (!identityToken) {
       throw UnauthorizedError();
     }
+
     const { id } = req.params;
     if (!validateId(id)) {
       throw BadRequestError();
     }
+
     const data = await rateCardController.updateRate(identityToken, Number(id), req.body);
     res.status(200).send(data);
   }));
@@ -107,10 +120,12 @@ export function createRateCardRouter(controllers: {
     if (!identityToken) {
       throw UnauthorizedError();
     }
+
     const { id } = req.params;
     if (!validateId(id)) {
       throw BadRequestError();
     }
+
     await rateCardController.deleteRate(identityToken, Number(id));
     res.sendStatus(204);
   }));

@@ -1,7 +1,12 @@
 import axios from 'axios';
 import { DATA_URL, IDENTITY_SESSION_COOKIE_NAME } from '../../lib/config';
 import {
-  CreateRate, CreateRateCard, Rate, RateCard, UpdateRate, UpdateRateCard,
+  CreateRate,
+  CreateRateCard,
+  Rate,
+  RateCard,
+  UpdateRate,
+  UpdateRateCard,
 } from './types';
 
 const createAuthHeader = (identityToken: string): { headers: any } => ({
@@ -9,6 +14,7 @@ const createAuthHeader = (identityToken: string): { headers: any } => ({
     Cookie: `${IDENTITY_SESSION_COOKIE_NAME}=${identityToken}`,
   },
 });
+
 export default class RateCardApi {
   async createRateCard(identityToken: string, payload: CreateRateCard): Promise<RateCard> {
     try {
@@ -47,7 +53,11 @@ export default class RateCardApi {
     }
   }
 
-  async updateRateCard(identityToken: string, id: number, payload: UpdateRateCard): Promise<RateCard> {
+  async updateRateCard(
+    identityToken: string,
+    id: number,
+    payload: UpdateRateCard,
+  ): Promise<RateCard> {
     try {
       const response = await axios.patch<RateCard>(
         `${DATA_URL}/rate_cards/${id}`,

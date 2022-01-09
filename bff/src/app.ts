@@ -1,18 +1,10 @@
 import { Application } from 'express';
 import createApp from './lib/createApp';
 import { createRouter } from './router';
-import {
-  SendGridApi, QuoteService, QuoteController,
-} from './modules/quote';
-import {
-  ApplicationService, ApplicationController,
-} from './modules/application';
-import {
-  PortfolioService, PortfolioController,
-} from './modules/portfolio';
-import {
-  ProfileService, ProfileController,
-} from './modules/profile';
+import { SendGridApi, QuoteService, QuoteController } from './modules/quote';
+import { ApplicationService, ApplicationController } from './modules/application';
+import { PortfolioService, PortfolioController } from './modules/portfolio';
+import { ProfileService, ProfileController } from './modules/profile';
 
 import SalesforceApi from './lib/salesforce/SalesforceApi';
 import { RateCardController, RateCardService } from './modules/rateCard';

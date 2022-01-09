@@ -1,5 +1,4 @@
 import request from 'supertest';
-import { mocked } from 'ts-jest/utils';
 import { QuoteRouter } from '.';
 import createApp from '../../lib/createApp';
 import mockCreateQuote from '../../lib/salesforce/fixtures/mockCreateQuote';

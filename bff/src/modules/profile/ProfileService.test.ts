@@ -21,45 +21,35 @@ describe('QuoteService', () => {
   describe('getProfile', () => {
     it('should call api with portal id', async () => {
       await service.getProfile('1');
-
-      expect(salesforceApi.getProfile)
-        .toHaveBeenCalledWith('1');
+      expect(salesforceApi.getProfile).toHaveBeenCalledWith('1');
     });
   });
 
   describe('createProfile', () => {
     it('should call api with payload', async () => {
       await service.createProfile(mockCreateProfile);
-
-      expect(salesforceApi.createProfile)
-        .toHaveBeenCalledWith(mockCreateProfile);
+      expect(salesforceApi.createProfile).toHaveBeenCalledWith(mockCreateProfile);
     });
   });
 
   describe('addQuoteToProfile', () => {
     it('should call api with portal id and payload', async () => {
       await service.addQuoteToProfile('1', mockAddQuote.quoteId);
-
-      expect(salesforceApi.addQuoteToProfile)
-        .toHaveBeenCalledWith('1', mockAddQuote);
+      expect(salesforceApi.addQuoteToProfile).toHaveBeenCalledWith('1', mockAddQuote);
     });
   });
 
   describe('getAllQuotesFromProfile', () => {
     it('should call api with portal id', async () => {
       await service.getAllQuotesFromProfile('1');
-
-      expect(salesforceApi.getAllQuotesFromProfile)
-        .toHaveBeenCalledWith('1');
+      expect(salesforceApi.getAllQuotesFromProfile).toHaveBeenCalledWith('1');
     });
   });
 
   describe('getAllCustomerQuotesFromProfile', () => {
     it('should call api with portal id', async () => {
       await service.getAllCustomerQuotesFromProfile('1');
-
-      expect(salesforceApi.getAllCustomerQuotesFromProfile)
-        .toHaveBeenCalledWith('1');
+      expect(salesforceApi.getAllCustomerQuotesFromProfile).toHaveBeenCalledWith('1');
     });
   });
 });

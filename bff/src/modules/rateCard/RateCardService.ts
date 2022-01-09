@@ -1,6 +1,10 @@
 import RateCardApi from './RateCardApi';
 import {
-  CreateRate, CreateRateCard, Rate, RateCard, RateCardServiceContract,
+  CreateRate,
+  CreateRateCard,
+  Rate,
+  RateCard,
+  RateCardServiceContract,
 } from './types';
 
 export default class RateCardService implements RateCardServiceContract {

@@ -1,9 +1,5 @@
-import {
-  Profile, CreateProfile, Quote,
-} from '../../lib/salesforce/types';
-import {
-  ProfileControllerContract, ProfileServiceContract,
-} from './types';
+import { Profile, CreateProfile, Quote } from '../../lib/salesforce/types';
+import { ProfileControllerContract, ProfileServiceContract } from './types';
 
 export default class ProfileController implements ProfileControllerContract {
   private service: ProfileServiceContract;

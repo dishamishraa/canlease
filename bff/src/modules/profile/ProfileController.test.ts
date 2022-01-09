@@ -23,7 +23,6 @@ describe('ProfileController', () => {
   describe('createProfile', () => {
     it('should call service with payload to create profile', async () => {
       await controller.createProfile(mockCreateProfile);
-
       expect(profileService.createProfile).toHaveBeenCalledWith(mockCreateProfile);
     });
   });
@@ -31,7 +30,6 @@ describe('ProfileController', () => {
   describe('addQuoteToProfile', () => {
     it('should call service with portal id and payload to create profile', async () => {
       await controller.addQuoteToProfile('1', mockAddQuote.quoteId);
-
       expect(profileService.addQuoteToProfile).toHaveBeenCalledWith('1', mockAddQuote.quoteId);
     });
   });
@@ -39,7 +37,6 @@ describe('ProfileController', () => {
   describe('getAllQuotesFromProfile', () => {
     it('should call service with portal id to get a list of quotes', async () => {
       await controller.getAllQuotesFromProfile('1');
-
       expect(profileService.getAllQuotesFromProfile).toHaveBeenCalledWith('1');
     });
   });
@@ -47,7 +44,6 @@ describe('ProfileController', () => {
   describe('getAllCustomerQuotesFromProfile', () => {
     it('should call service with portal id to get of quotes that belongs to customers', async () => {
       await controller.getAllCustomerQuotesFromProfile('1');
-
       expect(profileService.getAllCustomerQuotesFromProfile).toHaveBeenCalledWith('1');
     });
   });

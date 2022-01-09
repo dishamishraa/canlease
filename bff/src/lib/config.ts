@@ -3,9 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const {
-  /**
-   * Port to mount server on to
-   */
+  // Port to mount server on to
   PORT = Number(process.env.BACKEND_PORT) || 3000,
 
   BFF_URL = '',
@@ -16,9 +14,7 @@ export const {
   IDENTITY_URL = '',
   DATA_URL = '',
 
-  /**
-   * Proxy Timeout Duration
-   */
+  // Proxy Timeout Duration
   PROXY_TIMEOUT = 30000,
   SALESFORCE_API_URL = '',
   BEARER_TOKEN = '',

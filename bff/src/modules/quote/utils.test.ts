@@ -9,7 +9,6 @@ describe('quote utils', () => {
     });
     it('should return false for invalid payload', () => {
       const valid = validateSendQuote({});
-
       expect(valid).toBe(false);
     });
   });

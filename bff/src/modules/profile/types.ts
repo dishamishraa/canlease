@@ -1,6 +1,4 @@
-import {
-  Profile, CreateProfile, Quote,
-} from '../../lib/salesforce/types';
+import { Profile, CreateProfile, Quote } from '../../lib/salesforce/types';
 
 export type IdentityTokenPayload = {
   id: number;

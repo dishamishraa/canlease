@@ -1,5 +1,3 @@
-import mockCreateQuote from '../../lib/salesforce/fixtures/mockCreateQuote';
-import mockQuote from '../../lib/salesforce/fixtures/mockQuote';
 import mockSendQuote from './fixtures/mockSendQuote';
 import QuoteController from './QuoteController';
 
@@ -9,6 +7,7 @@ describe('QuoteController', () => {
     getQuote: jest.fn(),
     sendQuote: jest.fn(),
   };
+
   const rateCardService = {
     createRateCard: jest.fn(),
     getRateCard: jest.fn(),
@@ -21,6 +20,7 @@ describe('QuoteController', () => {
     updateRate: jest.fn(),
     deleteRate: jest.fn(),
   };
+
   const controller = new QuoteController(createQuoteService, rateCardService);
 
   // describe('createQuote', () => {
@@ -42,17 +42,17 @@ describe('QuoteController', () => {
   //     expect(createQuoteService.createQuote).toHaveBeenCalledWith(mockCreateQuote);
   //   });
   // });
+
   describe('getQuote', () => {
     it('should call service with id', async () => {
       await controller.getQuote('abc');
-
       expect(createQuoteService.getQuote).toHaveBeenCalledWith('abc');
     });
   });
+
   describe('sendQuote', () => {
     it('should call service with payload to send quote', async () => {
       await controller.sendQuote(mockSendQuote);
-
       expect(createQuoteService.sendQuote).toHaveBeenCalledWith(mockSendQuote);
     });
   });

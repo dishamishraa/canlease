@@ -24,7 +24,6 @@ describe('QuoteService', () => {
   describe('createQuote', () => {
     it('should call api with payload', async () => {
       await service.createQuote(mockCreateQuote);
-
       expect(salesforceApi.createQuote).toHaveBeenCalledWith(mockCreateQuote);
     });
   });
@@ -32,7 +31,6 @@ describe('QuoteService', () => {
   describe('getQuote', () => {
     it('should call api with id', async () => {
       await service.getQuote('1');
-
       expect(salesforceApi.getQuote).toHaveBeenCalledWith('1');
     });
   });
@@ -40,7 +38,6 @@ describe('QuoteService', () => {
   describe('sendQuote', () => {
     it('should call api with payload', async () => {
       await service.sendQuote(mockSendQuote);
-
       expect(sendGridApi.sendQuote).toHaveBeenCalledWith(mockSendQuote);
     });
   });

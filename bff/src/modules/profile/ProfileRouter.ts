@@ -2,9 +2,7 @@ import { Router, Request, Response } from 'express';
 import { ProfileControllerContract } from './types';
 import { BadRequestError, UnauthorizedError } from '../../lib/errors';
 import { errorWrapper, getCookie, validateId } from '../../lib/utils';
-import {
-  decodeIdentityToken,
-} from './utils';
+import { decodeIdentityToken } from './utils';
 import { IDENTITY_SESSION_COOKIE_NAME } from '../../lib/config';
 import { validateCreateProfile, validateAddQuote } from '../../lib/salesforce/utils';
 
@@ -42,6 +40,7 @@ export function createProfileRouter(controllers: {
     if (!validateId(id) || !validateAddQuote(req.body)) {
       throw BadRequestError();
     }
+
     const { quoteId } = req.body;
     await profileController.addQuoteToProfile(id, quoteId);
     res.status(204);
@@ -52,6 +51,7 @@ export function createProfileRouter(controllers: {
     if (!validateId(id)) {
       throw BadRequestError();
     }
+
     const data = await profileController.getAllQuotesFromProfile(id);
     res.status(200).send(data);
   }));
@@ -61,6 +61,7 @@ export function createProfileRouter(controllers: {
     if (!validateId(id)) {
       throw BadRequestError();
     }
+
     const data = await profileController.getAllCustomerQuotesFromProfile(id);
     res.status(200).send(data);
   }));

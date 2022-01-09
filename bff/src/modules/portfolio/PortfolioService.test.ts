@@ -19,18 +19,14 @@ describe('PortfolioService', () => {
   describe('getUserPortfolio', () => {
     it('should call api with portal id', async () => {
       await service.getUserPortfolio('1');
-
-      expect(salesforceApi.getUserPortfolio)
-        .toHaveBeenCalledWith('1');
+      expect(salesforceApi.getUserPortfolio).toHaveBeenCalledWith('1');
     });
   });
 
   describe('getCustomerPortfolio', () => {
     it('should call api with portal id', async () => {
       await service.getCustomerPortfolio('1');
-
-      expect(salesforceApi.getCustomerPortfolio)
-        .toHaveBeenCalledWith('1');
+      expect(salesforceApi.getCustomerPortfolio).toHaveBeenCalledWith('1');
     });
   });
 });

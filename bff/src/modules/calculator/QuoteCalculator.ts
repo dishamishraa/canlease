@@ -1,4 +1,4 @@
-/* eslint-disable no-restricted-properties, max-len */
+/* eslint-disable no-restricted-properties */
 import { MonthlyPayment } from './types';
 
 export const $10 = '$10';
@@ -13,19 +13,28 @@ const VALID_PURCHASE_OPTION_TYPES = [
 export type PurchaseOptionType = typeof VALID_PURCHASE_OPTION_TYPES[number];
 
 export default class QuoteCalculator {
-  calculatePayment(rate: number, period: number, pv: number, fv: number, type = 1): number {
-    // divide annual interest rate by 12 to get monthly rate and 100 to get
-    // decimal repesentation
-    const monthlyRate = (rate / 12) / 100;
+  calculatePayment(
+    rate: number,
+    period: number,
+    pv: number,
+    fv: number,
+    type = 1,
+  ): number {
+    // Divide annual interest rate by 12 to get monthly rate and 100 to get decimal repesentation
+    const monthlyRate = rate / 12 / 100;
 
     const payment = (pv - fv / Math.pow(1 + monthlyRate, period))
-            / ((1 - 1 / Math.pow(1 + monthlyRate, period - type)) / monthlyRate
-                + type);
+      / ((1 - 1 / Math.pow(1 + monthlyRate, period - type)) / monthlyRate + type);
+
     // TODO: implement better rounding(1.005 > 1.00 instead of 1.01 with below method)
     return Math.round(payment * 100) / 100;
   }
 
-  calculateFutureValue(po: PurchaseOptionType, pv: number, pvPlusFee: number): number {
+  calculateFutureValue(
+    po: PurchaseOptionType,
+    pv: number,
+    pvPlusFee: number,
+  ): number {
     switch (po) {
       case FMV:
         return pvPlusFee * 0.05;
@@ -38,7 +47,10 @@ export default class QuoteCalculator {
     }
   }
 
-  calculateCostOfFinanceFutureValue(po: PurchaseOptionType, pv: number): number {
+  calculateCostOfFinanceFutureValue(
+    po: PurchaseOptionType,
+    pv: number,
+  ): number {
     switch (po) {
       case FMV:
         return 0;
@@ -55,15 +67,11 @@ export default class QuoteCalculator {
     amount: number,
     fee: number,
     purchaseOption: PurchaseOptionType,
-    annualInterestRates: { [key: number]: number},
+    annualInterestRates: { [key: number]: number },
     terms: number[],
   ): MonthlyPayment[] {
-    const amountWithFee = amount + ((amount * fee) / 100);
-    const fv = this.calculateFutureValue(
-      purchaseOption,
-      amount,
-      amountWithFee,
-    );
+    const amountWithFee = amount + (amount * fee) / 100;
+    const fv = this.calculateFutureValue(purchaseOption, amount, amountWithFee);
     const payments: MonthlyPayment[] = [];
 
     terms.forEach((term) => {
@@ -88,25 +96,33 @@ export default class QuoteCalculator {
     return payments;
   }
 
-  calculateCostOfFinanceRate(amount: number, monthlyPayment: number, po: PurchaseOptionType, period: number): number {
-    // Here is the formula to derive the Cost of Finance on the lease quote. It will be different for each term chosen:
-    // Assume $10,500 deal over a 36/40M term with a $1,050 purchase option at 36M and monthly lease payments of $330.70
-    // 1. Determine ALL the payments that will be made on the lease for its full life, including the purchase option
+  calculateCostOfFinanceRate(
+    amount: number,
+    monthlyPayment: number,
+    po: PurchaseOptionType,
+    period: number,
+  ): number {
+    // Here is the formula to derive the Cost of Finance on the lease quote. It will be different
+    // for each term chosen:
+    // Assume $10,500 deal over a 36/40M term with a $1,050 purchase option at 36M and monthly
+    // lease payments of $330.70
+    // 1. Determine ALL the payments that will be made on the lease for its full life, including
+    // the purchase option
     // $330.70 X 36 = $11,905.20 plus PO of $1,050 = $12,955.20
 
     const totalCostToCustomer = monthlyPayment * period
-            + this.calculateCostOfFinanceFutureValue(po, amount);
+      + this.calculateCostOfFinanceFutureValue(po, amount);
 
     // 2. Subtract the original cost of the equipment.
     // $12,955.20 - $10,500 = $2,455.20. This is the cost of finance over 36M
     const totalCostOfFinance = totalCostToCustomer - amount;
 
-    // 3). Determine the Annual Cost of Finance
+    // 3. Determine the Annual Cost of Finance
     // 36M term to the purchase Option/12 = 3 Years
     // $2,455.20/3 Years = $818.40. This is the Annual Cost of Finance
     const annualCostOfFinance = totalCostOfFinance / (period / 12);
 
-    // 4) Divide the Annual Cost of Finance ($818.40)/The Original Cost of the equipment
+    // 4. Divide the Annual Cost of Finance ($818.40)/The Original Cost of the equipment
     // ($10,500) = 7.8%. This is the annual cost of finance rate.
     const annualCostOfFinanceRate = annualCostOfFinance / amount;
 

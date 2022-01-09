@@ -1,14 +1,20 @@
-import {
-  CreateQuote, isCreateQuoteCustomer, isCreateQuoteVendor, Quote, QuoteOption,
-} from '../../lib/salesforce/types';
-import {
-  QuoteControllerContract, QuoteServiceContract, SendQuote,
-} from './types';
 import calculator from '../calculator';
 import { RateCardServiceContract } from '../rateCard';
 import { Rate } from '../rateCard/types';
 import { NotFoundError } from '../../lib/errors';
 import { SPINDL_API_TOKEN } from '../../lib/config';
+import {
+  CreateQuote,
+  isCreateQuoteCustomer,
+  isCreateQuoteVendor,
+  Quote,
+  QuoteOption,
+} from '../../lib/salesforce/types';
+import {
+  QuoteControllerContract,
+  QuoteServiceContract,
+  SendQuote,
+} from './types';
 
 export default class QuoteController implements QuoteControllerContract {
   private createQuoteService: QuoteServiceContract;
@@ -26,12 +32,13 @@ export default class QuoteController implements QuoteControllerContract {
     if (!rateCard) {
       throw NotFoundError('no matching rate card');
     }
+
     const rateCardRates = await this.rateCardService.getRates(SPINDL_API_TOKEN, rateCard.id);
-    return rateCardRates.filter(
-      (
-        { minmonthlyreturn, maxmonthlyreturn },
-      ) => applicationAmount >= minmonthlyreturn && applicationAmount < maxmonthlyreturn,
-    )
+    return rateCardRates
+      .filter(
+        ({ minmonthlyreturn, maxmonthlyreturn }) => applicationAmount >= minmonthlyreturn
+          && applicationAmount < maxmonthlyreturn,
+      )
       .sort((rate1, rate2) => rate1.term - rate2.term);
   }
 
@@ -53,10 +60,12 @@ export default class QuoteController implements QuoteControllerContract {
     const { applicationAmount, leaseType, fee = 0 } = payload;
     const terms: number[] = [24, 36, 48, 60];
     const interestRates: Record<number, number> = {};
+
     const rates = await this.getRates(this.getCardType(payload), applicationAmount);
     rates.forEach(({ term, regularir, tenatendir }) => {
       interestRates[term] = leaseType === 'stretch' ? regularir : tenatendir;
     });
+
     const payments = calculator.calculateMonthlyPayments(
       applicationAmount,
       fee,
@@ -72,6 +81,7 @@ export default class QuoteController implements QuoteControllerContract {
         term: `${term}M`,
         purchaseOptionDate: '',
       }));
+
     const quote = await this.createQuoteService.createQuote({
       ...payload,
       quoteOptions,
@@ -95,6 +105,7 @@ export default class QuoteController implements QuoteControllerContract {
         });
       }
     }
+
     return quote;
   }
 

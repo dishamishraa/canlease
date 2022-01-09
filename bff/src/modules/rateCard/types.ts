@@ -5,6 +5,7 @@ export type RateCard = {
   createdAt: string;
   updatedAt: string;
 };
+
 export type CreateRateCard = Pick<RateCard, 'cardtype'>;
 export type UpdateRateCard = Partial<CreateRateCard>;
 
@@ -20,13 +21,17 @@ export type Rate = {
   createdAt: string;
   updatedAt: string;
 };
-export type CreateRate = Pick<Rate,
-'term' |
-'minmonthlyreturn' |
-'maxmonthlyreturn' |
-'regularir' |
-'tenatendir' |
-'ratecardid'>;
+
+export type CreateRate = Pick<
+Rate,
+| 'term'
+| 'minmonthlyreturn'
+| 'maxmonthlyreturn'
+| 'regularir'
+| 'tenatendir'
+| 'ratecardid'
+>;
+
 export type UpdateRate = Partial<CreateRate>;
 
 export interface RateCardControllerContract {

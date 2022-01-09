@@ -1,10 +1,6 @@
 import SalesforceApi from '../../lib/salesforce/SalesforceApi';
-import {
-  Profile, CreateProfile, Quote,
-} from '../../lib/salesforce/types';
-import {
-  ProfileServiceContract,
-} from './types';
+import { Profile, CreateProfile, Quote } from '../../lib/salesforce/types';
+import { ProfileServiceContract } from './types';
 
 export default class ProfileService implements ProfileServiceContract {
   private salesforceApi: SalesforceApi;

@@ -1,12 +1,12 @@
 import sendgridMail, { MailDataRequired } from '@sendgrid/mail';
+import { InternalServerError } from '../../lib/errors';
+import { SendQuote } from './types';
 import {
   SENDGRID_API_KEY,
   SENDGRID_FROM_EMAIL,
   SENDGRID_QUOTE_TEMPLATE_ID,
   FRONTEND_URL,
 } from '../../lib/config';
-import { InternalServerError } from '../../lib/errors';
-import { SendQuote } from './types';
 
 export default class SendGridApi {
   constructor() {

@@ -1,8 +1,6 @@
 import SalesforceApi from '../../lib/salesforce/SalesforceApi';
 import { CreateApplication } from '../../lib/salesforce/types';
-import {
-  ApplicationServiceContract,
-} from './types';
+import { ApplicationServiceContract } from './types';
 
 export default class ApplicationService implements ApplicationServiceContract {
   private salesforceApi: SalesforceApi;

@@ -1,5 +1,10 @@
 import {
-  CreateRate, CreateRateCard, Rate, RateCard, RateCardControllerContract, RateCardServiceContract,
+  CreateRate,
+  CreateRateCard,
+  Rate,
+  RateCard,
+  RateCardControllerContract,
+  RateCardServiceContract,
 } from './types';
 
 export default class RateCardController implements RateCardControllerContract {

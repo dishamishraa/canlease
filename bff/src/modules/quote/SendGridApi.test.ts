@@ -1,11 +1,11 @@
 import { send } from '@sendgrid/mail';
 import createError from 'http-errors';
+import SendGridApi from './SendGridApi';
+import mockSendQuote from './fixtures/mockSendQuote';
 import {
   SENDGRID_FROM_EMAIL,
   SENDGRID_QUOTE_TEMPLATE_ID,
 } from '../../lib/config';
-import SendGridApi from './SendGridApi';
-import mockSendQuote from './fixtures/mockSendQuote';
 
 jest.mock('@sendgrid/mail');
 
@@ -34,9 +34,9 @@ describe('SendGridAPI', () => {
       });
     });
   });
+
   it('should throw FailedToSendEmail on error', async () => {
     mockedSend.mockRejectedValue({});
-
     await expect(api.sendQuote(mockSendQuote))
       .rejects.toThrowError(createError.InternalServerError);
   });

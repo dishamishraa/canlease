@@ -10,7 +10,6 @@ describe('ProfileController', () => {
   describe('getUserPortfolio', () => {
     it('should call service with portal id to get a user portfolio', async () => {
       await controller.getUserPortfolio('1');
-
       expect(profileService.getUserPortfolio).toHaveBeenCalledWith('1');
     });
   });
@@ -18,7 +17,6 @@ describe('ProfileController', () => {
   describe('getCustomerPortfolio', () => {
     it('should call service with portal id to get a customer portfolio', async () => {
       await controller.getCustomerPortfolio('1');
-
       expect(profileService.getCustomerPortfolio).toHaveBeenCalledWith('1');
     });
   });
