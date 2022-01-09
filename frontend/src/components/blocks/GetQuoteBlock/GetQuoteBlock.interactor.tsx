@@ -15,7 +15,8 @@ const withInteractor = (
         profile={profile}
         rateCards={rateCards}
       />
-  )};
+    );
+  };
 
   return Interactor;
 };

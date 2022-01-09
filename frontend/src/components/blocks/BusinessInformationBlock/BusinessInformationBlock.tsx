@@ -136,7 +136,7 @@ export type BusinessInformationBlockProps = {
   nextButton?: ButtonProps;
   className?: string;
   businessInfo?: BusinessInformation;
-  handleCreateProfile?: (businessInfo :BusinessInformation) => Promise<void>;
+  handleCreateProfile?: (businessInfo: BusinessInformation) => Promise<void>;
 };
 
 const BusinessInformationBlock: React.FC<BusinessInformationBlockProps> = ({

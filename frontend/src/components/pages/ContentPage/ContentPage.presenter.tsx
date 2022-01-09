@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { Profile } from '../../../modules/profile/types';
@@ -18,27 +19,31 @@ const withPresenter = (
     const { profile } = props;
 
     useEffect(() => {
-      if(state) {
+      if (state) {
         const { statusFilter } = state;
         setStatusFilter(statusFilter);
       }
     }, [state]);
 
     let tab: ContentTypeTabs = 'Personal';
-    if(pathname.toLowerCase().includes('/customer')) {
+    if (pathname.toLowerCase().includes('/customer')) {
       tab = 'Customer';
     }
 
-    return <View
-          {...props}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          statusFilter={statusFilter}
-          setStatusFilter={setStatusFilter}
-          tab={tab}
-          profile={profile}
-          />;
+    return (
+      <View
+        {...props}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        statusFilter={statusFilter}
+        setStatusFilter={setStatusFilter}
+        tab={tab}
+        profile={profile}
+      />
+    );
   };
+
   return Presenter;
 };
+
 export default withPresenter;

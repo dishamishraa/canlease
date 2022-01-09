@@ -1,21 +1,22 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useHistory, useLocation } from 'react-router';
 import { ReviewApplicationInformationBlockProps, defaultProps } from './ReviewApplicationInformationBlock';
 import { DetailsSectionProps } from '../../organisms/DetailsSection';
 import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { Profile } from '../../../modules/profile/types';
 import { convertMonth, getStretchMonth } from '../../../lib/utils';
-import { useHistory, useLocation } from 'react-router';
 import { ApplicationBusinessInfoVendor, CreateApplicationState } from '../../../modules/types';
 
-export type ReviewApplicationInformationBlockPresenterProps = ReviewApplicationInformationBlockProps & {
+export type ReviewApplicationInformationBlockPresenterProps =
+  ReviewApplicationInformationBlockProps & {
     profile: Profile | null;
-};
+  };
 
 const withPresenter = (
-    View: React.FC<ReviewApplicationInformationBlockProps>,
-  ): React.FC<ReviewApplicationInformationBlockPresenterProps> => {
-    const Presenter: React.FC<ReviewApplicationInformationBlockPresenterProps> = (props) => {
+  View: React.FC<ReviewApplicationInformationBlockProps>,
+): React.FC<ReviewApplicationInformationBlockPresenterProps> => {
+  const Presenter: React.FC<ReviewApplicationInformationBlockPresenterProps> = (props) => {
     const {
       quoteDetailsSelected,
       className,
@@ -47,14 +48,16 @@ const withPresenter = (
       if (handleEditClicked) {
         handleEditClicked(page);
       }
-    }
+    };
 
     const nextClicked = () => {
       history.push('/portal/application/termsOfApplication');
     };
-    
+
     if (personalInfo) {
-      const { address, city, email, firstName, lastName, phone, postalCode, province} = personalInfo
+      const {
+        address, city, email, firstName, lastName, phone, postalCode, province,
+      } = personalInfo;
       customerPersonalInformation = {
         text: {
           ...defaultProps.businessTypeDetails.text,
@@ -66,7 +69,7 @@ const withPresenter = (
             ...defaultProps.businessTypeDetails.button?.text,
             value: t('application_form.review_application.edit'),
           },
-          onButtonClicked: handleClickEdit("customerPersonalInfo"),
+          onButtonClicked: handleClickEdit('customerPersonalInfo'),
         },
         detailItemList: {
           ...defaultProps.businessTypeDetails.detailItemList,
@@ -150,37 +153,38 @@ const withPresenter = (
                 ...defaultQuoteDetailItemProps.infoText,
                 value: postalCode,
               },
-            }
-          ]
-        }
-      }
+            },
+          ],
+        },
+      };
     }
+
     if (businessInfo) {
-      const { 
-        bankruptcy, 
-        bankruptcyDetails, 
-        businessPhone, 
-        businessSector, 
-        businessType, 
-        companyName, 
+      const {
+        bankruptcy,
+        bankruptcyDetails,
+        businessPhone,
+        businessSector,
+        businessType,
+        companyName,
         dob,
-        operatingName, 
-        operatingSinceDate, 
-        sin, 
-        website 
+        operatingName,
+        operatingSinceDate,
+        sin,
+        website,
       } = businessInfo as ApplicationBusinessInfoVendor;
 
       let bankruptcyDetailsItem;
-        
-      if(bankruptcy){
+
+      if (bankruptcy) {
         bankruptcyDetailsItem = {
           labelText: {
             ...defaultQuoteDetailItemProps.labelText,
-            value: bankruptcyDetails ? t('application_form.review_application.business_type.bankruptcy_details_label') : "",
+            value: bankruptcyDetails ? t('application_form.review_application.business_type.bankruptcy_details_label') : '',
           },
           infoText: {
             ...defaultQuoteDetailItemProps.infoText,
-            value: bankruptcyDetails
+            value: bankruptcyDetails,
           },
         };
       }
@@ -195,7 +199,7 @@ const withPresenter = (
             ...defaultProps.businessTypeDetails.button?.text,
             value: t('application_form.review_application.edit'),
           },
-          onButtonClicked: handleClickEdit("customerBusinessInfo"),
+          onButtonClicked: handleClickEdit('customerBusinessInfo'),
         },
         detailItemList: {
           ...defaultProps.businessTypeDetails.detailItemList,
@@ -267,13 +271,13 @@ const withPresenter = (
               },
               infoText: {
                 ...defaultQuoteDetailItemProps.infoText,
-                value: t(`application_form.review_application.business_type.${businessType.toLowerCase()}`)
+                value: t(`application_form.review_application.business_type.${businessType.toLowerCase()}`),
               },
             },
             {
               labelText: {
                 ...defaultQuoteDetailItemProps.labelText,
-                value: sin ? t('application_form.review_application.business_type.sin_label') : "",
+                value: sin ? t('application_form.review_application.business_type.sin_label') : '',
               },
               infoText: {
                 ...defaultQuoteDetailItemProps.infoText,
@@ -283,7 +287,7 @@ const withPresenter = (
             {
               labelText: {
                 ...defaultQuoteDetailItemProps.labelText,
-                value: dob ? t('application_form.review_application.business_type.date_of_birth_label') : "",
+                value: dob ? t('application_form.review_application.business_type.date_of_birth_label') : '',
               },
               infoText: {
                 ...defaultQuoteDetailItemProps.infoText,
@@ -293,39 +297,39 @@ const withPresenter = (
             {
               labelText: {
                 ...defaultQuoteDetailItemProps.labelText,
-                value: dob ? t('application_form.review_application.business_type.bankruptcy_label') : "",
+                value: dob ? t('application_form.review_application.business_type.bankruptcy_label') : '',
               },
               infoText: {
                 ...defaultQuoteDetailItemProps.infoText,
-                value: dob ? t(`application_form.review_application.business_type.bankruptcy_${bankruptcy}`) : "",
+                value: dob ? t(`application_form.review_application.business_type.bankruptcy_${bankruptcy}`) : '',
               },
             },
-            {...bankruptcyDetailsItem},
-          ]
-        }
-      }
+            { ...bankruptcyDetailsItem },
+          ],
+        },
+      };
     }
 
-    if(profile){
+    if (profile) {
       const {
-        firstName, 
-        lastName, 
-        email, 
-        phone, 
-        address, 
-        city, 
-        province, 
-        postalCode, 
-        companyName, 
-        operatingName, 
-        businessSector, 
-        operatingSinceDate, 
-        businessPhone, 
+        firstName,
+        lastName,
+        email,
+        phone,
+        address,
+        city,
+        province,
+        postalCode,
+        companyName,
+        operatingName,
+        businessSector,
+        operatingSinceDate,
+        businessPhone,
         website,
       } = profile;
-      
-      let operatingSince = new Date(operatingSinceDate);
-      
+
+      const operatingSince = new Date(operatingSinceDate);
+
       personalDetails = {
         text: {
           ...defaultProps.businessTypeDetails.text,
@@ -353,10 +357,10 @@ const withPresenter = (
                 ...defaultQuoteDetailItemProps.infoText,
                 value: lastName,
               },
-            }
-          ]
-        }
-      }
+            },
+          ],
+        },
+      };
 
       contactDetails = {
         text: {
@@ -425,10 +429,10 @@ const withPresenter = (
                 ...defaultQuoteDetailItemProps.infoText,
                 value: postalCode,
               },
-            }
-          ]
-        }
-      }
+            },
+          ],
+        },
+      };
       profileBusinessDetails = {
         text: {
           ...defaultProps.businessTypeDetails.text,
@@ -496,102 +500,104 @@ const withPresenter = (
                 ...defaultQuoteDetailItemProps.infoText,
                 value: website,
               },
-            }
-          ]
-        }
-      }
+            },
+          ],
+        },
+      };
     }
+
     if (quoteDetailsSelected) {
       const {
         applicationAmount, asset, quoteId, leaseType,
       } = quoteDetailsSelected;
-    
+
       if (businessInfo) {
-          const {
-            bankruptcy, bankruptcyDetails,businessType, dob, sin,
-          } = businessInfo;
+        const {
+          bankruptcy, bankruptcyDetails, businessType, dob, sin,
+        } = businessInfo;
 
-          let bankruptcyDetailsItem;
-        
-          if(bankruptcy){
-            bankruptcyDetailsItem = {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: bankruptcyDetails ? t('application_form.review_application.business_type.bankruptcy_details_label') : "",
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: bankruptcyDetails
-              },
-            };
-          }
+        let bankruptcyDetailsItem;
 
-          businessTypeDetails = {
+        if (bankruptcy) {
+          bankruptcyDetailsItem = {
+            labelText: {
+              ...defaultQuoteDetailItemProps.labelText,
+              value: bankruptcyDetails ? t('application_form.review_application.business_type.bankruptcy_details_label') : '',
+            },
+            infoText: {
+              ...defaultQuoteDetailItemProps.infoText,
+              value: bankruptcyDetails,
+            },
+          };
+        }
+
+        businessTypeDetails = {
+          text: {
+            ...defaultProps.businessTypeDetails.text,
+            value: t('application_form.review_application.business_type.heading'),
+          },
+          button: {
+            ...defaultProps.businessTypeDetails.button,
             text: {
-              ...defaultProps.businessTypeDetails.text,
-              value: t('application_form.review_application.business_type.heading'),
+              ...defaultProps.businessTypeDetails.button?.text,
+              value: t('application_form.review_application.edit'),
             },
-            button: {
-              ...defaultProps.businessTypeDetails.button,
-              text: {
-                ...defaultProps.businessTypeDetails.button?.text,
-                value: t('application_form.review_application.edit'),
+            onButtonClicked: handleClickEdit('businessInfo'),
+          },
+          detailItemList: {
+            ...defaultProps.businessTypeDetails.detailItemList,
+            quoteDetailItems: [
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: t('application_form.review_application.business_type.heading'),
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: t(`application_form.review_application.business_type.${businessType.toLowerCase()}`),
+                },
               },
-              onButtonClicked: handleClickEdit("businessInfo"),
-            },
-            detailItemList: {
-              ...defaultProps.businessTypeDetails.detailItemList,
-              quoteDetailItems: [
-                {
-                  labelText: {
-                    ...defaultQuoteDetailItemProps.labelText,
-                    value: t('application_form.review_application.business_type.heading'),
-                  },
-                  infoText: {
-                    ...defaultQuoteDetailItemProps.infoText,
-                    value: t(`application_form.review_application.business_type.${businessType.toLowerCase()}`)
-                  },
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: sin ? t('application_form.review_application.business_type.sin_label') : '',
                 },
-                {
-                  labelText: {
-                    ...defaultQuoteDetailItemProps.labelText,
-                    value: sin ? t('application_form.review_application.business_type.sin_label') : "",
-                  },
-                  infoText: {
-                    ...defaultQuoteDetailItemProps.infoText,
-                    value: sin,
-                  },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: sin,
                 },
-                {
-                  labelText: {
-                    ...defaultQuoteDetailItemProps.labelText,
-                    value: dob ? t('application_form.review_application.business_type.date_of_birth_label') : "",
-                  },
-                  infoText: {
-                    ...defaultQuoteDetailItemProps.infoText,
-                    value: dob,
-                  },
+              },
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: dob ? t('application_form.review_application.business_type.date_of_birth_label') : '',
                 },
-                {
-                  labelText: {
-                    ...defaultQuoteDetailItemProps.labelText,
-                    value: dob ? t('application_form.review_application.business_type.bankruptcy_label') : "",
-                  },
-                  infoText: {
-                    ...defaultQuoteDetailItemProps.infoText,
-                    value: dob ? t(`application_form.review_application.business_type.bankruptcy_${bankruptcy}`) : "",
-                  },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: dob,
                 },
-                {...bankruptcyDetailsItem},
-              ]
-            }
-          }
+              },
+              {
+                labelText: {
+                  ...defaultQuoteDetailItemProps.labelText,
+                  value: dob ? t('application_form.review_application.business_type.bankruptcy_label') : '',
+                },
+                infoText: {
+                  ...defaultQuoteDetailItemProps.infoText,
+                  value: dob ? t(`application_form.review_application.business_type.bankruptcy_${bankruptcy}`) : '',
+                },
+              },
+              { ...bankruptcyDetailsItem },
+            ],
+          },
+        };
       }
+
       if (assetInfo) {
         const {
           ageOfAsset, assetCondition, expectedDeliveryDate,
         } = assetInfo;
-      
+
         assetDetails = {
           text: {
             ...defaultProps.assetDetails.text,
@@ -603,7 +609,7 @@ const withPresenter = (
               ...defaultProps.assetDetails.button?.text,
               value: t('application_form.review_application.edit'),
             },
-            onButtonClicked: handleClickEdit("assetInfo"),
+            onButtonClicked: handleClickEdit('assetInfo'),
           },
           detailItemList: {
             ...defaultProps.assetDetails.detailItemList,
@@ -621,13 +627,13 @@ const withPresenter = (
               {
                 labelText: {
                   ...defaultQuoteDetailItemProps.labelText,
-                  value: (ageOfAsset !== 0) ? t('application_form.review_application.asset_details.age_label') : "",
+                  value: (ageOfAsset !== 0) ? t('application_form.review_application.asset_details.age_label') : '',
                 },
                 infoText: {
                   ...defaultQuoteDetailItemProps.infoText,
                   value: (ageOfAsset !== 0) ? t('application_form.review_application.asset_details.age_value', {
                     ageOfAsset,
-                  }) : "",
+                  }) : '',
                 },
               },
               {
@@ -637,13 +643,14 @@ const withPresenter = (
                 },
                 infoText: {
                   ...defaultQuoteDetailItemProps.infoText,
-                  value: expectedDeliveryDate
+                  value: expectedDeliveryDate,
                 },
-              }
+              },
             ],
-          }
-        }
+          },
+        };
       }
+
       if (quoteSelected) {
         const {
           term: termString, monthlyAmount, financeRate,
@@ -661,7 +668,7 @@ const withPresenter = (
               ...defaultProps.paymentDetails.button?.text,
               value: t('application_form.review_application.edit'),
             },
-            onButtonClicked: handleClickEdit("paymentDetails"),
+            onButtonClicked: handleClickEdit('paymentDetails'),
           },
           detailItemList: {
             ...defaultProps.paymentDetails.detailItemList,
@@ -686,9 +693,9 @@ const withPresenter = (
                 infoText: {
                   ...defaultQuoteDetailItemProps.infoText,
                   value: t('application_form.review_application.payment_details.lease_term_value', {
-                    termValue: (leaseType === 'stretch') 
-                    ? getStretchMonth(term)
-                    : term,
+                    termValue: (leaseType === 'stretch')
+                      ? getStretchMonth(term)
+                      : term,
                   }),
                 },
               },
@@ -706,17 +713,17 @@ const withPresenter = (
                 labelText: {
                   ...defaultQuoteDetailItemProps.infoText,
                   value: (leaseType === 'stretch')
-                  ? t('view_quote.rate_card.stretch_purchase_term', { purchaseOptionMonths: term })
-                  : t('view_quote.rate_card.ten_dollar_purchase_term'),
+                    ? t('view_quote.rate_card.stretch_purchase_term', { purchaseOptionMonths: term })
+                    : t('view_quote.rate_card.ten_dollar_purchase_term'),
                 },
               },
             ],
           },
-        }
+        };
       }
-  
+
       quoteDetails = {
-        text: { 
+        text: {
           ...defaultProps.quoteDetails.text,
           value: t('view_quote.quote_rate_section_heading_text'),
         },
@@ -725,7 +732,7 @@ const withPresenter = (
           text: {
             ...defaultProps.quoteDetails.button?.text,
           },
-          onButtonClicked: handleClickEdit("quoteDetails"),
+          onButtonClicked: handleClickEdit('quoteDetails'),
         },
         detailItemList: {
           ...defaultProps.quoteDetails.detailItemList,
@@ -764,28 +771,29 @@ const withPresenter = (
             },
           ],
         },
-      }
+      };
     }
+
     let reviewApplicationInformationBlockProps: ReviewApplicationInformationBlockProps = {
       ...defaultProps,
       stepper: {
         text: {
-            ...defaultProps.stepper.text,
-            value: t(`application_form.stepper`, {
-              current: stepperCurrentValue,
-              total: stepperTotalValue,
-            })
-        }
+          ...defaultProps.stepper.text,
+          value: t('application_form.stepper', {
+            current: stepperCurrentValue,
+            total: stepperTotalValue,
+          }),
+        },
       },
-      blockHeading:{
+      blockHeading: {
         ...defaultProps.blockHeading,
-        value:t('application_form.review_application.review_header'),
+        value: t('application_form.review_application.review_header'),
       },
       quoteDetails,
       paymentDetails,
       assetDetails,
 
-      nextButton:{
+      nextButton: {
         ...defaultProps.nextButton,
         text: {
           ...defaultProps.nextButton.text,
@@ -793,48 +801,48 @@ const withPresenter = (
         },
         onButtonClicked: nextClicked,
       },
-    }
-    if (state?.fromTab === "Personal") {
+    };
+
+    if (state?.fromTab === 'Personal') {
       reviewApplicationInformationBlockProps = {
         ...reviewApplicationInformationBlockProps,
-        sectionHeadingOne:{
+        sectionHeadingOne: {
           ...defaultProps.sectionHeadingOne,
-          value:t('application_form.review_application.asset_header'),
+          value: t('application_form.review_application.asset_header'),
         },
-        sectionHeadingTwo:{
+        sectionHeadingTwo: {
           ...defaultProps.sectionHeadingOne,
-          value:t('application_form.review_application.profile_header'),
+          value: t('application_form.review_application.profile_header'),
         },
         text: {
           ...defaultProps.text,
-          value: <div dangerouslySetInnerHTML={{ __html:  t('application_form.review_application.profile_description') }} />
+          value: <div dangerouslySetInnerHTML={{ __html: t('application_form.review_application.profile_description') }} />,
         },
         businessTypeDetails,
         personalDetails,
         contactDetails,
         profileBusinessDetails,
-      }
-    }
-    else if (state?.fromTab === "Customer") {
+      };
+    } else if (state?.fromTab === 'Customer') {
       reviewApplicationInformationBlockProps = {
         ...reviewApplicationInformationBlockProps,
         customerPersonalInformation,
         customerBusinessInformation,
-      }
+      };
     }
 
     return (
-        <View
+      <View
         className={className}
         {...reviewApplicationInformationBlockProps}
         stepperCurrentValue={stepperCurrentValue}
         handleEditClicked={handleEditClicked}
         state={state}
-        />
-      );
+      />
+    );
   };
-  
-    return Presenter;
-  };
-  
-  export default withPresenter;
+
+  return Presenter;
+};
+
+export default withPresenter;

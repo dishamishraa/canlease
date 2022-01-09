@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import React from 'react';
 import cx from 'classnames';
 
@@ -43,8 +44,8 @@ const CheckboxItem: React.FC<CheckboxItemProps> = ({
 }) => {
   const currentStyle = styles[`checkboxItem${state}`];
 
-  let iconView 
- 
+  let iconView;
+
   const textView = (
     <Text
       className={styles.text}

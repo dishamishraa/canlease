@@ -6,4 +6,3 @@ import withPresenter from './ReviewApplicationInformationBlock.presenter';
 export type { ReviewApplicationInformationBlockProps };
 
 export default withInteractor(withPresenter(ReviewApplicationInformationBlock));
-

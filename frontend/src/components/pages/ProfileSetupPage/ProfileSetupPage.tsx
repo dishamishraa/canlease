@@ -97,12 +97,8 @@ const ProfileSetupPage: React.FC<ProfileSetupPageProps> = ({
   className,
 }) => (
     <div className={cx(styles.profileSetupPage, className)}>
-      <TopBar
-        className={styles.topBar}
-        {...topBar} />
-      <PersonalInformationBlock
-        className={styles.block}
-        {...block} />
+      <TopBar className={styles.topBar} {...topBar} />
+      <PersonalInformationBlock className={styles.block} {...block} />
     </div>
 );
 

@@ -75,7 +75,7 @@ export const updatePassword = async (payload: UpdatePasswordPayload): Promise<vo
   try {
     const { id, password, token } = payload;
     await axios.patch(`${BFF_URL}/accounts/${id}/actions/updatePassword`, {
-      password, token
+      password, token,
     },
     { withCredentials: true });
   } catch (error) {

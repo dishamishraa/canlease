@@ -12,7 +12,7 @@ const withInteractor = (
       <Presenter
       {...props}
       profile={profile}
-  
+
       />
     );
   };

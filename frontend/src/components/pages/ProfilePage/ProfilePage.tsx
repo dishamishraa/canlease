@@ -92,12 +92,8 @@ const ProfilePage: React.FC<ProfilePageProps> = ({
   className,
 }) => (
     <div className={cx(styles.profilePage, className)}>
-      <TopBar
-        className={styles.topBar}
-        {...topBar} />
-      <ProfileBlock
-        className={styles.block}
-        {...block} />
+      <TopBar className={styles.topBar} {...topBar} />
+      <ProfileBlock className={styles.block} {...block} />
     </div>
 );
 

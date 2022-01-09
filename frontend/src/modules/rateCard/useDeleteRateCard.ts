@@ -8,5 +8,3 @@ const useDeleteRateCard = (): UseDeleteResult<void> => {
 };
 
 export default useDeleteRateCard;
-
-

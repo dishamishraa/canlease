@@ -1,22 +1,31 @@
+/* eslint-disable default-case */
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 import { QuoteRateSectionProps } from '../../organisms/QuoteRateSection';
 import { QuoteBlockProps, defaultProps } from './QuoteBlock';
-import { addLinksAndBreaks } from '../../../lib/reactUtils';
-import { QuoteDetailItemProps, defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { RateCardProps, defaultProps as defaultRateCardProps } from '../../molecules/RateCard/RateCard';
 import { ModalProps, defaultProps as modalPropsDefaultProps } from '../../organisms/Modal/Modal';
 import EmailIcon from '../../../resources/icons/Email.svg';
+import {
+  QuoteDetailItemProps,
+  defaultProps as defaultQuoteDetailItemProps,
+} from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 
 import { defaultProps as defaultRateDetailItemProps } from '../../molecules/RateDetailItem/RateDetailItem';
 import { Quote, SendQuote } from '../../../modules/quote/types';
 import { ContactInfo, ContentTypeTabs } from '../../../modules/types';
-import { convertMonth, getStretchMonth, isExpired } from '../../../lib/utils';
 import { APIResponse } from '../../../lib/api/types';
 import { sendQuote } from '../../../modules/quote/api';
-import { useCookies } from 'react-cookie';
-import { updateInstaQuoteCookie } from '../../../lib/utils';
+import {
+  convertMonth,
+  getStretchMonth,
+  isExpired,
+  updateInstaQuoteCookie,
+} from '../../../lib/utils';
+
+import addLinksAndBreaks from '../../../lib/reactUtils';
 
 export type QuoteBlockPresenterProps = QuoteBlockProps & {
   quote: Quote | null;
@@ -90,13 +99,13 @@ const withPresenter = (
     };
 
     const handleApplyForFinance = (tab: ContentTypeTabs) => () => {
-      switch(flowType) {
+      switch (flowType) {
         case 'instaQuote':
-          updateInstaQuoteCookie({ action: 'apply_finance_personal'}, setCookie, removeCookie);
+          updateInstaQuoteCookie({ action: 'apply_finance_personal' }, setCookie, removeCookie);
           history.push('/account/signin');
           break;
         case 'createQuote':
-          if(quote) {
+          if (quote) {
             history.push(`/portal/application/applyQuote/${quote.quoteId}`, { fromTab: tab });
           }
           break;
@@ -104,19 +113,19 @@ const withPresenter = (
     };
 
     const handleSaveQuote = () => {
-      updateInstaQuoteCookie({ action: 'save_quote'}, setCookie, removeCookie);
+      updateInstaQuoteCookie({ action: 'save_quote' }, setCookie, removeCookie);
       history.push('/account/signin');
     };
 
     const getSubmittedBy = (info: ContactInfo) => {
       if (info.type === 'vendor') {
         return `${info.vendorName} (${info.businessEmail})`;
-      } 
+      }
       return `${info.customerName} (${info.customerEmail}`;
-    }
+    };
 
     const handleSendQuote = async () => {
-      if(quote && contactInfo) {
+      if (quote && contactInfo) {
         await sendQuote({
           companyName: contactInfo.customerCompanyName,
           submittedBy: getSubmittedBy(contactInfo),
@@ -128,7 +137,7 @@ const withPresenter = (
     };
 
     const quoteExpired = quote ? isExpired(quote?.quoteExpiryDate) : true;
-   
+
     let quoteDetailItems: QuoteDetailItemProps[] = [];
     let rateCards: RateCardProps[] = [];
     const termDetailItemArray: QuoteDetailItemProps[] = [];
@@ -139,7 +148,7 @@ const withPresenter = (
         applicationAmount, asset, quoteId, leaseType,
       } = quote;
 
-      const detailsLineItems: {label: string, value: string }[] = [
+      const detailsLineItems: {label: string; value: string }[] = [
         {
           label: t('view_quote.quote_detail.application_amount.label'),
           value: t('view_quote.quote_detail.application_amount.value', {
@@ -156,19 +165,17 @@ const withPresenter = (
         },
       ];
 
-      quoteDetailItems = detailsLineItems.map(({ label, value }): QuoteDetailItemProps => {
-        return {
-          ...defaultQuoteDetailItemProps,
-          labelText: {
-            ...defaultQuoteDetailItemProps.labelText,
-            value: label,
-          },
-          infoText: {
-            ...defaultQuoteDetailItemProps.infoText,
-            value: value,
-          },
-        }
-      });
+      quoteDetailItems = detailsLineItems.map(({ label, value }): QuoteDetailItemProps => ({
+        ...defaultQuoteDetailItemProps,
+        labelText: {
+          ...defaultQuoteDetailItemProps.labelText,
+          value: label,
+        },
+        infoText: {
+          ...defaultQuoteDetailItemProps.infoText,
+          value,
+        },
+      }));
 
       // generate rate cards props
       rateCards = quote.quoteOptions.map((quoteOption): RateCardProps => {
@@ -200,7 +207,7 @@ const withPresenter = (
                 },
                 numberText: {
                   ...defaultRateDetailItemProps.numberText,
-                  value: (leaseType === 'stretch') 
+                  value: (leaseType === 'stretch')
                     ? getStretchMonth(term)
                     : term,
                 },
@@ -227,8 +234,8 @@ const withPresenter = (
               },
             ],
           },
-        }
-      })
+        };
+      });
 
       // lease terms
       let totalLines = 0;
@@ -246,7 +253,8 @@ const withPresenter = (
         default:
           break;
       }
-      for (let i = 1; i <= totalLines; i++) {
+
+      for (let i = 1; i <= totalLines; i += 1) {
         const quoteDetailItem: QuoteDetailItemProps = {
           labelText: {
             ...defaultQuoteDetailItemProps.labelText,
@@ -272,7 +280,7 @@ const withPresenter = (
       },
       rateCardList: {
         rateCards,
-      }
+      },
     };
 
     const quoteBlockProps: QuoteBlockProps = {
@@ -294,7 +302,7 @@ const withPresenter = (
         ...defaultProps.learnMoreText,
         value: addLinksAndBreaks(t('view_quote.learn_more_text')),
       },
-      quoteExpired: quoteExpired,
+      quoteExpired,
       expiryToast: {
         ...defaultProps.expiryToast,
         text: {
@@ -308,7 +316,7 @@ const withPresenter = (
       },
     };
 
-    if(quoteUserType === 'vendor') {
+    if (quoteUserType === 'vendor') {
       quoteBlockProps.sendQuoteButton = {
         ...defaultProps.sendQuoteButton,
         text: {
@@ -317,7 +325,7 @@ const withPresenter = (
         },
         onButtonClicked: handleSendQuote,
         disabled: quoteExpired,
-      }
+      };
       quoteBlockProps.applyButton = {
         ...defaultProps.saveQuoteButton,
         text: {
@@ -326,7 +334,7 @@ const withPresenter = (
         },
         onButtonClicked: handleApplyForFinance('Customer'),
         disabled: quoteExpired,
-      }
+      };
     } else {
       quoteBlockProps.applyButton = {
         ...defaultProps.applyButton,
@@ -336,7 +344,7 @@ const withPresenter = (
         },
         onButtonClicked: handleApplyForFinance('Personal'),
         disabled: quoteExpired,
-      }
+      };
 
       if (flowType === 'instaQuote') {
         quoteBlockProps.saveQuoteButton = {
@@ -347,17 +355,12 @@ const withPresenter = (
           },
           onButtonClicked: handleSaveQuote,
           disabled: quoteExpired,
-        }
+        };
       }
     }
 
     return (
-            <View
-            {...props}
-            {...quoteBlockProps}
-            modal={modal}
-            showModal={showModal}
-            />
+      <View {...props} {...quoteBlockProps} modal={modal} showModal={showModal} />
     );
   };
 

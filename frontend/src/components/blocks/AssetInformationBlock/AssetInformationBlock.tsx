@@ -11,7 +11,7 @@ import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
 import { LeaseDetailsSectionProps } from '../../organisms/LeaseDetailsSection';
 import { AssetInfo } from '../../../modules/types';
-import { Quote } from  '../../../modules/quote/types';
+import { Quote } from '../../../modules/quote/types';
 
 export const defaultProps = {
   stepper: {
@@ -73,19 +73,19 @@ export const defaultProps = {
       style: 'Basic800',
       align: 'Left',
       size: 'Medium',
-      type: 'Paragraph2'
+      type: 'Paragraph2',
     },
     radioButtonItems: [
       {
-      state: 'Unselected',
-      text: {
-        style: 'Basic800',
-        align: 'Left',
-        size: 'Large',
-        type: 'Paragraph1',
+        state: 'Unselected',
+        text: {
+          style: 'Basic800',
+          align: 'Left',
+          size: 'Large',
+          type: 'Paragraph1',
+        },
       },
-      }
-    ]
+    ],
   } as RadioFieldProps,
   ageOfAssetTextField: {
     state: 'Default',
@@ -139,8 +139,8 @@ export type AssetInformationBlockProps = {
   setAssetInfo?: (assetInfo: AssetInfo) => void;
   showAssetAgeField?: boolean;
   assetInfo?: AssetInfo;
-  stepperCurrentValue?: number,
-  stepperTotalValue?: number,
+  stepperCurrentValue?: number;
+  stepperTotalValue?: number;
   quote?: Quote | undefined;
 };
 
@@ -156,7 +156,8 @@ const AssetInformationBlock: React.FC<AssetInformationBlockProps> = ({
   showAssetAgeField,
 }) => {
   let displayAgeOfAssetField;
-  if (showAssetAgeField){
+
+  if (showAssetAgeField) {
     displayAgeOfAssetField = (
       <TextField
       className={styles.ageOfAssetTextField}
@@ -191,7 +192,7 @@ const AssetInformationBlock: React.FC<AssetInformationBlockProps> = ({
           {...nextButton} />
       </div>
   );
-}
+};
 
 AssetInformationBlock.defaultProps = defaultProps;
 

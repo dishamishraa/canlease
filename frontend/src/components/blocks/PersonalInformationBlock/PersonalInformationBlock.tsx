@@ -78,7 +78,7 @@ export type PersonalInformationBlockProps = {
   nextButton?: ButtonProps;
   className?: string;
   personalInfo?: PersonalInformation;
-  setPersonalInfo?: (personalInfo :PersonalInformation) => void;
+  setPersonalInfo?: (personalInfo: PersonalInformation) => void;
 };
 
 const PersonalInformationBlock: React.FC<PersonalInformationBlockProps> = ({

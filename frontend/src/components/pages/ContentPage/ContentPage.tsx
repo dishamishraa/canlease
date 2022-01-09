@@ -135,7 +135,7 @@ const ContentPage: React.FC<ContentPageProps> = ({
   statusFilter,
   setStatusFilter,
   tab,
-  profile
+  profile,
 }) => (
     <div className={cx(styles.contentPage, className)}>
       <Switch>
@@ -153,7 +153,7 @@ const ContentPage: React.FC<ContentPageProps> = ({
             setSearchQuery={setSearchQuery}
             statusFilter={statusFilter}
             setStatusFilter={setStatusFilter}
-            tab={tab} 
+            tab={tab}
             profile={profile} />
           <Table
             className={styles.table}

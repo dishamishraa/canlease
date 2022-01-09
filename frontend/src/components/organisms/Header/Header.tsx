@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import React from 'react';
 import cx from 'classnames';
 
@@ -74,19 +75,19 @@ const Header: React.FC<HeaderProps> = ({
   let contentView;
 
   switch (type) {
-    case 'WithMenu':
+    case 'WithMenu': {
       const menuIcon: IconProps = {
         ...defaultProps.icon,
         onIconClicked: () => {
           if (setShowMenu) {
-            if(!showMenu){
-              setShowMenu(true)
+            if (!showMenu) {
+              setShowMenu(true);
             } else {
-              setShowMenu(false)
+              setShowMenu(false);
             }
           }
-        }
-      }
+        },
+      };
 
       contentView = (
         <div className={styles.content}>
@@ -104,6 +105,7 @@ const Header: React.FC<HeaderProps> = ({
         </div>
       );
       break;
+    }
     case 'Default':
       contentView = (
         <div className={styles.content}>

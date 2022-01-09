@@ -13,7 +13,7 @@ export const defaultProps = {
     size: 'Medium',
     type: 'Paragraph2',
   } as TextProps,
-  radioButtonItems:[ {
+  radioButtonItems: [{
     state: 'Unselected',
     unselectedIcon: {
       asset: 'RadioButtonOff',
@@ -45,14 +45,14 @@ const RadioField: React.FC<RadioFieldProps> = ({
       className={styles.radioButtonItem}
       {...radioButtonItem} />
   ));
-    return(
+  return (
       <div className={cx(styles.radioField, className)}>
       <Text
         className={styles.label}
         {...label} />
       {radioButtonItemsArray}
     </div>
-    )
+  );
 };
 
 RadioField.defaultProps = defaultProps;

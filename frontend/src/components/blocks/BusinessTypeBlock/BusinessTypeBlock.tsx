@@ -32,7 +32,7 @@ export const defaultProps = {
       size: 'Medium',
       type: 'Paragraph2',
     },
-    radioButtonItem: [ {
+    radioButtonItem: [{
       state: 'Unselected',
       icon: {
         asset: 'RadioButtonOff',
@@ -158,7 +158,7 @@ const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
   showBusinessQuestions,
 }) => {
   let businessFormFields;
-  if(showBusinessQuestions) {
+  if (showBusinessQuestions) {
     businessFormFields = (
       <>
          <TextField
@@ -179,7 +179,7 @@ const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
       </>
     );
   }
- return (
+  return (
     <div className={cx(styles.businessTypeBlock, className)}>
       <div className={styles.topContent}>
         <div className={styles.headingContent}>
@@ -202,7 +202,7 @@ const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
       </div>
     </div>
   );
-}
+};
 
 BusinessTypeBlock.defaultProps = defaultProps;
 

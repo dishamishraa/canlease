@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import React from 'react';
 import cx from 'classnames';
 
@@ -26,7 +27,7 @@ export const defaultProps = {
   } as TextProps,
 };
 
-export type  RadioButtonItemProps = {
+export type RadioButtonItemProps = {
   state?: RadioButtonItemStateType;
   selectedIcon?: IconProps;
   unselectedIcon?: IconProps;

@@ -13,7 +13,8 @@ const withInteractor = (
         {...props}
         profile={profile}
       />
-  )};
+    );
+  };
   return Interactor;
 };
 export default withInteractor;

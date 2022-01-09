@@ -1,13 +1,16 @@
+/* eslint-disable default-case, consistent-return */
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TopActionBlockProps, defaultProps } from './TopActionBlock';
 import { ContextualMenuProps } from '../../molecules/ContextualMenu';
-import { ContextualMenuItemProps, defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 import { ContentFilter } from '../../../modules/types';
+import {
+  ContextualMenuItemProps,
+  defaultProps as defaultMenuItemProps,
+} from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 
-export type TopActionBlockPresenterProps = TopActionBlockProps & {
-};
+export type TopActionBlockPresenterProps = TopActionBlockProps & {};
 
 const withPresenter = (
   View: React.FC<TopActionBlockProps>,
@@ -21,7 +24,7 @@ const withPresenter = (
       statusFilter,
       setStatusFilter,
       tab,
-      profile
+      profile,
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
@@ -32,46 +35,43 @@ const withPresenter = (
       }
     };
 
-    const filterOptions: ContentFilter[] = contentType === 'Application' ? 
-      ['all', 'under_review', 'financed', 'rejected', 'not_active'] : 
-      ['all', 'active', 'expiring', 'applied', 'expired'];
+    const filterOptions: ContentFilter[] = contentType === 'Application'
+      ? ['all', 'under_review', 'financed', 'rejected', 'not_active']
+      : ['all', 'active', 'expiring', 'applied', 'expired'];
 
     const contextualMenu: ContextualMenuProps = {
       contextualMenuItemList: {
-        contextualMenuItems: filterOptions.map((option): ContextualMenuItemProps => {
-          return {
-            onContextualMenuItemClicked: handleSetStatusFilter(option),
-            text: {
-              ...defaultMenuItemProps.text,
-              value: t(`application_page.status.${option}`),
-            },
-          }
-        })
+        contextualMenuItems: filterOptions.map((option): ContextualMenuItemProps => ({
+          onContextualMenuItemClicked: handleSetStatusFilter(option),
+          text: {
+            ...defaultMenuItemProps.text,
+            value: t(`application_page.status.${option}`),
+          },
+        })),
       },
     };
 
     const getButtonText = () => {
-      if(contentType === "Application"){
-        switch(tab) {
-          case "Customer":
+      if (contentType === 'Application') {
+        switch (tab) {
+          case 'Customer':
             return t('top_action_block.button.customer_application');
-          case "Personal":
+          case 'Personal':
             return t('top_action_block.button.personal_application');
         }
       } else {
-        switch(tab) {
-          case "Customer":
-            return t('top_action_block.button.customer_quote');;
-          case "Personal":
-            if(profile?.userType === "customer"){
-              return t('top_action_block.button.personal_quote.customer');;
-            } else {
-              return t('top_action_block.button.personal_quote.vendor');;
+        switch (tab) {
+          case 'Customer':
+            return t('top_action_block.button.customer_quote');
+          case 'Personal':
+            if (profile?.userType === 'customer') {
+              return t('top_action_block.button.personal_quote.customer');
             }
+            return t('top_action_block.button.personal_quote.vendor');
         }
       }
-    }
-    
+    };
+
     const topActionBlockProps: TopActionBlockProps = {
       ...defaultProps,
       textInput: {
@@ -108,11 +108,10 @@ const withPresenter = (
       },
     };
 
-    return <View
-        {...topActionBlockProps}
-        className={className}
-        />;
+    return <View {...topActionBlockProps} className={className} />;
   };
+
   return Presenter;
 };
+
 export default withPresenter;

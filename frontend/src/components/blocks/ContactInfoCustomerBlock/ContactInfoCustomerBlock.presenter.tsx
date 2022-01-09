@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+/* eslint-disable max-len */
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ContactInfoCustomerBlockProps, defaultProps } from './ContactInfoCustomerBlock';
 import { isEmptyString } from '../../../lib/utils';
-import { useEffect } from 'react';
 
-export type ContactInfoCustomerBlockPresenterProps = ContactInfoCustomerBlockProps & {
-};
+export type ContactInfoCustomerBlockPresenterProps = ContactInfoCustomerBlockProps & {};
 
 const withPresenter = (
   View: React.FC<ContactInfoCustomerBlockProps>,
 ): React.FC<ContactInfoCustomerBlockPresenterProps> => {
   const Presenter: React.FC<ContactInfoCustomerBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
-    const { 
+    const {
       flowType,
       quoteUserType,
       contactInfo,
@@ -36,7 +35,7 @@ const withPresenter = (
     const handleChangeCustomerCompanyName = ({ target: { value } }) => setCustomerCompanyName(value);
 
     const isFormValid = !isEmptyString(customerName) && !isEmptyString(customerEmail)
-    && !isEmptyString(customerCompanyName);
+      && !isEmptyString(customerCompanyName);
     const handleClickViewQuote = async () => {
       if (customerName && customerEmail && customerCompanyName && setContactInfo) {
         await setContactInfo({

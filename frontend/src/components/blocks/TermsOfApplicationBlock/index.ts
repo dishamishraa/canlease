@@ -6,4 +6,3 @@ import withPresenter from './TermsOfApplicationBlock.presenter';
 export type { TermsOfApplicationBlockProps };
 
 export default withInteractor(withPresenter(TermsOfApplicationBlock));
-

@@ -10,14 +10,14 @@ const withInteractor = (
   Presenter: React.FC<AuthPagePresenterProps>,
 ): React.FC <AuthPageProps> => {
   const Interactor: React.FC <AuthPageProps> = (props) => {
-    const { account, setAccount, setProfile, } = useContext(AuthContext);
+    const { account, setAccount, setProfile } = useContext(AuthContext);
     const [, signUp] = useSignUp();
     const [, signIn] = useSignIn();
     const [, createProfile] = useCreateProfile();
     const [, updateName] = useUpdateName();
     const portalId = account?.uuid || '';
     const [, addQuoteToProfile] = useAddQuoteToProfile(portalId);
-    
+
     return (
       <Presenter
         {...props}

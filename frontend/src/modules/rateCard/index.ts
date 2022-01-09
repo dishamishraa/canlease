@@ -8,7 +8,7 @@ import useUpdateRate from './useUpdateRate';
 import useDeleteRate from './useDeleteRate';
 import useUpdateRateCard from './useUpdateRateCard';
 
-export { 
+export {
   useCreateRateCard,
   useGetRateCards,
   useGetRateCard,

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+/* eslint-disable no-shadow */
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GetQuoteBlockProps, defaultProps as defaultGetQuoteBlockProps } from './GetQuoteBlock';
 import { ContextualMenuProps } from '../../molecules/ContextualMenu';
 import { defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 import { isEmptyString } from '../../../lib/utils';
-import { useEffect } from 'react';
+
 import { LeaseType } from '../../../modules/quote/types';
 import { UserType } from '../../../modules/profile/types';
 import { EquipmentLeaseInfo } from '../../../modules/types';
@@ -17,11 +18,11 @@ const withPresenter = (
 ): React.FC<GetQuoteBlockPresenterProps> => {
   const Presenter: React.FC<GetQuoteBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
-    const { 
+    const {
       equipmentLeaseInfo,
       setEquipmentLeaseInfo,
       profile,
-      rateCards
+      rateCards,
     } = props;
 
     const [equipmentName, setEquipmentName] = useState<string>();
@@ -32,14 +33,14 @@ const withPresenter = (
     const [userType, setUserType] = useState<UserType>();
 
     useEffect(() => {
-      if(profile) {
+      if (profile) {
         const { userType } = profile;
         setUserType(userType);
       }
-    }, [profile])
+    }, [profile]);
 
     useEffect(() => {
-      if(equipmentLeaseInfo) {
+      if (equipmentLeaseInfo) {
         setEquipmentName(equipmentLeaseInfo.name);
         setEquipmentCost(equipmentLeaseInfo.cost);
         setEquipmentLeaseType(equipmentLeaseInfo.leaseType);
@@ -47,7 +48,9 @@ const withPresenter = (
     }, [equipmentLeaseInfo]);
 
     const isFormValid = !isEmptyString(equipmentName) && !isEmptyString(equipmentCost);
-    const isRepFormValid = isFormValid && !isEmptyString(equipmentRatecard) && !isEmptyString(equipmentFees);
+    const isRepFormValid = isFormValid
+      && !isEmptyString(equipmentRatecard)
+      && !isEmptyString(equipmentFees);
 
     const handleClickNext = async () => {
       if (equipmentName && equipmentCost && setEquipmentLeaseInfo) {
@@ -56,22 +59,22 @@ const withPresenter = (
           cost: equipmentCost,
           leaseType: equipmentLeaseType,
         };
-        if ((profile?.userType === 'rep' || profile?.userType === 'admin') && equipmentRatecard && equipmentFees){
+        if ((profile?.userType === 'rep' || profile?.userType === 'admin') && equipmentRatecard && equipmentFees) {
           leaseInfo = {
             ...leaseInfo,
             rateCardType: equipmentRatecard,
             fee: parseFloat(equipmentFees),
-          }
+          };
         }
         await setEquipmentLeaseInfo(leaseInfo);
       }
     };
+
     const handleChangeEquipmentName = ({ target: { value } }) => setEquipmentName(value);
     const handleChangeEquipmentCost = ({ target: { value } }) => setEquipmentCost(value);
     const handleChangeEquipmentFees = ({ target: { value } }) => setEquipmentFees(value);
-    const handleChangeLeaseType = (leaseType: LeaseType) => () =>  setEquipmentLeaseType(leaseType);
-    const handleChangeRatecard = (rateCard: string) => () =>  setEquipmentRatecard(rateCard);
-
+    const handleChangeLeaseType = (leaseType: LeaseType) => () => setEquipmentLeaseType(leaseType);
+    const handleChangeRatecard = (rateCard: string) => () => setEquipmentRatecard(rateCard);
 
     const contextualMenu: ContextualMenuProps = {
       contextualMenuItemList: {
@@ -103,11 +106,11 @@ const withPresenter = (
             text: {
               ...defaultMenuItemProps.text,
               value: cardtype,
-            }
-          }
-        })
+            },
+          };
+        }),
       },
-    }
+    };
 
     const blockProps: GetQuoteBlockProps = {
       ...defaultGetQuoteBlockProps,
@@ -151,9 +154,9 @@ const withPresenter = (
           ...defaultGetQuoteBlockProps.leaseTypeSelectField.select,
           text: {
             ...defaultGetQuoteBlockProps.leaseTypeSelectField.select?.text,
-            value: equipmentLeaseType === 'stretch' ? 
-              t('get_quote_block.lease_type.options.stretch') :
-              t('get_quote_block.lease_type.options.ten'),
+            value: equipmentLeaseType === 'stretch'
+              ? t('get_quote_block.lease_type.options.stretch')
+              : t('get_quote_block.lease_type.options.ten'),
           },
         },
         contextualMenu,
@@ -197,12 +200,7 @@ const withPresenter = (
       },
     };
 
-    return (
-      <View
-        {...props}
-        {...blockProps}
-      />
-    );
+    return <View {...props} {...blockProps} />;
   };
 
   return Presenter;

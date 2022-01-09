@@ -183,18 +183,18 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
       <Text
           className={styles.learnMoreText}
           {...learnMoreText} />
-      { sendQuoteButton?.text?.value && 
-        <Button
+      { sendQuoteButton?.text?.value
+        && <Button
           className={styles.sendQuoteButton}
           {...sendQuoteButton} />
       }
-      { applyButton?.text?.value && 
-        <Button
+      { applyButton?.text?.value
+        && <Button
           className={styles.sendQuoteButton}
           {...applyButton} />
       }
-      { saveQuoteButton?.text?.value && 
-        <Button
+      { saveQuoteButton?.text?.value
+        && <Button
           className={styles.sendQuoteButton}
           {...saveQuoteButton} />
       }

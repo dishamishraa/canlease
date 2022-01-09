@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import cx from 'classnames';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
@@ -12,7 +12,7 @@ import ApplicationPage from '../../pages/ApplicationPage';
 import ContentPage from '../../pages/ContentPage';
 import SimplePage from '../../pages/SimplePage';
 import MenuBlock from '../../blocks/MenuBlock';
-import { useContext } from 'react';
+
 import { AuthContext } from '../../../modules/auth';
 import RateCardPage from '../../pages/RateCardPage';
 import ProfilePage from '../../pages/ProfilePage';
@@ -75,20 +75,20 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
 
   const [showMenu, setShowMenu] = useState(false);
 
-  let menuBlockDisplay; 
+  let menuBlockDisplay;
   if (showMenu === true) {
-    menuBlockDisplay= <MenuBlock
-      className={styles.showMenuBlock} />
+    menuBlockDisplay = <MenuBlock
+      className={styles.showMenuBlock} />;
   } else {
-    menuBlockDisplay= <MenuBlock
-      className={styles.menuBlock} />
+    menuBlockDisplay = <MenuBlock
+      className={styles.menuBlock} />;
   }
 
   return (
     <div className={cx(styles.portalLayout, className)}>
       <Header
         className={styles.header}
-        {...header} 
+        {...header}
         setShowMenu={setShowMenu}
         showMenu={showMenu}
         />
@@ -134,10 +134,8 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
       </div>
     </div>
   );
-}
+};
 
 PortalLayout.defaultProps = defaultProps;
 
 export default PortalLayout;
-
-

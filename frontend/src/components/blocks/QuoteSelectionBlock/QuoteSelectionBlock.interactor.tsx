@@ -1,7 +1,7 @@
 import React from 'react';
+import { useParams } from 'react-router';
 import { QuoteSelectionBlockProps } from './QuoteSelectionBlock';
 import { QuoteSelectionBlockPresenterProps } from './QuoteSelectionBlock.presenter';
-import { useParams } from 'react-router';
 import useQuoteDetails from '../../../modules/quote/useQuoteDetails';
 
 const withInteractor = (
@@ -10,7 +10,7 @@ const withInteractor = (
   const Interactor: React.FC<QuoteSelectionBlockProps> = (props) => {
     const { quoteId } = useParams<{quoteId: string}>();
     const { data: quoteDetails } = useQuoteDetails(quoteId);
-    
+
     return (
       <Presenter
         {...props}

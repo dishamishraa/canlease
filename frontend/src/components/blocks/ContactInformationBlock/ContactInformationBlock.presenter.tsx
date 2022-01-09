@@ -35,7 +35,7 @@ const withPresenter = (
         setProvince(contactInfo.province);
       }
     }, [contactInfo]);
-    
+
     const formInvalid = (isEmptyString(phoneNumber)
     || isEmptyString(streetAddress)
     || isEmptyString(city)
@@ -64,13 +64,13 @@ const withPresenter = (
 
     const handleNext = () => {
       if (
-        setContactInfo && 
-        email && 
-        phoneNumber && 
-        streetAddress && 
-        city && 
-        postalCode &&
-        province
+        setContactInfo
+        && email
+        && phoneNumber
+        && streetAddress
+        && city
+        && postalCode
+        && province
       ) {
         setContactInfo({
           email,
@@ -85,7 +85,7 @@ const withPresenter = (
     };
 
     const contextualMenuItems: ContextualMenuItemProps[] = [];
-    for (let i = 0; i <= 12; i++) {
+    for (let i = 0; i <= 12; i += 1) {
       contextualMenuItems.push({
         text: {
           ...defaultMenuItemProps.text,

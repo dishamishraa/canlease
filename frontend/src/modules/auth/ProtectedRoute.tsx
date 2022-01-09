@@ -23,8 +23,6 @@ const CheckUserAccess: React.FC<RouteProps> = (props) => {
   return <Route {...props} />;
 };
 
-const ProtectedRoute: React.FC<RouteProps> = (props) => {
-  return <CheckUserAccess {...props} />;
-};
+const ProtectedRoute: React.FC<RouteProps> = (props) => <CheckUserAccess {...props} />;
 
 export default ProtectedRoute;

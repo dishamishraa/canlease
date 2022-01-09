@@ -1,3 +1,3 @@
 import useCreateApplication from './useCreateApplication';
 
-export { useCreateApplication };
+export default useCreateApplication;

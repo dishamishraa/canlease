@@ -6,4 +6,3 @@ import withPresenter from './QuoteSelectionBlock.presenter';
 export type { QuoteSelectionBlockProps };
 
 export default withInteractor(withPresenter(QuoteSelectionBlock));
-

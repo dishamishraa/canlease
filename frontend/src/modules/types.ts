@@ -1,6 +1,6 @@
-import { CreditApplication, Lease } from "./portfolio/types";
-import { UserType } from "./profile/types";
-import { LeaseType, Quote, QuoteOption } from "./quote/types";
+import { CreditApplication, Lease } from './portfolio/types';
+import { UserType } from './profile/types';
+import { LeaseType, Quote, QuoteOption } from './quote/types';
 
 // CREATE QUOTE types
 export type QuoteFlowType = 'instaQuote' | 'createQuote';
@@ -10,7 +10,7 @@ export type CreateQuoteState = {
   quoteUserType?: UserType;
   equipmentLeaseInfo?: EquipmentLeaseInfo;
   contactInfo?: ContactInfo;
-}
+};
 
 export type EquipmentLeaseInfo = {
   name: string;
@@ -19,7 +19,6 @@ export type EquipmentLeaseInfo = {
   rateCardType?: string;
   fee?: number;
 };
-
 
 type BaseInfo = {
   type: 'customer' | 'vendor';
@@ -44,7 +43,7 @@ export type ContactInfo = ContactInfoCustomer | ContactInfoVendor;
 export type ViewQuoteType = {
   userType?: UserType;
   quote?: Quote;
-}
+};
 
 // AUTH types
 export type AfterAuthAction = 'apply_finance_personal' | 'apply_finance_customer' | 'save_quote';
@@ -55,7 +54,7 @@ export type AuthState = {
   personalInfo?: PersonalInformation;
   contactInfo?: ContactInformation;
   businessInfo?: BusinessInformation;
-}
+};
 
 export type PersonalInformation = {
   firstName: string;
@@ -93,7 +92,7 @@ export type CreateApplicationState = {
   businessInfo?: ApplicationBusinessInfo;
   assetInfo?: AssetInfo;
   creditCheckConsent?: boolean;
-}
+};
 
 export type ApplicationPersonalInfo = {
   firstName: string;
@@ -104,7 +103,7 @@ export type ApplicationPersonalInfo = {
   city: string;
   postalCode: string;
   province: string;
-}
+};
 
 type BaseApplicationBusinessInfo = {
   type: 'customer' | 'vendor';
@@ -113,11 +112,11 @@ type BaseApplicationBusinessInfo = {
   dob: string;
   bankruptcy: boolean;
   bankruptcyDetails: string;
-}
+};
 
 export type ApplicationBusinessInfoCustomer = BaseApplicationBusinessInfo & {
   type: 'customer';
-}
+};
 
 export type ApplicationBusinessInfoVendor = BaseApplicationBusinessInfo & {
   type: 'vendor';
@@ -127,23 +126,33 @@ export type ApplicationBusinessInfoVendor = BaseApplicationBusinessInfo & {
   operatingSinceDate: string;
   businessPhone: string;
   website: string;
-}
+};
 
-export type ApplicationBusinessInfo = ApplicationBusinessInfoCustomer | ApplicationBusinessInfoVendor;
+export type ApplicationBusinessInfo =
+  | ApplicationBusinessInfoCustomer
+  | ApplicationBusinessInfoVendor;
 
 export type AssetInfo = {
-  assetCondition: 'New' | "Used";
+  assetCondition: 'New' | 'Used';
   ageOfAsset: number;
   expectedDeliveryDate: string;
-}
-
+};
 
 export type LeaseInfo = {
   application: CreditApplication;
   lease?: Lease;
-}
+};
 
 // CONTENT TABLE types
 export type ContentType = 'Quote' | 'Application';
 export type ContentTypeTabs = 'Customer' | 'Personal';
-export type ContentFilter = 'all' | 'active' | 'applied' | 'expiring' | 'expired' | 'under_review' | 'financed' | 'rejected' | 'not_active';
+export type ContentFilter =
+  | 'all'
+  | 'active'
+  | 'applied'
+  | 'expiring'
+  | 'expired'
+  | 'under_review'
+  | 'financed'
+  | 'rejected'
+  | 'not_active';

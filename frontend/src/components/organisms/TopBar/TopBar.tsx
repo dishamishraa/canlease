@@ -2,10 +2,10 @@ import React from 'react';
 import cx from 'classnames';
 
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 import styles from './TopBar.module.scss';
 
 import Button, { ButtonProps } from '../../atoms/Button';
-import { useHistory } from 'react-router-dom';
 
 export const defaultProps = {
   backButton: {

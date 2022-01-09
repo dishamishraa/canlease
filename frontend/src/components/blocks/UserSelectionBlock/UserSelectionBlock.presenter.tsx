@@ -35,20 +35,18 @@ const withPresenter = (
       const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
       if (flowType === 'instaQuote' && quoteCookie) {
         setShowModal(true);
-      } else {
-        if(setQuoteUserType) {
-          setQuoteUserType(userType)
-        }
+      } else if (setQuoteUserType) {
+        setQuoteUserType(userType);
       }
     };
     const handleSignUp = () => {
       history.push('/account/signUp');
-    }
+    };
 
     const handleSignIn = () => {
       history.push('/account/signIn');
-    }
-    
+    };
+
     const modal: ModalProps = {
       ...modalPropsDefaultProps,
       closeIcon: {
@@ -90,7 +88,7 @@ const withPresenter = (
     };
 
     const cardList: CardListProps = {
-      userSelectionCards:[
+      userSelectionCards: [
         {
           image: {
             image: EndUserImage,

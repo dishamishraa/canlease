@@ -1,7 +1,8 @@
+/* eslint-disable default-case */
 import React from 'react';
-import { UserProfileProps, defaultProps as userProfileProps, UserProfileStateType } from './UserProfile';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { UserProfileProps, defaultProps as userProfileProps, UserProfileStateType } from './UserProfile';
 import { ContextualMenuProps } from '../ContextualMenu';
 import { UserIconProps } from '../../atoms/UserIcon';
 import { UserIconStyleType } from '../../atoms/UserIcon/UserIcon';
@@ -10,7 +11,7 @@ import { Account } from '../../../lib/types';
 import { defaultProps as defaultMenuItemProp } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 import useLogout from '../../../modules/auth/useLogout';
 
-export type UserProfilePresenterProps = UserProfileProps & { 
+export type UserProfilePresenterProps = UserProfileProps & {
   account: Account | null;
 };
 
@@ -22,22 +23,22 @@ const getInitials = (account: Account | null): string => {
     return `${firstInitial}${secondInitial}`.toUpperCase();
   }
   return '';
-}
+};
 
 const getInitialStyle = (initials: string): UserIconStyleType => {
   let charSum = 0;
   // add up the sum of all initials char codes
-  switch(initials.length) {
+  switch (initials.length) {
     case 1:
       charSum = initials.charCodeAt(0);
-      break; 
+      break;
     case 2:
       charSum = initials.charCodeAt(0) + initials.charCodeAt(1);
       break;
   }
 
   // perform modulus operation on the char sum to pick the icon style
-  switch(charSum % 3) {
+  switch (charSum % 3) {
     case 1:
       return 'Green';
     case 2:
@@ -45,7 +46,7 @@ const getInitialStyle = (initials: string): UserIconStyleType => {
     default:
       return 'Default';
   }
-}
+};
 
 const withPresenter = (
   View: React.FC<UserProfileProps>,
@@ -58,35 +59,36 @@ const withPresenter = (
     const contextualMenu: ContextualMenuProps = {
       contextualMenuItemList: {
         contextualMenuItems: [
-        {
+          {
             ...defaultMenuItemProp,
             text: {
-                ...defaultMenuItemProp.text,
-                value: t('user_profile.my_profile'),
+              ...defaultMenuItemProp.text,
+              value: t('user_profile.my_profile'),
             },
             onContextualMenuItemClicked: () => {
               history.push('/portal/profile');
             },
-        },
-        {
-          ...defaultMenuItemProp,
-          text: {
-              ...defaultMenuItemProp.text,
-              value: t('user_profile.contact_canlease'),
           },
-          onContextualMenuItemClicked: () => {
-            window.open('https://canlease.net/contact/', '_blank');
-          },
-      },
-        {
+          {
             ...defaultMenuItemProp,
             text: {
-                ...defaultMenuItemProp.text,
-                value: t('user_profile.logout'),
+              ...defaultMenuItemProp.text,
+              value: t('user_profile.contact_canlease'),
             },
-            onContextualMenuItemClicked: logout
-        },
-      ]}
+            onContextualMenuItemClicked: () => {
+              window.open('https://canlease.net/contact/', '_blank');
+            },
+          },
+          {
+            ...defaultMenuItemProp,
+            text: {
+              ...defaultMenuItemProp.text,
+              value: t('user_profile.logout'),
+            },
+            onContextualMenuItemClicked: logout,
+          },
+        ],
+      },
     };
 
     const initials = getInitials(account);
@@ -97,9 +99,9 @@ const withPresenter = (
     };
 
     const userName = {
-      ...userProfileProps.text, 
+      ...userProfileProps.text,
       value: `${account?.firstName} ${account?.lastName}`,
-    }
+    };
 
     const signInButton: ButtonProps = {
       ...userProfileProps.primary,
@@ -108,25 +110,26 @@ const withPresenter = (
         value: t('button_text.sign_in'),
       },
       onButtonClicked: () => {
-          history.push('/account/signIn')
-      }
-    }
+        history.push('/account/signIn');
+      },
+    };
 
     const signUpButton: ButtonProps = {
-        ...userProfileProps.secondary,
-        text: {
-          ...userProfileProps.secondary.text,
-          value: t('button_text.sign_up'),
-        },
-        onButtonClicked: () => {
-            history.push('/account/signUp')
-        }
-      }
+      ...userProfileProps.secondary,
+      text: {
+        ...userProfileProps.secondary.text,
+        value: t('button_text.sign_up'),
+      },
+      onButtonClicked: () => {
+        history.push('/account/signUp');
+      },
+    };
 
-      let currentState: UserProfileStateType = 'None';
-      if(state !== 'None') {
-        currentState = account ? 'SignedIn' : 'SignedOut';
-      }
+    let currentState: UserProfileStateType = 'None';
+    if (state !== 'None') {
+      currentState = account ? 'SignedIn' : 'SignedOut';
+    }
+
     return <View
       {...props}
       state={currentState}
@@ -135,8 +138,9 @@ const withPresenter = (
       primary={signInButton}
       secondary={signUpButton}
       contextualMenu={contextualMenu}
-    />
+    />;
   };
+
   return Presenter;
 };
 

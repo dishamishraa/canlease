@@ -1,19 +1,28 @@
-import React, { useState } from 'react';
+/* eslint-disable no-shadow */
+import React, { useState, useEffect } from 'react';
 import { useLocation, useHistory, Redirect } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { AuthPageProps } from './AuthPage';
 import { APIResponse } from '../../../lib/api/types';
 import { SESSION_COOKIE_NAME } from '../../../lib/config';
-import {
-  AccountResponse, SignInPayload, SignUpPayload, UpdateNamePayload,
-} from '../../../modules/account/types';
 import { CreateProfilePayload, Profile } from '../../../modules/profile/types';
-import { PersonalInformation, ContactInformation, BusinessInformation, AuthState, ContentTypeTabs } from '../../../modules/types';
-import { useEffect } from 'react';
-import { isEmpty, getQuoteCookie} from '../../../lib/utils';
+import {
+  AccountResponse,
+  SignInPayload,
+  SignUpPayload,
+  UpdateNamePayload,
+} from '../../../modules/account/types';
+import {
+  PersonalInformation,
+  ContactInformation,
+  BusinessInformation,
+  AuthState,
+  ContentTypeTabs,
+} from '../../../modules/types';
+
+import { isEmpty, getQuoteCookie, updateInstaQuoteCookie } from '../../../lib/utils';
 import { Account } from '../../../lib/types';
 import { extractJwtPayload } from '../../../lib/token';
-import { updateInstaQuoteCookie } from '../../../lib/utils';
 
 export type AuthPagePresenterProps = AuthPageProps & {
   account: Account | null;
@@ -45,9 +54,9 @@ const withPresenter = (
 
     const [, setCookie, removeCookie] = useCookies();
     const history = useHistory();
-    const { state: locationState, pathname} = useLocation<AuthState>();
+    const { state: locationState, pathname } = useLocation<AuthState>();
     const [state, setState] = useState<AuthState>({});
-    
+
     useEffect(() => {
       if (locationState) {
         setState(locationState);
@@ -63,36 +72,37 @@ const withPresenter = (
         ...state,
         email,
       });
-    }
+    };
 
     const setPersonalInfo = (personalInfo: PersonalInformation) => {
       const newState = {
         ...state,
         personalInfo,
-      }
+      };
       setState(newState);
       history.push('/account/contactInformation', newState);
-    }
+    };
 
     const setContactInfo = (contactInfo: ContactInformation) => {
       const newState = {
         ...state,
         contactInfo,
-      }
+      };
       setState(newState);
       history.push('/account/businessInformation', newState);
-    }
+    };
 
-    const handleAuthAction = async() => {
+    const handleAuthAction = async () => {
       const quoteCookieObj = getQuoteCookie();
-      switch(quoteCookieObj?.action) {
+      switch (quoteCookieObj?.action) {
         case 'apply_finance_personal':
-        case 'apply_finance_customer':
+        case 'apply_finance_customer': {
           updateInstaQuoteCookie({}, setCookie, removeCookie);
-          const tab: ContentTypeTabs = quoteCookieObj?.action === 'apply_finance_personal' ? 
-            'Personal' : 'Customer';
+          const tab: ContentTypeTabs = quoteCookieObj?.action === 'apply_finance_personal'
+            ? 'Personal' : 'Customer';
           history.push(`/portal/application/applyQuote/${quoteCookieObj.quoteId}`, { fromTab: tab });
           break;
+        }
         case 'save_quote':
           if (quoteCookieObj.quoteId) {
             await addQuoteToProfile(quoteCookieObj.quoteId);
@@ -104,22 +114,22 @@ const withPresenter = (
           history.push('/portal/dashboard');
           break;
       }
-    }
+    };
 
     const handleCreateProfile = async (businessInfo: BusinessInformation) => {
       const newState = {
         ...state,
         businessInfo,
-      }
+      };
       setState(newState);
 
-      if(account && personalInfo && contactInfo) {
-        const {error: updateError } = await updateName({
+      if (account && personalInfo && contactInfo) {
+        const { error: updateError } = await updateName({
           firstName: personalInfo.firstName,
           lastName: personalInfo.lastName,
           id: account.id,
         });
-        if(updateError) {
+        if (updateError) {
           return;
         }
         const { data, error } = await createProfile({
@@ -131,15 +141,15 @@ const withPresenter = (
           country: 'Canada',
           title: '',
         });
-        
-        if(data) {
+
+        if (data) {
           setProfile(data);
           await handleAuthAction();
-        } else if(error) {
+        } else if (error) {
           // TODO
         }
       }
-    }
+    };
 
     // sign up
     const handleSignUp = async (payload: SignUpPayload) => {
@@ -162,15 +172,14 @@ const withPresenter = (
         setAccount(data);
         const { exp } = extractJwtPayload(data.token);
         // store jwt token in cookie
-        setCookie(SESSION_COOKIE_NAME, 
-          data.token, 
-          { 
-            path: '/',  
-            secure: true, 
+        setCookie(SESSION_COOKIE_NAME,
+          data.token,
+          {
+            path: '/',
+            secure: true,
             sameSite: 'none',
             expires: new Date(exp * 1000),
-          },
-        );
+          });
 
         try {
           // find the salesforce profile with the identity account id
@@ -189,7 +198,7 @@ const withPresenter = (
       }
     };
 
-    let showBackButton: boolean = true;
+    let showBackButton = true;
     switch (pathname.toLowerCase()) {
       case '/account/signin':
       case '/account/signup':
@@ -213,20 +222,23 @@ const withPresenter = (
         break;
     }
 
-    return <View
-          {...props}
-          showBackButton = {showBackButton}
-          email = {email}
-          handleSignUp={handleSignUp}
-          handleSignIn={handleSignIn}
-          personalInfo={personalInfo}
-          contactInfo={contactInfo}
-          businessInfo={businessInfo}
-          setPersonalInfo={setPersonalInfo}
-          setContactInfo={setContactInfo}
-          handleCreateProfile={handleCreateProfile}
-          />;
+    return (
+      <View
+        {...props}
+        showBackButton={showBackButton}
+        email={email}
+        handleSignUp={handleSignUp}
+        handleSignIn={handleSignIn}
+        personalInfo={personalInfo}
+        contactInfo={contactInfo}
+        businessInfo={businessInfo}
+        setPersonalInfo={setPersonalInfo}
+        setContactInfo={setContactInfo}
+        handleCreateProfile={handleCreateProfile}
+      />
+    );
   };
+
   return Presenter;
 };
 

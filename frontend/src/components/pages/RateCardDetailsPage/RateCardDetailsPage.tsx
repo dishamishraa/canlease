@@ -129,10 +129,9 @@ const RateCardDetailsPage: React.FC<RateCardDetailsPageProps> = ({
     );
   }
   if (deleteModalOpen) {
-    modalDisplay = ( <ConfirmationModal {...confirmationModal} />)
-  } 
-  else if (rateCardModalOpen){
-    modalDisplay = ( <NewRateCardModal {...rateCardModal} />)
+    modalDisplay = (<ConfirmationModal {...confirmationModal} />);
+  } else if (rateCardModalOpen) {
+    modalDisplay = (<NewRateCardModal {...rateCardModal} />);
   }
   return (
     <div className={cx(styles.rateCardDetailsPage, className)}>
@@ -147,7 +146,8 @@ const RateCardDetailsPage: React.FC<RateCardDetailsPageProps> = ({
         {...rateCardTable} />
         {modalDisplay}
     </div>
-)};
+  );
+};
 
 RateCardDetailsPage.defaultProps = defaultProps;
 

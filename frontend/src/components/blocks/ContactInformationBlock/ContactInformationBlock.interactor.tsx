@@ -13,8 +13,8 @@ const withInteractor = (
         {...props}
         email={account?.email}
       />
-  );
-  }
+    );
+  };
   return Interactor;
 };
 export default withInteractor;

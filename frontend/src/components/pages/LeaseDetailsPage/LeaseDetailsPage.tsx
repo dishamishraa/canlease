@@ -53,12 +53,8 @@ const LeaseDetailsPage: React.FC<LeaseDetailsPageProps> = ({
   className,
 }) => (
     <div className={cx(styles.leaseDetailsPage, className)}>
-      <TopBar
-        className={styles.topBar}
-        {...topBar} />
-      <LeaseInfoBlock
-        className={styles.block}
-        {...block} />
+      <TopBar className={styles.topBar} {...topBar} />
+      <LeaseInfoBlock className={styles.block} {...block} />
     </div>
 );
 

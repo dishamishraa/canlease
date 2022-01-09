@@ -135,19 +135,18 @@ const GetQuoteBlock: React.FC<GetQuoteBlockProps> = ({
   className,
   profile,
   feesTextField,
-  ratecardSelectField
+  ratecardSelectField,
 }) => {
   let additionalFields;
-  if(profile?.userType === 'rep' || profile?.userType === 'admin'){
-   additionalFields = 
-    <>
+  if (profile?.userType === 'rep' || profile?.userType === 'admin') {
+    additionalFields = <>
       <TextField
         className={styles.feesTextField}
         {...feesTextField} />
       <SelectField
         className={styles.ratecardSelectField}
         {...ratecardSelectField} />
-    </>
+    </>;
   }
   return (
     <div className={cx(styles.getQuoteBlock, className)}>
@@ -168,7 +167,8 @@ const GetQuoteBlock: React.FC<GetQuoteBlockProps> = ({
         className={styles.nextButton}
         {...nextButton} />
     </div>
-)};
+  );
+};
 
 GetQuoteBlock.defaultProps = defaultProps;
 

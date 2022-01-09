@@ -1,10 +1,10 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
-import { LeaseInfo } from "../../../modules/types";
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { LeaseInfo } from '../../../modules/types';
 import { LeaseInfoBlockProps, defaultProps } from './LeaseInfoBlock';
 import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
-import { useTranslation } from "react-i18next";
-import { TextProps } from "../../atoms/Text";
+import { TextProps } from '../../atoms/Text';
 
 export type LeaseInfoBlockPresenterProps = LeaseInfoBlockProps & {};
 
@@ -12,10 +12,9 @@ const withPresenter = (
   View: React.FC<LeaseInfoBlockProps>,
 ): React.FC<LeaseInfoBlockPresenterProps> => {
   const Presenter: React.FC<LeaseInfoBlockPresenterProps> = (props) => {
-
     const { state } = useLocation<LeaseInfo | undefined>();
     const { application, lease } = state || {};
-    
+
     const { t } = useTranslation();
 
     const blockHeading = {
@@ -34,22 +33,21 @@ const withPresenter = (
     let paymentBeforeTax = placeholderText;
     let optionAmount = placeholderText;
 
-    if (lease){
-
+    if (lease) {
       vendorName = lease.vendorName;
       leaseNumber = lease.leaseNumber;
-      termInMonths = t('lease_info_block.term_in_months', { months: lease?.fullTerm } );
-      paymentBeforeTax = `$${lease?.paymentBeforeTax}`
+      termInMonths = t('lease_info_block.term_in_months', { months: lease?.fullTerm });
+      paymentBeforeTax = `$${lease?.paymentBeforeTax}`;
       optionAmount = `$${lease?.optionAmount}`;
 
-      const dateFormatOptions: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: '2-digit'};
+      const dateFormatOptions: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: '2-digit' };
       leaseStartDate = new Date(lease?.leaseStartDate ?? '').toLocaleDateString('en-CA', dateFormatOptions);
-      leaseOptionMonth =  new Date(lease?.purchaseOptionDate ?? '').toLocaleString('default', { month: 'long' });
+      leaseOptionMonth = new Date(lease?.purchaseOptionDate ?? '').toLocaleString('default', { month: 'long' });
       leaseOptionDate = new Date(lease?.purchaseOptionDate ?? '').toLocaleDateString('en-CA', dateFormatOptions);
     }
 
-    const defaultLabelTextProps: TextProps = {...defaultQuoteDetailItemProps.labelText, type: 'Paragraph2'};
-    const defaultInfoTextProps: TextProps = {...defaultQuoteDetailItemProps.infoText, type: 'Paragraph3'};
+    const defaultLabelTextProps: TextProps = { ...defaultQuoteDetailItemProps.labelText, type: 'Paragraph2' };
+    const defaultInfoTextProps: TextProps = { ...defaultQuoteDetailItemProps.infoText, type: 'Paragraph3' };
 
     const leaseDetailsSection = {
       detailItemList: {
@@ -62,7 +60,7 @@ const withPresenter = (
             infoText: {
               ...defaultInfoTextProps,
               value: application?.companyName,
-            }
+            },
           },
           {
             labelText: {
@@ -72,7 +70,7 @@ const withPresenter = (
             infoText: {
               ...defaultInfoTextProps,
               value: application?.name,
-            }
+            },
           },
           {
             labelText: {
@@ -82,7 +80,7 @@ const withPresenter = (
             infoText: {
               ...defaultInfoTextProps,
               value: application?.asset,
-            }
+            },
           },
           {
             labelText: {
@@ -92,7 +90,7 @@ const withPresenter = (
             infoText: {
               ...defaultInfoTextProps,
               value: vendorName,
-            }
+            },
           },
           {},
           {
@@ -103,7 +101,7 @@ const withPresenter = (
             infoText: {
               ...defaultInfoTextProps,
               value: leaseNumber,
-            }
+            },
           },
           {
             labelText: {
@@ -113,7 +111,7 @@ const withPresenter = (
             infoText: {
               ...defaultInfoTextProps,
               value: termInMonths,
-            }
+            },
           },
           {
             labelText: {
@@ -123,7 +121,7 @@ const withPresenter = (
             infoText: {
               ...defaultInfoTextProps,
               value: paymentBeforeTax,
-            }
+            },
           },
           {
             labelText: {
@@ -133,7 +131,7 @@ const withPresenter = (
             infoText: {
               ...defaultInfoTextProps,
               value: `$${application?.applicationAmount}`,
-            }
+            },
           },
           {},
           {
@@ -144,7 +142,7 @@ const withPresenter = (
             infoText: {
               ...defaultInfoTextProps,
               value: leaseStartDate,
-            }
+            },
           },
           {
             labelText: {
@@ -154,7 +152,7 @@ const withPresenter = (
             infoText: {
               ...defaultInfoTextProps,
               value: leaseOptionMonth,
-            }
+            },
           },
           {
             labelText: {
@@ -164,7 +162,7 @@ const withPresenter = (
             infoText: {
               ...defaultInfoTextProps,
               value: leaseOptionDate,
-            }
+            },
           },
           {
             labelText: {
@@ -174,7 +172,7 @@ const withPresenter = (
             infoText: {
               ...defaultInfoTextProps,
               value: optionAmount,
-            }
+            },
           },
           {},
           {
@@ -185,10 +183,10 @@ const withPresenter = (
             infoText: {
               ...defaultInfoTextProps,
               value: application?.quoteId,
-            }
+            },
           },
-        ]
-      }
+        ],
+      },
     };
 
     return (
@@ -197,9 +195,9 @@ const withPresenter = (
         leaseDetailsSection={leaseDetailsSection}
         {...props}
         />
-    )
-  }
+    );
+  };
   return Presenter;
-}
+};
 
 export default withPresenter;

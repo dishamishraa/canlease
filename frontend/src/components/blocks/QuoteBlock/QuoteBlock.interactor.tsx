@@ -10,7 +10,7 @@ import { useSendQuote } from '../../../modules/quote';
 type InteractorRenderProps = {
   quoteId: string;
   children(valueProps: QuoteBlockPresenterProps): JSX.Element;
-}
+};
 
 const GetQuoteInteractor: React.FC<InteractorRenderProps> = ({ children, quoteId }) => {
   const { loading, error, data: quote } = useQuoteDetails(quoteId);
@@ -19,7 +19,7 @@ const GetQuoteInteractor: React.FC<InteractorRenderProps> = ({ children, quoteId
     error,
     quote,
   });
-}
+};
 
 const withInteractor = (
   Presenter: React.FC<QuoteBlockPresenterProps>,
@@ -28,19 +28,18 @@ const withInteractor = (
     const { quoteId } = useParams<{quoteId: string}>();
     const { state } = useLocation<ViewQuoteType | undefined>();
     const [, sendQuote] = useSendQuote();
-    
+
     const { quote } = state || {};
 
-    if(isEmpty(quote)) {
+    if (isEmpty(quote)) {
       return <GetQuoteInteractor quoteId={quoteId}>
-        { valueProps => 
-          <Presenter 
+        { (valueProps) => <Presenter
             {...props}
             {...valueProps}
             sendQuote={sendQuote}
             />
         }
-      </GetQuoteInteractor>
+      </GetQuoteInteractor>;
     }
 
     return <Presenter

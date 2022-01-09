@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React from 'react';
 import cx from 'classnames';
 
@@ -62,13 +63,12 @@ const ActionBlock: React.FC<ActionBlockProps> = ({
 
   return (
     <div className={cx(styles.actionBlock, className)}>
-      <Text
-        className={styles.text}
-        {...text} />
+      <Text className={styles.text} {...text} />
       <Button
         className={styles.button}
         {...button}
-        onButtonClicked={onButtonClicked}/>
+        onButtonClicked={onButtonClicked}
+      />
     </div>
   );
 };

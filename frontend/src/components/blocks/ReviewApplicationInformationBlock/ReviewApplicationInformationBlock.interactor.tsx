@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ReviewApplicationInformationBlockProps } from './ReviewApplicationInformationBlock';
 import { ReviewApplicationInformationBlockPresenterProps } from './ReviewApplicationInformationBlock.presenter';
-import { useContext } from 'react';
+
 import { AuthContext } from '../../../modules/auth';
 
 const withInteractor = (
@@ -21,4 +21,3 @@ const withInteractor = (
 };
 
 export default withInteractor;
-

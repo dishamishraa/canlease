@@ -1,38 +1,40 @@
 import axios, { isAxiosError } from '../../lib/api/axios';
 import { ApiError } from '../../lib/api/types';
 import { BFF_URL } from '../../lib/config';
-import { CreateRateCard, RateCard, Rate, CreateRate, UpdateRate, UpdateRateCard } from './types';
+import {
+  CreateRateCard, RateCard, Rate, CreateRate, UpdateRate, UpdateRateCard,
+} from './types';
 
 export const createRateCard = async (payload: CreateRateCard): Promise<RateCard> => {
-    try {
-        const response = await axios.post<RateCard>(`${BFF_URL}/rate_cards`, payload, { withCredentials: true });
-        return response.data;
-    } catch (error) {
-        if (isAxiosError(error) && error.response) {
-            throw new ApiError({
-              code: error.response.status,
-              type: error.response.statusText,
-              message: error.message,
-            });
-      }
-      throw error;
+  try {
+    const response = await axios.post<RateCard>(`${BFF_URL}/rate_cards`, payload, { withCredentials: true });
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new ApiError({
+        code: error.response.status,
+        type: error.response.statusText,
+        message: error.message,
+      });
     }
+    throw error;
+  }
 };
 
 export const getRateCards = async (): Promise<RateCard[]> => {
-    try {
-      const { data } = await axios.get<RateCard[]>(`${BFF_URL}/rate_cards`);
-      return data;
-    } catch (error) {
-      if (isAxiosError(error) && error.response) {
-        throw new ApiError({
-          code: error.response.status,
-          type: error.response.statusText,
-          message: error.message,
-        });
-      }
-      throw error;
+  try {
+    const { data } = await axios.get<RateCard[]>(`${BFF_URL}/rate_cards`);
+    return data;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new ApiError({
+        code: error.response.status,
+        type: error.response.statusText,
+        message: error.message,
+      });
     }
+    throw error;
+  }
 };
 
 export const deleteRateCard = async (id: number): Promise<void> => {
@@ -82,8 +84,8 @@ export const getRates = async (rateCardId: string): Promise<Rate[]> => {
   }
 };
 
-export const createRate = async(payload: CreateRate): Promise<Rate> => {
-  try{
+export const createRate = async (payload: CreateRate): Promise<Rate> => {
+  try {
     const { data } = await axios.post(`${BFF_URL}/rates`, payload, { withCredentials: true });
     return data;
   } catch (error) {
@@ -98,9 +100,9 @@ export const createRate = async(payload: CreateRate): Promise<Rate> => {
   }
 };
 
-export const updateRate = async(payload: UpdateRate): Promise<Rate> => {
-  try{
-    const { rateId, ...newPayload } = payload
+export const updateRate = async (payload: UpdateRate): Promise<Rate> => {
+  try {
+    const { rateId, ...newPayload } = payload;
     const { data } = await axios.patch(`${BFF_URL}/rates/${rateId}`, newPayload, { withCredentials: true });
     return data;
   } catch (error) {
@@ -113,10 +115,10 @@ export const updateRate = async(payload: UpdateRate): Promise<Rate> => {
     }
     throw error;
   }
-}
+};
 
-export const deleteRate = async(rateId: number): Promise<void> => {
-  try{
+export const deleteRate = async (rateId: number): Promise<void> => {
+  try {
     await axios.delete(`${BFF_URL}/rates/${rateId}`, { withCredentials: true });
   } catch (error) {
     if (isAxiosError(error) && error.response) {
@@ -128,10 +130,10 @@ export const deleteRate = async(rateId: number): Promise<void> => {
     }
     throw error;
   }
-}
+};
 
-export const updateRateCard = async(id: number, payload: UpdateRateCard): Promise<RateCard> => {
-  try{
+export const updateRateCard = async (id: number, payload: UpdateRateCard): Promise<RateCard> => {
+  try {
     const { data } = await axios.patch(`${BFF_URL}/rate_cards/${id}`, payload, { withCredentials: true });
     return data;
   } catch (error) {
@@ -144,4 +146,4 @@ export const updateRateCard = async(id: number, payload: UpdateRateCard): Promis
     }
     throw error;
   }
-}
+};

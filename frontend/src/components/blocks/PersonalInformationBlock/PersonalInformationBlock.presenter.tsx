@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { defaultProps, PersonalInformationBlockProps } from './PersonalInformationBlock';
@@ -56,8 +57,8 @@ const withPresenter = (
         ...defaultRadioButtonItemProps,
         state: userType === 'vendor' ? 'Selected' : 'Unselected',
         text: {
-        ...defaultRadioButtonItemProps.text,
-          value: t('personal_information.radio_text.supplier')
+          ...defaultRadioButtonItemProps.text,
+          value: t('personal_information.radio_text.supplier'),
         },
         unselectedIcon: {
           ...defaultRadioButtonItemProps.unselectedIcon,
@@ -74,8 +75,8 @@ const withPresenter = (
         unselectedIcon: {
           ...defaultRadioButtonItemProps.unselectedIcon,
           onIconClicked: handleRadioSelection('customer'),
-        }
-      }
+        },
+      },
     ];
 
     const personalInformationBlockProps: PersonalInformationBlockProps = {

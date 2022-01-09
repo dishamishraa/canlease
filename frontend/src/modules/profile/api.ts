@@ -6,7 +6,9 @@ import { Profile, CreateProfilePayload, AddQuotePaylod } from './types';
 
 export const createProfile = async (payload: CreateProfilePayload): Promise<Profile> => {
   try {
-    const { data } = await axios.post<Profile>(`${BFF_URL}/profile`, payload, { withCredentials: true });
+    const { data } = await axios.post<Profile>(`${BFF_URL}/profile`, payload, {
+      withCredentials: true,
+    });
     return data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
@@ -68,11 +70,14 @@ export const getCustomerQuotes = async (portalId: string): Promise<Quote[]> => {
   }
 };
 
-export const addQuoteToProfile = async (portalId: string, payload: AddQuotePaylod): Promise<void> => {
+export const addQuoteToProfile = async (
+  portalId: string,
+  payload: AddQuotePaylod,
+): Promise<void> => {
   try {
     await axios.post(
-      `${BFF_URL}/profile/${portalId}/actions/add_quote`, 
-      payload, 
+      `${BFF_URL}/profile/${portalId}/actions/add_quote`,
+      payload,
       { withCredentials: true },
     );
   } catch (error) {

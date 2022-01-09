@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { AssetInformationBlockProps, defaultProps} from './AssetInformationBlock';
+import { AssetInformationBlockProps, defaultProps } from './AssetInformationBlock';
 import { isEmptyString } from '../../../lib/utils';
 import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
@@ -14,217 +14,214 @@ const withPresenter = (
 ): React.FC<AssetInformationBlockPresenterProps> => {
   const Presenter: React.FC<AssetInformationBlockPresenterProps> = (props) => {
     const {
-        setAssetInfo,
-        quote,
-        assetInfo,
-        className,
-        stepperCurrentValue,
-        stepperTotalValue,
+      setAssetInfo,
+      quote,
+      assetInfo,
+      className,
+      stepperCurrentValue,
+      stepperTotalValue,
     } = props;
     const { t } = useTranslation();
     const [assetCondition, setAssetCondition] = useState<'New' | 'Used'>();
     const [showAssetAgeField, setShowAssetAgeField] = useState(false);
-    const [assetAge, setAssetAge] = useState<number>()
+    const [assetAge, setAssetAge] = useState<number>();
     const [expectedDeilivery, setExpectedDelivery] = useState<string>();
 
-
     useEffect(() => {
-      if(assetInfo){
+      if (assetInfo) {
         setAssetCondition(assetInfo.assetCondition);
         setShowAssetAgeField(assetInfo.assetCondition === 'Used');
         setAssetAge(assetInfo.ageOfAsset);
         setExpectedDelivery(assetInfo.expectedDeliveryDate);
       }
-    }, [assetInfo])
-    
+    }, [assetInfo]);
+
     const handleConditionClicked = (condition: 'New' | 'Used') => () => {
       setAssetCondition(condition);
       setShowAssetAgeField(condition === 'Used');
-    }
+    };
 
-    const handleChangeAssetAge = ({ target: { value }}) => {
+    const handleChangeAssetAge = ({ target: { value } }) => {
       setAssetAge(value);
-    }
-    const handleChangeExpectedDate  = ({ target: { value }}) => {
+    };
+    const handleChangeExpectedDate = ({ target: { value } }) => {
       setExpectedDelivery(value);
-    }
-    
+    };
+
     const isFormValid = () => {
       if (assetCondition === 'New' && !isEmptyString(expectedDeilivery)) {
         return true;
-      } else if (assetCondition === 'Used' && !isEmptyString(expectedDeilivery) && assetAge){
+      } if (assetCondition === 'Used' && !isEmptyString(expectedDeilivery) && assetAge) {
         return true;
-      } else {
-        return false;
       }
-    }
+      return false;
+    };
 
     const handleClickNext = () => {
-      if(setAssetInfo && assetCondition && expectedDeilivery) {
+      if (setAssetInfo && assetCondition && expectedDeilivery) {
         setAssetInfo({
           ageOfAsset: assetAge || 0,
-          assetCondition: assetCondition,
+          assetCondition,
           expectedDeliveryDate: expectedDeilivery,
-        })
+        });
       }
     };
-    
+
     const assetConditionRadioField: RadioFieldProps = {
-        ...defaultProps.assetConditionRadioField,
-        label: {
+      ...defaultProps.assetConditionRadioField,
+      label: {
         ...defaultProps.assetConditionRadioField.label,
-          value: t('application_form.asset_information.condition.label'),
-        },
-        radioButtonItems: [
-          {
-            ...defaultRadioButtonItemProps,
-                state: assetCondition === 'New' ? 'Selected' : 'Unselected',
-                selectedIcon: {
-                    ...defaultRadioButtonItemProps.selectedIcon,
-                },
-                unselectedIcon: {
-                  ...defaultRadioButtonItemProps.unselectedIcon,
-                  onIconClicked: handleConditionClicked('New'),
-              },
-                text: {
-                    ...defaultRadioButtonItemProps.text,
-                    value: t('application_form.asset_information.condition.new'),
-                },
+        value: t('application_form.asset_information.condition.label'),
+      },
+      radioButtonItems: [
+        {
+          ...defaultRadioButtonItemProps,
+          state: assetCondition === 'New' ? 'Selected' : 'Unselected',
+          selectedIcon: {
+            ...defaultRadioButtonItemProps.selectedIcon,
+          },
+          unselectedIcon: {
+            ...defaultRadioButtonItemProps.unselectedIcon,
+            onIconClicked: handleConditionClicked('New'),
+          },
+          text: {
+            ...defaultRadioButtonItemProps.text,
+            value: t('application_form.asset_information.condition.new'),
+          },
         },
         {
           ...defaultRadioButtonItemProps,
-              state: assetCondition === 'Used' ? 'Selected' : 'Unselected',
-              selectedIcon: {
-                  ...defaultRadioButtonItemProps.selectedIcon,
-              },
-              unselectedIcon: {
-                ...defaultRadioButtonItemProps.unselectedIcon,
-                onIconClicked: handleConditionClicked('Used'),
-            },
-              text: {
-                  ...defaultRadioButtonItemProps.text,
-                  value: t('application_form.asset_information.condition.used'),
-              },
-      }
-        ]
-    }
+          state: assetCondition === 'Used' ? 'Selected' : 'Unselected',
+          selectedIcon: {
+            ...defaultRadioButtonItemProps.selectedIcon,
+          },
+          unselectedIcon: {
+            ...defaultRadioButtonItemProps.unselectedIcon,
+            onIconClicked: handleConditionClicked('Used'),
+          },
+          text: {
+            ...defaultRadioButtonItemProps.text,
+            value: t('application_form.asset_information.condition.used'),
+          },
+        },
+      ],
+    };
 
     let detailsSectionProps: DetailsSectionProps = {};
 
     if (quote) {
-        const {
-          applicationAmount, asset, quoteId
-        } = quote;
-  
-        detailsSectionProps = {
-          text: {
-            ...defaultProps.leaseDetailsSection.text,
-            value: t('view_quote.quote_rate_section_heading_text'),
-          },
-          detailItemList: {
-            ...defaultProps.leaseDetailsSection.detailItemList,
-            quoteDetailItems: [
-              {
-                labelText: {
-                  ...defaultQuoteDetailItemProps.labelText,
-                  value: t('view_quote.quote_detail.application_amount.label'),
-                },
-                infoText: {
-                  ...defaultQuoteDetailItemProps.infoText,
-                  value: t('view_quote.quote_detail.application_amount.value', {
-                    applicationAmount,
-                  }),
-                },
+      const {
+        applicationAmount, asset, quoteId,
+      } = quote;
+
+      detailsSectionProps = {
+        text: {
+          ...defaultProps.leaseDetailsSection.text,
+          value: t('view_quote.quote_rate_section_heading_text'),
+        },
+        detailItemList: {
+          ...defaultProps.leaseDetailsSection.detailItemList,
+          quoteDetailItems: [
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('view_quote.quote_detail.application_amount.label'),
               },
-              {
-                labelText: {
-                  ...defaultQuoteDetailItemProps.labelText,
-                  value: t('view_quote.quote_detail.equipment_label'),
-                },
-                infoText: {
-                  ...defaultQuoteDetailItemProps.infoText,
-                  value: asset,
-                },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: t('view_quote.quote_detail.application_amount.value', {
+                  applicationAmount,
+                }),
               },
-              {
-                labelText: {
-                  ...defaultQuoteDetailItemProps.labelText,
-                  value: t('view_quote.quote_detail.quote_id_label'),
-                },
-                infoText: {
-                  ...defaultQuoteDetailItemProps.infoText,
-                  value: quoteId,
-                },
+            },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('view_quote.quote_detail.equipment_label'),
               },
-            ],
-          },
-        }
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: asset,
+              },
+            },
+            {
+              labelText: {
+                ...defaultQuoteDetailItemProps.labelText,
+                value: t('view_quote.quote_detail.quote_id_label'),
+              },
+              infoText: {
+                ...defaultQuoteDetailItemProps.infoText,
+                value: quoteId,
+              },
+            },
+          ],
+        },
+      };
     }
-  
+
     const assetInformationBlockProps: AssetInformationBlockProps = {
-        ...defaultProps,
-        detailsSection: detailsSectionProps,
-        quote,
-        stepper: {
-            text: {
-                ...defaultProps.stepper.text,
-                value: t(`application_form.stepper`, {
-                  current: stepperCurrentValue,
-                  total: stepperTotalValue,
-                })
-            }
+      ...defaultProps,
+      detailsSection: detailsSectionProps,
+      quote,
+      stepper: {
+        text: {
+          ...defaultProps.stepper.text,
+          value: t('application_form.stepper', {
+            current: stepperCurrentValue,
+            total: stepperTotalValue,
+          }),
         },
-        blockHeading: {
-            ...defaultProps.blockHeading,
-            value: t('application_form.asset_information.heading_text'),
+      },
+      blockHeading: {
+        ...defaultProps.blockHeading,
+        value: t('application_form.asset_information.heading_text'),
+      },
+      assetConditionRadioField,
+      ageOfAssetTextField: {
+        ...defaultProps.ageOfAssetTextField,
+        label: {
+          ...defaultProps.ageOfAssetTextField?.label,
+          value: t('application_form.asset_information.age'),
         },
-        assetConditionRadioField,
-        ageOfAssetTextField: {
-            ...defaultProps.ageOfAssetTextField,
-            label: {
-                ...defaultProps.ageOfAssetTextField?.label,
-                value: t('application_form.asset_information.age'),
-            },
-            textInput: {
-                ...defaultProps.ageOfAssetTextField.textInput,
-                textValue: assetAge !== undefined ? `${assetAge}` : undefined,
-                onTextChanged: handleChangeAssetAge,
-            },
+        textInput: {
+          ...defaultProps.ageOfAssetTextField.textInput,
+          textValue: assetAge !== undefined ? `${assetAge}` : undefined,
+          onTextChanged: handleChangeAssetAge,
         },
-        expectedDeliveryDateTextField: {
-            ...defaultProps.expectedDeliveryDateTextField,
-            label: {
-                ...defaultProps.expectedDeliveryDateTextField?.label,
-                value: t('application_form.asset_information.expected_date'),
-            },
-            textInput: {
-                ...defaultProps.expectedDeliveryDateTextField?.textInput,
-                textPlaceholder: t('application_form.asset_information.date_placeholder'),
-                textValue: expectedDeilivery,
-                onTextChanged: handleChangeExpectedDate,
-            },
+      },
+      expectedDeliveryDateTextField: {
+        ...defaultProps.expectedDeliveryDateTextField,
+        label: {
+          ...defaultProps.expectedDeliveryDateTextField?.label,
+          value: t('application_form.asset_information.expected_date'),
         },
-        nextButton: {
-            ...defaultProps.nextButton,
-            text: {
-                ...defaultProps.nextButton.text,
-                value: t('application_form.select_lease.next_button'),
-            },
-            onButtonClicked: handleClickNext,
-            disabled: !isFormValid(),
-        }
-    }
+        textInput: {
+          ...defaultProps.expectedDeliveryDateTextField?.textInput,
+          textPlaceholder: t('application_form.asset_information.date_placeholder'),
+          textValue: expectedDeilivery,
+          onTextChanged: handleChangeExpectedDate,
+        },
+      },
+      nextButton: {
+        ...defaultProps.nextButton,
+        text: {
+          ...defaultProps.nextButton.text,
+          value: t('application_form.select_lease.next_button'),
+        },
+        onButtonClicked: handleClickNext,
+        disabled: !isFormValid(),
+      },
+    };
     return (
         <View
         className={className}
           {...assetInformationBlockProps}
           showAssetAgeField={showAssetAgeField}
         />
-      );
-    };
-  
-    return Presenter;
+    );
   };
-  
-  export default withPresenter;
-  
+
+  return Presenter;
+};
+
+export default withPresenter;

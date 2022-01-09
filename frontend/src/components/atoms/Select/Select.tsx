@@ -1,12 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { Dropdown } from 'react-bootstrap';
+import { DropdownItemProps } from 'react-bootstrap/esm/DropdownItem';
 import styles from './Select.module.scss';
 
 import Text, { TextProps } from '../Text';
 import Icon, { IconProps } from '../Icon';
-import { Dropdown } from 'react-bootstrap';
-import { DropdownItemProps } from 'react-bootstrap/esm/DropdownItem';
 
 export type SelectSelectTypeType = 'button' | 'submit' | 'reset';
 

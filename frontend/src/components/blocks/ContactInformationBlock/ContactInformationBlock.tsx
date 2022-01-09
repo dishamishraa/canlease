@@ -150,7 +150,7 @@ export type ContactInformationBlockProps = {
   nextButton?: ButtonProps;
   className?: string;
   contactInfo?: ContactInformation;
-  setContactInfo?: (contactInfo :ContactInformation) => void;
+  setContactInfo?: (contactInfo: ContactInformation) => void;
 };
 
 const ContactInformationBlock: React.FC<ContactInformationBlockProps> = ({

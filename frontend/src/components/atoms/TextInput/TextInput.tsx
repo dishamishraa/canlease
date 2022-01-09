@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import React from 'react';
 import cx from 'classnames';
 
@@ -20,7 +21,11 @@ export type TextInputProps = {
   type?: TextInputTypeType;
   textValue?: string;
   textPlaceholder?: string;
-  onTextChanged?: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+  onTextChanged?: (
+    event: React.ChangeEvent<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => void;
   className?: string;
   icon?: IconProps;
   inputType?: HTMLInputType;
@@ -37,9 +42,9 @@ const TextInput: React.FC<TextInputProps> = ({
   inputType,
   disabled,
 }) => {
-  const currentStyle = disabled ? 
-    styles[`textInput${type}Disabled`] : 
-    styles[`textInput${type}`];
+  const currentStyle = disabled
+    ? styles[`textInput${type}Disabled`]
+    : styles[`textInput${type}`];
 
   const textView = (
     <input
@@ -57,11 +62,7 @@ const TextInput: React.FC<TextInputProps> = ({
     case 'Text':
       break;
     case 'Password':
-      iconView = (
-        <Icon
-          className={styles.icon}
-          {...icon} />
-      );
+      iconView = <Icon className={styles.icon} {...icon} />;
       break;
     case 'TextArea':
       break;

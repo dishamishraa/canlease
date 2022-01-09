@@ -7,7 +7,7 @@ const withInteractor = (
   Presenter: React.FC<UserProfilePresenterProps>,
 ): React.FC<UserProfileProps> => {
   const Interactor: React.FC<UserProfileProps> = (props) => {
-    const { account } = useContext(AuthContext)
+    const { account } = useContext(AuthContext);
     return <Presenter {...props} account={account} />;
   };
 

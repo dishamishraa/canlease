@@ -76,10 +76,10 @@ export type QuoteSelectionBlockProps = {
   viewQuoteButton?: ButtonProps;
   className?: string;
   clickableRateCardList?: ClickableRateCardListProps;
-  setQuoteSelected?: (quoteDetails: Quote, quoteSelected: QuoteOption)  => void;
+  setQuoteSelected?: (quoteDetails: Quote, quoteSelected: QuoteOption) => void;
   quoteSelected?: QuoteOption;
-  stepperCurrentValue?: number,
-  stepperTotalValue?: number,
+  stepperCurrentValue?: number;
+  stepperTotalValue?: number;
 };
 
 const QuoteSelectionBlock: React.FC<QuoteSelectionBlockProps> = ({

@@ -1,4 +1,4 @@
-import { UserType } from "../profile/types";
+import { UserType } from '../profile/types';
 
 export type LeaseType = 'stretch' | '$10';
 

@@ -1,10 +1,10 @@
-import { isAxiosError } from '../../lib/api/axios';
 import i18next from 'i18next';
+import { isAxiosError } from '../../lib/api/axios';
 import { ApiError } from '../../lib/api/types';
 
 const LOGOUT_ERROR = i18next.t('error.logout');
 
-export const logout = (): void => {
+const logout = (): void => {
   try {
     const returnUrl = window.location.origin;
     window.location.assign(`${returnUrl}/account/signIn`);
@@ -19,3 +19,5 @@ export const logout = (): void => {
     throw error;
   }
 };
+
+export default logout;

@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import React from 'react';
 import cx from 'classnames';
 
@@ -35,6 +36,7 @@ const ClickableRateCard: React.FC<ClickableRateCardProps> = ({
       className={styles.rateDetailItemList}
       {...rateDetailItemList} />
   );
+
   switch (state) {
     case 'Default':
       break;

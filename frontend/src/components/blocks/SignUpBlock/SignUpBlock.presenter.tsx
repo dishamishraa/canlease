@@ -29,7 +29,10 @@ const withPresenter = (
     const [confirmPasswordError, setConfirmPasswordError] = useState<TextFieldStateType>('Default');
     const [passwordVisibility, setPasswordVisibility] = useState<HTMLInputType>('password');
     const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState<HTMLInputType>('password');
-    const FormInvalid = (isEmptyString(email) || isEmptyString(password) || isEmptyString(confirmPassword));
+
+    const FormInvalid = isEmptyString(email)
+      || isEmptyString(password)
+      || isEmptyString(confirmPassword);
 
     const handleEmail = ({ target: { value } }) => {
       setEmail(value);
@@ -37,12 +40,14 @@ const withPresenter = (
         setEmailError('Default');
       }
     };
+
     const handlePassowrd = ({ target: { value } }) => {
       setPassword(value);
       if (passwordError === 'Error') {
         setPasswordError('Default');
       }
     };
+
     const handleConfirmPassword = ({ target: { value } }) => {
       setConfirmPassword(value);
       if (confirmPasswordError === 'Error') {
@@ -53,7 +58,7 @@ const withPresenter = (
     const handleSignUp = () => {
       // verify fields
       if (!FormInvalid) {
-        if(!isEmail(email)){
+        if (!isEmail(email)) {
           setEmailErrorMessage(t('error_message.invalid_email'));
           setEmailError('Error');
         }
@@ -61,15 +66,13 @@ const withPresenter = (
           // show error message when passwords don't match
           setConfirmPasswordError('Error');
           setPasswordError('Error');
-        } else {
+        } else if (doSignUp) {
           // fields are valid, call sign up api
-          if (doSignUp) {
-            doSignUp({
-              email,
-              password,
-              enabled: true,
-            });
-          }
+          doSignUp({
+            email,
+            password,
+            enabled: true,
+          });
         }
       }
     };
@@ -187,12 +190,7 @@ const withPresenter = (
       },
     };
 
-    return (
-            <View
-            {...props}
-            {...signUpProps}
-            />
-    );
+    return <View {...props} {...signUpProps} />;
   };
 
   return Presenter;

@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 
-import styles from './ApplicationPage.module.scss';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import styles from './ApplicationPage.module.scss';
 
 import TopBar, { TopBarProps } from '../../organisms/TopBar';
 
@@ -43,8 +43,8 @@ export const defaultProps = {
 export type ApplicationPageProps = {
   topBar?: TopBarProps;
   className?: string;
-  stepperCurrentValue?: number,
-  stepperTotalValue?: number,
+  stepperCurrentValue?: number;
+  stepperTotalValue?: number;
   setQuoteSelected?: (quoteDetails: Quote, quoteSelected: QuoteOption) => void;
   setPersonalInfo?: (personalInfo: ApplicationPersonalInfo) => void;
   setBusinessInfo?: (businessType: ApplicationBusinessInfo) => void;
@@ -175,7 +175,6 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
       </Switch>
     </div>
   );
-
 };
 
 ApplicationPage.defaultProps = defaultProps;

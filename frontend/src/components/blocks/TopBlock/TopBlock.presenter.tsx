@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router';
 import { TopBlockProps, defaultProps } from './TopBlock';
 import { defaultProps as TabItemDefaultProps } from '../../atoms/TabItem/TabItem';
 import { Profile } from '../../../modules/profile/types';
 import { ContentTypeTabs } from '../../../modules/types';
-import { useHistory } from 'react-router';
 
 export type TopBlockPresenterProps = TopBlockProps & {
   profile: Profile | null;
@@ -32,13 +32,13 @@ const withPresenter = (
     }, [profile]);
 
     const handleTabClicked = (value: ContentTypeTabs) => () => {
-      if(contentType === 'Quote' && value === 'Personal'){
+      if (contentType === 'Quote' && value === 'Personal') {
         history.push('/portal/quotes');
-      } else if(contentType === 'Quote' && value === 'Customer'){
+      } else if (contentType === 'Quote' && value === 'Customer') {
         history.push('/portal/quotes/customer');
-      } else if(contentType === 'Application' && value === 'Personal'){
+      } else if (contentType === 'Application' && value === 'Personal') {
         history.push('/portal/applications');
-      } else if(contentType === 'Application' && value === 'Customer'){
+      } else if (contentType === 'Application' && value === 'Customer') {
         history.push('/portal/applications/customer');
       }
     };

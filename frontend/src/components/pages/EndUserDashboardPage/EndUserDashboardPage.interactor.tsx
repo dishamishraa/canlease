@@ -8,7 +8,6 @@ import { EndUserDashboardPagePresenterProps } from './EndUserDashboardPage.prese
 const withInteractor = (
   Presenter: React.FC<EndUserDashboardPagePresenterProps>,
 ): React.FC <EndUserDashboardPageProps> => {
-  
   const Interactor: React.FC <EndUserDashboardPageProps> = (props) => {
     const { account, profile } = useContext(AuthContext);
     const portalId = account?.uuid || '';
@@ -22,7 +21,7 @@ const withInteractor = (
         profile={profile}
       />
     );
-  }
+  };
   return Interactor;
 };
 export default withInteractor;

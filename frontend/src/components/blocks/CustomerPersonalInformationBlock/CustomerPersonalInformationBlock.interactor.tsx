@@ -5,13 +5,11 @@ import { CustomerPersonalInformationBlockPresenterProps } from './CustomerPerson
 const withInteractor = (
   Presenter: React.FC<CustomerPersonalInformationBlockPresenterProps>,
 ): React.FC <CustomerPersonalInformationBlockProps> => {
-  const Interactor: React.FC <CustomerPersonalInformationBlockProps> = (props) => {
-    return (
+  const Interactor: React.FC <CustomerPersonalInformationBlockProps> = (props) => (
       <Presenter
         {...props}
       />
   );
-  }
   return Interactor;
 };
 export default withInteractor;

@@ -254,9 +254,9 @@ const CustomerBusinessInformationBlock: React.FC<CustomerBusinessInformationBloc
   nextButton,
   className,
   showBusinessQuestions,
-}) => { 
+}) => {
   let businessFormFields;
-  if(showBusinessQuestions) {
+  if (showBusinessQuestions) {
     businessFormFields = (
       <>
          <TextField
@@ -318,7 +318,7 @@ const CustomerBusinessInformationBlock: React.FC<CustomerBusinessInformationBloc
       </div>
     </div>
   );
-}
+};
 
 CustomerBusinessInformationBlock.defaultProps = defaultProps;
 

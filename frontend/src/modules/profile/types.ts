@@ -72,4 +72,4 @@ export type UpdateProfilePayload = {
 
 export type AddQuotePaylod = {
   quoteId: string;
-}
+};

@@ -40,8 +40,8 @@ export const getQuote = async (quoteId: string): Promise<Quote> => {
 export const sendQuote = async (payload: SendQuote): Promise<void> => {
   try {
     await axios.post(
-      `${BFF_URL}/quote/send`, 
-      payload, 
+      `${BFF_URL}/quote/send`,
+      payload,
       { withCredentials: true },
     );
   } catch (error) {

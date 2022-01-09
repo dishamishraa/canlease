@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { defaultProps, BusinessInformationBlockProps } from './BusinessInformationBlock';
 import { ContextualMenuItemProps, defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 import { isEmptyString } from '../../../lib/utils';
-import { useEffect } from 'react';
 
-export type BusinessInformationBlockPresenterProps = BusinessInformationBlockProps & {
-};
+export type BusinessInformationBlockPresenterProps = BusinessInformationBlockProps & {};
 
 const withPresenter = (
   View: React.FC<BusinessInformationBlockProps>,
@@ -36,11 +34,11 @@ const withPresenter = (
       }
     }, [businessInfo]);
 
-    const formInvalid = (isEmptyString(fullLegalName)
-    || isEmptyString(operatingName)
-    || isEmptyString(operatingSince)
-    || isEmptyString(businessSector)
-    || isEmptyString(businessPhone));
+    const formInvalid = isEmptyString(fullLegalName)
+      || isEmptyString(operatingName)
+      || isEmptyString(operatingSince)
+      || isEmptyString(businessSector)
+      || isEmptyString(businessPhone);
 
     const handleFullLegalName = ({ target: { value } }) => {
       setFullLegalName(value);
@@ -64,12 +62,12 @@ const withPresenter = (
 
     const handleNext = async () => {
       if (
-        handleCreateProfile &&
-        operatingName &&
-        operatingSince &&
-        businessSector &&
-        businessPhone &&
-        fullLegalName
+        handleCreateProfile
+        && operatingName
+        && operatingSince
+        && businessSector
+        && businessPhone
+        && fullLegalName
       ) {
         await handleCreateProfile({
           operatingName,
@@ -83,7 +81,7 @@ const withPresenter = (
     };
 
     const contextualMenuItems: ContextualMenuItemProps[] = [];
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 7; i += 1) {
       contextualMenuItems.push({
         text: {
           ...defaultMenuItemProps.text,

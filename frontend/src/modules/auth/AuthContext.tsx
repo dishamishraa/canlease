@@ -1,6 +1,5 @@
-/* eslint-disable max-classes-per-file,class-methods-use-this */
-
-import React, { createContext, useState } from 'react';
+/* eslint-disable no-shadow */
+import React, { createContext, useState, useEffect } from 'react';
 import Cookie from 'js-cookie';
 import { DOMAIN, SESSION_COOKIE_NAME } from '../../lib/config';
 import { Account } from '../../lib/types';
@@ -8,7 +7,6 @@ import { extractJwtPayload } from '../../lib/token';
 import { Profile } from '../profile/types';
 import { useProfile } from '../profile';
 import { State } from '../../lib/api/types';
-import { useEffect } from 'react';
 
 export type AuthContextValue = {
   account: Account | null;
@@ -47,12 +45,11 @@ export const AuthContext = createContext<AuthContextValue>(initialAuthContext);
 
 export const AuthProvider: React.FC<{}> = ({ children }) => {
   const cookie = Cookie.get(SESSION_COOKIE_NAME);
-  const [account, updateAccount] = 
-    useState<Account | null>(cookie ? extractJwtPayload(cookie) : null);
+  const [account, updateAccount] = useState<Account | null>(
+    cookie ? extractJwtPayload(cookie) : null,
+  );
 
-  const {
-    loading, data, refetch: refetchProfile,
-  } = useProfile();
+  const { loading, data, refetch: refetchProfile } = useProfile();
   const [profileState, updateProfile] = useState<State<Profile>>({
     loading,
     error: undefined,
@@ -69,7 +66,7 @@ export const AuthProvider: React.FC<{}> = ({ children }) => {
 
   const setAccount = (account: Account | null) => {
     updateAccount(account);
-  }
+  };
 
   const setProfile = (profile: Profile | null) => {
     updateProfile({
@@ -77,15 +74,16 @@ export const AuthProvider: React.FC<{}> = ({ children }) => {
       error: undefined,
       data: profile,
     });
-  }
+  };
+
   return (
     <AuthContext.Provider value={{
-      account, 
+      account,
       setAccount,
-      loading: profileState.loading, 
-      error: profileState.error, 
-      profile: profileState.data, 
-      setProfile, 
+      loading: profileState.loading,
+      error: profileState.error,
+      profile: profileState.data,
+      setProfile,
       refetchProfile,
     }}>
       {children}

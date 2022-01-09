@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React from 'react';
 import { generatePath, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -21,7 +22,7 @@ type TableItem = {
   link: string;
   linkState?: LeaseInfo;
   id: string;
-}
+};
 
 export type TablePresenterValueProps = {
   quotes: Quote[] | null;
@@ -30,8 +31,11 @@ export type TablePresenterValueProps = {
 
 export type TablePresenterProps = TableProps & TablePresenterValueProps;
 
-const getQuoteStatus = ({ quoteId, quoteExpiryDate }: Quote, portfolio: Portfolio | null): ContentFilter => {
-  if(!portfolio) {
+const getQuoteStatus = (
+  { quoteId, quoteExpiryDate }: Quote,
+  portfolio: Portfolio | null,
+): ContentFilter => {
+  if (!portfolio) {
     return 'active';
   }
   const { creditApps } = portfolio;
@@ -63,32 +67,30 @@ const getApplicationStatus = ({ applicationStatus }: CreditApplication): Content
 };
 
 const getCurrentItems = (
-  contentType: ContentType | undefined, quotes: Quote[] | null, portfolio: Portfolio | null
+  contentType: ContentType | undefined, quotes: Quote[] | null, portfolio: Portfolio | null,
 ): TableItem[] => {
   let items: TableItem[] = [];
-  switch(contentType) {
+  switch (contentType) {
     case 'Quote':
       if (quotes) {
-        items = quotes.map((quote: Quote): TableItem => {
-          return {
-            company: quote.companyName,
-            contactName: quote.name,
-            status: getQuoteStatus(quote, portfolio),
-            createdOn: createdOn(quote.quoteExpiryDate).toDateString(),
-            asset: quote.asset,
-            cost: quote.applicationAmount,
-            link: `/portal/quote/${quote.quoteId}`,
-            id: quote.quoteId,
-          }
-        });
+        items = quotes.map((quote: Quote): TableItem => ({
+          company: quote.companyName,
+          contactName: quote.name,
+          status: getQuoteStatus(quote, portfolio),
+          createdOn: createdOn(quote.quoteExpiryDate).toDateString(),
+          asset: quote.asset,
+          cost: quote.applicationAmount,
+          link: `/portal/quote/${quote.quoteId}`,
+          id: quote.quoteId,
+        }));
       }
       break;
     case 'Application':
       if (portfolio && portfolio.creditApps && portfolio.leases) {
         items = portfolio.creditApps.map((application: CreditApplication): TableItem => {
-          const companyName = application.companyName;
+          const { companyName } = application;
           const contactName = application.name;
-          const lease = portfolio.leases.find(lease => lease.quoteId === application.quoteId)
+          const lease = portfolio.leases.find((lease) => lease.quoteId === application.quoteId);
           const vendorName = lease?.vendorName ?? ' - ';
           return {
             company: companyName,
@@ -98,10 +100,10 @@ const getCurrentItems = (
             createdOn: new Date(application.createdDate).toDateString(),
             asset: application.asset,
             cost: application.applicationAmount,
-            link: generatePath("/portal/application/:applicationDetails", { applicationDetails: application.creditAppNumber }),
+            link: generatePath('/portal/application/:applicationDetails', { applicationDetails: application.creditAppNumber }),
             linkState: { application, lease },
             id: application.quoteId,
-          }
+          };
         });
       }
       break;
@@ -110,15 +112,13 @@ const getCurrentItems = (
   }
 
   return items;
-}
+};
 
 const filterItems = (
   items: TableItem[], searchQuery?: string, statusFilter?: ContentFilter,
-): TableItem[] => { 
-  const filteredItems = statusFilter === 'all' ? items : items.filter((item: TableItem) => {
-    return item.status === statusFilter;
-  });
-  if(searchQuery) {
+): TableItem[] => {
+  const filteredItems = statusFilter === 'all' ? items : items.filter((item: TableItem) => item.status === statusFilter);
+  if (searchQuery) {
     const search = searchQuery.toLowerCase();
     const itemsMatchSearch = filteredItems.filter((item: TableItem) => {
       const itemCompanyName = item.company.toLowerCase();
@@ -126,14 +126,14 @@ const filterItems = (
       const createdOn = item.createdOn.toLowerCase();
       const itemAssetName = item.asset.toLowerCase();
       const itemCost = item.cost.toString().toLowerCase();
-      return itemCompanyName?.includes(search) || itemContactName?.includes(search) ||
-        createdOn?.includes(search) || itemAssetName?.includes(search) ||
-        itemCost?.includes(search);
+      return itemCompanyName?.includes(search) || itemContactName?.includes(search)
+        || createdOn?.includes(search) || itemAssetName?.includes(search)
+        || itemCost?.includes(search);
     });
     return itemsMatchSearch;
   }
   return filteredItems;
-}
+};
 
 const withPresenter = (
   View: React.FC<TableProps>,
@@ -144,52 +144,50 @@ const withPresenter = (
       searchQuery,
       statusFilter,
       tab,
-      quotes, 
+      quotes,
       portfolio,
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
 
-    const currentItems =  getCurrentItems(contentType, quotes, portfolio);
+    const currentItems = getCurrentItems(contentType, quotes, portfolio);
     const filteredItems = filterItems(currentItems, searchQuery, statusFilter);
 
     const tableItemListProps: TableItemListProps = {
       ...defaultProps.tableItemList,
       tableItems: filteredItems.map(({
-        company, contactName, status, createdOn, asset, cost, link, vendor, linkState, id
-      }: TableItem): TableItemProps => {
-        return {
-          ...tableItemDefaultProps,
-          companyName: {
-            ...tableItemDefaultProps.companyName,
-            value: tab === 'Customer' ? vendor : company,
-          },
-          contactName: {
-            ...tableItemDefaultProps.contactName,
-            value: tab === 'Customer' ? contactName : "",
-          },
-          status: {
-            ...tableItemDefaultProps.status,
-            value: t(`application_page.status.${status}`),
-          },
-          createOn: {
-            ...tableItemDefaultProps.createOn,
-            value: createdOn,
-          },
-          assetName: {
-            ...tableItemDefaultProps.assetName,
-            value: asset,
-          },
-          cost: {
-            ...tableItemDefaultProps.cost,
-            value: cost,
-          },
-          onTableItemClicked: () => {
-            history.push(link, { fromTab: tab,  ...linkState });
-          },
-          id,
-        }
-      }),
+        company, contactName, status, createdOn, asset, cost, link, vendor, linkState, id,
+      }: TableItem): TableItemProps => ({
+        ...tableItemDefaultProps,
+        companyName: {
+          ...tableItemDefaultProps.companyName,
+          value: tab === 'Customer' ? vendor : company,
+        },
+        contactName: {
+          ...tableItemDefaultProps.contactName,
+          value: tab === 'Customer' ? contactName : '',
+        },
+        status: {
+          ...tableItemDefaultProps.status,
+          value: t(`application_page.status.${status}`),
+        },
+        createOn: {
+          ...tableItemDefaultProps.createOn,
+          value: createdOn,
+        },
+        assetName: {
+          ...tableItemDefaultProps.assetName,
+          value: asset,
+        },
+        cost: {
+          ...tableItemDefaultProps.cost,
+          value: cost,
+        },
+        onTableItemClicked: () => {
+          history.push(link, { fromTab: tab, ...linkState });
+        },
+        id,
+      })),
     };
 
     const tableProps: TableProps = {

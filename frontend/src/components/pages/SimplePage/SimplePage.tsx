@@ -14,8 +14,7 @@ import ActionBlock from '../../blocks/ActionBlock';
 import { ContactInfo, EquipmentLeaseInfo, QuoteFlowType } from '../../../modules/types';
 import { Profile, UserType } from '../../../modules/profile/types';
 
-export const defaultProps = {
-};
+export const defaultProps = {};
 
 export type SimplePageProps = {
   className?: string;
@@ -55,17 +54,17 @@ const SimplePage: React.FC<SimplePageProps> = ({
   setEquipmentLeaseInfo,
   setContactInfo,
   flowType,
-  profile
+  profile,
 }) => {
-  const ContactInfoBlock = quoteUserType === 'vendor' && flowType === 'instaQuote' ? 
-    ContactInfoVendorBlock : 
-    ContactInfoCustomerBlock;
+  const ContactInfoBlock = quoteUserType === 'vendor' && flowType === 'instaQuote'
+    ? ContactInfoVendorBlock
+    : ContactInfoCustomerBlock;
 
   // get correct routes based on the flow
   const currentFlow = flowType || 'instaQuote';
 
   let topBar;
-  if(currentFlow === 'createQuote') {
+  if (currentFlow === 'createQuote') {
     topBar = (<TopBar
       className={styles.topBar}
       showBackButton={true} />);
@@ -76,7 +75,7 @@ const SimplePage: React.FC<SimplePageProps> = ({
       <div className={styles.topContent}>
         {topBar}
         <Switch>
-          <Route exact 
+          <Route exact
             path={[
               routes.instaQuote.userSelection,
               routes.createQuote.typeSelection,
@@ -87,7 +86,7 @@ const SimplePage: React.FC<SimplePageProps> = ({
               flowType={flowType}
               />
           </Route>
-          <Route exact 
+          <Route exact
             path={[
               routes.instaQuote.getQuote,
               routes.createQuote.getQuote,
@@ -99,7 +98,7 @@ const SimplePage: React.FC<SimplePageProps> = ({
               profile={profile}
               />
           </Route>
-          <Route exact 
+          <Route exact
             path={[
               routes.instaQuote.contactInformation,
               routes.createQuote.customerInformation,
@@ -112,9 +111,9 @@ const SimplePage: React.FC<SimplePageProps> = ({
               flowType={flowType}
               />
           </Route>
-          <Route exact 
+          <Route exact
             path={[
-              routes.instaQuote.instaQuote, 
+              routes.instaQuote.instaQuote,
               routes.createQuote.quoteDetails,
             ]}>
             <QuoteBlock
@@ -123,7 +122,7 @@ const SimplePage: React.FC<SimplePageProps> = ({
               quoteUserType={quoteUserType}
               flowType={flowType} />
           </Route>
-          <Route 
+          <Route
             path={[
               routes.instaQuote.invalid,
               routes.createQuote.invalid,

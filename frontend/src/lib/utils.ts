@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { INSTANT_QUOTE_COOKIE } from '../lib/config';
+import { INSTANT_QUOTE_COOKIE } from './config';
 import { AfterAuthAction } from '../modules/types';
 
 export const isEmptyString = (value?: string) => (value ? value.trim().length === 0 : true);
@@ -13,12 +13,10 @@ export const isEmpty = (value: any) => (
     || value.length === 0
 );
 
-export const convertMonth = (value: string): number => {
-  return parseInt(value.toLowerCase().replace('m', ''));
-}
+export const convertMonth = (value: string): number => parseInt(value.toLowerCase().replace('m', ''), 10);
 
 export const getStretchMonth = (value: number): number => {
-  switch(value) {
+  switch (value) {
     case 24:
       return 27;
     case 36:
@@ -30,15 +28,15 @@ export const getStretchMonth = (value: number): number => {
     default:
       return value;
   }
-}
+};
 
 export const isExpiring = (value: string) => {
   const date = new Date(value);
   const today = new Date();
   const diffTime = date.getTime() - today.getTime();
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   return diffDays < 6 && diffDays > 0;
-}
+};
 
 export const isExpired = (value: string) => {
   const today = new Date();
@@ -58,37 +56,36 @@ export const isEmail = (value: string) => {
   return regexEmail.test(value);
 };
 
+export const getQuoteCookie = (): InstantCookie => {
+  const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
+  if (quoteCookie) {
+    return JSON.parse(quoteCookie);
+  }
+  return {};
+};
+
 export const updateInstaQuoteCookie = (
-  update: { 
+  update: {
     action?: AfterAuthAction;
   },
-  setCookie, 
-  removeCookie, 
+  setCookie,
+  removeCookie,
 ) => {
   const { quoteId, expires } = getQuoteCookie();
   removeCookie(INSTANT_QUOTE_COOKIE);
-  setCookie(INSTANT_QUOTE_COOKIE, 
+  setCookie(INSTANT_QUOTE_COOKIE,
     {
       ...update,
       quoteId,
       expires,
-    }, 
-    { 
-      expires: new Date(expires!), 
     },
-  );
-}
+    {
+      expires: new Date(expires!),
+    });
+};
 
 type InstantCookie = {
   quoteId?: string;
   expires?: string;
   action?: AfterAuthAction;
-}
-
-export const getQuoteCookie = (): InstantCookie => {
-  const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
-  if (quoteCookie){
-     return JSON.parse(quoteCookie);
-  }
-  return {};
-}
+};

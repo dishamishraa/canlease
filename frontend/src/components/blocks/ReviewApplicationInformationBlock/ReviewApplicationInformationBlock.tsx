@@ -7,7 +7,9 @@ import Stepper, { StepperProps } from '../../atoms/Stepper';
 import Text, { TextProps } from '../../atoms/Text';
 import DetailsSection, { DetailsSectionProps } from '../../organisms/DetailsSection';
 import Button, { ButtonProps } from '../../atoms/Button';
-import { AssetInfo, ApplicationBusinessInfo, ApplicationPersonalInfo, CreateApplicationState } from '../../../modules/types';
+import {
+  AssetInfo, ApplicationBusinessInfo, ApplicationPersonalInfo, CreateApplicationState,
+} from '../../../modules/types';
 import { Quote, QuoteOption } from '../../../modules/quote/types';
 
 export const defaultProps = {
@@ -246,9 +248,8 @@ const ReviewApplicationInformationBlock: React.FC<ReviewApplicationInformationBl
 }) => {
   let additionalCustomerFields;
   let additionalPersonalFields;
-  if (state?.fromTab === "Personal") {
-    additionalPersonalFields = 
-    <>
+  if (state?.fromTab === 'Personal') {
+    additionalPersonalFields = <>
         <DetailsSection
           className={styles.businessTypeDetails}
           {...businessTypeDetails} />
@@ -267,18 +268,16 @@ const ReviewApplicationInformationBlock: React.FC<ReviewApplicationInformationBl
         <DetailsSection
           className={styles.profileBusinessDetails}
           {...profileBusinessDetails} />
-    </>
-  } 
-  else if (state?.fromTab === "Customer") {
-    additionalCustomerFields = 
-    <>
+    </>;
+  } else if (state?.fromTab === 'Customer') {
+    additionalCustomerFields = <>
       <DetailsSection
         className={styles.businessTypeDetails}
         {...customerPersonalInformation} />
       <DetailsSection
         className={styles.businessTypeDetails}
         {...customerBusinessInformation} />
-    </>
+    </>;
   }
 
   return (
@@ -310,7 +309,7 @@ const ReviewApplicationInformationBlock: React.FC<ReviewApplicationInformationBl
           {...nextButton} />
       </div>
   );
-}
+};
 
 ReviewApplicationInformationBlock.defaultProps = defaultProps;
 

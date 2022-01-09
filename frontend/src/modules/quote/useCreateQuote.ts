@@ -5,7 +5,10 @@ import { Quote, CreateQuotePayload } from './types';
 import { createQuote } from './api';
 
 const useCreateQuote = (): UsePostResult<Quote, CreateQuotePayload> => {
-  const get = useCallback((payload: CreateQuotePayload): Promise<Quote> => createQuote(payload), []);
+  const get = useCallback(
+    (payload: CreateQuotePayload): Promise<Quote> => createQuote(payload),
+    [],
+  );
   return usePost(get);
 };
 

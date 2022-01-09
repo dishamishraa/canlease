@@ -1,17 +1,17 @@
+/* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ContactInfoVendorBlockProps, defaultProps } from './ContactInfoVendorBlock';
 import { isEmptyString } from '../../../lib/utils';
 
-export type ContactInfoVendorBlockPresenterProps = ContactInfoVendorBlockProps & {
-};
+export type ContactInfoVendorBlockPresenterProps = ContactInfoVendorBlockProps & {};
 
 const withPresenter = (
   View: React.FC<ContactInfoVendorBlockProps>,
 ): React.FC<ContactInfoVendorBlockPresenterProps> => {
   const Presenter: React.FC<ContactInfoVendorBlockPresenterProps> = (props) => {
     const { t } = useTranslation();
-    const { 
+    const {
       contactInfo,
       setContactInfo,
     } = props;
@@ -29,7 +29,7 @@ const withPresenter = (
         setCustomerEmail(contactInfo.customerEmail);
         setCustomerCompanyName(contactInfo.customerCompanyName);
 
-        if(contactInfo.type === 'vendor') {
+        if (contactInfo.type === 'vendor') {
           setVendorName(contactInfo.vendorName);
           setBusinessEmail(contactInfo.businessEmail);
           setCompanyName(contactInfo.companyName);
@@ -50,13 +50,13 @@ const withPresenter = (
 
     const handleClickViewQuote = async () => {
       if (
-        vendorName && 
-        businessEmail && 
-        companyName && 
-        customerName &&
-        customerEmail &&
-        customerCompanyName &&
-        setContactInfo
+        vendorName
+        && businessEmail
+        && companyName
+        && customerName
+        && customerEmail
+        && customerCompanyName
+        && setContactInfo
       ) {
         await setContactInfo({
           type: 'vendor',

@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import React from 'react';
 import cx from 'classnames';
 
@@ -61,11 +62,7 @@ const Toast: React.FC<ToastProps> = ({
     case 'NoCloseButton':
       break;
     case 'WithCloseButton':
-      iconView = (
-        <Icon
-          className={styles.icon}
-          {...icon} />
-      );
+      iconView = <Icon className={styles.icon} {...icon} />;
       break;
   }
 

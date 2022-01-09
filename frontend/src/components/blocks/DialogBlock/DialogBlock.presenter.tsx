@@ -1,3 +1,4 @@
+/* eslint-disable default-case, @typescript-eslint/no-use-before-define */
 import React, { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router';
@@ -37,14 +38,24 @@ const withPresenter = (
     const { state: locationState } = useLocation<CreateApplicationState | undefined>();
     const { fromTab } = locationState || {};
     let imageDisplay = DefaultImage;
+
     const defaultDisplay: DialogBlockTextDisplay = {
       header: '',
       description: '',
       questionText: t('email_verification.question'),
-      resolutionText: <Trans i18nKey="email_verification.resolution" t={t}>Check your spam folder or click <Link to={history.location} onClick={() => handleResend()}>here</Link> to resend the verification link.</Trans>,
+      resolutionText: (
+        <Trans i18nKey="email_verification.resolution" t={t}>
+          Check your spam folder or click{' '}
+          <Link to={history.location} onClick={() => handleResend()}>
+            here
+          </Link>{' '}
+          to resend the verification link.
+        </Trans>
+      ),
       doneButton: t('button_text.done'),
       url: '/account/signin',
-    }
+    };
+
     switch (contentType) {
       case 'VerifyEmail':
         imageDisplay = EmailImage;
@@ -61,10 +72,9 @@ const withPresenter = (
         defaultDisplay.description = t('application_form.application_submitted.description');
         defaultDisplay.questionText = '';
         defaultDisplay.resolutionText = '';
-        if (fromTab === 'Customer'){
+        if (fromTab === 'Customer') {
           defaultDisplay.url = '/portal/applications/customer';
-        }
-        else {
+        } else {
           defaultDisplay.url = '/portal/applications';
         }
         break;
@@ -127,11 +137,9 @@ const withPresenter = (
       },
     };
 
-    return <View
-      {...props}
-      {...dialogBlockProps}
-      />;
+    return <View {...props} {...dialogBlockProps} />;
   };
+
   return Presenter;
 };
 

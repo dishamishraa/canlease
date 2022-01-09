@@ -27,10 +27,10 @@ const withPresenter = (
     const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState<HTMLInputType>('password');
 
     const formInvalid = (isEmptyString(createPassword) || isEmptyString(confirmPassword));
-    
+
     const { search } = useLocation();
     const query = new URLSearchParams(search);
-    const token = query.get('token')
+    const token = query.get('token');
 
     const handleSignIn = () => {
       history.push({ pathname: '/account/signIn' });
@@ -50,20 +50,20 @@ const withPresenter = (
     const handleSavePassword = async () => {
       if (createPassword !== confirmPassword) {
         setConfirmPasswordError('Error');
-      } else if (token){
-          const { id } = extractJwtPayload(token);
-          await updatePassword({
-            id: id, 
-            password: createPassword,
-            token: token,
-          }).then(() => {
-            history.push({
-              pathname: '/account/signIn',
-              state: {
-                message: t('toast_message.reset_password'),
-              },
-            });
+      } else if (token) {
+        const { id } = extractJwtPayload(token);
+        await updatePassword({
+          id,
+          password: createPassword,
+          token,
+        }).then(() => {
+          history.push({
+            pathname: '/account/signIn',
+            state: {
+              message: t('toast_message.reset_password'),
+            },
           });
+        });
       }
     };
 

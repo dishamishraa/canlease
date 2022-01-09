@@ -8,7 +8,7 @@ import { TablePresenterProps, TablePresenterValueProps } from './Table.presenter
 type InteractorRenderProps = {
   portalId: string;
   children(valueProps: TablePresenterValueProps): JSX.Element;
-}
+};
 
 const PersonalQuoteInteractor: React.FC<InteractorRenderProps> = ({ children, portalId }) => {
   const { data: quotes } = useQuotes(portalId);
@@ -17,7 +17,7 @@ const PersonalQuoteInteractor: React.FC<InteractorRenderProps> = ({ children, po
     quotes,
     portfolio,
   });
-}
+};
 
 const CustomerQuoteInteractor: React.FC<InteractorRenderProps> = ({ children, portalId }) => {
   const { data: quotes } = useCustomerQuotes(portalId);
@@ -26,7 +26,7 @@ const CustomerQuoteInteractor: React.FC<InteractorRenderProps> = ({ children, po
     quotes,
     portfolio,
   });
-}
+};
 
 const PersonalApplicationInteractor: React.FC<InteractorRenderProps> = ({ children, portalId }) => {
   const { data: portfolio } = useUserPortfolio(portalId);
@@ -34,7 +34,7 @@ const PersonalApplicationInteractor: React.FC<InteractorRenderProps> = ({ childr
     quotes: null,
     portfolio,
   });
-}
+};
 
 const CustomerApplicationInteractor: React.FC<InteractorRenderProps> = ({ children, portalId }) => {
   const { data: portfolio } = useCustomerPortfolio(portalId);
@@ -42,7 +42,7 @@ const CustomerApplicationInteractor: React.FC<InteractorRenderProps> = ({ childr
     quotes: null,
     portfolio,
   });
-}
+};
 
 const withInteractor = (
   Presenter: React.FC<TablePresenterProps>,
@@ -53,26 +53,26 @@ const withInteractor = (
     const portalId = account?.uuid || '';
 
     let TypeInteractor = PersonalQuoteInteractor;
-    if(contentType === 'Quote' && tab === 'Personal'){
+    if (contentType === 'Quote' && tab === 'Personal') {
       TypeInteractor = PersonalQuoteInteractor;
-    } else if(contentType === 'Quote' && tab === 'Customer'){
+    } else if (contentType === 'Quote' && tab === 'Customer') {
       TypeInteractor = CustomerQuoteInteractor;
-    } else if(contentType === 'Application' && tab === 'Personal'){
+    } else if (contentType === 'Application' && tab === 'Personal') {
       TypeInteractor = PersonalApplicationInteractor;
-    } else if(contentType === 'Application' && tab === 'Customer'){
+    } else if (contentType === 'Application' && tab === 'Customer') {
       TypeInteractor = CustomerApplicationInteractor;
     }
 
     return (
       <TypeInteractor portalId={portalId}>
-        { valueProps => (
-          <Presenter 
+        { (valueProps) => (
+          <Presenter
             {...props}
             {...valueProps}
             />
         )}
       </TypeInteractor>
-    )
+    );
     // return <Presenter
     //   {...props}
     //   personalQuotes={personalQuotes}

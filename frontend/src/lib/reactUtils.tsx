@@ -1,19 +1,21 @@
 import React from 'react';
+
 // eslint-disable-next-line
 const LINK_REGEX = /\[([^\]]*)\]\(([^\)]*)\)/g;
 const NEW_LINE_REGEX = /\r\n|\r|\n/g;
 
 const replaceNewlines = (text: string): React.ReactNode[] => text
   .split(NEW_LINE_REGEX)
-  .flatMap((e) => [<br />, e])
+  .flatMap((e, i) => [<br key={i} />, e])
   .slice(1);
 
-export const addLinksAndBreaks = (value: string): string | React.ReactNode[] => {
+const addLinksAndBreaks = (value: string): string | React.ReactNode[] => {
   if (!value) return '';
   const matches = value.matchAll(LINK_REGEX);
   const elements: React.ReactNode[] = [];
   let match = matches.next();
   let index = 0;
+
   while (!match.done) {
     const matchValue = match.value;
     if (matchValue.index !== undefined) {
@@ -25,6 +27,9 @@ export const addLinksAndBreaks = (value: string): string | React.ReactNode[] => 
     }
     match = matches.next();
   }
+
   elements.push(...replaceNewlines(value.slice(index)));
   return elements;
 };
+
+export default addLinksAndBreaks;

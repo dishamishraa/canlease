@@ -5,14 +5,11 @@ import { AssetInformationBlockPresenterProps } from './AssetInformationBlock.pre
 const withInteractor = (
   Presenter: React.FC<AssetInformationBlockPresenterProps>,
 ): React.FC<AssetInformationBlockProps> => {
-  const Interactor: React.FC<AssetInformationBlockProps> = (props) => {
-
-    return (
+  const Interactor: React.FC<AssetInformationBlockProps> = (props) => (
       <Presenter
       {...props}
       />
-    );
-  };
+  );
 
   return Interactor;
 };

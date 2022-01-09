@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { defaultProps, CustomerPersonalInformationBlockProps } from './CustomerPersonalInformationBlock';
 import { isEmptyString } from '../../../lib/utils';
-import { ContextualMenuItemProps, defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
+import {
+  ContextualMenuItemProps,
+  defaultProps as defaultMenuItemProps,
+} from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 
-export type CustomerPersonalInformationBlockPresenterProps = CustomerPersonalInformationBlockProps & {
-};
+export type CustomerPersonalInformationBlockPresenterProps =
+  CustomerPersonalInformationBlockProps & {};
 
 const withPresenter = (
   View: React.FC<CustomerPersonalInformationBlockProps>,
@@ -39,12 +42,12 @@ const withPresenter = (
         setProvince(personalInfo.province);
       }
     }, [personalInfo]);
-    
-    const formInvalid = (isEmptyString(phoneNumber)
-    || isEmptyString(streetAddress)
-    || isEmptyString(city)
-    || isEmptyString(postalCode)
-    || isEmptyString(province));
+
+    const formInvalid = isEmptyString(phoneNumber)
+      || isEmptyString(streetAddress)
+      || isEmptyString(city)
+      || isEmptyString(postalCode)
+      || isEmptyString(province);
 
     const handleFirstName = ({ target: { value } }) => {
       setFirstName(value);
@@ -74,15 +77,15 @@ const withPresenter = (
 
     const handleNext = () => {
       if (
-        setPersonalInfo && 
-        firstName &&
-        lastName &&
-        email && 
-        phoneNumber && 
-        streetAddress && 
-        city && 
-        postalCode &&
-        province
+        setPersonalInfo
+        && firstName
+        && lastName
+        && email
+        && phoneNumber
+        && streetAddress
+        && city
+        && postalCode
+        && province
       ) {
         setPersonalInfo({
           firstName,
@@ -98,7 +101,7 @@ const withPresenter = (
     };
 
     const contextualMenuItems: ContextualMenuItemProps[] = [];
-    for (let i = 0; i <= 12; i++) {
+    for (let i = 0; i <= 12; i += 1) {
       contextualMenuItems.push({
         text: {
           ...defaultMenuItemProps.text,
@@ -114,7 +117,7 @@ const withPresenter = (
         ...defaultProps.stepper,
         text: {
           ...defaultProps.stepper.text,
-          value: t(`application_form.stepper`, {
+          value: t('application_form.stepper', {
             current: stepperCurrentValue,
             total: stepperTotalValue,
           }),
@@ -235,11 +238,9 @@ const withPresenter = (
       },
     };
 
-    return <View
-      {...props}
-      {...contactInformationBlockProps}
-      />;
+    return <View {...props} {...contactInformationBlockProps} />;
   };
+
   return Presenter;
 };
 

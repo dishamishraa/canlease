@@ -1,22 +1,22 @@
-import React from 'react';
+/* eslint-disable no-restricted-syntax, guard-for-in, no-shadow */
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { ClickableRateCardProps } from '../../molecules/ClickableRateCard';
 import { DetailsSectionProps } from '../../organisms/DetailsSection';
-import { QuoteSelectionBlockProps , defaultProps} from './QuoteSelectionBlock';
+import { QuoteSelectionBlockProps, defaultProps } from './QuoteSelectionBlock';
 import { defaultProps as defaultRateDetailItemProps } from '../../molecules/RateDetailItem/RateDetailItem';
 import { Quote, QuoteOption } from '../../../modules/quote/types';
 import { convertMonth, getStretchMonth } from '../../../lib/utils';
-import { useState } from 'react';
 
 export type QuoteSelectionBlockPresenterProps = QuoteSelectionBlockProps & {
-    quoteDetails: Quote | null;
+  quoteDetails: Quote | null;
 };
 
 const withPresenter = (
-    View: React.FC<QuoteSelectionBlockProps>,
-  ): React.FC<QuoteSelectionBlockPresenterProps> => {
-    const Presenter: React.FC<QuoteSelectionBlockPresenterProps> = (props) => {
+  View: React.FC<QuoteSelectionBlockProps>,
+): React.FC<QuoteSelectionBlockPresenterProps> => {
+  const Presenter: React.FC<QuoteSelectionBlockPresenterProps> = (props) => {
     const {
       quoteDetails,
       className,
@@ -27,37 +27,38 @@ const withPresenter = (
     } = props;
     const { t } = useTranslation();
     const [quoteOption, setQuoteOption] = useState<QuoteOption | undefined>(quoteSelected);
-  
+
     const handleQuoteOptionClick = (quoteOption: QuoteOption) => () => {
-     setQuoteOption(quoteOption);
-    }
+      setQuoteOption(quoteOption);
+    };
 
     const nextClicked = () => {
-      if(quoteDetails && quoteOption && setQuoteSelected) {
+      if (quoteDetails && quoteOption && setQuoteSelected) {
         setQuoteSelected(quoteDetails, quoteOption);
       }
     };
 
     const isFormValid = () => {
-      if (quoteOption){
-        const {financeRate, monthlyAmount, term } = quoteOption;
+      if (quoteOption) {
+        const { financeRate, monthlyAmount, term } = quoteOption;
         if (financeRate && monthlyAmount && term) {
           return true;
         }
         return false;
       }
-    }
+      return false;
+    };
 
     const isEqual = (firstObject: any, secondObject: any) => {
-      for(let key in firstObject) {
-        let firstValue = firstObject[key];
-        let secondValue = secondObject[key];
-        if (firstValue !== secondValue){
+      for (const key in firstObject) {
+        const firstValue = firstObject[key];
+        const secondValue = secondObject[key];
+        if (firstValue !== secondValue) {
           return false;
         }
       }
       return true;
-    }
+    };
 
     let detailsSectionProps: DetailsSectionProps = {};
     const clickableRateCardsArray: ClickableRateCardProps[] = [];
@@ -108,7 +109,7 @@ const withPresenter = (
             },
           ],
         },
-      }
+      };
 
       quoteDetails.quoteOptions.forEach((option) => {
         const {
@@ -119,7 +120,7 @@ const withPresenter = (
         const clickableRateCardProps: ClickableRateCardProps = {
           onRateCardClicked: handleQuoteOptionClick(option),
           state: quoteOption && isEqual(quoteOption, option) ? 'Selected' : 'Default',
-          rateDetailItemList:{
+          rateDetailItemList: {
             rateDetailItems: [
               {
                 type: 'PerMonth',
@@ -140,7 +141,7 @@ const withPresenter = (
                 },
                 numberText: {
                   ...defaultRateDetailItemProps.numberText,
-                  value: (leaseType === 'stretch') 
+                  value: (leaseType === 'stretch')
                     ? getStretchMonth(term)
                     : term,
                 },
@@ -166,7 +167,7 @@ const withPresenter = (
                 },
               },
             ],
-          }
+          },
         };
         clickableRateCardsArray.push(clickableRateCardProps);
       });
@@ -177,12 +178,12 @@ const withPresenter = (
       detailsSection: detailsSectionProps,
       stepper: {
         text: {
-            ...defaultProps.stepper.text,
-            value: t(`application_form.stepper`, {
-              current: stepperCurrentValue,
-              total: stepperTotalValue,
-            })
-        }
+          ...defaultProps.stepper.text,
+          value: t('application_form.stepper', {
+            current: stepperCurrentValue,
+            total: stepperTotalValue,
+          }),
+        },
       },
       blockHeading: {
         ...defaultProps.blockHeading,
@@ -192,7 +193,7 @@ const withPresenter = (
         ...defaultProps.disclaimerText,
         value: t('view_quote.disclaimer_text'),
       },
-      clickableRateCardList:{
+      clickableRateCardList: {
         clickableRateCards: clickableRateCardsArray,
       },
       viewQuoteButton: {
@@ -204,19 +205,17 @@ const withPresenter = (
         onButtonClicked: nextClicked,
         disabled: !isFormValid(),
       },
-    }
-  
+    };
+
     return (
       <View
       className={className}
       {...quoteSelectionBlockProps}
       />
     );
-};
+  };
 
   return Presenter;
 };
 
 export default withPresenter;
-
-

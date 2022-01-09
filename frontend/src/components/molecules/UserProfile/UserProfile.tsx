@@ -1,13 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { Dropdown } from 'react-bootstrap';
 import styles from './UserProfile.module.scss';
 
 import UserIcon, { UserIconProps } from '../../atoms/UserIcon';
 import Icon, { IconProps } from '../../atoms/Icon';
 import Button, { ButtonProps } from '../../atoms/Button';
 import Text, { TextProps } from '../../atoms/Text';
-import { Dropdown } from 'react-bootstrap';
 import ContextualMenu, { ContextualMenuProps } from '../ContextualMenu';
 
 export type UserProfileStyleType = 'Light';
@@ -99,14 +99,14 @@ const UserProfile: React.FC<UserProfileProps> = ({
         <Text
           className={styles.text}
           {...text} />
-      )
+      );
       iconView = (
         <Icon
           className={styles.icon}
           {...icon} />
       );
       userProfileView = (
-        <Dropdown 
+        <Dropdown
           className={styles.dropdown}>
           <Dropdown.Toggle as='div'>
             <div className={cx(currentStyle, className)}>
@@ -137,13 +137,13 @@ const UserProfile: React.FC<UserProfileProps> = ({
           {primaryView}
           {secondaryView}
         </div>
-      )
-      
+      );
+
       break;
     default:
       userProfileView = (
         <div className={cx(currentStyle, className)}/>
-      )
+      );
       break;
   }
 
