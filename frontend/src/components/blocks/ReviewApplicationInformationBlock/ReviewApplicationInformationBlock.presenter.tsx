@@ -316,7 +316,7 @@ const withPresenter = (
         lastName,
         email,
         phone,
-        address,
+        street,
         city,
         province,
         postalCode,
@@ -397,7 +397,7 @@ const withPresenter = (
               },
               infoText: {
                 ...defaultQuoteDetailItemProps.infoText,
-                value: address,
+                value: street,
               },
             },
             {
