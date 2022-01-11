@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cx from 'classnames';
 
 import { Dropdown } from 'react-bootstrap';
@@ -46,17 +46,18 @@ const SelectField: React.FC<SelectFieldProps> = ({
   selectId,
 }) => {
   const ref = React.useRef<HTMLDivElement>(null);
+  const [show, setShow] = useState(false);
   return (
-  <Dropdown className={cx(styles.selectField, className)} ref={ref} id={selectId}>
+  <Dropdown className={cx(styles.selectField, className)} ref={ref} id={selectId} show={show}>
     <Text
         className={styles.label}
         {...label} />
     <Dropdown.Toggle>
       <Select
-        className={styles.select}
-        {...select}/>
+        className={styles.select} 
+        {...select} onSelectClicked={() => setShow(!show)}/>
     </Dropdown.Toggle>
-    <Dropdown.Menu align='right' style={{ width: ref.current?.clientWidth }}>
+    <Dropdown.Menu align='right' style={{ width: ref.current?.clientWidth }} onClick={() =>setShow(false)}>
       <ContextualMenu
         className={styles.dropdownMenu}
         {...contextualMenu} />
