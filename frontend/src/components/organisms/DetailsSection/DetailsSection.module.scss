@@ -179,14 +179,14 @@
     }
     background-color: rgb(240, 241, 247);
     border-radius: 4px;
-  
+
     .topContent {
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
       align-items: flex-start;
       > * {
-        margin-left: 0.5rem;
+        margin-left: 0;
       }
       align-self: stretch;
       flex: 0 0 auto;
