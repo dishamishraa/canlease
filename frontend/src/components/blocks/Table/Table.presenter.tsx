@@ -74,7 +74,7 @@ const getCurrentItems = (
     case 'Quote':
       if (quotes) {
         items = quotes.map((quote: Quote): TableItem => ({
-          company: quote.companyName,
+          company: quote.companyName ? quote.companyName : '--',
           contactName: quote.name,
           status: getQuoteStatus(quote, portfolio),
           createdOn: createdOn(quote.quoteExpiryDate).toDateString(),
@@ -93,7 +93,7 @@ const getCurrentItems = (
           const lease = portfolio.leases.find((lease) => lease.quoteId === application.quoteId);
           const vendorName = lease?.vendorName ?? ' - ';
           return {
-            company: companyName,
+            company: companyName ? companyName : '--',
             vendor: vendorName,
             contactName: contactName ?? application.name,
             status: getApplicationStatus(application),
