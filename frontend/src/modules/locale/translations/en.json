@@ -496,8 +496,8 @@
         }
     },
     "new_rate_modal": {
-        "title": "Rate Information",
-        "term": "term",
+        "title": "Rate information",
+        "term": "Term",
         "min": "Min monthly return",
         "max": "Max monthly return",
         "interest_rate": "Interest rate (IR)",
