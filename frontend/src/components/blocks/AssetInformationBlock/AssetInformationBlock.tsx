@@ -11,7 +11,7 @@ import TextField, { TextFieldProps } from '../../molecules/TextField';
 import Button, { ButtonProps } from '../../atoms/Button';
 import { LeaseDetailsSectionProps } from '../../organisms/LeaseDetailsSection';
 import { AssetInfo } from '../../../modules/types';
-import { Quote } from '../../../modules/quote/types';
+import { Quote } from  '../../../modules/quote/types';
 
 export const defaultProps = {
   stepper: {
@@ -110,7 +110,7 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
-      type: 'Text',
+      inputType: 'date',
     },
   } as TextFieldProps,
   nextButton: {

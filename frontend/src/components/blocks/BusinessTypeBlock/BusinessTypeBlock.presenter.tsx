@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BusinessTypeBlockProps, defaultProps } from './BusinessTypeBlock';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
-import { isEmptyString } from '../../../lib/utils';
+import { getTodaysDateString, isEmptyString } from '../../../lib/utils';
 import { Profile } from '../../../modules/profile/types';
 
 export type BusinessTypeBlockPresenterProps = BusinessTypeBlockProps & {
@@ -185,6 +185,8 @@ const withPresenter = (
         },
         textInput: {
           ...defaultProps.dateOfBirthField?.textInput,
+          inputType: "date",
+          max: getTodaysDateString(),
           textPlaceholder: t('application_form.asset_information.date_placeholder'),
           textValue: dob,
           onTextChanged: handleChangeDateOfBirth,

@@ -158,6 +158,7 @@ const withPresenter = (
         textInput: {
           ...defaultProps.operatingSinceTextField.textInput,
           textValue: operatingSince,
+          inputType: "date",
           onTextChanged: handleOperatingSince,
           textPlaceholder: t('business_information.operating_since_placeholder'),
         },

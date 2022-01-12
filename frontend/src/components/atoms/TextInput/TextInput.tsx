@@ -7,7 +7,7 @@ import styles from './TextInput.module.scss';
 import Icon, { IconProps } from '../Icon';
 
 export type TextInputTypeType = 'Text' | 'Password' | 'TextArea';
-export type HTMLInputType = 'text' | 'password' | 'number';
+export type HTMLInputType = 'text' | 'password' | 'number' | 'date' ;
 
 export const defaultProps = {
   type: 'Text' as TextInputTypeType,
@@ -29,6 +29,8 @@ export type TextInputProps = {
   className?: string;
   icon?: IconProps;
   inputType?: HTMLInputType;
+  min?: string;
+  max?: string;
   disabled?: boolean;
 };
 
@@ -40,6 +42,8 @@ const TextInput: React.FC<TextInputProps> = ({
   className,
   icon,
   inputType,
+  min,
+  max,
   disabled,
 }) => {
   const currentStyle = disabled
@@ -53,6 +57,8 @@ const TextInput: React.FC<TextInputProps> = ({
       placeholder={textPlaceholder}
       value={textValue}
       onChange={onTextChanged}
+      min={min}
+      max={max}
       className={styles.text}/>
   );
 

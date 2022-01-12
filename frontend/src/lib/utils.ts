@@ -57,6 +57,10 @@ export const isEmail = (value: string) => {
   return regexEmail.test(value);
 };
 
+export const getTodaysDateString = (): string => {
+  return (new Date()).toISOString().split('T')[0];
+}
+
 export const getQuoteCookie = (): InstantCookie => {
   const quoteCookie = Cookies.get(INSTANT_QUOTE_COOKIE);
   if (quoteCookie) {

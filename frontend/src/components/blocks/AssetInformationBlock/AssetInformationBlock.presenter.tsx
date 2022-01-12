@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { AssetInformationBlockProps, defaultProps } from './AssetInformationBlock';
-import { isEmptyString } from '../../../lib/utils';
-import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
+import { getTodaysDateString, isEmptyString } from '../../../lib/utils';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
+import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { RadioFieldProps } from '../../molecules/RadioField';
 import { DetailsSectionProps } from '../../organisms/DetailsSection';
+import { AssetInformationBlockProps, defaultProps } from './AssetInformationBlock';
 
 export type AssetInformationBlockPresenterProps = AssetInformationBlockProps;
 
@@ -191,16 +191,16 @@ const withPresenter = (
       },
       expectedDeliveryDateTextField: {
         ...defaultProps.expectedDeliveryDateTextField,
+        textInput: {
+          min: getTodaysDateString(),
+          inputType: "date",
+          onTextChanged: handleChangeExpectedDate,
+        },
         label: {
           ...defaultProps.expectedDeliveryDateTextField?.label,
           value: t('application_form.asset_information.expected_date'),
         },
-        textInput: {
-          ...defaultProps.expectedDeliveryDateTextField?.textInput,
-          textPlaceholder: t('application_form.asset_information.date_placeholder'),
-          textValue: expectedDeilivery,
-          onTextChanged: handleChangeExpectedDate,
-        },
+
       },
       nextButton: {
         ...defaultProps.nextButton,
@@ -213,11 +213,11 @@ const withPresenter = (
       },
     };
     return (
-        <View
+      <View
         className={className}
-          {...assetInformationBlockProps}
-          showAssetAgeField={showAssetAgeField}
-        />
+        {...assetInformationBlockProps}
+        showAssetAgeField={showAssetAgeField}
+      />
     );
   };
 

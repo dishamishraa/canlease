@@ -81,7 +81,7 @@ export const defaultProps = {
       type: 'Paragraph2',
     },
     textInput: {
-      type: 'Text',
+      inputType: 'date',
     },
   } as TextFieldProps,
   businessPhoneField: {
