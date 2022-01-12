@@ -6,7 +6,7 @@ import { TableProps, defaultProps } from './Table';
 import { TableItemListProps } from '../../organisms/TableItemList';
 import { TableItemProps } from '../../molecules/TableItem';
 import { defaultProps as tableItemDefaultProps } from '../../molecules/TableItem/TableItem';
-import { isExpiring, isExpired, createdOn } from '../../../lib/utils';
+import { isExpiring, isExpired, createdOn, formatAsCurrency } from '../../../lib/utils';
 import { CreditApplication, Portfolio } from '../../../modules/portfolio/types';
 import { Quote } from '../../../modules/quote/types';
 import { ContentFilter, ContentType, LeaseInfo } from '../../../modules/types';
@@ -18,7 +18,7 @@ type TableItem = {
   status: ContentFilter;
   createdOn: string;
   asset: string;
-  cost: number;
+  cost: string;
   link: string;
   linkState?: LeaseInfo;
   id: string;
@@ -79,7 +79,7 @@ const getCurrentItems = (
           status: getQuoteStatus(quote, portfolio),
           createdOn: createdOn(quote.quoteExpiryDate).toDateString(),
           asset: quote.asset,
-          cost: quote.applicationAmount,
+          cost: formatAsCurrency(quote.applicationAmount),
           link: `/portal/quote/${quote.quoteId}`,
           id: quote.quoteId,
         }));
@@ -99,7 +99,7 @@ const getCurrentItems = (
             status: getApplicationStatus(application),
             createdOn: new Date(application.createdDate).toDateString(),
             asset: application.asset,
-            cost: application.applicationAmount,
+            cost: formatAsCurrency(application.applicationAmount),
             link: generatePath('/portal/application/:applicationDetails', { applicationDetails: application.creditAppNumber }),
             linkState: { application, lease },
             id: application.quoteId,

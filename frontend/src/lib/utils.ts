@@ -101,6 +101,6 @@ const formatter = new Intl.NumberFormat('en-CA', {
   minimumFractionDigits: 2
 });
 
-export const formatAsCurrency = (value: number) => {
+export const formatAsCurrency = (value: number) : string => {
   return formatter.format(value)
 };
