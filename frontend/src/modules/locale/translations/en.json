@@ -328,7 +328,7 @@
         "business_sector": "Business sector",
         "operating_since": "Operating since",
         "business_phone": "Business phone",
-        "website_link": "Website link (optional)"
+        "website_link": "Website link"
     },
     "stepper": "STEP {{current}}/{{total}}",
     "application_page": {

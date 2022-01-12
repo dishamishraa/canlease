@@ -7,6 +7,7 @@ import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/Quo
 import { Profile } from '../../../modules/profile/types';
 import { convertMonth, getStretchMonth } from '../../../lib/utils';
 import { ApplicationBusinessInfoVendor, CreateApplicationState } from '../../../modules/types';
+import { NOT_AVAILABLE } from '../../../lib/constants';
 
 export type ReviewApplicationInformationBlockPresenterProps =
   ReviewApplicationInformationBlockProps & {
@@ -231,7 +232,7 @@ const withPresenter = (
               },
               infoText: {
                 ...defaultQuoteDetailItemProps.infoText,
-                value: businessSector,
+                value: businessSector ? businessSector : NOT_AVAILABLE,
               },
             },
             {
@@ -261,7 +262,7 @@ const withPresenter = (
               },
               infoText: {
                 ...defaultQuoteDetailItemProps.infoText,
-                value: website,
+                value: website ? website : NOT_AVAILABLE,
               },
             },
             {
@@ -468,7 +469,7 @@ const withPresenter = (
               },
               infoText: {
                 ...defaultQuoteDetailItemProps.infoText,
-                value: businessSector,
+                value: businessSector ? businessSector : NOT_AVAILABLE,
               },
             },
             {
@@ -498,7 +499,7 @@ const withPresenter = (
               },
               infoText: {
                 ...defaultQuoteDetailItemProps.infoText,
-                value: website,
+                value: website ? website : NOT_AVAILABLE,
               },
             },
           ],

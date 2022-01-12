@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Profile } from '../../../modules/profile/types';
 import { QuoteDetailItemProps, defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { ProfileBlockProps, defaultProps } from './ProfileBlock';
+import { NOT_AVAILABLE } from '../../../lib/constants';
 
 export type ProfileBlockPresenterProps = ProfileBlockProps & {
   profile: Profile | null;
@@ -82,7 +83,7 @@ const withPresenter = (
         },
         infoText: {
           ...defaultQuoteDetailItemProps.infoText,
-          value: item,
+          value: item ? item : NOT_AVAILABLE,
         },
       }));
     }
