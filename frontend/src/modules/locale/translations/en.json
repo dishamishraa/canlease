@@ -3,11 +3,11 @@
     "get_quote_block": {
         "header": "Get a quote",
         "name": {
-            "label": "Equipment Name",
+            "label": "Equipment name",
             "placeholder": "e.g. Macbook Pro 13 inch"
         },
         "cost": {
-            "label": "Equipment Cost (before tax)",
+            "label": "Equipment cost (before tax)",
             "placeholder": "CAD"
         },
         "fees": "Fees",
