@@ -3,12 +3,13 @@ import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { EndUserDashboardPageProps, defaultProps } from './EndUserDashboardPage';
 import { DashboardCardProps, defaultProps as dashBoardCardProps } from '../../molecules/DashboardCard/DashboardCard';
-import { isExpiring, isExpired, createdOn } from '../../../lib/utils';
+import { isExpiring, isExpired, createdOn, formatAsCurrency } from '../../../lib/utils';
 import CreateQuote from '../../../resources/icons/CreateQuote.svg';
 import { Portfolio } from '../../../modules/portfolio/types';
 import { Profile } from '../../../modules/profile/types';
 import { Quote } from '../../../modules/quote/types';
 import { ContentFilter } from '../../../modules/types';
+
 
 export type EndUserDashboardPagePresenterProps = EndUserDashboardPageProps & {
   customerQuotes?: Quote[] | null;
@@ -75,7 +76,7 @@ const withPresenter = (
           },
           costText: {
             ...dashBoardCardProps.costText,
-            value: applicationAmount,
+            value: formatAsCurrency(applicationAmount),
           },
           vendorNameText: {
             ...dashBoardCardProps.vendorNameText,

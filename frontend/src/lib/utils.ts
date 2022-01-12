@@ -2,6 +2,7 @@ import Cookies from 'js-cookie';
 import { INSTANT_QUOTE_COOKIE } from './config';
 import { AfterAuthAction } from '../modules/types';
 
+
 export const isEmptyString = (value?: string) => (value ? value.trim().length === 0 : true);
 
 export const isObject = (value: any) => typeof value === 'object' && !Array.isArray(value) && value !== null;
@@ -88,4 +89,14 @@ type InstantCookie = {
   quoteId?: string;
   expires?: string;
   action?: AfterAuthAction;
+};
+
+const formatter = new Intl.NumberFormat('en-CA', {
+  style: 'currency',
+  currency: 'CAD',
+  minimumFractionDigits: 2
+});
+
+export const formatAsCurrency = (value: number) => {
+  return formatter.format(value)
 };
