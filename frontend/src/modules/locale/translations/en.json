@@ -244,7 +244,7 @@
             "reset": "A password reset link has been sent to your email."
         },
         "question": "Don’t see the email?",
-        "resolution": "Check your spam folder or click <1>here</1> to resend the verification link."
+        "resolution": "Check your spam folder or <1>click here</1> to resend the verification link."
     },
     "forgot_password":{
         "header": "Forgot password",

@@ -5,6 +5,7 @@ import { useHistory, useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { defaultProps, DialogBlockProps } from './DialogBlock';
 import EmailImage from '../../../resources/images/email_verification.png';
+import EmailCheckMark from '../../../resources/images/email_check_mark.png';
 import DefaultImage from '../../../resources/images/Image.png';
 import { APIResponse } from '../../../lib/api/types';
 import { CreateApplicationState } from '../../../modules/types';
@@ -45,10 +46,10 @@ const withPresenter = (
       questionText: t('email_verification.question'),
       resolutionText: (
         <Trans i18nKey="email_verification.resolution" t={t}>
-          Check your spam folder or click{' '}
+          Check your spam folder or
           <Link to={history.location} onClick={() => handleResend()}>
-            here
-          </Link>{' '}
+            click here
+          </Link>
           to resend the verification link.
         </Trans>
       ),
@@ -63,7 +64,7 @@ const withPresenter = (
         defaultDisplay.description = t('email_verification.description.default');
         break;
       case 'ResetLink':
-        imageDisplay = EmailImage;
+        imageDisplay = EmailCheckMark;
         defaultDisplay.header = t('email_verification.header.reset');
         defaultDisplay.description = t('email_verification.description.reset');
         break;
