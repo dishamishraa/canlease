@@ -24,6 +24,7 @@
     "contact_info": {
         "header_your": "Your information",
         "header_customer": "Customer information",
+        "header_contact": "Contact information",
         "name": "Name",
         "business_email": "Business email",
         "company_name": "Company name",

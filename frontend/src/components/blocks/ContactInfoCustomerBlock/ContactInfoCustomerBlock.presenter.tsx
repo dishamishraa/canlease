@@ -53,7 +53,7 @@ const withPresenter = (
       ...props,
       blockHeading: {
         ...defaultProps.blockHeading,
-        value: showAsCustomer ? t('contact_info.header_customer') : t('contact_info.header_your'),
+        value: t('contact_info.header_contact')
       },
       nameTextField: {
         ...defaultProps.nameTextField,
