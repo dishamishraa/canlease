@@ -11,6 +11,9 @@ export type Quote = {
   quoteOptions: QuoteOption[];
   quoteExpiryDate: string;
   leaseType: LeaseType;
+  vendorName: string;
+  vendorEmail: string;
+  vendorBusinessName: string;
 };
 
 export type QuoteOption = {
