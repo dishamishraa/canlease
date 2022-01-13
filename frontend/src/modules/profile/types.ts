@@ -22,7 +22,6 @@ export type Profile = {
   rateCardId: string;
   userType: UserType;
   operatingName: string;
-  operatingSinceDate: string;
   businessSector: string;
   businessPhone: string;
 };
@@ -44,7 +43,6 @@ export type CreateProfilePayload = {
   phone: string;
   title: string;
   operatingName: string;
-  operatingSinceDate: string;
   businessSector: string;
   businessPhone: string;
   website: string;
@@ -64,7 +62,6 @@ export type UpdateProfilePayload = {
   phone?: string;
   title?: string;
   operatingName?: string;
-  operatingSinceDate?: string;
   businessSector?: string;
   businessPhone?: string;
   website?: string;

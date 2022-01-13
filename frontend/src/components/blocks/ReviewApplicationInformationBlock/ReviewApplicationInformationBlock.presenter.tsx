@@ -170,7 +170,6 @@ const withPresenter = (
         companyName,
         dob,
         operatingName,
-        operatingSinceDate,
         sin,
         website,
       } = businessInfo as ApplicationBusinessInfoVendor;
@@ -233,16 +232,6 @@ const withPresenter = (
               infoText: {
                 ...defaultQuoteDetailItemProps.infoText,
                 value: businessSector ? businessSector : NOT_AVAILABLE,
-              },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('text_field_label.operating_since'),
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: operatingSinceDate,
               },
             },
             {
@@ -324,12 +313,9 @@ const withPresenter = (
         companyName,
         operatingName,
         businessSector,
-        operatingSinceDate,
         businessPhone,
         website,
       } = profile;
-
-      const operatingSince = new Date(operatingSinceDate);
 
       personalDetails = {
         text: {
@@ -470,16 +456,6 @@ const withPresenter = (
               infoText: {
                 ...defaultQuoteDetailItemProps.infoText,
                 value: businessSector ? businessSector : NOT_AVAILABLE,
-              },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('text_field_label.operating_since'),
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: operatingSince.toDateString(),
               },
             },
             {

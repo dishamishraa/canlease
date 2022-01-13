@@ -5,7 +5,6 @@ const mockCreateApplication: CreateApplication = {
   operatingName: 'string',
   businessName: 'string',
   businessType: 'corporation',
-  yearsInBusiness: 0,
   contactName: 'string',
   contactEmail: 'string',
   contactPhone: 'string',

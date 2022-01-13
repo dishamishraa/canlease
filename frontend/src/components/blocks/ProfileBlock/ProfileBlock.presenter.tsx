@@ -35,7 +35,6 @@ const withPresenter = (
         companyName,
         operatingName,
         businessSector,
-        operatingSinceDate,
         businessPhone,
         website,
       } = profile;
@@ -66,12 +65,10 @@ const withPresenter = (
         },
       }));
 
-      const operatingSince = new Date(operatingSinceDate).toDateString();
       const businessInfo = [
         companyName,
         operatingName,
         businessSector,
-        operatingSince,
         businessPhone,
         website,
       ];

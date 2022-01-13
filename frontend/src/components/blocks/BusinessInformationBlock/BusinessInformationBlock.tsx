@@ -71,19 +71,6 @@ export const defaultProps = {
       },
     },
   } as SelectFieldProps,
-  operatingSinceTextField: {
-    state: 'Default',
-    type: 'Text',
-    label: {
-      style: 'Basic800',
-      align: 'Left',
-      size: 'Medium',
-      type: 'Paragraph2',
-    },
-    textInput: {
-      inputType: 'date',
-    },
-  } as TextFieldProps,
   businessPhoneField: {
     state: 'Default',
     type: 'Text',
@@ -130,7 +117,6 @@ export type BusinessInformationBlockProps = {
   fullLegalNameTextField?: TextFieldProps;
   operatingNameTextField?: TextFieldProps;
   businessSectorSelectField?: SelectFieldProps;
-  operatingSinceTextField?: TextFieldProps;
   businessPhoneField?: TextFieldProps;
   websiteLinkTextField?: TextFieldProps;
   nextButton?: ButtonProps;
@@ -145,7 +131,6 @@ const BusinessInformationBlock: React.FC<BusinessInformationBlockProps> = ({
   fullLegalNameTextField,
   operatingNameTextField,
   businessSectorSelectField,
-  operatingSinceTextField,
   businessPhoneField,
   websiteLinkTextField,
   nextButton,
@@ -171,9 +156,6 @@ const BusinessInformationBlock: React.FC<BusinessInformationBlockProps> = ({
           <SelectField
             className={styles.businessSectorSelectField}
             {...businessSectorSelectField} />
-          <TextField
-            className={styles.operatingSinceTextField}
-            {...operatingSinceTextField} />
           <TextField
             className={styles.businessPhoneField}
             {...businessPhoneField} />

@@ -18,7 +18,6 @@ const withPresenter = (
     const { t } = useTranslation();
     const [fullLegalName, setFullLegalName] = useState<string>();
     const [operatingName, setOperatingName] = useState<string>();
-    const [operatingSince, setOperatingSince] = useState<string>();
     const [businessSector, setBusinessSector] = useState<string>();
     const [businessPhone, setBusinessPhone] = useState<string>();
     const [website, setWebsite] = useState<string>();
@@ -27,7 +26,6 @@ const withPresenter = (
       if (businessInfo) {
         setFullLegalName(businessInfo.companyName);
         setOperatingName(businessInfo.operatingName);
-        setOperatingSince(businessInfo.operatingSinceDate);
         setBusinessSector(businessInfo.businessSector);
         setBusinessPhone(businessInfo.businessPhone);
         setWebsite(businessInfo.website);
@@ -36,7 +34,6 @@ const withPresenter = (
 
     const formInvalid = isEmptyString(fullLegalName)
       || isEmptyString(operatingName)
-      || isEmptyString(operatingSince)
       || isEmptyString(businessSector)
       || isEmptyString(businessPhone);
 
@@ -46,10 +43,6 @@ const withPresenter = (
 
     const handleOperatingName = ({ target: { value } }) => {
       setOperatingName(value);
-    };
-
-    const handleOperatingSince = ({ target: { value } }) => {
-      setOperatingSince(value);
     };
 
     const handleBusinessPhone = ({ target: { value } }) => {
@@ -64,14 +57,12 @@ const withPresenter = (
       if (
         handleCreateProfile
         && operatingName
-        && operatingSince
         && businessSector
         && businessPhone
         && fullLegalName
       ) {
         await handleCreateProfile({
           operatingName,
-          operatingSinceDate: operatingSince,
           businessSector,
           website: website || '',
           businessPhone,
@@ -148,20 +139,6 @@ const withPresenter = (
           },
         },
         selectId: t('text_field_label.business_sector'),
-      },
-      operatingSinceTextField: {
-        ...defaultProps.operatingSinceTextField,
-        label: {
-          ...defaultProps.operatingSinceTextField.label,
-          value: t('text_field_label.operating_since'),
-        },
-        textInput: {
-          ...defaultProps.operatingSinceTextField.textInput,
-          textValue: operatingSince,
-          inputType: "date",
-          onTextChanged: handleOperatingSince,
-          textPlaceholder: t('business_information.operating_since_placeholder'),
-        },
       },
       businessPhoneField: {
         ...defaultProps.businessPhoneField,

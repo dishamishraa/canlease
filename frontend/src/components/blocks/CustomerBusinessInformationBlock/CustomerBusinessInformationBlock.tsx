@@ -72,19 +72,6 @@ export const defaultProps = {
       },
     },
   } as SelectFieldProps,
-  operatingSinceTextField: {
-    state: 'Default',
-    type: 'Text',
-    label: {
-      style: 'Basic800',
-      align: 'Left',
-      size: 'Medium',
-      type: 'Paragraph2',
-    },
-    textInput: {
-      type: 'Text',
-    },
-  } as TextFieldProps,
   businessPhoneField: {
     state: 'Default',
     type: 'Text',
@@ -218,7 +205,6 @@ export type CustomerBusinessInformationBlockProps = {
   fullLegalNameTextField?: TextFieldProps;
   operatingNameTextField?: TextFieldProps;
   businessSectorSelectField?: SelectFieldProps;
-  operatingSinceTextField?: TextFieldProps;
   businessPhoneField?: TextFieldProps;
   websiteLinkTextField?: TextFieldProps;
   businessTypeRadioField?: RadioFieldProps;
@@ -242,7 +228,6 @@ const CustomerBusinessInformationBlock: React.FC<CustomerBusinessInformationBloc
   fullLegalNameTextField,
   operatingNameTextField,
   businessSectorSelectField,
-  operatingSinceTextField,
   businessPhoneField,
   websiteLinkTextField,
   businessTypeRadioField,
@@ -262,9 +247,6 @@ const CustomerBusinessInformationBlock: React.FC<CustomerBusinessInformationBloc
          <TextField
             className={styles.businessPhoneField}
             {...sinField} />
-          <TextField
-            className={styles.operatingSinceTextField}
-            {...dateOfBirthField} />
           <RadioField
             className={styles.bankruptcyRadioField}
             {...bankruptcyRadioField} />
@@ -298,9 +280,6 @@ const CustomerBusinessInformationBlock: React.FC<CustomerBusinessInformationBloc
           <SelectField
             className={styles.businessSectorSelectField}
             {...businessSectorSelectField} />
-          <TextField
-            className={styles.operatingSinceTextField}
-            {...operatingSinceTextField} />
           <TextField
             className={styles.businessPhoneField}
             {...businessPhoneField} />

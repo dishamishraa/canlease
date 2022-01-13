@@ -135,25 +135,7 @@
       }
     }
   }
-
-  .operatingSinceTextField {
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    > * {
-      margin-top: 0.25rem;
-    }
-    align-self: stretch;
-    flex: 0 0 auto;
-    @media (max-width: 575px) {
-      &:nth-child(1) {
-        margin-top: 0;
-      }
-    }
-  }
-
+  
   .businessPhoneField {
     overflow: hidden;
     display: flex;
@@ -418,24 +400,6 @@
       }
     }
   
-    .operatingSinceTextField {
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      > * {
-        margin-top: 0.25rem;
-      }
-      align-self: stretch;
-      flex: 0 0 auto;
-      @media (max-width: 767px) {
-        &:nth-child(1) {
-          margin-top: 0;
-        }
-      }
-    }
-  
     .businessPhoneField {
       overflow: hidden;
       display: flex;
@@ -673,22 +637,6 @@
     }
   
     .businessSectorSelectField {
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      > * {
-        margin-top: 0.25rem;
-      }
-      align-self: stretch;
-      flex: 0 0 auto;
-      &:nth-child(1) {
-        margin-top: 0;
-      }
-    }
-  
-    .operatingSinceTextField {
       overflow: hidden;
       display: flex;
       flex-direction: column;

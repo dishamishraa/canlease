@@ -14,7 +14,6 @@ const mockCreateProfile: CreateProfile = {
   phone: 'string',
   title: 'string',
   operatingName: 'string',
-  operatingSinceDate: '2021-06-24T13:21:04.971Z',
   businessSector: 'string',
   businessPhone: 'string',
   website: 'string',

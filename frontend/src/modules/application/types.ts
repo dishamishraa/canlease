@@ -3,7 +3,6 @@ export type CreateApplicationPayload = {
   operatingName: string;
   businessName: string;
   businessType: 'Incorporated' | 'Proprietorship';
-  yearsInBusiness: number;
   contactName: string;
   contactEmail: string;
   contactPhone: string;

@@ -76,7 +76,6 @@ export type BusinessInformation = {
   companyName: string;
   operatingName: string;
   businessSector: string;
-  operatingSinceDate: string;
   businessPhone: string;
   website: string;
 };
@@ -123,7 +122,6 @@ export type ApplicationBusinessInfoVendor = BaseApplicationBusinessInfo & {
   companyName: string;
   operatingName: string;
   businessSector: string;
-  operatingSinceDate: string;
   businessPhone: string;
   website: string;
 };

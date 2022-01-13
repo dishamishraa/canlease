@@ -164,9 +164,6 @@ const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
          <TextField
             className={styles.businessPhoneField}
             {...sinField} />
-          <TextField
-            className={styles.operatingSinceTextField}
-            {...dateOfBirthField} />
           <RadioField
             className={styles.bankruptcyRadioField}
             {...bankruptcyRadioField} />

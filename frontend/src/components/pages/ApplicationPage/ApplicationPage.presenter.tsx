@@ -167,7 +167,6 @@ const withPresenter = (
           street,
           city,
           companyName,
-          operatingSinceDate,
           email,
           phone,
           website,
@@ -181,19 +180,11 @@ const withPresenter = (
         } = businessInfo;
         const { applicationAmount, asset, quoteId } = quoteDetails;
 
-        const checkYearsInBusiness = (operatingSinceDate: string) => {
-          const date = new Date(operatingSinceDate);
-          const diffTime = Date.now() - date.getTime();
-          const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365);
-          return diffYears;
-        };
-
         let applicationPayload: CreateApplicationPayload = {
           lesseePortalId: portalId,
           operatingName,
           businessName: companyName,
           businessType,
-          yearsInBusiness: checkYearsInBusiness(operatingSinceDate),
           contactName: name,
           contactEmail: email,
           contactPhone: phone,
@@ -223,7 +214,7 @@ const withPresenter = (
         if (useCustomerFlow && personalInfo) {
           const {
             bankruptcy, bankruptcyDetails, businessType, companyName, dob,
-            operatingName, operatingSinceDate, sin, website,
+            operatingName, sin, website,
           } = businessInfo as ApplicationBusinessInfoVendor;
           const {
             address, city, email, firstName, phone, postalCode, province,
@@ -233,7 +224,6 @@ const withPresenter = (
             operatingName,
             businessName: companyName,
             businessType,
-            yearsInBusiness: checkYearsInBusiness(operatingSinceDate),
             contactName: firstName,
             contactEmail: email,
             contactPhone: phone,

@@ -33,7 +33,6 @@ export type CreateApplication = {
   operatingName: string;
   businessName: string;
   businessType: BusinessType;
-  yearsInBusiness: number;
   contactName: string;
   contactEmail: string;
   contactPhone: string;
@@ -168,7 +167,6 @@ export type Profile = {
   rateCardId: string;
   userType: UserType;
   operatingName: string;
-  operatingSinceDate: string;
   businessSector: string;
   businessPhone: string;
 };
@@ -187,7 +185,6 @@ export type CreateProfile = {
   phone: string;
   title: string;
   operatingName: string;
-  operatingSinceDate: string;
   businessSector: string;
   businessPhone: string;
   website: string;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useTranslation } from 'react-i18next';
 import { isEmptyString } from '../../../lib/utils';
 import { Profile } from '../../../modules/profile/types';
@@ -32,7 +32,6 @@ const withPresenter = (
 
     const [fullLegalName, setFullLegalName] = useState<string>();
     const [operatingName, setOperatingName] = useState<string>();
-    const [operatingSince, setOperatingSince] = useState<string>();
     const [businessSector, setBusinessSector] = useState<string>();
     const [businessPhone, setBusinessPhone] = useState<string>();
     const [website, setWebsite] = useState<string>();
@@ -42,20 +41,6 @@ const withPresenter = (
     const [dob, setDob] = useState<string>();
     const [bankruptcy, setBankruptcy] = useState<boolean>();
     const [bankruptcyDetails, setBankruptcyDetails] = useState<string>();
-
-    const checkShowConditionalQuestions = useCallback(() => {
-      if (!operatingSince) {
-        return false;
-      }
-
-      const date = new Date(operatingSince);
-      const diffTime = Date.now() - date.getTime();
-      const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365);
-      if (diffYears < 3) {
-        return true;
-      }
-      return false;
-    }, [operatingSince]);
 
     useEffect(() => {
       if (businessInfo) {
@@ -68,17 +53,16 @@ const withPresenter = (
         if (businessInfo.type === 'vendor') {
           setFullLegalName(businessInfo.companyName);
           setOperatingName(businessInfo.operatingName);
-          setOperatingSince(businessInfo.operatingSinceDate);
           setBusinessSector(businessInfo.businessSector);
           setBusinessPhone(businessInfo.businessPhone);
           setWebsite(businessInfo.website);
         }
 
-        if (businessInfo.businessType === 'Proprietorship' || checkShowConditionalQuestions()) {
+        if (businessInfo.businessType === 'Proprietorship') {
           setShowBusinessQuestions(true);
         }
       }
-    }, [businessInfo, checkShowConditionalQuestions]);
+    }, [businessInfo]);
 
     const handleFullLegalName = ({ target: { value } }) => {
       setFullLegalName(value);
@@ -86,10 +70,6 @@ const withPresenter = (
 
     const handleOperatingName = ({ target: { value } }) => {
       setOperatingName(value);
-    };
-
-    const handleOperatingSince = ({ target: { value } }) => {
-      setOperatingSince(value);
     };
 
     const handleBusinessPhone = ({ target: { value } }) => {
@@ -105,7 +85,6 @@ const withPresenter = (
             && businessType
             && fullLegalName
             && operatingName
-            && operatingSince
             && businessSector
             && businessPhone
       ) {
@@ -118,7 +97,6 @@ const withPresenter = (
           bankruptcyDetails: bankruptcyDetails || '',
           companyName: fullLegalName,
           operatingName,
-          operatingSinceDate: operatingSince,
           businessSector,
           businessPhone,
           website: website || '',
@@ -135,7 +113,7 @@ const withPresenter = (
     };
 
     const handleBusinessTypeClick = (option: 'Proprietorship' | 'Incorporated') => () => {
-      if ((checkShowConditionalQuestions() || option === 'Proprietorship')) {
+      if ((option === 'Proprietorship')) {
         setShowBusinessQuestions(true);
       } else {
         setShowBusinessQuestions(false);
@@ -151,8 +129,7 @@ const withPresenter = (
     };
 
     const isFormValid = () => {
-      if (!checkShowConditionalQuestions()
-            && businessType === 'Incorporated') {
+      if (businessType === 'Incorporated') {
         return true;
       } if (!isEmptyString(businessType)
             && !isEmptyString(sin)
@@ -233,19 +210,6 @@ const withPresenter = (
           },
         },
         selectId: t('text_field_label.business_sector'),
-      },
-      operatingSinceTextField: {
-        ...defaultProps.operatingSinceTextField,
-        label: {
-          ...defaultProps.operatingSinceTextField.label,
-          value: t('text_field_label.operating_since'),
-        },
-        textInput: {
-          ...defaultProps.operatingSinceTextField.textInput,
-          textValue: operatingSince,
-          onTextChanged: handleOperatingSince,
-          textPlaceholder: t('business_information.operating_since_placeholder'),
-        },
       },
       businessPhoneField: {
         ...defaultProps.businessPhoneField,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useTranslation } from 'react-i18next';
 import { BusinessTypeBlockProps, defaultProps } from './BusinessTypeBlock';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
@@ -15,7 +15,6 @@ const withPresenter = (
   const Presenter: React.FC<BusinessTypeBlockPresenterProps> = (props) => {
     const {
       className,
-      profile,
       businessInfo,
       setBusinessInfo,
       stepperCurrentValue,
@@ -30,20 +29,6 @@ const withPresenter = (
     const [bankruptcy, setBankruptcy] = useState<boolean>();
     const [bankruptcyDetails, setBankruptcyDetails] = useState<string>();
 
-    const checkShowConditionalQuestions = useCallback(() => {
-      if (!profile) {
-        return false;
-      }
-
-      const date = new Date(profile.operatingSinceDate);
-      const diffTime = Date.now() - date.getTime();
-      const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365);
-      if (diffYears < 3) {
-        return true;
-      }
-      return false;
-    }, [profile]);
-
     useEffect(() => {
       if (businessInfo) {
         setBusinessType(businessInfo.businessType);
@@ -52,11 +37,11 @@ const withPresenter = (
         setBankruptcy(businessInfo.bankruptcy);
         setBankruptcyDetails(businessInfo.bankruptcyDetails);
 
-        if (businessInfo.businessType === 'Proprietorship' || checkShowConditionalQuestions()) {
+        if (businessInfo.businessType === 'Proprietorship') {
           setShowBusinessQuestions(true);
         }
       }
-    }, [businessInfo, checkShowConditionalQuestions]);
+    }, [businessInfo]);
 
     const handleClickNext = () => {
       if (setBusinessInfo && businessType) {
@@ -80,7 +65,7 @@ const withPresenter = (
     };
 
     const handleBusinessTypeClick = (option: 'Proprietorship' | 'Incorporated') => () => {
-      if ((checkShowConditionalQuestions() || option === 'Proprietorship')) {
+      if (option === 'Proprietorship') {
         setShowBusinessQuestions(true);
       } else {
         setShowBusinessQuestions(false);
@@ -96,8 +81,7 @@ const withPresenter = (
     };
 
     const isFormValid = () => {
-      if (!checkShowConditionalQuestions()
-            && businessType === 'Incorporated') {
+      if (businessType === 'Incorporated') {
         return true;
       } if (!isEmptyString(businessType)
             && !isEmptyString(sin)
