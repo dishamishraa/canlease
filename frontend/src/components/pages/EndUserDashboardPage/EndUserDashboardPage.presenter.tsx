@@ -61,7 +61,7 @@ const withPresenter = (
       });
 
       customerQuotes.every((quote, index) => {
-        const { applicationAmount, quoteId, asset } = quote;
+        const { applicationAmount, quoteId, asset, vendorName } = quote;
         const status: ContentFilter = checkQuoteStatus(quote);
         const quotesBlockProps: DashboardCardProps = {
           ...dashBoardCardProps,
@@ -80,7 +80,7 @@ const withPresenter = (
           },
           vendorNameText: {
             ...dashBoardCardProps.vendorNameText,
-            value: t('customer_dashboard.vendor_name'),
+            value: vendorName ? vendorName : 'No vendor',
           },
           numberText: {
             ...dashBoardCardProps.numberText,
