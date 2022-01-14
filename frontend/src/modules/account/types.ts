@@ -26,3 +26,8 @@ export type UpdateNamePayload = {
   firstName: string;
   lastName: string;
 };
+
+export type VerifyAccountPayload = {
+  id: string;
+  token: string;
+};

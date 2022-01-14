@@ -24,7 +24,7 @@ const withPresenter = (
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
-    const { state } = useLocation<{message: string}>();
+    const { state } = useLocation<{ message: string }>();
     const { message } = state || {};
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -32,11 +32,19 @@ const withPresenter = (
     const [toastMessage, setToastMessage] = useState<string>('');
     const formInvalid = (isEmptyString(email) || isEmptyString(password));
 
+    const query = new URLSearchParams(state);
+    const verifyId = query.get('id');
+    const verifyToken = query.get('token');
+
     useEffect(() => {
-      if (state && message) {
+      const verifyAccount = async (id: string, token: string) => {
+        await verifyAccount(id, token);
         setToastMessage(message);
       }
-    }, [state, message]);
+      if (verifyId && verifyToken) {
+        verifyAccount(verifyId, verifyToken);
+      }
+    }, [verifyId, verifyToken])
 
     const handleEmail = ({ target: { value } }) => {
       setEmail(value);
@@ -155,10 +163,10 @@ const withPresenter = (
     };
 
     return (
-            <View
-            {...props}
-            {...signInProps}
-            />
+      <View
+        {...props}
+        {...signInProps}
+      />
     );
   };
 

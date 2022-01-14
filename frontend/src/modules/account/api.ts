@@ -2,7 +2,7 @@ import axios, { isAxiosError } from '../../lib/api/axios';
 import { ApiError } from '../../lib/api/types';
 import { BFF_URL } from '../../lib/config';
 import {
-  AccountResponse, SignInPayload, SignUpPayload, UpdateNamePayload, UpdatePasswordPayload,
+  AccountResponse, SignInPayload, SignUpPayload, UpdateNamePayload, UpdatePasswordPayload, VerifyAccountPayload,
 } from './types';
 
 export const signUp = async (payload: SignUpPayload): Promise<AccountResponse> => {
@@ -20,6 +20,24 @@ export const signUp = async (payload: SignUpPayload): Promise<AccountResponse> =
     throw error;
   }
 };
+
+export const verifyAccount = async (payload: VerifyAccountPayload): Promise<void> => {
+  const { id, token } = payload;
+  try {
+    await axios.post(`${BFF_URL}/accounts/${id}/actions/verifyAccount`, {
+      token
+    }, { withCredentials: true });
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new ApiError({
+        code: error.response.status,
+        type: error.response.statusText,
+        message: error.message,
+      });
+    }
+    throw error;
+  }
+}
 
 export const resendVerifyAccount = async (email: string): Promise<void> => {
   try {
