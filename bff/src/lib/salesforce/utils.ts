@@ -19,7 +19,7 @@ const CreateApplicationSchema = Joi.object({
   contactName: Joi.string().required(),
   contactEmail: Joi.string().required(),
   contactPhone: Joi.string().required(),
-  contactWebsite: Joi.string().required(),
+  contactWebsite: Joi.string().allow(null),
   street: Joi.string().required(),
   city: Joi.string().required(),
   province: Joi.string().required(),
@@ -30,16 +30,16 @@ const CreateApplicationSchema = Joi.object({
   condition: Joi.string().valid(...VALID_CONDITION_TYPES).required(),
   ageOfAsset: Joi.number().required(),
   businessOwnerName: Joi.string().required(),
-  businessOwnerStreet: Joi.string().required(),
-  businessOwnerCity: Joi.string().required(),
+  businessOwnerStreet: Joi.string().allow(''),
+  businessOwnerCity: Joi.string().allow(''),
   bankruptcy: Joi.bool().required(),
   creditCheckConsent: Joi.bool().required(),
-  sin: Joi.string().required(),
-  dob: Joi.string().required(),
+  sin: Joi.string().allow(''),
+  dob: Joi.string().allow(''),
   vendorPortalId: Joi.string().optional(),
   quoteId: Joi.string().required(),
   expectedDeliveryDate: Joi.string().required(),
-  bankruptcyDetails: Joi.string().required(),
+  bankruptcyDetails: Joi.string().allow(''),
 });
 
 const CreateProfileSchema = Joi.object({
@@ -73,9 +73,9 @@ const CreateQuoteSchema = Joi.object({
   contactName: Joi.string().required(),
   contactEmail: Joi.string().required(),
   contactBusinessName: Joi.string().required(),
-  vendorName: Joi.string(),
-  vendorEmail: Joi.string(),
-  vendorBusinessName: Joi.string(),
+  vendorName: Joi.string().optional(),
+  vendorEmail: Joi.string().optional(),
+  vendorBusinessName: Joi.string().optional(),
 });
 
 export const validateCreateApplication = (value: unknown): value is CreateApplication => {

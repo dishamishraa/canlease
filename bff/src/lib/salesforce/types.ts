@@ -7,14 +7,14 @@ export const VALID_USER_TYPES = [
 export type UserType = typeof VALID_USER_TYPES[number];
 
 export const VALID_BUSINESS_TYPES = [
-  'corporation',
-  'sole proprietorship',
+  'Incorporated',
+  'Proprietorship',
 ] as const;
 export type BusinessType = typeof VALID_BUSINESS_TYPES[number];
 
 export const VALID_CONDITION_TYPES = [
-  'used',
-  'new',
+  'Used',
+  'New',
 ] as const;
 export type ConditionType = typeof VALID_CONDITION_TYPES[number];
 
@@ -36,7 +36,7 @@ export type CreateApplication = {
   contactName: string;
   contactEmail: string;
   contactPhone: string;
-  contactWebsite: string;
+  contactWebsite?: string;
   street: string;
   city: string;
   province: string;
