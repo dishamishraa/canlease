@@ -501,7 +501,8 @@
         "interest_rate": "Interest rate (IR)",
         "ten": "$10 @ end IR",
         "primary": "Save",
-        "secondary": "Cancel"
+        "secondary": "Cancel",
+        "error_message": "Please enter a valid value"
     },
     "delete_rate_entry": {
         "heading": "Are you sure?",

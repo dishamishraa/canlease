@@ -45,6 +45,14 @@ export type RateCardDetailsPagePresenterProps = RateCardDetailsPageProps & {
   rateCardId?: number;
 };
 
+type FormState = {
+  termError: string,
+  minMonthlyReturnError: string,
+  maxMonthlyReturnError: string,
+  interestRateError: string,
+  tenAtEndIRError: string
+};
+
 const withPresenter = (
   View: React.FC<RateCardDetailsPageProps>,
 ) => {
@@ -71,11 +79,21 @@ const withPresenter = (
     const [maxMonthlyReturn, setMaxMonthlyReturn] = useState<number | null>();
     const [interestRate, setInterestRate] = useState<number | null>();
     const [tenAtEndIR, setTenAtEndIR] = useState<number | null>();
+    const [formState, setFormState] = useState<FormState>();
 
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [deleteRateId, setDeleteRateId] = useState<number>();
     const [rateCardModalOpen, setRateCardModalOpen] = useState(false);
     const [newRateCardName, setNewRateCardName] = useState(rateCardName);
+
+    let currFormState: FormState = {
+      termError: "",
+      minMonthlyReturnError: "",
+      maxMonthlyReturnError: "",
+      interestRateError: "",
+      tenAtEndIRError: ""
+    };
+
 
     const handleChangeTerm = ({ target: { value } }) => {
       setTerm(value);
@@ -105,6 +123,7 @@ const withPresenter = (
       setInterestRate(null);
       setTenAtEndIR(null);
       setCurrRate(null);
+      setFormState(undefined);
     };
 
     const handleOpenAddRateModal = () => {
@@ -125,37 +144,78 @@ const withPresenter = (
       setShowRateModal(true);
     };
 
+    const isTermValid = (term: number): boolean => {
+      return (term > 0 && term <= 60 && term % 12 === 0);
+    }
+
+    const isMonthlyReturnValid = (monthlyReturn: number): boolean => {
+      return (monthlyReturn > 0);
+    }
+
+    const isInterestRateValid = (interestRate: number): boolean => {
+      return (interestRate >= 0 && interestRate <= 100);
+    }
+
     const isFormValid = !isEmpty(term) && !isEmpty(minMonthlyReturn)
             && !isEmpty(maxMonthlyReturn) && !isEmpty(interestRate)
-            && !isEmpty(tenAtEndIR);
+            && !isEmpty(tenAtEndIR); 
 
     const handleSaveRate = async () => {
       if (term && minMonthlyReturn && maxMonthlyReturn
                 && interestRate && tenAtEndIR && rateCard && refetchRates) {
-        if (!currRate && createRate) {
-          await createRate({
-            term,
-            minmonthlyreturn: minMonthlyReturn,
-            maxmonthlyreturn: maxMonthlyReturn,
-            regularir: interestRate,
-            tenatendir: tenAtEndIR,
-            ratecardid: rateCard?.id,
-          });
-        } else if (currRate && updateRate) {
-          await updateRate({
-            rateId: currRate.id,
-            term,
-            minmonthlyreturn: minMonthlyReturn,
-            maxmonthlyreturn: maxMonthlyReturn,
-            regularir: interestRate,
-            tenatendir: tenAtEndIR,
-            ratecardid: rateCard?.id,
-          });
+          
+        let allFieldsAreValid: boolean = true;
+        if (!isTermValid(term)) {
+          allFieldsAreValid = false;
+          currFormState.termError = t('new_rate_modal.error_message');
+        } 
+        if (!isMonthlyReturnValid(minMonthlyReturn)) {
+          allFieldsAreValid = false;
+          currFormState.minMonthlyReturnError = t('new_rate_modal.error_message');
+        } 
+        if (!isMonthlyReturnValid(maxMonthlyReturn)) {
+          allFieldsAreValid = false;
+          currFormState.maxMonthlyReturnError = t('new_rate_modal.error_message');
+        } 
+        if (!isInterestRateValid(interestRate)) {
+          allFieldsAreValid = false;
+          currFormState.interestRateError = t('new_rate_modal.error_message');
+        } 
+        if (!isInterestRateValid(tenAtEndIR)) {
+          allFieldsAreValid = false;
+          currFormState.tenAtEndIRError = t('new_rate_modal.error_message');
+        } 
+
+        if (allFieldsAreValid) {
+            if (!currRate && createRate) {
+              await createRate({
+                term,
+                minmonthlyreturn: minMonthlyReturn,
+                maxmonthlyreturn: maxMonthlyReturn,
+                regularir: interestRate,
+                tenatendir: tenAtEndIR,
+                ratecardid: rateCard?.id,
+              });
+            } else if (currRate && updateRate) {
+              await updateRate({
+                rateId: currRate.id,
+                term,
+                minmonthlyreturn: minMonthlyReturn,
+                maxmonthlyreturn: maxMonthlyReturn,
+                regularir: interestRate,
+                tenatendir: tenAtEndIR,
+                ratecardid: rateCard?.id,
+              });
+            }
+            onCloseRateModal();
+            refetchRates();
+          } else {
+            setFormState(currFormState);
+          }
         }
-        onCloseRateModal();
-        refetchRates();
-      }
     };
+
+
 
     const handleDeleteRate = async (): Promise<void> => {
       if (deleteRateId) {
@@ -206,12 +266,15 @@ const withPresenter = (
         textFields: [
           {
             ...defaultTextFieldProps,
+            errorMessage: {
+              ...defaultTextFieldProps.errorMessage,
+              value: formState?.termError
+            },
             label: {
               ...defaultTextFieldProps.label,
               value: t('new_rate_modal.term'),
             },
             textInput: {
-              ...defaultTextFieldProps.textInput,
               inputType: 'number',
               textValue: term ? `${term}` : undefined,
               onTextChanged: handleChangeTerm,
@@ -219,6 +282,10 @@ const withPresenter = (
           },
           {
             ...defaultTextFieldProps,
+            errorMessage: {
+              ...defaultTextFieldProps.errorMessage,
+              value: formState?.minMonthlyReturnError
+            },
             label: {
               ...defaultTextFieldProps.label,
               value: t('new_rate_modal.min'),
@@ -232,6 +299,10 @@ const withPresenter = (
           },
           {
             ...defaultTextFieldProps,
+            errorMessage: {
+              ...defaultTextFieldProps.errorMessage,
+              value: formState?.maxMonthlyReturnError
+            },
             label: {
               ...defaultTextFieldProps.label,
               value: t('new_rate_modal.max'),
@@ -245,6 +316,10 @@ const withPresenter = (
           },
           {
             ...defaultTextFieldProps,
+            errorMessage: {
+              ...defaultTextFieldProps.errorMessage,
+              value: formState?.interestRateError
+            },
             label: {
               ...defaultTextFieldProps.label,
               value: t('new_rate_modal.interest_rate'),
@@ -258,6 +333,10 @@ const withPresenter = (
           },
           {
             ...defaultTextFieldProps,
+            errorMessage: {
+              ...defaultTextFieldProps.errorMessage,
+              value: formState?.tenAtEndIRError
+            },
             label: {
               ...defaultTextFieldProps.label,
               value: t('new_rate_modal.ten'),
