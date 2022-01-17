@@ -171,6 +171,7 @@ const withPresenter = (
           ...defaultProps.dateOfBirthField?.textInput,
           inputType: "date",
           max: getTodaysDateString(),
+          onKeyDown: (e: React.KeyboardEvent<Element>) => e.preventDefault(),
           textPlaceholder: t('application_form.asset_information.date_placeholder'),
           textValue: dob,
           onTextChanged: handleChangeDateOfBirth,

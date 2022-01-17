@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { KeyboardEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getTodaysDateString, isEmptyString } from '../../../lib/utils';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
@@ -223,6 +223,7 @@ const withPresenter = (
         textInput: {
           min: getTodaysDateString(),
           inputType: "date",
+          onKeyDown: (e: React.KeyboardEvent<Element>) => e.preventDefault(),
           onTextChanged: handleChangeExpectedDate,
         },
         label: {
