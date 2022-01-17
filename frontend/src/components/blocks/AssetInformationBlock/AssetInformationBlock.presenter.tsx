@@ -3,11 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { getTodaysDateString, isEmptyString } from '../../../lib/utils';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
 import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
+import { defaultProps as defaultTextFieldProps } from '../../molecules/TextField/TextField';
 import { RadioFieldProps } from '../../molecules/RadioField';
 import { DetailsSectionProps } from '../../organisms/DetailsSection';
 import { AssetInformationBlockProps, defaultProps } from './AssetInformationBlock';
 
 export type AssetInformationBlockPresenterProps = AssetInformationBlockProps;
+
+type FormState = {
+  assetAgeErrorMessage: string
+};
 
 const withPresenter = (
   View: React.FC<AssetInformationBlockProps>,
@@ -26,6 +31,11 @@ const withPresenter = (
     const [showAssetAgeField, setShowAssetAgeField] = useState(false);
     const [assetAge, setAssetAge] = useState<number>();
     const [expectedDeilivery, setExpectedDelivery] = useState<string>();
+    const [formState, setFormState] = useState<FormState>();
+
+    let currFormState: FormState = {
+      assetAgeErrorMessage: ""
+    };
 
     useEffect(() => {
       if (assetInfo) {
@@ -57,13 +67,27 @@ const withPresenter = (
       return false;
     };
 
+    const isAssetAgeValid = (assetAge?: number): boolean => {
+      if (assetAge) {
+        return assetAge >= 0;
+      }
+
+      return false;
+    }
+
     const handleClickNext = () => {
       if (setAssetInfo && assetCondition && expectedDeilivery) {
-        setAssetInfo({
-          ageOfAsset: assetAge || 0,
-          assetCondition,
-          expectedDeliveryDate: expectedDeilivery,
-        });
+        if (!isAssetAgeValid(assetAge)) {
+          currFormState.assetAgeErrorMessage = t('application_form.error_message');
+          setFormState(currFormState);
+        } else {
+          setAssetInfo({
+            ageOfAsset: assetAge || 0,
+            assetCondition,
+            expectedDeliveryDate: expectedDeilivery,
+          });
+        }
+        
       }
     };
 
@@ -179,6 +203,11 @@ const withPresenter = (
       assetConditionRadioField,
       ageOfAssetTextField: {
         ...defaultProps.ageOfAssetTextField,
+        state: "Error",
+        errorMessage: {
+          ...defaultTextFieldProps.errorMessage,
+          value: formState?.assetAgeErrorMessage
+        },
         label: {
           ...defaultProps.ageOfAssetTextField?.label,
           value: t('application_form.asset_information.age'),

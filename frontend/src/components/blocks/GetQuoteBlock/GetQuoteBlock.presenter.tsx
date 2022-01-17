@@ -5,6 +5,7 @@ import { GetQuoteBlockProps, defaultProps as defaultGetQuoteBlockProps } from '.
 import { ContextualMenuProps } from '../../molecules/ContextualMenu';
 import { defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 import { isEmptyString } from '../../../lib/utils';
+import { defaultProps as defaultTextFieldProps } from "../../molecules/TextField/TextField";
 
 import { LeaseType } from '../../../modules/quote/types';
 import { UserType } from '../../../modules/profile/types';
@@ -12,6 +13,10 @@ import { EquipmentLeaseInfo } from '../../../modules/types';
 
 export type GetQuoteBlockPresenterProps = GetQuoteBlockProps & {
 };
+
+type FormState = {
+  equipmentCostError: string;
+}
 
 const withPresenter = (
   View: React.FC<GetQuoteBlockProps>,
@@ -31,6 +36,11 @@ const withPresenter = (
     const [equipmentLeaseType, setEquipmentLeaseType] = useState<LeaseType>('stretch');
     const [equipmentRatecard, setEquipmentRatecard] = useState<string>();
     const [userType, setUserType] = useState<UserType>();
+    const [formState, setFormState] = useState<FormState>();
+
+    let currFormState: FormState = {
+      equipmentCostError: ""
+    };
 
     useEffect(() => {
       if (profile) {
@@ -52,22 +62,32 @@ const withPresenter = (
       && !isEmptyString(equipmentRatecard)
       && !isEmptyString(equipmentFees);
 
+    const isEquipmentCostValid = (cost: number): boolean => {
+      return cost >= 1000;
+    }
+
     const handleClickNext = async () => {
       if (equipmentName && equipmentCost && setEquipmentLeaseInfo) {
-        let leaseInfo: EquipmentLeaseInfo = {
-          name: equipmentName,
-          cost: equipmentCost,
-          leaseType: equipmentLeaseType,
-        };
-        if ((profile?.userType === 'rep' || profile?.userType === 'admin') && equipmentRatecard && equipmentFees) {
-          leaseInfo = {
-            ...leaseInfo,
-            rateCardType: equipmentRatecard,
-            fee: parseFloat(equipmentFees),
-          };
-        }
-        await setEquipmentLeaseInfo(leaseInfo);
-      }
+        if (!isEquipmentCostValid(+equipmentCost)) {
+          currFormState.equipmentCostError = t('get_quote_block.error_message');
+          setFormState(currFormState);
+        } else {
+            let leaseInfo: EquipmentLeaseInfo = {
+              name: equipmentName,
+              cost: equipmentCost,
+              leaseType: equipmentLeaseType,
+            };
+            if ((profile?.userType === 'rep' || profile?.userType === 'admin') && equipmentRatecard && equipmentFees) {
+              leaseInfo = {
+                ...leaseInfo,
+                rateCardType: equipmentRatecard,
+                fee: parseFloat(equipmentFees),
+              };
+            }
+            await setEquipmentLeaseInfo(leaseInfo);
+          }
+        }        
+        
     };
 
     const handleChangeEquipmentName = ({ target: { value } }) => setEquipmentName(value);
@@ -133,6 +153,11 @@ const withPresenter = (
       },
       costTextField: {
         ...defaultGetQuoteBlockProps.costTextField,
+        state: "Error",
+        errorMessage: {
+          ...defaultTextFieldProps.errorMessage,
+          value: formState?.equipmentCostError
+        },
         label: {
           ...defaultGetQuoteBlockProps.costTextField?.label,
           value: t('get_quote_block.cost.label'),

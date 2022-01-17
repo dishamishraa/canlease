@@ -19,7 +19,8 @@
                 "ten": "$10 end"
             }
         },
-        "submit": "Next"
+        "submit": "Next",
+        "error_message": "Equipment cost cannot be lower than $1000. Please enter a value equal to or above $1000."
     },
     "contact_info": {
         "header_your": "Your information",
@@ -116,6 +117,7 @@
         }
     },
     "application_form":{
+        "error_message": "Age of asset cannot be a negative number. Please enter a value equal to or above 0.",
         "back": "Back",
         "start_application": {
             "heading_text": "Start application",
