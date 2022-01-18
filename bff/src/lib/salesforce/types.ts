@@ -97,6 +97,11 @@ export type QuoteOption = {
   purchaseOptionDate: string;
 };
 
+export type AddRateCard = {
+  rateCardId: string;
+  rateCardType: string;
+};
+
 export const VALID_LEASE_TYPES = [
   'stretch', '$10',
 ] as const;

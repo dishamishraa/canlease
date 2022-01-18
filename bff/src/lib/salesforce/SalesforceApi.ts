@@ -8,6 +8,7 @@ import {
   Profile,
   CreateProfile,
   AddQuote,
+  AddRateCard,
 } from './types';
 
 axios.defaults.headers = { Authorization: `Bearer ${BEARER_TOKEN}` };
@@ -67,5 +68,13 @@ export default class SalesforceApi {
   async getCustomerPortfolio(portalId: string): Promise<Portfolio> {
     const response = await axios.get<DataResponse<Portfolio>>(`${SALESFORCE_API_URL}/portfolios/${portalId}/customer_portfolios`);
     return response.data.data;
+  }
+
+  async createRateCard(payload: AddRateCard): Promise<void> {
+    try {
+      await axios.post<AddRateCard>(`${SALESFORCE_API_URL}/rate_cards`, wrapPayload(payload));
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

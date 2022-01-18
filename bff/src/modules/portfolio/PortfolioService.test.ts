@@ -12,6 +12,7 @@ describe('PortfolioService', () => {
     getAllCustomerQuotesFromProfile: jest.fn(),
     getUserPortfolio: jest.fn(),
     getCustomerPortfolio: jest.fn(),
+    createRateCard: jest.fn(),
   };
 
   const service = new PortfolioService(salesforceApi);

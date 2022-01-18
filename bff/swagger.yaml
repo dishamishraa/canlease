@@ -1,0 +1,634 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Canlease Portal"
+host: "salesforce.canlease.net"
+basePath: "/v2"
+tags:
+- name: "profile"
+  description: "APIs for creating and accessing user profiles."
+- name: "portfolio"
+  description: "APIs for accessing user portfolio of credit applications and leases."
+- name: "application"
+  description: "APIs for creating user credit applications."
+- name: "quote"
+  description: "APIs for creating user quotes."
+- name: "rate_card"
+  description: "(NEW ENDPOINT) APIs for creating rate cards."
+schemes:
+- "https"
+
+paths:
+  /profile/{portal_id}:
+    get:
+      tags:
+      - "profile"
+      summary: ""
+      description: ""
+      operationId: "getProfile"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "portal_id"
+        type: "string"
+        description: "Portal Id"
+        required: true
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Profile"
+  /profile:
+    post:
+      tags:
+      - "profile"
+      summary: ""
+      description: ""
+      operationId: "createProfile"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/CreateProfile"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Profile"
+            
+  /portfolio/{portal_id}:
+    get:
+      tags:
+      - "portfolio"
+      summary: ""
+      description: ""
+      operationId: "getPorfolio"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "portal_id"
+        type: "string"
+        description: "Portal Id"
+        required: true
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Portfolio"
+            
+  /portfolio/{portal_id}/customer_portfolio:
+    get:
+      tags:
+      - "portfolio"
+      summary: ""
+      description: ""
+      operationId: "getPorfolio2"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "portal_id"
+        type: "string"
+        description: "Portal Id"
+        required: true
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Portfolio"
+
+  /credit_apps:
+    post:
+      tags:
+      - "application"
+      summary: ""
+      description: ""
+      operationId: "createApplication"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/CreateCreditApplication"
+      responses:
+        "204":
+          description: "successful operation"
+          
+  /quote/{quote_id}:
+    get:
+      tags:
+      - "quote"
+      summary: ""
+      description: ""
+      operationId: "getQuote"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "quote_id"
+        type: "string"
+        description: "Quote Id"
+        required: true
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Quote"
+  
+  /quote:
+    post:
+      tags:
+      - "quote"
+      summary: ""
+      description: ""
+      operationId: "createQuote"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/CreateQuote"
+      responses:
+        "200":
+          description: "successful operation"    
+          schema:
+            $ref: "#/definitions/Quote"
+            
+  /profile/{portal_id}/add_quote:
+    post:
+      tags:
+      - "quote"
+      summary: ""
+      description: "Adds an existing quote to profile"
+      operationId: "addQuote"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "portal_id"
+        type: "string"
+        description: "Portal Id"
+        required: true
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/AddQuote"
+      responses:
+        "204":
+          description: "successful operation"    
+            
+  /profile/{portal_id}/quote:
+    get:
+      tags:
+      - "quote"
+      summary: ""
+      description: "Get a list of all my quotes"
+      operationId: "getMyQuotes"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "portal_id"
+        type: "string"
+        description: "Portal Id"
+        required: true
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Quote"
+              
+  /profile/{portal_id}/customer_quote:
+    get:
+      tags:
+      - "quote"
+      summary: ""
+      description: "Get a list of all my customer quotes"
+      operationId: "getCustomerQuotes"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "portal_id"
+        type: "string"
+        description: "Portal Id"
+        required: true
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Quote"
+  
+  /rate_card:
+    post:
+      tags:
+        - "rate_card"
+      summary: ""
+      description: "Add a rate card"
+      operationId: "addRateCard"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/AddRateCard"
+      responses:
+        "204":
+          description: "successful operation"
+
+definitions:
+  CreateProfile:
+    type: "object"
+    properties:
+      companyName:
+        type: "string"
+      street:
+        type: "string"
+      province:
+        type: "string"
+      postalCode:
+        type: "string"
+      country:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      portalId:
+        type: "string"
+        description: "Spindl account ID"
+      userType:
+        type: "string"
+        enum:
+        - "customer"
+        - "vendor"
+        - "rep"
+      email:
+        type: "string"
+      phone:
+        type: "string"
+      title:
+        type: "string"
+      operatingName:
+        type: "string"
+        description: "NEW FIELD"
+      operatingSinceDate:
+        type: "string"
+        format: "date-time"
+        description: "NEW FIELD"
+      businessSector:
+        type: "string"
+        description: "NEW FIELD"
+      businessPhone:
+        type: "string"
+        description: "NEW FIELD"
+      website:
+        type: "string"
+        description: "NEW FIELD"
+      
+  Profile:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      companyName:
+        type: "string"
+      phone:
+        type: "string"
+      email:
+        type: "string"
+      title:
+        type: "string"
+      address:
+        type: "string"
+      street:
+        type: "string"
+      city:
+        type: "string"
+      province:
+        type: "string"
+      postalCode:
+        type: "string"
+      country:
+        type: "string"
+      website:
+        type: "string"
+      rateCard:
+        type: "string"
+      feePercentage:
+        type: "number"
+      theCompanyId:
+        type: "string"
+      portalId:
+        type: "string"
+        description: "Spindl account ID"
+      rateCardId:
+        type: "string"
+      userType:
+        type: "string"
+        description: "NEW FIELD"
+        enum:
+        - "customer"
+        - "vendor"
+        - "rep"
+      operatingName:
+        type: "string"
+        description: "NEW FIELD"
+      operatingSinceDate:
+        type: "string"
+        format: "date-time"
+        description: "NEW FIELD"
+      businessSector:
+        type: "string"
+        description: "NEW FIELD"
+      businessPhone:
+        type: "string"
+        description: "NEW FIELD"
+  
+  Portfolio:
+    type: "object"
+    properties:
+      createApps:
+        type: "array"
+        items:
+          $ref: "#/definitions/CreditApplication"
+      leases:
+        type: "array"
+        items:
+          $ref: "#/definitions/Lease"
+          
+  CreditApplication:
+    type: "object"
+    properties:
+      creditAppNumber:
+        type: "string"
+      createdDate:
+        type: "string"
+        format: "date-time"
+      applicationAmount:
+        type: "number"
+      description:
+        type: "string"
+      creditStatus:
+        type: "string"
+      applicationStatus:
+        type: "string"
+      quoteId:
+        type: "string"
+        description: "NEW FIELD"
+      asset:
+        type: "string"
+        description: "NEW FIELD"
+      name:
+        type: "string"
+        description: "NEW FIELD"
+      companyName:
+        type: "string"
+        description: "NEW FIELD"
+          
+  Lease:
+    type: "object"
+    properties:
+      leaseNumber:
+        type: "string"
+      leaseStartDate:
+        type: "string"
+        format: "date-time"
+      leaseEndDate:
+        type: "string"
+        format: "date-time"
+      fullTerm:
+        type: "number"
+      vendorName:
+        type: "string"
+      vendorInvoice:
+        type: "number"
+      assets:
+        type: "string"
+        description: "not sure if assets or asset"
+      paymentBeforeTax:
+        type: "number"
+      purchaseOptionDate:
+        type: "string"
+        format: "date-time"
+      optionAmount:
+        type: "number"
+      quoteId:
+        type: "string"
+        description: "NEW FIELD"
+        
+  CreateCreditApplication:
+    type: "object"
+    properties:
+      lessePortalId:
+        type: "string"
+        description: "Spindl account ID"
+      operatingName:
+        type: "string"
+      businessName:
+        type: "string"
+      businessType:
+        type: "string"
+        enum:
+        - "Incorporated"
+        - "Proprietorship"
+      yearsInBusiness:
+        type: "number"
+      contactName:
+        type: "string"
+      contactEmail:
+        type: "string"
+      contactPhone:
+        type: "string"
+      contactWebsite:
+        type: "string"
+      street:
+        type: "string"
+      city:
+        type: "string"
+      province:
+        type: "string"
+      postalCode:
+        type: "string"
+      term:
+        type: "string"
+        enum:
+        - "12M"
+        - "24M"
+        - "36M"
+        - "48M"
+        - "60M"
+        - "72M"
+      applicationAmount:
+        type: "number"
+      asset:
+        type: "string"
+      condition:
+        type: "string"
+        enum:
+        - "New"
+        - "Used"
+      ageOfAsset:
+        type: "number"
+      businessOwnerName:
+        type: "string"
+      businessOwnerStreet:
+        type: "string"
+      businessOwnerCity:
+        type: "string"
+      bankruptcy:
+        type: "boolean"
+      creditCheckConsent:
+        type: "boolean"
+      sin:
+        type: "string"
+      dob:
+        type: "string"
+      vendorPortalId:
+        type: "string"
+        description: "Spindl account ID"
+      quoteId:
+        type: "string"
+        description: "NEW FIELD"
+      expectedDeliveryDate:
+        type: "string"
+        description: "NEW FIELD"
+      bankruptcyDetails:
+        type: "string"
+        description: "NEW FIELD"
+        
+  Quote:
+    type: "object"
+    properties:
+      quoteId:
+        type: "string"
+      asset:
+        type: "string"
+      applicationAmount:
+        type: "number"
+      name:
+        type: "string"
+      companyName:
+        type: "string"
+      quoteOptions:
+        type: "array"
+        items:
+          $ref: "#/definitions/QuoteOption"
+      quoteExpiryDate:
+        type: "string"
+        format: "date-time"
+    
+  QuoteOption:
+    type: "object"
+    properties:
+      monthlyAmount:
+        type: "number"
+      term:
+        type: "string"
+        enum:
+        - "12M"
+        - "24M"
+        - "36M"
+        - "48M"
+        - "60M"
+        - "72M"
+      financeRate:
+        type: "number"
+      purchaseOptionDate:
+        type: "string"
+        format: "date-time"
+    
+  CreateQuote:
+    type: "object"
+    properties:
+      userType:
+        type: "string"
+        enum:
+        - "customer"
+        - "vendor"
+        - "rep"
+      asset:
+        type: "string"
+      applicationAmount:
+        type: "number"
+      leaseType:
+        type: "string"
+      contactName:
+        type: "string"
+      contactEmail:
+        type: "string"
+      contactBusinessName:
+        type: "string"
+      vendorName:
+        type: "string"
+      vendorEmail:
+        type: "string"
+      vendorBusinessName:
+        type: "string"
+      quoteOptions:
+        type: "array"
+        items:
+          $ref: "#/definitions/QuoteOption"
+    
+  AddQuote:
+    type: "object"
+    properties:
+      quoteId:
+        type: "string"
+      portalId:
+        type: "string"
+  
+  AddRateCard:
+    type: "object"
+    properties:
+      rateCardId:
+        type: "string"
+      rateCardType:
+        type: "string"

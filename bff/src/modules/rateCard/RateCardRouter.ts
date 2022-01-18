@@ -3,6 +3,7 @@ import { IDENTITY_SESSION_COOKIE_NAME } from '../../lib/config';
 import { BadRequestError, UnauthorizedError } from '../../lib/errors';
 import { errorWrapper, getCookie, validateId } from '../../lib/utils';
 import { RateCardControllerContract } from './types';
+import SalesforceApi from '../../lib/salesforce/SalesforceApi';
 
 export function createRateCardRouter(controllers: {
   rateCardController: RateCardControllerContract;
@@ -12,11 +13,17 @@ export function createRateCardRouter(controllers: {
 
   router.post('/rate_cards', errorWrapper(async (req: Request, res: Response) => {
     const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
+    const salesForceApi = new SalesforceApi();
+
     if (!identityToken) {
       throw UnauthorizedError();
     }
-
+    
     const data = await rateCardController.createRateCard(identityToken, req.body);
+    await salesForceApi.createRateCard({
+      rateCardId: data.uuid,
+      rateCardType: data.cardtype,
+    });
     res.status(200).send(data);
   }));
 
