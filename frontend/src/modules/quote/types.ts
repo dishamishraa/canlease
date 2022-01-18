@@ -7,7 +7,9 @@ export type Quote = {
   asset: string;
   applicationAmount: number;
   name: string;
-  companyName: string;
+  contactBusinessName: string;
+  contactEmail: string;
+  contactName: string;
   quoteOptions: QuoteOption[];
   quoteExpiryDate: string;
   leaseType: LeaseType;

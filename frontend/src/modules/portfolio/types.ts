@@ -14,6 +14,7 @@ export type CreditApplication = {
   asset: string;
   name: string;
   companyName: string;
+  lesseeName: string;
 };
 
 export type Lease = {
