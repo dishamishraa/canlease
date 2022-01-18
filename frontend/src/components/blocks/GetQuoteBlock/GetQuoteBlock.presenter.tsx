@@ -63,13 +63,13 @@ const withPresenter = (
       && !isEmptyString(equipmentFees);
 
     const isEquipmentCostValid = (cost: number): boolean => {
-      return cost >= 1000;
+      return cost >= 1000 && cost <= 499999;
     }
 
     const handleClickNext = async () => {
       if (equipmentName && equipmentCost && setEquipmentLeaseInfo) {
-        if (!isEquipmentCostValid(+equipmentCost)) {
-          currFormState.equipmentCostError = t('get_quote_block.error_message');
+        if (!isEquipmentCostValid(parseFloat(equipmentCost))) {
+          currFormState.equipmentCostError = parseFloat(equipmentCost) < 1000 ? t('get_quote_block.error_message_low') : t('get_quote_block.error_message_high');
           setFormState(currFormState);
         } else {
             let leaseInfo: EquipmentLeaseInfo = {

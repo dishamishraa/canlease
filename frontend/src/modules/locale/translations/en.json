@@ -20,7 +20,8 @@
             }
         },
         "submit": "Next",
-        "error_message": "Equipment cost cannot be lower than $1000. Please enter a value equal to or above $1000."
+        "error_message_low": "Equipment cost cannot be lower than $1000. Please enter a value equal to or above $1000.",
+        "error_message_high": "Equipment cost cannot be higher than $499,999. Please enter a value equal to or below $499,999"
     },
     "contact_info": {
         "header_your": "Your information",
