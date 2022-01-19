@@ -12,6 +12,7 @@ export type Quote = {
   contactName: string;
   quoteOptions: QuoteOption[];
   quoteExpiryDate: string;
+  createdDate: string;
   leaseType: LeaseType;
   vendorName: string;
   vendorEmail: string;

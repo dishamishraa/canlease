@@ -6,7 +6,7 @@ import { TableProps, defaultProps } from './Table';
 import { TableItemListProps } from '../../organisms/TableItemList';
 import { TableItemProps } from '../../molecules/TableItem';
 import { defaultProps as tableItemDefaultProps } from '../../molecules/TableItem/TableItem';
-import { isExpiring, isExpired, createdOn, formatAsCurrency } from '../../../lib/utils';
+import { isExpiring, isExpired, formatAsCurrency } from '../../../lib/utils';
 import { CreditApplication, Portfolio } from '../../../modules/portfolio/types';
 import { Quote } from '../../../modules/quote/types';
 import { ContentFilter, ContentType, LeaseInfo } from '../../../modules/types';
@@ -77,7 +77,7 @@ const getCurrentItems = (
           company: quote.contactBusinessName ? quote.contactBusinessName : '--',
           contactName: quote.name,
           status: getQuoteStatus(quote, portfolio),
-          createdOn: createdOn(quote.quoteExpiryDate).toDateString(),
+          createdOn: quote.createdDate ? quote.createdDate : '--',
           asset: quote.asset,
           cost: formatAsCurrency(quote.applicationAmount),
           link: `/portal/quote/${quote.quoteId}`,

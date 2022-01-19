@@ -115,6 +115,7 @@ export type Quote = {
   companyName: string;
   quoteOptions: QuoteOption[];
   quoteExpiryDate: string;
+  createdDate: string;
   leaseType: LeaseType;
 };
 
