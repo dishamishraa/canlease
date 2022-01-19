@@ -67,17 +67,13 @@ const withPresenter = (
       return false;
     };
 
-    const isAssetAgeValid = (assetAge?: number): boolean => {
-      if (assetAge) {
-        return assetAge >= 0;
-      }
-
-      return false;
+    const isAssetAgeValid = (): boolean => {
+      return assetAge ? assetAge >= 0 : assetCondition === 'New';
     }
 
     const handleClickNext = () => {
       if (setAssetInfo && assetCondition && expectedDeilivery) {
-        if (!isAssetAgeValid(assetAge)) {
+        if (!isAssetAgeValid()) {
           currFormState.assetAgeErrorMessage = t('application_form.error_message');
           setFormState(currFormState);
         } else {
