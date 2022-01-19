@@ -4,11 +4,10 @@ import { useHistory, useLocation } from 'react-router';
 import { SignInBlockProps, defaultProps } from './SignInBlock';
 import { isEmptyString } from '../../../lib/utils';
 import { defaultProps as defaultTextFieldProps } from '../../molecules/TextField/TextField';
-import {
-  defaultProps as defaultToastProps,
-} from '../../atoms/Toast/Toast';
+import { defaultProps as defaultToastProps } from '../../atoms/Toast/Toast';
 import { HTMLInputType } from '../../atoms/TextInput/TextInput';
 import { SignInPayload } from '../../../modules/account/types';
+import { verifyAccount } from '../../../modules/account/api';
 
 export type SignInBlockPresenterProps = SignInBlockProps & {
   handleSignIn?: (payload: SignInPayload) => void;
@@ -24,27 +23,27 @@ const withPresenter = (
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
-    const { state } = useLocation<{ message: string }>();
-    const { message } = state || {};
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [passwordVisibility, setPasswordVisibility] = useState<HTMLInputType>('password');
     const [toastMessage, setToastMessage] = useState<string>('');
     const formInvalid = (isEmptyString(email) || isEmptyString(password));
-
-    const query = new URLSearchParams(state);
-    const verifyId = query.get('id');
-    const verifyToken = query.get('token');
+    const location = useLocation();
 
     useEffect(() => {
-      const verifyAccount = async (id: string, token: string) => {
-        await verifyAccount(id, token);
-        setToastMessage(message);
+      const accountVerificationApiCall = async (id: string, token: string) => {
+        await verifyAccount({ id, token });
       }
+
+      const query = new URLSearchParams(location.search);
+      const verifyId = query.get('id');
+      const verifyToken = query.get('token');
+      console.log(verifyId, verifyToken);
+
       if (verifyId && verifyToken) {
-        verifyAccount(verifyId, verifyToken);
+        accountVerificationApiCall(verifyId, verifyToken);
       }
-    }, [verifyId, verifyToken])
+    }, [location]);
 
     const handleEmail = ({ target: { value } }) => {
       setEmail(value);
