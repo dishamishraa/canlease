@@ -157,7 +157,7 @@ const withPresenter = (
         let createPayload: CreateQuotePayload = {
           userType: quoteUserType,
           asset: equipmentName,
-          applicationAmount: parseInt(equipmentCost, 10),
+          applicationAmount: parseFloat(equipmentCost),
           leaseType,
           contactName: customerName,
           contactEmail: customerEmail,
