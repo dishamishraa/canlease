@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../modules/auth';
 import { useCustomerPortfolio, useUserPortfolio } from '../../../modules/portfolio';
-import { useCustomerQuotes, useQuotes } from '../../../modules/profile';
+import { useCustomerQuotes, useQuotes, useProfile } from '../../../modules/profile';
 import { TableProps } from './Table';
 import { TablePresenterProps, TablePresenterValueProps } from './Table.presenter';
 
@@ -13,9 +13,11 @@ type InteractorRenderProps = {
 const PersonalQuoteInteractor: React.FC<InteractorRenderProps> = ({ children, portalId }) => {
   const { data: quotes } = useQuotes(portalId);
   const { data: portfolio } = useUserPortfolio(portalId);
+  const { data: profile } = useProfile();
   return children({
     quotes,
     portfolio,
+    profile,
   });
 };
 
@@ -25,22 +27,27 @@ const CustomerQuoteInteractor: React.FC<InteractorRenderProps> = ({ children, po
   return children({
     quotes,
     portfolio,
+    profile: null,
   });
 };
 
 const PersonalApplicationInteractor: React.FC<InteractorRenderProps> = ({ children, portalId }) => {
   const { data: portfolio } = useUserPortfolio(portalId);
+  const { data: profile } = useProfile();
   return children({
     quotes: null,
     portfolio,
+    profile,
   });
 };
 
 const CustomerApplicationInteractor: React.FC<InteractorRenderProps> = ({ children, portalId }) => {
+  const { data: quotes } = useCustomerQuotes(portalId);
   const { data: portfolio } = useCustomerPortfolio(portalId);
   return children({
-    quotes: null,
+    quotes,
     portfolio,
+    profile: null,
   });
 };
 

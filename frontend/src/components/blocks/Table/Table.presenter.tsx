@@ -10,6 +10,7 @@ import { isExpiring, isExpired, formatAsCurrency } from '../../../lib/utils';
 import { CreditApplication, Portfolio } from '../../../modules/portfolio/types';
 import { Quote } from '../../../modules/quote/types';
 import { ContentFilter, ContentType, LeaseInfo } from '../../../modules/types';
+import { Profile } from '../../../modules/profile/types';
 
 type TableItem = {
   company: string;
@@ -27,6 +28,7 @@ type TableItem = {
 export type TablePresenterValueProps = {
   quotes: Quote[] | null;
   portfolio: Portfolio | null;
+  profile: Profile | null;
 };
 
 export type TablePresenterProps = TableProps & TablePresenterValueProps;
@@ -67,14 +69,15 @@ const getApplicationStatus = ({ applicationStatus }: CreditApplication): Content
 };
 
 const getCurrentItems = (
-  contentType: ContentType | undefined, quotes: Quote[] | null, portfolio: Portfolio | null,
+  contentType: ContentType | undefined, quotes: Quote[] | null, portfolio: Portfolio | null, profile: Profile | null
 ): TableItem[] => {
   let items: TableItem[] = [];
   switch (contentType) {
     case 'Quote':
       if (quotes) {
         items = quotes.map((quote: Quote): TableItem => ({
-          company: quote.contactBusinessName ? quote.contactBusinessName : '--',
+          company: profile?.operatingName ?? 'No vendor',
+          vendor: quote.contactBusinessName ?? 'No vendor',
           contactName: quote.name,
           status: getQuoteStatus(quote, portfolio),
           createdOn: quote.createdDate ? quote.createdDate : '--',
@@ -88,14 +91,12 @@ const getCurrentItems = (
     case 'Application':
       if (portfolio && portfolio.creditApps && portfolio.leases) {
         items = portfolio.creditApps.map((application: CreditApplication): TableItem => {
-          const { lesseeName } = application;
-          const contactName = application.name;
           const lease = portfolio.leases.find((lease) => lease.quoteId === application.quoteId);
-          const vendorName = lease?.vendorName ?? ' - ';
+          const customerCompanyName = quotes?.find((quote) => quote.quoteId === application.quoteId)?.contactBusinessName
           return {
-            company: lesseeName ? lesseeName : '--',
-            vendor: vendorName,
-            contactName: contactName ?? application.name,
+            company: profile?.operatingName ?? 'No vendor',
+            vendor: customerCompanyName ?? 'No vendor',
+            contactName: application.name,
             status: getApplicationStatus(application),
             createdOn: new Date(application.createdDate).toDateString(),
             asset: application.asset,
@@ -146,11 +147,12 @@ const withPresenter = (
       tab,
       quotes,
       portfolio,
+      profile,
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
 
-    const currentItems = getCurrentItems(contentType, quotes, portfolio);
+    const currentItems = getCurrentItems(contentType, quotes, portfolio, profile);
     const filteredItems = filterItems(currentItems, searchQuery, statusFilter);
 
     const tableItemListProps: TableItemListProps = {
