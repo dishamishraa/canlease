@@ -83,8 +83,7 @@ const withPresenter = (
     const isFormValid = () => {
       if (businessType === 'Incorporated') {
         return true;
-      } 
-      if (!isEmptyString(businessType)
+      } if (!isEmptyString(businessType)
             && !isEmptyString(sin)
             && !isEmptyString(dob)) {
         if (bankruptcy === false
@@ -170,8 +169,8 @@ const withPresenter = (
         },
         textInput: {
           ...defaultProps.dateOfBirthField?.textInput,
+          inputType: "date",
           max: getTodaysDateString(),
-          onKeyDown: (e: React.KeyboardEvent<Element>) => e.preventDefault(),
           textPlaceholder: t('application_form.asset_information.date_placeholder'),
           textValue: dob,
           onTextChanged: handleChangeDateOfBirth,

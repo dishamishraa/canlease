@@ -1,5 +1,5 @@
 import SalesforceApi from '../../lib/salesforce/SalesforceApi';
-import { CreateQuote, Quote } from '../../lib/salesforce/types';
+import { CreateQuote, Quote, Profile } from '../../lib/salesforce/types';
 import SendGridApi from './SendGridApi';
 import { QuoteServiceContract, SendQuote } from './types';
 
@@ -23,5 +23,9 @@ export default class QuoteService implements QuoteServiceContract {
 
   sendQuote(payload: SendQuote): Promise<void> {
     return this.sendGridApi.sendQuote(payload);
+  }
+
+  getProfile(portalId: string): Promise<Profile> {
+    return this.salesforceApi.getProfile(portalId);
   }
 }

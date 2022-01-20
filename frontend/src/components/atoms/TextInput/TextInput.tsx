@@ -1,5 +1,5 @@
 /* eslint-disable default-case */
-import React, { KeyboardEventHandler } from 'react';
+import React from 'react';
 import cx from 'classnames';
 
 import styles from './TextInput.module.scss';
@@ -31,7 +31,6 @@ export type TextInputProps = {
   inputType?: HTMLInputType;
   min?: string;
   max?: string;
-  onKeyDown?: (e: React.KeyboardEvent<Element>) => void;
   disabled?: boolean;
 };
 
@@ -45,7 +44,6 @@ const TextInput: React.FC<TextInputProps> = ({
   inputType,
   min,
   max,
-  onKeyDown,
   disabled,
 }) => {
   const currentStyle = disabled
@@ -61,7 +59,6 @@ const TextInput: React.FC<TextInputProps> = ({
       onChange={onTextChanged}
       min={min}
       max={max}
-      onKeyDown={onKeyDown}
       className={styles.text}/>
   );
 

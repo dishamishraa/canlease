@@ -18,7 +18,7 @@ export function createRateCardRouter(controllers: {
     if (!identityToken) {
       throw UnauthorizedError();
     }
-    
+
     const data = await rateCardController.createRateCard(identityToken, req.body);
     await salesForceApi.createRateCard({
       rateCardId: data.uuid,

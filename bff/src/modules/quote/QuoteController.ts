@@ -1,6 +1,6 @@
 import calculator from '../calculator';
 import { RateCardServiceContract } from '../rateCard';
-import { Rate } from '../rateCard/types';
+import { Rate, RateCard } from '../rateCard/types';
 import { NotFoundError } from '../../lib/errors';
 import { SPINDL_API_TOKEN } from '../../lib/config';
 import {
@@ -9,6 +9,7 @@ import {
   isCreateQuoteVendor,
   Quote,
   QuoteOption,
+  Profile,
 } from '../../lib/salesforce/types';
 import {
   QuoteControllerContract,
@@ -26,13 +27,7 @@ export default class QuoteController implements QuoteControllerContract {
     this.rateCardService = rateCardService;
   }
 
-  async getRates(cardType: string, applicationAmount: number): Promise<Rate[]> {
-    const rateCards = await this.rateCardService.getRateCards(SPINDL_API_TOKEN);
-    const rateCard = rateCards.find((card) => card.cardtype.toLowerCase() === cardType);
-    if (!rateCard) {
-      throw NotFoundError('no matching rate card');
-    }
-
+  async getRates(rateCard: RateCard, applicationAmount: number): Promise<Rate[]> {
     const rateCardRates = await this.rateCardService.getRates(SPINDL_API_TOKEN, rateCard.id);
     return rateCardRates
       .filter(
@@ -56,12 +51,32 @@ export default class QuoteController implements QuoteControllerContract {
     return 'e card';
   }
 
-  async createQuote(payload: CreateQuote): Promise<Quote> {
+  getProfile(portalId: string): Promise<Profile> {
+    return this.createQuoteService.getProfile(portalId);
+  }
+
+  async createQuote(payload: CreateQuote, profile: Profile | undefined): Promise<Quote> {
     const { applicationAmount, leaseType, fee = 0 } = payload;
     const terms: number[] = [24, 36, 48, 60];
     const interestRates: Record<number, number> = {};
+    let cardType: string;
 
-    const rates = await this.getRates(this.getCardType(payload), applicationAmount);
+    if (profile && profile.rateCard) {
+      cardType = profile.rateCard;
+    } else {
+      cardType = this.getCardType(payload);
+    }
+
+    const rateCards = await this.rateCardService.getRateCards(SPINDL_API_TOKEN);
+    let rateCard = rateCards.find((card) => card.cardtype.toLowerCase() === cardType);
+    if (!rateCard) {
+      // throw NotFoundError('no matching rate card');
+      rateCard = rateCards.find(
+        (card) => card.cardtype.toLowerCase() === this.getCardType(payload),
+      );
+    }
+
+    const rates = await this.getRates(rateCard!, applicationAmount);
     rates.forEach(({ term, regularir, tenatendir }) => {
       interestRates[term] = leaseType === 'stretch' ? regularir : tenatendir;
     });

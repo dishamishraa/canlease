@@ -6,7 +6,6 @@ import { ContextualMenuProps } from '../../molecules/ContextualMenu';
 import { defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 import { isEmptyString } from '../../../lib/utils';
 import { defaultProps as defaultTextFieldProps } from "../../molecules/TextField/TextField";
-
 import { LeaseType } from '../../../modules/quote/types';
 import { UserType } from '../../../modules/profile/types';
 import { EquipmentLeaseInfo } from '../../../modules/types';
@@ -152,7 +151,6 @@ const withPresenter = (
         },
       },
       costTextField: {
-        ...defaultGetQuoteBlockProps.costTextField,
         state: "Error",
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,

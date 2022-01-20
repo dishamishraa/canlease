@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getTodaysDateString, isEmptyString } from '../../../lib/utils';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
@@ -216,16 +216,16 @@ const withPresenter = (
       },
       expectedDeliveryDateTextField: {
         ...defaultProps.expectedDeliveryDateTextField,
+        textInput: {
+          min: getTodaysDateString(),
+          inputType: "date",
+          onTextChanged: handleChangeExpectedDate,
+        },
         label: {
           ...defaultProps.expectedDeliveryDateTextField?.label,
           value: t('application_form.asset_information.expected_date'),
         },
-        textInput: {
-            min: getTodaysDateString(),
-            inputType: "date",
-            onKeyDown: (e: React.KeyboardEvent<Element>) => e.preventDefault(),
-            onTextChanged: handleChangeExpectedDate,
-          },
+
       },
       nextButton: {
         ...defaultProps.nextButton,

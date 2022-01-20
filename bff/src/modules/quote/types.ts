@@ -1,4 +1,4 @@
-import { CreateQuote, Quote } from '../../lib/salesforce/types';
+import { CreateQuote, Quote, Profile } from '../../lib/salesforce/types';
 
 export type SendQuote = {
   companyName: string;
@@ -8,13 +8,15 @@ export type SendQuote = {
 };
 
 export interface QuoteControllerContract {
-  createQuote(payload: CreateQuote): Promise<Quote>;
+  createQuote(payload: CreateQuote, profile: Profile | undefined): Promise<Quote>;
   getQuote(quoteId: string): Promise<Quote>;
   sendQuote(payload: SendQuote): Promise<void>;
+  getProfile(portalID: string): Promise<Profile>;
 }
 
 export interface QuoteServiceContract {
   createQuote(payload: CreateQuote): Promise<Quote>;
   getQuote(quoteId: string): Promise<Quote>;
   sendQuote(payload: SendQuote): Promise<void>;
+  getProfile(portalID: string): Promise<Profile>;
 }

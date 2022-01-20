@@ -9,6 +9,7 @@ describe('QuoteRouter', () => {
     createQuote: jest.fn(),
     getQuote: jest.fn(),
     sendQuote: jest.fn(),
+    getProfile: jest.fn(),
   };
   const router = QuoteRouter({ quoteController });
   const app = createApp(router);
@@ -21,7 +22,7 @@ describe('QuoteRouter', () => {
         .post('/')
         .send(mockCreateQuote);
 
-      expect(quoteController.createQuote).toHaveBeenCalledWith(mockCreateQuote);
+      expect(quoteController.createQuote).toHaveBeenCalledWith(mockCreateQuote, undefined);
       expect(status).toEqual(200);
     });
   });

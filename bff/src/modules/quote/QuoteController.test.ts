@@ -6,6 +6,7 @@ describe('QuoteController', () => {
     createQuote: jest.fn(),
     getQuote: jest.fn(),
     sendQuote: jest.fn(),
+    getProfile: jest.fn(),
   };
 
   const rateCardService = {

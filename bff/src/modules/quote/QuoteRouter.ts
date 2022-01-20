@@ -1,9 +1,11 @@
 import { Router, Request, Response } from 'express';
 import { QuoteControllerContract } from './types';
 import { BadRequestError } from '../../lib/errors';
-import { errorWrapper, validateId } from '../../lib/utils';
+import { errorWrapper, getCookie, validateId } from '../../lib/utils';
 import { validateSendQuote } from './utils';
 import { validateCreateQuote } from '../../lib/salesforce/utils';
+import { IDENTITY_SESSION_COOKIE_NAME } from '../../lib/config';
+import { decodeIdentityToken } from '../profile/utils';
 
 export function createQuoteRouter(controllers: {
   quoteController: QuoteControllerContract;
@@ -12,10 +14,21 @@ export function createQuoteRouter(controllers: {
   const { quoteController } = controllers;
 
   router.post('/', errorWrapper(async (req: Request, res: Response) => {
+    const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
+
+    let profile;
+    if (identityToken) {
+      const identityTokenPayload = decodeIdentityToken(identityToken);
+
+      if (identityTokenPayload) {
+        profile = await quoteController.getProfile(`${identityTokenPayload.uuid}`);
+      }
+    }
+
     if (!validateCreateQuote(req.body)) {
       throw BadRequestError();
     }
-    const data = await quoteController.createQuote(req.body);
+    const data = await quoteController.createQuote(req.body, profile);
     res.status(200).send(data);
   }));
 
