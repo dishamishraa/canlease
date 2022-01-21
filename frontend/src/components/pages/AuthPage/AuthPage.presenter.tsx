@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useHistory, Redirect } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { AuthPageProps } from './AuthPage';
-import { APIResponse } from '../../../lib/api/types';
+import { ApiError, APIResponse } from '../../../lib/api/types';
 import { SESSION_COOKIE_NAME } from '../../../lib/config';
 import { CreateProfilePayload, Profile } from '../../../modules/profile/types';
 import {
@@ -153,13 +153,13 @@ const withPresenter = (
 
     // sign up
     const handleSignUp = async (payload: SignUpPayload) => {
-      const { data, error } = await signUp(payload);
+      const { error } = await signUp(payload);
       setEmail(payload.email);
 
-      if (data) {
+      if (error instanceof ApiError && (error.code === 409)) {
+        console.error("Email has already been used");
+      } else {
         history.push('/account/verifyEmail');
-      } else if (error) {
-        // TODO
       }
     };
 
@@ -235,6 +235,7 @@ const withPresenter = (
         setPersonalInfo={setPersonalInfo}
         setContactInfo={setContactInfo}
         handleCreateProfile={handleCreateProfile}
+
       />
     );
   };
