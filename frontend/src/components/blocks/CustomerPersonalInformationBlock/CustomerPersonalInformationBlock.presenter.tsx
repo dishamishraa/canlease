@@ -135,7 +135,7 @@ const withPresenter = (
         },
         textInput: {
           ...defaultProps.firstNameTextField.textInput,
-          textValue: email,
+          textValue: firstName,
           onTextChanged: handleFirstName,
         },
       },
@@ -147,7 +147,7 @@ const withPresenter = (
         },
         textInput: {
           ...defaultProps.lastNameTextField.textInput,
-          textValue: email,
+          textValue: lastName,
           onTextChanged: handleLastName,
         },
       },
