@@ -6,7 +6,7 @@ export const isAdmin = async (identityToken?: string): Promise<boolean> => {
   if (!identityToken) {
     return false;
   }
-  
+
   const identityTokenPayload = decodeIdentityToken(identityToken);
 
   if (identityTokenPayload) {

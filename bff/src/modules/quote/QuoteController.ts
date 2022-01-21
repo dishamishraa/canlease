@@ -46,9 +46,9 @@ export default class QuoteController implements QuoteControllerContract {
       return payload.rateCardType;
     }
     if (isCreateQuoteVendor(payload)) {
-      return 'v card';
+      return 'vendor card';
     }
-    return 'e card';
+    return 'end-user card';
   }
 
   getProfile(portalId: string): Promise<Profile> {
