@@ -80,7 +80,7 @@ const withPresenter = (
           },
           vendorNameText: {
             ...dashBoardCardProps.vendorNameText,
-            value: vendorName ? vendorName : 'No vendor',
+            value: profile?.operatingName ?? 'No vendor',
           },
           numberText: {
             ...dashBoardCardProps.numberText,
