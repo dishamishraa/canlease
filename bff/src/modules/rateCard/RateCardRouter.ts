@@ -4,6 +4,7 @@ import { BadRequestError, UnauthorizedError } from '../../lib/errors';
 import { errorWrapper, getCookie, validateId } from '../../lib/utils';
 import { RateCardControllerContract } from './types';
 import SalesforceApi from '../../lib/salesforce/SalesforceApi';
+import { isAdmin } from './utils';
 
 export function createRateCardRouter(controllers: {
   rateCardController: RateCardControllerContract;
@@ -14,8 +15,8 @@ export function createRateCardRouter(controllers: {
   router.post('/rate_cards', errorWrapper(async (req: Request, res: Response) => {
     const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
     const salesForceApi = new SalesforceApi();
-
-    if (!identityToken) {
+    const userIsAdmin = await isAdmin(identityToken);
+    if (!identityToken || !userIsAdmin) {
       throw UnauthorizedError();
     }
 
@@ -29,7 +30,8 @@ export function createRateCardRouter(controllers: {
 
   router.get('/rate_cards/:id', errorWrapper(async (req: Request, res: Response) => {
     const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
-    if (!identityToken) {
+    const userIsAdmin = await isAdmin(identityToken);
+    if (!identityToken || !userIsAdmin) {
       throw UnauthorizedError();
     }
 
@@ -44,7 +46,8 @@ export function createRateCardRouter(controllers: {
 
   router.get('/rate_cards', errorWrapper(async (req: Request, res: Response) => {
     const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
-    if (!identityToken) {
+    const userIsAdmin = await isAdmin(identityToken);
+    if (!identityToken || !userIsAdmin) {
       throw UnauthorizedError();
     }
 
@@ -54,7 +57,8 @@ export function createRateCardRouter(controllers: {
 
   router.patch('/rate_cards/:id', errorWrapper(async (req: Request, res: Response) => {
     const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
-    if (!identityToken) {
+    const userIsAdmin = await isAdmin(identityToken);
+    if (!identityToken || !userIsAdmin) {
       throw UnauthorizedError();
     }
 
@@ -69,7 +73,8 @@ export function createRateCardRouter(controllers: {
 
   router.delete('/rate_cards/:id', errorWrapper(async (req: Request, res: Response) => {
     const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
-    if (!identityToken) {
+    const userIsAdmin = await isAdmin(identityToken);
+    if (!identityToken || !userIsAdmin) {
       throw UnauthorizedError();
     }
 
@@ -84,7 +89,9 @@ export function createRateCardRouter(controllers: {
 
   router.post('/rates', errorWrapper(async (req: Request, res: Response) => {
     const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
-    if (!identityToken) {
+    const userIsAdmin = await isAdmin(identityToken);
+
+    if (!identityToken || !userIsAdmin) {
       throw UnauthorizedError();
     }
 
@@ -94,7 +101,8 @@ export function createRateCardRouter(controllers: {
 
   router.get('/rate_cards/:rateCardId/rates', errorWrapper(async (req: Request, res: Response) => {
     const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
-    if (!identityToken) {
+    const userIsAdmin = await isAdmin(identityToken);
+    if (!identityToken || !userIsAdmin) {
       throw UnauthorizedError();
     }
 
@@ -109,7 +117,8 @@ export function createRateCardRouter(controllers: {
 
   router.patch('/rates/:id', errorWrapper(async (req: Request, res: Response) => {
     const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
-    if (!identityToken) {
+    const userIsAdmin = await isAdmin(identityToken);
+    if (!identityToken || !userIsAdmin) {
       throw UnauthorizedError();
     }
 
@@ -124,7 +133,8 @@ export function createRateCardRouter(controllers: {
 
   router.delete('/rates/:id', errorWrapper(async (req: Request, res: Response) => {
     const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
-    if (!identityToken) {
+    const userIsAdmin = await isAdmin(identityToken);
+    if (!identityToken || !userIsAdmin) {
       throw UnauthorizedError();
     }
 

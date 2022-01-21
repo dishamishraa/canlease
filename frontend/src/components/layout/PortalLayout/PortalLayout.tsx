@@ -18,6 +18,8 @@ import RateCardPage from '../../pages/RateCardPage';
 import ProfilePage from '../../pages/ProfilePage';
 import RateCardDetailsPage from '../../pages/RateCardDetailsPage';
 
+import { ProtectedRoute } from '../../../modules/auth';
+
 export const defaultProps = {
   header: {
     type: 'WithMenu',
@@ -114,14 +116,14 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
               <ApplicationPage
                 className={styles.page} />
             </Route>
-            <Route exact path={routes.ratecard}>
+            <ProtectedRoute exact path={routes.ratecard} adminRedirect={routes.dashboard}>
               <RateCardPage
                 className={styles.page} />
-            </Route>
-            <Route path={routes.ratecardDetail}>
+            </ProtectedRoute>
+            <ProtectedRoute path={routes.ratecardDetail} adminRedirect={routes.dashboard}>
               <RateCardDetailsPage
                 className={styles.page} />
-            </Route>
+            </ProtectedRoute>
             <Route path={routes.profile}>
               <ProfilePage
                 className={styles.page} />

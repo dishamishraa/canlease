@@ -3,9 +3,15 @@ import { Redirect, Route, RouteProps } from 'react-router-dom';
 import ErrorHandler from '../error/ErrorHandler';
 import { AuthContext } from './AuthContext';
 
-const CheckUserAccess: React.FC<RouteProps> = (props) => {
+type ProtectedRouteProps = RouteProps & {
+  adminRedirect?: string;
+}
+
+const CheckUserAccess: React.FC<ProtectedRouteProps> = (props) => {
   const authContext = useContext(AuthContext);
-  const { account, loading, error } = authContext;
+  const { profile, account, loading, error } = authContext;
+  const userType = profile?.userType || 'customer';
+  const  { adminRedirect } = props;
 
   if (loading) {
     return <div>Loading...</div>;
@@ -13,6 +19,10 @@ const CheckUserAccess: React.FC<RouteProps> = (props) => {
 
   if (!account) {
     return <Redirect to='/account' />;
+  }
+
+  if (adminRedirect && userType !== 'admin') {
+    return <Redirect to={adminRedirect} />;
   }
 
   if (error) {
@@ -23,6 +33,6 @@ const CheckUserAccess: React.FC<RouteProps> = (props) => {
   return <Route {...props} />;
 };
 
-const ProtectedRoute: React.FC<RouteProps> = (props) => <CheckUserAccess {...props} />;
+const ProtectedRoute: React.FC<ProtectedRouteProps> = (props) => <CheckUserAccess {...props} />;
 
 export default ProtectedRoute;
