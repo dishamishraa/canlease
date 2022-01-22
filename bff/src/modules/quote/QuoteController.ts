@@ -68,9 +68,8 @@ export default class QuoteController implements QuoteControllerContract {
     }
 
     const rateCards = await this.rateCardService.getRateCards(SPINDL_API_TOKEN);
-    let rateCard = rateCards.find((card) => card.cardtype.toLowerCase() === cardType);
+    let rateCard = rateCards.find((card) => card.cardtype === cardType);
     if (!rateCard) {
-      // throw NotFoundError('no matching rate card');
       rateCard = rateCards.find(
         (card) => card.cardtype.toLowerCase() === this.getCardType(payload),
       );
