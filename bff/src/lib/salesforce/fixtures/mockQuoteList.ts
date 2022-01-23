@@ -7,6 +7,7 @@ const mockQuoteList: Quote[] = [
     applicationAmount: 100,
     name: 'name here',
     companyName: 'cool company',
+    createdDate: '2022-01-12 18:28:01',
     quoteOptions: [
       {
         monthlyAmount: 0,
@@ -24,6 +25,7 @@ const mockQuoteList: Quote[] = [
     applicationAmount: 200,
     name: 'name here',
     companyName: 'cool company',
+    createdDate: '2022-01-12 18:28:01',
     quoteOptions: [
       {
         monthlyAmount: 0,
@@ -41,6 +43,7 @@ const mockQuoteList: Quote[] = [
     applicationAmount: 100,
     name: 'name here',
     companyName: 'cool company',
+    createdDate: '2022-01-12 18:28:01',
     quoteOptions: [
       {
         monthlyAmount: 0,
@@ -58,6 +61,7 @@ const mockQuoteList: Quote[] = [
     applicationAmount: 100,
     name: 'name here',
     companyName: 'cool company',
+    createdDate: '2022-01-12 18:28:01',
     quoteOptions: [
       {
         monthlyAmount: 0,
