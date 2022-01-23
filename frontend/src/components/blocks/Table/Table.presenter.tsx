@@ -78,9 +78,9 @@ const getCurrentItems = (
         items = quotes.map((quote: Quote): TableItem => ({
           company: profile?.operatingName ?? 'No vendor',
           vendor: quote.contactBusinessName ?? 'No vendor',
-          contactName: quote.name,
+          contactName: quote.contactName,
           status: getQuoteStatus(quote, portfolio),
-          createdOn: quote.createdDate ? quote.createdDate : '--',
+          createdOn: new Date(quote.createdDate).toDateString(),
           asset: quote.asset,
           cost: formatAsCurrency(quote.applicationAmount),
           link: `/portal/quote/${quote.quoteId}`,
@@ -92,7 +92,7 @@ const getCurrentItems = (
       if (portfolio && portfolio.creditApps && portfolio.leases) {
         items = portfolio.creditApps.map((application: CreditApplication): TableItem => {
           const lease = portfolio.leases.find((lease) => lease.quoteId === application.quoteId);
-          const customerCompanyName = quotes?.find((quote) => quote.quoteId === application.quoteId)?.contactBusinessName
+          const customerCompanyName = quotes?.find((quote) => quote.quoteId === application.quoteId)?.contactBusinessName;
           return {
             company: profile?.operatingName ?? 'No vendor',
             vendor: customerCompanyName ?? 'No vendor',
