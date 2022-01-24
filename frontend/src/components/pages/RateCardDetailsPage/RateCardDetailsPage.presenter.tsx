@@ -65,10 +65,7 @@ const withPresenter = (
       updateRate,
       refetchRates,
       deleteRate,
-      updateRateCard,
-      refetchRateCard,
       className,
-      rateCardId,
     } = props;
 
     const { t } = useTranslation();
@@ -157,65 +154,63 @@ const withPresenter = (
     }
 
     const isFormValid = !isEmpty(term) && !isEmpty(minMonthlyReturn)
-            && !isEmpty(maxMonthlyReturn) && !isEmpty(interestRate)
-            && !isEmpty(tenAtEndIR); 
+      && !isEmpty(maxMonthlyReturn) && !isEmpty(interestRate)
+      && !isEmpty(tenAtEndIR);
 
     const handleSaveRate = async () => {
       if (term && minMonthlyReturn && maxMonthlyReturn
-                && interestRate && tenAtEndIR && rateCard && refetchRates) {
-          
+        && interestRate && tenAtEndIR && rateCard && refetchRates) {
+
         let allFieldsAreValid: boolean = true;
         if (!isTermValid(term)) {
           allFieldsAreValid = false;
           currFormState.termError = t('new_rate_modal.error_message');
-        } 
+        }
         if (!isMonthlyReturnValid(minMonthlyReturn)) {
           allFieldsAreValid = false;
           currFormState.minMonthlyReturnError = t('new_rate_modal.error_message');
-        } 
+        }
         if (!isMonthlyReturnValid(maxMonthlyReturn)) {
           allFieldsAreValid = false;
           currFormState.maxMonthlyReturnError = t('new_rate_modal.error_message');
-        } 
+        }
         if (!isInterestRateValid(interestRate)) {
           allFieldsAreValid = false;
           currFormState.interestRateError = t('new_rate_modal.error_message');
-        } 
+        }
         if (!isInterestRateValid(tenAtEndIR)) {
           allFieldsAreValid = false;
           currFormState.tenAtEndIRError = t('new_rate_modal.error_message');
-        } 
+        }
 
         if (allFieldsAreValid) {
-            if (!currRate && createRate) {
-              await createRate({
-                term,
-                minmonthlyreturn: minMonthlyReturn,
-                maxmonthlyreturn: maxMonthlyReturn,
-                regularir: interestRate,
-                tenatendir: tenAtEndIR,
-                ratecardid: rateCard?.id,
-              });
-            } else if (currRate && updateRate) {
-              await updateRate({
-                rateId: currRate.id,
-                term,
-                minmonthlyreturn: minMonthlyReturn,
-                maxmonthlyreturn: maxMonthlyReturn,
-                regularir: interestRate,
-                tenatendir: tenAtEndIR,
-                ratecardid: rateCard?.id,
-              });
-            }
-            onCloseRateModal();
-            refetchRates();
-          } else {
-            setFormState(currFormState);
+          if (!currRate && createRate) {
+            await createRate({
+              term,
+              minmonthlyreturn: minMonthlyReturn,
+              maxmonthlyreturn: maxMonthlyReturn,
+              regularir: interestRate,
+              tenatendir: tenAtEndIR,
+              ratecardid: rateCard?.id,
+            });
+          } else if (currRate && updateRate) {
+            await updateRate({
+              rateId: currRate.id,
+              term,
+              minmonthlyreturn: minMonthlyReturn,
+              maxmonthlyreturn: maxMonthlyReturn,
+              regularir: interestRate,
+              tenatendir: tenAtEndIR,
+              ratecardid: rateCard?.id,
+            });
           }
+          onCloseRateModal();
+          refetchRates();
+        } else {
+          setFormState(currFormState);
         }
+      }
     };
-
-
 
     const handleDeleteRate = async (): Promise<void> => {
       if (deleteRateId) {
@@ -225,14 +220,7 @@ const withPresenter = (
       refetchRates();
       setDeleteRateId(undefined);
     };
-    const handleUpdateRateCard = async (): Promise<void> => {
-      if (rateCardId) {
-        await updateRateCard({ cardtype: newRateCardName, id: rateCardId });
-      }
-      setRateCardModalOpen(false);
-      refetchRateCard();
-      setNewRateCardName('');
-    };
+
     const handleCloseDeleteModal = (): void => {
       setDeleteModalOpen(false);
     };
@@ -240,15 +228,10 @@ const withPresenter = (
       setDeleteRateId(id);
       setDeleteModalOpen(true);
     };
-    const handleOpenRateCardModal = (): void => {
-      setRateCardModalOpen(true);
-    };
+
     const handleCloseRateCardModal = (): void => {
       setRateCardModalOpen(false);
       setNewRateCardName('');
-    };
-    const handleTextChange = ({ target: { value } }) => {
-      setNewRateCardName(value);
     };
 
     const newRateModal: NewRateModalProps = {
@@ -374,14 +357,6 @@ const withPresenter = (
       text: {
         ...defaultProps.blockHeader.text,
         value: rateCard?.cardtype,
-      },
-      button: {
-        ...defaultProps.blockHeader.button,
-        text: {
-          ...defaultProps.blockHeader.button?.text,
-          value: t('rate_card_details_page.header.button_text'),
-        },
-        onButtonClicked: handleOpenRateCardModal,
       },
     };
 
@@ -512,6 +487,7 @@ const withPresenter = (
         onButtonClicked: handleCloseDeleteModal,
       },
     };
+
     const rateCardModal = {
       ...defaultRateCardModalProps,
       icon: {
@@ -521,26 +497,6 @@ const withPresenter = (
       title: {
         ...defaultRateCardModalProps.title,
         value: t('add_rate_card.heading'),
-      },
-      textField: {
-        ...defaultRateCardModalProps.textField,
-        label: {
-          ...defaultRateCardModalProps.textField.label,
-          value: t('add_rate_card.label'),
-        },
-        textInput: {
-          ...defaultRateCardModalProps.textField.textInput,
-          textValue: newRateCardName,
-          onTextChanged: handleTextChange,
-        },
-      },
-      primary: {
-        ...defaultRateCardModalProps.primary,
-        text: {
-          ...defaultRateCardModalProps.primary.text,
-          value: t('add_rate_card.save_button'),
-        },
-        onButtonClicked: handleUpdateRateCard,
       },
       secondary: {
         ...defaultRateCardModalProps.secondary,
@@ -557,7 +513,7 @@ const withPresenter = (
       blockHeader,
       rateCardTable,
       confirmationModal,
-      rateCardModal,
+      rateCardModal
     };
 
     return (

@@ -31,25 +31,13 @@ export const defaultProps = {
   } as TopBarProps,
   blockHeader: {
     style: 'Heading1',
-    type: 'WithButton',
+    type: 'Default',
     text: {
       style: 'Basic800',
       align: 'Left',
       size: 'Large',
       type: 'Heading1',
-    },
-    button: {
-      type: 'Button',
-      size: 'Medium',
-      fill: 'Basic',
-      colour: 'Basic',
-      text: {
-        style: 'Brand500',
-        align: 'Center',
-        size: 'Small',
-        type: 'ButtonGiant',
-      },
-    },
+    }
   } as BlockHeaderProps,
   rateCardTable: {
     rateCardTableHeader: {
