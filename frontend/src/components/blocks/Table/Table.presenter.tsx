@@ -80,7 +80,7 @@ const getCurrentItems = (
           vendor: quote.contactBusinessName ?? 'No vendor',
           contactName: quote.contactName,
           status: getQuoteStatus(quote, portfolio),
-          createdOn: new Date(quote.createdDate).toDateString(),
+          createdOn: new Date(quote.createdDate.replace(/-/g, '/')).toDateString(),
           asset: quote.asset,
           cost: formatAsCurrency(quote.applicationAmount),
           link: `/portal/quote/${quote.quoteId}`,
