@@ -19,7 +19,7 @@ const CreateApplicationSchema = Joi.object({
   contactName: Joi.string().required(),
   contactEmail: Joi.string().required(),
   contactPhone: Joi.string().required(),
-  contactWebsite: Joi.string().allow(null),
+  contactWebsite: Joi.string().allow(null).allow(''),
   street: Joi.string().required(),
   city: Joi.string().required(),
   province: Joi.string().required(),

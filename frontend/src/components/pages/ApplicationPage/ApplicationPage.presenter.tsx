@@ -221,6 +221,7 @@ const withPresenter = (
           } = personalInfo;
           applicationPayload = {
             ...applicationPayload,
+            lesseePortalId: undefined,
             operatingName,
             businessName: companyName,
             businessType,
@@ -237,6 +238,7 @@ const withPresenter = (
             sin,
             dob,
             bankruptcyDetails,
+            vendorPortalId: portalId,
           };
         }
 

@@ -52,7 +52,7 @@ const withPresenter = (
     };
 
     const nextClicked = () => {
-      history.push('/portal/application/termsOfApplication');
+      history.push('/portal/application/termsOfApplication', { ...state });
     };
 
     if (personalInfo) {
