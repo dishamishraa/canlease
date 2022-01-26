@@ -6,8 +6,7 @@ import { LeaseInfoBlockProps, defaultProps } from './LeaseInfoBlock';
 import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { TextProps } from '../../atoms/Text';
 
-export type LeaseInfoBlockPresenterProps = LeaseInfoBlockProps & {};
-
+export type LeaseInfoBlockPresenterProps = LeaseInfoBlockProps & {}; 
 const withPresenter = (
   View: React.FC<LeaseInfoBlockProps>,
 ): React.FC<LeaseInfoBlockPresenterProps> => {

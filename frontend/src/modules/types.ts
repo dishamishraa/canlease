@@ -153,4 +153,6 @@ export type ContentFilter =
   | 'under_review'
   | 'financed'
   | 'rejected'
-  | 'not_active';
+  | 'not_active'
+  | 'approved'
+  | 'declined';

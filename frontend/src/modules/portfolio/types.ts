@@ -7,6 +7,7 @@ export type CreditApplication = {
   creditAppNumber: string;
   createdDate: string;
   applicationAmount: number;
+  creditDecision: string;
   description: string;
   creditStatus: string;
   applicationStatus: 'under review' | 'financed' | 'rejected' | 'not active';

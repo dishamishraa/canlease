@@ -126,6 +126,7 @@ export type Application = {
   description: string;
   creditStatus: string;
   applicationStatus: string;
+  creditDecision: string;
   quoteId: string;
   asset: string;
   name: string;

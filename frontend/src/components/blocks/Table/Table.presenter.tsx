@@ -55,17 +55,14 @@ const getQuoteStatus = (
   return 'active';
 };
 
-const getApplicationStatus = ({ applicationStatus }: CreditApplication): ContentFilter => {
-  switch (applicationStatus) {
-    case 'financed':
-      return 'financed';
-    case 'rejected':
-      return 'rejected';
-    case 'not active':
-      return 'not_active';
-    default:
-      return 'under_review';
+const getApplicationStatus = (application: CreditApplication): ContentFilter => {
+  if (application.creditDecision === 'Approved' || application.creditDecision === 'Application Approved as Submitted (Final)') {
+    return 'approved';
+  } else if (application.creditDecision === 'Application Declined (Final)' || application.creditDecision === 'Declined') {
+    return 'declined';
   }
+
+  return 'under_review';
 };
 
 const getCurrentItems = (

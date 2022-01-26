@@ -362,7 +362,9 @@
             "under_review": "Under review",
             "financed": "Financed",
             "rejected": "Rejected",
-            "not_active": "Not active"
+            "not_active": "Not active",
+            "approved": "Approved",
+            "declined": "Declined"
         }
     },
     "warning_modal": {
