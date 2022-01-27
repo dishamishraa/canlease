@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { useTranslation } from 'react-i18next';
-import { isEmptyString } from '../../../lib/utils';
+import { getTodaysDateString, isEmptyString } from '../../../lib/utils';
 import { Profile } from '../../../modules/profile/types';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
 import {
@@ -129,18 +129,9 @@ const withPresenter = (
     };
 
     const isFormValid = () => {
-      if (businessType === 'Incorporated') {
-        return true;
-      } if (!isEmptyString(businessType)
-            && !isEmptyString(sin)
-            && !isEmptyString(dob)) {
-        if (bankruptcy === false
-                || !isEmptyString(bankruptcyDetails)) {
-          return true;
-        }
-        return false;
-      }
-      return false;
+      return businessType === 'Incorporated' 
+      || (!isEmptyString(businessType) && !isEmptyString(sin) && !isEmptyString(dob) 
+      && (bankruptcy === false || !isEmptyString(bankruptcyDetails)));
     };
 
     const contextualMenuItems: ContextualMenuItemProps[] = [];
@@ -293,6 +284,8 @@ const withPresenter = (
         textInput: {
           ...defaultProps.dateOfBirthField?.textInput,
           textPlaceholder: t('application_form.asset_information.date_placeholder'),
+          inputType: 'date',
+          max: getTodaysDateString(),
           textValue: dob,
           onTextChanged: handleChangeDateOfBirth,
         },

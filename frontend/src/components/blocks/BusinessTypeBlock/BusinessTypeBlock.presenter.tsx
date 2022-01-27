@@ -81,18 +81,9 @@ const withPresenter = (
     };
 
     const isFormValid = () => {
-      if (businessType === 'Incorporated') {
-        return true;
-      } if (!isEmptyString(businessType)
-            && !isEmptyString(sin)
-            && !isEmptyString(dob)) {
-        if (bankruptcy === false
-                || !isEmptyString(bankruptcyDetails)) {
-          return true;
-        }
-        return false;
-      }
-      return false;
+      return businessType === 'Incorporated' 
+      || (!isEmptyString(businessType) && !isEmptyString(sin) && !isEmptyString(dob) 
+      && (bankruptcy === false || !isEmptyString(bankruptcyDetails)));
     };
 
     const businessTypeBlockProps: BusinessTypeBlockProps = {
@@ -169,7 +160,7 @@ const withPresenter = (
         },
         textInput: {
           ...defaultProps.dateOfBirthField?.textInput,
-          inputType: "date",
+          inputType: 'date',
           max: getTodaysDateString(),
           textPlaceholder: t('application_form.asset_information.date_placeholder'),
           textValue: dob,

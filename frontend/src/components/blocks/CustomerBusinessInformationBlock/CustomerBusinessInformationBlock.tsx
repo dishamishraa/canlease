@@ -247,6 +247,9 @@ const CustomerBusinessInformationBlock: React.FC<CustomerBusinessInformationBloc
          <TextField
             className={styles.businessPhoneField}
             {...sinField} />
+          <TextField 
+            className={styles.dateOfBirthField}
+            {...dateOfBirthField} />
           <RadioField
             className={styles.bankruptcyRadioField}
             {...bankruptcyRadioField} />
