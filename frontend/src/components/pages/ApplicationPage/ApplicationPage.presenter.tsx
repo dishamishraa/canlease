@@ -221,7 +221,7 @@ const withPresenter = (
           } = personalInfo;
           applicationPayload = {
             ...applicationPayload,
-            lesseePortalId: undefined,
+            lesseePortalId: '',
             operatingName,
             businessName: companyName,
             businessType,

@@ -12,7 +12,7 @@ import {
 } from './types';
 
 const CreateApplicationSchema = Joi.object({
-  lesseePortalId: Joi.string().optional(),
+  lesseePortalId: Joi.string().optional().allow(''),
   operatingName: Joi.string().required(),
   businessName: Joi.string().required(),
   businessType: Joi.string().valid(...VALID_BUSINESS_TYPES).required(),
