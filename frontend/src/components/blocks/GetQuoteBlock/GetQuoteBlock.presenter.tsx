@@ -36,6 +36,7 @@ const withPresenter = (
     const [equipmentRatecard, setEquipmentRatecard] = useState<string>();
     const [userType, setUserType] = useState<UserType>();
     const [formState, setFormState] = useState<FormState>();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     let currFormState: FormState = {
       equipmentCostError: ""
@@ -56,7 +57,7 @@ const withPresenter = (
       }
     }, [equipmentLeaseInfo]);
 
-    const isFormValid = !isEmptyString(equipmentName) && !isEmptyString(equipmentCost);
+    const isFormValid = !isEmptyString(equipmentName) && !isEmptyString(equipmentCost) && !isLoading;
     const isRepFormValid = isFormValid
       && !isEmptyString(equipmentRatecard)
       && !isEmptyString(equipmentFees);
@@ -83,7 +84,9 @@ const withPresenter = (
                 fee: parseFloat(equipmentFees),
               };
             }
+            setIsLoading(true);
             await setEquipmentLeaseInfo(leaseInfo);
+            setIsLoading(false);
           }
         }        
         

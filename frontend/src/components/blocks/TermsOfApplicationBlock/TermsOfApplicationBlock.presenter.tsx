@@ -20,9 +20,10 @@ const withPresenter = (
 
     const { t } = useTranslation();
     const [isSelected, setIsSelected] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const isFormValid = () => {
-      if (isSelected) {
+      if (isSelected && !isLoading) {
         return true;
       }
       return false;
@@ -30,7 +31,9 @@ const withPresenter = (
 
     const handleClickNext = async () => {
       if (isFormValid() && setCreditCheckConsent) {
+        setIsLoading(true);
         await setCreditCheckConsent(true);
+        setIsLoading(false);
       }
     };
     const termsOfApplicationBlockProps: TermsOfApplicationBlockProps = {

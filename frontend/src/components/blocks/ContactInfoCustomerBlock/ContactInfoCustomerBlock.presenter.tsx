@@ -21,6 +21,7 @@ const withPresenter = (
     const [customerName, setCustomerName] = useState<string>();
     const [customerEmail, setCustomerEmail] = useState<string>();
     const [customerCompanyName, setCustomerCompanyName] = useState<string>();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
       if (contactInfo) {
@@ -35,15 +36,17 @@ const withPresenter = (
     const handleChangeCustomerCompanyName = ({ target: { value } }) => setCustomerCompanyName(value);
 
     const isFormValid = !isEmptyString(customerName) && !isEmptyString(customerEmail)
-      && !isEmptyString(customerCompanyName);
+      && !isEmptyString(customerCompanyName) && !isLoading;
     const handleClickViewQuote = async () => {
       if (customerName && customerEmail && customerCompanyName && setContactInfo) {
+        setIsLoading(true);
         await setContactInfo({
           type: 'customer',
           customerName,
           customerEmail,
           customerCompanyName,
         });
+        setIsLoading(false);
       }
     };
 
