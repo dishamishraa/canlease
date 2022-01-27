@@ -69,6 +69,7 @@ const withPresenter = (
         defaultDisplay.description = t('email_verification.description.reset');
         break;
       case 'ApplicationSubmitted':
+        imageDisplay = EmailCheckMark;
         defaultDisplay.header = t('application_form.application_submitted.header');
         defaultDisplay.description = t('application_form.application_submitted.description');
         defaultDisplay.questionText = '';
