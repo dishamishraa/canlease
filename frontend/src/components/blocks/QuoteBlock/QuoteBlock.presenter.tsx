@@ -7,6 +7,7 @@ import { QuoteRateSectionProps } from '../../organisms/QuoteRateSection';
 import { QuoteBlockProps, defaultProps } from './QuoteBlock';
 import { RateCardProps, defaultProps as defaultRateCardProps } from '../../molecules/RateCard/RateCard';
 import { ModalProps, defaultProps as modalPropsDefaultProps } from '../../organisms/Modal/Modal';
+import QuoteSentIcon from '../../../resources/icons/QuoteSentIllustration.svg';
 import EmailIcon from '../../../resources/icons/Email.svg';
 import {
   QuoteDetailItemProps,
@@ -62,6 +63,15 @@ const withPresenter = (
 
     const onCloseModal = () => {
       setShowModal(false);
+      if (flowType == 'instaQuote') {
+        history.push('/account/signin');
+      } else {
+         history.push('/portal/quotes');
+      }
+    };
+
+    const onSimpleCloseModal = () => {
+      setShowModal(false);
     };
 
     const modal: ModalProps = {
@@ -71,32 +81,36 @@ const withPresenter = (
         onIconClicked: onCloseModal,
       },
       image: {
-        image: EmailIcon,
+        image: flowType == 'instaQuote'? EmailIcon : QuoteSentIcon,
       },
       titleText: {
         ...modalPropsDefaultProps.titleText,
-        value: t('quote_email_sent.title'),
+        value: flowType == 'instaQuote'? t('quote_email_sent.title') : t('quote_confirmation.header'),
       },
       descriptionText: {
         ...modalPropsDefaultProps.descriptionText,
-        value: t('quote_email_sent.description'),
+        value: flowType == 'instaQuote'? t('quote_email_sent.description') : t('quote_confirmation.description'),
       },
       primaryButton: {
         ...modalPropsDefaultProps.primaryButton,
         text: {
           ...modalPropsDefaultProps.primaryButton.text,
-          value: t('quote_email_sent.primary_button'),
+          value: flowType == 'instaQuote'? t('quote_email_sent.primary_button') : t('quote_confirmation.button'),
         },
+        onButtonClicked: onCloseModal,
       },
       secondaryButton: {
         ...modalPropsDefaultProps.secondaryButton,
         text: {
           ...modalPropsDefaultProps.secondaryButton.text,
-          value: t('quote_email_sent.secondary_button'),
+          value: flowType == 'instaQuote'? t('quote_email_sent.secondary_button') : t('')
         },
-        onButtonClicked: onCloseModal,
+        onButtonClicked: onSimpleCloseModal,
+        visible: flowType == 'instaQuote'
       },
+
     };
+
 
     const handleApplyForFinance = (tab: ContentTypeTabs) => () => {
       switch (flowType) {
@@ -114,7 +128,7 @@ const withPresenter = (
 
     const handleSaveQuote = () => {
       updateInstaQuoteCookie({ action: 'save_quote' }, setCookie, removeCookie);
-      history.push('/account/signin');
+      setShowModal(true);
     };
 
     const getSubmittedBy = (info: ContactInfo) => {

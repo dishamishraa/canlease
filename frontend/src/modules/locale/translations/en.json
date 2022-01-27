@@ -54,7 +54,7 @@
     },
     "quote_email_sent":{
         "title": "Email sent!",
-        "description": "The quote has been sent to your customer. Sign up to view this quote. Create and track unlimited quotes and lease applications with a free Canlease account.",
+        "description": "The quote has been sent to the customer. Sign up to view this quote. Create and track unlimited quotes and lease applications with a free Canlease account.",
         "primary_button": "Create a Free account",
         "secondary_button": "Close"
     },
@@ -102,7 +102,7 @@
         "send_quote": "Send quote"
     },
     "quote_confirmation": {
-        "header": "Quote Sent!",
+        "header": "Quote sent!",
         "description": "The quote has been sent to your customer. You can view the quote and track its progress on the Quotes page.",
         "button": "Done"
     },

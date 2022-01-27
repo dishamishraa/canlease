@@ -43,6 +43,7 @@ export type ContactInfo = ContactInfoCustomer | ContactInfoVendor;
 export type ViewQuoteType = {
   userType?: UserType;
   quote?: Quote;
+  contactInfo: ContactInfo;
 };
 
 // AUTH types

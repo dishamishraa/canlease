@@ -28,27 +28,28 @@ const withInteractor = (
     const { quoteId } = useParams<{quoteId: string}>();
     const { state } = useLocation<ViewQuoteType | undefined>();
     const [, sendQuote] = useSendQuote();
-
-    const { quote } = state || {};
+    const { quote, contactInfo } = state || {};
 
     if (isEmpty(quote)) {
-      return <GetQuoteInteractor quoteId={quoteId}>
-        { (valueProps) => <Presenter
-            {...props}
-            {...valueProps}
-            sendQuote={sendQuote}
-            />
-        }
-      </GetQuoteInteractor>;
+      return (
+        <GetQuoteInteractor quoteId={quoteId}>
+          {(valueProps) => (
+            <Presenter {...props} {...valueProps} sendQuote={sendQuote} />
+          )}
+        </GetQuoteInteractor>
+      );
     }
 
-    return <Presenter
-            {...props}
-            quote={quote || null}
-            loading={false}
-            error={undefined}
-            sendQuote={sendQuote}
-        />;
+    return (
+      <Presenter
+        {...props}
+        quote={quote || null}
+        loading={false}
+        error={undefined}
+        sendQuote={sendQuote}
+        contactInfo={contactInfo}
+      />
+    );
   };
 
   return Interactor;

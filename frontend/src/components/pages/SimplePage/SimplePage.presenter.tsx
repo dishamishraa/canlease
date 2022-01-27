@@ -67,7 +67,10 @@ const withPresenter = (
       }
     };
 
-    const handleCreateQuote = async (createPayload: CreateQuotePayload) => {
+    const handleCreateQuote = async (
+      createPayload: CreateQuotePayload,
+      contactInfo: ContactInfo | undefined
+    ) => {
       const { data } = await createQuote(createPayload);
       if (data) {
         const expiryDate = new Date();
@@ -82,7 +85,12 @@ const withPresenter = (
             history.push(`/instaQuote/${quoteId}`, { quote: data });
             break;
           case 'createQuote':
-            history.push(`/portal/quote/${quoteId}`, { quote: data, fromTab, quoteUserType });
+            history.push(`/portal/quote/${quoteId}`, {
+              quote: data,
+              fromTab,
+              quoteUserType,
+              contactInfo
+            });
             break;
         }
       }
@@ -113,7 +121,7 @@ const withPresenter = (
               contactEmail: profile.email,
               contactBusinessName: profile.companyName,
             };
-            await handleCreateQuote(createPayload);
+            await handleCreateQuote(createPayload, undefined);
           }
           break;
       }
@@ -187,7 +195,7 @@ const withPresenter = (
           };
         }
 
-        await handleCreateQuote(createPayload);
+        await handleCreateQuote(createPayload, contactInfo);
       }
     };
 
