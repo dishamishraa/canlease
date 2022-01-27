@@ -95,7 +95,7 @@ const getCurrentItems = (
             vendor: customerCompanyName ?? 'No vendor',
             contactName: application.name,
             status: getApplicationStatus(application),
-            createdOn: new Date(application.createdDate.split('-').toString()).toDateString(),
+            createdOn: new Date(application.createdDate.replace(/-/g, '/')).toDateString(),
             asset: application.asset,
             cost: formatAsCurrency(application.applicationAmount),
             link: generatePath('/portal/application/:applicationDetails', { applicationDetails: application.creditAppNumber }),
