@@ -13,6 +13,7 @@ const mockPortfolio: Portfolio = {
       asset: 'string',
       name: 'name here',
       companyName: 'cool company',
+      creditDecision: 'string',
     },
   ],
   leases: [
