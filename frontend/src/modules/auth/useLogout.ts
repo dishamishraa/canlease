@@ -11,6 +11,7 @@ const useLogout = (): UseLogoutResult => {
   const handleLogout = useCallback(
     () => {
       removeCookie(SESSION_COOKIE_NAME, { path: '/', domain: DOMAIN });
+      removeCookie(SESSION_COOKIE_NAME, { path: '/'});
       removeCookie(`${SESSION_COOKIE_NAME}-legacy`, { path: '/', domain: DOMAIN });
       logout();
     },
