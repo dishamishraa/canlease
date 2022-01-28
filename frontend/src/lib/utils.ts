@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import { INSTANT_QUOTE_COOKIE } from './config';
-import { AfterAuthAction } from '../modules/types';
+import { AfterAuthAction, DateType } from '../modules/types';
 
 
 export const isEmptyString = (value?: string) => (value ? value.trim().length === 0 : true);
@@ -56,6 +56,23 @@ export const isEmail = (value: string) => {
   const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return regexEmail.test(value);
 };
+
+export const isValidDate = (value: string, dateType: DateType) => {
+  const regexDate = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
+
+  if (regexDate.test(value)) {
+    const valueAsDate = new Date(value.replace(/-/g, '/'));
+    const todaysDate = new Date(getTodaysDateString().replace(/-/g, '/'));
+
+    if (dateType === 'past') {
+      return valueAsDate < todaysDate;
+    }
+
+    return valueAsDate >= todaysDate;
+  }
+
+  return false;
+}
 
 export const getTodaysDateString = (): string => {
   return (new Date()).toISOString().split('T')[0];

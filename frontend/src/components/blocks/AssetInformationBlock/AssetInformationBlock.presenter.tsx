@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { getTodaysDateString, isEmptyString } from '../../../lib/utils';
+import { getTodaysDateString, isEmptyString, isValidDate } from '../../../lib/utils';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
 import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { defaultProps as defaultTextFieldProps } from '../../molecules/TextField/TextField';
 import { RadioFieldProps } from '../../molecules/RadioField';
 import { DetailsSectionProps } from '../../organisms/DetailsSection';
 import { AssetInformationBlockProps, defaultProps } from './AssetInformationBlock';
+import { IS_SAFARI } from '../../../lib/constants';
 
 export type AssetInformationBlockPresenterProps = AssetInformationBlockProps;
 
 type FormState = {
-  assetAgeErrorMessage: string
+  assetAgeErrorMessage: string,
+  dateErrorMessage: string
 };
 
 const withPresenter = (
@@ -34,7 +36,8 @@ const withPresenter = (
     const [formState, setFormState] = useState<FormState>();
 
     let currFormState: FormState = {
-      assetAgeErrorMessage: ""
+      assetAgeErrorMessage: '',
+      dateErrorMessage: ''
     };
 
     useEffect(() => {
@@ -73,17 +76,26 @@ const withPresenter = (
 
     const handleClickNext = () => {
       if (setAssetInfo && assetCondition && expectedDeilivery) {
+        let allFieldsAreValid = true;
         if (!isAssetAgeValid()) {
+          allFieldsAreValid = false;
           currFormState.assetAgeErrorMessage = t('application_form.error_message');
           setFormState(currFormState);
-        } else {
+        } 
+
+        if (!isValidDate(expectedDeilivery, 'future')) {
+          allFieldsAreValid = false;
+          currFormState.dateErrorMessage = t('error_message.invalid_date');
+          setFormState(currFormState);
+        } 
+
+        if (allFieldsAreValid) {
           setAssetInfo({
             ageOfAsset: assetAge || 0,
             assetCondition,
             expectedDeliveryDate: expectedDeilivery,
           });
         }
-        
       }
     };
 
@@ -199,7 +211,7 @@ const withPresenter = (
       assetConditionRadioField,
       ageOfAssetTextField: {
         ...defaultProps.ageOfAssetTextField,
-        state: "Error",
+        state: 'Error',
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
           value: formState?.assetAgeErrorMessage
@@ -216,10 +228,16 @@ const withPresenter = (
       },
       expectedDeliveryDateTextField: {
         ...defaultProps.expectedDeliveryDateTextField,
+        state: 'Error',
+        errorMessage: {
+          ...defaultTextFieldProps.errorMessage,
+          value: formState?.dateErrorMessage
+        },
         textInput: {
           min: getTodaysDateString(),
-          inputType: "date",
+          inputType: IS_SAFARI ? 'text' : 'date',
           onTextChanged: handleChangeExpectedDate,
+          textPlaceholder: t('application_form.asset_information.date_placeholder')
         },
         label: {
           ...defaultProps.expectedDeliveryDateTextField?.label,

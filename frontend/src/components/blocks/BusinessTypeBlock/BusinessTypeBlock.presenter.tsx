@@ -2,12 +2,18 @@ import React, { useState, useEffect} from 'react';
 import { useTranslation } from 'react-i18next';
 import { BusinessTypeBlockProps, defaultProps } from './BusinessTypeBlock';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
-import { getTodaysDateString, isEmptyString } from '../../../lib/utils';
+import { getTodaysDateString, isEmptyString, isValidDate } from '../../../lib/utils';
 import { Profile } from '../../../modules/profile/types';
+import { defaultProps as defaultTextFieldProps } from '../../molecules/TextField/TextField';
+import { IS_SAFARI } from '../../../lib/constants';
 
 export type BusinessTypeBlockPresenterProps = BusinessTypeBlockProps & {
   profile: Profile | null;
 };
+
+type FormState = {
+  dobError: string;
+}
 
 const withPresenter = (
   View: React.FC<BusinessTypeBlockProps>,
@@ -28,6 +34,7 @@ const withPresenter = (
     const [dob, setDob] = useState<string>();
     const [bankruptcy, setBankruptcy] = useState<boolean>();
     const [bankruptcyDetails, setBankruptcyDetails] = useState<string>();
+    const [formState, setFormState] = useState<FormState>();
 
     useEffect(() => {
       if (businessInfo) {
@@ -43,16 +50,32 @@ const withPresenter = (
       }
     }, [businessInfo]);
 
+    let currFormState: FormState = {
+      dobError: ''
+    };
+
     const handleClickNext = () => {
+      let allFieldsAreValid = true;
       if (setBusinessInfo && businessType) {
-        setBusinessInfo({
-          type: 'customer',
-          businessType,
-          sin: sin || '',
-          dob: dob || '',
-          bankruptcy: bankruptcy || false,
-          bankruptcyDetails: bankruptcyDetails || '',
-        });
+        if (dob) {
+          if (!isValidDate(dob, 'past')) {
+            allFieldsAreValid = false;
+            currFormState.dobError = t('error_message.invalid_date');
+            setFormState(currFormState);
+          }
+        }
+
+        if (allFieldsAreValid) {
+          setBusinessInfo({
+            type: 'customer',
+            businessType,
+            sin: sin || '',
+            dob: dob || '',
+            bankruptcy: bankruptcy || false,
+            bankruptcyDetails: bankruptcyDetails || '',
+          });
+        }
+        
       }
     };
 
@@ -154,13 +177,18 @@ const withPresenter = (
       },
       dateOfBirthField: {
         ...defaultProps.dateOfBirthField,
+        state: 'Error',
+        errorMessage: {
+          ...defaultTextFieldProps.errorMessage,
+          value: formState?.dobError
+        },
         label: {
           ...defaultProps.dateOfBirthField?.label,
           value: t('application_form.business_type.date_of_birth'),
         },
         textInput: {
           ...defaultProps.dateOfBirthField?.textInput,
-          inputType: 'date',
+          inputType: IS_SAFARI ? 'text' : 'date',
           max: getTodaysDateString(),
           textPlaceholder: t('application_form.asset_information.date_placeholder'),
           textValue: dob,

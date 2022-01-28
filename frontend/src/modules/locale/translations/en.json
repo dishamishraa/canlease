@@ -151,7 +151,7 @@
             },
             "age": "Age of asset (in years)",
             "expected_date": "Expected date of asset delivery",
-            "date_placeholder": "mm/dd/yy"
+            "date_placeholder": "YYYY-MM-DD"
         },
         "stepper": "STEP {{current}}/{{total}}",
         "business_type": {
@@ -301,7 +301,8 @@
         "empty": "{{field}} cannot be empty",
         "invalid_email": "Please enter a valid email address",
         "password_mismatch": "Passwords do not match",
-        "account_exist": "An account with this email already exists"
+        "account_exist": "An account with this email already exists",
+        "invalid_date": "Please enter a valid date"
     },
     "button_text": {
         "sign_in": "SIGN IN",

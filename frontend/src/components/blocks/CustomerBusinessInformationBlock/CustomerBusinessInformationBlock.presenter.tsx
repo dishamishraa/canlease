@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { useTranslation } from 'react-i18next';
-import { getTodaysDateString, isEmptyString } from '../../../lib/utils';
+import { getTodaysDateString, isEmptyString, isValidDate } from '../../../lib/utils';
 import { Profile } from '../../../modules/profile/types';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
 import {
@@ -11,11 +11,17 @@ import {
   ContextualMenuItemProps,
   defaultProps as defaultMenuItemProps,
 } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
+import { defaultProps as defaultTextFieldProps } from '../../molecules/TextField/TextField';
+import { IS_SAFARI } from '../../../lib/constants';
 
 export type CustomerBusinessInformationBlockPresenterProps =
   CustomerBusinessInformationBlockProps & {
     profile: Profile | null;
   };
+
+type FormState = {
+  dobError: string;
+}
 
 const withPresenter = (
   View: React.FC<CustomerBusinessInformationBlockProps>,
@@ -41,6 +47,11 @@ const withPresenter = (
     const [dob, setDob] = useState<string>();
     const [bankruptcy, setBankruptcy] = useState<boolean>();
     const [bankruptcyDetails, setBankruptcyDetails] = useState<string>();
+    const [formState, setFormState] = useState<FormState>();
+
+    let currFormState: FormState = {
+      dobError: ''
+    }
 
     useEffect(() => {
       if (businessInfo) {
@@ -81,6 +92,7 @@ const withPresenter = (
     };
 
     const handleClickNext = () => {
+      let allFieldsAreValid = true;
       if (setBusinessInfo
             && businessType
             && fullLegalName
@@ -88,19 +100,30 @@ const withPresenter = (
             && businessSector
             && businessPhone
       ) {
-        setBusinessInfo({
-          type: 'vendor',
-          businessType,
-          sin: sin || '',
-          dob: dob || '',
-          bankruptcy: bankruptcy || false,
-          bankruptcyDetails: bankruptcyDetails || '',
-          companyName: fullLegalName,
-          operatingName,
-          businessSector,
-          businessPhone,
-          website: website || '',
-        });
+        if (dob) {
+          if (!isValidDate(dob, 'past')) {
+            allFieldsAreValid = false;
+            currFormState.dobError  = t('error_message.invalid_date');
+            setFormState(currFormState);
+          }
+        }
+
+        if (allFieldsAreValid) {
+          setBusinessInfo({
+            type: 'vendor',
+            businessType,
+            sin: sin || '',
+            dob: dob || '',
+            bankruptcy: bankruptcy || false,
+            bankruptcyDetails: bankruptcyDetails || '',
+            companyName: fullLegalName,
+            operatingName,
+            businessSector,
+            businessPhone,
+            website: website || '',
+          });
+        }
+        
       }
     };
 
@@ -277,6 +300,11 @@ const withPresenter = (
       },
       dateOfBirthField: {
         ...defaultProps.dateOfBirthField,
+        state: 'Error',
+        errorMessage: {
+          ...defaultTextFieldProps.errorMessage,
+          value: formState?.dobError,
+        },
         label: {
           ...defaultProps.dateOfBirthField?.label,
           value: t('application_form.business_type.date_of_birth'),
@@ -284,7 +312,7 @@ const withPresenter = (
         textInput: {
           ...defaultProps.dateOfBirthField?.textInput,
           textPlaceholder: t('application_form.asset_information.date_placeholder'),
-          inputType: 'date',
+          inputType: IS_SAFARI ? 'text' : 'date',
           max: getTodaysDateString(),
           textValue: dob,
           onTextChanged: handleChangeDateOfBirth,

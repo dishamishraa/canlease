@@ -157,3 +157,5 @@ export type ContentFilter =
   | 'not_active'
   | 'approved'
   | 'declined';
+
+export type DateType = 'past' | 'future'
