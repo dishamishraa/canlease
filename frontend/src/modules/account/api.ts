@@ -63,9 +63,9 @@ export const signIn = async (payload: SignInPayload): Promise<AccountResponse> =
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new ApiError({
-        code: error.response.status,
-        type: error.response.statusText,
-        message: error.message,
+        code: error.response.data.status,
+        type: error.response.data.type,
+        message: error.response.data.message,
       });
     }
     throw error;

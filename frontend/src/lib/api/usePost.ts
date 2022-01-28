@@ -1,6 +1,4 @@
-import {
-  useReducer, Reducer, Dispatch,
-} from 'react';
+import { useReducer, Reducer, Dispatch } from 'react';
 import { State, Action, APIResponse } from './types';
 import fetchReducer from './fetchReducer';
 
@@ -18,6 +16,7 @@ const postData = async <TData, TPayload>(
     data: null,
     error: undefined,
   };
+
   try {
     dispatch({ type: 'FETCH_INIT' });
     const data = await post(payload);

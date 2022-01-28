@@ -38,7 +38,6 @@ const withPresenter = (
       const query = new URLSearchParams(location.search);
       const verifyId = query.get('id');
       const verifyToken = query.get('token');
-      console.log(verifyId, verifyToken);
 
       if (verifyId && verifyToken) {
         accountVerificationApiCall(verifyId, verifyToken);

@@ -63,7 +63,7 @@ const withPresenter = (
 
     const onCloseModal = () => {
       setShowModal(false);
-      if (flowType == 'instaQuote') {
+      if (flowType === 'instaQuote') {
         history.push('/account/signin');
       } else {
          history.push('/portal/quotes');
@@ -81,21 +81,21 @@ const withPresenter = (
         onIconClicked: onCloseModal,
       },
       image: {
-        image: flowType == 'instaQuote'? EmailIcon : QuoteSentIcon,
+        image: flowType === 'instaQuote'? EmailIcon : QuoteSentIcon,
       },
       titleText: {
         ...modalPropsDefaultProps.titleText,
-        value: flowType == 'instaQuote'? t('quote_email_sent.title') : t('quote_confirmation.header'),
+        value: flowType === 'instaQuote'? t('quote_email_sent.title') : t('quote_confirmation.header'),
       },
       descriptionText: {
         ...modalPropsDefaultProps.descriptionText,
-        value: flowType == 'instaQuote'? t('quote_email_sent.description') : t('quote_confirmation.description'),
+        value: flowType === 'instaQuote'? t('quote_email_sent.description') : t('quote_confirmation.description'),
       },
       primaryButton: {
         ...modalPropsDefaultProps.primaryButton,
         text: {
           ...modalPropsDefaultProps.primaryButton.text,
-          value: flowType == 'instaQuote'? t('quote_email_sent.primary_button') : t('quote_confirmation.button'),
+          value: flowType === 'instaQuote'? t('quote_email_sent.primary_button') : t('quote_confirmation.button'),
         },
         onButtonClicked: onCloseModal,
       },
@@ -103,10 +103,10 @@ const withPresenter = (
         ...modalPropsDefaultProps.secondaryButton,
         text: {
           ...modalPropsDefaultProps.secondaryButton.text,
-          value: flowType == 'instaQuote'? t('quote_email_sent.secondary_button') : t('')
+          value: flowType === 'instaQuote'? t('quote_email_sent.secondary_button') : t('')
         },
         onButtonClicked: onSimpleCloseModal,
-        visible: flowType == 'instaQuote'
+        visible: flowType === 'instaQuote'
       },
 
     };
