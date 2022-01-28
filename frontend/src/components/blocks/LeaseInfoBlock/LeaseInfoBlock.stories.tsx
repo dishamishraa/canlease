@@ -7,6 +7,5 @@ export default {
 };
 
 export const Default: React.VFC<{}> = () => (
-  <LeaseInfoBlock
-    />
+  <LeaseInfoBlock />
 );

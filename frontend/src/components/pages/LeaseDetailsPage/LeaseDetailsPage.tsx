@@ -38,6 +38,7 @@ export const defaultProps = {
         ],
       },
     },
+
   } as LeaseInfoBlockProps,
 };
 
@@ -52,10 +53,10 @@ const LeaseDetailsPage: React.FC<LeaseDetailsPageProps> = ({
   block,
   className,
 }) => (
-    <div className={cx(styles.leaseDetailsPage, className)}>
-      <TopBar className={styles.topBar} {...topBar} />
-      <LeaseInfoBlock className={styles.block} {...block} />
-    </div>
+  <div className={cx(styles.leaseDetailsPage, className)}>
+    <TopBar className={styles.topBar} {...topBar} />
+    <LeaseInfoBlock className={styles.block} {...block} />
+  </div>
 );
 
 LeaseDetailsPage.defaultProps = defaultProps;

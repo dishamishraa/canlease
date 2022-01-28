@@ -8,6 +8,7 @@
   }
   align-self: stretch;
   flex: 0 0 auto;
+  vertical-align: baseline;
   @media (max-width: 767px) {
     &:nth-child(1) {
       margin-top: 0;
@@ -22,6 +23,7 @@
     align-items: flex-start;
     align-self: start;
     flex: 0 0 auto;
+    vertical-align: baseline;
     @media (max-width: 767px) {
       &:nth-child(1) {
         margin-left: 0;
@@ -37,6 +39,7 @@
     align-items: flex-start;
     align-self: center;
     flex: 1 1 auto;
+    vertical-align: baseline;
     @media (max-width: 767px) {
       &:nth-child(1) {
         margin-left: 0;
@@ -55,6 +58,7 @@
   }
   align-self: stretch;
   flex: 0 0 auto;
+  vertical-align: baseline;
   @media (max-width: 767px) {
     &:nth-child(1) {
       margin-top: 0;
@@ -69,6 +73,7 @@
     align-items: flex-start;
     align-self: start;
     flex: 0 0 auto;
+    vertical-align: baseline;
     @media (max-width: 767px) {
       &:nth-child(1) {
         margin-left: 0;
@@ -84,6 +89,7 @@
     align-items: flex-start;
     align-self: center;
     flex: 1 1 auto;
+    vertical-align: baseline;
     @media (max-width: 767px) {
       &:nth-child(1) {
         margin-left: 0;
@@ -104,6 +110,7 @@
     }
     align-self: stretch;
     flex: 0 0 auto;
+    vertical-align: baseline;
     @media (max-width: 767px) {
       &:nth-child(1) {
         margin-top: 0;
@@ -117,6 +124,7 @@
       align-items: flex-start;
       align-self: start;
       flex: 0 0 auto;
+      vertical-align: baseline;
       @media (max-width: 767px) {
         &:nth-child(1) {
           margin-left: 0;
@@ -131,6 +139,7 @@
       align-items: flex-start;
       align-self: center;
       flex: 1 1 auto;
+      vertical-align: baseline;
       @media (max-width: 767px) {
         &:nth-child(1) {
           margin-left: 0;
@@ -152,6 +161,7 @@
     }
     align-self: stretch;
     flex: 0 0 auto;
+    vertical-align: baseline;
     &:nth-child(1) {
       margin-top: 0;
     }
@@ -163,6 +173,7 @@
       align-items: flex-start;
       align-self: start;
       flex: 0 0 auto;
+      vertical-align: baseline;
       &:nth-child(1) {
         margin-left: 0;
       }
@@ -175,6 +186,7 @@
       align-items: flex-start;
       align-self: center;
       flex: 1 1 auto;
+      vertical-align: baseline;
       &:nth-child(1) {
         margin-left: 0;
       }
