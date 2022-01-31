@@ -23,7 +23,7 @@ const withPresenter = (
       value: t('lease_info_block.header'),
     };
 
-    const defaultLabelTextProps: TextProps = { ...defaultQuoteDetailItemProps.labelText, type: 'Paragraph2' };
+    const defaultLabelTextProps: TextProps = { ...defaultQuoteDetailItemProps.labelText, type: 'Paragraph4' };
     const defaultInfoTextProps: TextProps = { ...defaultQuoteDetailItemProps.infoText, type: 'Paragraph3' };
 
     const leaseDetailsSection = {

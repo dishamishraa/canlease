@@ -254,6 +254,14 @@ export const Basic800RightMediumParagraph3: React.VFC<{}> = () => (
     type='Paragraph3'
     />
 );
+export const Basic800LeftMediumParagraph4: React.VFC<{}> = () => (
+  <Text
+    style='Basic800'
+    align='Left'
+    size='Medium'
+    type='Paragraph4'
+    />
+);
 export const Basic800CenterSmallButtonGiant: React.VFC<{}> = () => (
   <Text
     style='Basic800'

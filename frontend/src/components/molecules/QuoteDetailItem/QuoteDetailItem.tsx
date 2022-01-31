@@ -14,7 +14,7 @@ export const defaultProps = {
     style: 'Basic800',
     align: 'Left',
     size: 'Medium',
-    type: 'Paragraph3',
+    type: 'Paragraph4',
   } as TextProps,
   infoText: {
     style: 'Basic800',
