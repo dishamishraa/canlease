@@ -51,6 +51,7 @@ export type CreateApplication = {
   businessOwnerCity: string;
   bankruptcy: boolean;
   creditCheckConsent: boolean;
+  yearsInBusiness: number;
   sin: string;
   dob: string;
   vendorPortalId?: string;

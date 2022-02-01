@@ -25,6 +25,19 @@ export const defaultProps = {
     size: 'Large',
     type: 'Heading1',
   } as TextProps,
+  operatingSinceField: {
+    state: 'Default',
+    type: 'Text',
+    label: {
+      style: 'Basic800',
+      align: 'Left',
+      size: 'Medium',
+      type: 'Paragraph2',
+    },
+    textInput: {
+      inputType: 'number',
+    },
+  } as TextFieldProps,
   businessTypeRadioField: {
     label: {
       style: 'Basic800',
@@ -129,6 +142,7 @@ export const defaultProps = {
 export type BusinessTypeBlockProps = {
   stepper?: StepperProps;
   blockHeading?: TextProps;
+  operatingSinceField?: TextFieldProps;
   businessTypeRadioField?: RadioFieldProps;
   sinField?: TextFieldProps;
   dateOfBirthField?: TextFieldProps;
@@ -147,6 +161,7 @@ export type BusinessTypeBlockProps = {
 const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
   stepper,
   blockHeading,
+  operatingSinceField,
   businessTypeRadioField,
   sinField,
   dateOfBirthField,
@@ -191,6 +206,8 @@ const BusinessTypeBlock: React.FC<BusinessTypeBlockProps> = ({
             {...blockHeading} />
         </div>
         <div className={styles.form}>
+        <TextField className={styles.operatingSinceField}
+        {...operatingSinceField} />
           <RadioField
             className={styles.businessTypeRadioField}
             {...businessTypeRadioField} />

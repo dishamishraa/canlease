@@ -111,6 +111,7 @@ type BaseApplicationBusinessInfo = {
   sin: string;
   dob: string;
   bankruptcy: boolean;
+  yearsInBusiness: number;
   bankruptcyDetails: string;
 };
 

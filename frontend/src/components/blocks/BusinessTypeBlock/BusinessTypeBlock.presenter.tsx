@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import { useTranslation } from 'react-i18next';
 import { BusinessTypeBlockProps, defaultProps } from './BusinessTypeBlock';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
-import { getTodaysDateString, isEmptyString, isValidDate } from '../../../lib/utils';
+import { getTodaysDateString, isEmptyString, isValidDate, isValidYear } from '../../../lib/utils';
 import { Profile } from '../../../modules/profile/types';
 import { defaultProps as defaultTextFieldProps } from '../../molecules/TextField/TextField';
 import { IS_SAFARI } from '../../../lib/constants';
@@ -12,6 +12,7 @@ export type BusinessTypeBlockPresenterProps = BusinessTypeBlockProps & {
 };
 
 type FormState = {
+  operatingSinceError: string;
   dobError: string;
 }
 
@@ -29,6 +30,7 @@ const withPresenter = (
     const { t } = useTranslation();
 
     const [businessType, setBusinessType] = useState<'Proprietorship' | 'Incorporated'>();
+    const [operatingSince, setOperatingSince] = useState<string>();
     const [showBusinessQuestions, setShowBusinessQuestions] = useState<boolean>(false);
     const [sin, setSin] = useState<string>();
     const [dob, setDob] = useState<string>();
@@ -43,7 +45,7 @@ const withPresenter = (
         setDob(businessInfo.dob);
         setBankruptcy(businessInfo.bankruptcy);
         setBankruptcyDetails(businessInfo.bankruptcyDetails);
-
+        setOperatingSince((new Date().getFullYear() - businessInfo.yearsInBusiness).toString());
         if (businessInfo.businessType === 'Proprietorship') {
           setShowBusinessQuestions(true);
         }
@@ -51,12 +53,18 @@ const withPresenter = (
     }, [businessInfo]);
 
     let currFormState: FormState = {
-      dobError: ''
+      operatingSinceError: '',
+      dobError: '',
     };
 
     const handleClickNext = () => {
       let allFieldsAreValid = true;
-      if (setBusinessInfo && businessType) {
+      if (setBusinessInfo && businessType && operatingSince) {
+        if (!isValidYear(operatingSince)) {
+          allFieldsAreValid = false;
+          currFormState.operatingSinceError = t('error_message.invalid_years');
+          setFormState(currFormState);
+        }
         if (dob) {
           if (!isValidDate(dob, 'past')) {
             allFieldsAreValid = false;
@@ -71,6 +79,7 @@ const withPresenter = (
             businessType,
             sin: sin || '',
             dob: dob || '',
+            yearsInBusiness: new Date().getFullYear() - parseInt(operatingSince),
             bankruptcy: bankruptcy || false,
             bankruptcyDetails: bankruptcyDetails || '',
           });
@@ -78,6 +87,10 @@ const withPresenter = (
         
       }
     };
+
+    const handleChangeOperatingSince = ({ target: { value } }) => {
+      setOperatingSince(value);
+    }
 
     const handleChangeSocialInsuranceNumber = ({ target: { value } }) => {
       setSin(value);
@@ -104,9 +117,9 @@ const withPresenter = (
     };
 
     const isFormValid = () => {
-      return businessType === 'Incorporated' 
+      return !isEmptyString(operatingSince) && (businessType === 'Incorporated'
       || (!isEmptyString(businessType) && !isEmptyString(sin) && !isEmptyString(dob) 
-      && (bankruptcy === false || !isEmptyString(bankruptcyDetails)));
+      && (bankruptcy === false || !isEmptyString(bankruptcyDetails))));
     };
 
     const businessTypeBlockProps: BusinessTypeBlockProps = {
@@ -123,6 +136,24 @@ const withPresenter = (
       blockHeading: {
         ...defaultProps.blockHeading,
         value: t('application_form.business_type.heading_text'),
+      },
+
+      operatingSinceField: {
+        ...defaultProps.operatingSinceField,
+        state: 'Error',
+        errorMessage: {
+          ...defaultTextFieldProps.errorMessage,
+          value: formState?.operatingSinceError
+        },
+        label: {
+          ...defaultProps.operatingSinceField.label,
+          value: t('text_field_label.operating_since')
+        },
+        textInput: {
+          ...defaultProps.operatingSinceField.textInput,
+          textValue: operatingSince,
+          onTextChanged: handleChangeOperatingSince
+        }
       },
       businessTypeRadioField: {
         ...defaultProps.businessTypeRadioField,

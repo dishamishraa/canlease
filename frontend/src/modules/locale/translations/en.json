@@ -302,7 +302,8 @@
         "invalid_email": "Please enter a valid email address",
         "password_mismatch": "Passwords do not match",
         "account_exist": "An account with this email already exists",
-        "invalid_date": "Please enter a valid date"
+        "invalid_date": "Please enter a valid date",
+        "invalid_years": "Please enter a valid year (e.g 1995)"
     },
     "button_text": {
         "sign_in": "SIGN IN",
@@ -331,7 +332,8 @@
         "operating_name": "Operating name",
         "business_sector": "Business sector",
         "business_phone": "Business phone",
-        "website_link": "Website link"
+        "website_link": "Website link",
+        "operating_since": "Operating since (year)"
     },
     "stepper": "STEP {{current}}/{{total}}",
     "application_page": {

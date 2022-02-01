@@ -172,6 +172,24 @@
     }
   }
 
+  .operatingSinceTextField {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 0.25rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
   .businessTypeRadioField {
     overflow: hidden;
     display: flex;

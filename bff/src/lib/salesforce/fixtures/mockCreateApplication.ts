@@ -15,6 +15,7 @@ const mockCreateApplication: CreateApplication = {
   postalCode: 'string',
   term: '12M',
   applicationAmount: 0,
+  yearsInBusiness: 1,
   asset: 'string',
   condition: 'New',
   ageOfAsset: 0,

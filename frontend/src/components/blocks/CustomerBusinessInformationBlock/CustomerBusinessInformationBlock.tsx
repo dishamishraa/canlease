@@ -98,6 +98,19 @@ export const defaultProps = {
       type: 'Text',
     },
   } as TextFieldProps,
+  operatingSinceTextField: {
+    state: 'Default',
+    type: 'Text',
+    label: {
+      style: 'Basic800',
+      align: 'Left',
+      size: 'Medium',
+      type: 'Paragraph2',
+    },
+    textInput: {
+      type: 'Text',
+    },
+  } as TextFieldProps,
   businessTypeRadioField: {
     label: {
       style: 'Basic800',
@@ -207,6 +220,7 @@ export type CustomerBusinessInformationBlockProps = {
   businessSectorSelectField?: SelectFieldProps;
   businessPhoneField?: TextFieldProps;
   websiteLinkTextField?: TextFieldProps;
+  operatingSinceTextField?: TextFieldProps;
   businessTypeRadioField?: RadioFieldProps;
   sinField?: TextFieldProps;
   dateOfBirthField?: TextFieldProps;
@@ -230,6 +244,7 @@ const CustomerBusinessInformationBlock: React.FC<CustomerBusinessInformationBloc
   businessSectorSelectField,
   businessPhoneField,
   websiteLinkTextField,
+  operatingSinceTextField,
   businessTypeRadioField,
   sinField,
   dateOfBirthField,
@@ -289,6 +304,9 @@ const CustomerBusinessInformationBlock: React.FC<CustomerBusinessInformationBloc
           <TextField
             className={styles.websiteLinkTextField}
             {...websiteLinkTextField} />
+          <TextField
+            className={styles.operatingSinceTextField}
+            {...operatingSinceTextField} />
           <RadioField
             className={styles.businessTypeRadioField}
             {...businessTypeRadioField} />

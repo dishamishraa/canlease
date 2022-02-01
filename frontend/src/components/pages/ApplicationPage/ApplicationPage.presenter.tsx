@@ -176,7 +176,7 @@ const withPresenter = (
         const { term } = quoteSelected;
         const { assetCondition, ageOfAsset, expectedDeliveryDate } = assetInfo;
         const {
-          businessType, sin, dob, bankruptcy, bankruptcyDetails,
+          businessType, sin, dob, bankruptcy, bankruptcyDetails, yearsInBusiness
         } = businessInfo;
         const { applicationAmount, asset, quoteId } = quoteDetails;
 
@@ -203,6 +203,7 @@ const withPresenter = (
           businessOwnerCity: '',
           bankruptcy,
           creditCheckConsent,
+          yearsInBusiness,
           sin,
           dob,
           vendorPortalId: undefined,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { useTranslation } from 'react-i18next';
-import { getTodaysDateString, isEmptyString, isValidDate } from '../../../lib/utils';
+import { getTodaysDateString, isEmptyString, isValidDate, isValidYear } from '../../../lib/utils';
 import { Profile } from '../../../modules/profile/types';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
 import {
@@ -21,6 +21,7 @@ export type CustomerBusinessInformationBlockPresenterProps =
 
 type FormState = {
   dobError: string;
+  operatingSinceError: string;
 }
 
 const withPresenter = (
@@ -41,6 +42,7 @@ const withPresenter = (
     const [businessSector, setBusinessSector] = useState<string>();
     const [businessPhone, setBusinessPhone] = useState<string>();
     const [website, setWebsite] = useState<string>();
+    const [operatingSince, setOperatingSince]= useState<string>();
     const [businessType, setBusinessType] = useState<'Proprietorship' | 'Incorporated'>();
     const [showBusinessQuestions, setShowBusinessQuestions] = useState<boolean>(false);
     const [sin, setSin] = useState<string>();
@@ -50,7 +52,8 @@ const withPresenter = (
     const [formState, setFormState] = useState<FormState>();
 
     let currFormState: FormState = {
-      dobError: ''
+      dobError: '',
+      operatingSinceError: ''
     }
 
     useEffect(() => {
@@ -60,6 +63,7 @@ const withPresenter = (
         setDob(businessInfo.dob);
         setBankruptcy(businessInfo.bankruptcy);
         setBankruptcyDetails(businessInfo.bankruptcyDetails);
+        setOperatingSince((new Date().getFullYear() - businessInfo.yearsInBusiness).toString());
 
         if (businessInfo.type === 'vendor') {
           setFullLegalName(businessInfo.companyName);
@@ -91,6 +95,10 @@ const withPresenter = (
       setWebsite(value);
     };
 
+    const handleOperatingSince = ({ target: { value } }) => {
+      setOperatingSince(value);
+    }
+
     const handleClickNext = () => {
       let allFieldsAreValid = true;
       if (setBusinessInfo
@@ -99,7 +107,15 @@ const withPresenter = (
             && operatingName
             && businessSector
             && businessPhone
+            && operatingSince
       ) {
+
+        if (!isValidYear(operatingSince)) {
+          allFieldsAreValid = false;
+          currFormState.operatingSinceError = t('error_message.invalid_years');
+          setFormState(currFormState);
+        }
+
         if (dob) {
           if (!isValidDate(dob, 'past')) {
             allFieldsAreValid = false;
@@ -119,6 +135,7 @@ const withPresenter = (
             companyName: fullLegalName,
             operatingName,
             businessSector,
+            yearsInBusiness: new Date().getFullYear() - parseInt(operatingSince),
             businessPhone,
             website: website || '',
           });
@@ -152,9 +169,9 @@ const withPresenter = (
     };
 
     const isFormValid = () => {
-      return businessType === 'Incorporated' 
+      return !isEmptyString(operatingSince) && (businessType === 'Incorporated'
       || (!isEmptyString(businessType) && !isEmptyString(sin) && !isEmptyString(dob) 
-      && (bankruptcy === false || !isEmptyString(bankruptcyDetails)));
+      && (bankruptcy === false || !isEmptyString(bankruptcyDetails))));
     };
 
     const contextualMenuItems: ContextualMenuItemProps[] = [];
@@ -246,6 +263,23 @@ const withPresenter = (
           textValue: website,
           onTextChanged: handleWebsite,
         },
+      },
+      operatingSinceTextField: {
+        ...defaultProps.operatingSinceTextField,
+        state: 'Error',
+        errorMessage: {
+          ...defaultTextFieldProps.errorMessage,
+          value: formState?.operatingSinceError
+        },
+        label: {
+          ...defaultProps.operatingSinceTextField.label,
+          value: t('text_field_label.operating_since')
+        },
+        textInput: {
+          ...defaultProps.operatingSinceTextField.textInput,
+          textValue: operatingSince,
+          onTextChanged: handleOperatingSince
+        }
       },
       businessTypeRadioField: {
         ...defaultProps.businessTypeRadioField,
