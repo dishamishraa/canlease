@@ -172,9 +172,9 @@ const withPresenter = (
           contactBusinessName: customerCompanyName,
         };
 
-        if (flowType === 'instaQuote') {
-          createPayload.sendEmail = true;
-        }
+        // if (flowType === 'instaQuote') {
+        //   createPayload.sendEmail = true;
+        // }
 
         if (completeContactInfo.type === 'vendor') {
           const { vendorName, businessEmail, companyName } = completeContactInfo;

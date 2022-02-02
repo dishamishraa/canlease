@@ -117,6 +117,12 @@ export default class QuoteController implements QuoteControllerContract {
           email: payload.vendorEmail,
           quoteId: quote.quoteId,
         });
+        await this.sendQuote({
+          companyName: payload.contactBusinessName,
+          submittedBy: `${payload.vendorName} (${payload.vendorEmail}`,
+          email: payload.contactEmail,
+          quoteId: quote.quoteId,
+        });
       }
     }
 

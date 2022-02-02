@@ -128,7 +128,7 @@ const withPresenter = (
 
     const handleSaveQuote = () => {
       updateInstaQuoteCookie({ action: 'save_quote' }, setCookie, removeCookie);
-      setShowModal(true);
+      handleSendQuote();
     };
 
     const getSubmittedBy = (info: ContactInfo) => {
@@ -147,6 +147,22 @@ const withPresenter = (
           quoteId: quote?.quoteId,
         });
         setShowModal(true);
+      } else {
+        if (quote && !contactInfo) {
+          await sendQuote({
+            companyName: quote.contactBusinessName,
+            submittedBy: `${quote.vendorName} (${quote.vendorEmail})`,
+            email: quote.contactEmail,
+            quoteId: quote?.quoteId,
+          });
+          await sendQuote({
+            companyName: quote.contactBusinessName,
+            submittedBy: `${quote.vendorName} (${quote.vendorEmail}`,
+            email: quote.vendorEmail,
+            quoteId: quote.quoteId,
+          });
+          setShowModal(true);
+        }
       }
     };
 
