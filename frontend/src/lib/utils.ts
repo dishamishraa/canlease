@@ -76,7 +76,7 @@ export const isValidDate = (value: string, dateType: DateType) => {
 
 export const isValidYear = (value: string) => {
   const regexYear = /^[12][0-9]{3}$/;
-  return regexYear.test(value);
+  return regexYear.test(value) && ((new Date().getFullYear() - parseInt(value)) >= 0);
 }
 
 export const getTodaysDateString = (): string => {
