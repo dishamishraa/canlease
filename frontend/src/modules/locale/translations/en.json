@@ -429,7 +429,7 @@
         "cancel_button": "Cancel"
     },
     "lease_info_block": {
-        "header": "Lease Information",
+        "header": "Application information",
         "customer_company_name": "Customer:",
         "customer_contact_name": "Contact name:",
         "leased_asset": "Leased asset:",
