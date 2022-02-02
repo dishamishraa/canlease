@@ -4,14 +4,15 @@ import { useHistory, useLocation } from 'react-router';
 import { SignInBlockProps, defaultProps } from './SignInBlock';
 import { isEmptyString } from '../../../lib/utils';
 import { defaultProps as defaultTextFieldProps } from '../../molecules/TextField/TextField';
-import { defaultProps as defaultToastProps } from '../../atoms/Toast/Toast';
+import { defaultProps as defaultToastProps, ToastStyleType, ToastTypeType } from '../../atoms/Toast/Toast';
 import { HTMLInputType } from '../../atoms/TextInput/TextInput';
-import { SignInPayload } from '../../../modules/account/types';
-import { verifyAccount } from '../../../modules/account/api';
+import { SignInPayload, VerifyAccountPayload } from '../../../modules/account/types';
+import { APIResponse } from '../../../lib/api/types';
 
 export type SignInBlockPresenterProps = SignInBlockProps & {
-  handleSignIn?: (payload: SignInPayload) => void;
+  handleSignIn?: (payload: SignInPayload) => Promise<string | undefined>;
   setToastMessage?: React.Dispatch<React.SetStateAction<string>>;
+  verifyAccount?: (payload: VerifyAccountPayload) => Promise<APIResponse<void>>;
 };
 
 const withPresenter = (
@@ -20,6 +21,7 @@ const withPresenter = (
   const Presenter: React.FC<SignInBlockPresenterProps> = (props) => {
     const {
       handleSignIn,
+      verifyAccount,
     } = props;
     const { t } = useTranslation();
     const history = useHistory();
@@ -27,14 +29,22 @@ const withPresenter = (
     const [password, setPassword] = useState<string>('');
     const [passwordVisibility, setPasswordVisibility] = useState<HTMLInputType>('password');
     const [toastMessage, setToastMessage] = useState<string>('');
+    const [toastType, setToastType] = useState<ToastTypeType>('NoCloseButton');
+    const [toastStyle, setToastStyle] = useState<ToastStyleType>('Danger');
     const formInvalid = (isEmptyString(email) || isEmptyString(password));
     const location = useLocation();
 
     useEffect(() => {
       const accountVerificationApiCall = async (id: string, token: string) => {
-        await verifyAccount({ id, token });
+        if (verifyAccount) {
+          const { error } = await verifyAccount({ id, token });
+          if (!error) {
+            setToastType('WithCloseButton');
+            setToastStyle('Dark');
+            setToastMessage(t("email_verification.success"));
+          }
+        }
       }
-
       const query = new URLSearchParams(location.search);
       const verifyId = query.get('id');
       const verifyToken = query.get('token');
@@ -51,12 +61,15 @@ const withPresenter = (
       setPassword(value);
     };
 
-    const handleNext = () => {
+    const handleNext = async () => {
       if (handleSignIn && !isEmptyString(email) && !isEmptyString(password)) {
-        handleSignIn({
+        const error = await handleSignIn({
           email,
           password,
         });
+        setToastMessage(error ?? '')
+        setToastType('NoCloseButton');
+        setToastStyle('Danger');
       }
     };
 
@@ -74,6 +87,10 @@ const withPresenter = (
 
     const handleSignUp = () => {
       history.push('/account/signUp');
+    };
+
+    const handleIconClick = () => {
+      setToastMessage('');
     };
 
     const signInProps: SignInBlockProps = {
@@ -150,13 +167,17 @@ const withPresenter = (
       toastMessage,
       toastProps: {
         ...defaultToastProps,
-        type: 'NoCloseButton',
+        type: toastType,
         text: {
           ...defaultToastProps.text,
-          style: 'Basic400',
+          style: 'Basic500',
           value: toastMessage,
         },
-        style: 'Dark',
+        style: toastStyle,
+        icon: {
+          ...defaultToastProps.icon,
+          onIconClicked: handleIconClick,
+        }
       },
     };
 

@@ -110,7 +110,7 @@ export type SignUpBlockProps = {
   bottomContent?: TextProps;
   signInButton?: ButtonProps;
   className?: string;
-  handleSignUp?: (payload: SignUpPayload) => void;
+  handleSignUp?: (payload: SignUpPayload) => Promise<string | undefined>;
   accountExist?: boolean;
 };
 

@@ -12,9 +12,9 @@ export const signUp = async (payload: SignUpPayload): Promise<AccountResponse> =
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new ApiError({
-        code: error.response.status,
-        type: error.response.statusText,
-        message: error.message,
+        code: error.response.data.status,
+        type: error.response.data.type,
+        message: error.response.data.message,
       });
     }
     throw error;
@@ -30,9 +30,9 @@ export const verifyAccount = async (payload: VerifyAccountPayload): Promise<void
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new ApiError({
-        code: error.response.status,
-        type: error.response.statusText,
-        message: error.message,
+        code: error.response.data.status,
+        type: error.response.data.type,
+        message: error.response.data.message,
       });
     }
     throw error;
@@ -47,9 +47,9 @@ export const resendVerifyAccount = async (email: string): Promise<void> => {
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new ApiError({
-        code: error.response.status,
-        type: error.response.statusText,
-        message: error.message,
+        code: error.response.data.status,
+        type: error.response.data.type,
+        message: error.response.data.message,
       });
     }
     throw error;
@@ -80,9 +80,9 @@ export const forgotPassword = async (email: string): Promise<void> => {
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new ApiError({
-        code: error.response.status,
-        type: error.response.statusText,
-        message: error.message,
+        code: error.response.data.status,
+        type: error.response.data.type,
+        message: error.response.data.message,
       });
     }
     throw error;
@@ -99,9 +99,9 @@ export const updatePassword = async (payload: UpdatePasswordPayload): Promise<vo
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new ApiError({
-        code: error.response.status,
-        type: error.response.statusText,
-        message: error.message,
+        code: error.response.data.status,
+        type: error.response.data.type,
+        message: error.response.data.message,
       });
     }
     throw error;
@@ -119,9 +119,9 @@ export const updateName = async (payload: UpdateNamePayload): Promise<void> => {
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new ApiError({
-        code: error.response.status,
-        type: error.response.statusText,
-        message: error.message,
+        code: error.response.data.status,
+        type: error.response.data.type,
+        message: error.response.data.message,
       });
     }
     throw error;

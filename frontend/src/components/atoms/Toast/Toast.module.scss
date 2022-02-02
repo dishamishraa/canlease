@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+  padding: 1rem;
   > * {
     margin-left: 0.5rem;
   }
@@ -60,7 +60,8 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 0.625rem 0.75rem 0.625rem 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
   > * {
     margin-left: 0.5rem;
   }
@@ -107,6 +108,8 @@
     &:nth-child(1) {
       margin-left: 0;
     }
+    padding-top: 0.2rem;
+    color: #ffffff;
   }
 
   .icon {
@@ -125,7 +128,8 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+  padding: 1rem;
+  margin: 0 3rem 1.5rem 3rem;
   > * {
     margin-left: 0.5rem;
   }

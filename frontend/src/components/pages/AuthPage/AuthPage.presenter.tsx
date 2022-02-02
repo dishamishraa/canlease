@@ -1,6 +1,7 @@
 /* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
 import { useLocation, useHistory, Redirect } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useCookies } from 'react-cookie';
 import { AuthPageProps } from './AuthPage';
 import { ApiError, APIResponse } from '../../../lib/api/types';
@@ -52,6 +53,7 @@ const withPresenter = (
       addQuoteToProfile,
     } = props;
 
+    const { t } = useTranslation();
     const [, setCookie, removeCookie] = useCookies();
     const history = useHistory();
     const { state: locationState, pathname } = useLocation<AuthState>();
@@ -156,8 +158,8 @@ const withPresenter = (
       const { error } = await signUp(payload);
       setEmail(payload.email);
 
-      if (error instanceof ApiError && (error.code === 409)) {
-        console.error("Email has already been used");
+      if (error instanceof ApiError && error.message === "Account already exists") {
+        return t("error_message.account_exist");
       } else {
         history.push('/account/verifyEmail');
       }
@@ -193,8 +195,9 @@ const withPresenter = (
       } else if (error) {
         if (error.message === 'User has not confirmed sign up') {
           history.push('/account/verifyEmail');
+        } else {
+          return t("error_message.incorrect_credentials");
         }
-        // TODO
       }
     };
 

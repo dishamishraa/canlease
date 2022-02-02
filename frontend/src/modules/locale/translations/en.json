@@ -248,7 +248,8 @@
             "reset": "A password reset link has been sent to your email."
         },
         "question": "Don’t see the email?",
-        "resolution": "Check your spam folder or <1>click here</1> to resend the verification link."
+        "resolution": "Check your spam folder or <1>click here</1> to resend the verification link.",
+        "success": "Email verified"
     },
     "forgot_password":{
         "header": "Forgot password",
@@ -303,6 +304,8 @@
         "password_mismatch": "Passwords do not match",
         "account_exist": "An account with this email already exists",
         "invalid_date": "Please enter a valid date",
+        "weak_password": "Password is too weak. Your password must be at least 8 characters",
+        "incorrect_credentials": "Incorrect email or password",
         "invalid_years": "Please enter a valid year (e.g 1995)"
     },
     "button_text": {

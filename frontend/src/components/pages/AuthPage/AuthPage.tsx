@@ -24,8 +24,8 @@ export type AuthPageProps = {
   className?: string;
   showBackButton?: boolean;
   email?: string;
-  handleSignUp?: (payload: SignUpPayload) => void;
-  handleSignIn?: (payload: SignInPayload) => void;
+  handleSignUp?: (payload: SignUpPayload) => Promise<string | undefined>;
+  handleSignIn?: (payload: SignInPayload) => Promise<string | undefined>;
   personalInfo?: PersonalInformation;
   contactInfo?: ContactInformation;
   businessInfo?: BusinessInformation;

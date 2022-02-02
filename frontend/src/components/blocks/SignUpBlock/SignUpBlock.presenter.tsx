@@ -27,6 +27,7 @@ const withPresenter = (
     const [emailErrorMessage, setEmailErrorMessage] = useState<string>(t('error_message.account_exist'));
     const [passwordError, setPasswordError] = useState<TextFieldStateType>('Default');
     const [confirmPasswordError, setConfirmPasswordError] = useState<TextFieldStateType>('Default');
+    const [passwordErrorMessage, setPasswordErrorMessage] = useState<string>(t('error_message.password_mismatch'));
     const [passwordVisibility, setPasswordVisibility] = useState<HTMLInputType>('password');
     const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState<HTMLInputType>('password');
 
@@ -41,7 +42,7 @@ const withPresenter = (
       }
     };
 
-    const handlePassowrd = ({ target: { value } }) => {
+    const handlePassword = ({ target: { value } }) => {
       setPassword(value);
       if (passwordError === 'Error') {
         setPasswordError('Default');
@@ -55,24 +56,36 @@ const withPresenter = (
       }
     };
 
-    const handleSignUp = () => {
+    const handleSignUp = async () => {
       // verify fields
       if (!FormInvalid) {
         if (!isEmail(email)) {
           setEmailErrorMessage(t('error_message.invalid_email'));
           setEmailError('Error');
+          return;
         }
         if (password !== confirmPassword) {
           // show error message when passwords don't match
-          setConfirmPasswordError('Error');
+          setPasswordErrorMessage(t('error_message.password_mismatch'));
           setPasswordError('Error');
+          setConfirmPasswordError('Error');
+        } else if (password.length < 8) {
+          setPasswordErrorMessage(t('error_message.weak_password'));
+          setPasswordError('Error');
+          setConfirmPasswordError('Error');
         } else if (doSignUp) {
+          setPasswordError('Default');
+          setConfirmPasswordError('Default');
           // fields are valid, call sign up api
-          doSignUp({
+          const error = await doSignUp({
             email,
             password,
             enabled: true,
           });
+          if (error) {
+            setEmailErrorMessage(error);
+            setEmailError('Error');
+          }
         }
       }
     };
@@ -132,7 +145,7 @@ const withPresenter = (
         textInput: {
           ...defaultProps.createPasswordField.textInput,
           textValue: password,
-          onTextChanged: handlePassowrd,
+          onTextChanged: handlePassword,
           inputType: passwordVisibility,
           icon: {
             ...defaultTextFieldProps.textInput.icon,
@@ -141,7 +154,7 @@ const withPresenter = (
         },
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
-          value: t('error_message.password_mismatch'),
+          value: passwordErrorMessage,
         },
         state: passwordError,
       },
@@ -163,7 +176,7 @@ const withPresenter = (
         },
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
-          value: t('error_message.password_mismatch'),
+          value: passwordErrorMessage,
         },
         state: confirmPasswordError,
       },

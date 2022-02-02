@@ -21,7 +21,7 @@ export const defaultProps = {
     style: 'Red200',
     align: 'Left',
     size: 'Large',
-    type: 'Paragraph1',
+    type: 'Paragraph2',
   } as TextProps,
   icon: {
     asset: 'Close',

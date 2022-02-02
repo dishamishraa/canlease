@@ -107,7 +107,7 @@ export type SignInBlockProps = {
   className?: string;
   bottomContent?: TextProps;
   signUpButton?: ButtonProps;
-  handleSignIn?: (payload: SignInPayload) => void;
+  handleSignIn?: (payload: SignInPayload) => Promise<string | undefined>;
   toastProps?: ToastProps;
   toastMessage?: string;
   setToastMessage?: React.Dispatch<React.SetStateAction<string>>;
@@ -128,42 +128,44 @@ const SignInBlock: React.FC<SignInBlockProps> = ({
 }) => {
   let toastDisplay;
   if (!isEmptyString(toastMessage)) {
-    toastDisplay = <Toast {...toastProps}/>;
+    toastDisplay = <Toast {...toastProps} />;
   }
   return (
-    <div className={cx(styles.signInBlock, className)}>
+    <div>
       {toastDisplay}
-      <div className={styles.topContent}>
-        <div className={styles.headingContent}>
+      <div className={cx(styles.signInBlock, className)}>
+        <div className={styles.topContent}>
+          <div className={styles.headingContent}>
+            <Text
+              className={styles.blockHeading}
+              {...blockHeading} />
+            <Text
+              className={styles.description}
+              {...description} />
+          </div>
+          <div className={styles.form}>
+            <TextField
+              className={styles.emailTextField}
+              {...emailTextField} />
+            <TextField
+              className={styles.passwordField}
+              {...passwordField} />
+            <Button
+              className={styles.nextButton}
+              {...nextButton} />
+          </div>
+          <Button
+            className={styles.forgotPasswordButton}
+            {...forgotPasswordButton} />
+        </div>
+        <div className={styles.bottomContent}>
           <Text
             className={styles.blockHeading}
-            {...blockHeading} />
-          <Text
-            className={styles.description}
-            {...description} />
-        </div>
-        <div className={styles.form}>
-          <TextField
-            className={styles.emailTextField}
-            {...emailTextField} />
-          <TextField
-            className={styles.passwordField}
-            {...passwordField} />
+            {...bottomContent} />
           <Button
             className={styles.nextButton}
-            {...nextButton} />
+            {...signUpButton} />
         </div>
-        <Button
-          className={styles.forgotPasswordButton}
-          {...forgotPasswordButton} />
-      </div>
-      <div className={styles.bottamContent}>
-        <Text
-          className={styles.blockHeading}
-          {...bottomContent} />
-        <Button
-          className={styles.nextButton}
-          {...signUpButton} />
       </div>
     </div>
   );

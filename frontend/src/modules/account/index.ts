@@ -4,6 +4,7 @@ import useResendVerifyAccount from './useResendVerifyAccount';
 import useForgotPassword from './useForgotPassword';
 import useUpdatePassword from './useUpdatePassword';
 import useUpdateName from './useUpdateName';
+import useVerifyAccount from './useVerifyAccount';
 
 export {
   useSignUp,
@@ -12,4 +13,5 @@ export {
   useForgotPassword,
   useUpdatePassword,
   useUpdateName,
+  useVerifyAccount,
 };
