@@ -5,7 +5,7 @@ import { GetQuoteBlockProps, defaultProps as defaultGetQuoteBlockProps } from '.
 import { ContextualMenuProps } from '../../molecules/ContextualMenu';
 import { defaultProps as defaultMenuItemProps } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
 import { isEmptyString } from '../../../lib/utils';
-import { defaultProps as defaultTextFieldProps } from "../../molecules/TextField/TextField";
+import { defaultProps as defaultTextFieldProps, TextFieldStateType } from "../../molecules/TextField/TextField";
 import { LeaseType } from '../../../modules/quote/types';
 import { UserType } from '../../../modules/profile/types';
 import { EquipmentLeaseInfo } from '../../../modules/types';
@@ -37,6 +37,7 @@ const withPresenter = (
     const [userType, setUserType] = useState<UserType>();
     const [formState, setFormState] = useState<FormState>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [costError, setCostError] = useState<TextFieldStateType>('Default');
 
     let currFormState: FormState = {
       equipmentCostError: ""
@@ -71,25 +72,27 @@ const withPresenter = (
         if (!isEquipmentCostValid(parseFloat(equipmentCost))) {
           currFormState.equipmentCostError = parseFloat(equipmentCost) < 1000 ? t('get_quote_block.error_message_low') : t('get_quote_block.error_message_high');
           setFormState(currFormState);
+          setCostError('Error');
         } else {
-            let leaseInfo: EquipmentLeaseInfo = {
-              name: equipmentName,
-              cost: equipmentCost,
-              leaseType: equipmentLeaseType,
+          setCostError('Default');
+          let leaseInfo: EquipmentLeaseInfo = {
+            name: equipmentName,
+            cost: equipmentCost,
+            leaseType: equipmentLeaseType,
+          };
+          if ((profile?.userType === 'rep' || profile?.userType === 'admin') && equipmentRatecard && equipmentFees) {
+            leaseInfo = {
+              ...leaseInfo,
+              rateCardType: equipmentRatecard,
+              fee: parseFloat(equipmentFees),
             };
-            if ((profile?.userType === 'rep' || profile?.userType === 'admin') && equipmentRatecard && equipmentFees) {
-              leaseInfo = {
-                ...leaseInfo,
-                rateCardType: equipmentRatecard,
-                fee: parseFloat(equipmentFees),
-              };
-            }
-            setIsLoading(true);
-            await setEquipmentLeaseInfo(leaseInfo);
-            setIsLoading(false);
           }
-        }        
-        
+          setIsLoading(true);
+          await setEquipmentLeaseInfo(leaseInfo);
+          setIsLoading(false);
+        }
+      }
+
     };
 
     const handleChangeEquipmentName = ({ target: { value } }) => setEquipmentName(value);
@@ -154,10 +157,11 @@ const withPresenter = (
         },
       },
       costTextField: {
-        state: "Error",
+        ...defaultGetQuoteBlockProps.costTextField,
+        state: costError,
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
-          value: formState?.equipmentCostError
+          value: formState?.equipmentCostError,
         },
         label: {
           ...defaultGetQuoteBlockProps.costTextField?.label,

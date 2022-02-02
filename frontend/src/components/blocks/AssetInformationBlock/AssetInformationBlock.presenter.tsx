@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { getTodaysDateString, isEmptyString, isValidDate } from '../../../lib/utils';
 import { defaultProps as defaultRadioButtonItemProps } from '../../atoms/RadioButtonItem/RadioButtonItem';
 import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
-import { defaultProps as defaultTextFieldProps } from '../../molecules/TextField/TextField';
+import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField';
 import { RadioFieldProps } from '../../molecules/RadioField';
 import { DetailsSectionProps } from '../../organisms/DetailsSection';
 import { AssetInformationBlockProps, defaultProps } from './AssetInformationBlock';
@@ -34,6 +34,8 @@ const withPresenter = (
     const [assetAge, setAssetAge] = useState<number>();
     const [expectedDeilivery, setExpectedDelivery] = useState<string>();
     const [formState, setFormState] = useState<FormState>();
+    const [ageOfAssetError, setAgeOfAssetError] = useState<TextFieldStateType>('Default');
+    const [expectedDeiliveryError, setExpectedDeiliveryError] = useState<TextFieldStateType>('Default');
 
     let currFormState: FormState = {
       assetAgeErrorMessage: '',
@@ -57,6 +59,7 @@ const withPresenter = (
     const handleChangeAssetAge = ({ target: { value } }) => {
       setAssetAge(value);
     };
+
     const handleChangeExpectedDate = ({ target: { value } }) => {
       setExpectedDelivery(value);
     };
@@ -81,13 +84,15 @@ const withPresenter = (
           allFieldsAreValid = false;
           currFormState.assetAgeErrorMessage = t('application_form.error_message');
           setFormState(currFormState);
-        } 
+          setAgeOfAssetError('Error');
+        }
 
         if (!isValidDate(expectedDeilivery, 'future')) {
           allFieldsAreValid = false;
           currFormState.dateErrorMessage = t('error_message.invalid_date');
           setFormState(currFormState);
-        } 
+          setExpectedDeiliveryError('Error');
+        }
 
         if (allFieldsAreValid) {
           setAssetInfo({
@@ -95,6 +100,8 @@ const withPresenter = (
             assetCondition,
             expectedDeliveryDate: expectedDeilivery,
           });
+          setAgeOfAssetError('Default');
+          setExpectedDeiliveryError('Default');
         }
       }
     };
@@ -211,7 +218,7 @@ const withPresenter = (
       assetConditionRadioField,
       ageOfAssetTextField: {
         ...defaultProps.ageOfAssetTextField,
-        state: 'Error',
+        state: ageOfAssetError,
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
           value: formState?.assetAgeErrorMessage
@@ -228,7 +235,7 @@ const withPresenter = (
       },
       expectedDeliveryDateTextField: {
         ...defaultProps.expectedDeliveryDateTextField,
-        state: 'Error',
+        state: expectedDeiliveryError,
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
           value: formState?.dateErrorMessage

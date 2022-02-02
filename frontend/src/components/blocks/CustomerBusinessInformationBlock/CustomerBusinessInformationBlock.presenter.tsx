@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getTodaysDateString, isEmptyString, isValidDate, isValidYear } from '../../../lib/utils';
 import { Profile } from '../../../modules/profile/types';
@@ -11,7 +11,7 @@ import {
   ContextualMenuItemProps,
   defaultProps as defaultMenuItemProps,
 } from '../../atoms/ContextualMenuItem/ContextualMenuItem';
-import { defaultProps as defaultTextFieldProps } from '../../molecules/TextField/TextField';
+import { defaultProps as defaultTextFieldProps, TextFieldStateType } from '../../molecules/TextField/TextField';
 import { IS_SAFARI } from '../../../lib/constants';
 
 export type CustomerBusinessInformationBlockPresenterProps =
@@ -42,7 +42,7 @@ const withPresenter = (
     const [businessSector, setBusinessSector] = useState<string>();
     const [businessPhone, setBusinessPhone] = useState<string>();
     const [website, setWebsite] = useState<string>();
-    const [operatingSince, setOperatingSince]= useState<string>();
+    const [operatingSince, setOperatingSince] = useState<string>();
     const [businessType, setBusinessType] = useState<'Proprietorship' | 'Incorporated'>();
     const [showBusinessQuestions, setShowBusinessQuestions] = useState<boolean>(false);
     const [sin, setSin] = useState<string>();
@@ -50,6 +50,8 @@ const withPresenter = (
     const [bankruptcy, setBankruptcy] = useState<boolean>();
     const [bankruptcyDetails, setBankruptcyDetails] = useState<string>();
     const [formState, setFormState] = useState<FormState>();
+    const [operatingSinceError, setOperatingSinceError] = useState<TextFieldStateType>('Default');
+    const [dobError, setDobError] = useState<TextFieldStateType>('Default');
 
     let currFormState: FormState = {
       dobError: '',
@@ -102,25 +104,27 @@ const withPresenter = (
     const handleClickNext = () => {
       let allFieldsAreValid = true;
       if (setBusinessInfo
-            && businessType
-            && fullLegalName
-            && operatingName
-            && businessSector
-            && businessPhone
-            && operatingSince
+        && businessType
+        && fullLegalName
+        && operatingName
+        && businessSector
+        && businessPhone
+        && operatingSince
       ) {
 
         if (!isValidYear(operatingSince)) {
           allFieldsAreValid = false;
           currFormState.operatingSinceError = t('error_message.invalid_years');
           setFormState(currFormState);
+          setOperatingSinceError('Error');
         }
 
         if (dob) {
           if (!isValidDate(dob, 'past')) {
             allFieldsAreValid = false;
-            currFormState.dobError  = t('error_message.invalid_date');
+            currFormState.dobError = t('error_message.invalid_date');
             setFormState(currFormState);
+            setDobError('Error');
           }
         }
 
@@ -139,8 +143,9 @@ const withPresenter = (
             businessPhone,
             website: website || '',
           });
+          setOperatingSinceError('Default');
+          setDobError('Default');
         }
-        
       }
     };
 
@@ -170,8 +175,8 @@ const withPresenter = (
 
     const isFormValid = () => {
       return !isEmptyString(operatingSince) && (businessType === 'Incorporated'
-      || (!isEmptyString(businessType) && !isEmptyString(sin) && !isEmptyString(dob) 
-      && (bankruptcy === false || !isEmptyString(bankruptcyDetails))));
+        || (!isEmptyString(businessType) && !isEmptyString(sin) && !isEmptyString(dob)
+          && (bankruptcy === false || !isEmptyString(bankruptcyDetails))));
     };
 
     const contextualMenuItems: ContextualMenuItemProps[] = [];
@@ -266,7 +271,7 @@ const withPresenter = (
       },
       operatingSinceTextField: {
         ...defaultProps.operatingSinceTextField,
-        state: 'Error',
+        state: operatingSinceError,
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
           value: formState?.operatingSinceError
@@ -334,7 +339,7 @@ const withPresenter = (
       },
       dateOfBirthField: {
         ...defaultProps.dateOfBirthField,
-        state: 'Error',
+        state: dobError,
         errorMessage: {
           ...defaultTextFieldProps.errorMessage,
           value: formState?.dobError,
