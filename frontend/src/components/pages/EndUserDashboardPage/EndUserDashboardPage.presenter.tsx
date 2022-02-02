@@ -61,7 +61,7 @@ const withPresenter = (
       });
 
       customerQuotes.every((quote, index) => {
-        const { applicationAmount, quoteId, asset, vendorName } = quote;
+        const { applicationAmount, quoteId, asset, vendorName, contactBusinessName } = quote;
         const status: ContentFilter = checkQuoteStatus(quote);
         const quotesBlockProps: DashboardCardProps = {
           ...dashBoardCardProps,
@@ -80,7 +80,7 @@ const withPresenter = (
           },
           vendorNameText: {
             ...dashBoardCardProps.vendorNameText,
-            value: profile?.operatingName ?? 'No vendor',
+            value: vendorName ? contactBusinessName : '',
           },
           numberText: {
             ...dashBoardCardProps.numberText,
@@ -137,6 +137,7 @@ const withPresenter = (
         const {
           asset, applicationAmount, creditAppNumber, creditStatus,
         } = application;
+        const quote = customerQuotes?.find((quote) => quote.quoteId === application.quoteId);
 
         const applicationsBlockProps: DashboardCardProps = {
           ...dashBoardCardProps,
@@ -155,7 +156,7 @@ const withPresenter = (
           },
           vendorNameText: {
             ...dashBoardCardProps.vendorNameText,
-            value: t('customer_dashboard.vendor_name'),
+            value: quote?.vendorName ? quote.contactBusinessName : '',
           },
           numberText: {
             ...dashBoardCardProps.numberText,
