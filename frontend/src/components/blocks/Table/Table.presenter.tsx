@@ -73,8 +73,8 @@ const getCurrentItems = (
     case 'Quote':
       if (quotes) {
         items = quotes.map((quote: Quote): TableItem => ({
-          company: profile?.operatingName ?? 'No vendor',
-          vendor: quote.contactBusinessName ?? 'No vendor',
+          company: profile?.operatingName!,
+          vendor: quote.contactBusinessName!,
           contactName: quote.contactName,
           status: getQuoteStatus(quote, portfolio),
           createdOn: new Date(quote.createdDate.replace(/-/g, '/')).toDateString(),
@@ -89,11 +89,13 @@ const getCurrentItems = (
       if (portfolio && portfolio.creditApps && portfolio.leases) {
         items = portfolio.creditApps.map((application: CreditApplication): TableItem => {
           const lease = portfolio.leases.find((lease) => lease.quoteId === application.quoteId);
-          const customerCompanyName = quotes?.find((quote) => quote.quoteId === application.quoteId)?.contactBusinessName;
+          const findQuote = quotes?.find((quote) => quote.quoteId === application.quoteId);
+          const customerCompanyName = findQuote?.contactBusinessName;
+          const customerContactName = findQuote?.contactName;
           return {
-            company: profile?.operatingName ?? 'No vendor',
-            vendor: customerCompanyName ?? 'No vendor',
-            contactName: application.name,
+            company: profile?.operatingName!,
+            vendor: customerCompanyName!,
+            contactName: customerContactName!,
             status: getApplicationStatus(application),
             createdOn: new Date(application.createdDate.replace(/-/g, '/')).toDateString(),
             asset: application.asset,
