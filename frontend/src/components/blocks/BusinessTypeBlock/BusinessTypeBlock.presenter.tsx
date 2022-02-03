@@ -22,6 +22,7 @@ const withPresenter = (
   const Presenter: React.FC<BusinessTypeBlockPresenterProps> = (props) => {
     const {
       className,
+      profile,
       businessInfo,
       setBusinessInfo,
       stepperCurrentValue,
@@ -31,7 +32,6 @@ const withPresenter = (
 
     const [businessType, setBusinessType] = useState<'Proprietorship' | 'Incorporated'>();
     const [operatingSince, setOperatingSince] = useState<string>();
-    const [showBusinessQuestions, setShowBusinessQuestions] = useState<boolean>(false);
     const [sin, setSin] = useState<string>();
     const [dob, setDob] = useState<string>();
     const [bankruptcy, setBankruptcy] = useState<boolean>();
@@ -39,6 +39,20 @@ const withPresenter = (
     const [formState, setFormState] = useState<FormState>();
     const [operatingSinceError, setOperatingSinceError] = useState<TextFieldStateType>('Default');
     const [dobError, setDobError] = useState<TextFieldStateType>('Default')
+
+    const checkShowConditionalQuestions = () => {
+      if (!operatingSince || !profile) {
+        return false;
+      }
+
+      const diffYears = new Date().getFullYear() - parseInt(operatingSince);
+      const showQuestions =
+        diffYears < 3 &&
+        (profile?.userType === "customer" || profile?.userType === "vendor") &&
+        businessType === "Incorporated";
+
+      return businessType === 'Proprietorship' || showQuestions;
+    };
 
     useEffect(() => {
       if (businessInfo) {
@@ -48,11 +62,8 @@ const withPresenter = (
         setBankruptcy(businessInfo.bankruptcy);
         setBankruptcyDetails(businessInfo.bankruptcyDetails);
         setOperatingSince((new Date().getFullYear() - businessInfo.yearsInBusiness).toString());
-        if (businessInfo.businessType === 'Proprietorship') {
-          setShowBusinessQuestions(true);
-        }
       }
-    }, [businessInfo]);
+    }, [businessInfo, checkShowConditionalQuestions]);
 
     let currFormState: FormState = {
       operatingSinceError: '',
@@ -106,13 +117,9 @@ const withPresenter = (
     };
 
     const handleBusinessTypeClick = (option: 'Proprietorship' | 'Incorporated') => () => {
-      if (option === 'Proprietorship') {
-        setShowBusinessQuestions(true);
-      } else {
-        setShowBusinessQuestions(false);
-      }
       setBusinessType(option);
     };
+
     const handleBankruptcyClick = (option: boolean) => (event: any) => {
       setBankruptcy(option);
     };
@@ -122,9 +129,22 @@ const withPresenter = (
     };
 
     const isFormValid = () => {
-      return !isEmptyString(operatingSince) && (businessType === 'Incorporated'
-        || (!isEmptyString(businessType) && !isEmptyString(sin) && !isEmptyString(dob)
-          && (bankruptcy === false || !isEmptyString(bankruptcyDetails))));
+      let additionalQuestionsValid = false;
+      if (checkShowConditionalQuestions() || businessType === "Proprietorship") {
+        additionalQuestionsValid =
+          !isEmptyString(businessType) &&
+          !isEmptyString(sin) &&
+          !isEmptyString(dob) &&
+          (bankruptcy === false || !isEmptyString(bankruptcyDetails));
+      } else {
+        additionalQuestionsValid = true;
+      }
+
+      return (
+        !isEmptyString(operatingSince) &&
+        additionalQuestionsValid &&
+        businessType
+      );
     };
 
     const businessTypeBlockProps: BusinessTypeBlockProps = {
@@ -296,11 +316,12 @@ const withPresenter = (
         value: t('application_form.business_type.bankruptcy.disclaimer_text'),
       },
     };
+
     return (
       <View
         className={className}
         {...businessTypeBlockProps}
-        showBusinessQuestions={showBusinessQuestions}
+        showBusinessQuestions={checkShowConditionalQuestions()}
       />
     );
   };

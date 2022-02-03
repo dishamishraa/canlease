@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback} from 'react';
 import { useTranslation } from 'react-i18next';
 import { getTodaysDateString, isEmptyString, isValidDate, isValidYear } from '../../../lib/utils';
 import { Profile } from '../../../modules/profile/types';
@@ -30,6 +30,7 @@ const withPresenter = (
   const Presenter: React.FC<CustomerBusinessInformationBlockPresenterProps> = (props) => {
     const {
       className,
+      profile,
       businessInfo,
       setBusinessInfo,
       stepperCurrentValue,
@@ -58,6 +59,20 @@ const withPresenter = (
       operatingSinceError: ''
     }
 
+    const checkShowConditionalQuestions = () => {
+      if (!operatingSince || !profile) {
+        return false;
+      }
+
+      const diffYears = new Date().getFullYear() - parseInt(operatingSince);
+      const showQuestions =
+        diffYears < 3 &&
+        (profile?.userType === "customer" || profile?.userType === "vendor") &&
+        businessType === "Incorporated";
+
+      return businessType === 'Proprietorship' || showQuestions;
+    };
+
     useEffect(() => {
       if (businessInfo) {
         setBusinessType(businessInfo.businessType);
@@ -73,13 +88,9 @@ const withPresenter = (
           setBusinessSector(businessInfo.businessSector);
           setBusinessPhone(businessInfo.businessPhone);
           setWebsite(businessInfo.website);
-        }
-
-        if (businessInfo.businessType === 'Proprietorship') {
-          setShowBusinessQuestions(true);
-        }
+        } 
       }
-    }, [businessInfo]);
+    }, [businessInfo, checkShowConditionalQuestions]);
 
     const handleFullLegalName = ({ target: { value } }) => {
       setFullLegalName(value);
@@ -158,11 +169,6 @@ const withPresenter = (
     };
 
     const handleBusinessTypeClick = (option: 'Proprietorship' | 'Incorporated') => () => {
-      if ((option === 'Proprietorship')) {
-        setShowBusinessQuestions(true);
-      } else {
-        setShowBusinessQuestions(false);
-      }
       setBusinessType(option);
     };
     const handleBankruptcyClick = (option: boolean) => (event: any) => {
@@ -174,9 +180,22 @@ const withPresenter = (
     };
 
     const isFormValid = () => {
-      return !isEmptyString(operatingSince) && (businessType === 'Incorporated'
-        || (!isEmptyString(businessType) && !isEmptyString(sin) && !isEmptyString(dob)
-          && (bankruptcy === false || !isEmptyString(bankruptcyDetails))));
+      let additionalQuestionsValid = false;
+      if (checkShowConditionalQuestions() || businessType === "Proprietorship") {
+        additionalQuestionsValid =
+          !isEmptyString(businessType) &&
+          !isEmptyString(sin) &&
+          !isEmptyString(dob) &&
+          (bankruptcy === false || !isEmptyString(bankruptcyDetails));
+      } else {
+        additionalQuestionsValid = true;
+      }
+
+      return (
+        !isEmptyString(operatingSince) &&
+        additionalQuestionsValid &&
+        businessType
+      );
     };
 
     const contextualMenuItems: ContextualMenuItemProps[] = [];
@@ -427,7 +446,7 @@ const withPresenter = (
       <View
         className={className}
         {...businessTypeBlockProps}
-        showBusinessQuestions={showBusinessQuestions}
+        showBusinessQuestions={checkShowConditionalQuestions()}
       />
     );
   };
