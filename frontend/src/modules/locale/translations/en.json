@@ -34,6 +34,7 @@
         "customer_email": "Customer email",
         "customer_company_name": "Customer company name",
         "submit": "VIEW AND EMAIL QUOTE",
+        "submit_vendor": "VIEW QUOTE",
         "disclaimer": "Canlease is committed to protecting and respecting your privacy, and we will only use your personal information to provide the services you requested from us. By creating this quote, you agree to be contacted by one of our representatives at a later time."
     },
     "user_type_selection": {

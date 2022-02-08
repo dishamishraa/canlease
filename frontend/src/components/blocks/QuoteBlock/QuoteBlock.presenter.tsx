@@ -356,15 +356,6 @@ const withPresenter = (
         onButtonClicked: handleSendQuote,
         disabled: quoteExpired,
       };
-      quoteBlockProps.applyButton = {
-        ...defaultProps.saveQuoteButton,
-        text: {
-          ...defaultProps.saveQuoteButton.text,
-          value: t('view_quote.apply_for_customer_button_text'),
-        },
-        onButtonClicked: handleApplyForFinance('Customer'),
-        disabled: quoteExpired,
-      };
     } else {
       quoteBlockProps.applyButton = {
         ...defaultProps.applyButton,

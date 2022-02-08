@@ -154,7 +154,7 @@ const withPresenter = (
       viewQuoteButton: {
         ...defaultProps.viewQuoteButton,
         text: {
-          value: t('contact_info.submit'),
+          value: t('contact_info.submit_vendor'),
         },
         onButtonClicked: handleClickViewQuote,
         disabled: !isFormValid,

@@ -82,7 +82,7 @@ const withPresenter = (
             setCookie(INSTANT_QUOTE_COOKIE, { quoteId, expires: expiryDate },
               { expires: expiryDate });
             setQuote(data);
-            history.push(`/instaQuote/${quoteId}`, { quote: data });
+            history.push(`/instaQuote/${quoteId}`, { quote: data, quoteUserType });
             break;
           case 'createQuote':
             history.push(`/portal/quote/${quoteId}`, {
