@@ -64,7 +64,7 @@ const withPresenter = (
     const onCloseModal = () => {
       setShowModal(false);
       if (flowType === 'instaQuote') {
-        history.push('/account/signin');
+        history.push('/account/signup');
       } else {
          history.push('/portal/quotes');
       }
@@ -78,7 +78,7 @@ const withPresenter = (
       ...modalPropsDefaultProps,
       closeIcon: {
         ...modalPropsDefaultProps.closeIcon,
-        onIconClicked: onCloseModal,
+        onIconClicked: onSimpleCloseModal,
       },
       image: {
         image: flowType === 'instaQuote'? EmailIcon : QuoteSentIcon,
