@@ -50,7 +50,8 @@ const withPresenter = (
 
     const history = useHistory();
     const { t } = useTranslation();
-    const [showModal, setShowModal] = useState(false);
+    const modalDefaultDisplay = (quoteUserType === 'customer' && flowType === 'instaQuote');
+    const [showModal, setShowModal] = useState(modalDefaultDisplay);
     const [, setCookie, removeCookie] = useCookies();
 
     if (error) {
@@ -116,7 +117,7 @@ const withPresenter = (
       switch (flowType) {
         case 'instaQuote':
           updateInstaQuoteCookie({ action: 'apply_finance_personal' }, setCookie, removeCookie);
-          history.push('/account/signin');
+          history.push('/account/signup');
           break;
         case 'createQuote':
           if (quote) {
@@ -128,7 +129,7 @@ const withPresenter = (
 
     const handleSaveQuote = () => {
       updateInstaQuoteCookie({ action: 'save_quote' }, setCookie, removeCookie);
-      handleSendQuote();
+      history.push('/account/signup');
     };
 
     const getSubmittedBy = (info: ContactInfo) => {
