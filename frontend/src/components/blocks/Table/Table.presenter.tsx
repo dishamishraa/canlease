@@ -9,7 +9,7 @@ import { defaultProps as tableItemDefaultProps } from '../../molecules/TableItem
 import { isExpiring, isExpired, formatAsCurrency } from '../../../lib/utils';
 import { CreditApplication, Portfolio } from '../../../modules/portfolio/types';
 import { Quote } from '../../../modules/quote/types';
-import { ContentFilter, ContentType, LeaseInfo } from '../../../modules/types';
+import { ContentFilter, ContentType, ContentTypeTabs, LeaseInfo } from '../../../modules/types';
 import { Profile } from '../../../modules/profile/types';
 
 type TableItem = {
@@ -115,14 +115,14 @@ const getCurrentItems = (
 };
 
 const filterItems = (
-  items: TableItem[], searchQuery?: string, statusFilter?: ContentFilter,
+  items: TableItem[], tab?: ContentTypeTabs, searchQuery?: string, statusFilter?: ContentFilter,
 ): TableItem[] => {
   const filteredItems = statusFilter === 'all' ? items : items.filter((item: TableItem) => item.status === statusFilter);
   if (searchQuery) {
     const search = searchQuery.toLowerCase();
     const itemsMatchSearch = filteredItems.filter((item: TableItem) => {
-      const itemCompanyName = item.company.toLowerCase();
-      const itemContactName = item.contactName.toLowerCase();
+      const itemCompanyName = (tab === 'Customer') ? item.vendor?.toLocaleLowerCase() : item.company?.toLowerCase();
+      const itemContactName = (tab === 'Customer') ? item.contactName?.toLowerCase() : null;
       const createdOn = item.createdOn.toLowerCase();
       const itemAssetName = item.asset.toLowerCase();
       const itemCost = item.cost.toString().toLowerCase();
@@ -152,7 +152,7 @@ const withPresenter = (
     const history = useHistory();
 
     const currentItems = getCurrentItems(contentType, quotes, portfolio, profile);
-    const filteredItems = filterItems(currentItems, searchQuery, statusFilter);
+    const filteredItems = filterItems(currentItems, tab, searchQuery, statusFilter);
 
     const tableItemListProps: TableItemListProps = {
       ...defaultProps.tableItemList,
