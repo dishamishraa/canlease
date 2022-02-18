@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 import AppProvider from './AppProvider';
 import * as serviceWorker from './serviceWorker';
+import { initializeTracking } from './lib/trackingUtils';
+
+initializeTracking();
 
 ReactDOM.render(
   <React.StrictMode>
