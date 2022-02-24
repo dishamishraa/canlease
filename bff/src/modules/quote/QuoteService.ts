@@ -1,16 +1,16 @@
 import SalesforceApi from '../../lib/salesforce/SalesforceApi';
 import { CreateQuote, Quote, Profile } from '../../lib/salesforce/types';
-import SendGridApi from './SendGridApi';
+import CommunicationApi from './CommunicationApi';
 import { QuoteServiceContract, SendQuote } from './types';
 
 export default class QuoteService implements QuoteServiceContract {
   private salesforceApi: SalesforceApi;
 
-  private sendGridApi: SendGridApi;
+  private communicationApi: CommunicationApi;
 
-  constructor(salesforceApi: SalesforceApi, sendGridApi: SendGridApi) {
+  constructor(salesforceApi: SalesforceApi, communicationApi: CommunicationApi) {
     this.salesforceApi = salesforceApi;
-    this.sendGridApi = sendGridApi;
+    this.communicationApi = communicationApi;
   }
 
   createQuote(payload: CreateQuote): Promise<Quote> {
@@ -22,7 +22,7 @@ export default class QuoteService implements QuoteServiceContract {
   }
 
   sendQuote(payload: SendQuote): Promise<void> {
-    return this.sendGridApi.sendQuote(payload);
+    return this.communicationApi.sendQuote(payload);
   }
 
   getProfile(portalId: string): Promise<Profile> {

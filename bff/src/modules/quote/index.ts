@@ -3,14 +3,14 @@ import { createQuoteRouter } from './QuoteRouter';
 import QuoteController from './QuoteController';
 import QuoteService from './QuoteService';
 import { QuoteControllerContract, QuoteServiceContract } from './types';
-import SendGridApi from './SendGridApi';
+import CommunicationApi from './CommunicationApi';
 
 export {
   QuoteControllerContract,
   QuoteServiceContract,
   QuoteController,
   QuoteService,
-  SendGridApi,
+  CommunicationApi,
 };
 
 export const QuoteRouter = (controllers: {

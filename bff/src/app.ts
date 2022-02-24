@@ -1,7 +1,7 @@
 import { Application } from 'express';
 import createApp from './lib/createApp';
 import { createRouter } from './router';
-import { SendGridApi, QuoteService, QuoteController } from './modules/quote';
+import { CommunicationApi, QuoteService, QuoteController } from './modules/quote';
 import { ApplicationService, ApplicationController } from './modules/application';
 import { PortfolioService, PortfolioController } from './modules/portfolio';
 import { ProfileService, ProfileController } from './modules/profile';
@@ -11,12 +11,12 @@ import { RateCardController, RateCardService } from './modules/rateCard';
 
 export default function App(): Application {
   const salesforceApi = new SalesforceApi();
-  const sendGridApi = new SendGridApi();
+  const communicationApi = new CommunicationApi();
 
   const rateCardService = new RateCardService();
   const rateCardController = new RateCardController(rateCardService);
 
-  const quoteService = new QuoteService(salesforceApi, sendGridApi);
+  const quoteService = new QuoteService(salesforceApi, communicationApi);
   const quoteController = new QuoteController(quoteService, rateCardService);
 
   const applicationService = new ApplicationService(salesforceApi);

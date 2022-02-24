@@ -16,11 +16,11 @@ describe('QuoteService', () => {
     getAllCustomerQuotesFromProfile: jest.fn(),
     createRateCard: jest.fn(),
   };
-  const sendGridApi = {
+  const communicationApi = {
     sendQuote: jest.fn(),
   };
 
-  const service = new QuoteService(salesforceApi, sendGridApi);
+  const service = new QuoteService(salesforceApi, communicationApi);
 
   describe('createQuote', () => {
     it('should call api with payload', async () => {
@@ -39,7 +39,7 @@ describe('QuoteService', () => {
   describe('sendQuote', () => {
     it('should call api with payload', async () => {
       await service.sendQuote(mockSendQuote);
-      expect(sendGridApi.sendQuote).toHaveBeenCalledWith(mockSendQuote);
+      expect(communicationApi.sendQuote).toHaveBeenCalledWith(mockSendQuote);
     });
   });
 });
