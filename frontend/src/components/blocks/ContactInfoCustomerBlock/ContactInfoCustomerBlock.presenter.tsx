@@ -56,7 +56,7 @@ const withPresenter = (
       ...props,
       blockHeading: {
         ...defaultProps.blockHeading,
-        value: t('contact_info.header_contact')
+        value: showAsCustomer ? t('contact_info.header_customer') : t('contact_info.header_contact'),
       },
       nameTextField: {
         ...defaultProps.nameTextField,
@@ -98,7 +98,7 @@ const withPresenter = (
       viewQuoteButton: {
         ...defaultProps.viewQuoteButton,
         text: {
-          value: t('contact_info.submit'),
+          value: showAsCustomer ? t('contact_info.submit_vendor') : t('contact_info.submit'),
         },
         disabled: !isFormValid,
         onButtonClicked: handleClickViewQuote,
