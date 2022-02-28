@@ -34,7 +34,6 @@ const withPresenter = (
         postalCode,
         companyName,
         operatingName,
-        businessSector,
         businessPhone,
         website,
       } = profile;
@@ -68,7 +67,6 @@ const withPresenter = (
       const businessInfo = [
         companyName,
         operatingName,
-        businessSector,
         businessPhone,
         website,
       ];

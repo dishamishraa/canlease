@@ -56,7 +56,6 @@ const CreateProfileSchema = Joi.object({
   phone: Joi.string().required(),
   title: Joi.string().allow(''),
   operatingName: Joi.string().required(),
-  businessSector: Joi.string().required(),
   businessPhone: Joi.string().required(),
   website: Joi.string().allow(''),
 });

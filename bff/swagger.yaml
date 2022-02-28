@@ -319,9 +319,6 @@ definitions:
         type: "string"
         format: "date-time"
         description: "NEW FIELD"
-      businessSector:
-        type: "string"
-        description: "NEW FIELD"
       businessPhone:
         type: "string"
         description: "NEW FIELD"
@@ -384,9 +381,6 @@ definitions:
       operatingSinceDate:
         type: "string"
         format: "date-time"
-        description: "NEW FIELD"
-      businessSector:
-        type: "string"
         description: "NEW FIELD"
       businessPhone:
         type: "string"

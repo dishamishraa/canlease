@@ -165,7 +165,6 @@ const withPresenter = (
         bankruptcy,
         bankruptcyDetails,
         businessPhone,
-        businessSector,
         businessType,
         companyName,
         dob,
@@ -222,16 +221,6 @@ const withPresenter = (
               infoText: {
                 ...defaultQuoteDetailItemProps.infoText,
                 value: operatingName,
-              },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('text_field_label.business_sector'),
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: businessSector ? businessSector : NOT_AVAILABLE,
               },
             },
             {
@@ -312,7 +301,6 @@ const withPresenter = (
         postalCode,
         companyName,
         operatingName,
-        businessSector,
         businessPhone,
         website,
       } = profile;
@@ -446,16 +434,6 @@ const withPresenter = (
               infoText: {
                 ...defaultQuoteDetailItemProps.infoText,
                 value: operatingName,
-              },
-            },
-            {
-              labelText: {
-                ...defaultQuoteDetailItemProps.labelText,
-                value: t('text_field_label.business_sector'),
-              },
-              infoText: {
-                ...defaultQuoteDetailItemProps.infoText,
-                value: businessSector ? businessSector : NOT_AVAILABLE,
               },
             },
             {

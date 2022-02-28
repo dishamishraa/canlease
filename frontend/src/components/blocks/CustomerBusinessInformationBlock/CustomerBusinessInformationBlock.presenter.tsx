@@ -40,7 +40,6 @@ const withPresenter = (
 
     const [fullLegalName, setFullLegalName] = useState<string>();
     const [operatingName, setOperatingName] = useState<string>();
-    const [businessSector, setBusinessSector] = useState<string>();
     const [businessPhone, setBusinessPhone] = useState<string>();
     const [website, setWebsite] = useState<string>();
     const [operatingSince, setOperatingSince] = useState<string>();
@@ -85,7 +84,6 @@ const withPresenter = (
         if (businessInfo.type === 'vendor') {
           setFullLegalName(businessInfo.companyName);
           setOperatingName(businessInfo.operatingName);
-          setBusinessSector(businessInfo.businessSector);
           setBusinessPhone(businessInfo.businessPhone);
           setWebsite(businessInfo.website);
         } 
@@ -118,7 +116,6 @@ const withPresenter = (
         && businessType
         && fullLegalName
         && operatingName
-        && businessSector
         && businessPhone
         && operatingSince
       ) {
@@ -149,7 +146,6 @@ const withPresenter = (
             bankruptcyDetails: bankruptcyDetails || '',
             companyName: fullLegalName,
             operatingName,
-            businessSector,
             yearsInBusiness: new Date().getFullYear() - parseInt(operatingSince),
             businessPhone,
             website: website || '',
@@ -198,16 +194,6 @@ const withPresenter = (
       );
     };
 
-    const contextualMenuItems: ContextualMenuItemProps[] = [];
-    for (let i = 0; i < 7; i += 1) {
-      contextualMenuItems.push({
-        text: {
-          ...defaultMenuItemProps.text,
-          value: t(`business_information.business_sector_options.${i}`),
-        },
-        onContextualMenuItemClicked: () => setBusinessSector(t(`business_information.business_sector_options.${i}`)),
-      });
-    }
 
     const businessTypeBlockProps: CustomerBusinessInformationBlockProps = {
       ...defaultProps,
@@ -245,26 +231,6 @@ const withPresenter = (
           textValue: operatingName,
           onTextChanged: handleOperatingName,
         },
-      },
-      businessSectorSelectField: {
-        ...defaultProps.businessSectorSelectField,
-        label: {
-          ...defaultProps.businessSectorSelectField.label,
-          value: t('text_field_label.business_sector'),
-        },
-        select: {
-          ...defaultProps.businessSectorSelectField.select,
-          text: {
-            ...defaultProps.businessSectorSelectField.select?.text,
-            value: businessSector,
-          },
-        },
-        contextualMenu: {
-          contextualMenuItemList: {
-            contextualMenuItems,
-          },
-        },
-        selectId: t('text_field_label.business_sector'),
       },
       businessPhoneField: {
         ...defaultProps.businessPhoneField,

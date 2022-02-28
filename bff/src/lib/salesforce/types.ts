@@ -175,7 +175,6 @@ export type Profile = {
   rateCardId: string;
   userType: UserType;
   operatingName: string;
-  businessSector: string;
   businessPhone: string;
 };
 
@@ -193,7 +192,6 @@ export type CreateProfile = {
   phone: string;
   title: string;
   operatingName: string;
-  businessSector: string;
   businessPhone: string;
   website: string;
 };

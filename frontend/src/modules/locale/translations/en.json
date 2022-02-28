@@ -477,9 +477,8 @@
             "label": {
                 "0": "Full legal name:",
                 "1": "Operating name:",
-                "2": "Business sector:",
-                "3": "Business phone:",
-                "4": "Website link:"
+                "2": "Business phone:",
+                "3": "Website link:"
             }
         }
     },

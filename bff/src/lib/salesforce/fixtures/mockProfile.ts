@@ -22,7 +22,6 @@ const mockProfile: Profile = {
   rateCardId: 'string',
   userType: 'customer',
   operatingName: 'string',
-  businessSector: 'string',
   businessPhone: 'string',
 };
 

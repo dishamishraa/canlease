@@ -76,7 +76,6 @@ export type ContactInformation = {
 export type BusinessInformation = {
   companyName: string;
   operatingName: string;
-  businessSector: string;
   businessPhone: string;
   website: string;
 };
@@ -123,7 +122,6 @@ export type ApplicationBusinessInfoVendor = BaseApplicationBusinessInfo & {
   type: 'vendor';
   companyName: string;
   operatingName: string;
-  businessSector: string;
   businessPhone: string;
   website: string;
 };

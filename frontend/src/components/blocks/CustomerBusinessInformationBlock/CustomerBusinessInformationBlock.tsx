@@ -52,26 +52,6 @@ export const defaultProps = {
       type: 'Text',
     },
   } as TextFieldProps,
-  businessSectorSelectField: {
-    label: {
-      style: 'Basic800',
-      align: 'Left',
-      size: 'Medium',
-      type: 'Paragraph2',
-    },
-    select: {
-      text: {
-        style: 'Basic800',
-        align: 'Left',
-        size: 'Large',
-        type: 'Paragraph1',
-      },
-      icon: {
-        asset: 'ChevronDown',
-        style: 'Basic800',
-      },
-    },
-  } as SelectFieldProps,
   businessPhoneField: {
     state: 'Default',
     type: 'Text',
@@ -217,7 +197,6 @@ export type CustomerBusinessInformationBlockProps = {
   blockHeading?: TextProps;
   fullLegalNameTextField?: TextFieldProps;
   operatingNameTextField?: TextFieldProps;
-  businessSectorSelectField?: SelectFieldProps;
   businessPhoneField?: TextFieldProps;
   websiteLinkTextField?: TextFieldProps;
   operatingSinceTextField?: TextFieldProps;
@@ -241,7 +220,6 @@ const CustomerBusinessInformationBlock: React.FC<CustomerBusinessInformationBloc
   blockHeading,
   fullLegalNameTextField,
   operatingNameTextField,
-  businessSectorSelectField,
   businessPhoneField,
   websiteLinkTextField,
   operatingSinceTextField,
@@ -295,9 +273,6 @@ const CustomerBusinessInformationBlock: React.FC<CustomerBusinessInformationBloc
           <TextField
             className={styles.operatingNameTextField}
             {...operatingNameTextField} />
-          <SelectField
-            className={styles.businessSectorSelectField}
-            {...businessSectorSelectField} />
           <TextField
             className={styles.businessPhoneField}
             {...businessPhoneField} />
