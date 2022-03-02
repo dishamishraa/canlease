@@ -109,7 +109,7 @@ const withPresenter = (
       },
       blockHeading: {
         ...defaultProps.blockHeading,
-        value: t('contact_information.header'),
+        value: t('contact_information.header_signup'),
       },
       emailTextField: {
         ...defaultProps.emailTextField,

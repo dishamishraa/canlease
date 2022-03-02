@@ -81,7 +81,7 @@ const withPresenter = (
       },
       blockHeading: {
         ...defaultProps.blockHeading,
-        value: t('business_information.header'),
+        value: t('business_information.header_signup'),
       },
       fullLegalNameTextField: {
         ...defaultProps.fullLegalNameTextField,

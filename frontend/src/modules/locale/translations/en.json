@@ -269,6 +269,7 @@
     },
     "contact_information":{
         "header": "Customer contact information",
+        "header_signup": "Contact information",
         "first_name": "First name",
         "last_name": "Last name",
         "province": {
@@ -289,6 +290,7 @@
     },
     "business_information":{
         "header": "Customer business information",
+        "header_signup": "Business information",
         "business_sector_options":{
             "0": "Agriculture and Landscaping",
             "1": "Construction and Transportation",
