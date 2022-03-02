@@ -113,7 +113,7 @@ const withPresenter = (
           history.push('/portal/quotes');
           break;
         default:
-          history.push('/portal/dashboard');
+          history.push('/portal/quotes');
           break;
       }
     };

@@ -28,21 +28,21 @@ const withPresenter = (
     const normalizedPathname = pathname.toLowerCase();
 
     const menuItems: MainMenuItemProps[] = [
-      {
-        ...defaultMainMenutItemProps,
-        type: normalizedPathname === '/portal/dashboard' ? 'Selected' : 'Default',
-        icon: {
-          ...defaultMainMenutItemProps.icon,
-          asset: 'Dashboard',
-        },
-        text: {
-          ...defaultMainMenutItemProps.text,
-          value: t('main_menu_items.dashboard'),
-        },
-        onMainMenuItemClicked: () => {
-          history.push('/portal/dashboard');
-        },
-      },
+      // {
+      //   ...defaultMainMenutItemProps,
+      //   type: normalizedPathname === '/portal/dashboard' ? 'Selected' : 'Default',
+      //   icon: {
+      //     ...defaultMainMenutItemProps.icon,
+      //     asset: 'Dashboard',
+      //   },
+      //   text: {
+      //     ...defaultMainMenutItemProps.text,
+      //     value: t('main_menu_items.dashboard'),
+      //   },
+      //   onMainMenuItemClicked: () => {
+      //     history.push('/portal/dashboard');
+      //   },
+      // },
       {
         ...defaultMainMenutItemProps,
         type: normalizedPathname.startsWith('/portal/quote') ? 'Selected' : 'Default',

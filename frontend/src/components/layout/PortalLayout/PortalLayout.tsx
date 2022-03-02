@@ -99,8 +99,9 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
           {menuBlockDisplay}
           <Switch>
             <Route path={routes.dashboard}>
-              <DashboardPage
-                className={styles.page}/>
+              <Redirect to={routes.quotes}/>
+              {/* <DashboardPage
+                className={styles.page}/> */}
             </Route>
             <Route path={[routes.quotes, routes.applications]}>
               <ContentPage
@@ -129,7 +130,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
                 className={styles.page} />
             </Route>
             <Route path={routes.invalid}>
-              <Redirect to={routes.dashboard}/>
+              <Redirect to={routes.quotes}/>
             </Route>
           </Switch>
         </div>
