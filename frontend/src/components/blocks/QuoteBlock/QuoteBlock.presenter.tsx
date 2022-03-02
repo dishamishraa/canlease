@@ -132,20 +132,19 @@ const withPresenter = (
       history.push('/account/signup');
     };
 
-    const getSubmittedBy = (info: ContactInfo) => {
-      if (info.type === 'vendor') {
-        return `${info.vendorName} (${info.businessEmail})`;
-      }
-      return `${info.customerName} (${info.customerEmail}`;
-    };
-
     const handleSendQuote = async () => {
-      if (quote && contactInfo) {
+      if (quote && contactInfo && quoteUserType === 'vendor') {
         await sendQuote({
           companyName: contactInfo.customerCompanyName,
-          submittedBy: getSubmittedBy(contactInfo),
+          submittedBy: `${quote.vendorName} (${quote.vendorEmail})`,
           email: contactInfo.customerEmail,
           quoteId: quote?.quoteId,
+        });
+        await sendQuote({
+          companyName: quote.contactBusinessName,
+          submittedBy: `${quote.vendorName} (${quote.vendorEmail})`,
+          email: quote.vendorEmail,
+          quoteId: quote.quoteId,
         });
         setShowModal(true);
       } else {
@@ -158,7 +157,7 @@ const withPresenter = (
           });
           await sendQuote({
             companyName: quote.contactBusinessName,
-            submittedBy: `${quote.vendorName} (${quote.vendorEmail}`,
+            submittedBy: `${quote.vendorName} (${quote.vendorEmail})`,
             email: quote.vendorEmail,
             quoteId: quote.quoteId,
           });

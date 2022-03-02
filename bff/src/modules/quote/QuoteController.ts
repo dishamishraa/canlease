@@ -105,7 +105,7 @@ export default class QuoteController implements QuoteControllerContract {
       if (isCreateQuoteCustomer(payload)) {
         await this.sendQuote({
           companyName: payload.contactBusinessName,
-          submittedBy: `${payload.contactName} (${payload.contactEmail}`,
+          submittedBy: `${payload.contactName} (${payload.contactEmail})`,
           email: payload.contactEmail,
           quoteId: quote.quoteId,
         });
@@ -113,13 +113,13 @@ export default class QuoteController implements QuoteControllerContract {
       if (isCreateQuoteVendor(payload)) {
         await this.sendQuote({
           companyName: payload.contactBusinessName,
-          submittedBy: `${payload.vendorName} (${payload.vendorEmail}`,
+          submittedBy: `${payload.vendorName} (${payload.vendorEmail})`,
           email: payload.vendorEmail,
           quoteId: quote.quoteId,
         });
         await this.sendQuote({
           companyName: payload.contactBusinessName,
-          submittedBy: `${payload.vendorName} (${payload.vendorEmail}`,
+          submittedBy: `${payload.vendorName} (${payload.vendorEmail})`,
           email: payload.contactEmail,
           quoteId: quote.quoteId,
         });
