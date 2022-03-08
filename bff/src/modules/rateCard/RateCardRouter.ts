@@ -4,7 +4,7 @@ import { BadRequestError, UnauthorizedError } from '../../lib/errors';
 import { errorWrapper, getCookie, validateId } from '../../lib/utils';
 import { RateCardControllerContract } from './types';
 import SalesforceApi from '../../lib/salesforce/SalesforceApi';
-import { isAdmin } from './utils';
+import { isAdmin, isRep } from './utils';
 
 export function createRateCardRouter(controllers: {
   rateCardController: RateCardControllerContract;
@@ -47,7 +47,9 @@ export function createRateCardRouter(controllers: {
   router.get('/rate_cards', errorWrapper(async (req: Request, res: Response) => {
     const identityToken = getCookie(req, IDENTITY_SESSION_COOKIE_NAME);
     const userIsAdmin = await isAdmin(identityToken);
-    if (!identityToken || !userIsAdmin) {
+    const userIsRep = await isRep(identityToken);
+    const userIsValidType = userIsRep || userIsAdmin;
+    if (!identityToken || !userIsValidType) {
       throw UnauthorizedError();
     }
 
