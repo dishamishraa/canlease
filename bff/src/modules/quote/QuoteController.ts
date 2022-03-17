@@ -37,13 +37,15 @@ export default class QuoteController implements QuoteControllerContract {
       .sort((rate1, rate2) => rate1.term - rate2.term);
   }
 
-  getCardType(payload: CreateQuote): string {
+  getCardType(payload: CreateQuote, profile?: Profile): string {
     // It uses the v card for vendors
-    // the specified card for Canlease Reps
+    // the specified card for Canlease Reps & admins
     // e card for everyone else
-
     if (payload.rateCardType) {
       return payload.rateCardType;
+    }
+    if (profile && profile.rateCard) {
+      return profile.rateCard;
     }
     if (isCreateQuoteVendor(payload)) {
       return 'vendor card';
@@ -61,12 +63,7 @@ export default class QuoteController implements QuoteControllerContract {
     const interestRates: Record<number, number> = {};
     let cardType: string;
 
-    if (profile && profile.rateCard) {
-      cardType = profile.rateCard;
-    } else {
-      cardType = this.getCardType(payload);
-    }
-
+    cardType = this.getCardType(payload, profile);
     const rateCards = await this.rateCardService.getRateCards(SPINDL_API_TOKEN);
     let rateCard = rateCards.find((card) => card.cardtype === cardType);
     if (!rateCard) {
