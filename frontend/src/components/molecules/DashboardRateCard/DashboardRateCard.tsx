@@ -58,7 +58,6 @@ export type DashboardRateCardProps = {
   button?: ButtonProps;
   className?: string;
   image?: ImageProps;
-  deleteButton?: ButtonProps;
   viewButton?: ButtonProps;
   id?: string;
 };
@@ -69,7 +68,6 @@ const DashboardRateCard: React.FC<DashboardRateCardProps> = ({
   button,
   className,
   image,
-  deleteButton,
   viewButton,
 }) => {
   const currentStyle = styles[`dashboardRateCard${type}`];
@@ -91,24 +89,7 @@ const DashboardRateCard: React.FC<DashboardRateCardProps> = ({
           <Button
             className={styles.button}
             {...viewButton} />
-          <Button
-            className={styles.button}
-            {...deleteButton} />
         </div>
-      );
-      break;
-    case 'AddRateCard':
-      contentView = (
-        <div className={styles.content}>
-          <Image
-            className={styles.image}
-            {...image} />
-        </div>
-      );
-      buttonView = (
-        <Button
-          className={styles.button}
-          {...button} />
       );
       break;
   }
