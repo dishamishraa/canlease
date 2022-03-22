@@ -58,10 +58,15 @@ export default class QuoteController implements QuoteControllerContract {
   }
 
   async createQuote(payload: CreateQuote, profile: Profile | undefined): Promise<Quote> {
-    const { applicationAmount, leaseType, fee = 0 } = payload;
+    const { applicationAmount, leaseType, fee: payloadFee = 0 } = payload;
     const terms: number[] = [24, 36, 48, 60];
     const interestRates: Record<number, number> = {};
     let cardType: string;
+    let fee = payloadFee;
+
+    if(profile && profile.userType === 'vendor' && profile.feePercentage > 0) {
+      fee = profile.feePercentage;
+    }
 
     cardType = this.getCardType(payload, profile);
     const rateCards = await this.rateCardService.getRateCards(SPINDL_API_TOKEN);
