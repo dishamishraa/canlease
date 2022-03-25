@@ -64,7 +64,7 @@ export default class QuoteController implements QuoteControllerContract {
     let cardType: string;
     let fee = payloadFee;
 
-    if(profile && profile.userType === 'vendor' && profile.feePercentage > 0) {
+    if (profile && profile.userType === 'vendor' && profile.feePercentage > 0) {
       fee = profile.feePercentage;
     }
 

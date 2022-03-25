@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import { INSTANT_QUOTE_COOKIE, MAX_AGE } from '../../../lib/config';
 import { QuoteRateSectionProps } from '../../organisms/QuoteRateSection';
 import { QuoteBlockProps, defaultProps } from './QuoteBlock';
 import { RateCardProps, defaultProps as defaultRateCardProps } from '../../molecules/RateCard/RateCard';
@@ -24,6 +25,7 @@ import {
   getStretchMonth,
   isExpired,
   updateInstaQuoteCookie,
+  getQuoteCookie
 } from '../../../lib/utils';
 
 import addLinksAndBreaks from '../../../lib/reactUtils';
@@ -116,6 +118,15 @@ const withPresenter = (
     const handleApplyForFinance = (tab: ContentTypeTabs) => () => {
       switch (flowType) {
         case 'instaQuote':
+          // If viewing quote and applying from an email link, the cookie won't be set yet,
+          //  so we check quoteId and set it if necessary.
+          if (!getQuoteCookie().quoteId) {
+            const quoteId = quote?.quoteId;
+            const expiryDate = new Date();
+            expiryDate.setTime(expiryDate.getTime() + Number(MAX_AGE));
+            setCookie(INSTANT_QUOTE_COOKIE, { quoteId: quoteId, expires: expiryDate },
+              { expires: expiryDate });
+          }
           updateInstaQuoteCookie({ action: 'apply_finance_personal' }, setCookie, removeCookie);
           history.push('/account/signup');
           break;
