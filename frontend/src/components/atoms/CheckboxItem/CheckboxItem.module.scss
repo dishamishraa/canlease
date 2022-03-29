@@ -1,0 +1,394 @@
+.checkboxItemUnselected:enabled {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+  > * {
+    margin-left: 0.5rem;
+  }
+  align-self: flex-start;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .icon {
+    align-self: flex-start;
+    height: 1.5rem;
+    flex: 0 0 1.5rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .text {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+}
+.checkboxItemUnselected:disabled {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+  > * {
+    margin-left: 0.5rem;
+  }
+  align-self: flex-start;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .icon {
+    align-self: flex-start;
+    height: 1.5rem;
+    flex: 0 0 1.5rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .text {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+}
+.checkboxItemUnselected:hover {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+  > * {
+    margin-left: 0.5rem;
+  }
+  align-self: flex-start;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  // .icon {
+  //   align-self: flex-start;
+  //   height: 1.5rem;
+  //   flex: 0 0 1.5rem;
+  //   &:nth-child(1) {
+  //     margin-left: 0;
+  //   }
+  // }
+
+  // .text {
+  //   overflow: hidden;
+  //   display: flex;
+  //   flex-direction: row;
+  //   justify-content: flex-start;
+  //   align-items: flex-start;
+  //   align-self: flex-start;
+  //   flex: 0 0 auto;
+  //   &:nth-child(1) {
+  //     margin-left: 0;
+  //   }
+  // }
+
+}
+.checkboxItemUnselected:focused {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+  > * {
+    margin-left: 0.5rem;
+  }
+  align-self: flex-start;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+  border: 1px solid rgb(26, 35, 126);
+  border-radius: 4px;
+
+  .icon {
+    align-self: flex-start;
+    height: 1.5rem;
+    flex: 0 0 1.5rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .text {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+}
+.checkboxItemUnselected:pressed {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+  > * {
+    margin-left: 0.5rem;
+  }
+  align-self: flex-start;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .icon {
+    align-self: flex-start;
+    height: 1.5rem;
+    flex: 0 0 1.5rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .text {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+}
+.checkboxItemSelected:enabled {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+  > * {
+    margin-left: 0.5rem;
+  }
+  align-self: flex-start;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .icon {
+    align-self: flex-start;
+    height: 1.5rem;
+    flex: 0 0 1.5rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .text {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+}
+.checkboxItemSelected:disabled {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+  > * {
+    margin-left: 0.5rem;
+  }
+  align-self: flex-start;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .icon {
+    align-self: flex-start;
+    height: 1.5rem;
+    flex: 0 0 1.5rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .text {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+}
+.checkboxItemSelected:hover {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+  > * {
+    margin-left: 0.5rem;
+  }
+  align-self: flex-start;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  // .icon {
+  //   align-self: flex-start;
+  //   height: 1.5rem;
+  //   flex: 0 0 1.5rem;
+  //   &:nth-child(1) {
+  //     margin-left: 0;
+  //   }
+  // }
+
+  // .text {
+  //   overflow: hidden;
+  //   display: flex;
+  //   flex-direction: row;
+  //   justify-content: flex-start;
+  //   align-items: flex-start;
+  //   align-self: flex-start;
+  //   flex: 0 0 auto;
+  //   &:nth-child(1) {
+  //     margin-left: 0;
+  //   }
+  // }
+
+}
+.checkboxItemSelected:focused {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+  > * {
+    margin-left: 0.5rem;
+  }
+  align-self: flex-start;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+  border: 1px solid rgb(26, 35, 126);
+  border-radius: 4px;
+
+  .icon {
+    align-self: flex-start;
+    height: 1.5rem;
+    flex: 0 0 1.5rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .text {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+}
+.checkboxItemSelected:pressed {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+  > * {
+    margin-left: 0.5rem;
+  }
+  align-self: flex-start;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .icon {
+    align-self: flex-start;
+    height: 1.5rem;
+    flex: 0 0 1.5rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .text {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+}

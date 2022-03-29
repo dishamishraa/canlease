@@ -1,1 +1,527 @@
-{}
+{
+    "back_button": "Back",
+    "get_quote_block": {
+        "header": "Get a quote",
+        "name": {
+            "label": "Equipment name",
+            "placeholder": "e.g. Macbook Pro 13 inch"
+        },
+        "cost": {
+            "label": "Equipment cost (before tax)",
+            "placeholder": "CAD"
+        },
+        "fees": "Fee %",
+        "rate_card": "Rate card",
+        "lease_type": {
+            "label": "Lease type",
+            "options": {
+                "stretch": "Stretch",
+                "ten": "$10 end"
+            }
+        },
+        "submit": "Next",
+        "error_message_low": "Equipment cost cannot be lower than $1000. Please enter a value equal to or above $1000.",
+        "error_message_high": "Equipment cost cannot be higher than $499,999. Please enter a value equal to or below $499,999"
+    },
+    "contact_info": {
+        "header_your": "Your information",
+        "header_customer": "Customer information",
+        "header_contact": "Contact information",
+        "name": "Name",
+        "business_email": "Business email",
+        "company_name": "Company name",
+        "customer_name": "Customer name",
+        "customer_email": "Customer email",
+        "customer_company_name": "Customer company name",
+        "submit": "VIEW AND EMAIL QUOTE",
+        "submit_vendor": "VIEW QUOTE",
+        "disclaimer": "Canlease is committed to protecting and respecting your privacy, and we will only use your personal information to provide the services you requested from us. By creating this quote, you agree to be contacted by one of our representatives at a later time."
+    },
+    "user_type_selection": {
+        "header": "Who are you creating this quote for?",
+        "end_user": "I am creating this quote for myself",
+        "vendor": "I am creating this quote for my customer",
+        "button": "Select"
+    },
+    "contact_us":{
+        "description": "Need help creating a quote? We are happy to assist.",
+        "button_text": "Contact Us"
+    },
+    "instant_quote_limit":{
+        "title": "You have reached the limit for instant quote trial.",
+        "description": "Create a free account to create and track unlimited quotes and applications",
+        "primary_button": "Create a Free account",
+        "secondary_button": "Sign in"
+    },
+    "quote_email_sent":{
+        "title": "Email sent!",
+        "description": "The quote has been sent to the customer. Sign up to view this quote. Create and track unlimited quotes and lease applications with a free Canlease account.",
+        "primary_button": "Create a Free account",
+        "secondary_button": "Close"
+    },
+    "view_quote":{
+        "heading_text": "Leasing quote",
+        "disclaimer_text": "Quoted payments are pre-tax, subject to credit approval, and are based on first and last monthly payments in advance and one time documentation fee.",
+        "term_detail":{
+            "stretch":{
+                "term_1": "The Full Term  represents the total term of the lease, should you choose NOT to exercise your Purchase Option.",
+                "term_2": "Cost of Finance represents the annual percentage of financing charges you will pay over the term of this rental contact.",
+                "term_3": "Purchase Option represents When and How Much it will cost to assume ownership of the equipment. Example: on a 40M term, you can buy out the lease for 10% of the original cost at month 36 and not owe any further payments (months 37-38-39 and 40 will not be due).",
+                "term_4": "All technology leases cannot exceed a 36-month term."
+            },
+            "ten_dollar":{
+                "term_1": "Cost of Finance represents the annual percentage of financing charges you will pay over the term of this rental contact.",
+                "term_2": "Purchase Option represents When and How Much it will cost to assume ownership of the equipment.",
+                "term_3": "All technology leases cannot exceed a 36-month term."
+            }
+        },
+        "valid_text": "This quote will be valid for 30 days.",
+        "learn_more_text": "Are you looking for a different kind of lease quote to suit your specific business needs (i.e. three month payment deferral, seasonal payments to match your income, large down payment, etc)? [Learn more](https://canlease.net/faq/)",
+        "apply_button_text": "Apply for Finance",
+        "save_quote_button_text": "Save Quote",
+        "send_quote_button_text": "Send Quote",
+        "apply_for_customer_button_text": "Apply for Customer",
+        "quote_rate_section_heading_text": "Quote details",
+        "quote_detail":{
+            "application_amount": {
+                "label": "Based on:",
+                "value": "${{applicationAmount}} (Pre-tax)"
+            },
+            "equipment_label": "Equipment:",
+            "quote_id_label": "Quote ID:"
+        },
+        "rate_card":{
+            "rate_suffix": "per month",
+            "months_suffix": "months",
+            "cost_suffix": "cost of finance",
+            "stretch_purchase_term": "Own for 10% of original price at {{purchaseOptionMonths}} months",
+            "ten_dollar_purchase_term": "Own for $10 at end of term"
+        },
+        "expiry_toast":{
+            "message": "This quote has expired. Please create a new quote."
+        },
+        "send_quote": "Send quote"
+    },
+    "quote_confirmation": {
+        "header": "Quote sent!",
+        "description": "The quote has been sent to your customer. You can view the quote and track its progress on the Quotes page.",
+        "button": "Done"
+    },
+    "top_action_block": {
+        "button": {
+            "customer_application":  "Apply For Customer",
+            "personal_application": "Apply For Finance",
+            "customer_quote": "Create Customer Quote",
+            "personal_quote": {
+                "customer": "Create Quote",
+                "vendor": "Create Personal Quote"
+            }
+        }
+    },
+    "application_form":{
+        "error_message": "Age of asset cannot be a negative number. Please enter a value equal to or above 0.",
+        "back": "Back",
+        "start_application": {
+            "heading_text": "Start application",
+            "equip_name": {
+                "label": "Equipment name",
+                "placeholder": "e.g. Macbook Pro 13 inch"
+            },
+            "equip_cost": {
+                "label": "Equipment cost (before tax)",
+                "placeholder": "CAD"
+            },
+            "lease_type": {
+                "label": "Lease type",
+                "options": {
+                    "stretch": "Stretch",
+                    "ten": "$10 end"
+                }
+            }
+        },
+        "select_lease":{
+            "heading_text": "Select the lease term",
+            "next_button": "Next"
+        },
+        "asset_information": {
+            "heading_text": "Asset Information",
+            "condition": {
+                "label": "Asset condition",
+                "new": "New",
+                "used": "Used"
+            },
+            "age": "Age of asset (in years)",
+            "expected_date": "Expected date of asset delivery",
+            "date_placeholder": "YYYY-MM-DD"
+        },
+        "stepper": "STEP {{current}}/{{total}}",
+        "business_type": {
+            "heading_text": "Business type",
+            "business_type": {
+                "label": "Business type",
+                "corporation": "Corporation",
+                "sole_proprietorship": "Sole Proprietorship"
+            },
+            "sin": "Social Insurance Number",
+            "date_of_birth": "Date of birth",
+            "bankruptcy": {
+                "label": "Have you ever filed for bankruptcy?",
+                "no": "No",
+                "yes": "Yes",
+                "details_label": "If yes, please provide details",
+                "disclaimer_text": "We are asking you to provide your Social insurance number and Date of birth as part of the credit application process. Canlease is committed to protecting the privacy and confidenatiality of the personal information that we collect."
+            }
+        },
+        "review_application": {
+            "review_header": "Review information",
+            "edit": "Edit",
+            "quote_details_based_on_value": "${{applicationAmount}} (before tax)",
+            "payment_details":{
+                "heading": "Payment details",
+                "monthly_payment_label": "Monthly Payment:",
+                "monthly_payment_value": "${{monthlyAmount}} (before tax)",
+                "lease_term_label": "Lease term:",
+                "lease_term_value": "{{termValue}} months",
+                "cost_of_finance_label": "Cost of finance:"
+    
+            },
+            "asset_details":{
+                "heading": "Asset details",
+                "condition_label": "Asset condition:",
+                "age_label": "Age of asset (in years):",
+                "age_value": "{{ageOfAsset}} years",
+                "date_of_delivery_label": "Expected date of asset delivery:"
+            },
+            "business_type":{
+                "heading": "Business type",
+                "incorporated": "Corporation",
+                "proprietorship": "Sole Proprietorship",
+                "sin_label": "Social insurance number:",
+                "date_of_birth_label": "Date of birth:",
+                "bankruptcy_label": "Have you ever filed for bankruptcy?",
+                "bankruptcy_true": "Yes",
+                "bankruptcy_false": "No",
+                "bankruptcy_details_label": "Bankruptcy Details:"
+            },
+            "asset_header": "Asset information",
+            "profile_header": "Profile information",
+            "profile_description": "<p> We will be using your profile information as part of our application process. Please <a href=\"https://canlease.net/contact/\" target=\"_blank\"> contact Canlease </a> to make changes to your profile info. </p>",
+            "personal_information_header": "Personal information",
+            "contact_information_header": "Contact information",
+            "business_information_header": "Business information",
+            "customer_personal_info_header": "Customer’s personal information",
+            "customer_business_info_header": "Customer’s business information"
+        },
+        "terms_of_application":{
+            "header": "Terms of application",
+            "checkbox_label": "I have read, and agree to the above statements.",
+            "terms": "<p>Please review the information below to provide consent for Canlease to perform a credit check.</p><p> By submitting this application, you are confirming that you/the applicant are consenting to: </p> <ul> <li> • Canlease and/or its funding partners and assignees, for the collection, use, and disclosure of personal and/or business information from credit reporting agencies for the purposes of credit adjudication, in connection with this application to provide leasing/financial services. <li> • Electronic communication from Canlease. </ul>",
+            "submit_button": "Submit application"
+        },
+        "application_submitted":{
+            "header": "Application submitted",
+            "description": "Your application has been successfully submitted. Our representative may reach out to you if any further information is required. \n Thank you!",
+            "done_button": "Done"
+        }
+    },
+    "vendor_dashboard":{
+        "metrics":{
+            "quotes_active": "Quotes active",
+            "quotes_expiring": "Quotes expiring soon",
+            "applications_under_review": "Applications under review",
+            "view_button": "View",
+            "create_quote": "Create quote"
+        }
+    },
+    "sign_up":{
+        "heading_text": "Sign up",
+        "description": "Create a free Canlease account"
+    },
+    "email_verification":{
+        "header": {
+            "default": "Please verify your email",
+            "resent": "Verification email resent",
+            "reset": "Reset link sent!"
+        },
+        "description": {
+            "default": "A verification link has been sent to your email. Please verify your email to complete sign up.",
+            "resent": "The verification link has been resent.",
+            "reset": "A password reset link has been sent to your email."
+        },
+        "question": "Don’t see the email?",
+        "resolution": "Check your spam folder or <1>click here</1> to resend the verification link.",
+        "success": "Email verified"
+    },
+    "forgot_password":{
+        "header": "Forgot password",
+        "description": "Enter your email and we will send you a link to create a new password."
+    },
+    "create_password":{
+        "header": "Create password",
+        "description": "Create a new password for Canlease portal"
+    },
+    "personal_information":{
+        "header": "Personal information",
+        "radio_text": {
+            "supplier": "I am an equipment supplier",
+            "own_use": "My company will acquire equipment for our own use"
+        }
+    },
+    "contact_information":{
+        "header": "Customer contact information",
+        "header_signup": "Contact information",
+        "first_name": "First name",
+        "last_name": "Last name",
+        "province": {
+            "0": "Alberta (AB)",
+            "1": "British Columbia (BC)",
+            "2": "Manitoba (MB)",
+            "3": "New Brunswick (NB)",
+            "4": "Newfoundland and Labrador (NL)",
+            "5": "Northwest Territories (NT)",
+            "6": "Nova Scotia (NS)",
+            "7": "Nunavut (NU)",
+            "8": "Ontario (ON)",
+            "9": "Prince Edward Island (PE)",
+            "10": "Quebec (QC)",
+            "11": "Saskatchewan (SK)",
+            "12": "Yukon (YT)"
+        }
+    },
+    "business_information":{
+        "header": "Customer business information",
+        "header_signup": "Business information",
+        "business_sector_options":{
+            "0": "Agriculture and Landscaping",
+            "1": "Construction and Transportation",
+            "2": "Healthcare",
+            "3": "Industrial and Material Handling",
+            "4": "Office and Telecommunications",
+            "5": "Service",
+            "6": "Other"
+        }
+    },
+    "error_message": {
+        "empty": "{{field}} cannot be empty",
+        "invalid_email": "Please enter a valid email address",
+        "password_mismatch": "Passwords do not match",
+        "account_exist": "An account with this email already exists",
+        "invalid_date": "Please enter a valid date",
+        "weak_password": "Password is too weak. Your password must be at least 8 characters",
+        "incorrect_credentials": "Incorrect email or password",
+        "invalid_years": "Please enter a valid year (e.g 1995)"
+    },
+    "button_text": {
+        "sign_in": "SIGN IN",
+        "sign_up": "SIGN UP",
+        "forgot_password": "Forgot my password",
+        "done": "DONE",
+        "next": "NEXT",
+        "send_link": "SEND LINK",
+        "save": "SAVE",
+        "complete_setup": "Complete setup"
+    },
+    "text_field_label":{
+        "email": "Email",
+        "password": "Password",
+        "create_password": "Create password",
+        "confirm_password": "Confirm password",
+        "first_name": "First name",
+        "last_name": "Last name",
+        "phone_number": "Phone number",
+        "unit_number": "Unit number (Optional)",
+        "street_address": "Street address",
+        "city": "City",
+        "postal_code": "Postal code",
+        "province": "Province",
+        "full_legal_name": "Full legal name",
+        "operating_name": "Operating name",
+        "business_sector": "Business sector",
+        "business_phone": "Business phone",
+        "website_link": "Website link",
+        "operating_since": "Operating since (year)"
+    },
+    "stepper": "STEP {{current}}/{{total}}",
+    "application_page": {
+        "quotes": {
+            "header": "Quotes",
+            "customer_quotes": "Customer quotes",
+            "personal_quotes": "Personal quotes"
+        },
+        "applications": {
+            "header":  "Applications",
+            "customer_applications": "Customer applications",
+            "personal_applications": "Personal applications"
+        },
+        "table_headers": {
+            "company": "Company",
+            "name": "Name",
+            "status": "Status",
+            "create_on": "Created on",
+            "asset": "Asset",
+            "cost": "Cost"
+        },
+        "search_placeholder": "Search",
+        "status": {
+            "all": "All",
+            "active": "Active",
+            "expiring": "Expiring soon",
+            "applied": "Applied",
+            "expired": "Expired",
+            "under_review": "Under review",
+            "financed": "Financed",
+            "rejected": "Rejected",
+            "not_active": "Not active",
+            "approved": "Approved",
+            "declined": "Declined"
+        }
+    },
+    "warning_modal": {
+        "title": "Are you sure?",
+        "body": "If you choose to leave the application, all your progress will be lost.",
+        "primary_button": "Leave",
+        "secondary_button": "Cancel"
+    },
+    "header":{
+        "sign_up_button": "SIGN UP",
+        "sign_in_button": "SIGN IN"
+    },
+    "authentication":{
+        "heading_text": {
+            "sign_up": "Sign up",
+            "sign_in": "Sign in"
+        },
+        "description": {
+            "sign_up": "Create a free Canlease account",
+            "sign_in": "Sign in to Canlease portal"
+        },
+        "bottom_content": {
+            "sign_up": "Already have an account?",
+            "sign_in": "New to Canlease?"
+        }
+    },
+    "toast_message": {
+        "reset_password": "New password set"
+    },
+    "customer_dashboard": {
+        "header": "Welcome {{name}}",
+        "quotes_header": "Quotes",
+        "applications_header": "Applications",
+        "view_button": "VIEW",
+        "see_all_button": "SEE ALL",
+        "create_quote": "CREATE QUOTE",
+        "apply_finance": "APPLY FOR FINANCE",
+        "vendor_name": "vendor name"
+    },
+    "rate_cards": {
+        "heading": "Rate card",
+        "view_button": "View",
+        "delete_button": "Delete",
+        "add_rate_card_button": "Add Rate Card"
+    }, 
+    "delete_rate_card": {
+        "heading": "Are you sure?",
+        "body": "Are you sure you want to delete this rate card? This action cannot be undone.",
+        "delete_button": "Delete",
+        "cancel_button": "Cancel"
+    },
+    "add_rate_card": {
+        "heading": "Rate card name",
+        "label": "Name",
+        "save_button": "Save",
+        "cancel_button": "Cancel"
+    },
+    "lease_info_block": {
+        "header": "Application information",
+        "customer_company_name": "Customer:",
+        "customer_contact_name": "Contact name:",
+        "leased_asset": "Leased asset:",
+        "vendor_name": "Vendor name:",
+        "lease_number": "Lease number:",
+        "lease_term": "Lease term:",
+        "monthly_payment": "Monthly payment (before tax):",
+        "total_amount": "Total amount (before tax):",
+        "lease_start_date": "Lease start date:",
+        "purchase_option_month": "Purchase option month:",
+        "purchase_option_date": "Purchase option date:",
+        "purchase_option_amount": "Purchase option amount:",
+        "quote_id": "Quote ID:",
+        "term_in_months": "{{months}} Months"
+    },
+    "user_profile": {
+        "logout": "Logout",
+        "my_profile": "My Profile",
+        "contact_canlease": "Contact Canlease"
+    },
+    "profile_page": {
+        "header": "Profile information",
+        "description": "<p> We will be using your profile information as part of our application process. Please <a href=\"https://canlease.net/contact/\" target=\"_blank\"> contact Canlease </a> to make changes to your profile info. </p>",
+        "personal_info": {
+            "header": "Personal information",
+            "label": {
+                "0": "First name:",
+                "1": "Last name:"
+            }
+        },
+        "contact_info": {
+            "header": "Contact information",
+            "label": {
+                "0": "Email:",
+                "1": "Phone number:",
+                "2": "Street address:",
+                "3": "City:",
+                "4": "Province:",
+                "5": "Postal code:"
+            }
+        },
+        "business_info": {
+            "header": "Business information",
+            "label": {
+                "0": "Full legal name:",
+                "1": "Operating name:",
+                "2": "Business phone:",
+                "3": "Website link:"
+            }
+        }
+    },
+    "main_menu_items": {
+        "dashboard": "Dashboard",
+        "quotes": "Quotes",
+        "applications": "Applications",
+        "rate_cards": "Rate cards"
+    },
+    "rate_card_table": {
+        "headers": {
+            "term": "Term",
+            "min_monthly_return": "Min monthly return",
+            "max_monthly_return": "Max monthly return",
+            "interest_rate": "IR (Interest rate)",
+            "ten_end_interest_rate": "$10 @ end IR",
+            "action": "Action"
+        },
+        "addButton": "Add Rate"
+    },
+    "rate_card_details_page": {
+        "header": {
+            "button_text": "EDIT"
+        }
+    },
+    "new_rate_modal": {
+        "title": "Rate information",
+        "term": "Term",
+        "min": "Min monthly return",
+        "max": "Max monthly return",
+        "interest_rate": "Interest rate (IR)",
+        "ten": "$10 @ end IR",
+        "primary": "Save",
+        "secondary": "Cancel",
+        "error_message": "Please enter a valid value"
+    },
+    "delete_rate_entry": {
+        "heading": "Are you sure?",
+        "body": "Are you sure you want to delete this entry? This action cannot be undone.",
+        "delete_button": "Delete",
+        "cancel_button": "Cancel"
+    }
+}
+  

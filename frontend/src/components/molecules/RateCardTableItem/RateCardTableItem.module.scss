@@ -1,0 +1,168 @@
+.rateCardTableItemDefault {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  > * {
+    margin-left: 2.5rem;
+  }
+  align-self: flex-start;
+  width: 48.5625rem;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+  background-color: rgb(255, 255, 255);
+
+  .term {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: center;
+    flex: 0 0 2.1875rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .minMonthlyReturn {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: center;
+    flex: 0 0 7.875rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .maxMonthlyReturn {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: center;
+    flex: 0 0 7.875rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .interestRate {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: center;
+    flex: 0 0 6.375rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .tenAtEndOfInterestRate {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: center;
+    flex: 0 0 5.25rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .buttonGroup {
+    margin-left: 1.5rem;
+    overflow: visible;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    > * {
+      margin-left: 0.625rem;
+    }
+    align-self: center;
+    flex: 0 0 4.625rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .editButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: flex-start;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .deleteButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: flex-start;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+}
+.rateCardTableItemEmpty {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1rem 1rem 1rem;
+  > * {
+    margin-left: 2.5rem;
+  }
+  align-self: flex-start;
+  width: 48.5625rem;
+  flex: 0 0 auto;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+  background-color: rgb(240, 241, 247);
+
+  .button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: center;
+    flex: 0 0 auto;
+    width: 46.5625rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+}

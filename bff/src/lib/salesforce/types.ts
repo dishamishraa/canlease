@@ -1,0 +1,202 @@
+export const VALID_USER_TYPES = [
+  'customer',
+  'vendor',
+  'rep',
+  'admin',
+] as const;
+export type UserType = typeof VALID_USER_TYPES[number];
+
+export const VALID_BUSINESS_TYPES = [
+  'Incorporated',
+  'Proprietorship',
+] as const;
+export type BusinessType = typeof VALID_BUSINESS_TYPES[number];
+
+export const VALID_CONDITION_TYPES = [
+  'Used',
+  'New',
+] as const;
+export type ConditionType = typeof VALID_CONDITION_TYPES[number];
+
+export const VALID_TERM_TYPES = [
+  '12M',
+  '24M',
+  '36M',
+  '48M',
+  '60M',
+  '72M',
+] as const;
+export type TermType = typeof VALID_TERM_TYPES[number];
+
+export type CreateApplication = {
+  lesseePortalId?: string;
+  operatingName: string;
+  businessName: string;
+  businessType: BusinessType;
+  contactName: string;
+  contactEmail: string;
+  contactPhone: string;
+  contactWebsite?: string;
+  street: string;
+  city: string;
+  province: string;
+  postalCode: string;
+  term: TermType;
+  applicationAmount: number;
+  asset: string;
+  condition: ConditionType;
+  ageOfAsset: number;
+  businessOwnerName: string;
+  businessOwnerStreet: string;
+  businessOwnerCity: string;
+  bankruptcy: boolean;
+  creditCheckConsent: boolean;
+  yearsInBusiness: number;
+  sin: string;
+  dob: string;
+  vendorPortalId?: string;
+  quoteId: string;
+  expectedDeliveryDate: string;
+  bankruptcyDetails: string;
+};
+
+export type CreateQuote = CreateQuoteCustomer | CreateQuoteVendor;
+
+export type CreateQuoteCustomer = {
+  userType: UserType;
+  asset: string;
+  applicationAmount: number;
+  leaseType: LeaseType;
+  contactName: string;
+  contactEmail: string;
+  contactBusinessName: string;
+  vendorName: string;
+  vendorEmail: string;
+  vendorBusinessName: string;
+  quoteOptions: QuoteOption[];
+  sendEmail?: boolean;
+  rateCardType?: string;
+  fee?: number;
+};
+
+export type CreateQuoteVendor = CreateQuoteCustomer & {
+  vendorName: string;
+  vendorEmail: string;
+  vendorBusinessName: string;
+};
+
+export const isCreateQuoteCustomer = (payload: CreateQuote):
+  payload is CreateQuoteCustomer => (!payload.vendorName);
+
+export const isCreateQuoteVendor = (payload: CreateQuote):
+  payload is CreateQuoteVendor => (!!payload.vendorName);
+
+export type QuoteOption = {
+  monthlyAmount: number;
+  term: string;
+  financeRate: number;
+  purchaseOptionDate: string;
+};
+
+export type AddRateCard = {
+  rateCardId: string;
+  rateCardType: string;
+};
+
+export const VALID_LEASE_TYPES = [
+  'stretch', '$10',
+] as const;
+export type LeaseType = typeof VALID_LEASE_TYPES[number];
+
+export type Quote = {
+  quoteId: string;
+  asset: string;
+  applicationAmount: number;
+  name: string;
+  companyName: string;
+  quoteOptions: QuoteOption[];
+  quoteExpiryDate: string;
+  createdDate: string;
+  leaseType: LeaseType;
+};
+
+export type Application = {
+  creditAppNumber: string;
+  createdDate: string;
+  applicationAmount: number;
+  description: string;
+  creditStatus: string;
+  applicationStatus: string;
+  creditDecision: string;
+  quoteId: string;
+  asset: string;
+  name: string;
+  companyName: string;
+};
+
+export type Lease = {
+  leaseNumber: string;
+  leaseStartDate: string;
+  leaseEndDate: string;
+  fullTerm: number;
+  vendorName: string;
+  vendorInvoice: number;
+  assets: string;
+  paymentBeforeTax: number;
+  purchaseOptionDate: string;
+  optionAmount: number;
+  quoteId: string;
+};
+
+export type Portfolio = {
+  creditApps: Application[];
+  leases: Lease[];
+};
+
+export type Profile = {
+  name: string;
+  firstName: string;
+  lastName: string;
+  companyName: string;
+  phone: string;
+  email: string;
+  title: string;
+  address: string;
+  street: string;
+  city: string;
+  province: string;
+  postalCode: string;
+  country: string;
+  website: string;
+  rateCard: string;
+  feePercentage: number;
+  theCompanyId: string;
+  portalId: string;
+  rateCardId: string;
+  userType: UserType;
+  operatingName: string;
+  businessPhone: string;
+};
+
+export type CreateProfile = {
+  companyName: string;
+  street: string;
+  province: string;
+  postalCode: string;
+  country: string;
+  firstName: string;
+  lastName: string;
+  portalId: string;
+  userType: UserType;
+  email: string;
+  phone: string;
+  title: string;
+  operatingName: string;
+  businessPhone: string;
+  website: string;
+};
+
+export type AddQuote = {
+  quoteId: string;
+  portalId: string;
+};

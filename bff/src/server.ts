@@ -7,7 +7,7 @@ import { PORT } from './lib/config';
 function startServer(): void {
   const server = createServer(App());
 
-  // Handle server graceful shutdown
+  // Handle server shutdown gracefully
   createTerminus(server, {
     signal: 'SIGTERM',
   });

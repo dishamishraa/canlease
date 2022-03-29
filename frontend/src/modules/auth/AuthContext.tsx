@@ -1,18 +1,21 @@
-/* eslint-disable max-classes-per-file,class-methods-use-this */
-
-import React, { createContext } from 'react';
+/* eslint-disable no-shadow */
+import React, { createContext, useState, useEffect } from 'react';
 import Cookie from 'js-cookie';
 import { DOMAIN, SESSION_COOKIE_NAME } from '../../lib/config';
-import { User, Account } from '../../lib/types';
+import { Account } from '../../lib/types';
 import { extractJwtPayload } from '../../lib/token';
-import useUser from './useUser';
+import { Profile } from '../profile/types';
+import { useProfile } from '../profile';
+import { State } from '../../lib/api/types';
 
 export type AuthContextValue = {
-  user: User | null;
   account: Account | null;
+  setAccount: (account: Account | null) => void;
   loading: boolean;
   error: Error | undefined;
-  refetchUser: (() => void) | null;
+  profile: Profile | null;
+  setProfile: (profile: Profile | null) => void;
+  refetchProfile: () => void;
 };
 
 type NonNull<T> = {
@@ -29,29 +32,59 @@ export const logout = (): void => {
 };
 
 const initialAuthContext: AuthContextValue = {
-  user: null,
   account: null,
+  setAccount: () => {},
   loading: false,
   error: undefined,
-  refetchUser: null,
+  profile: null,
+  setProfile: () => {},
+  refetchProfile: () => {},
 };
 
 export const AuthContext = createContext<AuthContextValue>(initialAuthContext);
 
 export const AuthProvider: React.FC<{}> = ({ children }) => {
-  const {
-    data: user,
-    loading,
-    error,
-    refetch: refetchUser,
-  } = useUser();
-
   const cookie = Cookie.get(SESSION_COOKIE_NAME);
-  const account = cookie ? extractJwtPayload(cookie) : null;
+  const [account, updateAccount] = useState<Account | null>(
+    cookie ? extractJwtPayload(cookie) : null,
+  );
+
+  const { loading, data, refetch: refetchProfile } = useProfile();
+  const [profileState, updateProfile] = useState<State<Profile>>({
+    loading,
+    error: undefined,
+    data,
+  });
+
+  useEffect(() => {
+    updateProfile({
+      loading,
+      error: undefined,
+      data,
+    });
+  }, [loading, data]);
+
+  const setAccount = (account: Account | null) => {
+    updateAccount(account);
+  };
+
+  const setProfile = (profile: Profile | null) => {
+    updateProfile({
+      loading: false,
+      error: undefined,
+      data: profile,
+    });
+  };
 
   return (
     <AuthContext.Provider value={{
-      user, account, loading, error, refetchUser,
+      account,
+      setAccount,
+      loading: profileState.loading,
+      error: profileState.error,
+      profile: profileState.data,
+      setProfile,
+      refetchProfile,
     }}>
       {children}
     </AuthContext.Provider>

@@ -1,9 +1,3 @@
-export type User = {
-  id: number;
-  uuid: string;
-  accountId: number;
-};
-
 export type Account = {
   id: number;
   uuid: string;

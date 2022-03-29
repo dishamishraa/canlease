@@ -4,7 +4,7 @@ import {
 import { State, Action } from './types';
 import fetchReducer from './fetchReducer';
 
-type UseGetResult<TData> = State<TData> & {
+export type UseGetResult<TData> = State<TData> & {
   refetch: () => void;
 };
 

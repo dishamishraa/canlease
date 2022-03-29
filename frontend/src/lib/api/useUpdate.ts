@@ -4,7 +4,7 @@ import {
 import { State, Action } from './types';
 import fetchReducer from './fetchReducer';
 
-type UseUpdateResult<TData, TPayload> = [
+export type UseUpdateResult<TData, TPayload> = [
   State<TData>,
   (payload: TPayload) => Promise<void>,
 ];

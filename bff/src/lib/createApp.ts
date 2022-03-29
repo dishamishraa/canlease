@@ -10,6 +10,7 @@ const corsMiddleware = cors({
   origin: [FRONTEND_URL],
   credentials: true,
 });
+
 /**
  * Creates express application and mounts middleware and specified router.
  */

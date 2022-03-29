@@ -1,0 +1,518 @@
+.headerWithMenu {
+  z-index: 3;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+  background-color: rgb(255, 255, 255);
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .leftSideContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    > * {
+      margin-left: 1rem;
+    }
+    align-self: center;
+    flex: 0 0 auto;
+  }
+
+  .icon {
+    align-self: center;
+    height: 1.5rem;
+    flex: 0 0 1.5rem;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .logo {
+    overflow: hidden;
+    align-self: center;
+    height: 0.875rem;
+    flex: 0 0 6.4375rem;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .userProfile {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: center;
+    height: 2rem;
+    flex: 0 0 4rem;
+  }
+
+  .divider {
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+}
+.headerDefault {
+  z-index: 3;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-self: stretch;
+  flex: 0 0 auto;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+  background-color: rgb(255, 255, 255);
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .leftSideContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    > * {
+      margin-left: 1rem;
+    }
+    align-self: center;
+    flex: 0 0 auto;
+  }
+
+  .logo {
+    overflow: hidden;
+    align-self: center;
+    height: 0.875rem;
+    flex: 0 0 6.4375rem;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .userProfile {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    > * {
+      margin-left: 0.5rem;
+    }
+    align-self: center;
+    height: 2rem;
+    flex: 0 0 4rem;
+  }
+
+  .divider {
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+}
+
+@media (min-width: 768px) {
+  .headerWithMenu {
+    z-index: 3;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 767px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+    background-color: rgb(255, 255, 255);
+  
+    .content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .leftSideContent {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      > * {
+        margin-left: 1.5rem;
+      }
+      align-self: center;
+      flex: 0 0 auto;
+    }
+  
+    .icon {
+      align-self: center;
+      height: 1.5rem;
+      flex: 0 0 1.5rem;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-left: 0;
+        }
+      }
+    }
+  
+    .logo {
+      overflow: hidden;
+      align-self: center;
+      height: 1.25rem;
+      flex: 0 0 9.625rem;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-left: 0;
+        }
+      }
+    }
+  
+    .userProfile {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      height: 2rem;
+      flex: 0 0 10.9375rem;
+    }
+  
+    .divider {
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .headerDefault {
+    z-index: 3;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 1023px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+    background-color: rgb(255, 255, 255);
+  
+    .content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .leftSideContent {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      > * {
+        margin-left: 1.5rem;
+      }
+      align-self: center;
+      flex: 0 0 auto;
+    }
+  
+    .logo {
+      overflow: hidden;
+      align-self: center;
+      height: 1.25rem;
+      flex: 0 0 9.625rem;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-left: 0;
+        }
+      }
+    }
+  
+    .userProfile {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      height: 2rem;
+      flex: 0 0 10.9375rem;
+    }
+  
+    .divider {
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .icon {
+      display: none;
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .headerWithMenu {
+    z-index: 3;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 1023px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+    background-color: rgb(255, 255, 255);
+  
+    .content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .leftSideContent {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      flex: 0 0 auto;
+    }
+  
+    .logo {
+      overflow: hidden;
+      align-self: flex-start;
+      height: 1.25rem;
+      flex: 0 0 9.625rem;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-left: 0;
+        }
+      }
+    }
+  
+    .userProfile {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      height: 2rem;
+      flex: 0 0 10.9375rem;
+    }
+  
+    .divider {
+      align-self: stretch;
+      flex: 0 0 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .icon {
+      display: none;
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .headerDefault {
+    z-index: 3;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+    background-color: rgb(255, 255, 255);
+  
+    .content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .leftSideContent {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      flex: 0 0 auto;
+    }
+  
+    .logo {
+      overflow: hidden;
+      align-self: flex-start;
+      height: 1.25rem;
+      flex: 0 0 9.625rem;
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  
+    .userProfile {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      > * {
+        margin-left: 0.5rem;
+      }
+      align-self: center;
+      height: 2rem;
+      flex: 0 0 10.9375rem;
+    }
+  
+    .divider {
+      align-self: stretch;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .icon {
+      display: none;
+    }
+  
+  }
+}

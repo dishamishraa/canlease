@@ -1,0 +1,24 @@
+.tabs {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  .tabsList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 0 0 auto;
+  }
+
+  .divider {
+    align-self: stretch;
+    flex: 0 0 auto;
+  }
+
+}

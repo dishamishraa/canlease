@@ -1,0 +1,34 @@
+.table {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  .tableHeader {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+    > * {
+      margin-left: 0.75rem;
+    }
+    align-self: stretch;
+    min-width: 47.5rem;
+    flex: 0 0 auto;
+  }
+
+  .tableItemList {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    min-width: 47.5rem;
+    flex: 0 0 auto;
+  }
+
+}

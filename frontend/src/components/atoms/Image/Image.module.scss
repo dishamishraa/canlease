@@ -1,0 +1,10 @@
+.image {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+  background-image: url('../../../resources/images/Image.png');
+  background-size: cover;
+
+}

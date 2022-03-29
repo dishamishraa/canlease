@@ -1,0 +1,364 @@
+.simplePage {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 2rem 0.5rem 2rem 0.5rem;
+  > * {
+    margin-top: 1rem;
+  }
+
+  .topContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .topBar {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1rem 0rem 1rem 0rem;
+    align-self: stretch;
+    flex: 0 0 auto;
+  }
+
+  .block {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > * {
+      margin-top: 1rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+  }
+
+  .actionBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1.5rem 1rem 1rem 1rem;
+    > * {
+      margin-top: 1rem;
+    }
+    align-self: stretch;
+    flex: 0 0 auto;
+    @media (max-width: 575px) {
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+}
+
+@media (min-width: 576px) {
+  .simplePage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2rem 0rem 2rem 0rem;
+    > * {
+      margin-top: 1.5rem;
+    }
+  
+    .topContent {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: center;
+      width: 33rem;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .topBar {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 1rem 0rem;
+      align-self: flex-start;
+      width: 33rem;
+      flex: 0 0 auto;
+    }
+  
+    .block {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: flex-start;
+      width: 33rem;
+      flex: 0 0 auto;
+    }
+  
+    .actionBlock {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1.5rem 1rem 1rem 1rem;
+      > * {
+        margin-top: 1rem;
+      }
+      align-self: center;
+      width: 33rem;
+      flex: 0 0 auto;
+      @media (max-width: 767px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 768px) {
+  .simplePage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4rem 0rem 4rem 0rem;
+    > * {
+      margin-top: 1.5rem;
+    }
+  
+    .topContent {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: center;
+      width: 37.5rem;
+      flex: 0 0 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .topBar {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 1rem 0rem;
+      align-self: flex-start;
+      width: 37.5rem;
+      flex: 0 0 auto;
+    }
+  
+    .block {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: flex-start;
+      width: 37.5rem;
+      flex: 0 0 auto;
+    }
+  
+    .actionBlock {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: center;
+      width: 37.5rem;
+      flex: 0 0 auto;
+      @media (max-width: 1023px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 1024px) {
+  .simplePage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4rem 0rem 4rem 0rem;
+    > * {
+      margin-top: 1.5rem;
+    }
+  
+    .topContent {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: center;
+      width: 37.5rem;
+      flex: 0 0 auto;
+      @media (max-width: 1439px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .topBar {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 1rem 0rem;
+      align-self: flex-start;
+      width: 37.5rem;
+      flex: 0 0 auto;
+    }
+  
+    .block {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: flex-start;
+      width: 37.5rem;
+      flex: 0 0 auto;
+    }
+  
+    .actionBlock {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: center;
+      width: 37.5rem;
+      flex: 0 0 auto;
+      @media (max-width: 1439px) {
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+    }
+  
+  }
+}
+
+@media (min-width: 1440px) {
+  .simplePage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4rem 0rem 4rem 0rem;
+    > * {
+      margin-top: 1.5rem;
+    }
+  
+    .topContent {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-self: center;
+      width: 37.5rem;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+    .topBar {
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem 0rem 1rem 0rem;
+      align-self: flex-start;
+      width: 37.5rem;
+      flex: 0 0 auto;
+    }
+  
+    .block {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: flex-start;
+      width: 37.5rem;
+      flex: 0 0 auto;
+    }
+  
+    .actionBlock {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 2rem 2rem 2rem 2rem;
+      > * {
+        margin-top: 1.5rem;
+      }
+      align-self: center;
+      width: 37.5rem;
+      flex: 0 0 auto;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
+  
+  }
+}

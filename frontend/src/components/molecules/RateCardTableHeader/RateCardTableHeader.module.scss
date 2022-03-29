@@ -1,0 +1,91 @@
+.rateCardTableHeader {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1rem 1rem 1rem 1rem;
+  > * {
+    margin-left: 2.5rem;
+  }
+  background-color: rgb(240, 241, 247);
+
+  .term {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 0 0 2.1875rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .minMonthlyReturn {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 0 0 7.875rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .maxMonthlyReturn {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 0 0 7.875rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .interestRate {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 0 0 6.5rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .tenAtEndOfInterestRate {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 0 0 5.25rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+  .action {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    flex: 0 0 4.625rem;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+
+}

@@ -12,4 +12,7 @@ export const {
   REACT_APP_SESSION_COOKIE_NAME: SESSION_COOKIE_NAME =
   window.env?.REACT_APP_SESSION_COOKIE_NAME,
   REACT_APP_IS_DEV: IS_DEV = false,
+  INSTANT_QUOTE_COOKIE = 'instantQuote',
+  MAX_AGE = 6 * 30.5 * 24 * 3600 * 1000,
+  REACT_APP_GTM_ID: GTM_ID = window.env?.REACT_APP_GTM_ID,
 } = process.env;
