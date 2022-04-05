@@ -2,7 +2,7 @@ import Joi from 'joi';
 import {
   Request, Response, NextFunction, CookieOptions,
 } from 'express';
-import { FRONTEND_DOMAIN } from './config';
+import { FRONTEND_DOMAIN, IDENTITY_SESSION_COOKIE_NAME } from './config';
 
 const id = Joi.alternatives(
   Joi.string(),
@@ -72,3 +72,9 @@ export const setCookie = (
     },
   );
 };
+
+export const createAuthHeader = (identityToken: string): { headers: any } => ({
+  headers: {
+    Cookie: `${IDENTITY_SESSION_COOKIE_NAME}=${identityToken}`,
+  },
+});
