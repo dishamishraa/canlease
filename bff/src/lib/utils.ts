@@ -13,6 +13,15 @@ export const validateId = (value: unknown): value is string => {
   return error === undefined;
 };
 
+const id = Joi.alternatives(
+  Joi.string(),
+).required();
+
+export const validateId = (value: unknown): value is string => {
+  const { error } = id.validate(value, { allowUnknown: true });
+  return error === undefined;
+};
+
 export const errorWrapper = (
   callback: (req: Request, res: Response, next: NextFunction) => Promise<void> | void,
 ) => async (
