@@ -23,6 +23,7 @@
     "http-proxy-middleware": "^1.0.6",
     "joi": "^17.4.0",
     "jose": "^2.0.5",
+    "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
     "morgan": "^1.10.0",
     "pg": "^8.5.1",
@@ -32,6 +33,7 @@
     "typeorm": "^0.2.30"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.14.5",
     "@types/cookie": "^0.3.3",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.9",
@@ -41,6 +43,7 @@
     "@types/hapi__joi": "^16.0.12",
     "@types/http-errors": "^1.8.0",
     "@types/jest": "^25.2.3",
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/morgan": "^1.9.2",
     "@types/node": "^13.13.35",
     "@types/pug": "^2.0.4",
@@ -49,6 +52,7 @@
     "@types/swagger-ui-express": "^4.1.2",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
+    "babel-jest": "^25.5.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-typescript": "^7.2.1",
@@ -65,9 +69,7 @@
     "ts-jest": "^25.5.1",
     "ts-node": "^8.10.2",
     "typedoc": "^0.17.8",
-    "typescript": "^3.9.7",
-    "babel-jest": "^25.5.1",
-    "@babel/preset-env": "^7.14.5"
+    "typescript": "^3.9.7"
   },
   "husky": {
     "hooks": {

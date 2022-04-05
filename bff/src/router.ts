@@ -11,6 +11,7 @@ import { ApplicationControllerContract, ApplicationRouter } from './modules/appl
 import { PortfolioControllerContract, PortfolioRouter } from './modules/portfolio';
 import { ProfileControllerContract, ProfileRouter } from './modules/profile';
 import { RateCardControllerContract, RateCardRouter } from './modules/rateCard';
+import { AuthRouter } from './modules/auth';
 
 const swaggerSpecConfig = {
   swaggerDefinition: {
@@ -66,7 +67,7 @@ export const createRouter = (controllers: {
   router.get('/api-docs', swaggerUi.setup(swaggerSpec));
 
   router.get('/', (req: Request, res: Response) => res.json({ running: true }));
-  router.post('/token', proxy);
+  router.use('/', AuthRouter());
   router.use('/accounts', proxy);
 
   router.use('/quote', QuoteRouter(controllers));
