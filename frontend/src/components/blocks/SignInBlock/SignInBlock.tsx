@@ -131,7 +131,7 @@ const SignInBlock: React.FC<SignInBlockProps> = ({
     toastDisplay = <Toast {...toastProps} />;
   }
   return (
-    <div>
+    <>
       {toastDisplay}
       <div className={cx(styles.signInBlock, className)}>
         <div className={styles.topContent}>
@@ -167,7 +167,7 @@ const SignInBlock: React.FC<SignInBlockProps> = ({
             {...signUpButton} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
