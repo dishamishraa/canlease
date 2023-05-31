@@ -1,4 +1,4 @@
-import QuoteCalculator, { FMV, $10, STRETCH } from './QuoteCalculator';
+import QuoteCalculator, { FMV, $10, BUYOUT } from './QuoteCalculator';
 
 describe('QuoteCalculator', () => {
   const quoteCalc = new QuoteCalculator();
@@ -19,9 +19,9 @@ describe('QuoteCalculator', () => {
     const amount = 1000;
     const amountPlusFee = 1010; // (amount + amount*fee/100)
 
-    test('That it calculates the correct future value of a Stretch lease', () => {
+    test('That it calculates the correct future value of a Buyout lease', () => {
       const fv = quoteCalc.calculateFutureValue(
-        STRETCH,
+        BUYOUT,
         amount,
         amountPlusFee,
       );
@@ -50,7 +50,7 @@ describe('QuoteCalculator', () => {
   describe('calculateMonthlyPayments(amount, purchaseOption, annualInterestRates, terms)', () => {
     const terms = [24, 36, 48, 60];
 
-    test('Calculates correct payments for Stretch Leases', () => {
+    test('Calculates correct payments for Buyout Leases', () => {
       const annualInterestRates = {
         24: 26,
         36: 18.75,
@@ -67,7 +67,7 @@ describe('QuoteCalculator', () => {
       const payments = quoteCalc.calculateMonthlyPayments(
         amount,
         0,
-        STRETCH,
+        BUYOUT,
         annualInterestRates,
         terms,
       );
@@ -143,7 +143,7 @@ describe('QuoteCalculator', () => {
   describe('calculateCostOfFinanceRate(amount, monthlyPayment, po, period)', () => {
     test('$10,500 deal over a 36/40M term with a $1,050 purchase option and monthly payment of $330.70 is 7.8% ', () => {
       expect(
-        quoteCalc.calculateCostOfFinanceRate(10500, 330.7, STRETCH, 36),
+        quoteCalc.calculateCostOfFinanceRate(10500, 330.7, BUYOUT, 36),
       ).toBe(0.0779);
     });
   });

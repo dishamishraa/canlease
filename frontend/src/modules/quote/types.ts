@@ -1,6 +1,6 @@
 import { UserType } from '../profile/types';
 
-export type LeaseType = 'stretch' | '$10';
+export type LeaseType = 'buyout' | '$10';
 
 export type Quote = {
   quoteId: string;

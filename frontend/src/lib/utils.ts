@@ -16,7 +16,7 @@ export const isEmpty = (value: any) => (
 
 export const convertMonth = (value: string): number => parseInt(value.toLowerCase().replace('m', ''), 10);
 
-// export const getStretchMonth = (value: number): number => {
+// export const getBuyoutMonth = (value: number): number => {
 //   switch (value) {
 //     case 24:
 //       return 27;

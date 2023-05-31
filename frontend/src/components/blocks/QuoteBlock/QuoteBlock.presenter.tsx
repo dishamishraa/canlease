@@ -265,8 +265,8 @@ const withPresenter = (
                 type: 'Text',
                 suffixText: {
                   ...defaultRateDetailItemProps.suffixText,
-                  value: (leaseType === 'stretch')
-                    ? t('view_quote.rate_card.stretch_purchase_term', { purchaseOptionMonths: term })
+                  value: (leaseType === 'buyout')
+                    ? t('view_quote.rate_card.buyout_purchase_term', { purchaseOptionMonths: term })
                     : t('view_quote.rate_card.ten_dollar_purchase_term'),
                 },
               },
@@ -280,9 +280,9 @@ const withPresenter = (
       let baseKey = '';
 
       switch (leaseType) {
-        case 'stretch':
+        case 'buyout':
           totalLines = 4;
-          baseKey = 'view_quote.term_detail.stretch.term';
+          baseKey = 'view_quote.term_detail.buyout.term';
           break;
         case '$10':
           totalLines = 3;

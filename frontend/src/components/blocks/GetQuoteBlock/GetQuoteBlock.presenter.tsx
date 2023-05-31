@@ -32,7 +32,7 @@ const withPresenter = (
     const [equipmentName, setEquipmentName] = useState<string>();
     const [equipmentCost, setEquipmentCost] = useState<string>();
     const [equipmentFees, setEquipmentFees] = useState<string>();
-    const [equipmentLeaseType, setEquipmentLeaseType] = useState<LeaseType>('stretch');
+    const [equipmentLeaseType, setEquipmentLeaseType] = useState<LeaseType>('buyout');
     const [equipmentRatecard, setEquipmentRatecard] = useState<string>();
     const [userType, setUserType] = useState<UserType>();
     const [formState, setFormState] = useState<FormState>();
@@ -105,10 +105,10 @@ const withPresenter = (
       contextualMenuItemList: {
         contextualMenuItems: [
           {
-            onContextualMenuItemClicked: handleChangeLeaseType('stretch'),
+            onContextualMenuItemClicked: handleChangeLeaseType('buyout'),
             text: {
               ...defaultMenuItemProps.text,
-              value: t('get_quote_block.lease_type.options.stretch'),
+              value: t('get_quote_block.lease_type.options.buyout'),
             },
           },
           {
@@ -184,8 +184,8 @@ const withPresenter = (
           ...defaultGetQuoteBlockProps.leaseTypeSelectField.select,
           text: {
             ...defaultGetQuoteBlockProps.leaseTypeSelectField.select?.text,
-            value: equipmentLeaseType === 'stretch'
-              ? t('get_quote_block.lease_type.options.stretch')
+            value: equipmentLeaseType === 'buyout'
+              ? t('get_quote_block.lease_type.options.buyout')
               : t('get_quote_block.lease_type.options.ten'),
           },
         },

@@ -34,7 +34,7 @@ const mockQuote: Quote = {
     },
   ],
   quoteExpiryDate: '2021-08-22T19:23:28.744Z',
-  leaseType: 'stretch',
+  leaseType: 'buyout',
 };
 
 export default mockQuote;

@@ -79,7 +79,7 @@ export default class QuoteController implements QuoteControllerContract {
 
     const rates = await this.getRates(rateCard!, applicationAmount);
     rates.forEach(({ term, regularir, tenatendir }) => {
-      interestRates[term] = leaseType === 'stretch' ? regularir : tenatendir;
+      interestRates[term] = leaseType === 'buyout' ? regularir : tenatendir;
     });
 
     const payments = calculator.calculateMonthlyPayments(
