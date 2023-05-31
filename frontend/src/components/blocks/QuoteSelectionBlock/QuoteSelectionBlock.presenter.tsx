@@ -7,7 +7,7 @@ import { DetailsSectionProps } from '../../organisms/DetailsSection';
 import { QuoteSelectionBlockProps, defaultProps } from './QuoteSelectionBlock';
 import { defaultProps as defaultRateDetailItemProps } from '../../molecules/RateDetailItem/RateDetailItem';
 import { Quote, QuoteOption } from '../../../modules/quote/types';
-import { convertMonth, getStretchMonth } from '../../../lib/utils';
+import { convertMonth } from '../../../lib/utils';
 
 export type QuoteSelectionBlockPresenterProps = QuoteSelectionBlockProps & {
   quoteDetails: Quote | null;
@@ -141,9 +141,10 @@ const withPresenter = (
                 },
                 numberText: {
                   ...defaultRateDetailItemProps.numberText,
-                  value: (leaseType === 'stretch')
-                    ? getStretchMonth(term)
-                    : term,
+                  value: term,
+                  // value: (leaseType === 'stretch')
+                  //   ? getStretchMonth(term)
+                  //   : term,
                 },
               },
               {
