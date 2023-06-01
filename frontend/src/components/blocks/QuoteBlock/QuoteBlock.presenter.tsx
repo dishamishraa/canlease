@@ -22,7 +22,6 @@ import { APIResponse } from '../../../lib/api/types';
 import { sendQuote } from '../../../modules/quote/api';
 import {
   convertMonth,
-  getStretchMonth,
   isExpired,
   updateInstaQuoteCookie,
   getQuoteCookie
@@ -248,9 +247,7 @@ const withPresenter = (
                 },
                 numberText: {
                   ...defaultRateDetailItemProps.numberText,
-                  value: (leaseType === 'stretch')
-                    ? getStretchMonth(term)
-                    : term,
+                  value: term,
                 },
               },
               {

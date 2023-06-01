@@ -5,7 +5,7 @@ import { ReviewApplicationInformationBlockProps, defaultProps } from './ReviewAp
 import { DetailsSectionProps } from '../../organisms/DetailsSection';
 import { defaultProps as defaultQuoteDetailItemProps } from '../../molecules/QuoteDetailItem/QuoteDetailItem';
 import { Profile } from '../../../modules/profile/types';
-import { convertMonth, getStretchMonth } from '../../../lib/utils';
+import { convertMonth } from '../../../lib/utils';
 import { ApplicationBusinessInfoVendor, CreateApplicationState } from '../../../modules/types';
 import { NOT_AVAILABLE } from '../../../lib/constants';
 
@@ -648,9 +648,7 @@ const withPresenter = (
                 infoText: {
                   ...defaultQuoteDetailItemProps.infoText,
                   value: t('application_form.review_application.payment_details.lease_term_value', {
-                    termValue: (leaseType === 'stretch')
-                      ? getStretchMonth(term)
-                      : term,
+                    termValue: term,
                   }),
                 },
               },
