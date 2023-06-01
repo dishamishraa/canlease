@@ -22,16 +22,14 @@ describe('QuoteCalculator', () => {
     test('That it calculates the correct future value of a Stretch lease', () => {
       const fv = quoteCalc.calculateFutureValue(
         STRETCH,
-        amount,
         amountPlusFee,
       );
-      expect(fv).toEqual(0.1 * amount);
+      expect(fv).toEqual(0);
     });
 
     test('That it calculates the correct future value of a $10', () => {
       const fv = quoteCalc.calculateFutureValue(
         $10,
-        amount,
         amountPlusFee,
       );
       expect(fv).toEqual(0);
@@ -40,7 +38,6 @@ describe('QuoteCalculator', () => {
     test('That it calculates the correct future value of a FMV', () => {
       const fv = quoteCalc.calculateFutureValue(
         FMV,
-        amount,
         amountPlusFee,
       );
       expect(fv).toEqual(amountPlusFee * 0.05);
@@ -58,10 +55,10 @@ describe('QuoteCalculator', () => {
         60: 15.75,
       };
       const expectedPayments: Record<number, number> = {
-        24: 201.49,
-        36: 137.81,
-        48: 109.22,
-        60: 92.58,
+        24: 214.3,
+        36: 146.17,
+        48: 115.13,
+        60: 97.02,
       };
       const amount = 4064;
       const payments = quoteCalc.calculateMonthlyPayments(
