@@ -32,16 +32,14 @@ export default class QuoteCalculator {
 
   calculateFutureValue(
     po: PurchaseOptionType,
-    pv: number,
     pvPlusFee: number,
   ): number {
     switch (po) {
       case FMV:
         return pvPlusFee * 0.05;
       case $10:
-        return 0;
       case STRETCH:
-        return pv * 0.1;
+        return 0;
       default:
         throw new Error('type not valid');
     }
@@ -71,7 +69,7 @@ export default class QuoteCalculator {
     terms: number[],
   ): MonthlyPayment[] {
     const amountWithFee = amount + (amount * fee) / 100;
-    const fv = this.calculateFutureValue(purchaseOption, amount, amountWithFee);
+    const fv = this.calculateFutureValue(purchaseOption, amountWithFee);
     const payments: MonthlyPayment[] = [];
 
     terms.forEach((term) => {
