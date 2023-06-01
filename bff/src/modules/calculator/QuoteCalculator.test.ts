@@ -19,7 +19,7 @@ describe('QuoteCalculator', () => {
     const amount = 1000;
     const amountPlusFee = 1010; // (amount + amount*fee/100)
 
-    test('That it calculates the correct future value of a stretch lease', () => {
+    test('That it calculates the correct future value of a Stretch lease', () => {
       const fv = quoteCalc.calculateFutureValue(
         STRETCH,
         amount,
@@ -50,7 +50,7 @@ describe('QuoteCalculator', () => {
   describe('calculateMonthlyPayments(amount, purchaseOption, annualInterestRates, terms)', () => {
     const terms = [24, 36, 48, 60];
 
-    test('Calculates correct payments for stretch Leases', () => {
+    test('Calculates correct payments for Stretch Leases', () => {
       const annualInterestRates = {
         24: 26,
         36: 18.75,

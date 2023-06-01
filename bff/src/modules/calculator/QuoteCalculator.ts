@@ -41,8 +41,6 @@ export default class QuoteCalculator {
       case $10:
       case STRETCH:
         return 0;
-      // case STRETCH:
-      //   return pv * 0.1;
       default:
         throw new Error('type not valid');
     }
@@ -55,8 +53,6 @@ export default class QuoteCalculator {
     switch (po) {
       case FMV:
         return 0;
-      // case STRETCH:
-      //   return pv * 0.1;
       case $10:
       case STRETCH:
         return 10;
