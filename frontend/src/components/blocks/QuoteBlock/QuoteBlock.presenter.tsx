@@ -266,7 +266,7 @@ const withPresenter = (
                 suffixText: {
                   ...defaultRateDetailItemProps.suffixText,
                   value: (leaseType === 'stretch')
-                    ? t('view_quote.rate_card.stretch_purchase_term', { purchaseOptionMonths: term })
+                    ? t('view_quote.rate_card.buyout_purchase_term', { purchaseOptionMonths: term })
                     : t('view_quote.rate_card.ten_dollar_purchase_term'),
                 },
               },
@@ -281,8 +281,8 @@ const withPresenter = (
 
       switch (leaseType) {
         case 'stretch':
-          totalLines = 3;
-          baseKey = 'view_quote.term_detail.stretch.term';
+          totalLines = 4;
+          baseKey = 'view_quote.term_detail.buyout.term';
           break;
         case '$10':
           totalLines = 3;
