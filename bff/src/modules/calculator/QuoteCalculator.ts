@@ -3,10 +3,10 @@ import { MonthlyPayment } from './types';
 
 export const $10 = '$10';
 export const FMV = 'FMV';
-export const BUYOUT = 'buyout';
+export const STRETCH = 'stretch';
 
 const VALID_PURCHASE_OPTION_TYPES = [
-  BUYOUT,
+  STRETCH,
   FMV,
   $10,
 ] as const;
@@ -39,9 +39,9 @@ export default class QuoteCalculator {
       case FMV:
         return pvPlusFee * 0.05;
       case $10:
-      case BUYOUT:
+      case STRETCH:
         return 0;
-      // case BUYOUT:
+      // case STRETCH:
       //   return pv * 0.1;
       default:
         throw new Error('type not valid');
@@ -55,10 +55,10 @@ export default class QuoteCalculator {
     switch (po) {
       case FMV:
         return 0;
-      // case BUYOUT:
+      // case STRETCH:
       //   return pv * 0.1;
       case $10:
-      case BUYOUT:
+      case STRETCH:
         return 10;
       default:
         throw new Error('type not valid');

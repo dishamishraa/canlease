@@ -104,7 +104,7 @@ export type AddRateCard = {
 };
 
 export const VALID_LEASE_TYPES = [
-  'buyout', '$10',
+  'stretch', '$10',
 ] as const;
 export type LeaseType = typeof VALID_LEASE_TYPES[number];
 

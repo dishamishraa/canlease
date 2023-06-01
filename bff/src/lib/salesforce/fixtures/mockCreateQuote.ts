@@ -4,7 +4,7 @@ const mockCreateQuote: CreateQuote = {
   userType: 'customer',
   asset: 'asset',
   applicationAmount: 0,
-  leaseType: 'buyout',
+  leaseType: 'stretch',
   contactName: 'contactName',
   contactEmail: 'contact@email.com',
   contactBusinessName: 'contactBusinessName',

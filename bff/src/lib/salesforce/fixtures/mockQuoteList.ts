@@ -17,7 +17,7 @@ const mockQuoteList: Quote[] = [
       },
     ],
     quoteExpiryDate: '2021-08-05T19:23:28.744Z',
-    leaseType: 'buyout',
+    leaseType: 'stretch',
   },
   {
     quoteId: 'string',
@@ -35,7 +35,7 @@ const mockQuoteList: Quote[] = [
       },
     ],
     quoteExpiryDate: '2021-06-22T19:23:28.744Z',
-    leaseType: 'buyout',
+    leaseType: 'stretch',
   },
   {
     quoteId: 'id',
@@ -53,7 +53,7 @@ const mockQuoteList: Quote[] = [
       },
     ],
     quoteExpiryDate: '2020-07-05T19:23:28.744Z',
-    leaseType: 'buyout',
+    leaseType: 'stretch',
   },
   {
     quoteId: 'id2',
@@ -71,7 +71,7 @@ const mockQuoteList: Quote[] = [
       },
     ],
     quoteExpiryDate: '2021-08-02T19:23:28.744Z',
-    leaseType: 'buyout',
+    leaseType: 'stretch',
   },
 ];
 

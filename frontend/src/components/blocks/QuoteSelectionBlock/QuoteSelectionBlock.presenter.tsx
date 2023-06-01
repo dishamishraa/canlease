@@ -142,9 +142,6 @@ const withPresenter = (
                 numberText: {
                   ...defaultRateDetailItemProps.numberText,
                   value: term,
-                  // value: (leaseType === 'buyout')
-                  //   ? getBuyoutMonth(term)
-                  //   : term,
                 },
               },
               {
@@ -162,7 +159,7 @@ const withPresenter = (
                 type: 'Text',
                 suffixText: {
                   ...defaultRateDetailItemProps.suffixText,
-                  value: (leaseType === 'buyout')
+                  value: (leaseType === 'stretch')
                     ? t('view_quote.rate_card.buyout_purchase_term', { purchaseOptionMonths: term })
                     : t('view_quote.rate_card.ten_dollar_purchase_term'),
                 },
