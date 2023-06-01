@@ -16,21 +16,6 @@ export const isEmpty = (value: any) => (
 
 export const convertMonth = (value: string): number => parseInt(value.toLowerCase().replace('m', ''), 10);
 
-// export const getStretchMonth = (value: number): number => {
-//   switch (value) {
-//     case 24:
-//       return 27;
-//     case 36:
-//       return 40;
-//     case 48:
-//       return 52;
-//     case 60:
-//       return 66;
-//     default:
-//       return value;
-//   }
-// };
-
 export const isExpiring = (value: string) => {
   const date = new Date(value);
   const today = new Date();

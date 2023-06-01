@@ -142,9 +142,6 @@ const withPresenter = (
                 numberText: {
                   ...defaultRateDetailItemProps.numberText,
                   value: term,
-                  // value: (leaseType === 'stretch')
-                  //   ? getStretchMonth(term)
-                  //   : term,
                 },
               },
               {
