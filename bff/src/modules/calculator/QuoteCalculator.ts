@@ -3,7 +3,7 @@ import { MonthlyPayment } from './types';
 
 export const $10 = '$10';
 export const FMV = 'FMV';
-export const STRETCH = 'buyout';
+export const STRETCH = 'stretch';
 
 const VALID_PURCHASE_OPTION_TYPES = [
   STRETCH,
