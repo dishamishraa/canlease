@@ -281,7 +281,7 @@ const withPresenter = (
 
       switch (leaseType) {
         case 'stretch':
-          totalLines = 4;
+          totalLines = 3;
           baseKey = 'view_quote.term_detail.stretch.term';
           break;
         case '$10':
