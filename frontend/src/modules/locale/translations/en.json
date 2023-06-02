@@ -16,7 +16,7 @@
             "label": "Lease type",
             "options": {
                 "ten": "10% ownership at end",
-                "hundred": "$100 end"
+                "hundred": "$100 at end"
             }
         },
         "submit": "Next",
@@ -134,7 +134,7 @@
                 "label": "Lease type",
                 "options": {
                     "ten": "10% ownership at end",
-                    "hundred": "$100 end"
+                    "hundred": "$100 at end"
                 }
             }
         },
