@@ -15,8 +15,8 @@
         "lease_type": {
             "label": "Lease type",
             "options": {
-                "buyout": "Buyout",
-                "ten": "$10 end"
+                "ten": "10% ownership at end",
+                "hundred": "$100 end"
             }
         },
         "submit": "Next",
@@ -63,12 +63,12 @@
         "heading_text": "Leasing quote",
         "disclaimer_text": "Quoted payments are pre-tax, subject to credit approval, and are based on first and last monthly payments in advance and one time documentation fee.",
         "term_detail":{
-            "buyout":{
+            "ten_percent":{
                 "term_1": "Cost of Finance represents the annual percentage of financing charges you will pay over the term of this rental contact.",
                 "term_2": "Equipment ownership will be 10% of the original invoice price (plus tax), which will automatically be deducted from your account at the end of the lease term. When completed, ownership will transfer to you and the lease will be concluded.",
-                "term_3": "All technology leases cannot exceed a 36-month term."
+                "term_3": "Maximum term may be reduced to 48 or 36 months, based on asset category, age of asset and/or overall credit profile of the applicant."
             },
-            "ten_dollar":{
+            "hundred_dollar":{
                 "term_1": "Cost of Finance represents the annual percentage of financing charges you will pay over the term of this rental contact.",
                 "term_2": "Purchase Option represents When and How Much it will cost to assume ownership of the equipment.",
                 "term_3": "Maximum term may be reduced to 48 or 36 Months based on asset category, age of asset and/or overall credit profile of applicant."
@@ -93,8 +93,8 @@
             "rate_suffix": "per month",
             "months_suffix": "months",
             "cost_suffix": "cost of finance",
-            "buyout_purchase_term": "Own for 10% of original price at {{purchaseOptionMonths}} months",
-            "ten_dollar_purchase_term": "Own for $100 at end of term"
+            "ten_purchase_term": "Own for 10% of the Asset Cost (before tax) after {{purchaseOptionMonths}} Months",
+            "hundred_dollar_purchase_term": "Own for $100 at end of term"
         },
         "expiry_toast":{
             "message": "This quote has expired. Please create a new quote."
@@ -133,8 +133,8 @@
             "lease_type": {
                 "label": "Lease type",
                 "options": {
-                    "buyout": "Buyout",
-                    "ten": "$10 end"
+                    "ten": "10% ownership at end",
+                    "hundred": "$100 end"
                 }
             }
         },
