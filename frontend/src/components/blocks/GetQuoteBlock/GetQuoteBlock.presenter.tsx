@@ -108,14 +108,14 @@ const withPresenter = (
             onContextualMenuItemClicked: handleChangeLeaseType('stretch'),
             text: {
               ...defaultMenuItemProps.text,
-              value: t('get_quote_block.lease_type.options.buyout'),
+              value: t('get_quote_block.lease_type.options.ten'),
             },
           },
           {
             onContextualMenuItemClicked: handleChangeLeaseType('$10'),
             text: {
               ...defaultMenuItemProps.text,
-              value: t('get_quote_block.lease_type.options.ten'),
+              value: t('get_quote_block.lease_type.options.hundred'),
             },
           },
         ],
@@ -185,8 +185,8 @@ const withPresenter = (
           text: {
             ...defaultGetQuoteBlockProps.leaseTypeSelectField.select?.text,
             value: equipmentLeaseType === 'stretch'
-              ? t('get_quote_block.lease_type.options.buyout')
-              : t('get_quote_block.lease_type.options.ten'),
+              ? t('get_quote_block.lease_type.options.ten')
+              : t('get_quote_block.lease_type.options.hundred'),
           },
         },
         contextualMenu,

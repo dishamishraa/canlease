@@ -19,7 +19,7 @@ describe('QuoteCalculator', () => {
     const amount = 1000;
     const amountPlusFee = 1010; // (amount + amount*fee/100)
 
-    test('That it calculates the correct future value of a Stretch lease', () => {
+    test('That it calculates the correct future value of a $10', () => {
       const fv = quoteCalc.calculateFutureValue(
         STRETCH,
         amountPlusFee,
@@ -27,7 +27,7 @@ describe('QuoteCalculator', () => {
       expect(fv).toEqual(0);
     });
 
-    test('That it calculates the correct future value of a $10', () => {
+    test('That it calculates the correct future value of a $100', () => {
       const fv = quoteCalc.calculateFutureValue(
         $10,
         amountPlusFee,
@@ -47,7 +47,7 @@ describe('QuoteCalculator', () => {
   describe('calculateMonthlyPayments(amount, purchaseOption, annualInterestRates, terms)', () => {
     const terms = [24, 36, 48, 60];
 
-    test('Calculates correct payments for Stretch Leases', () => {
+    test('Calculates correct payments for $10 Leases', () => {
       const annualInterestRates = {
         24: 26,
         36: 18.75,
@@ -76,7 +76,7 @@ describe('QuoteCalculator', () => {
       });
     });
 
-    test('Calculates correct payments for $10 Leases', () => {
+    test('Calculates correct payments for $100 Leases', () => {
       const annualInterestRates = {
         24: 31,
         36: 24,

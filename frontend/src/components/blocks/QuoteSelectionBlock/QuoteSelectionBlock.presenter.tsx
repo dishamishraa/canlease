@@ -160,8 +160,8 @@ const withPresenter = (
                 suffixText: {
                   ...defaultRateDetailItemProps.suffixText,
                   value: (leaseType === 'stretch')
-                    ? t('view_quote.rate_card.buyout_purchase_term', { purchaseOptionMonths: term })
-                    : t('view_quote.rate_card.ten_dollar_purchase_term'),
+                    ? t('view_quote.rate_card.ten_purchase_term', { purchaseOptionMonths: term })
+                    : t('view_quote.rate_card.hundred_dollar_purchase_term'),
                 },
               },
             ],
