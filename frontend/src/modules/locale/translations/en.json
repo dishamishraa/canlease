@@ -94,7 +94,7 @@
             "months_suffix": "months",
             "cost_suffix": "cost of finance",
             "ten_purchase_term": "Own for 10% of the Asset Cost (before tax) after {{purchaseOptionMonths}} Months",
-            "hundred_dollar_purchase_term": "Own for $100 at end of term"
+            "hundred_dollar_purchase_term": "Own for $100 at the end of term"
         },
         "expiry_toast":{
             "message": "This quote has expired. Please create a new quote."
