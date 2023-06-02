@@ -66,7 +66,7 @@
             "ten_dollar":{
                 "term_1": "Cost of Finance represents the annual percentage of financing charges you will pay over the term of this rental contact.",
                 "term_2": "Equipment ownership will be 10% of the original invoice price (plus tax), which will automatically be deducted from your account at the end of the lease term. When completed, ownership will transfer to you and the lease will be concluded.",
-                "term_3": "All technology leases cannot exceed a 36-month term."
+                "term_3": "Maximum term may be reduced to 48 or 36 months, based on asset category, age of asset and/or overall credit profile of the applicant."
             },
             "hundred_dollar":{
                 "term_1": "Cost of Finance represents the annual percentage of financing charges you will pay over the term of this rental contact.",
@@ -93,7 +93,7 @@
             "rate_suffix": "per month",
             "months_suffix": "months",
             "cost_suffix": "cost of finance",
-            "ten_purchase_term": "Own for 10% of original price at {{purchaseOptionMonths}} months",
+            "ten_purchase_term": "Own for 10% of original price after {{purchaseOptionMonths}} months",
             "hundred_dollar_purchase_term": "Own for $100 at end of term"
         },
         "expiry_toast":{
