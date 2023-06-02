@@ -282,7 +282,7 @@ const withPresenter = (
       switch (leaseType) {
         case 'stretch':
           totalLines = 3;
-          baseKey = 'view_quote.term_detail.ten_dollar.term';
+          baseKey = 'view_quote.term_detail.ten_percent.term';
           break;
         case '$10':
           totalLines = 3;
