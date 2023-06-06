@@ -84,8 +84,10 @@ const withPresenter = (
             leaseInfo = {
               ...leaseInfo,
               rateCardType: equipmentRatecard,
-              fee: parseFloat(equipmentFees),
             };
+            if (equipmentFees) {
+              leaseInfo.fee = parseFloat(equipmentFees);
+            }
           }
           setIsLoading(true);
           await setEquipmentLeaseInfo(leaseInfo);
