@@ -111,7 +111,7 @@ const withPresenter = (
           if (quoteUserType === 'vendor') {
             history.push('/portal/quote/customerInformation', newState);
           } else if (profile) {
-            const { name: equipmentName, cost: equipmentCost, leaseType } = equipmentLeaseInfo;
+            const { name: equipmentName, cost: equipmentCost, leaseType, rateCardType, fee } = equipmentLeaseInfo;
             const createPayload: CreateQuotePayload = {
               userType: 'customer',
               asset: equipmentName,
@@ -120,7 +120,11 @@ const withPresenter = (
               contactName: profile.name,
               contactEmail: profile.email,
               contactBusinessName: profile.companyName,
+              rateCardType,
             };
+            if (fee) {
+              createPayload.fee = fee;
+            }
             await handleCreateQuote(createPayload, undefined);
           }
           break;
