@@ -80,12 +80,14 @@ const withPresenter = (
             cost: equipmentCost,
             leaseType: equipmentLeaseType,
           };
-          if ((profile?.userType === 'rep' || profile?.userType === 'admin') && equipmentRatecard && equipmentFees) {
+          if ((profile?.userType === 'rep' || profile?.userType === 'admin') && equipmentRatecard) {
             leaseInfo = {
               ...leaseInfo,
               rateCardType: equipmentRatecard,
-              fee: parseFloat(equipmentFees),
             };
+            if (equipmentFees) {
+              leaseInfo.fee = parseFloat(equipmentFees);
+            }
           }
           setIsLoading(true);
           await setEquipmentLeaseInfo(leaseInfo);
