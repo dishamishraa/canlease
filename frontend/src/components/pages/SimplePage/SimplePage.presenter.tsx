@@ -80,7 +80,12 @@ const withPresenter = (
         switch (flowType) {
           case 'instaQuote':
             setCookie(INSTANT_QUOTE_COOKIE, { quoteId, expires: expiryDate },
-              { expires: expiryDate });
+              {
+                expires: expiryDate,
+                path: '/',
+                secure: true,
+                sameSite: 'none',
+              });
             setQuote(data);
             history.push(`/instaQuote/${quoteId}`, { quote: data, quoteUserType });
             break;

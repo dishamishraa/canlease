@@ -68,7 +68,7 @@ const withPresenter = (
       if (flowType === 'instaQuote') {
         history.push('/account/signup');
       } else {
-         history.push('/portal/quotes');
+        history.push('/portal/quotes');
       }
     };
 
@@ -83,21 +83,21 @@ const withPresenter = (
         onIconClicked: onSimpleCloseModal,
       },
       image: {
-        image: flowType === 'instaQuote'? EmailIcon : QuoteSentIcon,
+        image: flowType === 'instaQuote' ? EmailIcon : QuoteSentIcon,
       },
       titleText: {
         ...modalPropsDefaultProps.titleText,
-        value: flowType === 'instaQuote'? t('quote_email_sent.title') : t('quote_confirmation.header'),
+        value: flowType === 'instaQuote' ? t('quote_email_sent.title') : t('quote_confirmation.header'),
       },
       descriptionText: {
         ...modalPropsDefaultProps.descriptionText,
-        value: flowType === 'instaQuote'? t('quote_email_sent.description') : t('quote_confirmation.description'),
+        value: flowType === 'instaQuote' ? t('quote_email_sent.description') : t('quote_confirmation.description'),
       },
       primaryButton: {
         ...modalPropsDefaultProps.primaryButton,
         text: {
           ...modalPropsDefaultProps.primaryButton.text,
-          value: flowType === 'instaQuote'? t('quote_email_sent.primary_button') : t('quote_confirmation.button'),
+          value: flowType === 'instaQuote' ? t('quote_email_sent.primary_button') : t('quote_confirmation.button'),
         },
         onButtonClicked: onCloseModal,
       },
@@ -105,7 +105,7 @@ const withPresenter = (
         ...modalPropsDefaultProps.secondaryButton,
         text: {
           ...modalPropsDefaultProps.secondaryButton.text,
-          value: flowType === 'instaQuote'? t('quote_email_sent.secondary_button') : t('')
+          value: flowType === 'instaQuote' ? t('quote_email_sent.secondary_button') : t('')
         },
         onButtonClicked: onSimpleCloseModal,
         visible: flowType === 'instaQuote'
@@ -124,7 +124,12 @@ const withPresenter = (
             const expiryDate = new Date();
             expiryDate.setTime(expiryDate.getTime() + Number(MAX_AGE));
             setCookie(INSTANT_QUOTE_COOKIE, { quoteId: quoteId, expires: expiryDate },
-              { expires: expiryDate });
+              {
+                expires: expiryDate,
+                path: '/',
+                secure: true,
+                sameSite: 'none',
+              });
           }
           updateInstaQuoteCookie({ action: 'apply_finance_personal' }, setCookie, removeCookie);
           history.push('/account/signup');
@@ -188,7 +193,7 @@ const withPresenter = (
         applicationAmount, asset, quoteId, leaseType,
       } = quote;
 
-      const detailsLineItems: {label: string; value: string }[] = [
+      const detailsLineItems: { label: string; value: string }[] = [
         {
           label: t('view_quote.quote_detail.application_amount.label'),
           value: t('view_quote.quote_detail.application_amount.value', {

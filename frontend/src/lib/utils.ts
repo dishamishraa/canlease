@@ -93,6 +93,9 @@ export const updateInstaQuoteCookie = (
     },
     {
       expires: new Date(expires!),
+      path: '/',
+      secure: true,
+      sameSite: 'none',
     });
 };
 
